@@ -3,7 +3,7 @@
 {% block page_content %}
 <link rel="stylesheet" href="/assets/kandil_hr/css/workspace.css">
 <div class="kandil-workspace">
-  <div class="kandil-heading"><div><p class="kandil-eyebrow">قنديل · Company workspace</p><h1>Company hub <span lang="ar" dir="rtl">بوابة الشركة</span></h1><p>Welcome, {{ display_user }}. Choose your workspace.</p></div><a class="btn btn-default" href="/apps">Frappe apps / التطبيقات</a></div>
+  <div class="kandil-heading"><div><p class="kandil-eyebrow">قنديل · Company workspace</p><h1>Company hub <span lang="ar" dir="rtl">بوابة الشركة</span></h1><p>Welcome, {{ display_user | e }}. Choose your workspace.</p></div><a class="btn btn-default" href="/apps">Frappe apps / التطبيقات</a></div>
   <div class="kandil-notice" role="note">Local pilot with synthetic data / <span lang="ar" dir="rtl">تجربة محلية ببيانات وهمية</span>. HR is available below. Other departments are not connected.</div>
   <div class="kandil-grid company-modules">
     <a class="kandil-card active" href="/kandil-pilot"><span class="kandil-status">Local pilot · تجربة محلية</span><h2>People & HR <span lang="ar" dir="rtl">الموارد البشرية</span></h2><p>Open the native Frappe HR screens for requests, approvals and recruitment.</p><strong>Open HR workspace →</strong></a>
