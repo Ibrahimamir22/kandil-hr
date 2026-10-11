@@ -1,0 +1,100 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Recruitment Route",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "manager_approver",
+    "hr_approver",
+    "exception_approver",
+    "enabled"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Department"
+    },
+    {
+      "fieldname": "manager_approver",
+      "label": "Manager Approver",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "hr_approver",
+      "label": "Hr Approver",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "exception_approver",
+      "label": "Exception Approver",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "enabled",
+      "label": "Enabled",
+      "fieldtype": "Check",
+      "default": "1"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Requester",
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    }
+  ],
+  "track_changes": 1
+}

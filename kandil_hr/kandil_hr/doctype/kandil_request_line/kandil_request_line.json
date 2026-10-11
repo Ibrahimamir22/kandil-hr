@@ -1,0 +1,57 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Request Line",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "capacity",
+    "requested_qty",
+    "approved_qty",
+    "joined_qty",
+    "job_opening"
+  ],
+  "fields": [
+    {
+      "fieldname": "capacity",
+      "label": "Capacity",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Kandil Capacity"
+    },
+    {
+      "fieldname": "requested_qty",
+      "label": "Requested Qty",
+      "fieldtype": "Int",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "approved_qty",
+      "label": "Approved Qty",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "joined_qty",
+      "label": "Joined Qty",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "job_opening",
+      "label": "Job Opening",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "in_list_view": 1,
+      "options": "Job Opening"
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0,
+  "istable": 1
+}

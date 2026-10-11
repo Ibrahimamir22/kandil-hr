@@ -1,0 +1,16 @@
+{% extends "templates/web.html" %}
+{% block title %}قنديل | Company hub{% endblock %}
+{% block page_content %}
+<link rel="stylesheet" href="/assets/kandil_hr/css/workspace.css">
+<div class="kandil-workspace">
+  <div class="kandil-heading"><div><p class="kandil-eyebrow">قنديل · Company workspace</p><h1>Company hub <span lang="ar" dir="rtl">بوابة الشركة</span></h1><p>Welcome, {{ display_user }}. Choose your workspace.</p></div><a class="btn btn-default" href="/apps">Frappe apps / التطبيقات</a></div>
+  <div class="kandil-notice" role="note">Local pilot with synthetic data / <span lang="ar" dir="rtl">تجربة محلية ببيانات وهمية</span>. HR is available below. Other departments are not connected.</div>
+  <div class="kandil-grid company-modules">
+    <a class="kandil-card active" href="/kandil-pilot"><span class="kandil-status">Local pilot · تجربة محلية</span><h2>People & HR <span lang="ar" dir="rtl">الموارد البشرية</span></h2><p>Open the native Frappe HR screens for requests, approvals and recruitment.</p><strong>Open HR workspace →</strong></a>
+    <section class="kandil-card"><span class="kandil-status pending">Not connected · غير متصل</span><h2>Delivery <span lang="ar" dir="rtl">التوصيل</span></h2><p>Planned: dispatch, delivery progress, proof and exceptions. No live tracking or delivery actions are available here.</p></section>
+    <section class="kandil-card"><span class="kandil-status pending">Not connected · غير متصل</span><h2>Cost estimator <span lang="ar" dir="rtl">تقدير التكلفة</span></h2><p>Planned: reviewed material quantities, versioned rates and cost calculations. Engineering rules still need confirmation.</p></section>
+    <section class="kandil-card"><span class="kandil-status pending">Destination to confirm · الوجهة قيد التأكيد</span><h2>Odoo <span lang="ar" dir="rtl">أودو</span></h2><p>Kandil's existing ERP remains separate. Its production URL, permissions and integration scope must be confirmed before adding a link.</p></section>
+  </div>
+  <p class="kandil-footnote">This hub is a navigation page hosted in the local HR app. It does not make Frappe the backend for delivery or estimation, and it does not provide shared login to other systems.</p>
+</div>
+{% endblock %}

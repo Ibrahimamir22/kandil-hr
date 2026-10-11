@@ -275,3 +275,37 @@ app_license = "custom"
 
 # Standard HRMS remains the HR foundation.
 required_apps = ["hrms"]
+
+# Local recruitment pilot; runtime guards keep other sites unchanged until explicitly enabled.
+after_migrate = "kandil_hr.pilot.setup.install"
+extend_doctype_class = {
+	"Job Applicant": ["kandil_hr.pilot.extensions.ApplicantMixin"],
+	"Job Offer": ["kandil_hr.pilot.extensions.OfferMixin"],
+}
+doc_events = {
+	"Job Opening": {"validate": "kandil_hr.pilot.extensions.validate_opening"},
+	"Employee": {
+		"validate": "kandil_hr.pilot.extensions.validate_employee",
+		"on_trash": "kandil_hr.pilot.extensions.protect_employee_delete",
+	},
+	"Job Offer": {"before_cancel": "kandil_hr.pilot.extensions.protect_offer_cancel"},
+}
+has_permission = {
+	"Kandil Hiring Request": "kandil_hr.pilot.permissions.request_permission",
+	"Kandil Recruitment Event": "kandil_hr.pilot.permissions.event_permission",
+}
+permission_query_conditions = {
+	"Kandil Hiring Request": "kandil_hr.pilot.permissions.request_query",
+	"Kandil Recruitment Event": "kandil_hr.pilot.permissions.event_query",
+}
+doctype_js = {"Job Offer": "public/js/job_offer.js"}
+doctype_list_js = {"Kandil Hiring Request": "public/js/hiring_request_list.js"}
+add_to_apps_screen = [
+	{
+		"name": "kandil_hr",
+		"logo": "/assets/kandil_hr/kandil.svg",
+		"title": "Kandil workspace",
+		"route": "/kandil",
+		"has_permission": "kandil_hr.pilot.navigation.has_app_permission",
+	}
+]

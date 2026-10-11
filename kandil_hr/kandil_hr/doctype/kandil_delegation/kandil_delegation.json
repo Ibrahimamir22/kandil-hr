@@ -1,0 +1,95 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Delegation",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "from_user",
+    "to_user",
+    "from_date",
+    "to_date",
+    "reason",
+    "revoked"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Department"
+    },
+    {
+      "fieldname": "from_user",
+      "label": "From User",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "to_user",
+      "label": "To User",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "from_date",
+      "label": "From Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "to_date",
+      "label": "To Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "revoked",
+      "label": "Revoked",
+      "fieldtype": "Check",
+      "default": "0"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "write": 0,
+      "create": 0,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    }
+  ],
+  "track_changes": 1
+}

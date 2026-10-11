@@ -1,0 +1,62 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Approval Step",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "principal",
+    "authority",
+    "decision",
+    "actor",
+    "decided_at",
+    "comment"
+  ],
+  "fields": [
+    {
+      "fieldname": "principal",
+      "label": "Principal",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "authority",
+      "label": "Authority",
+      "fieldtype": "Data",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "decision",
+      "label": "Decision",
+      "fieldtype": "Select",
+      "default": "Pending",
+      "in_list_view": 1,
+      "options": "Pending\nApproved\nRejected"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "decided_at",
+      "label": "Decided At",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "comment",
+      "label": "Comment",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0,
+  "istable": 1
+}

@@ -8,3 +8,11 @@ node_modules/
 .env
 .env.*
 .DS_Store
+.secrets/
+site_config.json
+common_site_config.json
+test-credentials.json
+*.sql
+*.sql.gz
+*.backup
+*.log

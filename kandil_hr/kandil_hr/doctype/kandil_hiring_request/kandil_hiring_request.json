@@ -1,0 +1,142 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Hiring Request",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "title",
+    "requested_by",
+    "status",
+    "exception_reason",
+    "needs_exception",
+    "lines",
+    "approval_steps",
+    "submitted_snapshot",
+    "decision_note"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "in_list_view": 1,
+      "options": "Department"
+    },
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "requested_by",
+      "label": "Requested By",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "in_list_view": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "default": "Draft",
+      "read_only": 1,
+      "in_list_view": 1,
+      "options": "Draft\nPending\nApproved\nRejected\nCancelled\nFilled"
+    },
+    {
+      "fieldname": "exception_reason",
+      "label": "Exception Reason",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "needs_exception",
+      "label": "Needs Exception",
+      "fieldtype": "Check",
+      "read_only": 1
+    },
+    {
+      "fieldname": "lines",
+      "label": "Lines",
+      "fieldtype": "Table",
+      "reqd": 1,
+      "options": "Kandil Request Line"
+    },
+    {
+      "fieldname": "approval_steps",
+      "label": "Approval Steps",
+      "fieldtype": "Table",
+      "read_only": 1,
+      "options": "Kandil Approval Step"
+    },
+    {
+      "fieldname": "submitted_snapshot",
+      "label": "Submitted Snapshot",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "decision_note",
+      "label": "Decision Note",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Requester",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "write": 0,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "print": 1
+    }
+  ],
+  "track_changes": 1,
+  "title_field": "title",
+  "search_fields": "title,requested_by,status"
+}
