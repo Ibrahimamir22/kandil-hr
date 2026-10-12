@@ -261,15 +261,15 @@
       "status": "not_run",
       "evidence": null
     },
-    "status": "partial",
-    "evidence": "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json",
-    "commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-    "checked_at": "2026-10-12T03:03:33.877378+00:00",
+    "status": "passed",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "Organization",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Four native PDFs visually reviewed, readable AR/EN with no clipping in samples. External-recipient and greater-than10 recipient mail denial/audit is not implemented/verified.",
-    "defect": "Four native PDFs visually reviewed, readable AR/EN with no clipping in samples. External-recipient and greater-than10 recipient mail denial/audit is not implemented/verified.",
+    "actual": "Current extracted AR/EN browser PDF attachments were visually reviewed: readable, no clipping in both synthetic samples. Current native13 prove actual AR/EN PDF MIME, external candidate and >10-recipient denial, sender/recipient scope intersection, retained-scope and print revocation, exact capture replay. Browser7 proves actual EN/AR capture/download and outsider403. Captured locally only; no provider delivery.",
+    "defect": null,
     "hr_acceptance": "pending"
   },
   {
@@ -724,14 +724,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-    "commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-    "checked_at": "2026-10-12T03:03:33.877378+00:00",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "Lead",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Approved-parent amendment1to3 reserves onlydelta2. Pending-own-reservation2to3 delta1 wording is not the tested scenario.",
-    "defect": "Approved-parent amendment1to3 reserves onlydelta2. Pending-own-reservation2to3 delta1 wording is not the tested scenario.",
+    "actual": "Native lifecycle proves own reservation2→0→3 through Return/revise/resubmit, unrelated reservation preserved, stale step rejected and replay unchanged. An atomic pending2→3 amendment is not implemented; lifecycle release/reacquire is distinct.",
+    "defect": "Native lifecycle proves own reservation2→0→3 through Return/revise/resubmit, unrelated reservation preserved, stale step rejected and replay unchanged. An atomic pending2→3 amendment is not implemented; lifecycle release/reacquire is distinct.",
     "hr_acceptance": "pending"
   },
   {
@@ -745,14 +745,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/corrections-contracts-final-2026-10-12.json",
-    "commit": "d94afe79ec59b9d38a15cdd00345684f38dcc6d0",
-    "checked_at": "2026-10-12T04:00:09.486517+00:00",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "Lead",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Identical quantity3/available1 is blocked without mutations under Block, then requires reason and independent Sector route under Warn. Submission and decision snapshots freeze Warn policy.",
-    "defect": "Controlled Block denial has no durable business audit record; test evidence is not a denied-action audit.",
+    "actual": "Exact BLOCK-first and WARN minimum10 trimmed characters pass on identical shortage. Valid WARN freezes shortage/reason, follows independent Sector authority and enters the command audit. Rejected attempts roll back and leave no durable denial event.",
+    "defect": "Exact BLOCK-first and WARN minimum10 trimmed characters pass on identical shortage. Valid WARN freezes shortage/reason, follows independent Sector authority and enters the command audit. Rejected attempts roll back and leave no durable denial event.",
     "hr_acceptance": "pending"
   },
   {
@@ -1102,14 +1102,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json; docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-    "commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-    "checked_at": "2026-10-12T03:03:33.877378+00:00",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "QA",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Local outbox identity/retry/failure/suppression pass and no external email occurs. A mail-sink adapter/result classification is not exercised.",
-    "defect": "Local outbox identity/retry/failure/suppression pass and no external email occurs. A mail-sink adapter/result classification is not exercised.",
+    "actual": "Existing notification identity/retry checks pass. New JD document capture composes private MIME/PDF and labels it Captured locally, never externally sent. The Hiring Request notification mail-sink adapter remains missing; JD capture does not close that boundary.",
+    "defect": "Existing notification identity/retry checks pass. New JD document capture composes private MIME/PDF and labels it Captured locally, never externally sent. The Hiring Request notification mail-sink adapter remains missing; JD capture does not close that boundary.",
     "hr_acceptance": "pending"
   },
   {
@@ -1564,14 +1564,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/authority-final-2026-10-12.json",
-    "commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
-    "checked_at": "2026-10-12T05:17:19.402199+00:00",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "Security",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Immutable snapshots and receipts retain actor/principal, Board member, decision time and revision. Exact readable command payload with explicit before/after across every mutation adapter is not implemented; see COMMAND_AUDIT_DESIGN.md. Ordinary request-audit save/delete attacks pass.",
-    "defect": "Immutable snapshots and receipts retain actor/principal, Board member, decision time and revision. Exact readable command payload with explicit before/after across every mutation adapter is not implemented; see COMMAND_AUDIT_DESIGN.md. Ordinary request-audit save/delete attacks pass.",
+    "actual": "Recruitment and structural command envelopes retain exact reviewed payload/version, actor/principal/Board identity, primary and related before/after state, result and Cairo timestamp. Native privacy, rollback and HTTP replay prove selected boundaries. Original joining, JD/grade approval, imports, delegation/native/system mutations still need adapters; full decision coverage remains incomplete.",
+    "defect": "Recruitment and structural command envelopes retain exact reviewed payload/version, actor/principal/Board identity, primary and related before/after state, result and Cairo timestamp. Native privacy, rollback and HTTP replay prove selected boundaries. Original joining, JD/grade approval, imports, delegation/native/system mutations still need adapters; full decision coverage remains incomplete.",
     "hr_acceptance": "pending"
   },
   {
@@ -1606,14 +1606,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/authority-final-2026-10-12.json",
-    "commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
-    "checked_at": "2026-10-12T05:17:19.402199+00:00",
+    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
+    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
+    "checked_at": "2026-10-12T05:48:51.938493+00:00",
     "owner": "Lead",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Tested overrides require authority and reasons; external Board recording now additionally requires method, note and private request proof. A complete enumerated override catalogue and all per-route evidence tests remain open.",
-    "defect": "Tested overrides require authority and reasons; external Board recording now additionally requires method, note and private request proof. A complete enumerated override catalogue and all per-route evidence tests remain open.",
+    "actual": "Versioned commands, scoped approvals and fresh delegation revocation reasons are tested. OVERRIDE_COVERAGE.md inventories implemented override and lifecycle controls. Complete cross-endpoint negative coverage and operational/configuration exception governance remain unproved.",
+    "defect": "Versioned commands, scoped approvals and fresh delegation revocation reasons are tested. OVERRIDE_COVERAGE.md inventories implemented override and lifecycle controls. Complete cross-endpoint negative coverage and operational/configuration exception governance remain unproved.",
     "hr_acceptance": "pending"
   },
   {
