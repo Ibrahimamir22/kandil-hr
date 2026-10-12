@@ -602,7 +602,7 @@
         "T27"
       ],
       "acceptance": "Reviewer checks final code/permission boundaries; staged source excludes credentials/uploads/DB; resolve critical defects; record reviewed revision.",
-      "evidence": "Scoped source review resolved identified defects; original history and remaining limits retained. Final staged secret scan required before checkpoint commit.",
+      "evidence": "Scoped source review resolved identified defects. Final known-local-secret staged scan passed with zero findings; tool limitations and review limits documented. Full release gate remains.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -619,7 +619,7 @@
         "T29"
       ],
       "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
-      "evidence": "Preparing a private development checkpoint with exact tested source references; no release tag or completion claim.",
+      "evidence": "Tested development checkpoint daf3685df4418bd8ce21129e64e61a4d5e95b3bd pushed to private origin/main. Metadata update follows. Final release tag and handover remain pending.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -723,5 +723,6 @@
       "phase": "P10",
       "name": "Full integration and production readiness"
     }
-  ]
+  ],
+  "tested_source_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd"
 }

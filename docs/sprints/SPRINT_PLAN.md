@@ -12,10 +12,10 @@ Implementation is active. Source work overlaps safely across four lanes; databas
 
 - 98 total requirements; 40 in this delivery; all 80 selected cases assessed individually. Passing focused tests does not automatically pass a complete case.
 - Fresh pinned ARM64 sandbox and synthetic restore passed: database IDs, private files, encrypted field and migration. A final tagged release remains pending.
-- Integrated checkpoint passed 146 checks with zero skips. Subsequent CSV and joining changes require affected regression checks, recorded separately.
+- Final frozen-source suites passed 186 mixed native/pure/mocked checks, plus independent race gates. Baseline: 10 passed, 53 partial, 17 blocked; HR acceptance pending.
 - Native manager/HR approvals, bulk vacancy assignment, opening action and AR/EN document downloads passed in the browser. Initial Arabic/English desktop/mobile rendering and scoped access checks also passed.
 - HTTP approval replay and capacity races passed; eight-worker notification enqueue/delivery/rollback proof passed.
-- Private custom Git origin exists. Checkpoint publication is tracked explicitly; local work is not a pushed release.
+- Tested development source `daf3685df4418bd8ce21129e64e61a4d5e95b3bd` is pushed to the private custom repository. A production or final tagged release is not claimed.
 - See tracker task evidence and the strict acceptance mapping for current limits. HR policy decisions and human acceptance remain explicit gates.
 
 ## Sprint sequence
@@ -62,7 +62,7 @@ Exit gate: Independent source review, restore rehearsal, secret scan, tested com
 
 ## Task tracker
 
-Status vocabulary: verified = task-specific evidence; draft = source written but incomplete/unaccepted; planned = work queued; needs_decision = owner choice outstanding. Task counts are not project effort percentages.
+Status vocabulary: verified = task-specific evidence; in_progress = active and incomplete; draft = source written but incomplete/unaccepted; planned = work queued; needs_decision = owner choice outstanding. Task counts are not project effort percentages.
 
 | ID | Sprint / owner | Task | Status | Dependencies |
 |---|---|---|---|---|
@@ -95,7 +95,7 @@ Status vocabulary: verified = task-specific evidence; draft = source written but
 | T27 | S3 / Lead | Acceptance matrix and regression gate | in_progress | T23, T24, T25, T26 |
 | T28 | S4 / Lead | Fresh install and restore rehearsal | in_progress | T27, T03 |
 | T29 | S4 / Security | Independent review and secret scan | in_progress | T27 |
-| T30 | S4 / Lead | Publish tested commit and release notes | planned | T28, T29 |
+| T30 | S4 / Lead | Publish tested commit and release notes | in_progress | T28, T29 |
 | T31 | S4 / QA | HR walkthrough and decision | planned | T30, T04 |
 
 ## Parallel execution rules

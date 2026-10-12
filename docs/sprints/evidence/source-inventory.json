@@ -1,6 +1,6 @@
 {
-  "checked_at": "2026-10-11T23:54:51.701447+00:00",
-  "kind": "local-source-only",
+  "checked_at": "2026-10-12T03:07:34.870785+00:00",
+  "kind": "local-source-and-private-checkpoint-publication",
   "repositories": [
     {
       "name": "frappe",
@@ -34,13 +34,13 @@
     },
     {
       "name": "kandil_hr",
-      "commit": "890667dd0f8604132094e10776c2ef5ccb5c068d",
+      "commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
       "branch": "main",
       "remotes": [
         "origin\thttps://github.com/Ibrahimamir22/kandil-hr.git (fetch)",
         "origin\thttps://github.com/Ibrahimamir22/kandil-hr.git (push)"
       ],
-      "dirty_entries": 36
+      "dirty_entries": 4
     }
   ],
   "remote_verification": {
@@ -50,5 +50,8 @@
     "default_branch": "main",
     "method": "gh repo view",
     "note": "Checkpoint push is recorded separately; this verifies repository metadata only."
-  }
+  },
+  "prior_inventory_at": "2026-10-11T23:54:51.701447+00:00",
+  "published_source_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
+  "publication_note": "Source commit push succeeded; subsequent documentation metadata edits are expected."
 }

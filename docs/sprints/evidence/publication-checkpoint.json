@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-12T03:07:34.870785+00:00",
+  "tested_source_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
+  "repository": "https://github.com/Ibrahimamir22/kandil-hr",
+  "branch": "main",
+  "push": "PASS",
+  "known_local_secret_scan": "PASS, zero findings",
+  "limits": [
+    "Development checkpoint only",
+    "HR acceptance pending",
+    "Metadata commit follows; application source unchanged"
+  ]
+}

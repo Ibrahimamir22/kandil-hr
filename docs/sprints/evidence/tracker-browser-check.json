@@ -1,5 +1,5 @@
 {
-  "checked_at": "2026-10-12T02:57:15.222Z",
+  "checked_at": "2026-10-12T03:07:03.848Z",
   "results": [
     {
       "name": "HTTP preview",
@@ -15,6 +15,10 @@
     },
     {
       "name": "All 40 requirement rows",
+      "status": "PASS"
+    },
+    {
+      "name": "All 80 acceptance cases visible in details",
       "status": "PASS"
     },
     {
@@ -71,10 +75,5 @@
     }
   ],
   "errors": [],
-  "scope": "Tracker only; no HR application acceptance tests executed.",
-  "previous_check": {
-    "checked_at": "2026-10-11T23:57:48.583Z",
-    "scope": "Tracker only; no HR application acceptance tests executed.",
-    "passed": 17
-  }
+  "scope": "Tracker only; no HR application acceptance tests executed."
 }

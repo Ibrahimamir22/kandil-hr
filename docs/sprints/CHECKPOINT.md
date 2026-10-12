@@ -1,6 +1,6 @@
 # قنديل — HR implementation checkpoint
 
-12 October 2026. The implementation goal remains active. This is a development checkpoint, not completion of P0–P3, HR acceptance, or a production release.
+12 October 2026. Tested source checkpoint: `daf3685df4418bd8ce21129e64e61a4d5e95b3bd`. The implementation goal remains active. This is a development checkpoint, not completion of P0–P3, HR acceptance, or a production release.
 
 ## What exists
 
