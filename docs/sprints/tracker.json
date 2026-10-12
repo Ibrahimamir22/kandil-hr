@@ -5,7 +5,7 @@
   "title": "قنديل | HR delivery sprints",
   "release_goal": "Deliver a reproducible, bilingual local Frappe HR release for P0–P3, with the selected 40 requirements verified against 80 baseline cases and targeted regression tests.",
   "scope": "P0 baseline + P1 security + P2 organization + P3 requests and vacancies. Full HR parity (P4–P10), company platform, Odoo integrations and production are separate milestones.",
-  "status_note": "Development checkpoint: 45 passed, 27 partial and 8 blocked baseline cases; HR acceptance pending. Approved HR corrections, structural Return/code imports, session revocation, scoped export and AR/EN shortage display have new native/browser proof. The implementation goal remains active.",
+  "status_note": "Development checkpoint: 58 passed, 15 partial and 7 blocked baseline cases; HR acceptance pending. Accountable recruitment ownership, guarded joining reversal, organization reconciliation and AR/EN request review gained native/browser evidence. Implementation goal remains active.",
   "sprints": [
     {
       "id": "S0",
@@ -188,7 +188,7 @@
         "T02"
       ],
       "acceptance": "Separate designation/position/employee/opening; dated assignments; no cycles/overlaps; consistent CEO/board roles; company-scoped forms and API; closed history retained.",
-      "evidence": "Final organization 47 native +35 pure checks and six independent connection race gates passed. Stable IDs, dates, hierarchy, imports and capacity invariants exercised; exact baseline gaps retained.",
+      "evidence": "47 native organization checks +15 acceptance groups passed on final source. Equal-title companies resolve independent authority; voided assignment history remains immutable and excluded from live occupancy/authority.",
       "requirement_ids": [
         "ORG-001",
         "ORG-002",
@@ -211,7 +211,7 @@
         "T06"
       ],
       "acceptance": "Reviewed mapping for existing employees/seats; default one seat; reimport idempotent; database-enforced unique position capacity; no resize below occupied+reserved+open; concurrent duplicate prevented.",
-      "evidence": "Reviewed repeated Unit/Job/Position K-001 imports, scoped search/export and conflicting mapping denials pass. Stale-snapshot target rename/delete guard passed four independent-connection probes. Real migration mapping remains unapproved.",
+      "evidence": "All unmatched Employee/Position references reported before import review; repeated accepted imports do not double occupancy. Payroll-file adapter and real HR mapping remain separate.",
       "requirement_ids": [
         "HC-001",
         "HC-002"
@@ -350,7 +350,7 @@
         "T09"
       ],
       "acceptance": "Atomic reservations; warn/block approved rule; exception authority; partial joins; hold/resume/close; cancellation releases only intended balances; guidance and actual joins reconcile.",
-      "evidence": "Exact 10-3-2-1 headcount and independent Warn exception proofs pass. AR/EN displays requested3/available1/shortage2 and rejects missing justification. Block-denial durable audit and joining void/reopen remain absent.",
+      "evidence": "Eleven joining-correction tests pass: authorized unused external-hire void, full-parent reopening, hold/freeze preservation, exact ledger, replay/rollback, downstream HR/payroll denial. Broader policy and completion-notice clauses remain.",
       "requirement_ids": [
         "HC-003",
         "HC-004",
@@ -375,7 +375,7 @@
         "T06"
       ],
       "acceptance": "Lead/team permissioned updates; scoped unassigned queue/bulk reassignment; missing role recorded; priority formula and reasoned override; vacancy/request listing with correct filters.",
-      "evidence": "Seven exact acceptance checks passed, including deterministic score230, authorized pin20→120 and immutable unpin history. First-pin stale audit score fixed. Owner migration remains pending.",
+      "evidence": "Ten ownership tests plus6 committed callback checkpoints pass: one responsible owner, next-action owner, explicit HR fallback, account-disable cleanup, atomic bulk authorization and queue states. Native Applicant controls still need browser acceptance.",
       "requirement_ids": [
         "PRI-001",
         "VAC-003",
@@ -419,7 +419,7 @@
         "T11"
       ],
       "acceptance": "EN/AR per-user language; translated errors/actions; RTL/mobile; My Requests and approval timeline; every step/edit creates scoped local notification; five missing static keys and untranslated throws resolved.",
-      "evidence": "Actual native HR correction and EN/AR shortage form proof passed. 937 translation entries cover all extracted keys; terminology and complete timelines still need HR review.",
+      "evidence": "Five native review tests +6 browser groups pass: own-only versus scoped lists, immutable delegated timeline actor/principal/order, EN/AR saved language and escaped notes. Remaining business terminology review is separate.",
       "requirement_ids": [
         "REQ-007",
         "REQ-010"
@@ -456,7 +456,7 @@
         "T18"
       ],
       "acceptance": "All new commands and role workflows leave pay/deductions/stops/payments untouched; audit logs and permission tests enforce boundary.",
-      "evidence": "Three payroll-boundary tests passed with 15 payroll/ledger table hashes and four recruitment roles denied native/controller mutations. Future overdue-document job absent; exact first case remains partial.",
+      "evidence": "Three native payroll boundary checks pass with payroll fixtures and15 table hashes; recruitment roles cannot mutate wages. Future overdue-document automation remains outside implemented jobs.",
       "requirement_ids": [
         "WAG-001"
       ],
@@ -486,7 +486,7 @@
         "T21"
       ],
       "acceptance": "One integration owner wires hooks/setup, migrates isolated site, seeds/reset fixtures in controlled order, records schema/app commit; no shared-site migration from agents.",
-      "evidence": "Schemas migrated only on synthetic parity site; 146-check integrated checkpoint passed before subsequent CSV/joining changes. Affected suites are being rerun.",
+      "evidence": "13 suites passed serially against unchanged source at11936e5; upstream clones untouched. Current changes installed only on isolated8102 parity site.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -518,7 +518,7 @@
         "T22"
       ],
       "acceptance": "Run native suite for dated routes, hierarchy cycles, acting authority, scope, unique capacity, imports/reimports, resize, JD snapshot/print; record failures and retest evidence.",
-      "evidence": "Organization47 plus11 exact cases and four stale-snapshot target guards passed. Unit/job/position external identities are preserved; future scheduling and JD distribution gaps remain.",
+      "evidence": "Final47 organization checks +15 groups; native Department browser create/update and actual same-record requester REST403 with unchanged stored hash. Temporary user/grant cleanup verified.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -534,7 +534,7 @@
         "T22"
       ],
       "acceptance": "Race reservations/amendments/cancel/approval; retries advance once; no duplicate vacancies; rollback leaves no orphan notifications; reconcile every ledger; document shared DB setting.",
-      "evidence": "Final HTTP20-request batches passed capacity contention and identical manager/final approval replay. Organization6, mutation authorization4 and outbox5 gates passed. Broader cross-company contention and joining race remain.",
+      "evidence": "Three fresh20-request HTTP batches pass with source unchanged: five admissions for five seats, manager and HR retries advance once. Ledger reconciles after cleanup. New committed two-disable callback proof passes.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -550,7 +550,7 @@
         "T22"
       ],
       "acceptance": "Native role accounts complete form→approval→vacancy in both languages; RTL, errors, PDF, restricted data, narrow viewport, notifications and console inspected with screenshots.",
-      "evidence": "Six saved-language AR/EN desktop/mobile checks and four confidential-note browser checks passed. Native creation permission issue fixed; saved notes remain immutable. Full runtime localization and human terminology approval pending.",
+      "evidence": "AR/EN timeline and own/scoped list browser proof plus Department native maintenance and same-record API denial. Applicant/void interaction and HR terminology remain unverified.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -569,7 +569,7 @@
         "T26"
       ],
       "acceptance": "All 80 baseline cases have actual evidence or explicit failing/blocked status; supplemental defect and concurrency cases included; existing pilot regression checked; no critical open defects.",
-      "evidence": "80 baseline definitions preserved: 45 passed, 27 partial, 8 blocked. Eight final source-stable serial suites and three HTTP race batches passed; each case retains exact evidence and source boundary. HR acceptance pending.",
+      "evidence": "80 unchanged cases assessed:58 passed15 partial7 blocked.13 final serial suites passed; evidence tied to11936e5. No blanket phase completion or HR acceptance.",
       "requirement_ids": [],
       "risk": "Passing focused checks is not full requirement acceptance."
     },
@@ -602,7 +602,7 @@
         "T27"
       ],
       "acceptance": "Reviewer checks final code/permission boundaries; staged source excludes credentials/uploads/DB; resolve critical defects; record reviewed revision.",
-      "evidence": "Independent review found and verified the registry stale-read guard fix; no further actionable findings in this bounded diff. Static checks pass; staged credential scan recorded before publication.",
+      "evidence": "Independent review findings repaired; Ruff,171 Python/32 JSON/16JS syntax and known-secret staged scanner passed. Broader final release review remains.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -619,7 +619,7 @@
         "T29"
       ],
       "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
-      "evidence": "Tested source d94afe79ec59b9d38a15cdd00345684f38dcc6d0 published to the private repository after passing regressions and staged credential checks. Final exact-source install/restore and release tag remain pending.",
+      "evidence": "Tested source11936e5 and case mapping are being published to the private repository; exact publication is verified by matching remote HEAD. Final release tag and restore rehearsal remain.",
       "requirement_ids": [],
       "risk": ""
     },

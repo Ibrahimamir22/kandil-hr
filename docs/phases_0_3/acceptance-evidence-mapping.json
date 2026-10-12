@@ -1,11 +1,11 @@
 {
   "assessment": "Integration-owner technical assessment; HR acceptance pending",
-  "checked_at": "2026-10-12T04:00:09.486517+00:00",
-  "tested_source_commit": "d94afe79ec59b9d38a15cdd00345684f38dcc6d0",
+  "checked_at": "2026-10-12T04:31:11.419111+00:00",
+  "tested_source_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
   "counts": {
-    "passed": 45,
-    "blocked": 8,
-    "partial": 27
+    "passed": 58,
+    "blocked": 7,
+    "partial": 15
   },
   "cases": [
     {
@@ -217,14 +217,16 @@
     },
     {
       "case_id": "AT-ORG-007-01",
-      "status": "partial",
-      "actual": "Authorized native organization commands and draft ownership checks pass; actual UI unit create/update plus requester REST denial is not recorded.",
+      "status": "passed",
+      "actual": "Scoped Sector authority creates and updates the native Department with reasons and immutable audit. An ordinary requester reads that same unit via HTTP200 but changed native client.save receives403; complete stored-record hashes remain identical. Payroll cost center edits are excluded and denied.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json",
+        "docs/sprints/evidence/browser/review-views/results.json",
+        "docs/sprints/evidence/browser/review-views/department-requester-update-rest.json"
       ],
-      "gap": "Authorized native organization commands and draft ownership checks pass; actual UI unit create/update plus requester REST denial is not recorded.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-ORG-007-02",
@@ -264,14 +266,14 @@
     },
     {
       "case_id": "AT-ORG-009-01",
-      "status": "partial",
-      "actual": "Company-keyed authority settings exist; simultaneous legal entities with equal titles and independently resolved chiefs are not exercised.",
+      "status": "passed",
+      "actual": "Two legal entities with identical chief and worker titles resolve independent CEO assignments and terminal HR by exact company/position IDs; cross-company caller denied.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Company-keyed authority settings exist; simultaneous legal entities with equal titles and independently resolved chiefs are not exercised.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-ORG-009-02",
@@ -323,14 +325,14 @@
     },
     {
       "case_id": "AT-HC-002-02",
-      "status": "partial",
-      "actual": "Repeat assignment import and explicit occupied mismatch pass; exhaustive unmatched Employee/Position preview and payroll-file adapter remain.",
+      "status": "passed",
+      "actual": "Import preview reports all four unmatched Employee/Position references across three rows. Review fails atomically; accepted replay and a separately reviewed identical import retain one allocation and do not double occupancy. Payroll file adapter remains separate.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Repeat assignment import and explicit occupied mismatch pass; exhaustive unmatched Employee/Position preview and payroll-file adapter remain.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-HC-003-01",
@@ -446,39 +448,38 @@
     },
     {
       "case_id": "AT-HC-007-02",
-      "status": "partial",
-      "actual": "No Show/Withdrawn preserve vacancies and replay once with reason checks. Authorized joining correction, assignment reversal and history reconciliation remain unsupported; no fill void is claimed.",
+      "status": "passed",
+      "actual": "No-show leaves the vacancy unfilled. Configured scoped HR can void an unused erroneous external joining with reason, immutable before/after history and exact occupied/open reconciliation. Employee, assignment, offer and onboarding history remain stored. Downstream HR/payroll use blocks reversal.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "No Show/Withdrawn preserve vacancies and replay once with reason checks. Authorized joining correction, assignment reversal and history reconciliation remain unsupported; no fill void is claimed.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-REQ-001-01",
-      "status": "partial",
-      "actual": "Ordinary requester creation/read succeeds and out-of-scope access fails. Exact managerA1 create followed by B1 payload substitution is not executed.",
+      "status": "passed",
+      "actual": "A1-scoped manager creates A1 draft; native frappe.client.save changing requested_position to B1 or line capacity to B1 is denied and original request unchanged. Submit/review independently revalidate selected-position scope.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/browser/results.json"
+        "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Ordinary requester creation/read succeeds and out-of-scope access fails. Exact managerA1 create followed by B1 payload substitution is not executed.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-REQ-001-02",
       "status": "partial",
-      "actual": "Manage-scope and revoked/read-only grants pass. Positive dated delegate and process/unit/interval boundaries remain.",
+      "actual": "Dated delegate wrong unit, expired and future intervals denied without ledger/event mutations; inclusive current-day delegation acts successfully. No process discriminator is modeled; do not claim the entire unit/process/interval clause.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Manage-scope and revoked/read-only grants pass. Positive dated delegate and process/unit/interval boundaries remain.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": "No process discriminator is modeled; do not claim the entire unit/process/interval clause.",
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-REQ-002-01",
@@ -665,27 +666,29 @@
     },
     {
       "case_id": "AT-REQ-010-01",
-      "status": "partial",
-      "actual": "Scoped native list and browser request/queue access pass; requester My Requests own-only versus manager/HR organizational lists need explicit comparison.",
+      "status": "passed",
+      "actual": "Native own-only API and list filter checked: requester2 own, manager1 own versus3 authorized, HR3 authorized; revoked scope returns no native list records and denies timeline. Native AR own-filter and EN manager own/scope buttons rendered and verified after fixing FilterArea tuple shape.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/browser/results.json"
+        "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+        "docs/sprints/evidence/browser/review-views/results.json",
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Scoped native list and browser request/queue access pass; requester My Requests own-only versus manager/HR organizational lists need explicit comparison.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-REQ-010-02",
-      "status": "partial",
-      "actual": "Immutable event counts exist. Rendered timeline ordering, principal/time and delegated-action correspondence are not asserted.",
+      "status": "passed",
+      "actual": "Read-only timeline projects original immutable event creation order, actor and principal exactly, including real browser delegated action. Prior events unchanged, pagination matches full sequence, mutation denied. AR/EN rendered; escaped note markup creates no elements. Missing historical principal remains absent.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/browser/results.json"
+        "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+        "docs/sprints/evidence/browser/review-views/results.json",
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Immutable event counts exist. Rendered timeline ordering, principal/time and delegated-action correspondence are not asserted.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-REQ-011-01",
@@ -783,26 +786,26 @@
     },
     {
       "case_id": "AT-VAC-002-02",
-      "status": "blocked",
-      "actual": "No executed authorized fill-void/reopen workflow and full ledger reconciliation on current code.",
+      "status": "passed",
+      "actual": "Authorized fill void reopens a fully filled parent and its vacancy, retaining history while occupied decreases1 and open increases1; structural/reserved remain unchanged. Partial, repeated, held and nested hold/freeze cases pass. Forgery, unauthorized, stale and downstream-use cases deny without effects.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "No executed authorized fill-void/reopen workflow and full ledger reconciliation on current code.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-VAC-003-01",
-      "status": "partial",
-      "actual": "One lead and two unique recruiters, scoped team and bulk assignment pass. Exactly one current responsible owner on every application is not proven.",
+      "status": "passed",
+      "actual": "A vacancy has two recruiters and one lead; each active application has one explicit current responsible owner. Forged ownership is rejected; authorized assignment and team handoff preserve reason/history and command replay. Disabled ownership transitions to the explicit unassigned state tested separately.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json",
+        "docs/sprints/evidence/ownership-committed-2026-10-12.json"
       ],
-      "gap": "One lead and two unique recruiters, scoped team and bulk assignment pass. Exactly one current responsible owner on every application is not proven.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-VAC-003-02",
@@ -817,50 +820,49 @@
     },
     {
       "case_id": "AT-VAC-004-01",
-      "status": "partial",
-      "actual": "Missing/disabled lead yields explicit HR-assignment fallback and intake denial; queue visibility exists. Automatic routing/task ownership no-orphan behavior remains.",
+      "status": "passed",
+      "actual": "Missing or disabled recruitment assignee is visible in the scoped queue with an explicit HR assignment fallback and reason. No replacement user is guessed; intake is denied until an explicit active team owner is configured.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/foundation-boundaries-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/browser/results.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Missing/disabled lead yields explicit HR-assignment fallback and intake denial; queue visibility exists. Automatic routing/task ownership no-orphan behavior remains.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-VAC-005-01",
-      "status": "partial",
-      "actual": "Disabled lead is detected and cannot intake; explicit fallback tested. Automatic moving of vacancy/tasks/applications to unassigned with history is not implemented/proven.",
+      "status": "passed",
+      "actual": "Committed account disable clears affected live vacancy/team, application and application next-action ownership to explicit unassigned while retaining task text, due date and ownership history. Two users disabled in one commit both run cleanup; rollback leaves ownership intact; repeats no-op. Generic Frappe ToDo is outside this source task model.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json",
+        "docs/sprints/evidence/ownership-committed-2026-10-12.json"
       ],
-      "gap": "Disabled lead is detected and cannot intake; explicit fallback tested. Automatic moving of vacancy/tasks/applications to unassigned with history is not implemented/proven.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-VAC-005-02",
-      "status": "partial",
-      "actual": "Bulk two-location success, replay, stale/closed second-parent atomic rollback pass. Out-of-scope IDs in a mixed bulk request and disabled-owner reassignment need explicit execution.",
+      "status": "passed",
+      "actual": "Mixed authorized and out-of-scope vacancy IDs fail atomically without silently applying the permitted subset. Successful bulk assignment returns itemized outcomes; disabled-account ownership cleanup and replay retain history.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json",
+        "docs/sprints/evidence/ownership-committed-2026-10-12.json"
       ],
-      "gap": "Bulk two-location success, replay, stale/closed second-parent atomic rollback pass. Out-of-scope IDs in a mixed bulk request and disabled-owner reassignment need explicit execution.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-VAC-006-01",
-      "status": "partial",
-      "actual": "Native queue states and browser scoped approved openings pass; complete approved/pending/excluded-state/site-company list fixture still needed.",
+      "status": "passed",
+      "actual": "Native recruitment queues distinguish approved from pending parents, enforce scoped company/site access and allowed vacancy states, and retain terminal history without admitting closed work into the active application queue.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/browser/results.json"
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
       ],
-      "gap": "Native queue states and browser scoped approved openings pass; complete approved/pending/excluded-state/site-company list fixture still needed.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+      "checked_at": "2026-10-12T04:31:11.419111+00:00"
     },
     {
       "case_id": "AT-AUD-001-01",
