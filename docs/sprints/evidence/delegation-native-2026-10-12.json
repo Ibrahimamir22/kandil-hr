@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-12T04:44:08.898511+00:00",
+  "site": "kandil-parity.localhost",
+  "runner": "kandil_hr.foundation.test_delegation.run",
+  "discovered": 8,
+  "executed": 8,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "classification": "native Frappe ORM/API calls as synthetic scoped ordinary users; per-case rollback",
+  "tests": [
+    "test_ceo_pending_then_explicit_approval_allows_delegated_request_decision",
+    "test_ceo_rejection_pending_revocation_and_disabled_ceo_are_inactive",
+    "test_ceo_scope_revision_is_new_pending_version_and_preserves_original_approval",
+    "test_disabled_principal_and_revoked_delegate_scope_deny_next_decision",
+    "test_legacy_missing_fields_remain_inactive_and_can_be_revoked_or_versioned",
+    "test_native_metadata_scope_forgery_and_unapproved_promotion_denied",
+    "test_native_revoke_requires_current_actor_scope_but_allows_disabled_principal",
+    "test_process_isolation_revocation_preserves_prior_decision"
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/delegation.py": "4903bf3bd3553e4e339edda1b90af19f77b5b62373e5b88250a8f5be85a32822",
+    "kandil_hr/foundation/models.py": "e74d661690192f971b05d946789def0aad0704c175ae16e0d704dae65d71bd4e",
+    "kandil_hr/foundation/test_delegation.py": "9534cb73e2acc7abd43c83b5454bf9da7200f4266a5c2ccea76c2596eb59965d",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.json": "7c65291bdde81aa3d145fe6ae3d95b83882fafee0b46de973477a541ed12ae5a",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.py": "9e81f8bbbb0972b59275ae36625a549737e4d6b9ca2605a2a5fceea69cdf7250",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.js": "1acf00a3965d5f05b7fb42ee8804a1e46739dba12a513b0ca83cde61e3971b35",
+    "kandil_hr/pilot/api.py": "9c2f06f5e31f52ff4dc1f42f054fe508e90a3d4c4506dddb4a4f3d405511d15f",
+    "kandil_hr/pilot/permissions.py": "021bd2db4d5a02138132e22ef8fccb9e4edf538d209b3bb533b6b6cebcb91d73",
+    "kandil_hr/recruitment/api.py": "678324bf04cd94582f07f4ff2f3b72420445cdc8a99cfda46880961241c75c7e",
+    "kandil_hr/recruitment/authority.py": "051344d17c682ae46c7beea7927465a2e6be63ef83d01037222f989f2a21e7fb"
+  },
+  "source_rules": [
+    "frozen Admin.gs CHG-76: APPROVALS/TEAM/ALL, CEO pending until CEO approves, immutable records, no actor self-grant",
+    "PD-04: ninety inclusive calendar days, revocation immediate, changed scope creates new version"
+  ],
+  "legacy_policy": "Missing approval_status remains inactive. Missing process/version normalize only for comparison and explicit revoke/revise; no CEO or Board authority inferred.",
+  "limits": [
+    "Local synthetic implementation proof, no HR sign-off or production CEO authentication acceptance.",
+    "TEAM capability is recorded and separated; transfer/probation workflows are not implemented by this change.",
+    "Native Delegation UI source syntax checked; real-browser interaction not tested in this gate.",
+    "No separate-connection delegation mutation race proof in this suite; current locking authorization exercised within native transactions.",
+    "Ninety-day baseline fixtures updated for independent recipient; broad regression rerun belongs to root checkpoint."
+  ],
+  "prior_run": {
+    "executed": 7,
+    "passed": 7,
+    "followup": "Added legacy null-field compatibility case then reran all eight."
+  }
+}

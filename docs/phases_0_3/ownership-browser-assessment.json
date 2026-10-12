@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-12T04:42:59.073577+00:00",
+  "canonical_modified": false,
+  "cases": [
+    {
+      "case_id": "AT-HC-007-02",
+      "proposed_status": "retain_pass",
+      "actual": "Adds actual native EN/AR joining-correction controls, reason/confirmation, retained lineage, actor/time, and reconciled ledger; separate authenticated HTTP requester denial and exact replay. Existing native no-show proof remains necessary for full original clause.",
+      "evidence": [
+        "docs/sprints/evidence/browser/ownership-joining/results.json",
+        "docs/sprints/evidence/browser/ownership-joining/http-results.json",
+        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
+      ]
+    },
+    {
+      "case_id": "AT-VAC-005-01",
+      "proposed_status": "no_change",
+      "actual": "Native manual Applicant owner and next-action controls now proved in EN/AR. Disable-to-unassigned lifecycle remains established only by separate native/committed callback gates; this UI run does not repeat the disable workflow.",
+      "evidence": [
+        "docs/sprints/evidence/browser/ownership-joining/results.json"
+      ]
+    }
+  ]
+}

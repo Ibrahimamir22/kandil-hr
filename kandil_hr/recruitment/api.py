@@ -60,6 +60,11 @@ def command(name, operation, command_id, expected_version, payload, handler):
 	for opening_name in sorted({x.job_opening for x in doc.lines if x.job_opening}):
 		frappe.db.sql("SELECT name FROM `tabJob Opening` WHERE name=%s FOR UPDATE", (opening_name,))
 	users = {frappe.session.user, doc.requested_by} | {s.principal for s in doc.approval_steps if s.principal}
+	for step in doc.approval_steps:
+		if step.get("board_vice"):
+			users.add(step.board_vice)
+	if payload.get("board_member"):
+		users.add(payload["board_member"])
 	if payload.get("lead"):
 		users.add(payload["lead"])
 	members = payload.get("members") or []
@@ -148,6 +153,12 @@ def snapshot(doc, action, principal=None):
 
 
 def save(doc, action, note="", principal=None):
+	# Read under the request lock: distinguish first completion from later edits
+	# and from a retry. The existing action event preserves the terminal snapshot.
+	previous = frappe.db.sql(
+		"SELECT status FROM `tabKandil Hiring Request` WHERE name=%s FOR UPDATE", (doc.name,)
+	)
+	completed = doc.status == "Closed" and previous and previous[0][0] != "Closed"
 	doc.decision_note = note
 	doc.save(ignore_permissions=True)
 	snapshot(doc, action, principal=principal)
@@ -157,12 +168,15 @@ def save(doc, action, note="", principal=None):
 	recipients = {doc.requested_by}
 	if step and doc.status == "Pending":
 		recipients.add(step.principal)
+		if step.authority == "Board Approval" and step.get("board_vice"):
+			recipients.add(step.board_vice)
 	for user in sorted(recipients):
 		enqueue(
 			f"{doc.name}:{doc.modified}:{action}:{user}",
 			user,
-			_("Recruitment request updated"),
-			f"{doc.name}: {_(action)}",
+			_("Recruitment request completed") if completed else _("Recruitment request updated"),
+			f"{doc.name}: "
+			+ (_("All request vacancies are filled, closed or cancelled.") if completed else _(action)),
 			"Kandil Hiring Request",
 			doc.name,
 		)
@@ -188,6 +202,7 @@ def route_config(doc):
 		("exception_approver", "sector_approver"),
 		("ceo_approver", "ceo_approver"),
 		("board_approver", "board_approver"),
+		("board_vice_approver", "board_vice_approver"),
 	]:
 		principal = settings.get(source)
 		if config.get(key) and config.get(key) != principal:
@@ -240,24 +255,16 @@ def resolve_chain(doc, excess):
 			chain.append((rule.principal, rule.authority, None))
 	if config.board_after_ceo and any(a == "CEO Approval" for _, a, _ in chain):
 		chain.append((config.board_approver, "Board Approval", None))
-	# Preserve distinct authority steps even when a principal repeats.
-	filtered = []
-	skips = []
-	for principal, authority, position in chain:
-		if principal == doc.requested_by:
-			if authority in ("CEO Approval", "Board Approval", "Headcount Exception"):
-				frappe.throw(_("Configure an independent authority for this personal request."))
-			skips.append(dict(principal=principal, authority=authority, reason="Requester self-approval"))
-			continue
+	from kandil_hr.recruitment.authority import enforce_chain
+
+	filtered, skips, interests = enforce_chain(doc, chain, config)
+	for principal, authority, _position in filtered:
 		if (
 			not principal
 			or not frappe.db.get_value("User", principal, "enabled")
 			or ROLES.get(authority) not in frappe.get_roles(principal)
 		):
 			frappe.throw(_("Approval authority is missing, disabled or has the wrong role."))
-		filtered.append((principal, authority, position))
-	if not filtered:
-		frappe.throw(_("At least one independent approval is required."))
 	# Freeze only explicit public policy fields; future configuration changes must
 	# not rewrite what an approver reviewed or expose unknown configuration fields.
 	policy = {
@@ -270,6 +277,7 @@ def resolve_chain(doc, excess):
 			"exception_approver",
 			"ceo_approver",
 			"board_approver",
+			"board_vice_approver",
 		)
 	}
 	policy.update(
@@ -279,7 +287,13 @@ def resolve_chain(doc, excess):
 		authority_rules=applied_rules,
 	)
 	doc.route_snapshot = dump(
-		{"resolved": resolved, "skipped": skips, "config": config.name, "policy": policy}
+		{
+			"resolved": resolved,
+			"skipped": skips,
+			"config": config.name,
+			"policy": policy,
+			"interest_snapshot": interests,
+		}
 	)
 	return filtered
 
@@ -335,6 +349,7 @@ def submit_request(name, command_id, expected_version):
 					principal=principal,
 					authority=authority,
 					authority_position=position,
+					board_vice=config.get("board_vice_approver") if authority == "Board Approval" else None,
 					decision="Pending",
 					step_key=uuid.uuid4().hex,
 					waiting_since=now_datetime() if i == 0 else None,
@@ -345,7 +360,11 @@ def submit_request(name, command_id, expected_version):
 		for line in doc.lines:
 			change_capacity(caps[line.capacity], reserved=line.reserved_qty)
 		doc.status = "Pending"
-		return save(doc, "Submitted")
+		result = save(doc, "Submitted")
+		from kandil_hr.recruitment.authority import notify_vacant_heads
+
+		notify_vacant_heads(doc, json.loads(doc.route_snapshot)["resolved"])
+		return result
 
 	return command(name, "submit", command_id, expected_version, {}, act)
 
@@ -407,54 +426,48 @@ def finalize(doc, caps):
 
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
-def decide(name, decision, step_id, command_id, expected_version, comment="", board_evidence=None):
+def decide(
+	name,
+	decision,
+	step_id,
+	command_id,
+	expected_version,
+	comment="",
+	board_evidence=None,
+	on_behalf_method=None,
+	on_behalf_note=None,
+	board_member=None,
+):
 	def act(doc):
 		if decision not in ("Approve", "Reject", "Return"):
 			frappe.throw(_("Choose Approve, Reject or Return."))
 		step = next((s for s in doc.approval_steps if s.decision == "Pending"), None)
 		if doc.status != "Pending" or not step or step.step_key != step_id:
 			frappe.throw(_("This is no longer the active approval step."))
+		from kandil_hr.foundation.delegation import find_delegation
 		from kandil_hr.foundation.mutation_access import assert_current_request_scope
-		from kandil_hr.organization.current import rows
+		from kandil_hr.recruitment.authority import assert_independent, authorize_board
 
-		principal_roles = assert_current_request_scope(
-			doc, user=step.principal, required_roles=(ROLES.get(step.authority),)
-		)
-		if frappe.session.user != step.principal:
-			assert_current_request_scope(doc, required_roles=("Kandil Approver",))
-			delegations = rows(
-				"Kandil Delegation",
-				filters={
-					"from_user": step.principal,
-					"to_user": frappe.session.user,
-					"company": doc.company,
-					"department": doc.department,
-					"revoked": 0,
-					"from_date": ["<=", today()],
-					"to_date": [">=", today()],
-				},
-				fields=["name"],
+		acting_principal = step.principal
+		if step.authority == "Board Approval":
+			acting_principal = authorize_board(
+				doc, step, board_evidence, on_behalf_method, on_behalf_note, board_member
 			)
-			if not delegations or {"Kandil CEO Approver", "Kandil Board Approver"}.intersection(
-				principal_roles
-			):
+		else:
+			if board_evidence or on_behalf_method or on_behalf_note or board_member:
+				frappe.throw(_("Board recording fields apply only to the active Board step."))
+			principal_roles = assert_current_request_scope(
+				doc, user=step.principal, required_roles=(ROLES.get(step.authority),)
+			)
+			assert_independent(doc, frappe.session.user, step.principal)
+			if frappe.session.user != step.principal:
+				assert_current_request_scope(doc, required_roles=("Kandil Approver",))
+				if not find_delegation(doc, step.principal, process="APPROVALS", current=True):
+					frappe.throw(_("You are not the active independent authority."), frappe.PermissionError)
+			if not can_act(doc, step.principal) or ROLES.get(step.authority) not in principal_roles:
 				frappe.throw(_("You are not the active independent authority."), frappe.PermissionError)
-		if not can_act(doc, step.principal) or ROLES.get(step.authority) not in principal_roles:
-			frappe.throw(_("You are not the active independent authority."), frappe.PermissionError)
 		if decision != "Approve" and not comment.strip():
 			frappe.throw(_("A reason is required."))
-		if step.authority == "Board Approval" and frappe.session.user != step.principal:
-			evidence = frappe.get_doc("File", board_evidence) if board_evidence else None
-			if (
-				not evidence
-				or not evidence.is_private
-				or evidence.attached_to_doctype != doc.doctype
-				or evidence.attached_to_name != doc.name
-			):
-				frappe.throw(
-					_("Board decisions on behalf require private evidence attached to this request.")
-				)
-			evidence.check_permission("read")
 		caps = lock_capacities(doc)
 		if decision == "Approve":
 			from kandil_hr.organization.occupancy import assert_approval
@@ -465,6 +478,9 @@ def decide(name, decision, step_id, command_id, expected_version, comment="", bo
 		step.decided_at = now_datetime()
 		step.comment = comment
 		step.board_evidence = board_evidence if step.authority == "Board Approval" else None
+		step.board_member = acting_principal if step.authority == "Board Approval" else None
+		step.on_behalf_method = on_behalf_method
+		step.on_behalf_note = on_behalf_note.strip() if on_behalf_note else None
 		step.decision = {"Approve": "Approved", "Reject": "Rejected", "Return": "Returned"}[decision]
 		if decision != "Approve":
 			for line in doc.lines:
@@ -475,14 +491,22 @@ def decide(name, decision, step_id, command_id, expected_version, comment="", bo
 			finalize(doc, caps)
 		else:
 			next(s for s in doc.approval_steps if s.decision == "Pending").waiting_since = now_datetime()
-		return save(doc, decision, comment, principal=step.principal)
+		return save(doc, decision, comment, principal=acting_principal)
 
 	return command(
 		name,
 		"decide",
 		command_id,
 		expected_version,
-		dict(decision=decision, step_id=step_id, comment=comment, board_evidence=board_evidence),
+		dict(
+			decision=decision,
+			step_id=step_id,
+			comment=comment,
+			board_evidence=board_evidence,
+			on_behalf_method=on_behalf_method,
+			on_behalf_note=on_behalf_note,
+			board_member=board_member,
+		),
 		act,
 	)
 

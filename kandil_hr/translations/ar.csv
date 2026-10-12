@@ -1027,3 +1027,75 @@ Your role cannot perform this recruitment action.,لا يسمح دورك بتن�
 {0} must be an enabled user with {1}.,يجب أن يكون {0} مستخدماً مفعّلاً بدور {1}.
 {0}: Requested {1}; additional demand {2}; available excluding own reservation {3}; shortage {4}.,{0}: المطلوب {1}؛ الطلب الإضافي {2}؛ المتاح مع استبعاد حجز الطلب نفسه {3}؛ العجز {4}.
 {0}: Requested {1}; available excluding own reservation {2}; shortage {3}.,{0}: المطلوب {1}؛ المتاح مع استبعاد حجز الطلب نفسه {2}؛ العجز {3}.
+A delegation reason is required.,يجب إدخال سبب التفويض.
+A revoked delegation cannot be approved.,لا يمكن اعتماد تفويض تم إلغاؤه.
+A vacant authority notice requires the frozen HR reviewer.,يتطلب إشعار خلو منصب الاعتماد مراجع الموارد البشرية المثبت في الطلب.
+ALL,جميع العمليات المحددة
+APPROVALS,الاعتمادات
+"All request vacancies are filled, closed or cancelled.",تم شغل جميع شواغر الطلب أو إغلاقها أو إلغاؤها.
+An interested person cannot approve this request.,لا يجوز لصاحب مصلحة شخصية اعتماد هذا الطلب.
+An interested person cannot decide or record this Board decision.,لا يجوز لصاحب مصلحة شخصية اتخاذ قرار مجلس الإدارة هذا أو تسجيله.
+An overlapping delegation already exists. Revise or revoke it first.,يوجد تفويض متداخل بالفعل. أنشئ نسخة معدلة منه أو ألغِه أولاً.
+Board Chairman and Vice must be distinct users.,يجب أن يكون رئيس مجلس الإدارة ونائبه مستخدمين مختلفين.
+Board delegation requires its separate authority workflow.,يتطلب تفويض مجلس الإدارة مسار الصلاحيات المخصص له.
+Board proof must be private and attached to this request.,يجب أن يكون إثبات قرار مجلس الإدارة خاصاً ومرفقاً بهذا الطلب.
+Board recording fields apply only to the active Board step.,تستخدم حقول تسجيل قرار مجلس الإدارة في خطوة المجلس النشطة فقط.
+CEO delegation must name the configured company CEO.,يجب أن يصدر تفويض الرئيس التنفيذي عن الرئيس التنفيذي المحدد للشركة.
+Choose an approval decision and supply a reason and command ID.,اختر قرار الاعتماد وأدخل السبب ومعرّف الأمر.
+Configure an independent Board authority.,حدد جهة مستقلة لاعتماد مجلس الإدارة.
+Deciding Board Member,عضو مجلس الإدارة صاحب القرار
+Decision Receipt,إيصال القرار
+Delegated Process,العملية المفوضة
+Delegation Approval,حالة اعتماد التفويض
+Delegation Decided By,صاحب قرار التفويض
+Delegation Decided On,تاريخ قرار التفويض
+Delegation Decision Reason,سبب قرار التفويض
+Delegation Version,إصدار التفويض
+Delegation actions,إجراءات التفويض
+Delegation approval metadata is managed by authorized commands.,تدار بيانات اعتماد التفويض من خلال الإجراءات المصرح بها.
+Delegation not found.,لم يتم العثور على التفويض.
+Delegation scope is immutable. Create a new version.,لا يمكن تغيير نطاق التفويض المحفوظ. أنشئ إصداراً جديداً.
+Delegation workflow is not enabled.,مسار التفويض غير مفعّل.
+Direct Board decisions do not use external recording fields.,لا تستخدم قرارات المجلس المباشرة حقول تسجيل القرار الخارجي.
+External Board Decision Method,وسيلة قرار مجلس الإدارة الخارجي
+Initial delegation authority and version are assigned by the server.,يحدد الخادم صلاحية التفويض الأولية وإصداره.
+New delegation version,إصدار جديد للتفويض
+Only the frozen Sector authority can record an external Board decision.,يمكن لجهة اعتماد القطاع المثبتة في الطلب فقط تسجيل قرار خارجي لمجلس الإدارة.
+Only this company CEO may decide their authority delegation.,يمكن للرئيس التنفيذي لهذه الشركة فقط اتخاذ قرار تفويض صلاحياته.
+Pending CEO,بانتظار الرئيس التنفيذي
+Personal or Board requests require an independent CEO authority.,تتطلب الطلبات ذات المصلحة الشخصية أو طلبات مجلس الإدارة اعتماد رئيس تنفيذي مستقل.
+Previous Delegation Version,إصدار التفويض السابق
+Private Board Evidence,إثبات خاص لقرار مجلس الإدارة
+Record Decision,تسجيل القرار
+Record External Board Decision,تسجيل قرار خارجي لمجلس الإدارة
+Record who approved and when in a Board note of 3 to 2000 characters.,سجل من اعتمد القرار وتوقيته في ملاحظة للمجلس من 3 إلى 2000 حرف.
+Recruitment request completed,اكتمل طلب التوظيف
+Reload this delegation before taking an action.,أعد تحميل التفويض قبل اتخاذ أي إجراء.
+Revision Receipt,إيصال الإصدار
+Select an enabled ordinary beneficiary account.,اختر حساب مستخدم عادي مفعّل للمستفيد.
+Select an explicit delegation process.,اختر عملية محددة للتفويض.
+Select the external Board decision method.,اختر وسيلة القرار الخارجي لمجلس الإدارة.
+Select the frozen Board Chairman or Vice.,اختر رئيس مجلس الإدارة أو نائبه المثبت في الطلب.
+TEAM,إدارة الفريق
+The Board Vice must be an enabled Board approver.,يجب أن يكون نائب رئيس مجلس الإدارة مستخدماً مفعّلاً بصلاحية اعتماد المجلس.
+The delegation department must belong to its company.,يجب أن يتبع قسم التفويض شركته.
+The frozen approval authority snapshot is invalid.,نسخة صلاحيات الاعتماد المثبتة غير صالحة.
+This delegation changed. Reload before deciding.,تغير التفويض. أعد تحميله قبل اتخاذ القرار.
+This delegation changed. Reload before revising.,تغير التفويض. أعد تحميله قبل إنشاء إصدار جديد.
+Unsupported delegation query,استعلام تفويض غير مدعوم
+Vacant approval position,منصب اعتماد شاغر
+Who decided and when,صاحب القرار وتوقيته
+You cannot create a delegation to yourself.,لا يمكنك إنشاء تفويض لنفسك.
+Board Vice Approver,نائب رئيس مجلس الإدارة المعتمد
+Beneficiary User,المستخدم المستفيد
+Optional explicit beneficiary. Own-position interests are also checked automatically.,تحديد اختياري للمستفيد. تُفحص أيضاً المصالح المرتبطة بالمنصب الشخصي تلقائياً.
+Frozen Board Vice,نائب رئيس مجلس الإدارة المثبت
+External Board Decision Note,ملاحظة قرار مجلس الإدارة الخارجي
+MEETING,اجتماع
+WHATSAPP,واتساب
+PHONE,هاتف
+EMAIL,بريد إلكتروني
+PAPER,مستند ورقي
+OTHER,أخرى
+This legacy delegation is inactive. Create a reviewed new version before using it.,هذا التفويض القديم غير نشط. أنشئ إصداراً جديداً تمت مراجعته قبل استخدامه.
+Live headcount guidance is unavailable for your role.,إرشادات العدد الوظيفي المباشرة غير متاحة لدورك.

@@ -1,1 +1,1 @@
-from kandil_hr.pilot.models import KandilDelegation
+from kandil_hr.foundation.models import KandilDelegation

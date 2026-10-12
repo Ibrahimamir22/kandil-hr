@@ -57,7 +57,7 @@ class TestRecruitmentCommands(unittest.TestCase):
 		self.point = "recruitment_" + uuid.uuid4().hex
 		frappe.db.savepoint(self.point)
 		self.addCleanup(self.rollback)
-		self.company = frappe.db.get_value("Company", {"company_name": ["like", "%TEST%"]}, "name")
+		self.company = frappe.db.exists("Company", "Kandil PARITY TEST A")
 		if not self.company:
 			self.skipTest("Seed a synthetic TEST company on the isolated parity site")
 		self.prefix = "REC-" + uuid.uuid4().hex[:10]

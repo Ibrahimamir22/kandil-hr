@@ -53,6 +53,14 @@ class TestOwnership(TestRecruitmentCommands):
 		_name, _opening, app = self.fixture()
 		self.assertEqual(app.custom_kandil_responsible_user, self.users["manager"])
 		self.assertEqual(len(json.loads(app.custom_kandil_ownership_history)), 1)
+		with acting_as(self.users["manager"]):
+			hints = ownership.actions(app.name)
+		self.assertTrue(hints["can_manage"])
+		self.assertEqual({x["user"] for x in hints["owners"]}, {self.users["manager"], self.users["hr"]})
+		frappe.db.set_value("Kandil Access Grant", self.grants["manager"], "can_manage_recruitment", 0)
+		with acting_as(self.users["hr"]):
+			self.assertEqual([x["user"] for x in ownership.actions(app.name)["owners"]], [self.users["hr"]])
+		frappe.db.set_value("Kandil Access Grant", self.grants["manager"], "can_manage_recruitment", 1)
 		with self.rejected(frappe.PermissionError), acting_as(self.users["manager"]):
 			app.custom_kandil_responsible_user = self.users["hr"]
 			app.save()

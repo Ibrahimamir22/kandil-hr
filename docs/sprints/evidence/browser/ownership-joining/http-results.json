@@ -1,0 +1,728 @@
+{
+  "run_id": "c9ad572e4031",
+  "site": "kandil-parity.localhost",
+  "checked_at": "2026-10-12T04:41:47.698185+00:00",
+  "status": "PASS",
+  "authentication": "Ordinary password login with valid CSRF; no API-key bypass",
+  "checks": [
+    "Requester ownership POST denied403; unchanged records",
+    "Requester void POST denied403; unchanged records",
+    "Blank reason denied417; unchanged records",
+    "Exact void replay identical with no second effect",
+    "Changed-payload replay and fresh duplicate denied417",
+    "Original events and joining references retained",
+    "Three total voids reconcile occupied0/open4; original outcome remains Joined"
+  ],
+  "statuses": {
+    "requester_void": 403,
+    "requester_owner": 403,
+    "blank_reason": 417,
+    "void": 200,
+    "replay": 200,
+    "changed_payload": 417,
+    "duplicate": 417
+  },
+  "before": {
+    "run_id": "c9ad572e4031",
+    "request": {
+      "name": "p3qshlpnkm",
+      "status": "Approved",
+      "modified": "2026-10-12 07:41:28.834616",
+      "joined": 1,
+      "approved": 4
+    },
+    "ledger": {
+      "structural": 5,
+      "occupied": 1,
+      "reserved": 0,
+      "open_slots": 3,
+      "available": 1
+    },
+    "vacancy": "Partially Filled",
+    "application": {
+      "name": "ownership-c9ad572e4031@example.invalid",
+      "modified": "2026-10-12 07:41:10.728692",
+      "status": "Open",
+      "owner": "browser-c9ad572e4031-hr@example.invalid",
+      "next_owner": "browser-c9ad572e4031-hr@example.invalid",
+      "task": "متابعة تجريبية للمقابلة",
+      "due": "2026-10-15",
+      "history": [
+        {
+          "action": "Created",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Vacancy team default owner.",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:35:50.265127+03:00",
+          "before": {},
+          "reason": "Vacancy team default owner."
+        },
+        {
+          "action": "Owner reassigned",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Synthetic EN ownership handoff",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "at": "2026-10-12T07:36:41.506321+03:00",
+          "before": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Vacancy team default owner.",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "reason": "Synthetic EN ownership handoff"
+        },
+        {
+          "action": "Next action updated",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "Synthetic EN next action reason",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "at": "2026-10-12T07:39:38.070685+03:00",
+          "before": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Synthetic EN ownership handoff",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "reason": "Synthetic EN next action reason"
+        },
+        {
+          "action": "Owner reassigned",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:40:55.031802+03:00",
+          "before": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "Synthetic EN next action reason",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية"
+        },
+        {
+          "action": "Next action updated",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "متابعة تجريبية للمقابلة",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-hr@example.invalid",
+            "custom_kandil_ownership_reason": "تحديث تجريبي للإجراء التالي بالعربية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:41:10.728113+03:00",
+          "before": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "reason": "تحديث تجريبي للإجراء التالي بالعربية"
+        }
+      ]
+    },
+    "offers": {
+      "en": {
+        "name": "HR-OFF-2026-00001",
+        "outcome": "Joined",
+        "voided": 1,
+        "reason": "Synthetic EN incorrect joining correction",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "at": "2026-10-12 07:40:02.138191",
+        "assignment": {
+          "name": "p4233jcnno",
+          "employee": "HR-EMP-00029",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 1
+        },
+        "employee": {
+          "name": "HR-EMP-00029",
+          "status": "Inactive",
+          "voided": 1
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00001",
+          "docstatus": 0,
+          "voided": 1
+        }
+      },
+      "ar": {
+        "name": "HR-OFF-2026-00002",
+        "outcome": "Joined",
+        "voided": 1,
+        "reason": "تصحيح تجريبي لتسجيل مباشرة خاطئ بالعربية",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "at": "2026-10-12 07:41:28.806512",
+        "assignment": {
+          "name": "p47e86d4bg",
+          "employee": "HR-EMP-00030",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 1
+        },
+        "employee": {
+          "name": "HR-EMP-00030",
+          "status": "Inactive",
+          "voided": 1
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00002",
+          "docstatus": 0,
+          "voided": 1
+        }
+      },
+      "http": {
+        "name": "HR-OFF-2026-00003",
+        "outcome": "Joined",
+        "voided": 0,
+        "reason": null,
+        "actor": null,
+        "at": null,
+        "assignment": {
+          "name": "p4c141mllq",
+          "employee": "HR-EMP-00031",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 0
+        },
+        "employee": {
+          "name": "HR-EMP-00031",
+          "status": "Active",
+          "voided": 0
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00003",
+          "docstatus": 0,
+          "voided": 0
+        }
+      }
+    },
+    "events": [
+      {
+        "name": "p3ru1hdea0",
+        "action": "Submitted",
+        "actor": "browser-c9ad572e4031-requester@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:49.908349",
+        "note": "",
+        "snapshot": "{\"status\": \"Pending\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 0, \"joined\": 0, \"opening\": null}]}"
+      },
+      {
+        "name": "p3r592m8ub",
+        "action": "Approve",
+        "actor": "browser-c9ad572e4031-manager@example.invalid",
+        "principal": "browser-c9ad572e4031-manager@example.invalid",
+        "creation": "2026-10-12 07:35:49.938460",
+        "note": "Synthetic browser fixture approval",
+        "snapshot": "{\"status\": \"Pending\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 0, \"joined\": 0, \"opening\": null}]}"
+      },
+      {
+        "name": "p3r9h8khfc",
+        "action": "Approve",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": "browser-c9ad572e4031-hr@example.invalid",
+        "creation": "2026-10-12 07:35:49.975618",
+        "note": "Synthetic browser fixture approval",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p3tiabrvks",
+        "action": "Recruiter team changed",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.197854",
+        "note": "{\n \"after\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [\n   {\n    \"__unsaved\": 1,\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"__unsaved\": 1,\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"before\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": null,\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"initiated_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n \"reason\": \"Synthetic browser recruiter team\"\n}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p3usok252a",
+        "action": "Vacancy Open",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.231184",
+        "note": "{\n \"after\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": \"2026-10-12\",\n  \"custom_kandil_team\": [\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.219771\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.219771\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Open\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"before\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"initiated_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n \"reason\": \"Synthetic browser intake\"\n}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p43lmdf9oc",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.753709",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 1, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p48d6pv6mv",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:51.281466",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 2, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p4dlmrnip7",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:51.774364",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 3, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "rim81jda6b",
+        "action": "Joining voided",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:40:02.210986",
+        "note": "{\"after\": {\"assignment_voided\": true, \"employee_status\": \"Inactive\", \"joined\": 2, \"occupied\": 2, \"onboarding_voided\": true, \"open_slots\": 2, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"before\": {\"assignment\": \"p4233jcnno\", \"employee\": \"HR-EMP-00029\", \"joined\": 3, \"occupied\": 3, \"offer\": \"HR-OFF-2026-00001\", \"onboarding\": \"HR-EMP-ONB-2026-00001\", \"open_slots\": 1, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"reason\": \"Synthetic EN incorrect joining correction\"}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 2, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "sdonsqmtdh",
+        "action": "Joining voided",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:41:28.853746",
+        "note": "{\"after\": {\"assignment_voided\": true, \"employee_status\": \"Inactive\", \"joined\": 1, \"occupied\": 1, \"onboarding_voided\": true, \"open_slots\": 3, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"before\": {\"assignment\": \"p47e86d4bg\", \"employee\": \"HR-EMP-00030\", \"joined\": 2, \"occupied\": 2, \"offer\": \"HR-OFF-2026-00002\", \"onboarding\": \"HR-EMP-ONB-2026-00002\", \"open_slots\": 2, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"reason\": \"تصحيح تجريبي لتسجيل مباشرة خاطئ بالعربية\"}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 1, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      }
+    ],
+    "counts": {
+      "Kandil Command Receipt": 11,
+      "Kandil Request Revision": 10,
+      "Kandil Recruitment Event": 10
+    },
+    "history_sha256": "66c422a52ede81ace433b6bb815a455ab19b904a7d41d5524340d6f606b41bfe"
+  },
+  "after": {
+    "run_id": "c9ad572e4031",
+    "request": {
+      "name": "p3qshlpnkm",
+      "status": "Approved",
+      "modified": "2026-10-12 07:41:44.486959",
+      "joined": 0,
+      "approved": 4
+    },
+    "ledger": {
+      "structural": 5,
+      "occupied": 0,
+      "reserved": 0,
+      "open_slots": 4,
+      "available": 1
+    },
+    "vacancy": "Open",
+    "application": {
+      "name": "ownership-c9ad572e4031@example.invalid",
+      "modified": "2026-10-12 07:41:10.728692",
+      "status": "Open",
+      "owner": "browser-c9ad572e4031-hr@example.invalid",
+      "next_owner": "browser-c9ad572e4031-hr@example.invalid",
+      "task": "متابعة تجريبية للمقابلة",
+      "due": "2026-10-15",
+      "history": [
+        {
+          "action": "Created",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Vacancy team default owner.",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:35:50.265127+03:00",
+          "before": {},
+          "reason": "Vacancy team default owner."
+        },
+        {
+          "action": "Owner reassigned",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Synthetic EN ownership handoff",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "at": "2026-10-12T07:36:41.506321+03:00",
+          "before": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Vacancy team default owner.",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "reason": "Synthetic EN ownership handoff"
+        },
+        {
+          "action": "Next action updated",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "Synthetic EN next action reason",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "at": "2026-10-12T07:39:38.070685+03:00",
+          "before": {
+            "custom_kandil_next_action": null,
+            "custom_kandil_next_action_due": null,
+            "custom_kandil_next_action_owner": null,
+            "custom_kandil_ownership_reason": "Synthetic EN ownership handoff",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "reason": "Synthetic EN next action reason"
+        },
+        {
+          "action": "Owner reassigned",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:40:55.031802+03:00",
+          "before": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "Synthetic EN next action reason",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-recruiter@example.invalid"
+          },
+          "reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية"
+        },
+        {
+          "action": "Next action updated",
+          "actor": "browser-c9ad572e4031-hr@example.invalid",
+          "after": {
+            "custom_kandil_next_action": "متابعة تجريبية للمقابلة",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-hr@example.invalid",
+            "custom_kandil_ownership_reason": "تحديث تجريبي للإجراء التالي بالعربية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "at": "2026-10-12T07:41:10.728113+03:00",
+          "before": {
+            "custom_kandil_next_action": "Synthetic EN schedule interview",
+            "custom_kandil_next_action_due": "2026-10-15",
+            "custom_kandil_next_action_owner": "browser-c9ad572e4031-recruiter@example.invalid",
+            "custom_kandil_ownership_reason": "تسليم تجريبي للمسؤولية إلى الموارد البشرية",
+            "custom_kandil_ownership_state": "Assigned",
+            "custom_kandil_responsible_user": "browser-c9ad572e4031-hr@example.invalid"
+          },
+          "reason": "تحديث تجريبي للإجراء التالي بالعربية"
+        }
+      ]
+    },
+    "offers": {
+      "en": {
+        "name": "HR-OFF-2026-00001",
+        "outcome": "Joined",
+        "voided": 1,
+        "reason": "Synthetic EN incorrect joining correction",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "at": "2026-10-12 07:40:02.138191",
+        "assignment": {
+          "name": "p4233jcnno",
+          "employee": "HR-EMP-00029",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 1
+        },
+        "employee": {
+          "name": "HR-EMP-00029",
+          "status": "Inactive",
+          "voided": 1
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00001",
+          "docstatus": 0,
+          "voided": 1
+        }
+      },
+      "ar": {
+        "name": "HR-OFF-2026-00002",
+        "outcome": "Joined",
+        "voided": 1,
+        "reason": "تصحيح تجريبي لتسجيل مباشرة خاطئ بالعربية",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "at": "2026-10-12 07:41:28.806512",
+        "assignment": {
+          "name": "p47e86d4bg",
+          "employee": "HR-EMP-00030",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 1
+        },
+        "employee": {
+          "name": "HR-EMP-00030",
+          "status": "Inactive",
+          "voided": 1
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00002",
+          "docstatus": 0,
+          "voided": 1
+        }
+      },
+      "http": {
+        "name": "HR-OFF-2026-00003",
+        "outcome": "Joined",
+        "voided": 1,
+        "reason": "Synthetic HTTP incorrect joining correction",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "at": "2026-10-12 07:41:44.448607",
+        "assignment": {
+          "name": "p4c141mllq",
+          "employee": "HR-EMP-00031",
+          "allocation": "Primary",
+          "valid_from": "2026-10-12",
+          "valid_until": null,
+          "is_voided": 1
+        },
+        "employee": {
+          "name": "HR-EMP-00031",
+          "status": "Inactive",
+          "voided": 1
+        },
+        "onboarding": {
+          "name": "HR-EMP-ONB-2026-00003",
+          "docstatus": 0,
+          "voided": 1
+        }
+      }
+    },
+    "events": [
+      {
+        "name": "p3ru1hdea0",
+        "action": "Submitted",
+        "actor": "browser-c9ad572e4031-requester@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:49.908349",
+        "note": "",
+        "snapshot": "{\"status\": \"Pending\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 0, \"joined\": 0, \"opening\": null}]}"
+      },
+      {
+        "name": "p3r592m8ub",
+        "action": "Approve",
+        "actor": "browser-c9ad572e4031-manager@example.invalid",
+        "principal": "browser-c9ad572e4031-manager@example.invalid",
+        "creation": "2026-10-12 07:35:49.938460",
+        "note": "Synthetic browser fixture approval",
+        "snapshot": "{\"status\": \"Pending\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 0, \"joined\": 0, \"opening\": null}]}"
+      },
+      {
+        "name": "p3r9h8khfc",
+        "action": "Approve",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": "browser-c9ad572e4031-hr@example.invalid",
+        "creation": "2026-10-12 07:35:49.975618",
+        "note": "Synthetic browser fixture approval",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p3tiabrvks",
+        "action": "Recruiter team changed",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.197854",
+        "note": "{\n \"after\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [\n   {\n    \"__unsaved\": 1,\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"__unsaved\": 1,\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"before\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": null,\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"initiated_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n \"reason\": \"Synthetic browser recruiter team\"\n}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p3usok252a",
+        "action": "Vacancy Open",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.231184",
+        "note": "{\n \"after\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": \"2026-10-12\",\n  \"custom_kandil_team\": [\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.219771\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.219771\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Open\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"before\": {\n  \"custom_kandil_before_freeze\": null,\n  \"custom_kandil_before_pause\": null,\n  \"custom_kandil_lead\": \"browser-c9ad572e4031-hr@example.invalid\",\n  \"custom_kandil_pin_reason\": null,\n  \"custom_kandil_pin_until\": null,\n  \"custom_kandil_priority_score\": 20,\n  \"custom_kandil_started_on\": null,\n  \"custom_kandil_team\": [\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 1,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t6u7ja1g\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-hr@example.invalid\"\n   },\n   {\n    \"creation\": \"2026-10-12 07:35:49.966051\",\n    \"docstatus\": 0,\n    \"doctype\": \"Kandil Recruiter Member\",\n    \"idx\": 2,\n    \"modified\": \"2026-10-12 07:35:50.185088\",\n    \"modified_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"name\": \"p3t5fp6i5d\",\n    \"owner\": \"browser-c9ad572e4031-hr@example.invalid\",\n    \"parent\": \"HR-OPN-2026-0014\",\n    \"parentfield\": \"custom_kandil_team\",\n    \"parenttype\": \"Job Opening\",\n    \"user\": \"browser-c9ad572e4031-recruiter@example.invalid\"\n   }\n  ],\n  \"custom_kandil_vacancy_state\": \"Approved\",\n  \"hr_priority\": \"Normal\",\n  \"name\": \"HR-OPN-2026-0014\",\n  \"requested_priority\": \"Normal\",\n  \"status\": \"Open\"\n },\n \"initiated_by\": \"browser-c9ad572e4031-hr@example.invalid\",\n \"reason\": \"Synthetic browser intake\"\n}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p43lmdf9oc",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:50.753709",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 1, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p48d6pv6mv",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:51.281466",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 2, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "p4dlmrnip7",
+        "action": "Joined",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:35:51.774364",
+        "note": "",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 3, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "rim81jda6b",
+        "action": "Joining voided",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:40:02.210986",
+        "note": "{\"after\": {\"assignment_voided\": true, \"employee_status\": \"Inactive\", \"joined\": 2, \"occupied\": 2, \"onboarding_voided\": true, \"open_slots\": 2, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"before\": {\"assignment\": \"p4233jcnno\", \"employee\": \"HR-EMP-00029\", \"joined\": 3, \"occupied\": 3, \"offer\": \"HR-OFF-2026-00001\", \"onboarding\": \"HR-EMP-ONB-2026-00001\", \"open_slots\": 1, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"reason\": \"Synthetic EN incorrect joining correction\"}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 2, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "sdonsqmtdh",
+        "action": "Joining voided",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:41:28.853746",
+        "note": "{\"after\": {\"assignment_voided\": true, \"employee_status\": \"Inactive\", \"joined\": 1, \"occupied\": 1, \"onboarding_voided\": true, \"open_slots\": 3, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"before\": {\"assignment\": \"p47e86d4bg\", \"employee\": \"HR-EMP-00030\", \"joined\": 2, \"occupied\": 2, \"offer\": \"HR-OFF-2026-00002\", \"onboarding\": \"HR-EMP-ONB-2026-00002\", \"open_slots\": 2, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"reason\": \"تصحيح تجريبي لتسجيل مباشرة خاطئ بالعربية\"}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 1, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      },
+      {
+        "name": "sill7aqcbl",
+        "action": "Joining voided",
+        "actor": "browser-c9ad572e4031-hr@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:41:44.508503",
+        "note": "{\"after\": {\"assignment_voided\": true, \"employee_status\": \"Inactive\", \"joined\": 0, \"occupied\": 0, \"onboarding_voided\": true, \"open_slots\": 4, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Open\"}, \"before\": {\"assignment\": \"p4c141mllq\", \"employee\": \"HR-EMP-00031\", \"joined\": 1, \"occupied\": 1, \"offer\": \"HR-OFF-2026-00003\", \"onboarding\": \"HR-EMP-ONB-2026-00003\", \"open_slots\": 3, \"request_status\": \"Approved\", \"reserved\": 0, \"structural\": 5, \"vacancy_state\": \"Partially Filled\"}, \"reason\": \"Synthetic HTTP incorrect joining correction\"}",
+        "snapshot": "{\"status\": \"Approved\", \"lines\": [{\"capacity\": \"KCAP-046594d79b3ddd82ed9b6dc9\", \"requested\": 4, \"approved\": 4, \"joined\": 0, \"opening\": \"HR-OPN-2026-0014\"}]}"
+      }
+    ],
+    "counts": {
+      "Kandil Command Receipt": 12,
+      "Kandil Request Revision": 11,
+      "Kandil Recruitment Event": 11
+    },
+    "history_sha256": "00c62a2fe2d02d0aac3922c97eeb9963f85701a353b9e7d7878fb42c7edeede2"
+  },
+  "source_hashes": {
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/account_sessions.py": "133a6f96ce1742dea65ecbb03b81ff233ac3ad5899ce0e3729cf1ceb73d021ea",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "kandil_hr/foundation/delegation.py": "e0e82a201c5aa02cfd58bd5b2987bb0b091ff65c1d795c7e19c698729de605d1",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/models.py": "e74d661690192f971b05d946789def0aad0704c175ae16e0d704dae65d71bd4e",
+    "kandil_hr/foundation/mutation_access.py": "854df434b5880834abeceae4c898d8d93c33e859a74cf6e09ee42c442847ea84",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/outbox.py": "27bac88ba59d69ad6fdc3eebda76c353981005af3048843772569a2db96b930f",
+    "kandil_hr/foundation/outbox_access.py": "0198d1a56a95686bade76d2308541e9ef10eb5edeb4b9cd65b7370aff6781643",
+    "kandil_hr/foundation/outbox_company_runner.py": "f5f488f9a72dc6f48b31b4f4da35d7320406f157b5cb1c838a6ab50284e3c107",
+    "kandil_hr/foundation/outbox_revocation_runner.py": "52ea6a3ced8d4f7ca40db0c7adbc8edf48c46ff763549ea5de460c5d817189e2",
+    "kandil_hr/foundation/position_register.py": "2c77989db26c3aac0e1430c97882689bf6164ca495e0251d4f70e72217ab25ec",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/scope_probe.py": "9038dd735eaa912ca9ab5c7879a87a63c272f5ed01a01a51351bc30bdda47b7b",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/foundation/session_probe.py": "14c3ee1eae885438cbc1992599c4e28adb626ec1efc85cfdfe63da77cb6ff421",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "744b5747b5d281a42cb08e43140df87e4a7cecba30513bf79df6c80f6e70f6f0",
+    "kandil_hr/organization/assignment_reconciliation.py": "8fd7b86ebac98aaa46f46eaa521579a4b8c267611fdc87f8941934c2f6610969",
+    "kandil_hr/organization/capacity.py": "bb03df511a53d6eb569ca2404ea0559523b66e99728fbe352765d3fb81b2f509",
+    "kandil_hr/organization/codes.py": "5f06a9c4eafa8b098036681db97e39b5e4b4a0d3f4e7277e8ee67e62b78373df",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "71c939d157670b0ff1bfde4626a9be8255ea7ba560c61e33e3f28ef866bde568",
+    "kandil_hr/organization/current.py": "4780c79f175694822767779371c39d51535215e8e2d20496c2d1503477e77e7b",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "ba070083d6192a59d538ce5dde3b050bb1afae618f3c8ae039462b654ee61fb4",
+    "kandil_hr/organization/occupancy.py": "377b9135119ce9aed998e7cc74234dc1c32b131d84430e5a3efefa8e4a2c53af",
+    "kandil_hr/organization/permissions.py": "06db719e031b727355c3b14518914f8c35cbfc286348a65d81f56806fea25384",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "2feb2ba79dc92faff905d4f64d5a310622d0b224a4d20d58bdac3a030e0950cc",
+    "kandil_hr/organization/snapshots.py": "d04ab80a7cb2cb268e1dfb0ab39082485bb1f55d77bfc4ad2532148a62d4f147",
+    "kandil_hr/organization/units.py": "89663ab811e78bec05458124b3065feebfc894b6267d36ea11848867255361ab",
+    "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/api.py": "9c2f06f5e31f52ff4dc1f42f054fe508e90a3d4c4506dddb4a4f3d405511d15f",
+    "kandil_hr/pilot/extensions.py": "0ad238a126e2bc609564e6d38b6ce30867e7feaf0578b57d4d567816ac74971a",
+    "kandil_hr/pilot/models.py": "51b0f3a9047f46bd329676527c0bb9faf7d21226ab8509603fb6685ff2d95b62",
+    "kandil_hr/pilot/navigation.py": "ef1103b18f96c3dea3face17b7280ae60ac8c3fda57bee3ab4caa5ef6cce624d",
+    "kandil_hr/pilot/permissions.py": "e6d1570599b7a8b07d501c1f24b46a16e1099418940eba425cefab503f07cd64",
+    "kandil_hr/pilot/setup.py": "4318899ab4c4d4ff2cbb497555b93aded386f7b9fb03107c86eea42ce367b465",
+    "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "kandil_hr/recruitment/api.py": "678324bf04cd94582f07f4ff2f3b72420445cdc8a99cfda46880961241c75c7e",
+    "kandil_hr/recruitment/authority.py": "051344d17c682ae46c7beea7927465a2e6be63ef83d01037222f989f2a21e7fb",
+    "kandil_hr/recruitment/browser_fixture.py": "32106a5525bde95a8166640633225807a3ae633439ff87e6f99f04a52c3dc9cb",
+    "kandil_hr/recruitment/concurrency_fixture.py": "3cf254638777bcde82fa0edf3e150f8d0c7b36c607042c1913feb3d7d94ff7f3",
+    "kandil_hr/recruitment/corrections.py": "4f406d0ed9332db2372cf5e7fd3f06e75c8a88192452d4a82b39f9540f97e1c4",
+    "kandil_hr/recruitment/employee_links.py": "f9d808046b9b014f076ff5063bdd045df867844420635e53e81e77a5c236c36c",
+    "kandil_hr/recruitment/guards.py": "43785b577080328af694d21262a32b56a0629c8fdc0712e4206f0628deaa3bb1",
+    "kandil_hr/recruitment/joining.py": "5bafeb20af4483ae3861a18af97cbc68ffa003eca9d6cc62a66cab558c176c0b",
+    "kandil_hr/recruitment/joining_corrections.py": "f82f9b71a8e07d58102994dc6f3a46b0563c970d8616108971a6e07998a3a757",
+    "kandil_hr/recruitment/models.py": "5b9f5d5de8247069c4aa891770bca69c97c3438ada4bb7090523980dedd385b8",
+    "kandil_hr/recruitment/ownership.py": "ece4339103ca859e4c09105ce4c7e25e8ae7e29bfe83bb3e74779c87d6b63f60",
+    "kandil_hr/recruitment/ownership_browser_fixture.py": "267fdb983fe8ea7857fb18da974392a7b1a05c7d23f1721b670132abbc94b17c",
+    "kandil_hr/recruitment/ownership_commit_runner.py": "52964a5bc5fea89c805de676a09dbcb1a13b2c8a9216153f8b6929a0ba749362",
+    "kandil_hr/recruitment/preview.py": "e938dbd86d5203fff871da82a0255561682200f85ddd9efed974f9da0a62ab0a",
+    "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
+    "kandil_hr/recruitment/privacy.py": "ef860d50ecff2e4a8fa31575fd5ac4b114ea82b7e5e9911c71866fd02d6b7aff",
+    "kandil_hr/recruitment/review_browser_fixture.py": "78410bba4b7c086005fc2abba9cbf3e53834c4e4ab13579313f91344cf68cb8c",
+    "kandil_hr/recruitment/review_views.py": "afbe44adecb85afd9dda59554f4a01cfbbc242602d626960025770eecea808d7",
+    "kandil_hr/recruitment/setup.py": "2365b2cea89782ba7c321eeaf66f33cd1c1e2d99a977a1b2b57186503d0a380c",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/vacancies.py": "ffd0e0e9f485344dbcddad5111c867c79faf009e51d85266449bca1e593f9031"
+  },
+  "limits": [
+    "EN/AR first two voids are separately recorded CUA UI proof; deterministic command replay is this separate HTTP case."
+  ]
+}

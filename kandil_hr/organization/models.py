@@ -95,6 +95,8 @@ class HistoryDocument(Document):
 		users.update(row.principal for row in self.get("approval_steps") or [] if row.principal)
 		if self.doctype == "Kandil Organization Settings":
 			users.update(self.get(field) for field in SETTINGS_AUTHORITIES if self.get(field))
+			if self.get("board_vice_approver"):
+				users.add(self.board_vice_approver)
 		if self.doctype == "Kandil Position Assignment" and self.get("user"):
 			users.add(self.user)
 		for user in sorted(users - {None, ""}):
@@ -139,6 +141,9 @@ class HistoryDocument(Document):
 		if self.doctype == "Kandil Grade Band":
 			assert_current_scope(self.company, capability="sensitive")
 		if self.doctype == "Kandil Organization Settings":
+			from kandil_hr.recruitment.authority import validate_settings
+
+			validate_settings(self)
 			for field, authority in SETTINGS_AUTHORITIES.items():
 				if self.get(field) and AUTHORITY_ROLES[authority] not in current_identity(self.get(field)):
 					fail("Configured authorities must be enabled users with the appropriate approval role.")

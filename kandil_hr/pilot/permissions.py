@@ -17,12 +17,25 @@ def request_query(user=None):
 		return scope
 	u = frappe.db.escape(user)
 	day = frappe.db.escape(today())
+	extra, board = "", "1=0"
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.foundation.clock import today_cairo
+		from kandil_hr.foundation.delegation import delegation_sql
+		from kandil_hr.recruitment.authority import board_query
+
+		extra = (
+			" AND "
+			+ delegation_sql("d", process="APPROVALS")
+			+ " AND d.from_user<>`tabKandil Hiring Request`.requested_by"
+		)
+		board = board_query(user)
+		day = frappe.db.escape(str(today_cairo()))
 	relationship = f"""(`tabKandil Hiring Request`.requested_by={u} OR EXISTS (
         SELECT 1 FROM `tabKandil Approval Step` s WHERE s.parent=`tabKandil Hiring Request`.name
         AND (s.principal={u} OR EXISTS (SELECT 1 FROM `tabKandil Delegation` d
         WHERE d.from_user=s.principal AND d.to_user={u} AND d.revoked=0
         AND d.company=`tabKandil Hiring Request`.company AND d.department=`tabKandil Hiring Request`.department
-        AND d.from_date<={day} AND d.to_date>={day}))))"""
+        AND d.from_date<={day} AND d.to_date>={day} {extra}))) OR {board})"""
 	return f"({scope}) AND ({relationship})" if scope else relationship
 
 
@@ -46,6 +59,11 @@ def request_permission(doc, user=None, ptype=None):
 		return True
 	if ptype not in ["read", "select", "print", "email"]:
 		return False
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.authority import board_reader
+
+		if board_reader(doc, user):
+			return True
 	from kandil_hr.pilot.api import delegate_for
 
 	return (

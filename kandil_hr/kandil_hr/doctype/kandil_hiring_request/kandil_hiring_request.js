@@ -1,7 +1,7 @@
 frappe.ui.form.on('Kandil Hiring Request', {
   refresh(frm) {
     const locked = frm.doc.status !== 'Draft';
-    ['company', 'department', 'title', 'exception_reason', 'lines', 'requested_position', 'need_reason', 'replacement_employee', 'employment_type', 'required_by', 'qualifications', 'skills_required', 'experience_required', 'working_conditions', 'requested_priority'].forEach(field => frm.set_df_property(field, 'read_only', locked ? 1 : 0));
+    ['company', 'department', 'beneficiary_user', 'title', 'exception_reason', 'lines', 'requested_position', 'need_reason', 'replacement_employee', 'employment_type', 'required_by', 'qualifications', 'skills_required', 'experience_required', 'working_conditions', 'requested_priority'].forEach(field => frm.set_df_property(field, 'read_only', locked ? 1 : 0));
     if (locked) frm.disable_save(); else frm.enable_save();
     frm.add_custom_button(__('HR workspace'), () => window.location.assign('/kandil-pilot'));
     if (frm.is_new()) return;
@@ -37,7 +37,7 @@ frappe.ui.form.on('Kandil Hiring Request', {
           });
           dialog.show(); load(0);
         });
-        if (extended) frappe.call({
+        if (extended && actions.headcount_preview) frappe.call({
           method: 'kandil_hr.recruitment.preview.headcount', type: 'GET', args: {name},
           callback: ({message: guidance}) => {
             if (!guidance || frm.doc.name !== name || frm.kandil_action_generation !== generation) return;
@@ -48,6 +48,7 @@ frappe.ui.form.on('Kandil Hiring Request', {
             frm.dashboard.add_comment('<strong>' + escape(__('Headcount guidance')) + '</strong><p>' + escape(__('Current policy: {0}.', [__(guidance.current_mode)]) + submitted) + '</p><ul>' + rows + '</ul><p>' + escape(note) + '</p>', 'blue', true);
           }
         });
+        if (extended && !actions.headcount_preview) frm.dashboard.add_comment(frappe.utils.escape_html(__('Live headcount guidance is unavailable for your role.')), 'blue', true);
         if (actions.correct_approved) frm.add_custom_button(__('Correct Approved Request'), () => {
           const specs = [
             ['employment_type','Employment Type','Link','Employment Type'], ['required_by','Required By','Date'],
@@ -81,6 +82,16 @@ frappe.ui.form.on('Kandil Hiring Request', {
         if (actions.submit) frm.add_custom_button(__('Submit for Approval'), () => {
           if (frm.is_dirty()) return frappe.msgprint(__('Save your changes first.'));
           frappe.confirm(__('Reserve the requested headcount and start approvals?'), () => call('submit_request', {}));
+        });
+        if (extended && actions.board_record) frm.add_custom_button(__('Record External Board Decision'), () => {
+          frappe.prompt([
+            {fieldname:'decision', fieldtype:'Select', label:__('Decision'), options:['Approve','Reject','Return'], reqd:1},
+            {fieldname:'board_member', fieldtype:'Select', label:__('Deciding Board Member'), options:actions.board_members, reqd:1},
+            {fieldname:'on_behalf_method', fieldtype:'Select', label:__('External Board Decision Method'), options:['MEETING','WHATSAPP','PHONE','EMAIL','PAPER','OTHER'], reqd:1},
+            {fieldname:'on_behalf_note', fieldtype:'Small Text', label:__('Who decided and when'), reqd:1},
+            {fieldname:'board_evidence', fieldtype:'Select', options:[{value:'',label:''}, ...(actions.board_files || []).map(file=>({value:file.name,label:frappe.utils.escape_html(file.label + ' — ' + file.name)}))], label:__('Private Board Evidence'), reqd:1},
+            {fieldname:'comment', fieldtype:'Small Text', label:__('Reason'), reqd:1}
+          ], values => call('decide', {step_id:step, ...values}), __('Record External Board Decision'), __('Record Decision'));
         });
         if (actions.decide) {
           frm.add_custom_button(__('Approve'), () => frappe.prompt([{ fieldname: 'comment', fieldtype: 'Small Text', label: __('Comment') }], v => call('decide', { decision: 'Approve', ...(extended ? {step_id: step} : {}), comment: v.comment || '' })));

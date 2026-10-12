@@ -13,7 +13,16 @@
     "from_date",
     "to_date",
     "reason",
-    "revoked"
+    "revoked",
+    "process_scope",
+    "approval_status",
+    "supersedes",
+    "delegation_version",
+    "approved_by",
+    "approved_on",
+    "decision_reason",
+    "decision_key",
+    "revision_key"
   ],
   "fields": [
     {
@@ -69,6 +78,70 @@
       "label": "Revoked",
       "fieldtype": "Check",
       "default": "0"
+    },
+    {
+      "fieldname": "process_scope",
+      "label": "Delegated Process",
+      "fieldtype": "Select",
+      "options": "APPROVALS\nTEAM\nALL",
+      "default": "APPROVALS",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "approval_status",
+      "label": "Delegation Approval",
+      "fieldtype": "Select",
+      "options": "\nActive\nPending CEO\nRejected\nRevoked",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "supersedes",
+      "label": "Previous Delegation Version",
+      "fieldtype": "Link",
+      "options": "Kandil Delegation",
+      "read_only": 1
+    },
+    {
+      "fieldname": "delegation_version",
+      "label": "Delegation Version",
+      "fieldtype": "Int",
+      "default": "1",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Delegation Decided By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_on",
+      "label": "Delegation Decided On",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "decision_reason",
+      "label": "Delegation Decision Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
+      "fieldname": "decision_key",
+      "label": "Decision Receipt",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "revision_key",
+      "label": "Revision Receipt",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
     }
   ],
   "permissions": [
@@ -88,6 +161,11 @@
       "create": 0,
       "report": 1,
       "export": 0,
+      "print": 1
+    },
+    {
+      "role": "Kandil CEO Approver",
+      "read": 1,
       "print": 1
     }
   ],

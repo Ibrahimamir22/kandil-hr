@@ -17,15 +17,16 @@ frappe.ui.form.on('Job Applicant', {
         }});
       }, __('Application actions'));
       if (!a.can_manage) return;
+      const owners = [{value:'',label:''}, ...(a.owners || []).map(row => ({value:row.user,label:frappe.utils.escape_html(row.label + ' — ' + row.user)}))];
       const send=(method,values)=>{if(!current()) {frappe.msgprint(__('Reload this application before taking an action.'));return;} return frappe.call({method:'kandil_hr.recruitment.ownership.'+method,args:{name:docname,expected_version:a.expected_version,application_version:a.application_version,command_id:crypto.randomUUID(),...values},freeze:true,callback(){if(current())frm.reload_doc();}});};
       frm.add_custom_button(__('Assign application owner'),()=>frappe.prompt([
-        {fieldname:'owner',fieldtype:'Link',options:'User',label:__('Responsible Recruiter'),reqd:1},
+        {fieldname:'owner',fieldtype:'Select',options:owners,label:__('Responsible Recruiter'),reqd:1},
         {fieldname:'reason',fieldtype:'Small Text',label:__('Reason'),reqd:1}
       ],values=>send('assign_application',values),__('Assign application owner')),__('Application actions'));
       frm.add_custom_button(__('Set next action'),()=>frappe.prompt([
         {fieldname:'task',fieldtype:'Small Text',label:__('Recruitment Next Action'),default:frm.doc.custom_kandil_next_action},
         {fieldname:'due',fieldtype:'Date',label:__('Next Action Due'),default:frm.doc.custom_kandil_next_action_due},
-        {fieldname:'owner',fieldtype:'Link',options:'User',label:__('Next Action Owner'),default:frm.doc.custom_kandil_next_action_owner},
+        {fieldname:'owner',fieldtype:'Select',options:owners,label:__('Next Action Owner'),default:frm.doc.custom_kandil_next_action_owner},
         {fieldname:'reason',fieldtype:'Small Text',label:__('Reason'),reqd:1}
       ],values=>send('set_next_action',{task:'',due:'',owner:'',...values}),__('Set next action')),__('Application actions'));
     }});

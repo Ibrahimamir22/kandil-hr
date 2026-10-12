@@ -1,0 +1,31 @@
+{
+  "canonical_modified": false,
+  "checked_at": "2026-10-12T05:00:40.239224+00:00",
+  "cases": [
+    {
+      "case_id": "AT-BRD-001-01",
+      "proposed_status": "retain_or_support_pass",
+      "actual": "Adds actual native Vice direct approval, frozen Chair principal and Vice actor/member; preceding CEO-before-Board steps retained.",
+      "evidence": [
+        "docs/sprints/evidence/browser/authority-delegation/results.json"
+      ]
+    },
+    {
+      "case_id": "AT-BRD-001-02",
+      "proposed_status": "support_pass_with_native_gate",
+      "actual": "Adds real Sector EN/AR Board recording and actual ungranted outsider private-proof download403; native suite still supplies invalid-proof/method/role denial clauses.",
+      "evidence": [
+        "docs/sprints/evidence/browser/authority-delegation/results.json",
+        "docs/sprints/evidence/browser/authority-delegation/private-proof-http.json"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-005-02",
+      "proposed_status": "partial",
+      "actual": "Actual CEO explicit delegation approval now proved EN/AR. This does not implement or prove probation workflow.",
+      "evidence": [
+        "docs/sprints/evidence/browser/authority-delegation/results.json"
+      ]
+    }
+  ]
+}

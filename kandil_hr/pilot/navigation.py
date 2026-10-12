@@ -158,7 +158,58 @@ def request_actions(name):
 	from kandil_hr.foundation.security import request_scope
 	from kandil_hr.recruitment.privacy import can_read_notes
 
+	board_record = False
+	board_members = []
+	board_files = []
+	if (
+		frappe.conf.get("kandil_parity_enabled")
+		and doc.status == "Pending"
+		and step
+		and step.authority == "Board Approval"
+	):
+		from kandil_hr.recruitment.authority import interested_users
+
+		policy = frappe.parse_json(doc.route_snapshot or "{}").get("policy", {})
+		user = frappe.session.user
+		interests = interested_users(doc)
+		board_members = [
+			member
+			for member in (step.principal, step.get("board_vice"))
+			if member
+			and member not in interests
+			and frappe.db.get_value("User", member, "enabled")
+			and "Kandil Board Approver" in frappe.get_roles(member)
+		]
+		can_manage = request_scope(doc, user, "manage") and user not in interests
+		decide = bool(can_manage and user in board_members)
+		board_record = bool(
+			can_manage
+			and user == policy.get("exception_approver")
+			and "Kandil Sector Approver" in frappe.get_roles(user)
+			and board_members
+		)
+		if board_record:
+			for file in frappe.get_all(
+				"File",
+				filters={"attached_to_doctype": doc.doctype, "attached_to_name": doc.name, "is_private": 1},
+				fields=["name", "file_name"],
+				order_by="creation desc",
+				limit_page_length=100,
+			):
+				if frappe.get_doc("File", file.name).has_permission("read"):
+					board_files.append(dict(name=file.name, label=file.file_name))
 	return dict(
+		board_record=board_record,
+		board_members=board_members,
+		board_files=board_files,
+		headcount_preview=bool(
+			frappe.conf.get("kandil_parity_enabled")
+			and request_scope(doc)
+			and all(
+				frappe.get_doc("Kandil Capacity", capacity).has_permission("read")
+				for capacity in {row.capacity for row in doc.lines}
+			)
+		),
 		confidential_notes=can_read_notes(doc),
 		correct_approved=bool(
 			frappe.conf.get("kandil_parity_enabled")

@@ -1,0 +1,85 @@
+{
+  "suite": "authority-audit",
+  "checked_at": "2026-10-12T04:46:26.111989+00:00",
+  "site": "kandil-parity.localhost",
+  "total": 11,
+  "successful": true,
+  "checks": [
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_aud00101_actor_principal_revisions_receipt_and_ordinary_immutability",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_aud00202_system_manager_ordinary_save_cannot_fabricate_decision",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_brd00101_ceo_precedes_chair_and_replay_is_exact",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_brd00101_dated_board_rule_always_adds_ceo_first",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_brd00101_vice_frozen_scope_and_deciding_member",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_brd00102_sector_recording_needs_method_note_private_proof",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_hc00402_personal_sector_shortage_requires_independent_ceo",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00401_vacant_head_is_recorded_and_hr_notified_once",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00402_creator_and_beneficiary_are_independent_and_frozen",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00402_distinct_creator_cannot_become_approval_authority",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00402_hr_own_position_requires_independent_ceo",
+      "status": "PASS"
+    }
+  ],
+  "fixtures_rolled_back": true,
+  "source_hashes": {
+    "recruitment/test_authority_audit.py": "3ea6de3fdea8671b383623e2e008b00c4ee97cd9201da903ec4a2a6d049db08b",
+    "recruitment/authority.py": "051344d17c682ae46c7beea7927465a2e6be63ef83d01037222f989f2a21e7fb",
+    "recruitment/api.py": "678324bf04cd94582f07f4ff2f3b72420445cdc8a99cfda46880961241c75c7e",
+    "recruitment/privacy.py": "ef860d50ecff2e4a8fa31575fd5ac4b114ea82b7e5e9911c71866fd02d6b7aff",
+    "pilot/permissions.py": "2cc2b192fc9e2a6971a1c1c3e8230a79ab83718ce84e69da8d86ceb898d234b1",
+    "pilot/navigation.py": "ef1103b18f96c3dea3face17b7280ae60ac8c3fda57bee3ab4caa5ef6cce624d",
+    "foundation/delegation.py": "4903bf3bd3553e4e339edda1b90af19f77b5b62373e5b88250a8f5be85a32822"
+  },
+  "source_unchanged": true,
+  "limitations": [
+    "Source-directed policy; HR deployment sign-off pending",
+    "AUD001 exact readable command envelope and external seal are separate; this proves receipt binding and ordinary API immutability",
+    "AUD002 Administrator operational-access logging/review remains separate from direct-save denial",
+    "UI and actual HTTP proof-file download need separate browser checks"
+  ],
+  "fixture_boundary": "Distinct creator case seeds owner on a synthetic imported-history draft at DB level; ordinary public creation still forces owner/requester to current user. All fixtures rolled back; synthetic proof file removed.",
+  "prior_probe_findings": [
+    {
+      "finding": "Request list date escape received datetime.date",
+      "resolution": "Root converted today_cairo() to str before SQL escaping; native Vice list/read now passes."
+    },
+    {
+      "finding": "Replay equality used native datetimes against serialized receipt strings",
+      "resolution": "Test now compares serialized API output; no product change."
+    },
+    {
+      "finding": "Distinct-creator fixture insert reset owner/requested_by",
+      "resolution": "Historical creator fixture now explicitly seeded at DB level; no public bypass."
+    }
+  ]
+}

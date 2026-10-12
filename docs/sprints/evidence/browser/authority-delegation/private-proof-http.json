@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "run_id": "5ed972acf610",
+  "checked_at": "2026-10-12T04:54:12.221543+00:00",
+  "authentication": "Normal password sessions, no API key",
+  "results": {
+    "sector": {
+      "status": 200,
+      "bytes": 87,
+      "sha256": "5466b8d265859a63b30b0c2a81629a9a4ceceff881aa8f5abfd31300f0ed3246"
+    },
+    "requester": {
+      "status": 200,
+      "bytes": 87,
+      "sha256": "5466b8d265859a63b30b0c2a81629a9a4ceceff881aa8f5abfd31300f0ed3246"
+    },
+    "outsider": {
+      "status": 403,
+      "bytes": 136,
+      "sha256": "31812c18c7dbe982fc343b14c4f08efbcf46ddb6aafab9f6a6ff962bda54919d"
+    }
+  },
+  "limits": [
+    "Requester own-request proof access recorded as observed; no denial expectation was invented."
+  ]
+}

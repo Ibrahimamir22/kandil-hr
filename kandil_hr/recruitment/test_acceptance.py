@@ -56,7 +56,7 @@ class TestRecruitmentAcceptance(unittest.TestCase):
 						doctype="Kandil Delegation",
 						company=self.f.company,
 						department=self.f.department,
-						from_user=self.f.users["manager"],
+						from_user=self.f.users["sector"],
 						to_user=target,
 						from_date=today(),
 						to_date=add_days(today(), days - 1),
@@ -64,15 +64,15 @@ class TestRecruitmentAcceptance(unittest.TestCase):
 					)
 				).insert()
 
-		valid = create(90, self.f.users["sector"])
+		valid = create(90, self.f.users["manager"])
 		saved = frappe.get_doc("Kandil Delegation", valid.name)
 		self.assertEqual(date_diff(saved.to_date, saved.from_date) + 1, 90)
 		self.assertEqual(saved.revoked, 0)
 		count = frappe.db.count("Kandil Delegation", {"department": self.f.department})
 		with self.f.rejected():
-			create(91, self.f.users["sector"])
+			create(91, self.f.users["manager"])
 		with self.f.rejected():
-			create(90, self.f.users["manager"])
+			create(90, self.f.users["sector"])
 		self.assertEqual(frappe.db.count("Kandil Delegation", {"department": self.f.department}), count)
 
 	def test_pri_001_02_pin_authority_reason_and_original_score_history(self):

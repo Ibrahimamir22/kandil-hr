@@ -1,0 +1,30 @@
+{
+  "review_type": "source-only peer review plus root integration review",
+  "checked_at": "2026-10-12T04:54:51.925911+00:00",
+  "finding": "No additional actionable authorization/privacy flaw found in reviewed diff. Browser findings were separately fixed and require native/browser regression.",
+  "reviewed_boundaries": [
+    "Frozen Board Chairman/Vice and Sector proof recording",
+    "Personal-interest and delegated-actor independence",
+    "Current roles/grants and process/date delegation scope",
+    "Parent-scoped Vice request read/list",
+    "Bounded active scoped recruiter owner choices",
+    "Bounded private request proof choices",
+    "Optional headcount preview capability without widening Capacity permissions"
+  ],
+  "source_hashes": {
+    "kandil_hr/recruitment/authority.py": "051344d17c682ae46c7beea7927465a2e6be63ef83d01037222f989f2a21e7fb",
+    "kandil_hr/foundation/delegation.py": "4903bf3bd3553e4e339edda1b90af19f77b5b62373e5b88250a8f5be85a32822",
+    "kandil_hr/recruitment/api.py": "678324bf04cd94582f07f4ff2f3b72420445cdc8a99cfda46880961241c75c7e",
+    "kandil_hr/pilot/navigation.py": "afe0abdccaf0ea4896407a21e42e963b0da2d511ce94b6967adbedbc21b4705e",
+    "kandil_hr/pilot/permissions.py": "2cc2b192fc9e2a6971a1c1c3e8230a79ab83718ce84e69da8d86ceb898d234b1",
+    "kandil_hr/recruitment/ownership.py": "48ddab6c6ab5297f25eaaa22f36f7b10c5d6e5310602bb1a3b487aa992359b09",
+    "kandil_hr/public/js/job_applicant.js": "ee2899df6e8db7fde7c540cbd54ff61ebd6339db9e462823140a3f54b8ea7e77",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "90d5279104bc1a530c8c047dd27fa0bf4fc5ff241d2176faa5f448e1df20b9f6"
+  },
+  "limits": [
+    "Not a complete production security audit",
+    "No new DB/race proof comes from this source review",
+    "Mixed Company/User lock ordering can require transaction retries; not claiming deadlock-free liveness",
+    "Complete command audit envelopes, protected external seal and privileged operational-access review remain open"
+  ]
+}

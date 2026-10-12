@@ -8,6 +8,7 @@ from frappe.model.document import Document
 from frappe.utils import getdate, today
 
 from kandil_hr.foundation.security import enabled
+from kandil_hr.pilot.models import KandilDelegation as PilotDelegation
 
 
 @contextmanager
@@ -139,3 +140,18 @@ def working_deadline(calendar_name, start, days):
 	calendar = frappe.get_doc("Kandil Business Calendar", calendar_name)
 	calendar.check_permission("read")
 	return company_deadline(calendar.company, start, days, calendar.name)
+
+
+class KandilDelegation(PilotDelegation):
+	def validate(self):
+		if not frappe.conf.get("kandil_parity_enabled"):
+			return super().validate()
+		from kandil_hr.foundation.delegation import validate
+
+		validate(self)
+
+	def on_update(self):
+		if frappe.conf.get("kandil_parity_enabled"):
+			from kandil_hr.foundation.delegation import audit
+
+			audit(self)

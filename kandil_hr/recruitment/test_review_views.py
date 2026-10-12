@@ -138,6 +138,17 @@ class TestReviewViews(unittest.TestCase):
 		req = self.f.request((1,))
 		self.f.submit(req.name)
 		counts = self.f.counts(req.name)
+		# A legitimate delegation for another unit must still not authorize this request.
+		for user in (self.f.users["manager"], self.f.users["delegate"]):
+			self.f.insert(
+				"Kandil Access Grant",
+				user=user,
+				company=self.f.company,
+				department=other_department.name,
+				valid_from=today(),
+				can_manage_recruitment=1,
+				reason="Synthetic other-unit delegation",
+			)
 		self.delegate(department=other_department.name)
 		self.delegate(start=add_days(today(), -2), end=add_days(today(), -1))
 		self.delegate(start=add_days(today(), 1), end=add_days(today(), 2))

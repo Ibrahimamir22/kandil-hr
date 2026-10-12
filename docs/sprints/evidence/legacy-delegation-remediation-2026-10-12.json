@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-12T05:07:45.663175+00:00",
+  "status": "PASS",
+  "site": "kandil-parity.localhost",
+  "calls": [
+    {
+      "result": "REVOKED",
+      "name": "eqf23hsfmd",
+      "audit_events_added": 1,
+      "committed": false
+    },
+    {
+      "result": "NOOP",
+      "name": "eqf23hsfmd",
+      "reason": "Known fixture already revoked",
+      "committed": false
+    }
+  ],
+  "commit_boundary": "Each bench execute commits successful method effects; second independent process reads the committed revocation.",
+  "scope": "Exact single disabled synthetic legacy fixture only; no production or blanket Active-row migration."
+}

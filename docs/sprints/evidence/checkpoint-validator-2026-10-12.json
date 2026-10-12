@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "classification": "pure result-contract validation, no database",
+  "positive_actual_suites": 19,
+  "negative_contracts": 11,
+  "application_hashes_match_final_report": true,
+  "checked_at": "2026-10-12T05:16:39.336998+00:00"
+}

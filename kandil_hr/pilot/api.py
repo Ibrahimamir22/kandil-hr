@@ -128,6 +128,10 @@ def save(doc, action, note="", principal=None):
 
 
 def delegate_for(doc, principal, user=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.foundation.delegation import find_delegation
+
+		return find_delegation(doc, principal, user, process="APPROVALS")
 	user = user or frappe.session.user
 	return frappe.db.exists(
 		"Kandil Delegation",
@@ -149,12 +153,14 @@ def can_act(doc, principal):
 		return False
 	if not frappe.db.get_value("User", principal, "enabled"):
 		return False
-	if (
-		frappe.conf.get("kandil_parity_enabled")
-		and user != principal
-		and {"Kandil CEO Approver", "Kandil Board Approver"}.intersection(frappe.get_roles(principal))
-	):
-		return False
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.authority import interested_users
+
+		interests = interested_users(doc)
+		if user in interests or principal in interests:
+			return False
+		if user != principal and "Kandil Board Approver" in frappe.get_roles(principal):
+			return False
 	return user == principal or (
 		"Kandil Approver" in frappe.get_roles(user) and bool(delegate_for(doc, principal))
 	)

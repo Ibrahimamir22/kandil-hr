@@ -1,0 +1,127 @@
+{
+  "status": "PASS",
+  "run_id": "5ed972acf610",
+  "site": "kandil-parity.localhost",
+  "checked_at": "2026-10-12T05:00:40.239224+00:00",
+  "checks": [
+    {
+      "name": "CEO explicit delegation approvals EN/AR",
+      "status": "PASS",
+      "evidence": [
+        "delegation-en-dialog.jpg",
+        "delegation-en-result.jpg",
+        "delegation-ar-dialog.jpg",
+        "delegation-ar-result.jpg",
+        "backend-after.json"
+      ]
+    },
+    {
+      "name": "Sector external Board recordings EN/AR with private proof and deciding member",
+      "status": "PASS",
+      "evidence": [
+        "board-en-dialog.jpg",
+        "board-en-result.jpg",
+        "board-ar-dialog.jpg",
+        "board-ar-result.jpg",
+        "backend-after.json"
+      ]
+    },
+    {
+      "name": "Vice direct native approval after optional-preview fix",
+      "status": "PASS",
+      "evidence": [
+        "vice-direct-dialog.jpg",
+        "vice-direct-result.jpg",
+        "backend-after.json"
+      ]
+    },
+    {
+      "name": "Private proof native Select restricted to this request",
+      "status": "PASS",
+      "evidence": [
+        "board-picker-fixed.jpg",
+        "backend-after.json"
+      ]
+    },
+    {
+      "name": "Bounded Applicant owner and next-action Select EN/AR",
+      "status": "PASS",
+      "evidence": [
+        "owner-select-en.jpg",
+        "next-owner-select-en.jpg",
+        "owner-select-ar.jpg",
+        "next-owner-select-ar.jpg",
+        "owner-select-ar-result.jpg",
+        "backend-after.json"
+      ]
+    },
+    {
+      "name": "Actual authenticated private proof download boundary",
+      "status": "PASS",
+      "evidence": [
+        "private-proof-http.json"
+      ]
+    },
+    {
+      "name": "Scoped synthetic cleanup",
+      "status": "PASS",
+      "evidence": [
+        "cleanup.json"
+      ]
+    }
+  ],
+  "source_hashes_at_finalization": {
+    "kandil_hr/pilot/navigation.py": "afe0abdccaf0ea4896407a21e42e963b0da2d511ce94b6967adbedbc21b4705e",
+    "kandil_hr/public/js/job_applicant.js": "ee2899df6e8db7fde7c540cbd54ff61ebd6339db9e462823140a3f54b8ea7e77",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "9bee0a59d42093f9d56b1703b96fa9ff96a9c9146185527217e03700d2edd26c",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.js": "1acf00a3965d5f05b7fb42ee8804a1e46739dba12a513b0ca83cde61e3971b35",
+    "kandil_hr/recruitment/authority.py": "051344d17c682ae46c7beea7927465a2e6be63ef83d01037222f989f2a21e7fb",
+    "kandil_hr/foundation/delegation.py": "4903bf3bd3553e4e339edda1b90af19f77b5b62373e5b88250a8f5be85a32822",
+    "kandil_hr/recruitment/ownership.py": "48ddab6c6ab5297f25eaaa22f36f7b10c5d6e5310602bb1a3b487aa992359b09",
+    "kandil_hr/recruitment/authority_browser_fixture.py": "1ef5351cef07584016cfa952dcdc9844d922fb7819e1517bdbc611dddea7cd54"
+  },
+  "screenshot_sha256": {
+    "board-ar-dialog.jpg": "56906d43f3891927ed867718ec2c82a3e0f3e81a80e75fd5f0cdb55956e8c6d4",
+    "board-ar-result.jpg": "f501ef0da5d5d70e40bf2117a31deca33957329c23d2718535cb8aba5892346e",
+    "board-en-dialog.jpg": "e19a07d71adebb8346a18c8f8dfa8fcc79481a5e6f775c946c013b219ba1514d",
+    "board-en-result.jpg": "fbaf35704a84ef9409ac035298db4ed6d2d86baeaf87ecf49d10c53349252c51",
+    "board-picker-fixed.jpg": "b6660718e04dd1b5ce73ce1476aa8f9ee5a2f9869911af62953a7307d463a825",
+    "delegation-ar-dialog.jpg": "a920787870feb777b8ca1a012a01dfd46bfbb7c6cf0a0693f281d8f2ffef80ba",
+    "delegation-ar-result.jpg": "7cb6ae544669d57ec9822f51704c04b9833afeef5e5d6c705337a9fde462063e",
+    "delegation-en-dialog.jpg": "e9b50d514d3704de453f5a06b080a3376f756ae21ea25d67fee831238cd9bcea",
+    "delegation-en-result.jpg": "17a777db3ce52a553f5f12dfb0903ebe67e2cec03df3936de64bb89cf3066734",
+    "next-owner-select-ar.jpg": "19a42a593e93600ec01c74011312a84c7e5bbdd7d9ee599f9d3b77ec5ce2e016",
+    "next-owner-select-en.jpg": "9b5189fc5effad47f64c60dfd5e342454ff644f74c45d432f74bffc53affb012",
+    "owner-select-ar-result.jpg": "163352e2df42d2d0e6de67d8a451b57a0e12e6dbd1238ef815163ffccfc33e7a",
+    "owner-select-ar.jpg": "bd7f678a1f8cb60866f46e2521863315d71abf2b34c97d37674c62a3a6172229",
+    "owner-select-en.jpg": "db05a37988766216759d37836f5a79855c85cadaca6ab0cb5a0de65650e212d5",
+    "vice-direct-dialog.jpg": "85467a2ea1d0168eef120b2cfe98d12a7becbcb49b6571ac277b585b114320fc",
+    "vice-direct-result.jpg": "900ff67893aee3e6e589975432434035c9ff29339369d2bffb8270b6106f599d"
+  },
+  "initial_findings": [
+    {
+      "issue": "Vice form background capacity preview returned PermissionError and redirected to Desk, blocking approval UI.",
+      "evidence": "vice-preview-failure.json",
+      "resolution": "Optional preview skipped for actors without Capacity read; explicit notice and normal server-checked approval preserved. Native Vice approval subsequently succeeded."
+    },
+    {
+      "issue": "File Link autocomplete could not discover its readable private attachment; exact ID worked.",
+      "evidence": "board-en-dialog.jpg",
+      "resolution": "Bounded Select exposes only newest readable private files attached to current request. Fresh board_picker fixture contained exactly one eligible nonblank option and approved successfully."
+    },
+    {
+      "issue": "Earlier Applicant User Link did not discover eligible team members.",
+      "evidence": "../ownership-joining/results.json",
+      "resolution": "Bounded native Select now showed exactly HR and recruiter; both owner and next-action persisted in EN/AR."
+    }
+  ],
+  "limits": [
+    "Synthetic local parity proof, not production acceptance or HR signoff.",
+    "Original EN/AR external decision dialogs used the old File Link; fixed File Select recheck is a separate Arabic fresh request.",
+    "Private proof is visible to its authorized own-request requester (HTTP200), while ungranted outsider receives403. Do not describe it as Sector-only confidential data.",
+    "Backend fixture mistakenly projected nonexistent approval-step field decided_on; null values do not indicate missing decision timestamps. Actual actor/time are independently recorded in immutable event creation plus delegation approved_on. Production field is decided_at; no app edit or DB re-read was performed during parent final source freeze.",
+    "Vice screenshot includes the earlier longer optional-preview notice. Parent shortened only its copy after this proof; behavior unchanged.",
+    "Native Select choice bounds verified in rendered DOM: HR+Recruiter only; private File option only currentrequest proof. Browser does not establish exhaustive concurrency/authorization contracts; separate native suite covers them.",
+    "Original preview errors preserved; final HR browser error capture empty. This is not a claim that the entire multi-actor session had no errors."
+  ]
+}

@@ -554,16 +554,27 @@ def actions(name):
 		opening.custom_kandil_lead,
 		app.custom_kandil_responsible_user,
 	)
+	can_manage = bool(
+		allowed
+		and app.has_permission("write")
+		and request_scope(request, actor, "manage")
+		and request.status == "Approved"
+		and opening.custom_kandil_vacancy_state in ACTIVE
+		and live(app)
+	)
+	owners = []
+	if can_manage:
+		for user in sorted(team_users(opening) - {None, ""}):
+			if (
+				frappe.db.get_value("User", user, "enabled")
+				and "Kandil Recruiter" in frappe.get_roles(user)
+				and request_scope(request, user, "manage")
+			):
+				owners.append(dict(user=user, label=frappe.db.get_value("User", user, "full_name") or user))
 	return dict(
 		enabled=True,
-		can_manage=bool(
-			allowed
-			and app.has_permission("write")
-			and request_scope(request, actor, "manage")
-			and request.status == "Approved"
-			and opening.custom_kandil_vacancy_state in ACTIVE
-			and live(app)
-		),
+		can_manage=can_manage,
+		owners=owners,
 		expected_version=str(request.modified),
 		application_version=str(app.modified),
 	)

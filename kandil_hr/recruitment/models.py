@@ -111,6 +111,13 @@ def validate_request(doc):
 			frappe.throw(_("Line outcomes are server managed."), frappe.PermissionError)
 		if not request_scope(doc, frappe.session.user, "manage"):
 			frappe.throw(_("The request is outside your assigned scope."), frappe.PermissionError)
+	if doc.get("beneficiary_user") and (
+		doc.beneficiary_user in ("Guest", "Administrator")
+		or not frappe.db.get_value("User", doc.beneficiary_user, "enabled")
+	):
+		# Existing submitted history may retain a subsequently disabled beneficiary.
+		if not old or old.get("beneficiary_user") != doc.beneficiary_user:
+			frappe.throw(_("Select an enabled ordinary beneficiary account."))
 	if doc.docstatus != 0:
 		frappe.throw(_("Use the recruitment action workflow."))
 	if not doc.requested_position or not doc.lines:

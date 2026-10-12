@@ -119,3 +119,7 @@ def install():
 	from kandil_hr.recruitment.ownership import install_ownership_fields
 
 	install_ownership_fields()
+
+	from kandil_hr.recruitment.authority import install as install_authority
+
+	install_authority()

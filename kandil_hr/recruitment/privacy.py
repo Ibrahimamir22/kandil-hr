@@ -19,6 +19,7 @@ REQUEST_FIELDS = (
 	"department",
 	"title",
 	"requested_by",
+	"beneficiary_user",
 	"status",
 	"exception_reason",
 	"needs_exception",
@@ -70,6 +71,10 @@ STEP_FIELDS = (
 	"waiting_since",
 	"authority_position",
 	"board_evidence",
+	"board_vice",
+	"board_member",
+	"on_behalf_method",
+	"on_behalf_note",
 )
 
 

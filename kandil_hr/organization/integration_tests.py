@@ -32,7 +32,7 @@ def run(company=None, export_documents=False):
 	results = []
 	prefix = "ORG-" + frappe.generate_hash(length=8)
 	frappe.set_user("Administrator")
-	company = company or frappe.db.get_value("Company", {"company_name": ["like", "%TEST%"]}, "name")
+	company = company or frappe.db.exists("Company", "Kandil PARITY TEST A")
 	if not company:
 		raise RuntimeError("Provide an existing synthetic test company.")
 
