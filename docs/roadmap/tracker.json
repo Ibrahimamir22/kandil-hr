@@ -243,7 +243,15 @@
         {
           "id": "S3-02",
           "description": "Expose route preview, self-interest exclusions, missing-authority handling and exception reasoning.",
-          "status": "planned"
+          "status": "complete",
+          "progress": "Engineering complete: read-only advisory route/headcount preview over current draft content, dated occupancy and actual routing rules. Shows self-interest/vacant levels and shortage/configuration blockers; current approver scope preflight. 69 native and 71 browser checks passed across preview, form and original journey. Full S3/HR acceptance remains open.",
+          "evidence": [
+            "S3_PREVIEW_CHECKPOINT.md",
+            "evidence/s2-regression-1577649abe12.json",
+            "../portal/evidence/route-preview-e7dca9d75513/results.json",
+            "../portal/evidence/request-form-59862eb9ce2d/results.json",
+            "../portal/evidence/browser-5ac6ee7ef3c5/regression.json"
+          ]
         },
         {
           "id": "S3-03",
@@ -268,7 +276,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Slice 1 engineering complete with full form and regression evidence. Next is S3-02 read-only route/headcount preview. Later authority, HR actions, delegation/Board and frozen history screens remain planned. S2 human/document/live-email gates remain open.",
+      "progress": "Slices 1 and 2 engineering complete: full request form and advisory approval/headcount preview. Next connect HR review, CEO handoff, cancel/corrections and linked increases; then delegation/Board and frozen review history. S2 and HR/IT acceptance gates remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -709,8 +717,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Complete hiring form and scoped replacement identity delivered in Arabic/English; S3-01 engineering complete. Full S3 and HR goal remain active.",
-    "evidence": "S3_FORM_CHECKPOINT.md",
-    "next": "S3-02 read-only approval-route and headcount preview; preserve native scope and no side effects. HR/IT must review linked Employee visibility for actual approval roles."
+    "summary": "S3-02 advisory approval/headcount preview implemented and verified: 69 native and 71 browser checks passed. All 98 requirements remain in scope; goal active.",
+    "evidence": "S3_PREVIEW_CHECKPOINT.md",
+    "next": "Connect full HR request operations with stage/role-specific capabilities and immutable histories. Keep delegated/Board authority, linked Employee role configuration and production gates explicit."
   }
 }

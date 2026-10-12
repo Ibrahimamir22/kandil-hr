@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "run_id": "160b818ba54b",
+  "checked_at": "2026-10-12T22:59:31.101Z",
+  "checks": [
+    {
+      "name": "en: unsaved normal route shows manager then HR",
+      "status": "PASS"
+    },
+    {
+      "name": "en: preview creates no request, ledger or notice",
+      "status": "PASS"
+    },
+    {
+      "name": "en: GET and missing-CSRF POST are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: BLOCK shortage explains actual missing seat",
+      "status": "PASS"
+    },
+    {
+      "name": "en: refresh observes changed policy and requires explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: justified WARN shows independent exception before manager and HR",
+      "status": "PASS"
+    },
+    {
+      "name": "en: preview fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: missing route fails closed and removes prior displayed approvers",
+      "status": "PASS"
+    },
+    {
+      "name": "en: all preview scenarios remain read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unsaved normal route shows manager then HR",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: preview creates no request, ledger or notice",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: GET and missing-CSRF POST are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: BLOCK shortage explains actual missing seat",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: refresh observes changed policy and requires explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: justified WARN shows independent exception before manager and HR",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: preview fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: missing route fails closed and removes prior displayed approvers",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: all preview scenarios remain read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked current access denies preview and clears previous data",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest cannot call preview",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser exceptions, 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "160b818ba54b",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RoutePreview.tsx": "ddb233cab6cad007ee949ea149db5773c169312742dbaf15f6abef31c25d9e45",
+    "frontend/portal/src/RequestForm.tsx": "8c8e5c9470f2348d7a50338b99805a907f47700e7af489d9e34271fdda7acffc",
+    "frontend/portal/src/portal.css": "0f13da180bdbe09bc5f659893b4265a1e17e78f0449221e0158f43d08fa061eb",
+    "kandil_hr/public/portal/portal.js": "cfb9e9ab2dc3bccc644f9907817a376542180cbb13bc41936f9c43c88710a481",
+    "kandil_hr/portal/api.py": "726452d083fa77ae37fd186921fd0e5640d3384c721e15f61bba03dd73b201c9",
+    "kandil_hr/portal/route_preview.py": "9bafe079280db53ec9e129eb74f5cc46edb9e948da5dad7059f210d9dfec53f1",
+    "kandil_hr/portal/route_preview_fixture.py": "c6ce885d170d6c4b598f4e33101ca5d18c34a92e9bb8e72ddc4e341c191b3273",
+    "docs/portal/test_route_preview.cjs": "444bb15ca1fa579aa10784f0cbc6be109dc2294c83ca6cda2fcf2cfdabf78d5a"
+  },
+  "limits": [
+    "Synthetic ordinary-role AR/EN preview, not full S3 or production acceptance."
+  ]
+}

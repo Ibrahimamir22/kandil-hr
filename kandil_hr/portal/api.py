@@ -183,15 +183,10 @@ def recruiters(opening_name):
             if request_scope(doc, row.name, "manage")]
 
 
-@frappe.whitelist(methods=["POST"])
-@transactional_retry
-def save_draft(payload, command_id, name=None, expected_version=None):
-    authenticated()
+def editable_payload(payload):
     payload = frappe.parse_json(payload)
     if not isinstance(payload, dict) or set(payload) - set(EDITABLE) - {"lines"}:
         frappe.throw(_("Only editable request fields are accepted."))
-    if not isinstance(command_id, str) or not re.fullmatch(r"[a-zA-Z0-9-]{16,100}", command_id):
-        frappe.throw(_("A unique command ID is required."))
     lines = payload.get("lines")
     if not isinstance(lines, list) or not 1 <= len(lines) <= 50:
         frappe.throw(_("Choose between one and fifty locations."))
@@ -203,6 +198,17 @@ def save_draft(payload, command_id, name=None, expected_version=None):
         frappe.throw(_("Request text and reference fields must be text."))
     if len(json.dumps(payload)) > 40000:
         frappe.throw(_("The hiring request is too large."))
+    return payload
+
+
+@frappe.whitelist(methods=["POST"])
+@transactional_retry
+def save_draft(payload, command_id, name=None, expected_version=None):
+    authenticated()
+    payload = editable_payload(payload)
+    lines = payload["lines"]
+    if not isinstance(command_id, str) or not re.fullmatch(r"[a-zA-Z0-9-]{16,100}", command_id):
+        frappe.throw(_("A unique command ID is required."))
     company = payload.get("company")
     if not company:
         frappe.throw(_("Choose a company and position."))

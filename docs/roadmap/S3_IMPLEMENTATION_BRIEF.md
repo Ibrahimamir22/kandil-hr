@@ -1,6 +1,6 @@
 # Sprint 3 — full hiring requests and approvals
 
-13 October 2026. **In progress: the full request form is implemented; see [slice 1 checkpoint](S3_FORM_CHECKPOINT.md) for verification and remaining limits.** This document remains the build contract for the later slices; their planned screens are not claimed delivered. S2 engineering dependencies are available; S2's HR terminology/document/history acceptance and configured live email remain open. Starting independent S3 work does not close those gates.
+13 October 2026. **In progress: the full request form and advisory approval/headcount preview are implemented; see [slice 1 checkpoint](S3_FORM_CHECKPOINT.md) and [slice 2 checkpoint](S3_PREVIEW_CHECKPOINT.md) for verification and limits.** This document remains the build contract for the later slices; their planned screens are not claimed delivered. S2 engineering dependencies are available; S2's HR terminology/document/history acceptance and configured live email remain open. Starting independent S3 work does not close those gates.
 
 ## What already works and what is missing
 
@@ -37,6 +37,8 @@ ORG-006's structural portal already has S2 evidence. Reuse it and test its integ
 **Evidence required:** AR and EN create/save/reload/edit/submit with every field, Replacement and multi-location examples, immutable submitted records, failed-validation input retention, duplicate/stale retries, outside-scope and native User Permission denials, large selector pagination without omissions, and no disclosure of Employee private fields. Rerun the original hiring journey and pending revision screens after extracting the form.
 
 ## Slice 2 — understandable route and headcount preview
+
+**Engineering implementation:** `portal/route_preview.py` and `RoutePreview.tsx` now connect the current request content to the actual resolver without saving its in-memory snapshot. Current approver scope is also preflighted. See the checkpoint for tests and open acceptance. Later HR decisions can still add authority; initial preview is advisory.
 
 Reuse recruitment `resolve_chain`, `route_config`, `authority.enforce_chain`, current organization route resolution and the configured headcount policy. Existing route helpers use locking/current reads and set an in-memory snapshot; inspect their side effects before using them behind a read-only adapter. A preview must not reserve seats, change occupancy, create openings, send notices or persist an approval snapshot.
 

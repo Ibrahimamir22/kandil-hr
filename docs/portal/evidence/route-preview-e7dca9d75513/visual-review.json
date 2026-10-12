@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-12T23:02:22.680862+00:00",
+  "method": "Direct inspection of the final English desktop and Arabic 390px mobile screenshots.",
+  "screenshots": {
+    "preview-en.png": "6c9c4542e06b1aa3d983427b6c488191671a7969b3fb69cf5750ebba9e5f918f",
+    "preview-ar.png": "65a459d79107355061d1a99276f68abcb77c70edaad95456d3c139e478ad66a0"
+  },
+  "observations": [
+    "Ordered exception, department and HR approvals are readable with principal names.",
+    "Capacity cards show structural, occupied, reserved, open, available, requested, additional and shortage figures.",
+    "Arabic RTL, wrapping and action controls fit the mobile viewport; Cairo evaluation date is localized.",
+    "The advisory/no-reservation explanation and distinction from final approval are visible."
+  ],
+  "limits": [
+    "Synthetic review screens only; not full accessibility or HR terminology approval."
+  ]
+}

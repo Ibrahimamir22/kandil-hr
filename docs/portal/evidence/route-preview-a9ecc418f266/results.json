@@ -1,0 +1,36 @@
+{
+  "status": "FAIL",
+  "run_id": "a9ecc418f266",
+  "checked_at": "2026-10-12T22:58:18.557Z",
+  "checks": [
+    {
+      "name": "Preview journey failure",
+      "status": "FAIL",
+      "error_type": "Error",
+      "error_message": "Private fixture inspect failed"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a9ecc418f266",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RoutePreview.tsx": "ddb233cab6cad007ee949ea149db5773c169312742dbaf15f6abef31c25d9e45",
+    "frontend/portal/src/RequestForm.tsx": "8c8e5c9470f2348d7a50338b99805a907f47700e7af489d9e34271fdda7acffc",
+    "frontend/portal/src/portal.css": "0f13da180bdbe09bc5f659893b4265a1e17e78f0449221e0158f43d08fa061eb",
+    "kandil_hr/public/portal/portal.js": "cfb9e9ab2dc3bccc644f9907817a376542180cbb13bc41936f9c43c88710a481",
+    "kandil_hr/portal/api.py": "726452d083fa77ae37fd186921fd0e5640d3384c721e15f61bba03dd73b201c9",
+    "kandil_hr/portal/route_preview.py": "9bafe079280db53ec9e129eb74f5cc46edb9e948da5dad7059f210d9dfec53f1",
+    "kandil_hr/portal/route_preview_fixture.py": "98ccb79f88ed253a2bf39093ae1a07c268611b8ef235f4f07b6e7baaa421b851",
+    "docs/portal/test_route_preview.cjs": "a906844dd14c66e8535ba1da7f11af0e39e6e0ec8483ac89b5b0a79cb57d51d2"
+  },
+  "limits": [
+    "Synthetic ordinary-role AR/EN preview, not full S3 or production acceptance."
+  ]
+}
