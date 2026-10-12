@@ -103,6 +103,32 @@ def request_relationship(doc, user, roles):
 	principals = {row.principal for row in doc.approval_steps}
 	if user in principals:
 		return True
+	if frappe.conf.get("kandil_parity_enabled"):
+		# Same frozen Vice identity as authority.board_reader, with the current
+		# role set already obtained while holding the recipient User lock.
+		if "Kandil Board Approver" in roles and any(
+			step.authority == "Board Approval" and step.get("board_vice") == user
+			for step in doc.approval_steps
+		):
+			return True
+		from kandil_hr.foundation.delegation import find_delegation
+
+		# A nonlocking permission fallback below can see an earlier RR snapshot.
+		# Require the full current process/CEO/principal contract here first.
+		candidates = frappe.db.sql(
+			"SELECT DISTINCT from_user FROM `tabKandil Delegation` WHERE to_user=%s AND company=%s AND department=%s AND revoked=0 ORDER BY from_user FOR UPDATE",
+			(user, doc.company, doc.department),
+			as_dict=True,
+		)
+		for principal in sorted({row.from_user for row in candidates} & principals):
+			try:
+				if find_delegation(doc, principal, user, process="APPROVALS", current=True):
+					return True
+			except frappe.PermissionError:
+				# A disabled principal cannot lend authority. Other independent
+				# current delegations may still establish a valid relationship.
+				continue
+		return False
 	delegations = frappe.db.sql(
 		"SELECT from_user,revoked,from_date,to_date FROM `tabKandil Delegation` WHERE to_user=%s AND company=%s AND department=%s ORDER BY name FOR UPDATE",
 		(user, doc.company, doc.department),
@@ -128,6 +154,14 @@ def lock_delivery(name):
 			raise RuntimeError("Notification retry state changed; retry transaction")
 		return terminal, ""
 	doc, request = lock_domain(hint.reference_doctype, hint.reference_name)
+	if doc and doc.doctype == "Kandil Hiring Request" and frappe.conf.get("kandil_parity_enabled"):
+		# Domain -> all relevant User rows in one deterministic order -> roles /
+		# grants / delegation -> outbox. A later delegation predicate must not
+		# acquire a previously unlocked principal User after the recipient.
+		for account in sorted(
+			{hint.recipient} | {step.principal for step in doc.approval_steps if step.principal}
+		):
+			frappe.db.sql("SELECT name FROM `tabUser` WHERE name=%s FOR UPDATE", (account,))
 	reason = ""
 	try:
 		roles = current_identity(hint.recipient)

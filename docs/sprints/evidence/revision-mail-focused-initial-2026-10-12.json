@@ -1,0 +1,23 @@
+{
+  "site": "kandil-parity.localhost",
+  "status": "FAIL",
+  "classification": "Focused initial native runner observations; not final gate",
+  "mail_capture": {
+    "passed": 12,
+    "failed": 1,
+    "failure": "Expected raw <safe> in MIME, but Frappe sanitized stored outbox Long Text. Test must compare persisted approved body."
+  },
+  "revision_import": {
+    "passed": 10,
+    "failed": 1,
+    "failure": "JD after-state modified timestamp string uses space before reload; datetime ISO projection after reload uses T. Normalize declared temporal fields."
+  },
+  "delegate_native": {
+    "passed": 2,
+    "failed": 0
+  },
+  "source_frozen_across_all_three": false,
+  "limitations": [
+    "Runs executed separately while other isolated source work continued; full frozen gate follows."
+  ]
+}

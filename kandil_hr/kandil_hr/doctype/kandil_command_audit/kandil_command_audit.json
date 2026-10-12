@@ -11,6 +11,7 @@
     "domain",
     "operation",
     "command_id",
+    "command_origin",
     "receipt_key",
     "target_doctype",
     "target_name",
@@ -60,10 +61,16 @@
     },
     {
       "fieldname": "command_id",
-      "label": "Client Command ID",
+      "label": "Command ID",
       "fieldtype": "Data",
       "read_only": 1,
       "reqd": 1
+    },
+    {
+      "fieldname": "command_origin",
+      "label": "Command Origin",
+      "fieldtype": "Data",
+      "read_only": 1
     },
     {
       "fieldname": "receipt_key",

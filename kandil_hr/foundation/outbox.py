@@ -85,6 +85,11 @@ def deliver(name):
 		else:
 			from markupsafe import escape
 
+			from kandil_hr.foundation import mail_capture
+
+			with mail_capture.delivery_effect():
+				mail_capture.capture_delivery(doc)
+
 			receipt = frappe.get_doc(
 				dict(
 					doctype="Notification Log",

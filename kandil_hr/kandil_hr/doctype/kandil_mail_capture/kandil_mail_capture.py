@@ -1,0 +1,1 @@
+from kandil_hr.foundation.mail_capture import KandilMailCapture

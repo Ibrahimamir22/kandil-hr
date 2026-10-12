@@ -471,6 +471,8 @@ scheduler_events.setdefault("hourly", []).append("kandil_hr.recruitment.ownershi
 # Restricted exact-command evidence has no ordinary business-role read surface.
 has_permission["Kandil Command Audit"] = "kandil_hr.foundation.command_audit.permission"
 permission_query_conditions["Kandil Command Audit"] = "kandil_hr.foundation.command_audit.query"
+has_permission["Kandil Mail Capture"] = "kandil_hr.foundation.mail_capture.permission"
+permission_query_conditions["Kandil Mail Capture"] = "kandil_hr.foundation.mail_capture.query"
 has_permission["Kandil Document Delivery"] = "kandil_hr.organization.document_delivery.permission"
 permission_query_conditions["Kandil Document Delivery"] = "kandil_hr.organization.document_delivery.query"
 

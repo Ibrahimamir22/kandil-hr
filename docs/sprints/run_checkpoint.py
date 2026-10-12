@@ -37,6 +37,11 @@ DEFAULT_MODULES = [
     'kandil_hr.recruitment.test_command_audit.run',
     'kandil_hr.recruitment.test_headcount_contract.run',
     'kandil_hr.organization.test_document_delivery.run',
+    'kandil_hr.foundation.test_mail_capture.run',
+    'kandil_hr.foundation.test_board_mail_capture.run',
+    'kandil_hr.foundation.test_outbox_authority.run',
+    'kandil_hr.organization.test_revision_import_audit.run',
+    'kandil_hr.organization.test_delegate_native_isolation.run',
 ]
 
 

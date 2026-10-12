@@ -1,0 +1,66 @@
+{
+  "checked_at": "2026-10-12T05:58:00.868Z",
+  "site": "kandil-parity.localhost",
+  "run_id": "a173fb4920ce",
+  "result": "PASS",
+  "checks": [
+    {
+      "name": "Native delivery replay retains one capture and one notification per event",
+      "status": "PASS"
+    },
+    {
+      "name": "Native en recipient form and actual EML download",
+      "status": "PASS"
+    },
+    {
+      "name": "Native ar recipient form and actual EML download",
+      "status": "PASS"
+    },
+    {
+      "name": "Same-company HR outsider is denied native record and mail download",
+      "status": "PASS"
+    },
+    {
+      "name": "Native capture pages have no client runtime errors",
+      "status": "PASS"
+    },
+    {
+      "name": "Source hashes remain unchanged during browser proof",
+      "status": "PASS"
+    }
+  ],
+  "captures": [
+    {
+      "locale": "en",
+      "name": "KMC-2073d21cb6e8009502a253c223a0b8f095791693",
+      "bytes": 667,
+      "sha256": "df3f00d53757cbfa1e7d2c0c80f32e72481e38f76a68838be6a6c005f3b1437f"
+    },
+    {
+      "locale": "ar",
+      "name": "KMC-da40a72bc5cc091bc33d0ae14e60e05814afb8c8",
+      "bytes": 669,
+      "sha256": "ab54b01f6094f53faa97c5a661a48ca9b6db1fb4f07354beff572985f1526440"
+    }
+  ],
+  "runtimeErrors": [],
+  "source_hashes": {
+    "kandil_hr/foundation/mail_capture.py": "aba06955b3f4153ec28dc121dead45e84354dcdfa4893d6e6df8d351e0a73a42",
+    "kandil_hr/foundation/outbox.py": "8bb7dbfd5f6a418972e1f0ef93939cbfaa1c7bdbe840bacc7a120167885da152",
+    "kandil_hr/foundation/outbox_access.py": "04d297e91f12c5559a04249fbad72e8e24f426969350e1a96a86793d0bc2e168",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/hooks.py": "646a60ea22de4ae4e8702c7b7e17a1d4823dfc999ecd4cfe3c3a00517d564198",
+    "kandil_hr/kandil_hr/doctype/kandil_mail_capture/kandil_mail_capture.json": "75545862008340c5dec9c5142594a4030643bd5afaed1877eb6c5e9eac377655",
+    "kandil_hr/kandil_hr/doctype/kandil_mail_capture/kandil_mail_capture.js": "c9411bec24b99aa463b8814bda5896d70bdba8117b608d5e58d2355904c8494b",
+    "kandil_hr/foundation/mail_capture_browser_fixtures.py": "4d94f49f3a5e9d336795a68bf3de62afb311b7202bb5bfc1694d84bb5135b67e",
+    "kandil_hr/recruitment/browser_fixture.py": "32106a5525bde95a8166640633225807a3ae633439ff87e6f99f04a52c3dc9cb",
+    "docs/sprints/test_mail_capture_browser.cjs": "c9f9cab5bf4a15db82d554bda511fcef02055af0023e3fbfa1167ad0665488db"
+  },
+  "source_unchanged": true,
+  "limitations": [
+    "Synthetic local capture only; no email provider transmission or inbox delivery.",
+    "Replay assertions are prepared by the guarded native fixture; browser exercises recipient UI/download and outsider denial.",
+    "Cleanup is a separate required CLI step retaining immutable history. Downloaded copies cannot be revoked."
+  ]
+}

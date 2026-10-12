@@ -1202,3 +1202,23 @@ Included Document Scopes,نطاقات الوصول المضمّنة في الم�
 The captured document has no valid included scope record.,لا تحتوي نسخة المستند المحفوظة على سجل صالح لنطاقات الوصول المضمّنة.
 The captured document is outside your current access scope.,نسخة المستند المحفوظة خارج نطاق صلاحيات الوصول الحالية لديك.
 The captured document requires current read and print permission.,تتطلب نسخة المستند المحفوظة صلاحيات حالية للقراءة والطباعة.
+Captured Mail,نسخة الرسالة المحفوظة
+Command Origin,مصدر الأمر
+Hiring Request,طلب توظيف
+Kandil Mail Capture,نسخة مراسلة قنديل المحلية
+Local mail capture failed its integrity check.,تعذّر التحقق من سلامة محتوى نسخة الرسالة المحلية.
+Local mail capture history cannot be deleted.,لا يمكن حذف سجل نسخ الرسائل المحلية.
+Local mail capture history cannot be renamed.,لا يمكن تغيير معرّف سجل نسخة الرسالة المحلية.
+Local mail capture identity was reused with different content.,استُخدم معرّف نسخة الرسالة المحلية مرة أخرى بمحتوى مختلف.
+Local mail capture must be labelled Captured locally.,يجب أن تكون حالة نسخة الرسالة: تم حفظ نسخة محلية.
+Local mail capture requires an enabled recipient with one valid email address.,يتطلب حفظ نسخة الرسالة المحلية مستلمًا بحساب مفعّل وعنوان بريد إلكتروني واحد صالح.
+Local mail capture requires the authorized delivery context.,لا يمكن حفظ نسخة الرسالة المحلية إلا ضمن عملية تسليم مخوّلة.
+Local mail captures are immutable server-created records.,نسخ الرسائل المحلية سجلات ينشئها الخادم ولا يمكن تعديلها.
+Notification Outbox,صندوق الإشعارات الصادرة
+Only a pending local delivery can create a mail capture.,لا يمكن إنشاء نسخة رسالة إلا لعملية تسليم محلية قيد الانتظار.
+The recipient no longer has access to this hiring request.,لم يعد المستلم مخوّلًا بالاطلاع على طلب التوظيف هذا.
+This local mail capture is outside your current access.,نسخة الرسالة المحلية هذه خارج نطاق صلاحياتك الحالية.
+Revision audit reference is outside the reviewed company,مرجع تدقيق الإصدار لا ينتمي إلى الشركة محل المراجعة.
+Import audit target is outside the reviewed company,السجل المستهدف في تدقيق الاستيراد لا ينتمي إلى الشركة محل المراجعة.
+client_command,أمر من الواجهة
+server_invocation,استدعاء من الخادم

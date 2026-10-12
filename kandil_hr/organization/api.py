@@ -874,6 +874,10 @@ def approve_revision(doctype, name, expected_version=None):
 		fail("Only draft revisions can be approved.")
 	if not expected_version or get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This record changed. Reload it before deciding."), frappe.TimestampMismatchError)
+	from kandil_hr.organization import revision_import_audit as audit
+
+	before = audit.before(doc)
+	related_before = audit.revision_related(doc)
 	with transition():
 		if doctype == "Kandil JD Revision":
 			assert_scope(doc.company, capability="manage")
@@ -897,7 +901,18 @@ def approve_revision(doctype, name, expected_version=None):
 			doc.approved_at = now_datetime()
 		doc.status, doc.approved_by = "Approved", frappe.session.user
 		doc.save()
-	return {"name": doc.name, "status": doc.status}
+		result = {"name": doc.name, "status": doc.status}
+		audit.record(
+			"approve_revision",
+			doc,
+			expected_version,
+			{"doctype": doctype, "name": name, "expected_version": expected_version},
+			before,
+			related_before,
+			result,
+			audit.revision_related(doc),
+		)
+	return result
 
 
 def position_import_preview(doc):
@@ -1130,10 +1145,24 @@ def review_import(name, expected_version=None):
 	if not expected_version or get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This record changed. Reload it before deciding."), frappe.TimestampMismatchError)
 	preview = import_preview(doc)
+	from kandil_hr.organization import revision_import_audit as audit
+
+	before = audit.before(doc)
+	related_before = audit.import_related(doc, preview)
 	with transition():
 		doc.preview_json, doc.digest = serialized(preview), import_digest(doc)
 		doc.reviewed_by, doc.status = frappe.session.user, "Reviewed"
 		doc.save()
+		audit.record(
+			"review_import",
+			doc,
+			expected_version,
+			{"name": name, "expected_version": expected_version},
+			before,
+			related_before,
+			preview,
+			audit.import_related(doc, preview),
+		)
 	return preview
 
 
@@ -1145,6 +1174,10 @@ def apply_import(name, reviewed_digest):
 	if doc.status != "Reviewed" or doc.digest != reviewed_digest or import_digest(doc) != doc.digest:
 		fail("A matching reviewed import is required.")
 	preview = import_preview(doc)
+	from kandil_hr.organization import revision_import_audit as audit
+
+	before = audit.before(doc)
+	related_before = audit.import_related(doc, preview)
 	with transition():
 		from kandil_hr.organization.codes import apply_master, register
 
@@ -1187,6 +1220,16 @@ def apply_import(name, reviewed_digest):
 			result["snapshot"] = snapshot.name
 		doc.status, doc.result_json = "Applied", serialized(result)
 		doc.save()
+		audit.record(
+			"apply_import",
+			doc,
+			reviewed_digest,
+			{"name": name, "reviewed_digest": reviewed_digest},
+			before,
+			related_before,
+			result,
+			audit.import_related(doc, preview, result),
+		)
 	return result
 
 

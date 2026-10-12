@@ -56,7 +56,7 @@ OPERATIONS = {
 			"void_joining",
 		}
 	),
-	"organization": frozenset({"submit", "decide", "approve_revision"}),
+	"organization": frozenset({"submit", "decide", "approve_revision", "review_import", "apply_import"}),
 }
 COMMON = (
 	"doctype",
@@ -284,8 +284,12 @@ def project_structure(doc):
 
 
 def project_related(doc):
+	from kandil_hr.organization import audit_projections
+
 	if doc.doctype == "Kandil Hiring Request":
 		return project_request(doc)
+	if doc.doctype in audit_projections.PROJECTION_FIELDS:
+		return audit_projections.project(doc)
 	fields = RELATED_FIELDS.get(doc.doctype)
 	if not fields:
 		raise ValueError("This related audit target needs an explicit reviewed projection")
@@ -299,6 +303,8 @@ def project_related(doc):
 
 
 def checked_projection(value):
+	from kandil_hr.organization import audit_projections
+
 	if not isinstance(value, dict) or not value.get("name"):
 		raise ValueError("Audit state requires a named projected target")
 	doctype = value.get("doctype")
@@ -311,6 +317,9 @@ def checked_projection(value):
 	elif doctype == "Kandil Structure Change":
 		allowed = set(STRUCTURE_FIELDS) | {"approval_steps"}
 		children = {"approval_steps": STRUCTURE_STEP_FIELDS}
+	elif doctype in audit_projections.PROJECTION_FIELDS:
+		children = audit_projections.CHILD_FIELDS.get(doctype, {})
+		allowed = set(audit_projections.PROJECTION_FIELDS[doctype]) | set(children)
 	else:
 		allowed = set(RELATED_FIELDS.get(doctype, ()))
 		if doctype == "Job Opening":
@@ -398,6 +407,7 @@ def record_command(
 	related_before=(),
 	related_after=(),
 	authority=None,
+	command_origin="client_command",
 ):
 	flag = {"recruitment": "kandil_transition", "organization": "kandil_organization_transition"}.get(domain)
 	if not active() or not flag or not frappe.flags.get(flag) or operation not in OPERATIONS[domain]:
@@ -407,6 +417,7 @@ def record_command(
 		or not 1 <= len(command_id) <= 100
 		or not reviewed_version
 		or not receipt_key
+		or command_origin not in ("client_command", "server_invocation")
 	):
 		raise ValueError("Audit requires exact command, receipt and reviewed version")
 	if authority is not None and (
@@ -432,7 +443,12 @@ def record_command(
 		raise ValueError("Audit before and after must identify the command target")
 	allowed_targets = {
 		"recruitment": {"Kandil Hiring Request"},
-		"organization": {"Kandil Structure Change", "Kandil JD Revision", "Kandil Grade Band"},
+		"organization": {
+			"Kandil Structure Change",
+			"Kandil JD Revision",
+			"Kandil Grade Band",
+			"Kandil Organization Import",
+		},
 	}
 	if target.doctype not in allowed_targets[domain]:
 		raise ValueError("Audit target does not match its command domain")
@@ -442,6 +458,7 @@ def record_command(
 		domain=domain,
 		operation=operation,
 		command_id=command_id,
+		command_origin=command_origin,
 		receipt_key=str(receipt_key),
 		reviewed_version=str(reviewed_version),
 		actor=actor,
@@ -493,6 +510,7 @@ def record_command(
 				domain=domain,
 				operation=operation,
 				command_id=command_id,
+				command_origin=command_origin,
 				receipt_key=str(receipt_key),
 				target_doctype=target.doctype,
 				target_name=target.name,

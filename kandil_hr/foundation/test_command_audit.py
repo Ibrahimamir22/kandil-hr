@@ -106,12 +106,24 @@ class TestAuditDatabase(unittest.TestCase):
 		)
 		self.assertEqual(value["authority"]["frozen_principal"], self.f.users["manager"])
 		self.assertEqual(value["payload"], self.values["payload"])
+		self.assertEqual(value["command_origin"], "client_command")
+		self.assertEqual(doc.command_origin, "client_command")
 		self.assertEqual(value["before"], self.before)
 		self.assertEqual(value["timezone"], "Africa/Cairo")
 		self.assertRegex(value["occurred_at"], r"[+]0[23]:00$")
 		self.assertEqual(frappe.db.count(audit.DOCTYPE, {"target_name": self.request.name}), 1)
 		with self.assertRaises(frappe.ValidationError):
 			self.record(payload={"decision": "Reject"})
+
+	def test_server_invocation_origin_is_explicit_and_invalid_origin_rejected(self):
+		name = self.record(command_origin="server_invocation")
+		doc = frappe.get_doc(audit.DOCTYPE, name)
+		self.assertEqual(doc.command_origin, "server_invocation")
+		self.assertEqual(json.loads(doc.envelope_json)["command_origin"], "server_invocation")
+		with self.assertRaises(ValueError):
+			self.record(command_origin="invented_client_id")
+		with self.assertRaises(frappe.ValidationError):
+			self.record(command_origin="client_command")
 
 	def test_native_forgery_edit_delete_and_rename_denied(self):
 		from frappe.client import delete, save
@@ -329,17 +341,17 @@ def run():
 		raise RuntimeError("Command audit tests require isolated opted-in parity Administrator CLI")
 	classes = (TestAuditPrimitives, TestAuditDatabase)
 	suite = unittest.TestSuite()
-	for case, expected in zip(classes, (5, 8), strict=True):
+	for case, expected in zip(classes, (5, 9), strict=True):
 		names = sorted(name for name in case.__dict__ if name.startswith("test_"))
 		if len(names) != expected:
 			raise RuntimeError("Unexpected command audit discovery count")
 		suite.addTests(case(name) for name in names)
 	result = unittest.TextTestRunner(verbosity=2).run(suite)
 	value = dict(
-		result="PASS" if result.wasSuccessful() and not result.skipped and result.testsRun == 13 else "FAIL",
-		discovered=13,
+		result="PASS" if result.wasSuccessful() and not result.skipped and result.testsRun == 14 else "FAIL",
+		discovered=14,
 		executed=result.testsRun,
-		native=8,
+		native=9,
 		pure=5,
 		failures=len(result.failures),
 		errors=len(result.errors),
