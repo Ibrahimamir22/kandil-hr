@@ -1,0 +1,73 @@
+{
+  "status": "FAIL",
+  "run_id": "f844dcae1fe5",
+  "checked_at": "2026-10-12T23:14:15.923Z",
+  "checks": [
+    {
+      "name": "en: active HR sees review and CEO actions",
+      "status": "PASS"
+    },
+    {
+      "name": "en: manager cannot invoke HR command",
+      "status": "PASS"
+    },
+    {
+      "name": "en: review preserves requested, reduces proposed and reserved",
+      "status": "PASS"
+    },
+    {
+      "name": "en: stale mutation denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO added without completing HR",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR approval alone creates no vacancy",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO completes requested approval route",
+      "status": "PASS"
+    },
+    {
+      "name": "en: amendment locks locations and keeps zero row",
+      "status": "PASS"
+    },
+    {
+      "name": "Request operations journey failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "locator.waitFor: Timeout 20000ms exceeded."
+    }
+  ],
+  "cleanup": {
+    "run_id": "f844dcae1fe5",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestOperations.tsx": "6a0ae733b5f2c2d8f4cceea051cf844075943d530069067d56714d5d9c5d9db2",
+    "frontend/portal/src/RequestForm.tsx": "37c2ed801aff482a37d90092cdf4550450809389a2ba60e855a313bd0962d8de",
+    "frontend/portal/src/main.tsx": "1dd1369f10d426ca500d1c22d5331f1dfeb6fd07842810e25ab2d655fb7d5233",
+    "frontend/portal/src/types.ts": "ea16b1b6d2d624dd96c2e3d8266f1bb18f54cd27cc219d396c9e553c77a41481",
+    "frontend/portal/src/portal.css": "7af300fa3e4835450f856a1ac34660d0e7970668bc2071c00a771f86f72284b2",
+    "kandil_hr/public/portal/portal.js": "0bbc99f23f0a44dd5bfa54dcf00ab2437d5f1091d325301103fd843e985afc12",
+    "kandil_hr/portal/api.py": "40ab89e27727ff687b67c425d07ccbeb7c4ae1a669612e32df988f7655840437",
+    "kandil_hr/portal/request_operations.py": "45228f6b89f7f5fb28fd346d1c82cf66875b9acc921bb9c3e945f3836f773e7c",
+    "kandil_hr/portal/request_operations_fixture.py": "13dc70e6ee9130b36d9d15d8d1c4cf2ab1cf16bada2c9e634c3b556bf6aef3b0",
+    "kandil_hr/recruitment/api.py": "57b163a151511d3963f4b7bb87d4c4ab4b5e13c6e628e2d8fcc5936b30cadc83",
+    "kandil_hr/recruitment/corrections.py": "4f406d0ed9332db2372cf5e7fd3f06e75c8a88192452d4a82b39f9540f97e1c4",
+    "kandil_hr/recruitment/review_views.py": "5c01ec0302c3e8d3dd371ef609cac7e4b57d769e2dcf28057be530068a175bb6",
+    "docs/portal/test_request_operations.cjs": "d7a91e2ba7c3b45c63bfe8ced4d9b176af2ef670b082fb9938e3cb8fe5358122"
+  },
+  "limits": [
+    "Synthetic personal-role HR request actions in AR/EN; no full S3, production, concurrency or 1000-user certification."
+  ]
+}

@@ -1301,3 +1301,15 @@ This history is unavailable for your role or scope.,هذا السجل غير م�
 Choose job description or structure history.,اختر سجل الوصف الوظيفي أو سجل تغييرات الهيكل.
 
 A required approval authority is unavailable. Ask HR to review the route.,إحدى جهات الاعتماد المطلوبة غير متاحة. اطلب من الموارد البشرية مراجعة المسار.
+Review quantities must be an object with at most fifty locations.,يجب إرسال أعداد المراجعة في جدول لا يتجاوز خمسين موقعًا.
+A review reason of 1 to 2000 characters is required.,أدخل سبب المراجعة من حرف واحد إلى 2000 حرف.
+Every review line must belong to this request.,يجب أن تنتمي جميع بنود المراجعة لهذا الطلب.
+A routing reason of 1 to 2000 characters is required.,أدخل سبب إضافة جهة الاعتماد من حرف واحد إلى 2000 حرف.
+Unknown request action.,إجراء غير معروف للطلب.
+Only the selected action fields are accepted.,تُقبل حقول الإجراء المحدد فقط.
+Enter an action reason of 1 to 2000 characters.,أدخل سبب الإجراء من حرف واحد إلى 2000 حرف.
+Action values must be objects with at most fifty entries.,يجب إرسال قيم الإجراء في جداول لا تتجاوز خمسين بندًا.
+Review quantities and priority are required.,أعداد المراجعة والأولوية مطلوبة.
+Choose a valid request identifier.,اختر رقم طلب صحيحًا.
+A valid command identifier is required.,معرّف إجراء صحيح مطلوب.
+A valid reviewed record version is required.,إصدار صحيح للسجل الذي تمت مراجعته مطلوب.

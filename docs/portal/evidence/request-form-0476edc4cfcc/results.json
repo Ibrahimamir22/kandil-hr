@@ -1,0 +1,135 @@
+{
+  "status": "PASS",
+  "run_id": "0476edc4cfcc",
+  "checked_at": "2026-10-12T23:21:37.016Z",
+  "checks": [
+    {
+      "name": "en: replacement requires an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "en: all business fields appear before saving",
+      "status": "PASS"
+    },
+    {
+      "name": "en: approval preview is visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: form fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: review quantities fit without horizontal scrolling",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved database fields and two locations match",
+      "status": "PASS"
+    },
+    {
+      "name": "en: reopening draft preserves every field",
+      "status": "PASS"
+    },
+    {
+      "name": "en: submitted revision retains edited requirements",
+      "status": "PASS"
+    },
+    {
+      "name": "en: submitted request has no draft edit action",
+      "status": "PASS"
+    },
+    {
+      "name": "en: selecting identity never grants profile access",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized HR sees complete submitted content",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: replacement requires an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: all business fields appear before saving",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: approval preview is visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: form fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: review quantities fit without horizontal scrolling",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: saved database fields and two locations match",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: reopening draft preserves every field",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: submitted revision retains edited requirements",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: submitted request has no draft edit action",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: selecting identity never grants profile access",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: authorized HR sees complete submitted content",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot use a guessed position to enumerate identities",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime exceptions, HTTP 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged throughout browser test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "0476edc4cfcc",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "1916a6abf554e16fbfce9b9004edaf61af7351f332251c814e130fccaffb7a26",
+    "frontend/portal/src/RequestForm.tsx": "825d158c6f5a4e3d1882d470ce954ae6e1d2c608e8474061d79ae603caa23547",
+    "frontend/portal/src/RoutePreview.tsx": "01e5e4af42744d39b5ee8c8a26733e982ba67bfadd204cc49f868c7423ea161a",
+    "kandil_hr/portal/route_preview.py": "98834b0006653978fef67240e3d4d7fcd4aa4efcdc52be3d65f1657c6c63fa82",
+    "frontend/portal/src/types.ts": "ea16b1b6d2d624dd96c2e3d8266f1bb18f54cd27cc219d396c9e553c77a41481",
+    "frontend/portal/src/portal.css": "d8312a1660c0d42c7fa0d6c295c8d62dc3f1bf1f7c7fdebd75195368f78cca84",
+    "kandil_hr/public/portal/portal.js": "dcd2948dc54024cf6a2f3af51228f6935e98e6dd8497debff9204a4726c251ac",
+    "kandil_hr/portal/api.py": "40ab89e27727ff687b67c425d07ccbeb7c4ae1a669612e32df988f7655840437",
+    "kandil_hr/portal/request_form.py": "6f9a1dc901bc0ceefb8bff16f793cc975576007f9e4717ec8758dee838ce4028",
+    "kandil_hr/portal/request_form_fixture.py": "4d63d75379387b604dbb27ce34489fe020314a9aa979df215d73ad4914a1c07b",
+    "kandil_hr/recruitment/reference_access.py": "d9a568b3679de0c62f887a812d2b2e3427571e7a8a80a36458e94e5ac0b62aa4",
+    "kandil_hr/recruitment/models.py": "9269c22ae43b5c81178509576f9548a76d719f7f858551b3b92ea51fbff550f3",
+    "docs/portal/test_request_form.cjs": "0b5188c44f7313831446d007d35725ee8cab60ecd168f27e24953db6b65d535b"
+  },
+  "limits": [
+    "Synthetic ordinary-role form proof; future full authority/Board/delegation workflows and production acceptance remain separate."
+  ]
+}

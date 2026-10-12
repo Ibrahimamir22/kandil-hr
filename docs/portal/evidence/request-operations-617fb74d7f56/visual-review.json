@@ -1,0 +1,32 @@
+{
+  "status": "SCOPED_REVIEW_COMPLETE",
+  "checked_at": "2026-10-12T23:26:33.685950+00:00",
+  "screenshots": [
+    {
+      "file": "detail-ar.png",
+      "sha256": "2439bed22f5ff9d4511e0b93ef106dbe5cceb742e1adf1e778a75db931f9d20c"
+    },
+    {
+      "file": "review-ar.png",
+      "sha256": "6ff57f968a8975c8e2db1574f76890fd84575e7a40949c45b94a7c7b9cf8763a"
+    },
+    {
+      "file": "correction-ar.png",
+      "sha256": "64ac12e3eab9945e29720e35ae9198dcdb9dd240b360e728c63698069b291098"
+    },
+    {
+      "file": "amendment-en.png",
+      "sha256": "3e32def80497da0ad66d18e4e8ff9ca6183b1c4be53a3a4b3262286675956098"
+    }
+  ],
+  "review": [
+    "Final detail Arabic capture inspected directly; action quantity blocks retain all five labels within mobile width.",
+    "Review/correction mobile layout and translated priority before/after inspected in the immediately preceding 87f5a467134e run; final UI components are unchanged.",
+    "Amendment parent reference inspected in 3e823c05918d; final RequestForm source is unchanged.",
+    "Final browser fit assertions pass for EN and AR review/correction quantities and detail."
+  ],
+  "limits": [
+    "Human HR acceptance and full accessibility evaluation remain open.",
+    "Legacy timeline labels including Amendment applied and Revision source still need localization with the planned complete history UI."
+  ]
+}

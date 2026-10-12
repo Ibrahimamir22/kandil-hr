@@ -26,7 +26,7 @@ EDITABLE = (
     "experience_required", "working_conditions", "employment_type", "exception_reason",
     "replacement_employee",
 )
-REQUEST_FIELDS = (*EDITABLE, "name", "requested_by", "modified", "status", "revision", "creation")
+REQUEST_FIELDS = (*EDITABLE, "name", "requested_by", "modified", "status", "revision", "creation", "hr_priority", "amends", "request_kind")
 WRITE_ROLES = ("Kandil Requester", "Kandil Recruiter", "Kandil Sector Approver")
 
 
@@ -58,7 +58,7 @@ def project(doc):
         result["lines"].append(dict(
             name=row.name, capacity=row.capacity, branch=cap.branch, designation=cap.designation,
             requested_qty=row.requested_qty, proposed_qty=row.proposed_qty, approved_qty=row.approved_qty,
-            reserved_qty=row.reserved_qty, joined_qty=row.joined_qty, job_opening=row.job_opening,
+            reserved_qty=row.reserved_qty, joined_qty=row.joined_qty, closed_qty=row.closed_qty, job_opening=row.job_opening,
         ))
     result["approval_steps"] = [
         {key: row.get(key) for key in ("step_key", "authority", "principal", "decision", "comment", "decided_at")}
@@ -68,13 +68,14 @@ def project(doc):
 
 
 def capabilities(doc):
+    from kandil_hr.portal.request_operations import action_hints
     hints = request_actions(doc.name)
     manage = request_scope(doc, frappe.session.user, "manage")
     for key in ("submit", "decide", "revise", "revise_pending_quantities"):
         hints[key] = bool(hints.get(key) and manage)
     return {key: hints.get(key) for key in (
         "submit", "decide", "revise", "revise_pending_quantities", "step_id", "expected_version", "status", "next_authority",
-    )} | {"edit": bool(manage and doc.status == "Draft" and doc.requested_by == frappe.session.user and doc.has_permission("write"))}
+    )} | action_hints(doc) | {"edit": bool(manage and doc.status == "Draft" and doc.requested_by == frappe.session.user and doc.has_permission("write"))}
 
 
 @frappe.whitelist(methods=["GET"])

@@ -48,7 +48,7 @@ def proposal(payload, name=None, expected_version=None):
     seen = set()
     for row in payload['lines']:
         quantity = integer(row.get('requested_qty'))
-        if quantity < 1 or row['capacity'] in seen:
+        if (quantity < 1 and not doc.amends) or row['capacity'] in seen:
             frappe.throw(_('Use positive whole quantities and one line per location.'))
         seen.add(row['capacity'])
         doc.append('lines', dict(capacity=row['capacity'], requested_qty=quantity))

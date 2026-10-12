@@ -256,17 +256,33 @@
         {
           "id": "S3-03",
           "description": "Connect dated delegation, independent CEO/Board decisions and supporting evidence.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Independent CEO addition and the subsequent ordinary CEO decision are connected and tested; dated delegation management and Board evidence screens remain planned.",
+          "evidence": [
+            "S3_OPERATIONS_CHECKPOINT.md",
+            "../portal/evidence/request-operations-617fb74d7f56/results.json"
+          ]
         },
         {
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Connected HR review, returned revision, requester/HR cancellation including Returned, approved field/reduction/relocation corrections and linked amendment reapproval. Original requested amounts and old snapshots retained. Current requested/proposed/approved values and reason timeline are visible; complete frozen revision/decision comparison UI remains slice 5.",
+          "evidence": [
+            "S3_OPERATIONS_CHECKPOINT.md",
+            "evidence/s2-regression-b9f4bb30aa39.json",
+            "../portal/evidence/request-operations-617fb74d7f56/results.json"
+          ]
         },
         {
           "id": "S3-05",
           "description": "Integrate the S1 pending-quantity command into the final request UX with reapproval notice and safe retries.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Existing S1 pending-quantity UI remains integrated and regression-tested alongside new actions. Full S3 authority/history integration and acceptance remain open.",
+          "evidence": [
+            "S3_OPERATIONS_CHECKPOINT.md",
+            "../portal/evidence/pending-22759b3bec7c/results.json"
+          ]
         }
       ],
       "acceptance": [
@@ -276,7 +292,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Slices 1 and 2 engineering complete: full request form and advisory approval/headcount preview. Next connect HR review, CEO handoff, cancel/corrections and linked increases; then delegation/Board and frozen review history. S2 and HR/IT acceptance gates remain open.",
+      "progress": "Slices 1–3 engineering implemented: complete request form, advisory route/headcount preview, HR quantity/priority review, added CEO approval, returned revision, cancellation, corrections/relocation and linked amendments. Current quantities and reason timelines are visible. Delegation/Board evidence and complete frozen review history remain; S3 and external acceptance are not complete.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -717,8 +733,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "S3-02 advisory approval/headcount preview implemented and verified: 69 native and 71 browser checks passed. All 98 requirements remain in scope; goal active.",
-    "evidence": "S3_PREVIEW_CHECKPOINT.md",
-    "next": "Connect full HR request operations with stage/role-specific capabilities and immutable histories. Keep delegated/Board authority, linked Employee role configuration and production gates explicit."
+    "summary": "S3 HR request actions implemented and verified: 89 native and 118 browser checks passed. Review, added CEO approval, cancellation, approved corrections/relocation and linked amendments are connected. All 98 requirements remain; delegation/Board, frozen history and production gates are open; goal active.",
+    "evidence": "S3_OPERATIONS_CHECKPOINT.md",
+    "next": "Connect dated delegation and Board evidence, then server-filtered My Requests and full permission-filtered frozen approval/revision history."
   }
 }

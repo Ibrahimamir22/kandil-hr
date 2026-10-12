@@ -1,6 +1,6 @@
 # Sprint 3 — full hiring requests and approvals
 
-13 October 2026. **In progress: the full request form and advisory approval/headcount preview are implemented; see [slice 1 checkpoint](S3_FORM_CHECKPOINT.md) and [slice 2 checkpoint](S3_PREVIEW_CHECKPOINT.md) for verification and limits.** This document remains the build contract for the later slices; their planned screens are not claimed delivered. S2 engineering dependencies are available; S2's HR terminology/document/history acceptance and configured live email remain open. Starting independent S3 work does not close those gates.
+13 October 2026. **In progress: the full request form, advisory approval/headcount preview and HR request actions are implemented; see [slice 1 checkpoint](S3_FORM_CHECKPOINT.md), [slice 2 checkpoint](S3_PREVIEW_CHECKPOINT.md) and [slice 3 checkpoint](S3_OPERATIONS_CHECKPOINT.md) for verification and limits.** This document remains the build contract for the later slices; their planned screens are not claimed delivered. S2 engineering dependencies are available; S2's HR terminology/document/history acceptance and configured live email remain open. Starting independent S3 work does not close those gates.
 
 ## What already works and what is missing
 
@@ -8,7 +8,7 @@ The custom portal has create/save/submit, per-location quantities, approve/rejec
 
 The request wizard now exposes all four need reasons, scoped replacement identity, employment type, qualifications, skills, experience, working conditions, requested priority, date, exception reason, position and multiple location quantities. Review and saved detail display these fields. Paginated searchable selectors replace the eager 500-item choice fetch. The old choice API remains for compatibility; the new form does not call it. See `RequestForm.tsx` and the slice 1 checkpoint for current evidence.
 
-The API capability projection omits several native HR actions. There is no connected portal UI for HR review quantities/priority, explicit CEO routing, cancellation, approved corrections, linked increases, Board evidence, delegation management or the full frozen approval snapshot. The portal request list uses the scoped overview; the native own-only `review_views.my_requests` endpoint is not connected as a distinct My Requests mode. Existing backend tests are reusable evidence only for their precise clauses, not proof that these missing screens work.
+The portal now connects HR review quantities/priority, adding CEO approval, cancellation, approved corrections/relocation and linked amendments through the existing domain commands. It retains original requested amounts, shows proposed/approved amounts, and requires reviewed reasons. Adding CEO approval leaves the HR step pending. Board evidence, delegation management and the full frozen approval snapshot still need connected screens. The portal request list uses the scoped overview; the native own-only `review_views.my_requests` endpoint is not connected as a distinct My Requests mode. Existing backend tests are reusable evidence only for their precise clauses, not proof that these missing screens work.
 
 ## Requirements retained
 
@@ -48,11 +48,13 @@ Show the resolved current route, available/occupied/reserved/open figures, short
 
 ## Slice 3 — complete HR request actions
 
+**Engineering implementation:** `portal/request_operations.py` and `RequestOperations.tsx` now connect all actions below with bounded inputs, current authority checks, minimal receipt results and bilingual review-before-confirmation. The amendment form and preview preserve zero-quantity original locations. See the slice 3 checkpoint; complete frozen history is still slice 5.
+
 Connect the existing domain APIs through explicit permission/stage-specific capabilities:
 
 - `recruitment.api.review`: proposed quantities and HR priority with reason.
-- `send_to_ceo`: current HR-stage handoff and its required reason.
-- `cancel_request`: eligible draft/pending/approved cancellation with ledger consequences.
+- `send_to_ceo`: add an independent CEO step while retaining the current pending HR decision, with a required reason.
+- `cancel_request`: eligible draft/returned/pending/approved cancellation with ledger consequences.
 - `revise`: returned request revision, prior decisions retained.
 - `amend`: linked increase requiring reapproval, retaining the approved parent.
 - `recruitment.corrections.correct_approved`: permitted non-increase corrections with reason, revision and requester notice, never decreasing below actual joins.

@@ -1,0 +1,209 @@
+{
+  "status": "PASS",
+  "run_id": "a5bf089c1c58",
+  "checked_at": "2026-10-12T23:17:39.470Z",
+  "checks": [
+    {
+      "name": "en: active HR sees review and CEO actions",
+      "status": "PASS"
+    },
+    {
+      "name": "en: manager cannot invoke HR command",
+      "status": "PASS"
+    },
+    {
+      "name": "en: review preserves requested, reduces proposed and reserved",
+      "status": "PASS"
+    },
+    {
+      "name": "en: stale mutation denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: simultaneous versioned reviews have one winner",
+      "status": "PASS"
+    },
+    {
+      "name": "en: conflicting review writes one history event",
+      "status": "PASS"
+    },
+    {
+      "name": "en: simultaneous exact retry returns one effect",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO added without completing HR",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR approval alone creates no vacancy",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO completes requested approval route",
+      "status": "PASS"
+    },
+    {
+      "name": "en: amendment locks locations and keeps zero row",
+      "status": "PASS"
+    },
+    {
+      "name": "en: amendment reserves only increase",
+      "status": "PASS"
+    },
+    {
+      "name": "en: amendment applies approved total once",
+      "status": "PASS"
+    },
+    {
+      "name": "en: correction relocates only remaining seat and retains original demand",
+      "status": "PASS"
+    },
+    {
+      "name": "en: timeline shows correction reason without raw snapshots",
+      "status": "PASS"
+    },
+    {
+      "name": "en: detail fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: approved cancellation closes remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester can cancel returned request",
+      "status": "PASS"
+    },
+    {
+      "name": "en: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: completed cohort leaves zero commitments",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: active HR sees review and CEO actions",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: manager cannot invoke HR command",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: review preserves requested, reduces proposed and reserved",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: stale mutation denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: simultaneous versioned reviews have one winner",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: conflicting review writes one history event",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: simultaneous exact retry returns one effect",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO added without completing HR",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HR approval alone creates no vacancy",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO completes requested approval route",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: amendment locks locations and keeps zero row",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: amendment reserves only increase",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: amendment applies approved total once",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: correction relocates only remaining seat and retains original demand",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: timeline shows correction reason without raw snapshots",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: detail fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: approved cancellation closes remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester can cancel returned request",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: completed cohort leaves zero commitments",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, 5xx or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a5bf089c1c58",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestOperations.tsx": "6a0ae733b5f2c2d8f4cceea051cf844075943d530069067d56714d5d9c5d9db2",
+    "frontend/portal/src/RequestForm.tsx": "f4003866f34e16579f42091c3c0ab2a2511fe4edb222247b66b63e769fe4ca4a",
+    "frontend/portal/src/main.tsx": "4a25294a9da7c699c10070ede8da5cee464cb099fde645262e5904173a7f0fc7",
+    "frontend/portal/src/types.ts": "ea16b1b6d2d624dd96c2e3d8266f1bb18f54cd27cc219d396c9e553c77a41481",
+    "frontend/portal/src/portal.css": "7af300fa3e4835450f856a1ac34660d0e7970668bc2071c00a771f86f72284b2",
+    "kandil_hr/public/portal/portal.js": "4a7ff3e5090556dccf5a78663ab1e7ba365af45cb4f7bff6318408f0f8167391",
+    "kandil_hr/portal/api.py": "40ab89e27727ff687b67c425d07ccbeb7c4ae1a669612e32df988f7655840437",
+    "kandil_hr/portal/request_operations.py": "45228f6b89f7f5fb28fd346d1c82cf66875b9acc921bb9c3e945f3836f773e7c",
+    "kandil_hr/portal/request_operations_fixture.py": "13dc70e6ee9130b36d9d15d8d1c4cf2ab1cf16bada2c9e634c3b556bf6aef3b0",
+    "kandil_hr/recruitment/api.py": "57b163a151511d3963f4b7bb87d4c4ab4b5e13c6e628e2d8fcc5936b30cadc83",
+    "kandil_hr/recruitment/corrections.py": "4f406d0ed9332db2372cf5e7fd3f06e75c8a88192452d4a82b39f9540f97e1c4",
+    "kandil_hr/recruitment/review_views.py": "5c01ec0302c3e8d3dd371ef609cac7e4b57d769e2dcf28057be530068a175bb6",
+    "kandil_hr/portal/route_preview.py": "98834b0006653978fef67240e3d4d7fcd4aa4efcdc52be3d65f1657c6c63fa82",
+    "kandil_hr/translations/ar.csv": "b883fbfe5c1f739467013b8bb6e309a576af37b3a3176b32d04d0d14d729731b",
+    "docs/portal/test_request_operations.cjs": "4d2b721eed46239828e96c0181ccfa0d6f41287af16750faba9bbf7afe7e1830"
+  },
+  "limits": [
+    "Synthetic personal-role HR request actions in AR/EN; no full S3, production, concurrency or 1000-user certification."
+  ]
+}

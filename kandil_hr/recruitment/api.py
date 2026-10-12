@@ -166,7 +166,7 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	# Lock related domain records before the shared sorted User/grant order.
 	related_before = related_state(doc, operation, payload)
 	users = {frappe.session.user, doc.requested_by} | {s.principal for s in doc.approval_steps if s.principal}
-	if operation in {"submit", "revise_pending_quantities"}:
+	if operation in {"submit", "revise_pending_quantities", "send_to_ceo"}:
 		users.update(route_candidate_users(doc))
 	for step in doc.approval_steps:
 		if step.get("board_vice"):
@@ -202,7 +202,7 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	if operation == "amend" and doc.requested_by != frappe.session.user:
 		roles = ("Kandil Recruiter",)
 	if operation == "cancel" and doc.requested_by != frappe.session.user:
-		roles = ("Kandil Recruiter", "Kandil Sector Approver")
+		roles = ("Kandil Recruiter",)
 	assert_current_request_scope(doc, required_roles=roles)
 	key = hashlib.sha256(f"{frappe.session.user}|{name}|{command_id}".encode()).hexdigest()
 	digest = hashlib.sha256(dump([operation, payload, str(expected_version)]).encode()).hexdigest()
@@ -691,6 +691,10 @@ def revise(name, command_id, expected_version, reason):
 @transactional_retry
 def review(name, command_id, expected_version, quantities, priority, reason):
 	quantities = frappe.parse_json(quantities)
+	if not isinstance(quantities, dict) or len(quantities) > 50:
+		frappe.throw(_("Review quantities must be an object with at most fifty locations."))
+	if not isinstance(reason, str) or not reason.strip() or len(reason) > 2000:
+		frappe.throw(_("A review reason of 1 to 2000 characters is required."))
 
 	def act(doc):
 		step = next((s for s in doc.approval_steps if s.decision == "Pending"), None)
@@ -702,6 +706,10 @@ def review(name, command_id, expected_version, quantities, priority, reason):
 			or "Kandil Recruiter" not in frappe.get_roles(step.principal)
 		):
 			frappe.throw(_("Only the active HR authority may review quantities."), frappe.PermissionError)
+		from kandil_hr.foundation.mutation_access import assert_current_request_scope
+		assert_current_request_scope(doc, user=step.principal, required_roles=("Kandil Recruiter",))
+		if set(quantities) - {row.name for row in doc.lines}:
+			frappe.throw(_("Every review line must belong to this request."))
 		if not reason.strip() or priority not in ("Normal", "Important", "Critical"):
 			frappe.throw(_("Select a valid priority and enter a reason."))
 		caps = lock_capacities(doc)
@@ -736,6 +744,9 @@ def review(name, command_id, expected_version, quantities, priority, reason):
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
 def send_to_ceo(name, command_id, expected_version, reason):
+	if not isinstance(reason, str) or not reason.strip() or len(reason) > 2000:
+		frappe.throw(_("A routing reason of 1 to 2000 characters is required."))
+
 	def act(doc):
 		step = next((s for s in doc.approval_steps if s.decision == "Pending"), None)
 		if (
@@ -753,8 +764,11 @@ def send_to_ceo(name, command_id, expected_version, reason):
 			or "Kandil CEO Approver" not in frappe.get_roles(principal)
 		):
 			frappe.throw(_("Configure an independent CEO authority."))
-		if not reason.strip():
-			frappe.throw(_("A reason is required."))
+		from kandil_hr.foundation.mutation_access import assert_current_request_scope
+		from kandil_hr.recruitment.authority import assert_independent
+		assert_current_request_scope(doc, user=step.principal, required_roles=("Kandil Recruiter",))
+		assert_current_request_scope(doc, user=principal, required_roles=("Kandil CEO Approver",))
+		assert_independent(doc, frappe.session.user, principal)
 		if any(s.authority == "CEO Approval" and s.decision == "Pending" for s in doc.approval_steps):
 			frappe.throw(_("A CEO approval is already pending."))
 		doc.append(
