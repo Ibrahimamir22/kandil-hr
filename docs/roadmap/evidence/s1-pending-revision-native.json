@@ -1,0 +1,78 @@
+{
+  "created_at": "2026-10-12T17:41:39.031723+00:00",
+  "site": "kandil-parity.localhost",
+  "container_service": "parity-web",
+  "base_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
+  "command": "bench --site kandil-parity.localhost execute kandil_hr.recruitment.test_pending_revision.run",
+  "initial_run": {
+    "executed": 10,
+    "failures": 1,
+    "failure": "Replay test compared raw native datetime-containing result against stored JSON representation.",
+    "correction": "Compare complete JSON-normalized responses, matching the established API test contract; unchanged-state assertions retained.",
+    "application_logic_changed": false
+  },
+  "final_run": {
+    "result": "PASS",
+    "discovered": 10,
+    "executed": 10,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "tests": [
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_audit_failure_rolls_back_ledger_revision_steps_notifications_and_receipt",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_completed_manager_approval_preserved_and_all_new_keys_restart",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_exact_complete_positive_maps_reject_missing_unknown_duplicate_fractional_and_boolean",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_exact_own_two_to_three_adds_delta_one_never_charges_old_two_twice",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_multiline_other_reservations_remain_charged_and_other_request_unchanged",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_noop_keeps_approval_and_revision_and_only_records_command_receipt_audit",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_replay_conflicting_payload_stale_version_and_wrong_actor",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_revoked_requester_scope_denies_without_business_changes",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_signed_reduction_releases_only_own_delta",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_pending_revision.TestPendingRevision.test_warn_shortage_resolves_independent_exception_from_self_excluded_basis",
+        "status": "PASS"
+      }
+    ],
+    "limits": "Native synthetic rollback tests; independent connection races and EN/AR HTTP/UI require separate proof"
+  },
+  "source_sha256": {
+    "kandil_hr/recruitment/test_pending_revision.py": "f1b424f2b2637a4e72f42b9162d32f410dfe98ca20060d1cd42c57f3bafc0439",
+    "kandil_hr/recruitment/pending_revision.py": "938bb89605a8351c5c7d0b5daa5bd67b9c196dd7457070a0b9f2c64c7a15953d",
+    "kandil_hr/recruitment/headcount_denials.py": "61231aa26ed39378a00ff34ea1aec07b77644ed0ceff1c63cdee1fa7a601137c",
+    "kandil_hr/recruitment/headcount_contract.py": "e427246224b3f2745a8ed9819705fffb0f584bb6f80d7a431ae2fe049dea0061",
+    "kandil_hr/recruitment/api.py": "cb6a54fb8d2b92e49085e04d4e7fbcf1bb2f155db8cd8ae8a83429b20e40bfff",
+    "kandil_hr/foundation/command_audit.py": "e2806e41bb05fd1f9378547305a532a406ea05a855b5dea9ddeefe99c24fa3cb"
+  },
+  "limitations": [
+    "Native rollback tests only; no HTTP commit-persistence or independent-connection concurrency claim.",
+    "Runtime AR/EN pending-revision UI gates remain open.",
+    "No frozen acceptance case is promoted by this evidence alone."
+  ]
+}

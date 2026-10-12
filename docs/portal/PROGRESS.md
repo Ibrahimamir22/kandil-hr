@@ -28,7 +28,11 @@ Completion requires observed saved records and server-enforced negative tests, n
 Open `/hr-portal` on localhost:8102; sign in as a synthetic requester, submit a two-location request, complete separate manager/HR approvals, then assign a recruiter as HR. A second request covers Return → revise → resubmit.
 
 
-## Next milestones (not started by this goal)
+## Full HR delivery goal
+
+The first connected milestone below is complete. The new active goal and remaining work are tracked in [the full sprint plan](../roadmap/SPRINT_PLAN.md) and [tracker](../roadmap/tracker.json). Their statuses supersede the following earlier next-milestone outline.
+
+## Earlier next-milestone outline
 
 | Milestone | Next outcome | Completion gate |
 |---|---|---|

@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-12",
+  "goal_status": "active",
+  "current_sprint": "S1",
+  "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
+  "scope": "Custom AR/EN HR portal over Frappe HR; all 98 frozen reference requirements plus security/operational acceptance. Not the wider company platform.",
+  "cadence": "Up to two-week review cycles; split large sprints. No fixed completion date or promise of equal effort. Re-estimate after S1 against measured throughput and external decisions.",
+  "reference": {
+    "count": 98,
+    "path": "reference-coverage.csv",
+    "source": "docs/archive/05_Deliverables/Kandil_HR_Web_Strategy_2026-10-12/requirements-traceability.csv",
+    "source_sha256": "25dbbe46c0bdcac9b2f33fa466cb21c26eedf80888f1b06d8052b7f7746ba2fd"
+  },
+  "sprints": [
+    {
+      "id": "S0",
+      "title": "Repository and architecture clarity / وضوح المعمارية والمستودع",
+      "status": "complete",
+      "depends_on": [],
+      "outcome": "One navigable project repo with all custom source, plans and exact upstream links.",
+      "tasks": [
+        {
+          "id": "S0-01",
+          "description": "Publish the architecture map and responsibility of every main folder.",
+          "status": "complete"
+        },
+        {
+          "id": "S0-02",
+          "description": "Add upstream/frappe, upstream/erpnext and upstream/hrms as exact Git submodule links matching the installer lock.",
+          "status": "complete"
+        },
+        {
+          "id": "S0-03",
+          "description": "Publish this sprint tracker and a complete allocation of all 98 reference requirements.",
+          "status": "complete"
+        },
+        {
+          "id": "S0-04",
+          "description": "Preserve original test evidence and the archive; distinguish working features, incomplete work and release gates.",
+          "status": "complete"
+        }
+      ],
+      "acceptance": [
+        "All three source links match the version lock; reference mapping has 98 unique IDs with no omissions.",
+        "New source/docs are committed and pushed; remote SHA equals local HEAD."
+      ],
+      "parallel_opportunity": "Documentation and source inventory are independent; one integrator stages source links.",
+      "external_decisions": []
+    },
+    {
+      "id": "S1",
+      "title": "Stabilize the existing portal / تثبيت المسار الحالي",
+      "status": "in_progress",
+      "depends_on": [
+        "S0"
+      ],
+      "outcome": "The current hiring journey has a verified baseline and remaining defects are explicit.",
+      "tasks": [
+        {
+          "id": "S1-01",
+          "description": "Reconcile the 80-case historical baseline and current portal evidence with the actual source; list every unresolved clause without changing frozen expected results.",
+          "status": "in_progress"
+        },
+        {
+          "id": "S1-02",
+          "description": "Finish and prove exact pending reservation 2→3 delta, all-location atomicity, restarted approvals and durable shortage denial; retain existing headcount work.",
+          "status": "in_progress",
+          "evidence": [
+            "evidence/s1-pending-revision-native.json"
+          ],
+          "remaining": "HTTP persistence, independent connection races, runtime EN/AR UI and affected frozen-source regression; no full-case promotion."
+        },
+        {
+          "id": "S1-03",
+          "description": "Run affected authority/audit/outbox/permission regressions, independent-connection contention and ordinary-session HTTP tests.",
+          "status": "planned"
+        },
+        {
+          "id": "S1-04",
+          "description": "Verify real AR/EN screens for the pending revision and denial path; retain form input and show reviewed quantities.",
+          "status": "planned"
+        },
+        {
+          "id": "S1-05",
+          "description": "Freeze portal/API conventions: personal sessions, field projections, pagination, errors, command IDs, version checks and no browser-held service secrets.",
+          "status": "planned"
+        },
+        {
+          "id": "S1-06",
+          "description": "Record HR terminology, role/policy questions, identity/MFA choice, audit custody and workload assumptions with owners.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Both exact headcount cases pass every clause, including committed HTTP denial and contention; otherwise remain partial.",
+        "Requester/manager/HR separation, revocation, duplicate/stale actions and native/resource bypass checks pass.",
+        "The original request → approvals → vacancies journey still passes on a fresh cohort; HR review remains distinct."
+      ],
+      "parallel_opportunity": "API review, visual feedback and requirements mapping can overlap; all shared-site mutation tests run serially.",
+      "external_decisions": [
+        "HR: authority/headcount policy and Arabic terms.",
+        "IT: identity/MFA, recovery owner and external audit custody."
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "Organization and job descriptions / الهيكل والوصف الوظيفي",
+      "status": "planned",
+      "depends_on": [
+        "S1"
+      ],
+      "outcome": "HR can manage the organization through the custom website.",
+      "tasks": [
+        {
+          "id": "S2-01",
+          "description": "Build department/branch/position tree and distinguish job, position, employee and vacancy.",
+          "status": "planned"
+        },
+        {
+          "id": "S2-02",
+          "description": "Connect effective-dated assignments, structural revisions and independent organization approvals.",
+          "status": "planned"
+        },
+        {
+          "id": "S2-03",
+          "description": "Add reviewed CSV import, validation/error preview and occupied-baseline reconciliation.",
+          "status": "planned"
+        },
+        {
+          "id": "S2-04",
+          "description": "Connect JD versions, weighted KPIs and approved AR/EN documents/worker cards.",
+          "status": "planned"
+        },
+        {
+          "id": "S2-05",
+          "description": "Show dated history and differences; prohibit silent overwrite of historical assignments.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Cross-scope organization access fails through list/detail/export/API routes.",
+        "Imports reconcile, rejected rows cannot partially overwrite records, and effective dates produce correct counts.",
+        "HR reviews tree, terminology and document layouts."
+      ],
+      "parallel_opportunity": "Tree UI, JD presentation and import validation can overlap after shared IDs/contracts freeze.",
+      "external_decisions": []
+    },
+    {
+      "id": "S3",
+      "title": "Full hiring requests and approvals / الطلبات والاعتمادات",
+      "status": "planned",
+      "depends_on": [
+        "S2"
+      ],
+      "outcome": "The reference request and authority workflow is available in the custom portal.",
+      "tasks": [
+        {
+          "id": "S3-01",
+          "description": "Complete every agreed request field, replacement information, skills, employment terms and multi-location quantities.",
+          "status": "planned"
+        },
+        {
+          "id": "S3-02",
+          "description": "Expose route preview, self-interest exclusions, missing-authority handling and exception reasoning.",
+          "status": "planned"
+        },
+        {
+          "id": "S3-03",
+          "description": "Connect dated delegation, independent CEO/Board decisions and supporting evidence.",
+          "status": "planned"
+        },
+        {
+          "id": "S3-04",
+          "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
+          "status": "planned"
+        },
+        {
+          "id": "S3-05",
+          "description": "Integrate the S1 pending-quantity command into the final request UX with reapproval notice and safe retries.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "All mapped request/authority requirements have role-specific positive and negative evidence.",
+        "Material revisions retain old decisions and restart the required approvals; seats and vacancies reconcile.",
+        "No screen or native endpoint bypasses server authority."
+      ],
+      "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
+      "external_decisions": []
+    },
+    {
+      "id": "S4",
+      "title": "Vacancy operations and notifications / الشواغر والتنبيهات",
+      "status": "planned",
+      "depends_on": [
+        "S3"
+      ],
+      "outcome": "Recruiters manage actionable vacancies and reliable follow-up from the portal.",
+      "tasks": [
+        {
+          "id": "S4-01",
+          "description": "Complete vacancy lead/team assignment, unassigned queue, bulk actions, priority and reasoned pinning.",
+          "status": "planned"
+        },
+        {
+          "id": "S4-02",
+          "description": "Expose pause/resume/close/cancel and partial-fill progress without corrupting capacity.",
+          "status": "planned"
+        },
+        {
+          "id": "S4-03",
+          "description": "Replace page-only dashboard counts/search with correctly scoped server-wide projections and pagination.",
+          "status": "planned"
+        },
+        {
+          "id": "S4-04",
+          "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
+          "status": "planned"
+        },
+        {
+          "id": "S4-05",
+          "description": "Verify outbox retries, worker restart recovery, disabled recruiter handoff and email templates in local capture.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Parallel/repeated assignment and notifications have one intended effect.",
+        "Scheduled reminders run without a user opening a page; failure/retry states are visible.",
+        "Counts reconcile and unauthorized search/export reveals no records."
+      ],
+      "parallel_opportunity": "Vacancy screens, notification templates and read-model work can overlap after contracts freeze.",
+      "external_decisions": [
+        "HR: priority/SLA calendar.",
+        "IT/owner: email provider/test recipients before any external sending."
+      ]
+    },
+    {
+      "id": "S5",
+      "title": "Candidates and sourcing / المرشحون والمصادر",
+      "status": "planned",
+      "depends_on": [
+        "S4"
+      ],
+      "outcome": "Recruiters can receive, find and manage candidates safely.",
+      "tasks": [
+        {
+          "id": "S5-01",
+          "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
+          "status": "planned"
+        },
+        {
+          "id": "S5-02",
+          "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
+          "status": "planned"
+        },
+        {
+          "id": "S5-03",
+          "description": "Add sourcing channels, ads/apply links, referrals, agencies and subscription-credit records.",
+          "status": "planned"
+        },
+        {
+          "id": "S5-04",
+          "description": "Implement small-batch imports with preview and per-row outcomes; shared phones never trigger automatic merges.",
+          "status": "planned"
+        },
+        {
+          "id": "S5-05",
+          "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
+          "status": "planned"
+        },
+        {
+          "id": "S5-06",
+          "description": "Test token expiry, enumeration, malicious uploads, object ownership and recruiter-on-behalf history.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "All candidate/source requirements mapped here have acceptance cases and evidence.",
+        "Private files are permission-checked; guessed IDs/tokens and cross-company requests fail.",
+        "Consent/export/deletion holds and internal-note separation work."
+      ],
+      "parallel_opportunity": "Recruiter UI, intake and sourcing can overlap once identity/privacy/API contracts are stable.",
+      "external_decisions": [
+        "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
+      ]
+    },
+    {
+      "id": "S6",
+      "title": "Interviews and selection / المقابلات والاختيار",
+      "status": "planned",
+      "depends_on": [
+        "S5"
+      ],
+      "outcome": "Interviews and selection follow the agreed process with private evaluations.",
+      "tasks": [
+        {
+          "id": "S6-01",
+          "description": "Add confirmed slots, rescheduling, conflicts, invitations, reminders and candidate check-in/wait times.",
+          "status": "planned"
+        },
+        {
+          "id": "S6-02",
+          "description": "Build panel roles, interview plans, approved waivers and JD/question-bank views.",
+          "status": "planned"
+        },
+        {
+          "id": "S6-03",
+          "description": "Implement assessments and independent structured feedback with permitted release timing.",
+          "status": "planned"
+        },
+        {
+          "id": "S6-04",
+          "description": "Build comparison/decision readiness, reserve candidates and consented reference checks.",
+          "status": "planned"
+        },
+        {
+          "id": "S6-05",
+          "description": "Test no-show, timezone boundaries, late feedback and escalation.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "An unconfirmed interview cannot trigger an invitation.",
+        "Blind feedback remains private through APIs, exports and UI until authorized release.",
+        "HR can complete a full candidate → interview → selection scenario in AR and EN."
+      ],
+      "parallel_opportunity": "Scheduler, feedback forms and assessment library can overlap against stable candidate contracts.",
+      "external_decisions": []
+    },
+    {
+      "id": "S7",
+      "title": "Offers and compensation / العروض والبيانات المالية",
+      "status": "planned",
+      "depends_on": [
+        "S6"
+      ],
+      "outcome": "HR can produce and approve accurate versioned offers with restricted salary access.",
+      "tasks": [
+        {
+          "id": "S7-01",
+          "description": "Implement scoped grade/benefit data, approved calculation rules and the reference salary/disclosure trail.",
+          "status": "planned"
+        },
+        {
+          "id": "S7-02",
+          "description": "Connect offer drafting, authority thresholds, negotiation, revision and reapproval.",
+          "status": "planned"
+        },
+        {
+          "id": "S7-03",
+          "description": "Add expiry/extension, acceptance/decline and reserve-candidate handling.",
+          "status": "planned"
+        },
+        {
+          "id": "S7-04",
+          "description": "Build approved AR/EN offer and preliminary contract templates with private download access.",
+          "status": "planned"
+        },
+        {
+          "id": "S7-05",
+          "description": "Verify monetary precision, effective-dated rules and concurrent version decisions.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Unauthorized users cannot see compensation in any response, report or file.",
+        "Expired/superseded offers cannot be accepted; concurrent actions cannot overwrite decisions.",
+        "HR validates calculation examples and document templates."
+      ],
+      "parallel_opportunity": "Offer UX, calculation examples and templates can overlap; financial rules need one approved specification.",
+      "external_decisions": [
+        "HR/payroll owner: formulas, authority thresholds and reviewed templates."
+      ]
+    },
+    {
+      "id": "S8",
+      "title": "Joining, documents and onboarding / المباشرة والملف والتهيئة",
+      "status": "planned",
+      "depends_on": [
+        "S7"
+      ],
+      "outcome": "Actual joining creates the correct employee and onboarding records exactly once.",
+      "tasks": [
+        {
+          "id": "S8-01",
+          "description": "Connect planned date history, actual joining, no-show reasons and seat handling.",
+          "status": "planned"
+        },
+        {
+          "id": "S8-02",
+          "description": "Reuse and revalidate Employee/Assignment/Onboarding creation with replay and concurrency tests.",
+          "status": "planned"
+        },
+        {
+          "id": "S8-03",
+          "description": "Build private employee file: upload/review/version/expiry, physical receipts and approved deferrals.",
+          "status": "planned"
+        },
+        {
+          "id": "S8-04",
+          "description": "Deliver orientation, HR/manager tasks, welcome gift and confidential day-7/day-30 feedback.",
+          "status": "planned"
+        },
+        {
+          "id": "S8-05",
+          "description": "Add social-insurance case tracking and BioTime enrollment task; do not label the task as device integration.",
+          "status": "planned"
+        },
+        {
+          "id": "S8-06",
+          "description": "Enforce the reference rule that overdue documents create HR alerts only, never wage withholding or payroll actions.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Concurrent joining creates one employee/assignment/onboarding effect set; no-show does not occupy a seat.",
+        "Private documents and feedback are isolated by role and scope.",
+        "DOC-002 and wage/payroll-isolation clauses are tested with actual records."
+      ],
+      "parallel_opportunity": "File workflows, onboarding screens and feedback privacy can overlap after joining contracts stabilize.",
+      "external_decisions": [
+        "HR: required documents, deferral policy and onboarding responsibilities."
+      ]
+    },
+    {
+      "id": "S9",
+      "title": "Probation, transfers and lifecycle / التجربة والنقل ودورة الموظف",
+      "status": "planned",
+      "depends_on": [
+        "S8"
+      ],
+      "outcome": "HR manages post-joining changes without breaking privacy or historical headcount.",
+      "tasks": [
+        {
+          "id": "S9-01",
+          "description": "Deliver probation checkpoints, observations, reminders, final evaluation and confidential follow-up.",
+          "status": "planned"
+        },
+        {
+          "id": "S9-02",
+          "description": "Create medical-insurance case only after approved qualifying outcome.",
+          "status": "planned"
+        },
+        {
+          "id": "S9-03",
+          "description": "Implement transfer approvals, target capacity, effective dates, source/target history and replacement prompts.",
+          "status": "planned"
+        },
+        {
+          "id": "S9-04",
+          "description": "Implement controlled corrections/voids and exit/deactivation with session revocation and work reassignment.",
+          "status": "planned"
+        },
+        {
+          "id": "S9-05",
+          "description": "Keep exit settlement/payroll outside this scope until separately specified.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Future transfers do not alter current headcount; due transfers affect both sides once.",
+        "Probation confidentiality and qualifying insurance rules pass negative tests.",
+        "Disabled accounts lose access and work handoff retains private history."
+      ],
+      "parallel_opportunity": "Probation and transfer UI can overlap; assignment/capacity mutations require one integrator.",
+      "external_decisions": []
+    },
+    {
+      "id": "S10",
+      "title": "Reports, guides and selected integrations / التقارير والأدلة والربط",
+      "status": "planned",
+      "depends_on": [
+        "S5",
+        "S6",
+        "S7",
+        "S8",
+        "S9"
+      ],
+      "outcome": "HR receives reconciled reports and explicitly tested connected services.",
+      "tasks": [
+        {
+          "id": "S10-01",
+          "description": "Define and implement funnel/source yield, request progress, bottlenecks, forecasts and evaluation reports.",
+          "status": "planned"
+        },
+        {
+          "id": "S10-02",
+          "description": "Complete process map, role help, accessible bilingual UX and scoped search/export.",
+          "status": "planned"
+        },
+        {
+          "id": "S10-03",
+          "description": "Implement approved identity/appraisal SSO and email adapters with sandbox outage/retry tests.",
+          "status": "planned"
+        },
+        {
+          "id": "S10-04",
+          "description": "Map reviewed employee/position imports from current Sheets; record source provenance.",
+          "status": "planned"
+        },
+        {
+          "id": "S10-05",
+          "description": "Implement assisted CV evidence only after provider/purpose/budget approval; human owns hiring decisions.",
+          "status": "planned"
+        },
+        {
+          "id": "S10-06",
+          "description": "Reconcile all 98 requirements and supplemental acceptance packages; expose every remaining gap.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Reports reconcile to transactions under filters/exports and respect privacy.",
+        "Identity/provider failures never grant access; external sending only to approved recipients.",
+        "No required AI/integration feature is silently relabelled done when its provider or approval is absent."
+      ],
+      "parallel_opportunity": "Reports, documentation and independently scoped adapters can overlap.",
+      "external_decisions": [
+        "HR/IT: identity/appraisal access, provider configuration, AI consent/budget if retained in scope."
+      ]
+    },
+    {
+      "id": "S11",
+      "title": "Security, capacity and migration rehearsal / الأمان واختبار السعة",
+      "status": "planned",
+      "depends_on": [
+        "S10"
+      ],
+      "outcome": "A frozen release candidate has evidence for the agreed security, performance and recovery targets.",
+      "tasks": [
+        {
+          "id": "S11-01",
+          "description": "Run original unchanged acceptance cases plus full-reference portal/API/native bypass regressions.",
+          "status": "planned"
+        },
+        {
+          "id": "S11-02",
+          "description": "Validate real MFA, new-device/session handling, revocation, privileged actions and external audit custody.",
+          "status": "planned"
+        },
+        {
+          "id": "S11-03",
+          "description": "Run independent security assessment and retest findings on representative staging.",
+          "status": "planned"
+        },
+        {
+          "id": "S11-04",
+          "description": "Measure mixed-workload load, contention, sustained soak, large files and queue recovery with 1,000+ accounts.",
+          "status": "planned"
+        },
+        {
+          "id": "S11-05",
+          "description": "Rehearse clean clone/install, upgrade, import/file reconciliation, encrypted backup restoration and rollback.",
+          "status": "planned"
+        },
+        {
+          "id": "S11-06",
+          "description": "Complete HR real-role AR/EN/mobile/accessibility UAT and operational runbooks.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "Zero unexplained ledger/data variance or permission bypass; no unresolved critical/high findings accepted by default.",
+        "Approved concurrent workload, latency/error and recovery targets are met on the proposed topology.",
+        "Mandatory feature cases pass or the user explicitly approves a reduced release scope; evidence matches frozen source."
+      ],
+      "parallel_opportunity": "Security, browser and capacity reviews may use isolated environments; never contend over one shared test database.",
+      "external_decisions": [
+        "HR/IT: staging budget, assessor, performance/recovery targets, identity/audit choices and named UAT reviewers."
+      ]
+    },
+    {
+      "id": "S12",
+      "title": "Staged release and handover / التشغيل التدريجي والتسليم",
+      "status": "planned",
+      "depends_on": [
+        "S11"
+      ],
+      "outcome": "An explicitly approved production rollout is reconciled, monitored and owned.",
+      "tasks": [
+        {
+          "id": "S12-01",
+          "description": "Prepare cutover journal, backup, legacy write-freeze, delta import and rollback decision point.",
+          "status": "planned"
+        },
+        {
+          "id": "S12-02",
+          "description": "Obtain concrete release approval after all evidence and remaining risks are reviewable.",
+          "status": "planned"
+        },
+        {
+          "id": "S12-03",
+          "description": "Roll out to named HR pilot, then approved 50/200/full cohorts with stop criteria.",
+          "status": "planned"
+        },
+        {
+          "id": "S12-04",
+          "description": "Train roles and deliver admin/user guides, support contacts and private secret handover.",
+          "status": "planned"
+        },
+        {
+          "id": "S12-05",
+          "description": "Tag the tested release, verify GitHub, reconcile the running revision and run at least ten business days of hypercare.",
+          "status": "planned"
+        }
+      ],
+      "acceptance": [
+        "HR accepts workflows; IT accepts monitoring, recovery and support ownership.",
+        "No unresolved critical incident, unexplained import variance or failed access boundary.",
+        "Approved cohorts complete real tasks; known issues have owners and follow-up dates."
+      ],
+      "parallel_opportunity": "Training and handover preparation can overlap S11; actual cutover has one accountable owner.",
+      "external_decisions": [
+        "User/HR/IT: hosting/spend, real-data authorization and production release approval."
+      ]
+    }
+  ],
+  "progress_rule": "Update at verified checkpoints; not a completion percentage. No task becomes complete merely because code exists. Record source SHA and evidence, commit, push and verify remote.",
+  "definition_of_done": [
+    "Agreed cases including negative permissions and concurrency where relevant pass.",
+    "AR/EN/RTL/mobile and accessible primary interactions are checked.",
+    "Immutable history, privacy and headcount invariants hold.",
+    "Tests and documentation match source; incomplete clauses stay visible.",
+    "No secrets in Git; coherent commit pushed and remote SHA verified.",
+    "Human acceptance is separately recorded and never inferred from automated tests."
+  ],
+  "latest_checkpoint": {
+    "sprint": "S1",
+    "summary": "10 native pending-revision checks pass after fixing JSON/date test comparison; business code unchanged.",
+    "evidence": "evidence/s1-pending-revision-native.json",
+    "next": "Prove headcount denial/revision through ordinary-session HTTP and independent connections, then real AR/EN UI."
+  }
+}

@@ -148,7 +148,10 @@ class TestPendingRevision(unittest.TestCase):
 		key = uuid.uuid4().hex
 		first = self.revise(name, (3,), command_id=key, expected_version=version)
 		after = self.state(name)
-		self.assertEqual(self.revise(name, (3,), command_id=key, expected_version=version), first)
+		replay = self.revise(name, (3,), command_id=key, expected_version=version)
+		# Receipts store JSON; first native results may still contain datetime values.
+		# Compare the complete serialized response, as ordinary HTTP callers receive it.
+		self.assertEqual(json.loads(api.dump(replay)), json.loads(api.dump(first)))
 		self.assertEqual(self.state(name), after)
 		for actor, qty, command, reviewed, exception in (
 			("requester", 4, key, version, frappe.ValidationError),

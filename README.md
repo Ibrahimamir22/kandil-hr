@@ -6,6 +6,15 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **70 passed, 6 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
 
+## Start here
+
+- [Plain-language architecture and folder map](docs/START_HERE.md).
+- [Current delivery plan: 13 sprints and 69 tasks](docs/roadmap/SPRINT_PLAN.md).
+- [Live task tracker](docs/roadmap/tracker.json) and [all 98 reference requirements](docs/roadmap/reference-coverage.csv).
+- [Frappe, ERPNext and HRMS source links](upstream/README.md): exact pinned Git submodules, visible on GitHub.
+
+The active delivery goal uses `docs/roadmap/`. Earlier `docs/sprints/` checkpoints remain historical technical evidence and do not describe the whole new portal goal.
+
 ## Project source and current portal
 
 All project source is kept in this private repository. The connected portal lives in [`frontend/portal/`](frontend/portal/), its Frappe API in [`kandil_hr/portal/`](kandil_hr/portal/) and its served assets in [`kandil_hr/public/portal/`](kandil_hr/public/portal/). Open http://localhost:8102/hr-portal on the existing development machine.

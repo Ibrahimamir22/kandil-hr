@@ -22,10 +22,14 @@ def verify(source):
 		raise RuntimeError(
 			"The custom app checkout is dirty. Commit/review it before running the pinned installer."
 		)
+	from check_upstream import check
+
+	upstream_links = check(source)
 	lock = json.loads((source / "deployment/versions.lock.json").read_text())
 	return dict(
 		custom_app_commit=git("rev-parse", "HEAD"),
 		clean=True,
+		upstream_links=upstream_links,
 		upstream_commits={name: app["commit"] for name, app in lock["apps"].items()},
 		images=lock["images"],
 		platform=lock["platform"],

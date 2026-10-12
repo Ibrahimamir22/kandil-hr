@@ -2,6 +2,8 @@
 
 This package installs the official Frappe, ERPNext and HRMS sources at the exact commits in `versions.lock.json`, plus this custom app checkout. No GitHub fork of upstream is required. Native dependency installers still use upstream package registries; this is version-pinned source installation, not a fully offline/bit-for-bit software supply-chain archive.
 
+The repository also exposes those exact upstream commits as Git submodules under `upstream/`. Clone with `--recurse-submodules` to browse all source, or let this installer fetch the pinned sources into its fresh Bench. Source download alone is not a running installation. `python3 deployment/check_upstream.py` checks that the tracked links and installer lock agree.
+
 Local Apple Silicon / `linux/arm64` development only. Docker, internet access to official GitHub/package registries, sufficient disk space, and private-repository access are required. Port 8110 is a new isolated sandbox, separate from the existing 8100/8101/8102 environment. Linux AMD64 needs an independently tested image/platform lock.
 
 From a clone of the private `Ibrahimamir22/kandil-hr` repo at a tested release commit:

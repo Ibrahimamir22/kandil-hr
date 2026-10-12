@@ -1,0 +1,9 @@
+[submodule "upstream/frappe"]
+	path = upstream/frappe
+	url = https://github.com/frappe/frappe.git
+[submodule "upstream/erpnext"]
+	path = upstream/erpnext
+	url = https://github.com/frappe/erpnext.git
+[submodule "upstream/hrms"]
+	path = upstream/hrms
+	url = https://github.com/frappe/hrms.git
