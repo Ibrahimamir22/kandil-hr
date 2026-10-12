@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-12T22:16:45.532271+00:00",
+  "method": "Visual inspection of saved browser screenshots",
+  "files": {
+    "tree-en-desktop.png": "7c8fd193b5487070709a4378cf5d8aabc9af449d8d8f6b4d80b0ff77f37c03d8",
+    "tree-ar-mobile.png": "ead2c0217705f6427ec3fec553ef536d0cc5be05e0d186d3ef69df3b4428d5d6"
+  },
+  "observations": [
+    "English desktop focus displays nested reporting controls and readable position cards.",
+    "Arabic mobile preserves RTL order, wraps long synthetic identifiers, and keeps actions within the viewport.",
+    "The mobile full-page capture retains its fixed navigation bar at the captured scroll position; no horizontal overflow was observed in browser geometry checks."
+  ],
+  "limits": [
+    "Synthetic labels and company data; not HR terminology or design acceptance.",
+    "No claim of WCAG certification; ordinary keyboard expansion is covered by the browser run."
+  ]
+}

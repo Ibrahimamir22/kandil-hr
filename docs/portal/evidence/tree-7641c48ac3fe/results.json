@@ -1,0 +1,72 @@
+{
+  "status": "FAIL",
+  "run_id": "7641c48ac3fe",
+  "checked_at": "2026-10-12T22:14:28.355Z",
+  "checks": [
+    {
+      "name": "Scoped roots span the directory and contain the one accessible head",
+      "status": "PASS"
+    },
+    {
+      "name": "Children paginate beyond twenty without duplicates",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign legal-entity anchors are forbidden in both focus and child endpoints",
+      "status": "PASS"
+    },
+    {
+      "name": "Expanding a node loads its first twenty direct reports",
+      "status": "PASS"
+    },
+    {
+      "name": "Load more retains previous children and shows the whole branch",
+      "status": "PASS"
+    },
+    {
+      "name": "Nested reporting can be followed through five levels",
+      "status": "PASS"
+    },
+    {
+      "name": "Collapse hides descendant controls",
+      "status": "PASS"
+    },
+    {
+      "name": "Focus opens one permitted position with an explicit filter notice",
+      "status": "PASS"
+    },
+    {
+      "name": "Reporting tree journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "Tree node opens the real position detail"
+    }
+  ],
+  "cleanup": {
+    "run_id": "7641c48ac3fe",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "3a8148e05e0eca7e59c61032c13ca29b063aae6889852d29f28f15f719a9e9a8",
+    "frontend/portal/src/Organization.tsx": "712eba5092b8fef576b1c64bd7f67083b92d4bc0d61747e7b3dde2ba7fd66f02",
+    "frontend/portal/src/OrganizationTree.tsx": "d69d7ca7a42e077fa1fc04df6fb32c63ae029c738baff121203b18e4b3472184",
+    "frontend/portal/src/portal.css": "2a9ffbed0b44abf14b06da687ea14119ce18d3f7af4143a71e9c86e6d9b8d167",
+    "kandil_hr/portal/organization.py": "f111dd2ea59e565150ecb41729fcd3b2c73deaf41a7487c5b7bf2dc6dcd396c7",
+    "kandil_hr/portal/organization_fixture.py": "853dfa1c3171dd6fc7ecbd90688a3fe1d6078d109e430666f77ff9f1697fb38b",
+    "kandil_hr/portal/tree_fixture.py": "a9b6ddf2d46aadd4477200df7d3adcd1fe947eda1fe2da121c5b99e4b8d976cb",
+    "kandil_hr/portal/fixture.py": "24c08f35d66ca98f210005cbe7aad3164fe5d1b2fb439ff614b1ac1672596f6d",
+    "kandil_hr/portal/organization_tree.py": "5628cbd89afea318700a06d1966a1154bde2aaf278e565d0c7cbd3e7842c68ef",
+    "docs/portal/test_organization_tree.cjs": "98ae7dfd417feb1fe581b8876fa06a1f18aaf42e94d520f564889bbaf6583e68"
+  },
+  "limits": [
+    "Synthetic permission/date/navigation proof; not sustained-load certification or HR acceptance.",
+    "One controlled network abort tests UI retry; business and permission data use real personal sessions.",
+    "No source mutation, real HR data, external email or production migration."
+  ]
+}

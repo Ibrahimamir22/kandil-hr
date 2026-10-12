@@ -139,13 +139,17 @@
         {
           "id": "S2-01",
           "description": "Build department/branch/position tree and distinguish job, position, employee and vacancy.",
-          "status": "in_progress",
-          "progress": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed changes/imports are tracked separately in S2-02/03. Full tree and S2 acceptance remain open.",
+          "status": "complete",
+          "progress": "Engineering navigation complete: scoped company/department/branch selectors, paginated directory and lazy dated reporting tree with independent child pagination, focus/detail navigation, hidden/filter-boundary labels and bilingual mobile/keyboard controls. Final 17 native and 26 browser checks passed, including 107 children, actual native User Permission and revocation. HR terminology/tree acceptance and sustained capacity/security certification remain separate gates.",
           "evidence": [
             "S2_IMPLEMENTATION_BRIEF.md",
             "S2_CHECKPOINT.md",
             "evidence/s2-regression-16468fd2e2a8.json",
-            "../portal/evidence/organization-e8e1d1c633f1/results.json"
+            "../portal/evidence/organization-e8e1d1c633f1/results.json",
+            "S2_TREE_CHECKPOINT.md",
+            "evidence/s2-regression-0bad36f58545.json",
+            "../portal/evidence/tree-e32788b018af/results.json",
+            "../portal/evidence/tree-e32788b018af/visual-review.json"
           ]
         },
         {
@@ -690,8 +694,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "Scoped JD/structural/assignment event history and comparisons connected. 45 native checks and 50 browser checks passed; see S2_HISTORY_CHECKPOINT.md. S2 and full HR goal remain active.",
-    "evidence": "S2_HISTORY_CHECKPOINT.md",
-    "next": "Complete organization-tree navigation and unified position history across reviewed imports/joining sources; preserve HR document/history acceptance and configured live email as separate gates. Inventory shared development queue before queue-dependent testing."
+    "summary": "Lazy scoped reporting tree connected; S2-01 engineering navigation complete. 17 final native contracts and 26 AR/EN browser checks passed. S2 and the full HR goal remain active.",
+    "evidence": "S2_TREE_CHECKPOINT.md",
+    "next": "Connect unified position history across reviewed imports, joining and reversal sources. Preserve HR tree/document/history acceptance and configured live email as separate gates. Inventory shared development queue before queue-dependent testing."
   }
 }
