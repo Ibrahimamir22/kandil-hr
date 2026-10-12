@@ -1,3 +1,5 @@
+Current Sprint 2 increment: reviewed CSV imports and occupancy comparison are connected. See [import checkpoint](../roadmap/S2_IMPORT_CHECKPOINT.md). Individual assignment changes, JD editing and full S2 acceptance remain open.
+
 # Connected HR portal — first working milestone
 
 Goal: replace the prototype's simulated interactions with personal-session, permission-checked Frappe operations on the isolated synthetic site at localhost:8102. Keep the approved Arabic/English design. Frappe HR and the Kandil app remain the HR backend; Odoo and other departments are outside this milestone.

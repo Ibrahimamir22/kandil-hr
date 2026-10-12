@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-12",
+  "updated": "2026-10-13",
   "goal_status": "active",
   "current_sprint": "S2",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
@@ -152,15 +152,22 @@
           "id": "S2-02",
           "description": "Connect effective-dated assignments, structural revisions and independent organization approvals.",
           "status": "in_progress",
-          "progress": "Structural create/resize/reparent/close proposal editor, preview, independent HR/CEO decisions, return/revise and immutable submitted before-values connected. Effective-dated assignment editing and import remain open.",
+          "progress": "Structural create/resize/reparent/close proposals and independent HR/CEO decisions are connected. Reviewed CSV baseline assignments and occupancy comparison are now connected. Individual effective-dated reassignment editing remains open.",
           "evidence": [
-            "S2_STRUCTURE_CHECKPOINT.md"
+            "S2_STRUCTURE_CHECKPOINT.md",
+            "S2_IMPORT_CHECKPOINT.md"
           ]
         },
         {
           "id": "S2-03",
           "description": "Add reviewed CSV import, validation/error preview and occupied-baseline reconciliation.",
-          "status": "planned"
+          "status": "complete",
+          "progress": "Engineering workflow complete: all five CSV import kinds, validation/mismatch previews, editable drafts, independent review, frozen application with live conflict validation and bounded occupancy comparison. Ordinary-role native and AR/EN browser/API/concurrency evidence is recorded; real company data reconciliation and HR sign-off remain separate release gates.",
+          "evidence": [
+            "S2_IMPORT_CHECKPOINT.md",
+            "evidence/s2-regression-a1f0a6427f09.json",
+            "../portal/evidence/imports-6e32fd6a0b36/results.json"
+          ]
         },
         {
           "id": "S2-04",
@@ -666,8 +673,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "Structural proposal and independent approval portal connected; organization read slice retained. See checkpoint for exact tests, permission setup and remaining work.",
-    "evidence": "S2_STRUCTURE_CHECKPOINT.md",
-    "next": "Connect reviewed organization imports and assignment reconciliation, then JD editing/approvals and full history acceptance."
+    "summary": "Reviewed organization CSV imports and occupancy comparison connected, alongside the prior structural workflow and directory. Individual assignment changes, JD editing and full S2 acceptance remain open.",
+    "evidence": "S2_IMPORT_CHECKPOINT.md",
+    "next": "Connect individual effective-dated assignment changes, then JD editing/approvals/KPIs/documents and full history acceptance."
   }
 }

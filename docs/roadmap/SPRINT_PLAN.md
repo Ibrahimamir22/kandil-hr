@@ -4,7 +4,7 @@
 
 **Starting point:** the first connected hiring journey is implemented and has recorded 10 native + 31 HTTP + 24 browser checks. The older 80-case baseline is 70 passed / 6 partial / 4 blocked at its own checkpoint. Neither result proves complete HR parity or production readiness.
 
-**Current sprint: S2.** S0 and S1 engineering stabilization are complete. [Sprint 1 closeout](S1_CHECKPOINT.md) records the current evidence and remaining release gates; [Sprint 2 organization checkpoint](S2_CHECKPOINT.md) and [structural-change checkpoint](S2_STRUCTURE_CHECKPOINT.md) record current delivery; [implementation brief](S2_IMPLEMENTATION_BRIEF.md) defines the remaining reviewed changes/imports/JD work.
+**Current sprint: S2.** S0 and S1 engineering stabilization are complete. [Sprint 1 closeout](S1_CHECKPOINT.md) records the current evidence and remaining release gates; [Sprint 2 organization checkpoint](S2_CHECKPOINT.md) and [structural-change checkpoint](S2_STRUCTURE_CHECKPOINT.md), and [import checkpoint](S2_IMPORT_CHECKPOINT.md) record current delivery; [implementation brief](S2_IMPLEMENTATION_BRIEF.md) defines the remaining assignment/JD/history work.
 
 The current 80-case register is **72 passed / 4 partial / 4 blocked**. Completing S1 does not complete all 98 requirements or the pending HR/IT/security/production decisions.
 

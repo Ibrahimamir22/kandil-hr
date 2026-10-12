@@ -1,0 +1,176 @@
+{
+  "status": "PASS",
+  "run_id": "9394d998b0ef",
+  "checked_at": "2026-10-12T21:00:56.569Z",
+  "checks": [
+    {
+      "name": "CSV preview reports every unmatched reference and prevents save",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical employee-position CSV validates before any save",
+      "status": "PASS"
+    },
+    {
+      "name": "HR author saves a draft with no assignment writes",
+      "status": "PASS"
+    },
+    {
+      "name": "Author cannot review own batch",
+      "status": "PASS"
+    },
+    {
+      "name": "Native resource API cannot mark a draft applied",
+      "status": "PASS"
+    },
+    {
+      "name": "Independent Arabic mobile reviewer freezes the import",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic allocation values are translated",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic review fits mobile width",
+      "status": "PASS"
+    },
+    {
+      "name": "Application records one historical assignment and the reviewer",
+      "status": "PASS"
+    },
+    {
+      "name": "Reconciliation is available without automatic repair",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent duplicate saves return one draft and version",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent review retry records one frozen review",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent apply retry has one committed effect",
+      "status": "PASS"
+    },
+    {
+      "name": "A repeated command ID cannot change the file",
+      "status": "PASS"
+    },
+    {
+      "name": "Reviewed or applied content cannot be replaced",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only role cannot see whole-company import choices",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only guessed batch and mutation are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Unscoped session cannot list batches or inspect rows",
+      "status": "PASS"
+    },
+    {
+      "name": "Committed state has one position and two applied batches",
+      "status": "PASS"
+    },
+    {
+      "name": "Each batch has exactly one review and one application audit",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JS errors, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser verification",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "batches": [
+      {
+        "name": "q9m73pncps",
+        "status": "Applied",
+        "import_kind": "Positions",
+        "baseline_reference": "Synthetic concurrent positions 9394d998b0ef",
+        "reviewed_by": "portal-9394d998b0ef-sector@example.invalid"
+      },
+      {
+        "name": "q8n92vhosq",
+        "status": "Applied",
+        "import_kind": "Assignments",
+        "baseline_reference": "Synthetic assignments 9394d998b0ef",
+        "reviewed_by": "portal-9394d998b0ef-sector@example.invalid"
+      }
+    ],
+    "imported_positions": [
+      {
+        "name": "IMPORT-9394d998b0ef-ONE",
+        "structural": 2
+      }
+    ],
+    "assignments": [
+      {
+        "name": "q9bph8nr94",
+        "position": "PORTAL-9394d998b0ef-0",
+        "valid_from": "2026-10-08",
+        "valid_until": "2026-10-12"
+      }
+    ],
+    "audit": [
+      {
+        "target_name": "q9m73pncps",
+        "operation": "apply_import",
+        "actor": "portal-9394d998b0ef-hr@example.invalid"
+      },
+      {
+        "target_name": "q9m73pncps",
+        "operation": "review_import",
+        "actor": "portal-9394d998b0ef-sector@example.invalid"
+      },
+      {
+        "target_name": "q8n92vhosq",
+        "operation": "apply_import",
+        "actor": "portal-9394d998b0ef-hr@example.invalid"
+      },
+      {
+        "target_name": "q8n92vhosq",
+        "operation": "review_import",
+        "actor": "portal-9394d998b0ef-sector@example.invalid"
+      }
+    ]
+  },
+  "cleanup": {
+    "run_id": "9394d998b0ef",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "17b6fdb69a327cd6f7d55a1a3155d124ed01142ef0f00850afb25d74f7aaf600",
+    "frontend/portal/src/OrganizationImports.tsx": "33df56d59b02bff402ecbf3bcf30b73569084cd4239e22371e2a381d62630b8e",
+    "frontend/portal/src/portal.css": "114f638392482231e2bdd16bc9d4d48702e85c80e1eb6bcbcc4bf55b162dac02",
+    "kandil_hr/portal/imports.py": "aa9a412f7f2d85b9ddaf2266f117ffdabe5eeb56bfe883b670aed736234aa0c7",
+    "kandil_hr/organization/api.py": "98b99b59632e947557cfc0967f381a74620ab7c8b230a95ec0ea7d0a07c21e36",
+    "kandil_hr/organization/csv_import.py": "71c939d157670b0ff1bfde4626a9be8255ea7ba560c61e33e3f28ef866bde568",
+    "kandil_hr/portal/import_fixture.py": "50cc0591d3977135f26172379fdb99f96520c7bdd1d135b3e30c6d0ba88ba351",
+    "docs/portal/test_imports.cjs": "8fa0063ff2486a521e1c8b51c5a6b34c30c192911eea160dbdaf357a5396ace8",
+    "kandil_hr/public/portal/portal.js": "06e612d67c29356655dd19e998a668db4f32d343a3f396e3d4e36d0c162ee48a"
+  },
+  "limits": [
+    "Synthetic local reviewed import journey; not full Sprint 2, security certification or production acceptance.",
+    "Assignment browser journey imports a closed historical interval; current occupancy has separate native regression evidence."
+  ]
+}

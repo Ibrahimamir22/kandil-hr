@@ -1261,3 +1261,7 @@ Unsupported structure operation or field.,نوع تغيير الهيكل أو ا
 Seats must be a positive whole number.,يجب أن يكون عدد المقاعد عددًا صحيحًا موجبًا.
 Organization references and labels must be text of at most 140 characters.,يجب أن تكون مراجع الهيكل ومسمياته نصوصًا لا تتجاوز 140 حرفًا.
 Decision comments must contain at most 2000 characters.,يجب ألا تتجاوز ملاحظة القرار 2000 حرف.
+Organization imports require the appropriate role and whole-company access.,يتطلب استيراد الهيكل دورًا مناسبًا وصلاحية على مستوى الشركة.
+Unknown import status.,حالة الاستيراد غير معروفة.
+Resolve unmatched employee and position references before saving.,صحح مراجع الموظفين والمناصب غير المطابقة قبل الحفظ.
+CSV or baseline reference changed. Validate it again before saving.,تغير محتوى الملف أو مرجعه. أعد التحقق قبل الحفظ.
