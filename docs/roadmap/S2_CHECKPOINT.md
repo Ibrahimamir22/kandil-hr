@@ -1,5 +1,7 @@
 # Sprint 2 checkpoint — organization browsing
 
+This read-only slice is now complemented by the [structural proposal/approval checkpoint](S2_STRUCTURE_CHECKPOINT.md). Its statuses supersede the earlier next-work list below; this document preserves the browsing evidence.
+
 Status: **in progress; first read-only portal slice verified**. This is a synthetic engineering checkpoint, not full Sprint 2 completion, HR acceptance or production readiness. The original register remains 72 passed / 4 partial / 4 blocked; these new checks are not added to that denominator.
 
 ## Available now

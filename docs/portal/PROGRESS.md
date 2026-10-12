@@ -4,7 +4,11 @@ Goal: replace the prototype's simulated interactions with personal-session, perm
 
 **Status: first connected milestone complete locally. HR acceptance and production readiness remain pending.**
 
-## Current Sprint 1 update
+## Current Sprint 2 update
+
+Organization browsing and reviewed structural proposals are connected. See [structural checkpoint](../roadmap/S2_STRUCTURE_CHECKPOINT.md) for evidence and remaining scope. Full Sprint 2 and HR/production acceptance remain incomplete.
+
+## Sprint 1 update
 
 Pending quantity changes now work through the AR/EN custom portal with a reviewed delta and retained input on denial. See the [current checkpoint](../roadmap/S1_CHECKPOINT.md) for source identity, final browser evidence and remaining work. The first-milestone results below remain historical.
 

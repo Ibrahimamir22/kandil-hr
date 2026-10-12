@@ -1,0 +1,115 @@
+{
+  "status": "PASS",
+  "run_id": "d5b3d2cef1f4",
+  "checked_at": "2026-10-12T20:48:32.908Z",
+  "checks": [
+    {
+      "name": "Personal requester login renders scoped dashboard",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero quantity rejected in form",
+      "status": "PASS"
+    },
+    {
+      "name": "EN portal creates and submits a real two-location request",
+      "status": "PASS"
+    },
+    {
+      "name": "Manager has no requester create control",
+      "status": "PASS"
+    },
+    {
+      "name": "Manager UI approval advances only to HR",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale second browser approval is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale error visible to reviewer",
+      "status": "PASS"
+    },
+    {
+      "name": "HR UI final approval creates both vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "One vacancy card per requested location",
+      "status": "PASS"
+    },
+    {
+      "name": "Assigned lead displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "Return UI changes request state and releases seats",
+      "status": "PASS"
+    },
+    {
+      "name": "Returned draft retains title and quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "UI revision resubmits revision two",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile RTL without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile shortage is a real server denial",
+      "status": "PASS"
+    },
+    {
+      "name": "Denied mobile form retains user input",
+      "status": "PASS"
+    },
+    {
+      "name": "English mobile LTR without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Language toggle retains form input",
+      "status": "PASS"
+    },
+    {
+      "name": "New server denial follows selected English language",
+      "status": "PASS"
+    },
+    {
+      "name": "Logout removes visible HR records",
+      "status": "PASS"
+    },
+    {
+      "name": "Different account cannot inherit prior dashboard or create access",
+      "status": "PASS"
+    },
+    {
+      "name": "Persisted per-location approved quantities correct",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript runtime errors",
+      "status": "PASS"
+    },
+    {
+      "name": "No external browser requests",
+      "status": "PASS"
+    }
+  ],
+  "requests": {
+    "approved": "j091e56gel",
+    "revised": "j1dlnj9l75"
+  },
+  "runtime_errors": [],
+  "external_origins": [],
+  "frontend_hashes": {
+    "src/main.tsx": "1e8e0b717d5d85bfac685f1dad82c78fbbd168e83ec716f87e97ab961f31eaf9",
+    "src/api.ts": "1cbd0b67ebc101d1a4b2477d55ec962ed340a81bf3a58fdb4d50ee5c85b4fb4f",
+    "src/portal.css": "8389fc1b122d63533ae063b89d8121b042d91922373c5ecbd5c0e086e8ba46ae",
+    "package-lock.json": "5ecf1abc9833748ed24e055072ef301cb1002d4770636e12d32987325ba64eb1"
+  }
+}

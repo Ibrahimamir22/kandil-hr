@@ -1,0 +1,66 @@
+{
+  "status": "FAIL",
+  "run_id": "2c953eee51d5",
+  "checked_at": "2026-10-12T20:42:52.319Z",
+  "checks": [
+    {
+      "name": "Ordinary author saves a structured capacity proposal",
+      "status": "PASS"
+    },
+    {
+      "name": "Proposal enters independent HR and CEO approval",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile reviewer returns with a recorded reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Revision retains old proposal and starts a new approval round",
+      "status": "PASS"
+    },
+    {
+      "name": "Separate CEO completes the reviewed capacity change",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic structural review fits mobile viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "New position UI creates one position after two independent approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "Structure journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "Concurrent duplicate HTTP saves produce one proposal"
+    }
+  ],
+  "cleanup": {
+    "run_id": "2c953eee51d5",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "1e8e0b717d5d85bfac685f1dad82c78fbbd168e83ec716f87e97ab961f31eaf9",
+    "frontend/portal/src/StructureChanges.tsx": "6bdb90d0a48bb4eabf8b1621313dc9fd2a12c6e47e94b5b8a3a423c0cf9b6fc1",
+    "frontend/portal/src/portal.css": "8389fc1b122d63533ae063b89d8121b042d91922373c5ecbd5c0e086e8ba46ae",
+    "kandil_hr/portal/structure.py": "f06a08ec4955e836b8a0c41c5c2edd74b39e62d560607370986b85f3436eb69f",
+    "kandil_hr/portal/reference_permissions.py": "25b9675de5e8eae7d4fff0e30fdba14d56fe735eff4ed2a3fbe5b893b31e443c",
+    "kandil_hr/recruitment/setup.py": "7dd0e6336e8c6af1047fe23740cc6c95197106534974682124363891eb702366",
+    "kandil_hr/translations/ar.csv": "850f344442d5dca157a1a561e150b9f90fe6c78cd1cc0b49f17194b48f08babd",
+    "kandil_hr/portal/structure_fixture.py": "263ee517a7626adda99e5aee47fdd75507c94fb5acd2ef8cf544962533f7618b",
+    "docs/portal/test_structure.cjs": "0c7190e642b97b5d28f36b29cc9b430c373adb24e14888578cb567aa76eaba16"
+  },
+  "limits": [
+    "Synthetic local structure command journey; not full Sprint 2 or production acceptance.",
+    "HTTP requests race independent transactions on one local database; no sustained capacity certification."
+  ]
+}

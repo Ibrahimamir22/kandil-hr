@@ -116,6 +116,10 @@ def install():
 
 	install_units()
 
+	from kandil_hr.portal.reference_permissions import install as install_reference_selection
+
+	install_reference_selection()
+
 	from kandil_hr.recruitment.ownership import install_ownership_fields
 
 	install_ownership_fields()

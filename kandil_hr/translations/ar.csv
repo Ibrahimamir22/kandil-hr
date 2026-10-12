@@ -1250,3 +1250,14 @@ The exception justification must contain at most 2000 characters.,يجب ألا 
 The headcount change was denied. Your request has not changed.,رُفض تعديل العدد الوظيفي. لم يتغير طلبك.
 The reservation ledger needs reconciliation before this revision.,يجب تسوية سجل الحجوزات قبل إجراء هذه المراجعة.
 WARN shortages require at least 10 trimmed characters. BLOCK shortages cannot proceed.,عند وجود عجز في وضع التحذير، يلزم مبرر من 10 أحرف على الأقل بعد استبعاد المسافات في البداية والنهاية. في وضع المنع، لا يمكن متابعة الطلب عند وجود عجز.
+This organization change is unavailable for your role or company scope.,تغيير الهيكل غير متاح لدورك أو نطاق شركتك.
+Too many company grants. Ask the administrator to review your scope.,عدد صلاحيات الشركات كبير جدًا. اطلب من المسؤول مراجعة نطاق صلاحياتك.
+Choose a supported organization reference.,اختر مرجعًا تنظيميًا مدعومًا.
+Unknown change status.,حالة التغيير غير معروفة.
+Only editable organization change fields are accepted.,يُسمح فقط بحقوق تعديل مقترح الهيكل المحددة.
+Choose a company and provide a reason of 3 to 2000 characters.,اختر الشركة وأدخل سببًا من 3 إلى 2000 حرف.
+Provide between one and 200 bounded operations.,أدخل من تغيير واحد إلى 200 تغيير ضمن الحجم المسموح.
+Unsupported structure operation or field.,نوع تغيير الهيكل أو الحقل غير مدعوم.
+Seats must be a positive whole number.,يجب أن يكون عدد المقاعد عددًا صحيحًا موجبًا.
+Organization references and labels must be text of at most 140 characters.,يجب أن تكون مراجع الهيكل ومسمياته نصوصًا لا تتجاوز 140 حرفًا.
+Decision comments must contain at most 2000 characters.,يجب ألا تتجاوز ملاحظة القرار 2000 حرف.

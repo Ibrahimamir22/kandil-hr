@@ -1,0 +1,255 @@
+{
+  "status": "PASS",
+  "run_id": "c8dee6c82b02",
+  "checked_at": "2026-10-12T20:44:19.214Z",
+  "checks": [
+    {
+      "name": "Ordinary author saves a structured capacity proposal",
+      "status": "PASS"
+    },
+    {
+      "name": "Proposal enters independent HR and CEO approval",
+      "status": "PASS"
+    },
+    {
+      "name": "Native resource update cannot bypass structural approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile reviewer returns with a recorded reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Revision retains old proposal and starts a new approval round",
+      "status": "PASS"
+    },
+    {
+      "name": "Separate CEO completes the reviewed capacity change",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic structural review fits mobile viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "New position UI creates one position after two independent approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent duplicate HTTP saves produce one proposal",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent preview retry keeps the exact reviewed version",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent conflicting final decisions have exactly one winner",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only role has no structural company choices",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only guessed proposal is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only direct mutation is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Unscoped actor cannot list or guess structural records",
+      "status": "PASS"
+    },
+    {
+      "name": "Committed ledgers match decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrency produced one saved proposal",
+      "status": "PASS"
+    },
+    {
+      "name": "Final concurrent decision has exactly one audit envelope",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JavaScript failures, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser verification",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "changes": [
+      {
+        "name": "gh3fj24tps",
+        "status": "Approved",
+        "reason": "Synthetic revised capacity proposal c8dee6c82b02",
+        "changes_json": "[{\"action\":\"Resize\",\"position\":\"PORTAL-c8dee6c82b02-0\",\"structural\":32}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-sector@example.invalid\"}],\"history\":[{\"changes\":[{\"action\":\"Resize\",\"position\":\"PORTAL-c8dee6c82b02-0\",\"structural\":31}],\"effective_on\":\"2026-10-12\",\"preview_hash\":\"da9cbf37305763a02f1b0d5ae92ea00d11cfc1aff186d7d7f1b96468d672f188\",\"reason\":\"Synthetic browser capacity proposal c8dee6c82b02\",\"round\":1,\"steps\":[{\"actor\":\"portal-c8dee6c82b02-hr@example.invalid\",\"authority\":\"HR Approval\",\"authority_position\":null,\"board_evidence\":null,\"board_member\":null,\"board_vice\":null,\"comment\":\"يرجى توضيح العدد المطلوب\",\"creation\":\"2026-10-12 23:44:13.124901\",\"decided_at\":\"2026-10-12 23:44:14.194861\",\"decision\":\"Returned\",\"docstatus\":0,\"doctype\":\"Kandil Approval Step\",\"idx\":1,\"modified\":\"2026-10-12 23:44:13.338065\",\"modified_by\":\"portal-c8dee6c82b02-manager@example.invalid\",\"name\":\"gh5rm767n2\",\"on_behalf_method\":\"\",\"on_behalf_note\":null,\"owner\":\"portal-c8dee6c82b02-manager@example.invalid\",\"parent\":\"gh3fj24tps\",\"parentfield\":\"approval_steps\",\"parenttype\":\"Kandil Structure Change\",\"principal\":\"portal-c8dee6c82b02-hr@example.invalid\",\"reviewed_snapshot\":\"{\\\"baseline\\\":\\\"87ce83ab77bc6427a9a2a1f66fd148d88a3c3d7d676b4dfb98f27b45944f7cca\\\",\\\"changes\\\":[{\\\"action\\\":\\\"Resize\\\",\\\"position\\\":\\\"PORTAL-c8dee6c82b02-0\\\",\\\"structural\\\":31}],\\\"effective_on\\\":\\\"2026-10-12\\\"}\",\"step_key\":\"264cda5eab9f42cface03e7f29d00ce0\",\"waiting_since\":\"2026-10-12 23:44:13.337525\"},{\"actor\":null,\"authority\":\"CEO Approval\",\"authority_position\":null,\"board_evidence\":null,\"board_member\":null,\"board_vice\":null,\"comment\":null,\"creation\":\"2026-10-12 23:44:13.124901\",\"decided_at\":null,\"decision\":\"Pending\",\"docstatus\":0,\"doctype\":\"Kandil Approval Step\",\"idx\":2,\"modified\":\"2026-10-12 23:44:13.338065\",\"modified_by\":\"portal-c8dee6c82b02-manager@example.invalid\",\"name\":\"gh57cspmb7\",\"on_behalf_method\":\"\",\"on_behalf_note\":null,\"owner\":\"portal-c8dee6c82b02-manager@example.invalid\",\"parent\":\"gh3fj24tps\",\"parentfield\":\"approval_steps\",\"parenttype\":\"Kandil Structure Change\",\"principal\":\"portal-c8dee6c82b02-sector@example.invalid\",\"reviewed_snapshot\":null,\"step_key\":\"734ffab439624ce18b10c4cad3393c65\",\"waiting_since\":null}]}],\"round\":2,\"skipped\":[{\"assignment\":\"ggkvavprse\",\"authority\":\"Department Approval\",\"position\":\"PORTAL-c8dee6c82b02-HEAD\",\"principal\":\"portal-c8dee6c82b02-manager@example.invalid\",\"reason\":\"Author self-approval\"}]}"
+      },
+      {
+        "name": "ghs4qrdj82",
+        "status": "Approved",
+        "reason": "Synthetic new position proposal c8dee6c82b02",
+        "changes_json": "[{\"action\":\"Create\",\"authority\":\"Department Approval\",\"branch\":\"العبور · c8dee6c82b02\",\"department\":\"الإنتاج · PORTAL-c8dee6c82b02 - Pc8dee\",\"designation\":\"فني تشغيل · PORTAL-c8dee6c82b02\",\"draft_key\":\"980a261f-6a1d-4a9e-b645-7998644a898c\",\"parent_position\":\"\",\"structural\":2,\"title\":\"Synthetic Quality Coordinator c8dee6c82b02\",\"title_ar\":\"منسق جودة تجريبي\"}]",
+        "created_positions_json": "{\"980a261f-6a1d-4a9e-b645-7998644a898c\":\"KPOS-00007\"}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[{\"draft_key\":\"980a261f-6a1d-4a9e-b645-7998644a898c\",\"reason\":\"Initial structure; independent HR and CEO required\"}]}"
+      },
+      {
+        "name": "gi384s25mn",
+        "status": "Approved",
+        "reason": "Synthetic concurrent structure c8dee6c82b02",
+        "changes_json": "[{\"action\":\"Resize\",\"position\":\"PORTAL-c8dee6c82b02-1\",\"structural\":31}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-c8dee6c82b02-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[{\"assignment\":\"ggkvavprse\",\"authority\":\"Department Approval\",\"position\":\"PORTAL-c8dee6c82b02-HEAD\",\"principal\":\"portal-c8dee6c82b02-manager@example.invalid\",\"reason\":\"Author self-approval\"}]}"
+      }
+    ],
+    "capacities": [
+      {
+        "name": "KCAP-31ef6d81ca9723619e4a9a5e",
+        "position": "KPOS-00007",
+        "structural": 2,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      },
+      {
+        "name": "KCAP-4a486ada4c9a443e7128ade1",
+        "position": "PORTAL-c8dee6c82b02-2",
+        "structural": 1,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      },
+      {
+        "name": "KCAP-c8b39e02b2220b395f852a1e",
+        "position": "PORTAL-c8dee6c82b02-1",
+        "structural": 31,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      },
+      {
+        "name": "KCAP-09bf49a27eb47fb1bc045481",
+        "position": "PORTAL-c8dee6c82b02-0",
+        "structural": 32,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      }
+    ],
+    "audit": [
+      {
+        "name": "7ae460fcb463624933fda0c1b0df5404e31b2e5d50a70ac870d34451953511db",
+        "target_name": "gh3fj24tps",
+        "operation": "submit",
+        "command_id": "6e448848-111f-4a17-87e6-61e37574e77f",
+        "actor": "portal-c8dee6c82b02-manager@example.invalid"
+      },
+      {
+        "name": "dfe9a10ed63dfcbbe5867deec84d81da1539f0711cd44bbe0c00defe96615dd8",
+        "target_name": "gh3fj24tps",
+        "operation": "decide",
+        "command_id": "e0654179-526d-4e22-96c9-2cd44b25edf4",
+        "actor": "portal-c8dee6c82b02-hr@example.invalid"
+      },
+      {
+        "name": "936f651ba2d40946c975d0cb98e78faf66c964714061d68ff29ad9e78d72bc5b",
+        "target_name": "gh3fj24tps",
+        "operation": "submit",
+        "command_id": "eaad818e-b6aa-4727-9691-6c95cfdc2960",
+        "actor": "portal-c8dee6c82b02-manager@example.invalid"
+      },
+      {
+        "name": "d64a78f2ba9e86974bb7c6faf876c86c59b9fb879eee9bc5bbd07e2cafe98b6f",
+        "target_name": "gh3fj24tps",
+        "operation": "decide",
+        "command_id": "e8310d67-4898-49f9-a066-2043e8b2733f",
+        "actor": "portal-c8dee6c82b02-hr@example.invalid"
+      },
+      {
+        "name": "e0dbb6a1ccc20ff7e7015c89badc5357086213e3bf413f9c6000f9e0b4c4294a",
+        "target_name": "gh3fj24tps",
+        "operation": "decide",
+        "command_id": "34c4851a-4c77-4086-a171-1ee61cd56692",
+        "actor": "portal-c8dee6c82b02-sector@example.invalid"
+      },
+      {
+        "name": "dec3050255413cb2ff8d430c1b4002bb11a359d59dbdc9da03e11a41653f1e3d",
+        "target_name": "ghs4qrdj82",
+        "operation": "submit",
+        "command_id": "a095d78d-f5e5-4aae-a526-e14d4ba4f62b",
+        "actor": "portal-c8dee6c82b02-manager@example.invalid"
+      },
+      {
+        "name": "f3cd86d0321642b94635a1f6203f82cda64b3e2e1c61bc5bef7f7043c976aedf",
+        "target_name": "ghs4qrdj82",
+        "operation": "decide",
+        "command_id": "66636b43-7488-46f2-8efa-319649551515",
+        "actor": "portal-c8dee6c82b02-hr@example.invalid"
+      },
+      {
+        "name": "305b111d0f9c5e9c07e4f7b60d4fc61ddb31da0ef95f4656a1a1b98906418322",
+        "target_name": "ghs4qrdj82",
+        "operation": "decide",
+        "command_id": "ec97dc20-9630-4caf-b083-9deb31c36d19",
+        "actor": "portal-c8dee6c82b02-sector@example.invalid"
+      },
+      {
+        "name": "e4e50e1d3413253954f20f93a2de294555ed3d801226741043c1c9bb9d9f5114",
+        "target_name": "gi384s25mn",
+        "operation": "submit",
+        "command_id": "db97948b-0f41-458c-bed4-c81aebd6e318",
+        "actor": "portal-c8dee6c82b02-manager@example.invalid"
+      },
+      {
+        "name": "94580a0c4f011c99465af4e7f8455c0b93b274f220e1dd39cd47e0fb6d872912",
+        "target_name": "gi384s25mn",
+        "operation": "decide",
+        "command_id": "104dd1fd-e9aa-4665-ae3b-c7f2137b7a6f",
+        "actor": "portal-c8dee6c82b02-hr@example.invalid"
+      },
+      {
+        "name": "3f66fdc1e9962d624ad268294e9927c557a4cd3ca16b760b54c979bb6519b868",
+        "target_name": "gi384s25mn",
+        "operation": "decide",
+        "command_id": "ca1dd790-917a-4f15-b8dd-741d49936618",
+        "actor": "portal-c8dee6c82b02-sector@example.invalid"
+      }
+    ]
+  },
+  "cleanup": {
+    "run_id": "c8dee6c82b02",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 4
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "1e8e0b717d5d85bfac685f1dad82c78fbbd168e83ec716f87e97ab961f31eaf9",
+    "frontend/portal/src/StructureChanges.tsx": "6bdb90d0a48bb4eabf8b1621313dc9fd2a12c6e47e94b5b8a3a423c0cf9b6fc1",
+    "frontend/portal/src/portal.css": "8389fc1b122d63533ae063b89d8121b042d91922373c5ecbd5c0e086e8ba46ae",
+    "kandil_hr/portal/structure.py": "40ef791c5011c5b2108f46992c3df4f8998c80f86e0c7c7d7ea2da0062034c61",
+    "kandil_hr/portal/reference_permissions.py": "25b9675de5e8eae7d4fff0e30fdba14d56fe735eff4ed2a3fbe5b893b31e443c",
+    "kandil_hr/recruitment/setup.py": "7dd0e6336e8c6af1047fe23740cc6c95197106534974682124363891eb702366",
+    "kandil_hr/translations/ar.csv": "850f344442d5dca157a1a561e150b9f90fe6c78cd1cc0b49f17194b48f08babd",
+    "kandil_hr/portal/structure_fixture.py": "d13c0ab21a675d5ee62f2b6e3b08b212b252118e50274214111fe1b9c7cdc522",
+    "docs/portal/test_structure.cjs": "f686beff54c519dba6c2eb0d4dc6c7b6ffde93b692e9311046e457a7819b2798"
+  },
+  "limits": [
+    "Synthetic local structure command journey; not full Sprint 2 or production acceptance.",
+    "HTTP requests race independent transactions on one local database; no sustained capacity certification."
+  ]
+}

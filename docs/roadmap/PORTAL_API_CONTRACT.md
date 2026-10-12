@@ -44,3 +44,9 @@ Delivery is currently local Notification Log delivery only. There is no proof of
 Verify ordinary positive roles and forbidden roles, cross-company/location access, disabled/revoked access, direct API/native bypass, duplicate and changed-payload replay, stale versions, transaction failure rollback, and actual persisted results. For concurrency-sensitive changes use independent connections. Verify AR/EN desktop/mobile screens with real sessions, not only mocked data or screenshots. Reuse existing commands instead of implementing alternate business rules in the frontend.
 
 Related: [roadmap](SPRINT_PLAN.md), [policy decisions](../phases_0_3/POLICY_DECISIONS.md), [release gates and decision owners](REMAINING_GATES.md).
+
+## Structural portal extension (Sprint 2)
+
+`portal/structure.py` connects reviewed organization changes. Company-wide grants are required for structural records; branch/department-only viewers retain the separate scoped directory. Draft save and preview have actor/company/operation receipts; submit and decisions retain native structure command receipts and audit. New target replay uses a locking read under Company to avoid an earlier transaction snapshot missing the just-committed record.
+
+The submitted comparison projects only whitelisted position before-values from the matching submission audit; raw audit envelopes, employee records and broad reconciliation snapshots are excluded. Branch/Designation are shared name catalogs with explicit select-only rules for structural authors; the portal additionally checks the selected company. The after-migrate installer records this setup in source. See [structural checkpoint](S2_STRUCTURE_CHECKPOINT.md) for proof and limits.

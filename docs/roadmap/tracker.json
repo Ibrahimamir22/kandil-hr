@@ -151,7 +151,11 @@
         {
           "id": "S2-02",
           "description": "Connect effective-dated assignments, structural revisions and independent organization approvals.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Structural create/resize/reparent/close proposal editor, preview, independent HR/CEO decisions, return/revise and immutable submitted before-values connected. Effective-dated assignment editing and import remain open.",
+          "evidence": [
+            "S2_STRUCTURE_CHECKPOINT.md"
+          ]
         },
         {
           "id": "S2-03",
@@ -166,7 +170,11 @@
         {
           "id": "S2-05",
           "description": "Show dated history and differences; prohibit silent overwrite of historical assignments.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Returned structural rounds retain their proposals, reasons and decisions; current submitted comparisons use the immutable submit audit. Complete structural/JD/assignment history and differences remain open.",
+          "evidence": [
+            "S2_STRUCTURE_CHECKPOINT.md"
+          ]
         }
       ],
       "acceptance": [
@@ -658,8 +666,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed editing/imports and full S2 acceptance remain open.",
-    "evidence": "S2_CHECKPOINT.md",
-    "next": "Connect reviewed structural change preview, version checks and independent approval in the portal; then imports and JD editing/history."
+    "summary": "Structural proposal and independent approval portal connected; organization read slice retained. See checkpoint for exact tests, permission setup and remaining work.",
+    "evidence": "S2_STRUCTURE_CHECKPOINT.md",
+    "next": "Connect reviewed organization imports and assignment reconciliation, then JD editing/approvals and full history acceptance."
   }
 }

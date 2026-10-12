@@ -1,0 +1,59 @@
+{
+  "status": "FAIL",
+  "run_id": "f30aa4739ba8",
+  "checked_at": "2026-10-12T20:38:43.865Z",
+  "checks": [
+    {
+      "name": "Ordinary author saves a structured capacity proposal",
+      "status": "PASS"
+    },
+    {
+      "name": "Proposal enters independent HR and CEO approval",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile reviewer returns with a recorded reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Revision retains old proposal and starts a new approval round",
+      "status": "PASS"
+    },
+    {
+      "name": "Separate CEO completes the reviewed capacity change",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic structural review fits mobile viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Structure journey failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "page.waitForFunction: Timeout 20000ms exceeded."
+    }
+  ],
+  "cleanup": {
+    "run_id": "f30aa4739ba8",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "1e8e0b717d5d85bfac685f1dad82c78fbbd168e83ec716f87e97ab961f31eaf9",
+    "frontend/portal/src/StructureChanges.tsx": "6bdb90d0a48bb4eabf8b1621313dc9fd2a12c6e47e94b5b8a3a423c0cf9b6fc1",
+    "frontend/portal/src/portal.css": "8389fc1b122d63533ae063b89d8121b042d91922373c5ecbd5c0e086e8ba46ae",
+    "kandil_hr/portal/structure.py": "f06a08ec4955e836b8a0c41c5c2edd74b39e62d560607370986b85f3436eb69f",
+    "kandil_hr/portal/structure_fixture.py": "263ee517a7626adda99e5aee47fdd75507c94fb5acd2ef8cf544962533f7618b",
+    "docs/portal/test_structure.cjs": "4bebabe62bc64089fa7d60e7fa5fb7aaf1897d5abb1760a338ad24b2879d48d1"
+  },
+  "limits": [
+    "Synthetic local structure command journey; not full Sprint 2 or production acceptance.",
+    "HTTP requests race independent transactions on one local database; no sustained capacity certification."
+  ]
+}
