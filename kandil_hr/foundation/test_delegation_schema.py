@@ -124,6 +124,7 @@ def repair_known_legacy_fixture():
 	before = frappe.db.count("Kandil Security Event", {"reference": name, "action": "Delegation changed"})
 	with delegation.effect():
 		doc.revoked = 1
+		doc.revocation_reason = "Revoke exact disabled synthetic legacy fixture"
 		doc.save(ignore_permissions=True)
 	after = frappe.db.count("Kandil Security Event", {"reference": name, "action": "Delegation changed"})
 	if (cint(doc.revoked), doc.approval_status, after - before) != (1, "Revoked", 1):

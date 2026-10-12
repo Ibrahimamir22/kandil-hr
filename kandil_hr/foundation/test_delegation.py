@@ -90,6 +90,7 @@ class TestDelegation(TestRecruitmentCommands):
 		)
 		with acting_as(self.users["sector"]):
 			grant.revoked = 1
+			grant.revocation_reason = "Synthetic explicit stop reason"
 			grant.save()
 		grant = self.grant("APPROVALS")
 		self.assertIsNone(
@@ -105,6 +106,7 @@ class TestDelegation(TestRecruitmentCommands):
 		self.submit(other.name)
 		with acting_as(self.users["sector"]):
 			grant.revoked = 1
+			grant.revocation_reason = "Synthetic explicit stop reason"
 			grant.save()
 		with self.rejected(frappe.PermissionError):
 			self.decide(other.name, "delegate")
@@ -172,6 +174,7 @@ class TestDelegation(TestRecruitmentCommands):
 		)
 		grant.reload()
 		self.assertEqual(grant.revoked, 1)
+		self.assertEqual(grant.revocation_reason, new["reason"])
 		self.assertEqual(
 			(grant.process_scope, grant.approved_by, str(grant.approved_on), grant.decision_key), original
 		)
@@ -210,6 +213,7 @@ class TestDelegation(TestRecruitmentCommands):
 		pending = self.grant(principal="ceo")
 		with acting_as(self.users["sector"]):
 			pending.revoked = 1
+			pending.revocation_reason = "Synthetic explicit stop reason"
 			pending.save()
 		with self.rejected(frappe.ValidationError):
 			self.approval(pending)
@@ -219,12 +223,26 @@ class TestDelegation(TestRecruitmentCommands):
 			self.approval(third)
 		third.reload()
 		self.assertEqual(third.approval_status, "Pending CEO")
+		frappe.db.set_value("User", self.users["ceo"], "enabled", 1)
+		self.approval(third)
+		third.reload()
+		approved = (third.approved_by, str(third.approved_on), third.decision_reason)
+		payload = third.as_dict()
+		payload.update(revoked=1, revocation_reason="CEO delegated period has ended")
+		from frappe.client import save
+
+		with acting_as(self.users["sector"]):
+			save(frappe.as_json(payload))
+		third.reload()
+		self.assertEqual((third.approved_by, str(third.approved_on), third.decision_reason), approved)
+		self.assertEqual((third.revoked, third.approval_status), (1, "Revoked"))
 
 	def test_native_revoke_requires_current_actor_scope_but_allows_disabled_principal(self):
 		grant = self.grant()
 		frappe.db.set_value("Kandil Access Grant", self.grants["sector"], "revoked", 1)
 		with self.rejected(frappe.PermissionError), acting_as(self.users["sector"]):
 			grant.revoked = 1
+			grant.revocation_reason = "Synthetic explicit stop reason"
 			grant.save()
 		grant.reload()
 		self.assertFalse(grant.revoked)
@@ -232,6 +250,7 @@ class TestDelegation(TestRecruitmentCommands):
 		frappe.db.set_value("User", self.users["manager"], "enabled", 0)
 		with acting_as(self.users["sector"]):
 			grant.revoked = 1
+			grant.revocation_reason = "Synthetic explicit stop reason"
 			grant.save()
 		grant.reload()
 		self.assertEqual((grant.revoked, grant.approval_status), (1, "Revoked"))
@@ -250,6 +269,7 @@ class TestDelegation(TestRecruitmentCommands):
 		self.assertIsNone(delegation.find_delegation(req, self.users["manager"], self.users["delegate"]))
 		with acting_as(self.users["sector"]):
 			old.revoked = 1
+			old.revocation_reason = "Synthetic explicit stop reason"
 			old.save()
 		self.assertEqual((old.revoked, old.delegation_version), (1, 1))
 		another = legacy(self.grant())
@@ -270,6 +290,49 @@ class TestDelegation(TestRecruitmentCommands):
 		with self.rejected(frappe.TimestampMismatchError):
 			self.approval(ceo_old)
 
+	def test_native_revocation_requires_fresh_reason_and_keeps_original_immutable(self):
+		from frappe.client import save
+
+		grant = self.grant()
+		original = grant.reason
+		before = frappe.db.count("Kandil Security Event", {"reference": grant.name})
+		for reason in (None, "", "  ", "ab", "x" * 2001):
+			payload = grant.as_dict()
+			payload.update(revoked=1, revocation_reason=reason)
+			with self.rejected(frappe.ValidationError), acting_as(self.users["sector"]):
+				save(frappe.as_json(payload))
+			self.assertFalse(frappe.get_doc("Kandil Delegation", grant.name).revoked)
+		self.assertEqual(frappe.db.count("Kandil Security Event", {"reference": grant.name}), before)
+		payload = grant.as_dict()
+		payload.update(revoked=1, revocation_reason="  Return from leave  ")
+		with acting_as(self.users["sector"]):
+			save(frappe.as_json(payload))
+		grant.reload()
+		self.assertEqual((grant.reason, grant.revocation_reason), (original, "Return from leave"))
+		self.assertEqual((grant.revoked, grant.approval_status), (1, "Revoked"))
+		self.assertEqual(frappe.db.count("Kandil Security Event", {"reference": grant.name}), before + 1)
+		for field, value in (
+			("revocation_reason", ""),
+			("revocation_reason", "Replacement"),
+			("reason", "Rewritten"),
+		):
+			payload = grant.as_dict()
+			payload[field] = value
+			with self.rejected(frappe.ValidationError), acting_as(self.users["sector"]):
+				save(frappe.as_json(payload))
+		grant.reload()
+		self.assertEqual((grant.reason, grant.revocation_reason), (original, "Return from leave"))
+
+	def test_revocation_reason_cannot_be_preloaded_on_active_delegation(self):
+		# Keep the user outside the rejected insertion's savepoint.
+		self.actor("delegate", ["Kandil Approver"])
+		with self.rejected(frappe.ValidationError):
+			self.grant(revocation_reason="Preloaded old justification")
+		grant = self.grant()
+		with self.rejected(frappe.ValidationError), acting_as(self.users["sector"]):
+			grant.revocation_reason = "Preloaded old justification"
+			grant.save()
+
 
 def run():
 	if (
@@ -288,7 +351,7 @@ def run():
 	):
 		raise RuntimeError("Requires isolated synthetic parity Administrator test context")
 	names = sorted(name for name in TestDelegation.__dict__ if name.startswith("test_"))
-	assert len(names) == 8
+	assert len(names) == 10
 	result = unittest.TextTestRunner(verbosity=2).run(
 		unittest.TestSuite(TestDelegation(name) for name in names)
 	)

@@ -33,6 +33,10 @@ DEFAULT_MODULES = [
     'kandil_hr.recruitment.test_sla.run',
     'kandil_hr.recruitment.test_privacy.run',
     'kandil_hr.foundation.test_payroll_boundary.run',
+    'kandil_hr.foundation.test_command_audit.run',
+    'kandil_hr.recruitment.test_command_audit.run',
+    'kandil_hr.recruitment.test_headcount_contract.run',
+    'kandil_hr.organization.test_document_delivery.run',
 ]
 
 

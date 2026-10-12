@@ -1,8 +1,8 @@
 # Native HR acceptance runbook / دليل اختبار الموارد البشرية
 
-This is a test procedure, not a test result. Use the local synthetic test site `http://localhost:8101`. Do not run these cases on real staff data or the main site. Do not reset/reseed an existing site as part of reviewing this guide.
+This is a test procedure, not a test result. Use the isolated local synthetic parity site `http://localhost:8102` (`kandil-parity.localhost`). Preserve the earlier sites on ports 8100 and 8101. Do not run these cases on real staff data or the main site. Do not reset/reseed an existing site as part of reviewing this guide.
 
-هذا دليل خطوات وليس شهادة نجاح. الاختبار على بيانات تجريبية فقط في المنفذ 8101. لا تستخدم بيانات موظفين حقيقية، ولا تمسح قاعدة البيانات الحالية.
+هذا دليل خطوات وليس شهادة نجاح. الاختبار على بيانات تجريبية فقط في المنفذ 8102. حافظ على الموقعين السابقين في المنفذين 8100 و8101. لا تستخدم بيانات موظفين حقيقية، ولا تمسح قاعدة البيانات الحالية.
 
 ## Accounts and languages / الحسابات واللغات
 
@@ -88,10 +88,26 @@ Repeating the same completed outcome returns the original Employee/Assignment/
 Onboarding links without an additional occupancy change, including after a later
 assignment episode. Changed replay facts/reason fail.
 
-تظل إعادة نفس النتيجة مرتبطة بالسجلات الأصلية دون تكرار احتساب العدد. لا توجد
-حاليًا عملية معتمدة لإلغاء التحاق سابق أو عكس التكليف؛ لا تحذف سجلات الموظفين
-أو تغيّر نهايات التكليف للتحايل على ذلك. حالات تصحيح الالتحاق وإعادة فتح الشاغر
-تظل معلّقة حتى تحديد عقد عكس معتمد واختباره.
+A separate bounded correction is implemented through **Job Offer → Void Incorrect
+Joining**, available to the configured company HR authority. Test it only for an
+unchanged external-hire joining with unused draft onboarding. It retains all
+historical records, marks the assignment/onboarding voided and the employee
+inactive, and restores one approved open seat without changing structural or
+reserved capacity. Hold/Freeze states remain in effect. A replay must not release
+another seat. Later operational use, including the supported payroll/HR references,
+blocks this correction; it is not a general transfer, exit or payroll reversal.
+See [Ownership and joining review](OWNERSHIP_AND_JOINING_REVIEW.md) for the exact
+boundaries and manual checks.
+
+تظل إعادة نفس النتيجة مرتبطة بالسجلات الأصلية دون تكرار احتساب العدد. توجد الآن
+عملية منفصلة محدودة هي **إلغاء تسجيل مباشرة بالخطأ (Void Incorrect Joining)**
+من عرض العمل، لمسؤول الموارد البشرية المحدد للشركة. تُستخدم فقط قبل الاستخدام
+التشغيلي اللاحق ومع مسودة تهيئة غير مستخدمة. تحتفظ بالسجلات والتاريخ، وتلغي أثر
+التكليف على الإشغال، وتجعل الموظف غير نشط، وتعيد مقعدًا معتمدًا واحدًا دون تغيير
+السعة الهيكلية أو المحجوزة. يجب ألا يعيد تكرار الأمر مقعدًا آخر، وتبقى حالات
+التعليق والتجميد محفوظة. لا تحذف الموظف أو تعدّل تاريخه للتحايل على القيود؛ هذه
+ليست عملية عامة للنقل أو إنهاء الخدمة أو عكس الرواتب. راجع
+[دليل المسؤوليات وتصحيح المباشرة](OWNERSHIP_AND_JOINING_REVIEW.md).
 
 Run only on the explicitly opted-in isolated parity site:
 
@@ -126,7 +142,9 @@ and notifies the requester locally. The requester cannot invoke this action.
   affect their seats. A request containing confidential HR notes cannot expand
   into a different capacity scope. Field-only corrections remain possible.
 - Changing a request does not reverse actual joining, edit payroll, or move an
-  employee. Joining reversal is still a separate unimplemented workflow.
+  employee. The separate **Void Incorrect Joining** action has the bounded
+  pre-operational-use contract described in
+  [Ownership and joining review](OWNERSHIP_AND_JOINING_REVIEW.md).
 
 زيادة العدد تحتاج إلى تعديل مرتبط وإعادة اعتماد. تخفيض العدد لا يقل عن الملتحقين
 فعليًا. نقل الموقع ينقل المقاعد الشاغرة فقط، ولا ينقل الموظفين أو سجلات تكليفهم.
@@ -143,3 +161,68 @@ register does not enable unrestricted native data export.
 من قائمة الوظائف التنظيمية اختر **تنزيل سجل الوظائف التنظيمية** وحدد المرشحات
 داخل نافذة التنزيل. لا يوسّع التصدير صلاحيات المستخدم ولا يتضمن الرواتب أو بيانات
 الموظفين أو الملاحظات السرية.
+
+## Delegation revocation / إلغاء التفويض
+
+1. On the synthetic site, use a scoped Sector Approver account to open an active
+   **Kandil Delegation**. Record its process, dates, version and an earlier completed
+   delegated decision. Select **Delegation actions → Revoke delegation**, enter a
+   reason, and save through the native action.
+2. Keep the delegate's existing browser session open. Attempt a **new** decision
+   that previously depended on this delegation through both UI and API: it must
+   fail. Do not mistake replay of an already completed command for new authority.
+   The earlier decision, actor/principal, delegation version and revocation reason
+   must remain recorded.
+3. Test an out-of-process action against an APPROVALS-only or TEAM-only delegation;
+   it must not inherit the other process. Test disabled principal/delegate and
+   expired dates separately. For a CEO delegation, use **New delegation version**
+   and verify it stays **Pending CEO** until the currently configured CEO principal
+   explicitly approves; a previous approval must not authorize the new version.
+
+افتح تفويضًا تجريبيًا نشطًا بحساب معتمد القطاع ذي النطاق المناسب، ثم اختر
+**إلغاء التفويض (Revoke delegation)** وأدخل السبب. من جلسة المفوَّض إليه المفتوحة
+جرّب قرارًا جديدًا يعتمد على التفويض؛ يجب رفضه من الواجهة والـ API، مع بقاء القرار
+السابق وهوية المنفذ والأصيل والنسخة وسبب الإلغاء. إعادة أمر مكتمل ليست قرارًا
+جديدًا. اختبر نطاق العملية والتاريخ وتعطيل كل طرف على حدة. نسخة تفويض الرئيس
+التنفيذي الجديدة تظل معلّقة حتى اعتماده الصريح، ولا ترث اعتماد النسخة القديمة.
+
+## Local document capture / حفظ مراسلة المستند محليًا
+
+These review steps accompany the final 13 native document checks and seven browser
+groups linked in CHECKPOINT.md. They are a walkthrough, not a substitute for the
+individual evidence or HR acceptance.
+
+1. As an authorized HR/manager account, open a saved **Approved Kandil JD Revision**.
+   Select **Documents → Capture document delivery locally**. Choose eligible
+   synthetic portal recipients (at most ten), Arabic or English, and **Job
+   Description** or **Worker Card**. Enter an optional non-sensitive note and
+   select **Capture locally**.
+2. Open **Captured document deliveries** and the relevant immutable **Kandil
+   Document Delivery**. Use **Download captured mail** and inspect the captured
+   mail's HTML and PDF for the chosen language, approved revision and intended
+   recipient. Verify **Captured locally** and no provider transmission. This
+   composes a local mail artifact; it does **not** send external email or prove
+   inbox delivery.
+3. Repeat the exact API command ID and payload: no duplicate capture or local
+   notification. A changed payload with the same ID, stale revision, unapproved
+   revision or ineligible recipient must be rejected.
+4. Compare allowed and disallowed branch accounts. Revoke read/print access or
+   disable a synthetic recipient, then test list, direct detail, captured-mail
+   download, native print and attachment paths. Check every scope included in a
+   worker card, not just its JD's primary scope. Previously captured artifacts
+   must not grant new access after revocation. Record each surface independently;
+   native scope, list/detail/download/replay/queued-delivery and print-permission
+   checks have evidence; the capture button alone does not prove other surfaces.
+
+هذه خطوات مراجعة مرتبطة بأدلة الاختبارات التقنية في CHECKPOINT.md؛ ولا تعني
+اعتماد الموارد البشرية. تم اختبار حدود النطاق وصلاحيات الطباعة. افتح نسخة وصف وظيفي محفوظة ومعتمدة،
+واختر **Capture document delivery locally** من قائمة المستندات. حدد مستلمين
+تجريبيين مؤهلين، واللغة العربية أو الإنجليزية، ووصفًا وظيفيًا أو بطاقة عامل.
+راجع المراسلة المحفوظة وملفي HTML وPDF عبر **Download captured mail**.
+الحالة **Captured locally** تعني حفظًا محليًا فقط؛ لم يُرسل بريد خارجي.
+
+أعد نفس الأمر للتأكد من عدم التكرار، ثم اختبر نسخة قديمة ومستلمًا غير مؤهل.
+قارن حسابين بنطاقي فروع مختلفين، وألغِ صلاحية القراءة أو الطباعة أو عطّل المستلم
+التجريبي. اختبر القائمة والرابط المباشر والتنزيل والطباعة والمرفقات، مع فحص جميع
+النطاقات المضمّنة في بطاقة العامل. سجّل نتيجة كل مسار؛ ظهور الزر وحده لا يثبت
+نجاح حماية الخصوصية.

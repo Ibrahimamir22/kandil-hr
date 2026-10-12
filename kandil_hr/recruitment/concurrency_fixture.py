@@ -234,6 +234,7 @@ def inspect(run_id):
 	counts = {}
 	for dt, field in [
 		("Kandil Command Receipt", "request"),
+		("Kandil Command Audit", "target_name"),
 		("Kandil Request Revision", "request"),
 		("Kandil Recruitment Event", "request"),
 		("Kandil Notification Outbox", "reference_name"),

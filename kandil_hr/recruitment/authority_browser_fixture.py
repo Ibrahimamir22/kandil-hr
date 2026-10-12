@@ -305,6 +305,7 @@ def cleanup(run_id):
 				d = frappe.get_doc("Kandil Delegation", name)
 				if not d.revoked:
 					d.revoked = 1
+					d.revocation_reason = "Synthetic authority browser fixture cleanup"
 					d.save()
 		with acting_as(data["users"]["hr"]["email"]):
 			app = frappe.get_doc("Job Applicant", data["application"])

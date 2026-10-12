@@ -1099,3 +1099,106 @@ PAPER,مستند ورقي
 OTHER,أخرى
 This legacy delegation is inactive. Create a reviewed new version before using it.,هذا التفويض القديم غير نشط. أنشئ إصداراً جديداً تمت مراجعته قبل استخدامه.
 Live headcount guidance is unavailable for your role.,إرشادات العدد الوظيفي المباشرة غير متاحة لدورك.
+A recorded delegation revocation reason is immutable.,لا يمكن تغيير سبب إلغاء التفويض بعد تسجيله.
+A revocation reason can only be recorded when revoking a delegation.,لا يمكن تسجيل سبب الإلغاء إلا عند إلغاء التفويض.
+Acting Principal,صاحب الصلاحية الأصلي
+After State,الحالة بعد الإجراء
+Approved JD Revision,الإصدار المعتمد للوصف الوظيفي
+Approved document captured locally,تم حفظ نسخة المستند المعتمد محليًا
+Approved document captured locally. No email has been sent.,تم حفظ نسخة المستند المعتمد محليًا. لم يتم إرسال أي بريد إلكتروني.
+Approved job description,الوصف الوظيفي المعتمد
+At most 500 characters.,بحد أقصى 500 حرف.
+Audit Identity,معرّف سجل التدقيق
+Audit authority contains unreviewed fields,تتضمن بيانات صلاحية التدقيق حقولًا لم تتم مراجعتها
+Audit before and after must identify the command target,يجب أن تحدد بيانات التدقيق قبل الإجراء وبعده السجل المستهدف
+Audit child state contains unreviewed fields,تتضمن حالة السجل الفرعي في التدقيق حقولًا لم تتم مراجعتها
+Audit effect targets must belong to the request company.,يجب أن تتبع السجلات المتأثرة المسجلة في التدقيق شركة الطلب.
+Audit numbers must be finite,يجب أن تكون القيم الرقمية في التدقيق أعدادًا محدودة
+Audit payload contains an unsupported or secret field,تتضمن بيانات التدقيق حقلًا غير مدعوم أو سريًا
+Audit payload must use explicit primitive projections,يجب أن تقتصر بيانات التدقيق على حقول محددة بقيم بسيطة
+Audit payload nesting exceeds the supported bound,يتجاوز تداخل بيانات التدقيق الحد المدعوم
+Audit projection exceeds the supported bound,تتجاوز بيانات التدقيق المحددة الحد المدعوم
+Audit related targets must be unique,يجب ألا تتكرر السجلات المرتبطة في التدقيق
+"Audit requires exact command, receipt and reviewed version",يتطلب التدقيق تحديد الأمر وإيصال تنفيذه والإصدار الذي تمت مراجعته بدقة
+Audit state contains fields outside its reviewed projection,تتضمن حالة التدقيق حقولًا خارج النطاق الذي تمت مراجعته
+Audit state requires a named projected target,تتطلب حالة التدقيق سجلًا مستهدفًا محدد الاسم والحقول
+Audit target does not match its command domain,لا يتوافق السجل المستهدف في التدقيق مع نطاق الأمر
+Before State,الحالة قبل الإجراء
+Capture Key,معرّف النسخة المحفوظة
+Capture document delivery locally,حفظ نسخة إرسال المستند محليًا
+Capture locally,حفظ نسخة محلية
+Capture requires the reviewed approved document revision.,يتطلب حفظ النسخة الإصدار المعتمد من المستند الذي تمت مراجعته.
+Captured At,وقت حفظ النسخة
+Captured HTML and PDF Mail,نسخة الرسالة المحفوظة بصيغتي HTML وPDF
+Captured Recipient Email,البريد الإلكتروني للمستلم في النسخة المحفوظة
+Captured document deliveries,نسخ إرسال المستندات المحفوظة
+Captured locally,تم حفظ نسخة محلية
+Captured locally. No email has been sent.,تم حفظ نسخة محلية. لم يتم إرسال أي بريد إلكتروني.
+Choose a supported document and a note of at most 500 characters.,اختر مستندًا مدعومًا وأدخل ملاحظة لا تتجاوز 500 حرف.
+Client Command ID,معرّف الأمر من الواجهة
+Command Domain,نطاق الأمر
+Command Group,مجموعة الأوامر
+Command Operation,عملية الأمر
+Command Receipt,إيصال تنفيذ الأمر
+Command audit identity was reused with different content.,تمت إعادة استخدام معرّف تدقيق الأمر بمحتوى مختلف.
+Command audit records are server generated and immutable.,ينشئ الخادم سجلات تدقيق الأوامر ولا يمكن تعديلها.
+Command audit records cannot be deleted.,لا يمكن حذف سجلات تدقيق الأوامر.
+Command audit records cannot be renamed.,لا يمكن تغيير أسماء سجلات تدقيق الأوامر.
+Command audit requires an authenticated actor.,يتطلب تدقيق الأمر منفّذًا مسجّل الدخول.
+Command audit requires an authorized server transition.,يتطلب تدقيق الأمر إجراءً مصرحًا به على الخادم.
+Content Hash,بصمة المحتوى
+Creates a private HTML and PDF mail capture. No email is sent. Select at most ten eligible portal users.,يحفظ نسخة خاصة من الرسالة بصيغتي HTML وPDF دون إرسال بريد إلكتروني. اختر عشرة مستخدمين مؤهلين من البوابة كحد أقصى.
+Document Kind,نوع المستند
+Document capture content does not match its integrity hash.,لا يتطابق محتوى نسخة المستند مع بصمة التحقق من سلامته.
+Document command ID was already used with different content.,سبق استخدام معرّف أمر المستند بمحتوى مختلف.
+Document delivery capture is not available.,حفظ نسخة إرسال المستند غير متاح.
+Document delivery captures are immutable and created by the capture command.,ينشئ أمر حفظ النسخة سجلات إرسال المستندات ولا يمكن تعديلها.
+Document delivery history cannot be deleted.,لا يمكن حذف سجل إرسال المستندات.
+Document delivery history cannot be renamed.,لا يمكن تغيير أسماء سجلات إرسال المستندات.
+Document scope changed. Reload before capturing.,تغير نطاق المستند. أعد تحميله قبل حفظ نسخة.
+Download captured mail,تنزيل نسخة الرسالة المحفوظة
+Enter a fresh revocation reason between 3 and 2000 characters.,أدخل سببًا جديدًا لإلغاء التفويض يتراوح بين 3 و2000 حرف.
+Envelope Content Hash,بصمة محتوى حزمة الأمر
+Exact Reviewed Payload,البيانات الدقيقة التي تمت مراجعتها
+Headcount exception justification must contain at least 10 characters.,يجب ألا يقل مبرر استثناء العدد الوظيفي عن 10 أحرف.
+Invalid command audit identity.,معرّف تدقيق الأمر غير صالح.
+Kandil Command Audit,تدقيق أوامر قنديل
+Kandil Document Delivery,إرسال مستندات قنديل
+Language,اللغة
+No email has been sent. Open the captured document to review its HTML and PDF.,لم يتم إرسال أي بريد إلكتروني. افتح النسخة المحفوظة من المستند لمراجعتها بصيغتي HTML وPDF.
+Occurred At,وقت حدوث الإجراء
+Occurred At With Timezone,وقت حدوث الإجراء والمنطقة الزمنية
+Only authorized HR staff or managers may capture an approved document.,يمكن لموظفي الموارد البشرية أو المديرين المصرح لهم فقط حفظ نسخة من مستند معتمد.
+Only eligible active portal users may receive this document.,يمكن فقط لمستخدمي البوابة النشطين والمؤهلين استلام هذا المستند.
+Only eligible active portal users with email may receive this document.,يمكن فقط لمستخدمي البوابة النشطين والمؤهلين ممن لديهم بريد إلكتروني استلام هذا المستند.
+Portal recipients,المستلمون من مستخدمي البوابة
+Private Command Envelope,حزمة بيانات الأمر الخاصة
+Reason for stopping this delegation; the original delegation reason is retained.,سبب إيقاف هذا التفويض؛ يُحتفظ بسبب التفويض الأصلي.
+Reload the saved revision before capturing.,أعد تحميل الإصدار المحفوظ قبل حفظ نسخة إرسال.
+Request projection requires a hiring request,تتطلب بيانات الطلب المحددة وجود طلب توظيف
+Reviewed Version,الإصدار الذي تمت مراجعته
+Revocation Reason,سبب إلغاء التفويض
+Revoke delegation,إلغاء التفويض
+Schema Version,إصدار بنية البيانات
+Select between one and ten distinct portal users.,اختر من مستخدم واحد إلى عشرة مستخدمين مختلفين من البوابة.
+Select portal users from the recipient list.,اختر مستخدمي البوابة من قائمة المستلمين.
+Sender,المرسل
+Structure projection requires a structure change,تتطلب بيانات الهيكل المحددة وجود طلب تغيير هيكلي
+Target Record,السجل المستهدف
+The application does not belong to this request.,لا يتبع طلب التقدم هذا طلب التوظيف المحدد.
+The document is too large for local delivery capture.,حجم المستند أكبر من الحد المسموح لحفظ نسخة إرسال محلية.
+The document position is no longer available.,لم تعد الوظيفة المرتبطة بالمستند متاحة.
+The generated document PDF is invalid or too large.,ملف PDF الذي تم إنشاؤه للمستند غير صالح أو يتجاوز الحجم المسموح.
+The recipient is outside this document's permitted scope.,المستلم خارج النطاق المسموح لهذا المستند.
+The recipient no longer has access to this approved document.,لم تعد لدى المستلم صلاحية الوصول إلى هذا المستند المعتمد.
+The sender account needs a valid email address.,يتطلب حساب المرسل عنوان بريد إلكتروني صالحًا.
+The vacancy does not belong to this request.,لا يتبع الشاغر طلب التوظيف المحدد.
+This related audit target needs an explicit reviewed projection,يتطلب السجل المرتبط في التدقيق تحديد حقوله ومراجعتها صراحةً
+ar,العربية
+en,الإنجليزية
+jd,الوصف الوظيفي
+worker,بطاقة الوظيفة
+Included Document Scopes,نطاقات الوصول المضمّنة في المستند
+The captured document has no valid included scope record.,لا تحتوي نسخة المستند المحفوظة على سجل صالح لنطاقات الوصول المضمّنة.
+The captured document is outside your current access scope.,نسخة المستند المحفوظة خارج نطاق صلاحيات الوصول الحالية لديك.
+The captured document requires current read and print permission.,تتطلب نسخة المستند المحفوظة صلاحيات حالية للقراءة والطباعة.

@@ -1,0 +1,9 @@
+{
+  "mode": "inventory",
+  "checked_at": "2026-10-12T05:40:25.023191+00:00",
+  "counts_by_site_method": [],
+  "statistics": {},
+  "deleted_count": 0,
+  "deleted_job_id_sha256": [],
+  "note": "Read-only inventory before final regression; no queue cleanup performed."
+}

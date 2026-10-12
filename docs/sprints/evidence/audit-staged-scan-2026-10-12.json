@@ -1,0 +1,5 @@
+{
+  "indexes_scanned": 2,
+  "issues": [],
+  "scope": "Known local credentials, runtime filenames and private-key markers; not a complete external secret scanning service"
+}

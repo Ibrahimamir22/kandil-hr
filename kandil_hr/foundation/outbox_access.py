@@ -17,6 +17,7 @@ from kandil_hr.foundation.mutation_access import (
 )
 
 SCOPED_TYPES = {
+	"Kandil Document Delivery",
 	"Kandil Capacity",
 	"Kandil Organization Settings",
 	"Kandil Position",
@@ -144,6 +145,10 @@ def lock_delivery(name):
 						user=hint.recipient,
 						capability="sensitive" if doc.doctype == "Kandil Grade Band" else "read",
 					)
+				if doc.doctype == "Kandil Document Delivery":
+					from kandil_hr.organization.document_delivery import assert_current_capture_access
+
+					assert_current_capture_access(doc, hint.recipient)
 				if not current_role_read(doc, hint.recipient, roles) or (
 					doc.doctype == "Kandil Hiring Request"
 					and not request_relationship(doc, hint.recipient, roles)

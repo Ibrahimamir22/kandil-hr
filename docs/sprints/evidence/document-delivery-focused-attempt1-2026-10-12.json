@@ -1,0 +1,55 @@
+{
+  "suite": "document-delivery",
+  "checked_at": "2026-10-12T05:25:35.572159+00:00",
+  "site": "kandil-parity.localhost",
+  "total": 8,
+  "successful": false,
+  "checks": [
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_actual_ar_en_mime_contains_pdf_and_local_receipt",
+      "status": "ERROR",
+      "error_type": "ValidationError"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_capture_privacy_native_list_download_and_immutability",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_capture_replay_exact_and_payload_collision_denied",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_draft_and_stale_version_sender_scope_and_generic_email_denied",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_external_candidate_disabled_missing_email_and_scope_denied_atomically",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_picker_only_eligible_and_no_private_global_directory",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_revoked_or_disabled_recipient_suppresses_delivery_and_replay",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_ten_distinct_users_pass_duplicates_dedupe_eleven_fail_atomically",
+      "status": "PASS"
+    }
+  ],
+  "source_hashes": {
+    "test_document_delivery.py": "cdb1eed825bfe7c9f3d02ff4affc6d11d326207c9e5543b4041e35e68a036dc5",
+    "document_delivery.py": "dea3da4183b599a7cc08b6d34b79669f046a61354f964760a0410ce618cc994c",
+    "documents.py": "58b9bf49ec936736266774eb5f00c5aaf5ce61d74abdb92164a56552cabff682"
+  },
+  "source_unchanged": true,
+  "fixtures_rolled_back": true,
+  "limitations": [
+    "Captured locally only; no email/provider transmission",
+    "AR/EN actual PDF MIME tested; recipient boundary cases stub PDF generation",
+    "Native JD read/print role and scope remain mandatory; no broad portal or finance permissions added"
+  ]
+}

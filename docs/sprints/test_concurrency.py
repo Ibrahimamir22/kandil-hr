@@ -134,6 +134,7 @@ def main():
         assert sum(r['status']=='Pending' for r in after['requests'])==5, 'Pending count mismatch'
         assert sum(r['status']=='Draft' for r in after['requests'])==15, 'Denied requests mutated'
         assert counts_delta(after['counts'],before['counts'])['Kandil Command Receipt']==5, 'Denied commands left receipts'
+        assert counts_delta(after['counts'],before['counts'])['Kandil Command Audit']==5, 'Admission audits do not match successful submissions'
         evidence['checks'].append(dict(name='20 submissions contend for five BLOCK seats',status='PASS',
             **sanitized_batch(results,peak),ledger=after['ledger']))
         selected=next(r['name'] for r in after['requests'] if r['status']=='Pending')
@@ -154,7 +155,7 @@ def main():
             after=bench('inspect',run_id);doc=next(r for r in after['requests'] if r['name']==selected)
             assert sum(s['decision']=='Pending' for s in doc['steps'])==expected_pending,'Approval advanced more than once'
             delta=counts_delta(after['counts'],before['counts'])
-            assert delta['Kandil Command Receipt']==1 and delta['Kandil Request Revision']==1 and delta['Kandil Recruitment Event']==1,'Concurrent approval duplicated effects'
+            assert delta['Kandil Command Receipt']==1 and delta['Kandil Request Revision']==1 and delta['Kandil Recruitment Event']==1 and delta['Kandil Command Audit']==1,'Concurrent approval duplicated effects'
             assert after['counts']['Job Opening']==expected_openings,'Unexpected duplicate opening'
             assert delta['Kandil Notification Outbox']==(2 if actor=='manager' else 1),'Concurrent approval duplicated notifications'
             if actor=='hr':assert after['ledger']==dict(structural=5,occupied=0,reserved=4,open_slots=1,available=0),'Finalization ledger mismatch'

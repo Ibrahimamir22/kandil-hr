@@ -1,84 +1,76 @@
-# Command audit envelope — proposed next sprint
+# Command audit envelope — implemented scope and remaining gaps
 
-Status: **design only, 12 October 2026**. This document does not install a DocType, change a command, or establish a new acceptance result. No database was accessed for this design review. Existing acceptance definitions and policy decisions remain unchanged.
+Status: **implemented selected adapters; final native regression verified**, 12 October 2026. The 23-suite serial gate passed on unchanged source. See [execution evidence](../sprints/evidence/audit-document-final-2026-10-12.json) and [checkpoint](../sprints/CHECKPOINT.md) for the tested commit and separate browser/HTTP results.
 
-## Requirement and current gap
+**AT-AUD-001-01 remains partial.** The implemented wrappers now record exact command envelopes, but they do not cover every decision boundary. **AT-AUD-001-02 is separate:** these are immutable local application records, not an external tamper-evidence anchor. Baseline definitions and policy decisions are unchanged.
 
-[REQUIREMENTS.md](REQUIREMENTS.md), AT-AUD-001-01 requires a decision to record its actor, acting principal, before/after values, exact command and timestamp, with ordinary API editing/deletion denied. The frozen reference's `src/Audit.gs::audit_` and `auditDiff_` record identity, on-behalf identity and field differences; `src/Config.gs::AUDIT_LOG` defines those columns.
+## Requirement and implementation
 
-Current records provide useful parts of this evidence:
+AT-AUD-001-01 requires a decision to record its actor, acting principal, before/after values, exact command and timestamp, with ordinary API editing/deletion denied. The frozen reference `src/Audit.gs::audit_` / `auditDiff_` and `src/Config.gs::AUDIT_LOG` provide the original identity, on-behalf identity and field-difference contract.
 
-- `recruitment.api.command` stores an immutable command receipt with actor, dedupe identity, payload hash and result. The hash alone cannot reconstruct the operation or reviewed arguments.
-- `Kandil Request Revision` stores reviewed request snapshots. `Kandil Recruitment Event` stores action, actor, optional principal and a limited resulting state. Neither is an explicit before/after envelope linked to the exact client command.
-- `organization.api.structure_command` stores command ID, actor, payload hash and result in command history. Structural approval steps retain the reviewed snapshot and decision identity, but not a unified command envelope.
-- Other workflows maintain their own histories and replay checks. Their existence does not prove complete command-audit coverage.
+`foundation/command_audit.py` implements the `Kandil Command Audit` DocType and a server-only `record_command` helper. It permits a finite domain/operation registry, explicit primitive projections and named targets; it rejects unsupported fields, secret keys, nonfinite numbers, arbitrary objects, duplicate related targets and mismatched command targets. No unrestricted `doc.as_dict()` becomes an audit projection.
 
-**AT-AUD-001-01 remains partial.** This proposal supplies no executable proof of the missing fields, atomic linkage or every decision boundary. A central wrapper alone would still leave related-object effects and commands outside that wrapper uncovered.
-
-AT-AUD-001-02 remains separate. [POLICY_DECISIONS.md](POLICY_DECISIONS.md), PD-09 requires a protected key/anchor operator and redaction/verification design. An immutable application record does not detect database-operator alteration, reordered rows or a removed tail. This sprint proposal contains no HMAC chain, external anchor or claim of tamper-evident parity.
-
-## Proposed immutable record
-
-Introduce `Kandil Command Audit` only after the contract and integration scope are accepted. Suggested fields:
-
-| Field group | Required meaning |
+| Stored group | Current meaning |
 |---|---|
-| Identity | Schema version, domain, target DocType/name, company/department, unique command-audit key and existing receipt/history reference |
-| Exact command | Operation name, original client command ID, reviewed version, canonical reviewed payload and its digest |
-| Authority | Actual authenticated actor; acting principal and active approval step captured before the handler advances the route; explicit on-behalf evidence references where applicable |
-| Time | Server-recorded successful effect time; site-local Datetime plus an unambiguous ISO timestamp with offset/timezone in the envelope |
-| State | Explicit before/after projections for the primary target and each reviewed affected target; schema identifiers for each projection |
-| Result | Canonical returned result and references to resulting records; no session credentials |
+| Identity | Schema version, domain, operation, target DocType/name, company/department, client command ID and existing receipt/history reference |
+| Reviewed input | Reviewed version plus canonical reviewed endpoint payload, retained as data rather than only a hash |
+| Authority | Authenticated actor; original frozen approval principal and step; completed Board member/method/note/evidence fields when relevant |
+| Time | Server-recorded occurrence time, ISO timestamp with offset, explicit `Africa/Cairo` timezone and native Datetime field |
+| State | Immutable copies of primary before/after projections and explicitly selected related targets |
+| Result | Returned result and generated-record references |
+| Identity and content fingerprints | SHA-256 identity from domain/target/actor/client command; repeatable content fingerprint excluding occurrence time |
 
-For commands without delegated authority, record the actor as acting principal and an explicit direct-action mode. For approval commands, derive the principal from the locked frozen step, never from a client-supplied principal or the next pending step. Board decisions must preserve their actual authority and evidence identities without pretending the normal delegation model authorized them.
+The captured payload is the payload passed to the command wrapper after existing endpoint parsing/normalization. It is **not** the raw HTTP body, authentication/session metadata or a retrospective reconstruction of arguments. Request projections use the reviewed shared-request allowlist. Restricted envelopes are separate from requester-readable Recruitment Events and Request Revisions.
 
-Preserve the reviewed payload exactly after the endpoint's existing parsing/normalization. Do not silently trim or redact arguments while labeling them exact. A reviewed operation adapter must reject unsupported payload shapes or explicitly identify excluded secret material. Session IDs, cookies, passwords and API keys are never audit payloads. Commands that currently have no client command ID need an explicit compatible contract or a clearly named server invocation identity; do not fabricate a client ID retrospectively.
+For ordinary direct commands, principal defaults to actor. Approval adapters freeze the active step before the handler advances it. Recruitment Board decisions additionally preserve the frozen route principal and the actual Chair/Vice decision member; an external recorder remains the actor. This is distinct from normal delegation.
 
-## Adapter coverage map
+`related_added_to_capture` and `related_removed_from_capture` describe membership in the adapter's capture. They are not general assertions that an object was created/deleted anywhere in the database. New records receive no fabricated before state.
 
-| Existing boundary | Proposed capture point and remaining work |
+## Boundaries currently wired
+
+| Boundary | Current capture | Remaining limitation |
+|---|---|---|
+| `recruitment.api.command` | Submit, decide, revise, HR review, send-to-CEO, amend and cancel; request/line/approval state, frozen authority, exact command, receipt and result | This is the wrapper's finite registry, not all HR decisions. Rejected commands roll back rather than producing durable denial records. |
+| Amendment creation and approval | Parent/child request projections, related capacities/openings, newly created amendment included after creation | No invented pre-creation state; atomic pending-quantity editing is still absent. |
+| Vacancy state/team/pin and bulk assignment | Related Job Openings and capacities; explicit team state; affected Applicant ownership/task projections for team changes | Bulk operations produce envelopes for their underlying request commands with existing batch payload/replay rules; this does not establish a separate global batch audit or a new concurrency test result. |
+| `ownership.application_command` through recruitment wrapper | Selected Applicant owner/task before/after, request/version/result | After-commit disabled-user cleanup remains a separate unwired invocation boundary. |
+| `corrections.correct_approved` | Request, old/new capacities and openings; old related targets retained after relocation so released state remains visible | Only bounded approved corrections; no general compensation or payroll reversal. |
+| `joining_corrections.void_joining` | Offer, Applicant, Employee, Position Assignment, draft Onboarding, Capacity and Opening projections under the request wrapper | This captures the bounded reversal command, not the original joining/outcome creation boundary. |
+| `organization.api.structure_command` | Submit and decide; Structure Change, frozen approval step, reviewed preview/baseline, command history receipt; changed Positions/Hierarchy/Capacity and resulting Structure Snapshot | Does not wrap every native organization save, import review/apply or JD/grade approval. |
+
+The actual adapters are `recruitment/command_audit.py` and `organization/command_audit.py`. They obtain related records through the locked request/structure changes and reviewed arguments. Recruitment preserves old captured targets in the after set when relocation removes them from current lines. Structure capture includes created Position IDs after approval and dated hierarchy records, rather than only the parent request's status.
+
+## Boundaries still missing this exact envelope
+
+Existing histories below remain useful evidence, but are not relabeled as exact command envelopes:
+
+| Boundary | Existing evidence and missing work |
 |---|---|
-| `recruitment.api.command` | Capture request before state after authorization, domain locks, replay lookup and version check; capture resulting state after handler. Covers submit/decide/revise/review/escalation/amend/cancel at the command boundary. Amend needs a separate newly created revision target projection. |
-| `recruitment.vacancies` commands and bulk assignment | These call the recruitment wrapper, but need explicit Job Opening/team and affected Applicant projections. Bulk commands need a shared batch correlation ID plus one envelope per underlying command, all in the same transaction. |
-| `recruitment.ownership.application_command` | Calls the recruitment wrapper. Add Applicant ownership/task before/after projections; request-only snapshots cannot describe these effects. |
-| `recruitment.corrections.correct_approved` | Calls the recruitment wrapper. Add reviewed Capacity, line and Job Opening projections for reductions and relocation. |
-| `recruitment.joining_corrections.void_joining` | Calls the recruitment wrapper. Add Offer, Employee, Position Assignment, Onboarding, Capacity and Opening projections. Its existing before/after note is useful but does not substitute for exact command linkage. |
-| `recruitment.joining.record_outcome` via `pilot.api.record_outcome` | Bypasses the recruitment command wrapper and uses its own final-outcome replay checks. Needs a separate adapter and an explicit invocation/receipt contract; capture Joined/No Show/Withdrawn and all resulting records. |
-| `organization.api.structure_command` | Capture Structure Change, approval step and resulting snapshot; add explicit changed Position/Hierarchy/Capacity projections for applied operations. Preserve reviewed baseline and preview hashes. |
-| `organization.api.approve_revision` | Separate boundary for JD Revision and Grade Band approval; capture reviewed and approved state plus any supersession reference. No current client command ID: contract must be explicit. |
-| `organization.api.review_import` / `apply_import` | Separate review/apply boundaries. Preserve reviewed import digest and affected records with bounded projections; do not duplicate unrestricted raw CSV or arbitrary uploaded data into a public log. |
-| `foundation.delegation.decide` / `revise` and native revoke | Separate decision/revision keys and native lifecycle. Capture approval status, process scope, effective dates, linked versions, actor/principal and retained old decision evidence. |
-| Account-disable ownership cleanup | Runs after commit and on scheduler retry outside a client command. Record a system invocation with the known initiating actor when available, explicit unknown-origin retry identity otherwise, plus affected owners/tasks. Never fabricate the original human actor. |
-| Native draft edits, confidential note creation, organization record saves and access-grant administration | Outside the two central wrappers. Inventory separately; existing Version/security/note history must not be relabeled as exact-command coverage. Confidential note content must remain isolated. |
+| `pilot.api.record_outcome` / joining creation | Final-outcome guards and linked resulting records exist. Original Joined/No Show/Withdrawn execution bypasses `recruitment.api.command`; it needs its own compatible invocation/receipt contract and before/after adapter. |
+| `organization.api.approve_revision` | JD/Grade approval identity, dated revisions and independence checks exist. `approve_revision` is allowed by the serializer registry, **but the endpoint has no `record_command` call**; a registry entry is not integration. |
+| `organization.api.review_import` / `apply_import` | Reviewed digest, frozen rows, reviewer, results and generated snapshots exist. Explicit review/apply envelopes and bounded affected-record adapters remain missing. |
+| `foundation.delegation.decide` / `revise` / native revoke | Decision/revision keys, immutable scope versions, approval identity and security events exist. Dedicated fresh revocation reason was added. None of these currently writes this central envelope. |
+| After-commit/scheduled disabled-account ownership handoff | Original initiator or explicitly unknown system origin and owner/task history are preserved. A separate system invocation envelope is not installed. |
+| Native drafts, confidential HR notes, Department/organization saves, access grants and policy configuration | Native Versions, dedicated histories or security events cover selected changes. There is no universal exact-command wrapper; confidential notes must stay isolated. |
+| Document delivery capture / local outbox operations | These have their own local capture/receipt/history contracts, not the central command envelope. A local mail capture is not an email delivery assertion. |
+| Denied/failed commands | Transaction rollback prevents committed business/audit effects. Durable failed-attempt auditing requires a separate transaction/privacy/retention design. |
 
-The map describes adapters to implement, not adapters already installed. It corrects the initially suspected void-joining gap: `void_joining` does use the recruitment wrapper, although its multi-record effects still require their own projections.
+## Transaction, replay and privacy contract
 
-## Privacy and application immutability
+The source keeps command authorization and domain locking, validates the current receipt/version, freezes before state and authority, executes the business effect, and inserts receipt/history plus envelope in the same transaction. The helper does not commit or call external services. An audit insertion error propagates so the caller can roll back business effects and receipts. Authorized replay returns the original result without a new envelope; changed payload under the same identity is refused. Native savepoint and after-commit callback isolation pass in the linked integration tests.
 
-The new record should have no ordinary-role permissions. Initially allow review only through the documented Administrator break-glass boundary; any future business audit viewer requires an explicit scoped, redacted read contract. This is not production operator-policy acceptance.
+In recruitment, related targets are selected and locked after initial read/scope checks and before the shared User/grant locks. Primary before-state and frozen authority capture follow current authorization and replay checks. Three fresh 20-request HTTP batches now verify capacity admission and exactly one audit/receipt/effect for each replayed Manager and HR approval. This does not establish independent concurrency proof across every adapter. See the linked checkpoint for the current HTTP evidence.
 
-Use `recruitment.privacy.shared_snapshot` for the request projection. Do not put raw payloads, candidate information, salary fields, HR notes or full `doc.as_dict()` values into the existing requester-readable Recruitment Event or Request Revision. Organization and related-object adapters need explicit field allowlists; adding a custom field must not automatically expand audit payloads. Restricted records can contain reviewed confidential arguments, so retention and later audit-viewer access need deliberate treatment.
+The DocType's permission contract allows Administrator read-only review; normal business-role list/detail/read/share are denied. Controller rules forbid ordinary insertion, editing, deletion and rename, and the type is registered with protected secondary-surface handling. The installed tests cover selected native surfaces. Full authenticated browser/export/file/report coverage for this new DocType is not established merely by registration or adjacent-type tests. A future scoped business audit viewer needs an explicit redaction/read contract.
 
-Server-only insertion and unconditional ordinary edit/delete/rename denial must apply through native document APIs. Register the new type with existing protected attachment/share/report boundaries; deny direct sharing, child/file alias bypasses, downloads, unrestricted export and prepared-report access. Do not rely only on empty DocType permissions: stale DocShare and native secondary surfaces need tests. Administrator/database maintenance remains outside the ordinary-API immutability guarantee.
+The record's content hash is a local consistency/replay fingerprint. Database operators could change content and fingerprints, remove rows or remove the tail; local immutability cannot independently detect that. PD-09's protected key/anchor operator, redaction, retention and external verification design remain unresolved. There is no implemented external anchor/HMAC chain or production operator-policy acceptance.
 
-## Transaction and replay contract
+Historical receipts/events remain historical partial evidence. No migration fabricates missing old commands, before states or principals.
 
-1. Keep existing authorization and lock order. The audit module must not acquire a new Company/User lock after later domain locks or run an external service call.
-2. After locking and checking the existing receipt, return an authorized replay without new audit effects. Reject the same command identity with different reviewed arguments.
-3. Freeze explicit before projections and authority identity before invoking the handler. Keep primitive serialized copies so later in-memory mutation cannot rewrite the before state.
-4. Execute the authorized effect, capture current resulting records under the same transaction/locks, then insert its receipt and audit envelope before commit. A unique identity must prevent duplicate envelopes on concurrent replay.
-5. Any handler, outbox, receipt or audit failure rolls back the entire command. Do not commit inside the audit helper or swallow audit errors while committing business changes.
-6. Multi-command bulk operations keep their existing whole-transaction rollback semantics. Native savepoints and whole-transaction retries must not leak buffered audit state between attempts.
+## Verified assertions in the final native gate
 
-Historical receipts/revisions remain historical partial evidence. Do not generate fabricated before states, principal identities or command arguments for them. If a future migration adds references, mark their provenance and missing fields explicitly.
+* `foundation.test_command_audit`: deterministic copying/serialization, secrets/nonfinite/unsupported objects, related allowlists, exact identity/authority/time/replay, native forgery/edit/delete/rename denial, ordinary read/list/share denial, stale-share cleanup, actual private file/download/ZIP/alias denial, native export/query-report denial, transaction rollback and no invented before state for newly captured records.
+* `recruitment.test_command_audit`: exact submit/decision payload and generated opening, audit-failure rollback/retry, delegated HR principal, new amendment capture, relocation released/added capacities, team handoff Applicant effects, void-joining effects and fixture callback cleanup isolation.
+* `organization.integration_tests`: exact submit/approval envelope identity and reviewed input; real actor/frozen principal/step; one envelope on replay; resize Position/Capacity before/after; final Create Position/Capacity/Hierarchy/Snapshot capture; future Reparent old-parent interval closure and new-parent start date.
 
-## Next sprint and acceptance gates
-
-1. Agree schema and a finite operation/target adapter registry; inventory all decision paths against the table above. Start with the recruitment and structure wrappers plus JD/grade approval, while keeping other paths explicitly incomplete.
-2. Implement a small serializer/projector and server-only record controller with pure tests for stable serialization, preserved before values, unknown fields and explicit principal capture.
-3. Integrate each selected boundary without changing authorization or replay semantics. Add related-target adapters before claiming complete before/after coverage for a command.
-4. Run native synthetic tests for direct, delegated and Board decisions; exact argument/version reconstruction; ordinary insert/edit/delete/rename denial; list/detail/export/file/share/report privacy; and administrator review.
-5. Prove same-command concurrent replay produces one effect, one receipt and one envelope. Inject failure at handler/outbox/audit insertion and verify no effect/receipt/audit remains; test bulk rollback and savepoint/retry isolation.
-6. Publish an operation-by-operation coverage inventory and exact executed evidence. Keep AT-AUD-001-01 partial until its full agreed decision inventory is covered. Keep AT-AUD-001-02 unresolved until its separate protected-operator design and destructive tamper tests exist.
-
-No production or HR-policy acceptance is inferred from these engineering gates.
+The linked final gate executes foundation audit 13 (5 pure/8 native), recruitment audit 8 and organization 51 checks plus 15 grouped scenarios. Focused failures remain preserved in the evidence directory. AT-AUD-001-01 remains **partial** until the agreed decision inventory and required surfaces are covered; AT-AUD-001-02 remains separate pending external tamper-evidence design and proof.

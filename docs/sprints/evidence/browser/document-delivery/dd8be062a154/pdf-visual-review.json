@@ -1,0 +1,20 @@
+{
+  "checked_at": "2026-10-12T05:45:34.738650+00:00",
+  "status": "PASS",
+  "source": "Actual recipient EML attachments from final7 browserrun",
+  "pages": {
+    "ar": 1,
+    "en": 1
+  },
+  "checks": [
+    "Arabic glyph shaping and RTL headings/body readable",
+    "English headings/body readable",
+    "No clipped or overlapping text in both synthetic samples",
+    "Dates and document revision visible"
+  ],
+  "pdf_sha256": {
+    "ar": "61471018048dc5420a36b19a703be2c2d6e80e7fdb056d5c236654f2547cdfc6",
+    "en": "ada66ecbb077797868d1928bc1ea8370ff230f0ef3091edc7d9b0c5c73b8a5b7"
+  },
+  "limits": "Synthetic titles/IDs remain English where fixture Arabic values are absent. Sample visual proof does not certify arbitrary long-content layout or HR terminology."
+}

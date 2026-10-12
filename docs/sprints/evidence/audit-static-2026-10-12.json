@@ -1,0 +1,225 @@
+{
+  "checked_at": "2026-10-12T05:41:56.283414+00:00",
+  "status": "PASS",
+  "syntax_counts": {
+    ".py": 193,
+    ".json": 34,
+    ".js": 18
+  },
+  "ruff": "All checks passed!",
+  "baseline": {
+    "baseline": "PASS",
+    "requirements": 98,
+    "batch_requirements": 40,
+    "batch_cases": 80,
+    "source_hashes_checked": true,
+    "translation_csv": "PASS",
+    "translation_rows": 1204,
+    "extracted_keys": 1108,
+    "missing_translation_keys": [],
+    "raw_throw_or_deny_calls_to_review": [
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 24,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 78,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 160,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 193,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 206,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 63,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 133,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 173,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 188,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 190,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 199,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 203,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 59,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 66,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 68,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 125,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 127,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 129,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 131,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/models.py",
+        "line": 144,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 53,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 178,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 201,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 251,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 258,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 313,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/api.py",
+        "line": 352,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 157,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 174,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 193,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 201,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 206,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 66,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 106,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 196,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 76,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 121,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 215,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 78,
+        "call": "deny"
+      },
+      {
+        "file": "kandil_hr/pilot/extensions.py",
+        "line": 147,
+        "call": "deny"
+      }
+    ],
+    "limits": "Static extraction cannot prove runtime localization, RTL, PDF layout or dynamic/interpolated messages. A translated key still needs a runtime translation call; deny() may translate centrally."
+  },
+  "limits": "Static extraction does not prove runtime localization, RTL or HR terminology."
+}

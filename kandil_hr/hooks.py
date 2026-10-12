@@ -467,3 +467,12 @@ permission_query_conditions["Department"] = "kandil_hr.organization.units.query"
 doc_events["Job Applicant"]["validate"].append("kandil_hr.recruitment.ownership.validate_applicant")
 doc_events["User"]["on_update"].append("kandil_hr.recruitment.ownership.schedule_disabled_handoff")
 scheduler_events.setdefault("hourly", []).append("kandil_hr.recruitment.ownership.process_disabled_handoffs")
+
+# Restricted exact-command evidence has no ordinary business-role read surface.
+has_permission["Kandil Command Audit"] = "kandil_hr.foundation.command_audit.permission"
+permission_query_conditions["Kandil Command Audit"] = "kandil_hr.foundation.command_audit.query"
+has_permission["Kandil Document Delivery"] = "kandil_hr.organization.document_delivery.permission"
+permission_query_conditions["Kandil Document Delivery"] = "kandil_hr.organization.document_delivery.query"
+
+doctype_js["Kandil JD Revision"] = "public/js/document_delivery.js"
+doctype_js["Kandil Document Delivery"] = "public/js/document_delivery.js"

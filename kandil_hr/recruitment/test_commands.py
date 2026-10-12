@@ -55,6 +55,10 @@ class TestRecruitmentCommands(unittest.TestCase):
 		self.addCleanup(frappe.set_user, self.original_user)
 		frappe.set_user("Administrator")
 		self.point = "recruitment_" + uuid.uuid4().hex
+		# Frappe savepoint rollback only restores SQL; prevent User/contact and
+		# other after-commit callbacks for rolled-back fixture rows from leaking
+		# into bench.execute's final commit. Preserve pre-existing callbacks.
+		self.after_commit_count = len(frappe.db.after_commit)
 		frappe.db.savepoint(self.point)
 		self.addCleanup(self.rollback)
 		self.company = frappe.db.exists("Company", "Kandil PARITY TEST A")
@@ -193,6 +197,7 @@ class TestRecruitmentCommands(unittest.TestCase):
 
 	def rollback(self):
 		frappe.db.rollback(save_point=self.point)
+		frappe.db.after_commit.truncate(self.after_commit_count)
 		frappe.local.document_cache = {}
 
 	@staticmethod

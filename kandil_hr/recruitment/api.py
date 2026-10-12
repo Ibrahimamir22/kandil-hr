@@ -59,6 +59,16 @@ def command(name, operation, command_id, expected_version, payload, handler):
 	lock_capacities(doc)
 	for opening_name in sorted({x.job_opening for x in doc.lines if x.job_opening}):
 		frappe.db.sql("SELECT name FROM `tabJob Opening` WHERE name=%s FOR UPDATE", (opening_name,))
+	from kandil_hr.foundation.command_audit import record_command
+	from kandil_hr.recruitment.command_audit import (
+		completed_authority,
+		frozen_authority,
+		related_state,
+		request_state,
+	)
+
+	# Lock related domain records before the shared sorted User/grant order.
+	related_before = related_state(doc, operation, payload)
 	users = {frappe.session.user, doc.requested_by} | {s.principal for s in doc.approval_steps if s.principal}
 	for step in doc.approval_steps:
 		if step.get("board_vice"):
@@ -113,6 +123,8 @@ def command(name, operation, command_id, expected_version, payload, handler):
 		return json.loads(prior.result_json)
 	if get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This record changed. Reload it before deciding."), frappe.TimestampMismatchError)
+	before = request_state(doc)
+	authority = frozen_authority(doc, operation)
 	with transition():
 		result = handler(doc)
 		frappe.get_doc(
@@ -125,6 +137,24 @@ def command(name, operation, command_id, expected_version, payload, handler):
 				result_json=dump(result),
 			)
 		).insert(ignore_permissions=True)
+		authority = completed_authority(doc, authority)
+		record_command(
+			domain="recruitment",
+			operation=operation,
+			command_id=command_id,
+			receipt_key=key,
+			reviewed_version=expected_version,
+			target=doc,
+			before=before,
+			after=request_state(doc),
+			payload=payload,
+			result=result,
+			principal=authority.get("board_member") or authority.get("frozen_principal"),
+			step_key=authority.get("step_key"),
+			authority=authority,
+			related_before=related_before,
+			related_after=related_state(doc, operation, payload, result, previous=related_before),
+		)
 		return result
 
 
@@ -333,10 +363,9 @@ def submit_request(name, command_id, expected_version):
 				0, line.proposed_qty - (cint(old[line.capacity].approved_qty) if parent else 0)
 			)
 			excess = excess or (line.reserved_qty > 0 and line.reserved_qty > caps[line.capacity].available)
-		if excess and not (doc.exception_reason or "").strip():
-			frappe.throw(_("Headcount exception requires a justification."))
-		if excess and config.headcount_mode == "Block":
-			frappe.throw(_("Headcount blocking is enabled. Adjust capacity or requested quantity."))
+		from kandil_hr.recruitment.headcount_contract import enforce_shortage
+
+		enforce_shortage(excess=excess, mode=config.headcount_mode, reason=doc.exception_reason)
 		chain = resolve_chain(doc, excess)
 		from kandil_hr.organization.occupancy import capture_basis
 

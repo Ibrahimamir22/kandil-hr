@@ -217,6 +217,17 @@ class TestAuthorityAudit(unittest.TestCase):
 			"Kandil Recruitment Event", filters={"request": doc.name, "action": "Approve"}
 		)
 		self.assertEqual(event.principal, self.f.users["vice"])
+		value = json.loads(
+			frappe.get_last_doc(
+				"Kandil Command Audit", filters={"target_name": doc.name, "operation": "decide"}
+			).envelope_json
+		)
+		self.assertEqual(
+			(value["actor"], value["principal"], value["authority_mode"]),
+			(self.f.users["vice"], self.f.users["vice"], "direct"),
+		)
+		self.assertEqual(value["authority"]["frozen_principal"], self.f.users["chair"])
+		self.assertEqual(value["authority"]["board_member"], self.f.users["vice"])
 
 	def test_brd00102_sector_recording_needs_method_note_private_proof(self):
 		doc = self.reach_board(self.request())
@@ -264,6 +275,18 @@ class TestAuthorityAudit(unittest.TestCase):
 		self.assertEqual(
 			(step.on_behalf_method, step.on_behalf_note), (args["on_behalf_method"], args["on_behalf_note"])
 		)
+		value = json.loads(
+			frappe.get_last_doc(
+				"Kandil Command Audit", filters={"target_name": doc.name, "operation": "decide"}
+			).envelope_json
+		)
+		self.assertEqual(
+			(value["actor"], value["principal"], value["authority_mode"]),
+			(self.f.users["sector"], self.f.users["vice"], "on_behalf"),
+		)
+		self.assertEqual(value["authority"]["frozen_principal"], self.f.users["chair"])
+		self.assertEqual(value["authority"]["board_evidence"], file.name)
+		self.assertEqual(value["payload"]["on_behalf_note"], args["on_behalf_note"])
 
 	def test_req00402_hr_own_position_requires_independent_ceo(self):
 		emp = self.f.insert(

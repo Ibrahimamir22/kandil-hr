@@ -1,0 +1,9 @@
+{
+  "checked_at": "2026-10-12T05:36:43.027780+00:00",
+  "site": "kandil-parity.localhost",
+  "status": "INTERRUPTED",
+  "reason": "Root requested DB/browser lease release for privacy schema changes before final capture run.",
+  "effects": "No capture submitted; native capture dialog reached. No delegation revoke attempted.",
+  "finding": "Recipient eligibility response displayed a message overlay above the capture dialog; root and current helper owner notified.",
+  "exit_code": 130
+}

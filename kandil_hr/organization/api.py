@@ -479,6 +479,21 @@ def structure_command(name, operation, command_id, expected_version, payload, ha
 		return prior["result"]
 	if get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This record changed. Reload it before deciding."), frappe.TimestampMismatchError)
+	from kandil_hr.foundation.command_audit import project_structure, record_command
+	from kandil_hr.organization.command_audit import related_state
+
+	before = project_structure(doc)
+	related_before = related_state(doc)
+	step = (
+		next((row for row in doc.approval_steps if row.decision == "Pending"), None)
+		if operation == "decide"
+		else None
+	)
+	authority = (
+		dict(frozen_principal=step.principal, authority=step.authority, step_key=step.step_key)
+		if step
+		else {}
+	)
 	with transition():
 		result = handler(doc)
 		history.append(
@@ -501,6 +516,23 @@ def structure_command(name, operation, command_id, expected_version, payload, ha
 				doc.doctype,
 				doc.name,
 			)
+		record_command(
+			domain="organization",
+			operation=operation,
+			command_id=command_id,
+			receipt_key=f"{doc.name}:{frappe.session.user}:{command_id}",
+			reviewed_version=expected_version,
+			target=doc,
+			before=before,
+			after=project_structure(doc),
+			payload=payload,
+			result=result,
+			principal=authority.get("frozen_principal"),
+			step_key=authority.get("step_key"),
+			authority=authority,
+			related_before=related_before,
+			related_after=related_state(doc),
+		)
 	return result
 
 

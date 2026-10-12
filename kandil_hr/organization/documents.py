@@ -102,7 +102,7 @@ def locations(doc):
 	return output
 
 
-def render(name, language="en", kind="jd"):
+def render(name, language="en", kind="jd", *, location_rows=None):
 	if language not in ["en", "ar"] or kind not in ["jd", "worker"]:
 		frappe.throw(_("Unsupported document output."))
 	doc = load(name)
@@ -159,7 +159,7 @@ def render(name, language="en", kind="jd"):
 		+ text(doc.valid_from)
 		+ "</p>"
 	)
-	sites = locations(doc)
+	sites = locations(doc) if location_rows is None else location_rows
 	content += section(
 		"Location / Department / Direct Manager",
 		"<ul>"

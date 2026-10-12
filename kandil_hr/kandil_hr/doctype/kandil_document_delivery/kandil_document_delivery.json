@@ -1,0 +1,177 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Document Delivery",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "field:capture_key",
+  "field_order": [
+    "capture_key",
+    "command_group",
+    "payload_hash",
+    "company",
+    "department",
+    "branch",
+    "jd_revision",
+    "sender",
+    "recipient",
+    "recipient_email",
+    "status",
+    "language",
+    "output_kind",
+    "note",
+    "captured_at",
+    "content_hash",
+    "mime_content",
+    "included_scopes_json"
+  ],
+  "fields": [
+    {
+      "fieldname": "capture_key",
+      "label": "Capture Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "command_group",
+      "label": "Command Group",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "payload_hash",
+      "label": "Payload Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Department"
+    },
+    {
+      "fieldname": "branch",
+      "label": "Branch",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Branch"
+    },
+    {
+      "fieldname": "jd_revision",
+      "label": "Approved JD Revision",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Kandil JD Revision",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "sender",
+      "label": "Sender",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "User",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "recipient",
+      "label": "Recipient",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "User",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "recipient_email",
+      "label": "Captured Recipient Email",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "options": "Captured locally",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "language",
+      "label": "Language",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "options": "ar\nen"
+    },
+    {
+      "fieldname": "output_kind",
+      "label": "Document Kind",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "options": "jd\nworker"
+    },
+    {
+      "fieldname": "note",
+      "label": "Note",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
+      "fieldname": "captured_at",
+      "label": "Captured At",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "mime_content",
+      "label": "Captured HTML and PDF Mail",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "included_scopes_json",
+      "label": "Included Document Scopes",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "print": 1
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 frappe.ui.form.on('Kandil Delegation', {
   refresh(frm) {
+    frm.set_df_property('revocation_reason', 'read_only', !!frm.doc.revoked);
     if(frm.is_new() || frm.doc.revoked) return;
     if(!frm.doc.approval_status)frm.set_intro(__('This legacy delegation is inactive. Create a reviewed new version before using it.'),'orange');
     const name=frm.doc.name, version=frm.doc.modified;
@@ -10,6 +11,13 @@ frappe.ui.form.on('Kandil Delegation', {
     if(frm.doc.approval_status==='Pending CEO' && frm.doc.from_user===frappe.session.user) {
       ['Approve','Reject'].forEach(decision=>frm.add_custom_button(__(decision),()=>frappe.prompt([{fieldname:'reason',fieldtype:'Small Text',label:__('Reason'),reqd:1}],values=>send('decide',{decision,...values}),__(decision)),__('Delegation actions')));
     }
+    if(frappe.user_roles.includes('Kandil Sector Approver'))frm.add_custom_button(__('Revoke delegation'),()=>frappe.prompt([
+      {fieldname:'revocation_reason',fieldtype:'Small Text',label:__('Revocation Reason'),reqd:1}
+    ],async values=>{
+      if(frm.doc.name!==name || frm.doc.modified!==version || frm.is_dirty()) {frappe.msgprint(__('Reload this delegation before taking an action.'));return;}
+      await frm.set_value({revoked:1,revocation_reason:values.revocation_reason});
+      await frm.save();
+    },__('Revoke delegation')),__('Delegation actions'));
     if(frappe.user_roles.includes('Kandil Sector Approver'))frm.add_custom_button(__('New delegation version'),()=>frappe.prompt([
       {fieldname:'process_scope',fieldtype:'Select',options:'APPROVALS\nTEAM\nALL',label:__('Delegated Process'),reqd:1,default:frm.doc.process_scope},
       {fieldname:'from_date',fieldtype:'Date',label:__('From Date'),reqd:1,default:frm.doc.from_date},

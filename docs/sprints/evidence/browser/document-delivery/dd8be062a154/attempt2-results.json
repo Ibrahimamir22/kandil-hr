@@ -1,0 +1,47 @@
+{
+  "checked_at": "2026-10-12T05:36:15.211Z",
+  "site": "kandil-parity.localhost",
+  "run_id": "dd8be062a154",
+  "checks": [
+    {
+      "name": "Native en HR captures approved JD with private HTML and PDF",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Capture document delivery locally', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Native ar HR captures approved JD with private HTML and PDF",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'حفظ نسخة إرسال المستند محليًا', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Recipient native download returns actual composed EML, HTML and PDF attachment",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\n0 !== 2\n"
+    },
+    {
+      "name": "Outsider cannot download captured mail or original document",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\n0 !== 2\n"
+    },
+    {
+      "name": "Native en delegation revocation requires and records reason",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'Revoke delegation', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Native ar delegation revocation requires and records reason",
+      "status": "FAIL",
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('link', { name: 'إلغاء التفويض', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Capture and revocation UI have no client runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "captures": [],
+  "runtimeErrors": [],
+  "limitations": [
+    "Synthetic data only. Captured locally; no email provider or external transmission.",
+    "HR content and deployment policy sign-off remain separate."
+  ]
+}

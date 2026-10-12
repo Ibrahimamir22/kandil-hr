@@ -1,0 +1,190 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Command Audit",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "field_order": [
+    "audit_key",
+    "schema_version",
+    "domain",
+    "operation",
+    "command_id",
+    "receipt_key",
+    "target_doctype",
+    "target_name",
+    "company",
+    "department",
+    "actor",
+    "principal",
+    "step_key",
+    "reviewed_version",
+    "occurred_at",
+    "occurred_at_iso",
+    "content_hash",
+    "payload_json",
+    "before_json",
+    "after_json",
+    "envelope_json"
+  ],
+  "fields": [
+    {
+      "fieldname": "audit_key",
+      "label": "Audit Identity",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "unique": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "schema_version",
+      "label": "Schema Version",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "domain",
+      "label": "Command Domain",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "operation",
+      "label": "Command Operation",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "command_id",
+      "label": "Client Command ID",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "receipt_key",
+      "label": "Command Receipt",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "target_doctype",
+      "label": "Target Type",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "target_name",
+      "label": "Target Record",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "Department"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "principal",
+      "label": "Acting Principal",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "step_key",
+      "label": "Approval Step",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "reviewed_version",
+      "label": "Reviewed Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "occurred_at",
+      "label": "Occurred At",
+      "fieldtype": "Datetime",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "occurred_at_iso",
+      "label": "Occurred At With Timezone",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Envelope Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "payload_json",
+      "label": "Exact Reviewed Payload",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "options": "JSON",
+      "reqd": 1
+    },
+    {
+      "fieldname": "before_json",
+      "label": "Before State",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "options": "JSON",
+      "reqd": 1
+    },
+    {
+      "fieldname": "after_json",
+      "label": "After State",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "options": "JSON",
+      "reqd": 1
+    },
+    {
+      "fieldname": "envelope_json",
+      "label": "Private Command Envelope",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "options": "JSON",
+      "reqd": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0,
+  "allow_rename": 0
+}

@@ -1,0 +1,58 @@
+{
+  "suite": "document-delivery",
+  "checked_at": "2026-10-12T05:26:28.925215+00:00",
+  "site": "kandil-parity.localhost",
+  "total": 8,
+  "successful": true,
+  "checks": [
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_actual_ar_en_mime_contains_pdf_and_local_receipt",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_capture_privacy_native_list_download_and_immutability",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_capture_replay_exact_and_payload_collision_denied",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_draft_and_stale_version_sender_scope_and_generic_email_denied",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_external_candidate_disabled_missing_email_and_scope_denied_atomically",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_picker_only_eligible_and_no_private_global_directory",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_revoked_or_disabled_recipient_suppresses_delivery_and_replay",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.organization.test_document_delivery.TestDocumentDelivery.test_ten_distinct_users_pass_duplicates_dedupe_eleven_fail_atomically",
+      "status": "PASS"
+    }
+  ],
+  "source_hashes": {
+    "test_document_delivery.py": "b1ec13efde7d478327a8297a51b97fc7dd952d474c4b95f5e54ce4716097e591",
+    "document_delivery.py": "43e8be3461803456d4a11cdf754cba306f210ffbee2c4f4a9441c2e1c9c3a698",
+    "documents.py": "58b9bf49ec936736266774eb5f00c5aaf5ce61d74abdb92164a56552cabff682"
+  },
+  "source_unchanged": true,
+  "fixtures_rolled_back": true,
+  "limitations": [
+    "Captured locally only; no email/provider transmission",
+    "AR/EN actual PDF MIME tested; recipient boundary cases stub PDF generation",
+    "Native JD read/print role and scope remain mandatory; no broad portal or finance permissions added"
+  ],
+  "initial_attempt": "document-delivery-focused-attempt1-2026-10-12.json",
+  "fixed_findings": [
+    "Native LongText sanitization altered raw MIME; original MIME bytes are now base64-preserved and decoded/hash-verified for download.",
+    "Empty mailbox explicitly rejected; generic validator's empty-string equality was insufficient."
+  ]
+}

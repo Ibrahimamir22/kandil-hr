@@ -120,9 +120,25 @@ def validate(doc):
 	if not isinstance(doc.reason, str) or len(doc.reason.strip()) < 3:
 		frappe.throw(_("A delegation reason is required."))
 	managed = frappe.flags.get("kandil_delegation_effect")
+	# Revocation explains a new action; the immutable creation reason cannot stand in for it.
+	if old and cint(old.revoked):
+		if (doc.get("revocation_reason") or "") != (old.get("revocation_reason") or ""):
+			frappe.throw(_("A recorded delegation revocation reason is immutable."))
+	elif cint(doc.revoked):
+		reason = doc.get("revocation_reason")
+		if not isinstance(reason, str) or len(reason.strip()) < 3 or len(reason) > 2000:
+			frappe.throw(_("Enter a fresh revocation reason between 3 and 2000 characters."))
+		doc.revocation_reason = reason.strip()
+	elif doc.get("revocation_reason"):
+		frappe.throw(_("A revocation reason can only be recorded when revoking a delegation."))
 	if old:
 
 		def comparable(key, value):
+			# Native JSON saves serialize dates; compare their meaning, not Python types.
+			if key in ("from_date", "to_date") and value:
+				return getdate(value)
+			if key == "approved_on" and value:
+				return get_datetime(value)
 			if key == "process_scope":
 				return value or "APPROVALS"
 			if key == "delegation_version":
@@ -133,7 +149,7 @@ def validate(doc):
 			frappe.throw(_("Delegation scope is immutable. Create a new version."))
 		if old.revoked and not doc.revoked:
 			frappe.throw(_("A revoked delegation cannot be reactivated."))
-		if not managed and any(doc.get(k) != old.get(k) for k in MANAGED):
+		if not managed and any(comparable(k, doc.get(k)) != comparable(k, old.get(k)) for k in MANAGED):
 			frappe.throw(
 				_("Delegation approval metadata is managed by authorized commands."), frappe.PermissionError
 			)
@@ -186,7 +202,11 @@ def audit(doc):
 	from kandil_hr.foundation.models import record_security_event
 
 	old = doc.get_doc_before_save()
-	changes = [key for key in (*IMMUTABLE, *MANAGED, "revoked") if not old or doc.get(key) != old.get(key)]
+	changes = [
+		key
+		for key in (*IMMUTABLE, *MANAGED, "revoked", "revocation_reason")
+		if not old or doc.get(key) != old.get(key)
+	]
 	if changes:
 		record_security_event("Delegation changed", doc.to_user, ",".join(changes), doc.name)
 
@@ -272,6 +292,7 @@ def revise(name, process_scope, from_date, to_date, reason, expected_version, co
 		frappe.throw(_("This delegation changed. Reload before revising."), frappe.TimestampMismatchError)
 	with effect():
 		doc.revoked = 1
+		doc.revocation_reason = reason
 		doc.save()
 		new = frappe.get_doc(
 			dict(

@@ -6,6 +6,7 @@ bench --site kandil-parity.localhost execute kandil_hr.organization.integration_
 import json
 import uuid
 from contextlib import contextmanager
+from datetime import datetime
 
 import frappe
 from frappe.utils import add_days, today
@@ -41,6 +42,83 @@ def run(company=None, export_documents=False):
 
 	def passed(name):
 		results.append({"check": name, "status": "PASS"})
+
+	def audit_envelope(name, command_id, operation, payload, actor, version, step=None):
+		rows = frappe.get_all(
+			"Kandil Command Audit",
+			filters={"target_name": name, "command_id": command_id},
+			fields=["envelope_json"],
+		)
+		assert len(rows) == 1, "Each successful structural command needs exactly one audit envelope"
+		value = json.loads(rows[0].envelope_json)
+		assert (value["domain"], value["operation"], value["target_doctype"], value["target_name"]) == (
+			"organization",
+			operation,
+			"Kandil Structure Change",
+			name,
+		)
+		assert value["payload"] == payload
+		assert value["reviewed_version"] == version
+		assert value["receipt_key"] == f"{name}:{actor}:{command_id}"
+		assert value["actor"] == actor
+		assert value["principal"] == (step.principal if step else actor)
+		assert value["step_key"] == (step.step_key if step else None)
+		assert value["authority"] == (
+			dict(frozen_principal=step.principal, authority=step.authority, step_key=step.step_key)
+			if step
+			else {}
+		)
+		assert value["timezone"] == "Africa/Cairo"
+		assert datetime.fromisoformat(value["occurred_at"]).utcoffset() is not None
+		assert value["before"]["name"] == value["after"]["name"] == name
+		assert value["before"]["changes_json"] == value["after"]["changes_json"]
+		if step:
+			old = next(row for row in value["before"]["approval_steps"] if row["step_key"] == step.step_key)
+			new = next(row for row in value["after"]["approval_steps"] if row["step_key"] == step.step_key)
+			assert old["decision"] == "Pending" and new["decision"] == payload["decision"]
+			assert new["actor"] == actor and new["principal"] == step.principal
+			# The exact command payload above keeps literal input; native Small
+			# Text sanitization may change the persisted business-record comment.
+			assert new["comment"] == frappe.db.get_value(step.doctype, step.name, "comment")
+			assert new["decided_at"]
+		return value
+
+	def submit_audited(doc, preview):
+		version, command_id, actor = str(doc.modified), uuid.uuid4().hex, frappe.session.user
+		result = api.submit_structure(doc.name, preview["preview_hash"], command_id, version)
+		value = audit_envelope(
+			doc.name, command_id, "submit", {"preview_hash": preview["preview_hash"]}, actor, version
+		)
+		assert (value["before"]["status"], value["after"]["status"]) == ("Draft", "Pending")
+		assert value["result"] == result
+		assert api.submit_structure(doc.name, preview["preview_hash"], command_id, version) == result
+		assert (
+			audit_envelope(
+				doc.name, command_id, "submit", {"preview_hash": preview["preview_hash"]}, actor, version
+			)
+			== value
+		)
+		return result
+
+	def decide_audited(args):
+		doc = frappe.get_doc("Kandil Structure Change", args["name"])
+		step = next(row for row in doc.approval_steps if row.step_key == args["step_id"])
+		actor = frappe.session.user
+		payload = {key: args[key] for key in ("preview_hash", "decision", "step_id")}
+		payload["comment"] = args.get("comment", "")
+		result = api.decide_structure(**args)
+		value = audit_envelope(
+			doc.name, args["command_id"], "decide", payload, actor, args["expected_version"], step
+		)
+		assert value["result"] == result
+		assert api.decide_structure(**args) == result
+		assert (
+			audit_envelope(
+				doc.name, args["command_id"], "decide", payload, actor, args["expected_version"], step
+			)
+			== value
+		)
+		return result, value
 
 	def denied(name, fn):
 		point = "orgcase" + str(len(results))
@@ -247,7 +325,7 @@ def run(company=None, export_documents=False):
 				denied("Future approver cannot edit another author draft", other_editor.save)
 			preview = api.preview_structure(change.name)
 			change.reload()
-			api.submit_structure(change.name, preview["preview_hash"], uuid.uuid4().hex, str(change.modified))
+			submit_audited(change, preview)
 			change.reload()
 			denied(
 				"Structure author cannot self approve",
@@ -282,7 +360,7 @@ def run(company=None, export_documents=False):
 				command_id=uuid.uuid4().hex,
 				expected_version=str(change.modified),
 			)
-			result = api.decide_structure(**args)
+			result, hr_envelope = decide_audited(args)
 			assert result["status"] == "Pending" and not result["snapshot"]
 			assert api.decide_structure(**args) == result
 			passed("HR approval retry returns the receipt without advancing CEO step")
@@ -305,10 +383,28 @@ def run(company=None, export_documents=False):
 				command_id=uuid.uuid4().hex,
 				expected_version=str(change.modified),
 			)
-			result = api.decide_structure(**args)
+			result, hierarchy_envelope = decide_audited(args)
 			assert result["snapshot"] and result["status"] == "Approved"
 			assert api.decide_structure(**args) == result
 			passed("Independent HR then CEO creates immutable snapshot; retry is stable")
+			assert hr_envelope["actor"] == reviewer and hierarchy_envelope["actor"] == authority
+			assert frappe.db.count("Kandil Command Audit", {"target_name": change.name}) == 3
+			assert not [
+				r for r in hierarchy_envelope["related_before"] if r["doctype"] == "Kandil Position Hierarchy"
+			]
+			new_edges = [
+				r for r in hierarchy_envelope["related_after"] if r["doctype"] == "Kandil Position Hierarchy"
+			]
+			assert len(new_edges) == 3
+			for row in new_edges:
+				assert row["valid_from"] == today() and not row["valid_until"]
+			assert any(
+				r["doctype"] == "Kandil Structure Snapshot" and r["name"] == result["snapshot"]
+				for r in hierarchy_envelope["related_after"]
+			)
+			passed(
+				"Structural submit and decisions retain exact actor principal step payload and one envelope on replay"
+			)
 			child = frappe.get_doc("Kandil Approval Step", change.approval_steps[0].name)
 			child.decision = "Rejected"
 			denied(
@@ -533,26 +629,42 @@ def run(company=None, export_documents=False):
 			)
 			preview = api.preview_structure(resize.name)
 			resize.reload()
-			api.submit_structure(resize.name, preview["preview_hash"], uuid.uuid4().hex, str(resize.modified))
+			submit_audited(resize, preview)
 		for _ in range(5):
 			resize.reload()
 			if resize.status != "Pending":
 				break
 			step = next(s for s in resize.approval_steps if s.decision == "Pending")
 			with user(step.principal):
-				api.decide_structure(
-					resize.name,
-					preview["preview_hash"],
-					"Approved",
-					step.step_key,
-					uuid.uuid4().hex,
-					str(resize.modified),
+				_result, resize_envelope = decide_audited(
+					dict(
+						name=resize.name,
+						preview_hash=preview["preview_hash"],
+						decision="Approved",
+						step_id=step.step_key,
+						command_id=uuid.uuid4().hex,
+						expected_version=str(resize.modified),
+						comment="Reviewed structural audit عربي <literal>",
+					)
 				)
 		resize.reload()
 		assert resize.status == "Approved"
 		assert frappe.db.get_value("Kandil Position", positions["Worker"].name, "structural") == 2
 		assert frappe.db.get_value("Kandil Capacity", capacity.name, "structural") == 2
 		passed("Reviewed hierarchy-HR-CEO resize updates position and capacity atomically")
+		for kind, name in (("Kandil Position", positions["Worker"].name), ("Kandil Capacity", capacity.name)):
+			old = next(
+				row
+				for row in resize_envelope["related_before"]
+				if (row["doctype"], row["name"]) == (kind, name)
+			)
+			new = next(
+				row
+				for row in resize_envelope["related_after"]
+				if (row["doctype"], row["name"]) == (kind, name)
+			)
+			assert (old["structural"], new["structural"]) == (1, 2)
+		passed("Structural resize audit captures exact Position and Capacity before and after quantities")
 		with user(hr):
 			new_key = uuid.uuid4().hex
 			count = frappe.db.count("Kandil Position", {"company": company})
@@ -579,7 +691,7 @@ def run(company=None, export_documents=False):
 			)
 			preview = api.preview_structure(create.name)
 			create.reload()
-			api.submit_structure(create.name, preview["preview_hash"], uuid.uuid4().hex, str(create.modified))
+			submit_audited(create, preview)
 			assert frappe.db.count("Kandil Position", {"company": company}) == count
 			passed("New Position ID is not issued on draft or submission")
 		for _ in range(5):
@@ -588,13 +700,16 @@ def run(company=None, export_documents=False):
 				break
 			step = next(s for s in create.approval_steps if s.decision == "Pending")
 			with user(step.principal):
-				api.decide_structure(
-					create.name,
-					preview["preview_hash"],
-					"Approved",
-					step.step_key,
-					uuid.uuid4().hex,
-					str(create.modified),
+				_result, create_envelope = decide_audited(
+					dict(
+						name=create.name,
+						preview_hash=preview["preview_hash"],
+						decision="Approved",
+						step_id=step.step_key,
+						command_id=uuid.uuid4().hex,
+						expected_version=str(create.modified),
+						comment="Reviewed structural audit عربي <literal>",
+					)
 				)
 		create.reload()
 		created = json.loads(create.created_positions_json)
@@ -602,6 +717,39 @@ def run(company=None, export_documents=False):
 		assert create.status == "Approved" and new_position.startswith("KPOS-")
 		assert frappe.db.count("Kandil Capacity", {"position": new_position}) == 1
 		passed("Final hierarchy-HR-CEO approval creates one Position ID and one capacity")
+		assert not create_envelope["related_before"]
+		created_records = create_envelope["related_after"]
+		assert len(created_records) == 4
+		assert {row["doctype"] for row in created_records} == {
+			"Kandil Position",
+			"Kandil Capacity",
+			"Kandil Position Hierarchy",
+			"Kandil Structure Snapshot",
+		}
+		assert len(create_envelope["related_added_to_capture"]) == 4
+		assert json.loads(create_envelope["after"]["created_positions_json"]) == {new_key: new_position}
+		assert (
+			next(row for row in created_records if row["doctype"] == "Kandil Position")["name"]
+			== new_position
+		)
+		assert (
+			next(row for row in created_records if row["doctype"] == "Kandil Capacity")["position"]
+			== new_position
+		)
+		edge = next(row for row in created_records if row["doctype"] == "Kandil Position Hierarchy")
+		assert (edge["position"], edge["parent_position"], edge["valid_from"]) == (
+			new_position,
+			positions["Manager"].name,
+			today(),
+		)
+		assert (
+			next(row for row in created_records if row["doctype"] == "Kandil Structure Snapshot")["name"]
+			== create.snapshot
+		)
+		assert frappe.db.count("Kandil Command Audit", {"target_name": create.name}) == 1 + len(
+			create.approval_steps
+		)
+		passed("Final Create audit captures new Position Capacity Hierarchy and Snapshot only after approval")
 		with user(hr):
 			# Reviewed unchanged hierarchy baseline is accepted without duplicate edges.
 			hr_rows = [
@@ -710,6 +858,69 @@ def run(company=None, export_documents=False):
 			assert applied["created"] == 1 and applied["snapshot"]
 			assert api.apply_import(history.name, history.digest) == applied
 			passed("Reviewed historical allocation import creates native history without double counting")
+		with user(hr):
+			dated_change = insert(
+				"Kandil Structure Change",
+				company=company,
+				effective_on=add_days(today(), 1),
+				reason="Reviewed future hierarchy audit",
+				changes_json=json.dumps(
+					[
+						dict(
+							action="Reparent",
+							position=new_position,
+							parent_position=positions["Vacant"].name,
+							authority="Department Approval",
+						)
+					]
+				),
+			)
+			dated_preview = api.preview_structure(dated_change.name)
+			dated_change.reload()
+			submit_audited(dated_change, dated_preview)
+		for _ in range(5):
+			dated_change.reload()
+			if dated_change.status != "Pending":
+				break
+			step = next(row for row in dated_change.approval_steps if row.decision == "Pending")
+			with user(step.principal):
+				_result, dated_envelope = decide_audited(
+					dict(
+						name=dated_change.name,
+						preview_hash=dated_preview["preview_hash"],
+						decision="Approved",
+						step_id=step.step_key,
+						command_id=uuid.uuid4().hex,
+						expected_version=str(dated_change.modified),
+						comment="Approve tomorrow's parent",
+					)
+				)
+		dated_change.reload()
+		assert dated_change.status == "Approved"
+		old_edges = [
+			row for row in dated_envelope["related_before"] if row["doctype"] == "Kandil Position Hierarchy"
+		]
+		new_edges = [
+			row for row in dated_envelope["related_after"] if row["doctype"] == "Kandil Position Hierarchy"
+		]
+		assert len(old_edges) == 1 and len(new_edges) == 2
+		old_edge = old_edges[0]
+		assert (old_edge["parent_position"], old_edge["valid_from"]) == (positions["Manager"].name, today())
+		assert not old_edge["valid_until"]
+		ended = next(row for row in new_edges if row["name"] == old_edge["name"])
+		fresh = next(row for row in new_edges if row["name"] != old_edge["name"])
+		assert (ended["valid_from"], ended["valid_until"]) == (today(), today())
+		assert (fresh["parent_position"], fresh["valid_from"]) == (
+			positions["Vacant"].name,
+			add_days(today(), 1),
+		)
+		assert not fresh["valid_until"]
+		assert frappe.db.count("Kandil Command Audit", {"target_name": dated_change.name}) == 1 + len(
+			dated_change.approval_steps
+		)
+		passed(
+			"Future Reparent audit preserves old parent dates and exact ended plus new hierarchy intervals"
+		)
 		from kandil_hr.organization.acceptance_tests import run_cases
 
 		acceptance_cases = run_cases(locals())

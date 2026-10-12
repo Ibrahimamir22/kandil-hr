@@ -1,0 +1,62 @@
+{
+  "checked_at": "2026-10-12T05:42:25.796Z",
+  "site": "kandil-parity.localhost",
+  "run_id": "dd8be062a154",
+  "checks": [
+    {
+      "name": "Native en HR captures approved JD with private HTML and PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "Native ar HR captures approved JD with private HTML and PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "Recipient native download returns actual composed EML, HTML and PDF attachment",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot download captured mail or original document",
+      "status": "PASS"
+    },
+    {
+      "name": "Native en delegation revocation requires and records reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Native ar delegation revocation requires and records reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Capture and revocation UI have no client runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "captures": [
+    {
+      "name": "KDD-d2949ab1b69b201ff89ca339a84d0d9316e48120",
+      "status": "Captured locally",
+      "language": "en"
+    },
+    {
+      "name": "KDD-6a2d7185a661d78a1f5c5016c3855e736b69dfd8",
+      "status": "Captured locally",
+      "language": "ar"
+    }
+  ],
+  "runtimeErrors": [],
+  "source_hashes": {
+    "kandil_hr/organization/document_delivery.py": "90d2d15929f04c4c54642e3b78893efe3451c36dfe23cebe292a056db99a3d8d",
+    "kandil_hr/organization/documents.py": "58b9bf49ec936736266774eb5f00c5aaf5ce61d74abdb92164a56552cabff682",
+    "kandil_hr/public/js/document_delivery.js": "5bdb53f94790fba739bad05752f2e42a02080af57f84bd947f80f07674089af7",
+    "kandil_hr/foundation/delegation.py": "b2ec645918d27b0fdfb924e78a3f4a51428e40f670f3dea767d9ff8b4f8fd0d5",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.js": "5d769bc2c2be1a5d4d8f8d43bfc508efa4ed931cc0f1ee52bd6e600dcb866877",
+    "kandil_hr/organization/delivery_browser_fixture.py": "19679942d4af0ea8ce69901633f3aec4c95153a148b31bd0e2cc042fc6f6310f",
+    "docs/sprints/test_delivery_browser.cjs": "c22ea4b827ceb0fb7ad199091b3ca0fef57d4f221a77de9ea977d95d6f5c5cd2"
+  },
+  "source_unchanged": true,
+  "limitations": [
+    "Synthetic data only. Captured locally; no email provider or external transmission.",
+    "HR content and deployment policy sign-off remain separate."
+  ]
+}

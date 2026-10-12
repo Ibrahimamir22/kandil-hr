@@ -1,0 +1,2 @@
+# Captured MIME is byte-for-byte evidence with intentional SMTP CRLF endings.
+*.eml binary
