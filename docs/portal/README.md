@@ -17,6 +17,10 @@ The approved portal design now runs as a React + TypeScript application connecte
 
 The dashboard, search and vacancy list currently cover a bounded page of accessible requests. Counts are labelled as page counts. Use Next/Previous to navigate. Position/capacity choices are capped at 500 with a truncation notice. Availability in the selector is a recorded ledger value; submission rechecks current capacity and policy. This milestone is not yet a full-scale reporting/search implementation.
 
+## Pending quantity revision — Sprint 1
+
+The original requester can open a Pending request, change its quantities, enter a reason and review current reservation/new quantity/difference before confirming. Successful changes restart approvals while retaining past decisions. A shortage or stale version keeps entered values; refresh/review a stale request before trying again. The action is unavailable to other actors. Arabic/mobile and English/desktop flows were verified with fresh synthetic cohorts. See [checkpoint and exact evidence](../roadmap/S1_CHECKPOINT.md).
+
 ## How to test
 
 | Account | Action | Expected result |

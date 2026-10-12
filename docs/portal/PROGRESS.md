@@ -4,6 +4,10 @@ Goal: replace the prototype's simulated interactions with personal-session, perm
 
 **Status: first connected milestone complete locally. HR acceptance and production readiness remain pending.**
 
+## Current Sprint 1 update
+
+Pending quantity changes now work through the AR/EN custom portal with a reviewed delta and retained input on denial. See the [current checkpoint](../roadmap/S1_CHECKPOINT.md) for source identity, final browser evidence and remaining work. The first-milestone results below remain historical.
+
 ## Work and evidence
 
 | Step | Output | Status |

@@ -67,19 +67,30 @@
           "description": "Finish and prove exact pending reservation 2→3 delta, all-location atomicity, restarted approvals and durable shortage denial; retain existing headcount work.",
           "status": "in_progress",
           "evidence": [
-            "evidence/s1-pending-revision-native.json"
+            "evidence/s1-regression-ff5ec84ca11a.json",
+            "../sprints/evidence/headcount-http-2026-10-12.json",
+            "S1_CHECKPOINT.md"
           ],
-          "remaining": "HTTP persistence, independent connection races, runtime EN/AR UI and affected frozen-source regression; no full-case promotion."
+          "remaining": "Exact frozen headcount cases pass. Still verify simultaneous approval/revision, revocation after lock wait and obsolete notification handling before closing the broader increment."
         },
         {
           "id": "S1-03",
           "description": "Run affected authority/audit/outbox/permission regressions, independent-connection contention and ordinary-session HTTP tests.",
-          "status": "planned"
+          "status": "in_progress",
+          "evidence": [
+            "evidence/s1-regression-ff5ec84ca11a.json",
+            "../sprints/evidence/headcount-http-2026-10-12.json"
+          ],
+          "remaining": "Five affected suites pass. Reconcile full authority/audit/outbox/permission coverage and any additional targeted regression needs."
         },
         {
           "id": "S1-04",
           "description": "Verify real AR/EN screens for the pending revision and denial path; retain form input and show reviewed quantities.",
-          "status": "planned"
+          "status": "complete",
+          "evidence": [
+            "../portal/evidence/pending-934a2228d384/results.json",
+            "../sprints/evidence/browser/headcount/a59d2611b3c9/results.json"
+          ]
         },
         {
           "id": "S1-05",
@@ -101,7 +112,8 @@
       "external_decisions": [
         "HR: authority/headcount policy and Arabic terms.",
         "IT: identity/MFA, recovery owner and external audit custody."
-      ]
+      ],
+      "checkpoint": "S1_CHECKPOINT.md"
     },
     {
       "id": "S2",

@@ -723,15 +723,15 @@
       "status": "not_run",
       "evidence": null
     },
-    "status": "partial",
-    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
-    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
-    "checked_at": "2026-10-12T05:48:51.938493+00:00",
+    "status": "passed",
+    "evidence": "docs/roadmap/S1_CHECKPOINT.md",
+    "commit": "eed166c9610d9c23ce94ceab023b0ed3006618fb",
+    "checked_at": "2026-10-12T17:57:50.158610+00:00",
     "owner": "Lead",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Native lifecycle proves own reservation2→0→3 through Return/revise/resubmit, unrelated reservation preserved, stale step rejected and replay unchanged. An atomic pending2→3 amendment is not implemented; lifecycle release/reacquire is distinct.",
-    "defect": "Native lifecycle proves own reservation2→0→3 through Return/revise/resubmit, unrelated reservation preserved, stale step rejected and replay unchanged. An atomic pending2→3 amendment is not implemented; lifecycle release/reacquire is distinct.",
+    "actual": "Exact native Pending own2→3 test proves delta1 and reserved3 rather than5; multi-line rollback and prior approval history covered. Independent HTTP connections prove duplicate replay and contention for the last seat. Native and custom AR/EN screens retain reviewed inputs on denial. Additional robustness gates are listed in the S1 checkpoint.",
+    "defect": null,
     "hr_acceptance": "pending"
   },
   {
@@ -744,15 +744,15 @@
       "status": "not_run",
       "evidence": null
     },
-    "status": "partial",
-    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
-    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
-    "checked_at": "2026-10-12T05:48:51.938493+00:00",
+    "status": "passed",
+    "evidence": "docs/roadmap/S1_CHECKPOINT.md",
+    "commit": "eed166c9610d9c23ce94ceab023b0ed3006618fb",
+    "checked_at": "2026-10-12T17:57:50.158610+00:00",
     "owner": "Lead",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Exact BLOCK-first and WARN minimum10 trimmed characters pass on identical shortage. Valid WARN freezes shortage/reason, follows independent Sector authority and enters the command audit. Rejected attempts roll back and leave no durable denial event.",
-    "defect": "Exact BLOCK-first and WARN minimum10 trimmed characters pass on identical shortage. Valid WARN freezes shortage/reason, follows independent Sector authority and enters the command audit. Rejected attempts roll back and leave no durable denial event.",
+    "actual": "Same shortage tested under BLOCK with blank/valid reason and WARN with short/valid reason; committed private denial survives HTTP completion without business changes. Valid WARN resolves independent sector authority and HR cannot substitute. Twenty denied retries retain one event and another actor cannot read the outcome. Native boundary tests preserve exact trimmed reason rules.",
+    "defect": null,
     "hr_acceptance": "pending"
   },
   {

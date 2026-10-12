@@ -4,7 +4,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 **Current status: the first custom React HR portal milestone is connected and locally tested; the full HR system remains in development.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/sprints/SPRINT_PLAN.md), [task tracker](docs/sprints/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
 
-The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **70 passed, 6 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
+The [current Sprint 1 checkpoint](docs/roadmap/S1_CHECKPOINT.md) records **72 passed, 4 partial and 4 blocked** baseline cases, with source identity, new portal evidence and remaining gates.
 
 ## Start here
 
@@ -24,7 +24,7 @@ All project source is kept in this private repository. The connected portal live
 - [Historical research, proposals, designs, prototypes and development harness](docs/archive/README.md).
 - [Pinned clean installation](deployment/README.md).
 
-The portal milestone has 10 native, 31 HTTP and 24 browser checks recorded in `docs/portal/evidence/`. Pending-quantity revision work is preserved in source, but its full acceptance remains open. The older 80-case baseline is a separate acceptance scope; do not add its totals to the portal results or treat this checkpoint as a production release.
+The portal milestone has 10 native, 31 HTTP and 24 browser checks recorded in `docs/portal/evidence/`. The pending-quantity portal increment now has separate native/HTTP/AR/EN evidence in the current Sprint 1 checkpoint; broader robustness gates remain open. The older 80-case baseline is a separate acceptance scope; do not add its totals to the portal results or treat this checkpoint as a production release.
 
 ## Running locally
 
@@ -71,7 +71,7 @@ Plain unittest classes were omitted by the standard Frappe test discovery in thi
 - Identity/MFA/provider and privileged-change policy; HR acceptance of the implemented CEO delegation and separate Board authority workflow.
 - HR decisions on exception rules, working calendars, expiry, real employee-position mapping and Arabic terminology.
 - External audit anchor/key custody; application immutability alone is not cryptographic tamper proof.
-- Remaining audit adapters, durable denial history, exact pending amendment behavior, hiring-request mail capture and lifecycle gaps listed in the tracker. Document capture does not establish external delivery.
+- Remaining audit adapters, headcount robustness interactions, hiring-request mail capture and lifecycle gaps listed in the tracker. Document capture does not establish external delivery.
 - Final source review, affected regression checks, tagged checkpoint and HR walkthrough. Read-only legacy-site smoke and a synthetic restore rehearsal have passed.
 
 Automatic rejection stays disabled. CEO delegation requires explicit approval by the configured CEO; Board decisions use the separate frozen Chair/Vice and documented external-decision path. HR policy acceptance remains pending. Unaudited native HR Script/Query/prepared reports are restricted on the parity site because raw SQL/get_all can bypass row-scope hooks; scoped native lists remain available.
