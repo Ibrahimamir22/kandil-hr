@@ -1,8 +1,8 @@
 # P0–P3 acceptance evidence mapping
 
-Updated 2026-10-12T06:05:01.415448+00:00. Current tested development source: `9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9`.
+Updated 2026-10-12T06:28:25.125691+00:00. Current tested development source: `1ea28738982841adf475681f03bbf349b28c6ef7`.
 
-**69 passed / 7 partial / 4 blocked.** All80 case definitions remain unchanged. HR acceptance remains pending. Hiring-request mail capture gained complete technical evidence.
+**70 passed / 6 partial / 4 blocked.** All 80 case definitions remain unchanged. HR acceptance remains pending. Finite P0–P3 decision audit gained complete technical evidence.
 
 Evidence, tested commit and timestamps for each case are in [acceptance-results.json](../sprints/acceptance-results.json). Current suite/browser detail is in [CHECKPOINT.md](../sprints/CHECKPOINT.md).
 
@@ -82,7 +82,7 @@ Evidence, tested commit and timestamps for each case are in [acceptance-results.
 | AT-VAC-005-01 | passed | Committed account disable clears affected live vacancy/team, application and application next-action ownership to explicit unassigned while retaining task text, due date and ownership history. Two users disabled in one commit both run cleanup; rollback leaves ownership intact; repeats no-op. Generic Frappe ToDo is outside this source task model. |
 | AT-VAC-005-02 | passed | Mixed authorized and out-of-scope vacancy IDs fail atomically without silently applying the permitted subset. Successful bulk assignment returns itemized outcomes; disabled-account ownership cleanup and replay retain history. |
 | AT-VAC-006-01 | passed | Native recruitment queues distinguish approved from pending parents, enforce scoped company/site access and allowed vacancy states, and retain terminal history without admitting closed work into the active application queue. |
-| AT-AUD-001-01 | partial | Exact transactional envelopes cover recruitment/structure commands plus JD/Grade approval and review/apply for all five import kinds. Full JD children, reviewed rows/digest, actual related records and snapshots, explicit server invocation identity, replay and rollback pass. Original joining, delegation and selected native/system operations remain outside this envelope inventory. |
+| AT-AUD-001-01 | passed | Finite P0–P3 decision inventory verified: recruitment/structure, revisions/imports, original joining, delegation, occupied baseline, native Department and disabled-account ownership handoff retain actor/principal, exact command or explicitly labeled native/system delta, before/after and time. Ordinary API mutation denied. Replay/rollback and private audit survival pass; large Arabic/legacy histories retained. External anchor and denied-attempt logging remain separate cases. |
 | AT-AUD-001-02 | blocked | No HMAC chain or protected external latest-seal anchor; altered/reordered/truncated audit attacks cannot pass. |
 | AT-AUD-002-01 | partial | Versioned commands, scoped approvals and fresh delegation revocation reasons are tested. OVERRIDE_COVERAGE.md inventories implemented override and lifecycle controls. Complete cross-endpoint negative coverage and operational/configuration exception governance remain unproved. |
 | AT-AUD-002-02 | partial | Ordinary System Manager and Administrator client.save cannot forge completed request decisions. Administrator operational access logging and independent review remain incomplete. |

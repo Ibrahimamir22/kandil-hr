@@ -5,7 +5,7 @@
   "title": "قنديل | HR delivery sprints",
   "release_goal": "Deliver a reproducible, bilingual local Frappe HR release for P0–P3, with the selected 40 requirements verified against 80 baseline cases and targeted regression tests.",
   "scope": "P0 baseline + P1 security + P2 organization + P3 requests and vacancies. Full HR parity (P4–P10), company platform, Odoo integrations and production are separate milestones.",
-  "status_note": "Development checkpoint: 69 passed, 7 partial and 4 blocked baseline cases. Revision/import audits and private hiring-notification capture verified, including native AR/EN downloads and current delegation authority. HR acceptance pending; goal active.",
+  "status_note": "Development checkpoint: 70 passed, 6 partial and 4 blocked baseline cases. Finite P0–P3 decision audit verified, including joining/delegation/handoff, exact native changes, large Arabic histories and concurrent joining replay. HR acceptance pending; goal active.",
   "sprints": [
     {
       "id": "S0",
@@ -230,7 +230,7 @@
         "T06"
       ],
       "acceptance": "Sensitive grade/pay/employee fields denied across UI/API/report/file routes; before/after and actor recorded; audit-key/seal design decided and tampering tested before claiming cryptographic parity.",
-      "evidence": "Private command envelope coverage expanded to JD/Grade approval and imports; original joining/delegation/native/system adapters and external anchor remain. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "Finite decision audit case passes, including joining/delegation/native/system operations; protected external anchor remains blocked. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [
         "AUD-001"
       ],
@@ -350,7 +350,7 @@
         "T09"
       ],
       "acceptance": "Atomic reservations; warn/block approved rule; exception authority; partial joins; hold/resume/close; cancellation releases only intended balances; guidance and actual joins reconcile.",
-      "evidence": "Headcount4 proves BLOCK-first, WARN minimum10 trimmed characters, independent exception route and reservation2→0→3 lifecycle. Literal atomic pending2→3 and durable denial audit remain open.",
+      "evidence": "20 concurrent joining calls create one effect set;20 later replays preserve stored ledger despite dated occupancy drift. Exact pending reservation2→3 and durable denial audit remain. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [
         "HC-003",
         "HC-004",
@@ -486,7 +486,7 @@
         "T21"
       ],
       "acceptance": "One integration owner wires hooks/setup, migrates isolated site, seeds/reset fixtures in controlled order, records schema/app commit; no shared-site migration from agents.",
-      "evidence": "23 suites pass serially on unchanged application source; new schemas installed only on isolated8102. Official Frappe/ERPNext/HRMS clones remain clean at pinned commits.",
+      "evidence": "31 suites pass serially on frozen source after parity-only Long Text audit migration. Upstream clones remain clean. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -502,7 +502,7 @@
         "T22"
       ],
       "acceptance": "Actual low-privilege sessions cover two companies/branches, grants/delegates, files, searches/exports and sensitive fields; MFA/recovery/dual-control cases evidenced; no reliance on mocked checks.",
-      "evidence": "Native capture record/list/file/export/report/immutability and current authority checks pass; disabled-principal RR race suppressed all effects. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "Exact audit identity/state, ordinary API protection, deletion survival, rollback and large private history cases pass. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -518,7 +518,7 @@
         "T22"
       ],
       "acceptance": "Run native suite for dated routes, hierarchy cycles, acting authority, scope, unique capacity, imports/reimports, resize, JD snapshot/print; record failures and retest evidence.",
-      "evidence": "11 full revision/import audit cases plus2 native delegation isolation checks pass. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "Occupancy includes previous/new as-of date; native Department exact deltas and existing organization/import regression pass. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -534,7 +534,7 @@
         "T22"
       ],
       "acceptance": "Race reservations/amendments/cancel/approval; retries advance once; no duplicate vacancies; rollback leaves no orphan notifications; reconcile every ledger; document shared DB setting.",
-      "evidence": "28-suite segmented serial gate passes; new independent two-connection revocation race and prior HTTP concurrency retain explicit scope. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "31-suite uninterrupted frozen-source gate plus two20-call joining HTTP batches pass. Prior approval/capacity race evidence retains original source/time. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -569,7 +569,7 @@
         "T26"
       ],
       "acceptance": "All 80 baseline cases have actual evidence or explicit failing/blocked status; supplemental defect and concurrency cases included; existing pilot regression checked; no critical open defects.",
-      "evidence": "69 passed / 7 partial / 4 blocked against unchanged80 baseline definitions; 28 suites PASS; one test-only discovery-count correction between segments. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "70 passed /6 partial /4 blocked against unchanged80 cases. Decision audit case promoted from executed finite inventory; HR acceptance pending. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": "Passing focused checks is not full requirement acceptance."
     },
@@ -602,7 +602,7 @@
         "T27"
       ],
       "acceptance": "Reviewer checks final code/permission boundaries; staged source excludes credentials/uploads/DB; resolve critical defects; record reviewed revision.",
-      "evidence": "Independent reviews fixed non-parity compatibility and Board/delegation delivery access; no remaining actionable finding in reviewed additions. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "Independent reviews found aggregate and individual TEXT overflow; split private handoff records plus Long Text storage verified with >64KiB cases. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -619,7 +619,7 @@
         "T29"
       ],
       "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
-      "evidence": "Tested source 9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9; local checkpoint, not final release tag or HR acceptance. See CHECKPOINT.md and evidence/revision-mail-final-2026-10-12.json.",
+      "evidence": "Tested source 1ea28738982841adf475681f03bbf349b28c6ef7; local checkpoint, not final release tag or HR acceptance. See CHECKPOINT.md and evidence/decision-audit-frozen-2026-10-12.json.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -724,5 +724,5 @@
       "name": "Full integration and production readiness"
     }
   ],
-  "tested_source_commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9"
+  "tested_source_commit": "1ea28738982841adf475681f03bbf349b28c6ef7"
 }

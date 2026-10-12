@@ -12,10 +12,10 @@ Implementation is active. Source work overlaps safely across four lanes; databas
 
 - 98 total requirements; 40 in this delivery; all 80 selected cases assessed individually. Passing focused tests does not automatically pass a complete case.
 - Fresh pinned ARM64 sandbox and synthetic restore passed: database IDs, private files, encrypted field and migration. A final tagged release remains pending.
-- Latest affected suites and independent races passed; detailed results are in CHECKPOINT.md. Baseline: 69 passed, 7 partial, 4 blocked; HR acceptance pending.
+- Latest affected suites and independent races passed; detailed results are in CHECKPOINT.md. Baseline: 70 passed, 6 partial, 4 blocked; HR acceptance pending.
 - Native manager/HR approvals, bulk vacancy assignment, opening action and AR/EN document downloads passed in the browser. Initial Arabic/English desktop/mobile rendering and scoped access checks also passed.
 - HTTP approval replay and capacity races passed; eight-worker notification enqueue/delivery/rollback proof passed.
-- Tested development source `9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9` is pushed to the private custom repository. A production or final tagged release is not claimed.
+- Tested development source `1ea28738982841adf475681f03bbf349b28c6ef7` is pushed to the private custom repository. A production or final tagged release is not claimed.
 - See tracker task evidence and the strict acceptance mapping for current limits. HR policy decisions and human acceptance remain explicit gates.
 
 ## Sprint sequence

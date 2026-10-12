@@ -1563,15 +1563,15 @@
       "status": "not_run",
       "evidence": null
     },
-    "status": "partial",
-    "evidence": "docs/sprints/evidence/revision-mail-final-2026-10-12.json; docs/sprints/evidence/browser/mail-capture/a173fb4920ce/results.json; docs/sprints/REVISION_MAIL_REVIEW.md",
-    "commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9",
-    "checked_at": "2026-10-12T06:05:01.415448+00:00",
+    "status": "passed",
+    "evidence": "docs/sprints/evidence/decision-audit-frozen-2026-10-12.json; docs/sprints/evidence/joining-http-2026-10-12.json; docs/phases_0_3/DECISION_AUDIT_INVENTORY.md; docs/sprints/DECISION_AUDIT_REVIEW.md",
+    "commit": "1ea28738982841adf475681f03bbf349b28c6ef7",
+    "checked_at": "2026-10-12T06:28:25.125691+00:00",
     "owner": "Security",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Exact transactional envelopes cover recruitment/structure commands plus JD/Grade approval and review/apply for all five import kinds. Full JD children, reviewed rows/digest, actual related records and snapshots, explicit server invocation identity, replay and rollback pass. Original joining, delegation and selected native/system operations remain outside this envelope inventory.",
-    "defect": "Exact transactional envelopes cover recruitment/structure commands plus JD/Grade approval and review/apply for all five import kinds. Full JD children, reviewed rows/digest, actual related records and snapshots, explicit server invocation identity, replay and rollback pass. Original joining, delegation and selected native/system operations remain outside this envelope inventory.",
+    "actual": "Finite P0–P3 decision inventory verified: recruitment/structure, revisions/imports, original joining, delegation, occupied baseline, native Department and disabled-account ownership handoff retain actor/principal, exact command or explicitly labeled native/system delta, before/after and time. Ordinary API mutation denied. Replay/rollback and private audit survival pass; large Arabic/legacy histories retained. External anchor and denied-attempt logging remain separate cases.",
+    "defect": null,
     "hr_acceptance": "pending"
   },
   {
