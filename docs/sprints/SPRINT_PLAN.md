@@ -12,10 +12,10 @@ Implementation is active. Source work overlaps safely across four lanes; databas
 
 - 98 total requirements; 40 in this delivery; all 80 selected cases assessed individually. Passing focused tests does not automatically pass a complete case.
 - Fresh pinned ARM64 sandbox and synthetic restore passed: database IDs, private files, encrypted field and migration. A final tagged release remains pending.
-- Final frozen-source suites passed 186 mixed native/pure/mocked checks, plus independent race gates. Baseline: 10 passed, 53 partial, 17 blocked; HR acceptance pending.
+- Latest affected suites and independent races passed; detailed results are in CHECKPOINT.md. Baseline: 28 passed, 42 partial, 10 blocked; HR acceptance pending.
 - Native manager/HR approvals, bulk vacancy assignment, opening action and AR/EN document downloads passed in the browser. Initial Arabic/English desktop/mobile rendering and scoped access checks also passed.
 - HTTP approval replay and capacity races passed; eight-worker notification enqueue/delivery/rollback proof passed.
-- Tested development source `daf3685df4418bd8ce21129e64e61a4d5e95b3bd` is pushed to the private custom repository. A production or final tagged release is not claimed.
+- Tested development source `d3e2c66100926cfa8ad8f886e6a3debf5a4c0865` is pushed to the private custom repository. A production or final tagged release is not claimed.
 - See tracker task evidence and the strict acceptance mapping for current limits. HR policy decisions and human acceptance remain explicit gates.
 
 ## Sprint sequence
@@ -86,7 +86,7 @@ Status vocabulary: verified = task-specific evidence; in_progress = active and i
 | T18 | S2 / Security | Native identity, MFA and account controls | planned | T04, T06 |
 | T19 | S2 / QA | Bilingual native workspace and timelines | in_progress | T13, T14, T11 |
 | T20 | S2 / Security | SLA reminders and escalation | in_progress | T11, T13 |
-| T21 | S2 / QA | Verify no payroll actions | planned | T13, T18 |
+| T21 | S2 / QA | Verify no payroll actions | in_progress | T13, T18 |
 | T22 | S3 / Lead | Integrate schemas and migrate serially | in_progress | T05, T07, T08, T10, T12, T14, T15, T16, T17, T18, T19, T20, T21 |
 | T23 | S3 / Security | Native authorization and identity tests | in_progress | T22 |
 | T24 | S3 / Organization | Native organization and import tests | in_progress | T22 |
@@ -127,7 +127,7 @@ The planning goal is separate from the implementation release goal: completing t
 
 ## Tracker verification
 
-17 browser checks passed for the tracker, including filters, notes, review export, dependency navigation, artifact links and mobile width. No JavaScript errors were observed. These checks are not HR application acceptance. Evidence: `evidence/tracker-browser-check.json`.
+18 browser checks passed for the tracker, including filters, notes, review export, dependency navigation, artifact links and mobile width. No JavaScript errors were observed. These checks are not HR application acceptance. Evidence: `evidence/tracker-browser-check.json`.
 
 ## Later scope
 

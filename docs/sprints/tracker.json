@@ -5,7 +5,7 @@
   "title": "قنديل | HR delivery sprints",
   "release_goal": "Deliver a reproducible, bilingual local Frappe HR release for P0–P3, with the selected 40 requirements verified against 80 baseline cases and targeted regression tests.",
   "scope": "P0 baseline + P1 security + P2 organization + P3 requests and vacancies. Full HR parity (P4–P10), company platform, Odoo integrations and production are separate milestones.",
-  "status_note": "Development checkpoint: 186 mixed suite checks passed, plus independent database and HTTP races and native AR/EN browser evidence. Strict baseline assessment is 10 passed, 53 partial and 17 blocked; HR acceptance remains pending. The implementation goal remains active.",
+  "status_note": "Development checkpoint: 28 passed, 42 partial and 10 blocked baseline cases; HR acceptance pending. Occupancy, confidential notes, payroll boundary and notification revocation have new proof. Ten serial suite results, HTTP races and native AR/EN screens are recorded; the implementation goal remains active.",
   "sprints": [
     {
       "id": "S0",
@@ -102,7 +102,7 @@
         "T02"
       ],
       "acceptance": "Lock exact app revisions and image versions; install custom app from its repo on a clean environment, rebuild assets and migrate; document backup/config/restore; no secrets tracked.",
-      "evidence": "Pinned ARM64 fresh installation and synthetic database/files/encryption-key restore passed. Final clean tested commit remains the release gate.",
+      "evidence": "Pinned installer now rejects dirty custom source and records exact checkout/upstream/image identities. Clean source preflight passed. Earlier fresh install/restore remains historical; final release restore pending.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -211,7 +211,7 @@
         "T06"
       ],
       "acceptance": "Reviewed mapping for existing employees/seats; default one seat; reimport idempotent; database-enforced unique position capacity; no resize below occupied+reserved+open; concurrent duplicate prevented.",
-      "evidence": "47 native organization checks cover reviewed imports, replay and capacity. CSV native browser preview/load passed without saving. Concurrent seat and assignment gates passed; real employee mapping remains.",
+      "evidence": "Nine occupancy integration checks passed: dated assignments drive recruitment and closure; unmatched imports require reviewed reconciliation with immutable audit. Later exception hires can conservatively require fresh review.",
       "requirement_ids": [
         "HC-001",
         "HC-002"
@@ -230,7 +230,7 @@
         "T06"
       ],
       "acceptance": "Sensitive grade/pay/employee fields denied across UI/API/report/file routes; before/after and actor recorded; audit-key/seal design decided and tampering tested before claiming cryptographic parity.",
-      "evidence": "Immutable local events, private-file and report boundaries passed native tests. Protected external cryptographic anchor remains unimplemented and needs key-custody decisions.",
+      "evidence": "Eight confidential-note boundary tests and native HR-create/requester-denial browser checks passed. Notes are separate immutable scoped records; request scope freezes after notes exist. Full field privacy and external audit seal remain incomplete.",
       "requirement_ids": [
         "AUD-001"
       ],
@@ -248,7 +248,7 @@
         "T06"
       ],
       "acceptance": "Transactional outbox rollback/dedupe/retry/exhaustion/revocation tested; operator retry view; no email side effects; SLA uses injectable Cairo clock and calendar.",
-      "evidence": "Eight independent transactions enqueue one outbox record; eight delivery workers create one notification. Rollback recovery, no outbound Email Queue growth and cleanup passed all five concurrency gates. Clock/calendar and retry tests also pass.",
+      "evidence": "Five in-flight outbox revocation checks passed; current grants, account state and role removal are checked after locks. Existing outbox race/delivery suites pass. No external delivery or retroactive notification removal is claimed.",
       "requirement_ids": [],
       "risk": "External email delivery is not configured."
     },
@@ -265,7 +265,7 @@
         "T10"
       ],
       "acceptance": "Approved immutable JD revisions, competencies, permissioned view/AR-EN print/PDF; email adapter proof explicitly separate from muted local delivery.",
-      "evidence": "40native+19pure organization tests; fourAR/EN JD/workercardPDFs visuallyverified. Gradeexcluded, KPI/responsibilityrules tested; review/distribution/livebrowser gaps explicit.",
+      "evidence": "Approved JD mutation/deletion and independent EN/AR stored organization snapshot rendering passed. Full review/distribution workflow remains pending.",
       "requirement_ids": [
         "ORG-003"
       ],
@@ -375,7 +375,7 @@
         "T06"
       ],
       "acceptance": "Lead/team permissioned updates; scoped unassigned queue/bulk reassignment; missing role recorded; priority formula and reasoned override; vacancy/request listing with correct filters.",
-      "evidence": "Native queue and atomic bulk assignment are implemented. Real browser assigned both openings through the native dialog; permission, stale-batch and priority tests passed. Complete ownership migration remains.",
+      "evidence": "Seven exact acceptance checks passed, including deterministic score230, authorized pin20→120 and immutable unpin history. First-pin stale audit score fixed. Owner migration remains pending.",
       "requirement_ids": [
         "PRI-001",
         "VAC-003",
@@ -450,13 +450,13 @@
       "lane": "QA",
       "title": "Verify no payroll actions",
       "ar": "التحقق من عدم تنفيذ إجراءات الأجور",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "T13",
         "T18"
       ],
       "acceptance": "All new commands and role workflows leave pay/deductions/stops/payments untouched; audit logs and permission tests enforce boundary.",
-      "evidence": "Recruitment-only scope documented; regression proof needed.",
+      "evidence": "Three payroll-boundary tests passed with 15 payroll/ledger table hashes and four recruitment roles denied native/controller mutations. Future overdue-document job absent; exact first case remains partial.",
       "requirement_ids": [
         "WAG-001"
       ],
@@ -550,7 +550,7 @@
         "T22"
       ],
       "acceptance": "Native role accounts complete form→approval→vacancy in both languages; RTL, errors, PDF, restricted data, narrow viewport, notifications and console inspected with screenshots.",
-      "evidence": "Six initial native/render groups, five JD/PDF groups, five workflow groups and four CSV preview groups passed. Arabic RTL/mobile and private document access verified; full acceptance walkthrough remains.",
+      "evidence": "Six saved-language AR/EN desktop/mobile checks and four confidential-note browser checks passed. Native creation permission issue fixed; saved notes remain immutable. Full runtime localization and human terminology approval pending.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -569,7 +569,7 @@
         "T26"
       ],
       "acceptance": "All 80 baseline cases have actual evidence or explicit failing/blocked status; supplemental defect and concurrency cases included; existing pilot regression checked; no critical open defects.",
-      "evidence": "Strict 80-case mapping:10 fully evidenced,53 partial,17 blocked. Technical suite totals are separate; HR UAT pending.",
+      "evidence": "Strict baseline now 28 passed /42 partial /10 blocked; 80 IDs and expected definitions retained. See checkpoint summary and per-case evidence; technical proof is not HR UAT.",
       "requirement_ids": [],
       "risk": "Passing focused checks is not full requirement acceptance."
     },
@@ -619,7 +619,7 @@
         "T29"
       ],
       "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
-      "evidence": "Tested development checkpoint daf3685df4418bd8ce21129e64e61a4d5e95b3bd pushed to private origin/main. Metadata update follows. Final release tag and handover remain pending.",
+      "evidence": "Tested source d3e2c66100926cfa8ad8f886e6a3debf5a4c0865 pushed to the private repository; checkpoint includes source, tests and evidence. Final tagged release and handover remain pending.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -724,5 +724,5 @@
       "name": "Full integration and production readiness"
     }
   ],
-  "tested_source_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd"
+  "tested_source_commit": "d3e2c66100926cfa8ad8f886e6a3debf5a4c0865"
 }

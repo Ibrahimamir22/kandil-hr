@@ -1,6 +1,6 @@
 # قنديل — HR implementation checkpoint
 
-12 October 2026. Tested source checkpoint: `daf3685df4418bd8ce21129e64e61a4d5e95b3bd`. The implementation goal remains active. This is a development checkpoint, not completion of P0–P3, HR acceptance, or a production release.
+12 October 2026. Tested source checkpoint: `d3e2c66100926cfa8ad8f886e6a3debf5a4c0865`. The implementation goal remains active. This is a development checkpoint, not completion of P0–P3, HR acceptance, or a production release.
 
 ## What exists
 
@@ -32,10 +32,24 @@ These IDs are synthetic examples on this machine, not portable installation defa
 
 For Arabic, set the account's language to Arabic and reload. Native request/queue desktop and mobile RTL were checked using the saved user language, not only a URL parameter. HR must still review the business terminology.
 
+## Latest checkpoint
+
+Strict baseline: **28 passed /42 partial /10 blocked**. These are 80 requirement cases, not percentages of implementation effort. HR acceptance remains pending.
+
+- Dated assignments now drive headcount at recruitment and structure command boundaries. Imported discrepancies require explicit authorized reconciliation with immutable audit. Earlier commitments are tracked through vacancy-to-employee conversion.
+- Confidential HR notes are separate immutable records. HR can create them through the native form; requester responses, notices, timeline, print and exports exclude them. Noted request scope cannot move. Public decision reasons remain public.
+- Notification delivery rechecks current scope, account and roles after acquiring locks. Explicit concurrent revocation probes passed; already delivered notifications are not retroactively removed.
+- Priority audit records use the live score; exact priority, duplicate-line, quantity, delegation duration, notification-recipient and historical-revision cases passed.
+- Organization revisions render their stored EN/AR relationships independently. Approved JD and historical organization records reject native mutation/deletion.
+- Recruitment roles are denied payroll mutation endpoints. Existing recruitment jobs leave payroll records unchanged; future overdue-document automation is still absent.
+
+**New note walkthrough:** log in as `hr`, open the approved request from the private manifest, click **Add Confidential HR Note**, enter text and save. The saved record is immutable; corrections require a new note. As `requester`, the note controls and data are absent. A synthetic saved note is listed as `docs.confidential_note` in the private manifest.
+
 ## Evidence, with limits
 
-- Final frozen-source suites passed 186 checks: foundation 52 (25 native, 14 pure, 13 mocked), organization 47 native +35 pure, recruitment 26, joining 11, SLA 9, priority 6. These are technical checks, not a project-completion percentage.
-- Independent connection gates passed: organization 6, authorization mutation 4 and outbox 5. Strict baseline assessment: 10 passed, 53 partial, 17 blocked; HR acceptance remains pending.
+- Serial checkpoint: occupancy9, organization47 plus8 exact cases, recruitment26, joining11, SLA9, privacy8, payroll3, acceptance7, foundation52 mixed checks and organization independent-connection6 all passed. The initial SLA launcher entry-point failure is preserved; continuation changed only test wiring. See `evidence/checkpoint-summary-2026-10-12.json`.
+- The browser exposed a note-form create permission issue; the fix then passed all8 privacy checks and4 native/HTTP note checks. Six AR/EN desktop/mobile checks passed afterward. Note form strings are statically translated; this is not a full Arabic note-form UAT.
+- Outbox revocation5, existing outbox races5 and native access3 passed earlier in this checkpoint at their recorded hashes. These are technical probes, not sustained production load tests.
 - Three HTTP race batches checked 20 submissions competing for five seats and 20 identical manager/final approvals. Each replay advanced once; excess requests were controlled rejections.
 - Eight independent database workers proved one outbox identity, one delivered local notification, rollback recovery and no outbound email.
 - Native browser checks cover English/Arabic screens, mobile overflow, ordinary-account boundaries, manager/HR approval buttons, bulk assignment and vacancy opening.
@@ -48,6 +62,8 @@ Use `ACCEPTANCE_EVIDENCE_MAPPING.md` under `docs/phases_0_3` for each baseline c
 
 ## Still required
 
-Complete remaining cases and review findings (including strict in-flight notification-delivery revocation and cross-company shared-recipient contention); select and test identity/MFA/provider rules; confirm CEO/Board delegation and self-interest rules; settle audit-key/external-seal custody; finish selected structural scheduling, JD review/distribution, amendment/correction and ownership workflows; verify no payroll side effects; run final source/restore checks and HR UAT.
+Complete the remaining42 partial and10 blocked cases: identity/MFA/provider rules; CEO/Board delegation and self-interest proof; audit-key/external-seal custody; selected structural scheduling, JD review/distribution, amendment/correction and ownership workflows; future overdue-document payroll noninterference; final source/restore checks and HR UAT. Cross-company shared-recipient contention still needs its complete proof.
+
+Known limits: later approved exception hires beyond the frozen commitment cohort can conservatively require renewed review of earlier requests. Historical shared snapshots are not scrubbed by the new allowlist. Pending requests submitted before the new headcount basis must be returned and freshly reviewed. The current clean-checkout preflight passed; a fresh installation/restore of this exact source is still pending.
 
 No Odoo, BioTime, Sheets, AI provider, external email or production integration is represented as complete. Production data has not been migrated. Source publication, when recorded, is a checkpoint rather than permission to deploy.

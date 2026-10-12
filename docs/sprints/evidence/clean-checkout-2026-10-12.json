@@ -1,0 +1,16 @@
+{
+  "custom_app_commit": "d3e2c66100926cfa8ad8f886e6a3debf5a4c0865",
+  "clean": true,
+  "upstream_commits": {
+    "frappe": "2871914b69b6e14a4b023d9b7cc52dc3e269cc1b",
+    "erpnext": "7474d9e786277383de1242ab882f16856d17a9c9",
+    "hrms": "7c037698ce57d1492f05a8b4a586a7578f722879"
+  },
+  "images": {
+    "bench": "frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557",
+    "mariadb": "mariadb@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15",
+    "redis": "redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952"
+  },
+  "platform": "linux/arm64",
+  "limit": "Source checkout proof; not deployment or workflow acceptance."
+}
