@@ -7,10 +7,10 @@ const out=path.join(__dirname,'evidence',`pending-${run}`);fs.mkdirSync(out,{rec
 const manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-browser-${run}.json`);
 const checks=[],errors=[],external=[],failures=[];let browser,data,page,cleanup;
 function bench(action){
- let raw;try{raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.recruitment.headcount_http_fixture.'+action,'--kwargs',JSON.stringify({run_id:run})],{cwd:dev,encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:240000});}catch{throw Error('Synthetic fixture '+action+' failed; private output withheld')}
+ let raw;try{raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.recruitment.headcount_http_fixture.'+action,'--kwargs',JSON.stringify({run_id:run})],{cwd:dev,encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:240000});}catch(error){const diagnostic=path.join('/tmp',`kandil-pending-${run}-${action}.txt`);fs.writeFileSync(diagnostic,String(error.stdout||'')+'\n'+String(error.stderr||''),{mode:0o600});throw Error('Synthetic fixture '+action+' failed; private output withheld')}
  return JSON.parse(raw.split('\n').filter(x=>x.startsWith('{')).at(-1));
 }
-const files=['frontend/portal/src/main.tsx','frontend/portal/src/PendingRevision.tsx','frontend/portal/src/portal.css','kandil_hr/portal/api.py','kandil_hr/recruitment/pending_revision.py','kandil_hr/recruitment/headcount_denials.py','kandil_hr/recruitment/api.py','docs/portal/test_pending_revision.cjs'];
+const files=['frontend/portal/src/main.tsx','frontend/portal/src/PendingRevision.tsx','frontend/portal/src/portal.css','kandil_hr/portal/api.py','kandil_hr/recruitment/pending_revision.py','kandil_hr/recruitment/headcount_denials.py','kandil_hr/recruitment/api.py','docs/portal/test_pending_revision.cjs','kandil_hr/recruitment/browser_fixture.py','kandil_hr/recruitment/headcount_http_fixture.py'];
 const hashes=()=>Object.fromEntries(files.map(p=>[p,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,p))).digest('hex')]));
 const source=hashes();
 function check(name,condition){assert.ok(condition,name);checks.push({name,status:'PASS'});console.log('PASS '+name)}

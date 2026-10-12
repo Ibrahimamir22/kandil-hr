@@ -1,0 +1,16 @@
+{
+  "status": "REVISION_REQUIRED",
+  "reviewed_at": "2026-10-12T22:45:32.137564+00:00",
+  "screenshots": {
+    "review-en.png": "b3fc47a2401f920ef90d0e658440091674f4a3b01c8540396f0ee4913ae6fa39",
+    "review-ar.png": "a531448ee87cb8072ba79a599978de518e6493c5f388be404e4eb7272d1a48c8"
+  },
+  "observations": [
+    "English review displays complete business fields and two locations.",
+    "Arabic review uses readable RTL labels, but table quantities require horizontal scrolling. Page-wide overflow check alone missed the internal table overflow."
+  ],
+  "next_action": "Wrap review table cells, add an internal table width assertion and rerun browser evidence.",
+  "limits": [
+    "Original passing browser result is retained at its exact source snapshot; this review does not mark final visual acceptance."
+  ]
+}

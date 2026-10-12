@@ -45,7 +45,8 @@ class TestRecruitmentCommands(unittest.TestCase):
 		def fixture_enqueue(method, *args, **kwargs):
 			identity = getattr(kwargs.get("user"), "name", "") or ""
 			if (method == "frappe.core.doctype.user.user.create_contact"
-					and re.fullmatch(r"rec-[0-9a-f]{10}-(?:requester|manager|hr|sector)@example\.invalid", identity)):
+					and getattr(self, "prefix", None)
+					and re.fullmatch(re.escape(self.prefix.lower()) + r"-[a-z0-9_]+@example\.invalid", identity)):
 				kwargs["now"] = True
 			return enqueue(method, *args, **kwargs)
 		contact_patch = patch("frappe.enqueue", side_effect=fixture_enqueue)

@@ -1,0 +1,91 @@
+{
+  "status": "FAIL",
+  "run_id": "a61728586112",
+  "checked_at": "2026-10-12T22:46:26.050Z",
+  "checks": [
+    {
+      "name": "en: replacement requires an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "en: all business fields appear before saving",
+      "status": "PASS"
+    },
+    {
+      "name": "en: form fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: review quantities fit without horizontal scrolling",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved database fields and two locations match",
+      "status": "PASS"
+    },
+    {
+      "name": "en: reopening draft preserves every field",
+      "status": "PASS"
+    },
+    {
+      "name": "en: submitted revision retains edited requirements",
+      "status": "PASS"
+    },
+    {
+      "name": "en: submitted request has no draft edit action",
+      "status": "PASS"
+    },
+    {
+      "name": "en: selecting identity never grants profile access",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized HR sees complete submitted content",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: replacement requires an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: all business fields appear before saving",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: form fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Full form journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "ar: review quantities fit without horizontal scrolling"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a61728586112",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "6550a6ebc54d0bb6e51a8fefbb9ee4499af23e6b752a0673abd355d9a1ea166a",
+    "frontend/portal/src/RequestForm.tsx": "bce39b16064ee0dc7c735df0e3de8f7a5927a03e025bdab9990a8a7d63937b7d",
+    "frontend/portal/src/types.ts": "a91e968b45f43df36e441d68f97469b9409d1cfceb65262a7c0543a98e0e27d3",
+    "frontend/portal/src/portal.css": "1949bec20f8b3da239eb9ef09ced8db41deaa7eaea1520a552d64b27a0a4554b",
+    "kandil_hr/public/portal/portal.js": "fbff8e1b651f490bb5f1881397c1dfe3e65572ffbe17aa54c7f2829b693a80fc",
+    "kandil_hr/portal/api.py": "3ac5d87c0d4735418947e83c7e5c3d98ddb6591f3d5ee023968da6dc4f8a8689",
+    "kandil_hr/portal/request_form.py": "6f9a1dc901bc0ceefb8bff16f793cc975576007f9e4717ec8758dee838ce4028",
+    "kandil_hr/portal/request_form_fixture.py": "4d63d75379387b604dbb27ce34489fe020314a9aa979df215d73ad4914a1c07b",
+    "kandil_hr/recruitment/reference_access.py": "d9a568b3679de0c62f887a812d2b2e3427571e7a8a80a36458e94e5ac0b62aa4",
+    "kandil_hr/recruitment/models.py": "9269c22ae43b5c81178509576f9548a76d719f7f858551b3b92ea51fbff550f3",
+    "docs/portal/test_request_form.cjs": "7fdf75f372277cd41b9ed8a5c7deb38224b5cdf31cb006f69ded41fbcb16d094"
+  },
+  "limits": [
+    "Synthetic ordinary-role form proof; future full authority/Board/delegation workflows and production acceptance remain separate."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-12T22:49:31.495360+00:00",
+  "method": "Direct visual inspection of final captured English desktop and Arabic 390px mobile review screens.",
+  "screenshots": {
+    "review-en.png": "15555bb2f554f49fd28efd66177a64ca3ebf3514139fca109ce69fddf8451cf0",
+    "review-ar.png": "4b3cf0b03ef156e12c30d11c6b485a8d30f714b5f3863bc132138cb44e23f2a8"
+  },
+  "observations": [
+    "English desktop review contains all business fields, company/department and two location quantities with readable labels.",
+    "Arabic mobile review uses RTL, wraps mixed text, and displays all three quantity columns without horizontal scrolling.",
+    "Back, save draft and confirm submission controls fit the mobile viewport; sidebar collapses.",
+    "Replacement is shown as stable Employee ID; selecting its name does not expose the Employee profile."
+  ],
+  "limits": [
+    "Visual review covers these synthetic review screens, not HR terminology sign-off or a full accessibility assessment.",
+    "Recorded availability is advisory and server validation remains authoritative."
+  ]
+}

@@ -231,10 +231,13 @@
         {
           "id": "S3-01",
           "description": "Complete every agreed request field, replacement information, skills, employment terms and multi-location quantities.",
-          "status": "in_progress",
-          "progress": "Audited current form/API/schema: complete business fields, paginated reference selectors, replacement-employee authorization and full review/detail projection remain to implement.",
+          "status": "complete",
+          "progress": "Engineering complete: full AR/EN form and saved details, bounded searchable selectors, limited scoped replacement identity and native reference validation. 60 native, 23 form-browser, 24 original-journey and 16 pending-revision checks passed. HR/IT role configuration and complete authority acceptance remain open.",
           "evidence": [
-            "S3_IMPLEMENTATION_BRIEF.md"
+            "S3_FORM_CHECKPOINT.md",
+            "../portal/evidence/request-form-7fde9d159047/results.json",
+            "../portal/evidence/browser-5e6a9d62e494/regression.json",
+            "../portal/evidence/pending-f5ec656b39a1/results.json"
           ]
         },
         {
@@ -265,7 +268,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Source/coverage audit complete; 17 frozen S3 requirements mapped into five implementation slices. Existing native commands will be reused. Full form implementation is next; no new S3 portal workflow is claimed complete. S2 engineering dependencies are available while HR/document/live-email acceptance remains open.",
+      "progress": "Slice 1 engineering complete with full form and regression evidence. Next is S3-02 read-only route/headcount preview. Later authority, HR actions, delegation/Board and frozen history screens remain planned. S2 human/document/live-email gates remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -705,9 +708,9 @@
     "Human acceptance is separately recorded and never inferred from automated tests."
   ],
   "latest_checkpoint": {
-    "sprint": "S2",
-    "summary": "Lazy scoped reporting tree connected; S2-01 engineering navigation complete. 17 final native contracts and 26 AR/EN browser checks passed. S2 and the full HR goal remain active.",
-    "evidence": "S2_TREE_CHECKPOINT.md",
-    "next": "Connect unified position history across reviewed imports, joining and reversal sources. Preserve HR tree/document/history acceptance and configured live email as separate gates. Inventory shared development queue before queue-dependent testing."
+    "sprint": "S3",
+    "summary": "Complete hiring form and scoped replacement identity delivered in Arabic/English; S3-01 engineering complete. Full S3 and HR goal remain active.",
+    "evidence": "S3_FORM_CHECKPOINT.md",
+    "next": "S3-02 read-only approval-route and headcount preview; preserve native scope and no side effects. HR/IT must review linked Employee visibility for actual approval roles."
   }
 }

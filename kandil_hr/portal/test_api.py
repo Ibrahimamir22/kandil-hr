@@ -164,7 +164,7 @@ class TestPortalAPI(unittest.TestCase):
 		self.assertEqual(result["count_scope"], "page")
 		self.assertEqual(result["approvals"], [])
 		self.assertTrue(detail["actions"]["edit"])
-		self.assertLessEqual(set(detail["request"]), set(api.REQUEST_FIELDS) | {"quantity", "lines", "approval_steps"})
+		self.assertLessEqual(set(detail["request"]), set(api.REQUEST_FIELDS) | {"quantity", "lines", "approval_steps", "replacement_restricted"})
 		self.assertNotIn("snapshot_json", json.dumps(detail, default=str))
 		grant = frappe.get_doc("Kandil Access Grant", self.f.grants["hr"])
 		grant.revoked = 1

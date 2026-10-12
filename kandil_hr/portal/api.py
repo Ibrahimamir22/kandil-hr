@@ -17,6 +17,7 @@ from kandil_hr.foundation.security import has_scope, request_scope
 from kandil_hr.pilot.api import event, transactional_retry, transition
 from kandil_hr.pilot.navigation import has_app_permission, request_actions
 from kandil_hr.recruitment.models import guard
+from kandil_hr.recruitment.reference_access import visible_employee
 from kandil_hr.recruitment.review_views import timeline
 
 EDITABLE = (
@@ -46,6 +47,10 @@ def read_request(name, for_update=False):
 def project(doc):
     result = {key: doc.get(key) for key in REQUEST_FIELDS}
     result["modified"] = str(doc.modified)
+    replacement = doc.get("replacement_employee")
+    result["replacement_restricted"] = bool(replacement and not visible_employee(replacement))
+    if result["replacement_restricted"]:
+        result["replacement_employee"] = None
     result["quantity"] = sum(cint(row.requested_qty) for row in doc.lines)
     result["lines"] = []
     for row in doc.lines:
@@ -235,7 +240,11 @@ def save_draft(payload, command_id, name=None, expected_version=None):
         read_request(prior[0].request, for_update=True)
         if prior[0].payload_hash != digest:
             frappe.throw(_("Command ID was already used with different data."))
-        return json.loads(prior[0].result_json)
+        result = json.loads(prior[0].result_json)
+        replacement = result.get("replacement_employee")
+        result["replacement_restricted"] = bool(replacement and not visible_employee(replacement))
+        if result["replacement_restricted"]: result["replacement_employee"] = None
+        return result
     selected = locked_positions.get(proposed.requested_position)
     if not selected or selected.status != "Active" or selected.company != company or selected.department != proposed.department:
         frappe.throw(_("Choose a currently active position in this company and department."))

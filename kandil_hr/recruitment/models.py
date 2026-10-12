@@ -149,6 +149,12 @@ def validate_request(doc):
 		frappe.throw(_("Select the employee being replaced."))
 	if doc.replacement_employee:
 		emp = frappe.get_doc("Employee", doc.replacement_employee)
+		# Enforce for native draft saves as well as the portal selector. Preserve an
+		# unchanged stored reference if access is later restricted; never expose it.
+		if not internal() and (not old or old.replacement_employee != doc.replacement_employee):
+			from kandil_hr.recruitment.reference_access import can_reference_employee
+			if not can_reference_employee(emp):
+				frappe.throw(_("Replacement employee is outside your permitted recruitment scope."), frappe.PermissionError)
 		if emp.company != doc.company or emp.department != doc.department:
 			frappe.throw(_("Replacement employee must be within this department."))
 

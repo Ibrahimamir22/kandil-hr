@@ -4,6 +4,9 @@ import json
 import secrets
 import uuid
 from pathlib import Path
+from contextlib import contextmanager
+from functools import wraps
+from unittest.mock import patch
 
 import frappe
 from frappe.utils import today
@@ -26,6 +29,30 @@ def path_for(run_id):
 	return Path(frappe.get_site_path("private", f"kandil-browser-{run_id}.json"))
 
 
+@contextmanager
+def local_user_contacts(run_id):
+	"""Exact CLI-only synthetic cohort; preserve normal hooks and queued jobs."""
+	guard(run_id)
+	original = frappe.enqueue
+	allowed = {f"browser-{run_id}-{role}@example.invalid" for role in ("requester", "manager", "hr", "sector")}
+	def enqueue(method, *args, **kwargs):
+		if (method == "frappe.core.doctype.user.user.create_contact"
+				and getattr(kwargs.get("user"), "name", None) in allowed):
+			kwargs["now"] = True
+		return original(method, *args, **kwargs)
+	with patch("frappe.enqueue", side_effect=enqueue):
+		yield
+
+
+def with_local_contacts(fn):
+	@wraps(fn)
+	def wrapped(run_id):
+		with local_user_contacts(run_id):
+			return fn(run_id)
+	return wrapped
+
+
+@with_local_contacts
 def prepare(run_id):
 	guard(run_id)
 	path = path_for(run_id)
@@ -51,16 +78,22 @@ def prepare(run_id):
 	}.items():
 		email = f"{prefix.lower()}-{role}@example.invalid"
 		password = secrets.token_urlsafe(36)
-		insert(
-			"User",
-			email=email,
-			first_name=f"{prefix} {role}",
-			enabled=1,
-			send_welcome_email=0,
-			user_type="System User",
-			language="ar" if role == "requester" else "en",
-			roles=[{"role": r} for r in roles],
-		)
+		previous_import = frappe.flags.get("in_import")
+		try:
+			# Bulk-import semantics only for this guarded synthetic account creation.
+			frappe.flags.in_import = True
+			insert(
+				"User",
+				email=email,
+				first_name=f"{prefix} {role}",
+				enabled=1,
+				send_welcome_email=0,
+				user_type="System User",
+				language="ar" if role == "requester" else "en",
+				roles=[{"role": r} for r in roles],
+			)
+		finally:
+			frappe.flags.in_import = previous_import
 		update_password(email, password, logout_all_sessions=True)
 		users[role] = dict(email=email, password=password)
 		insert(
@@ -243,6 +276,7 @@ def inspect(run_id):
 	)
 
 
+@with_local_contacts
 def cleanup(run_id):
 	guard(run_id)
 	data = json.loads(path_for(run_id).read_text())

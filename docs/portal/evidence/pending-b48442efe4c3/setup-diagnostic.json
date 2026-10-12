@@ -1,0 +1,13 @@
+{
+  "run_id": "b48442efe4c3",
+  "cause": "Frappe hourly User creation throttle before browser launch; reproduced with a private CLI diagnostic.",
+  "rollback_check": {
+    "company": 0,
+    "users": 0,
+    "requests": 0
+  },
+  "manifest_created": false,
+  "private_log_committed": false,
+  "resolution": "Guarded synthetic account bulk-import context and exact-cohort inline contact handling; original failed result retained.",
+  "final_success": "../pending-f5ec656b39a1/results.json"
+}
