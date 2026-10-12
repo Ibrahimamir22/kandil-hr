@@ -176,11 +176,15 @@
           "id": "S2-04",
           "description": "Connect JD versions, weighted KPIs and approved AR/EN documents/worker cards.",
           "status": "in_progress",
-          "progress": "JD draft/editor, independent native approval, immutable successors, responsibilities/KPIs/competencies and scoped bilingual JD/worker HTML views are connected. 58 affected native checks and 20 personal-session browser checks passed; evidence is in S2_JD_CHECKPOINT.md. PDF/mail delivery and document acceptance remain open.",
+          "progress": "JD draft/editor, independent approval, immutable successors, weighted KPIs and bilingual documents are connected. PDF downloads and explicitly local-only email capture now have 33 focused native checks, 15 browser checks and visual review of eight PDF pages. Complete HR document acceptance and configured real-email delivery remain open; local capture does not satisfy external delivery.",
           "evidence": [
             "S2_JD_CHECKPOINT.md",
             "evidence/s2-regression-388118be3749.json",
-            "../portal/evidence/jd-1baa1b2ba681/results.json"
+            "../portal/evidence/jd-1baa1b2ba681/results.json",
+            "S2_DOCUMENT_CHECKPOINT.md",
+            "evidence/s2-regression-61699afc8436.json",
+            "../portal/evidence/documents-09edd524df9b/results.json",
+            "../portal/evidence/documents-09edd524df9b/visual-review.json"
           ]
         },
         {
@@ -682,8 +686,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "JD portal authoring, independent revision approval, KPI validation and scoped bilingual document views implemented. Engineering evidence in S2_JD_CHECKPOINT.md; PDF/mail/full history and HR acceptance remain open.",
-    "evidence": "S2_JD_CHECKPOINT.md",
-    "next": "Complete JD document/PDF/mail workflow proof and S2 structural/JD/assignment history differences, then HR acceptance."
+    "summary": "JD/worker PDF downloads and local-only email capture connected and verified: 33 native checks, 15 browser checks, eight rendered PDF pages. S2 remains in progress; live email, full history and HR acceptance remain open.",
+    "evidence": "S2_DOCUMENT_CHECKPOINT.md",
+    "next": "Complete scoped structural/JD/assignment history and differences. Track configured live-email and HR document acceptance separately."
   }
 }

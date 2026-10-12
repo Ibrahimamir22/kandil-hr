@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "pdfs": [
+    {
+      "file": "output/pdf/jd-ar.pdf",
+      "sha256": "c72235cbf84abc4b2ab944b0cf92010fc197da1d6fcef76eab453286e2d412b1",
+      "pages": 2,
+      "edge_warnings": [],
+      "renders": [
+        "rendered/jd-ar-1.png",
+        "rendered/jd-ar-2.png"
+      ]
+    },
+    {
+      "file": "output/pdf/worker-ar.pdf",
+      "sha256": "e486fb64182e7fbb2a13d76955ecd3dcd2b0da293c1fc20920ece5baef2babe0",
+      "pages": 2,
+      "edge_warnings": [],
+      "renders": [
+        "rendered/worker-ar-1.png",
+        "rendered/worker-ar-2.png"
+      ]
+    },
+    {
+      "file": "output/pdf/jd-en.pdf",
+      "sha256": "acc5789f6fb9ce1383b9d08353841c3d5129d482d966383b2b1d825578e40eff",
+      "pages": 2,
+      "edge_warnings": [],
+      "renders": [
+        "rendered/jd-en-1.png",
+        "rendered/jd-en-2.png"
+      ]
+    },
+    {
+      "file": "output/pdf/worker-en.pdf",
+      "sha256": "0bf2152e0cca109f8af9f2512479a8b104b2e3499d3e9905ea83f075720933b5",
+      "pages": 2,
+      "edge_warnings": [],
+      "renders": [
+        "rendered/worker-en-1.png",
+        "rendered/worker-en-2.png"
+      ]
+    }
+  ],
+  "limits": [
+    "Text bounds and rendering only. Human visual review must inspect every page for clipping, shaping, splits and legibility."
+  ]
+}

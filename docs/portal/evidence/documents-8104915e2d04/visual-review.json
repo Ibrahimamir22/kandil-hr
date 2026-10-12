@@ -1,0 +1,8 @@
+{
+  "status": "FAIL",
+  "reviewed_pages": 8,
+  "findings": [
+    "Page breaks repaired; Arabic worker purpose still loses the first glyph at the right print edge, confirmed with a high-resolution crop."
+  ],
+  "disposition": "Add inner print padding and regenerate before accepting."
+}

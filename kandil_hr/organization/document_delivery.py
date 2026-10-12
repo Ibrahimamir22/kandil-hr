@@ -316,7 +316,7 @@ def compose(name, user, email, sender, language, kind, note, locations):
 	html = rendered["html"]
 	if len(html.encode()) > 500_000:
 		frappe.throw(_("The document is too large for local delivery capture."))
-	pdf = get_pdf(html, options={"page-size": "A4"})
+	pdf = get_pdf(html, options=documents.pdf_options())
 	if not pdf.startswith(b"%PDF-") or len(pdf) > 5_000_000:
 		frappe.throw(_("The generated document PDF is invalid or too large."))
 	message = EmailMessage(policy=SMTP)

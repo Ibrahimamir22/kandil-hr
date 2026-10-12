@@ -84,3 +84,15 @@ Dated assignments are authoritative for this operation. No promise of standard E
 - POST `approve(name, expected_version, command_id)`: independent native Sector Approver, immutable approval, latest-predecessor recheck. Personal receipt replay revalidates current role/scope and native write permission.
 
 Payload allowlist and row limits live in `portal/job_descriptions.py`. This is a full editable-content replacement; callers must round-trip the editable fields they want retained. Hidden grade data is excluded and left unchanged on updates; new revisions do not inherit that hidden link automatically. Existing native document view/print routes remain authoritative for AR/EN JD and worker-card HTML. PDF/mail acceptance is not implied.
+
+## S2 PDF and local document delivery
+
+`portal.document_delivery` exposes authenticated GET projections, after native JD read/print and current document-scope checks:
+
+- `capabilities(name)`: `can_capture`, `delivery_mode=local_capture`, `provider_sent=false`, `max_recipients=10`, `note_limit=500`.
+- `recipients(name, search?, start?, page_length?)`: approved revision and authorized sender only. Bounded company grant candidates are paginated before full native recipient eligibility checks. Rows contain only eligible `user`/`label`; search is by email. `next_start` advances candidate pages; an empty eligible page can still have `has_more=true`. No global user directory.
+- `history(name, start?, page_length?)`: native sender/recipient visibility and frozen included-scope rechecks; rows contain name, JD revision, sender, recipient, language, output kind, status and captured time. No raw MIME, private scope snapshot or unrestricted audit envelope. The native own-capture eligibility scan remains a capacity-review item.
+
+The frontend calls existing POST `organization.document_delivery.capture(name, expected_version, recipients, language, kind, note, command_id)`. It retains the same command ID for an unchanged retry and requires `status=Captured locally` with `provider_sent=false`. This records an immutable local HTML/PDF MIME copy, not an outbound email. Existing native download revalidates current access; revocation denies history and captured EML download.
+
+`organization.documents.download_pdf(name, language, kind)` returns a private `application/pdf` attachment, RFC 5987 UTF-8 filename, `Cache-Control: private, no-store` and `X-Content-Type-Options: nosniff`. Direct PDF and captured PDF share A4 margins/page-number options. HTML view/print remains available. See [document checkpoint](S2_DOCUMENT_CHECKPOINT.md) for exact focused tests and visual evidence; real email and HR document acceptance are separate gates.

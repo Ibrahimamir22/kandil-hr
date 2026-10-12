@@ -1,0 +1,56 @@
+{
+  "status": "FAIL",
+  "run_id": "118b4682163b",
+  "checked_at": "2026-10-12T21:44:09.286Z",
+  "checks": [
+    {
+      "name": "Document journey failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "page.waitForEvent: Timeout 20000ms exceeded while waiting for event \"download\""
+    }
+  ],
+  "pdfs": [],
+  "cleanup": {
+    "run_id": "118b4682163b",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null",
+    "null"
+  ],
+  "source_hashes": {
+    "frontend/portal/src/JobDescriptions.tsx": "fdf549028eb797333823ec17797f99f7e9140089c8fab827c418c44400d18780",
+    "frontend/portal/src/DocumentDelivery.tsx": "542abc31173b68781f05023e179cfdd2318371691658fc910f9aa3cef971e07c",
+    "frontend/portal/src/portal.css": "30cce823ba8b8c10a533a1ffb7c63aff2c51d7a6e67a4490db050dfcc1b5c146",
+    "kandil_hr/public/portal/portal.js": "5555545db2fdfe3fb2c2c310d39b1dfc45562f09c7050810e57c42ea29876eab",
+    "kandil_hr/portal/document_delivery.py": "f791bed277888a1cea74f31fee9508c6e39bdb7f54b65be06d3eee4d2996aba3",
+    "kandil_hr/portal/document_fixture.py": "f9b56dea4cd872ccd0f840b0b73b7e4ec3fe13ccb95423fef944686bf9113fad",
+    "kandil_hr/organization/documents.py": "58b9bf49ec936736266774eb5f00c5aaf5ce61d74abdb92164a56552cabff682",
+    "kandil_hr/organization/document_delivery.py": "90d2d15929f04c4c54642e3b78893efe3451c36dfe23cebe292a056db99a3d8d",
+    "docs/portal/test_documents.cjs": "81eea81c58e2aa96d798829b7441293bb60e62b444cdf0c2532558d22084e1c2"
+  },
+  "limits": [
+    "Synthetic local capture only; no real email delivery, production acceptance or sustained capacity proof.",
+    "PDF downloads and extraction checked automatically; page rendering review recorded separately."
+  ]
+}

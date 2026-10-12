@@ -2,6 +2,7 @@
 
 import re
 from html import escape
+from urllib.parse import quote
 
 import frappe
 from frappe import _
@@ -280,7 +281,7 @@ def render(name, language="en", kind="jd", *, location_rows=None):
 	content += (
 		"<footer>" + text(label("Printed")) + ": " + text(getdate()) + " | " + text(doc.name) + "</footer>"
 	)
-	css = """@page{size:A4;margin:12mm}*{box-sizing:border-box}body{font-family:"Noto Sans Arabic","DejaVu Sans",Arial,sans-serif;color:#16342f;margin:0;font-size:12px;line-height:1.55}main{max-width:186mm;margin:auto}header{border-bottom:3px solid #176356;padding-bottom:8px}h1{font-size:24px;margin:2px 0}h2{font-size:15px;margin:10px 0 3px;color:#176356}p,ul,ol{margin:3px 0 5px}li{margin:2px 0}section{page-break-inside:auto}h2{page-break-after:avoid}table{border-collapse:collapse;width:100%;table-layout:fixed}td,th{border:1px solid #b9cfc7;padding:5px;word-wrap:break-word}tr{page-break-inside:avoid}thead{display:table-header-group}.meta,footer{font-size:10px;color:#536a63}aside{padding:6px;background:#fff0ce;color:#805200;font-weight:bold}.safety{border:2px solid #9a4c17;padding:8px;background:#fff7e9}.signatures{display:table;width:100%}.signatures div{display:table-cell;width:33%;padding:8px}.worker{font-size:14px;line-height:1.4}.worker h2{font-size:16px;margin-top:7px}.worker h1{font-size:23px}footer{margin-top:12px;border-top:1px solid #b9cfc7;padding-top:5px}@media screen{body{background:#e8efec;padding:24px}main{padding:12mm;background:white;box-shadow:0 3px 20px #0002}}"""
+	css = """@page{size:A4;margin:15mm 12mm}*{box-sizing:border-box}body{font-family:"Noto Sans Arabic","DejaVu Sans",Arial,sans-serif;color:#16342f;margin:0;font-size:12px;line-height:1.55}main{display:block;width:100%;max-width:186mm;margin:auto;padding:0 2mm}header{border-bottom:3px solid #176356;padding-bottom:8px}h1{font-size:24px;margin:2px 0}h2{font-size:15px;margin:10px 0 3px;color:#176356}p,ul,ol{margin:3px 0 5px}li{margin:2px 0;page-break-inside:avoid}section{display:block;page-break-inside:avoid}h2{page-break-after:avoid}p{orphans:3;widows:3}header,.signatures{page-break-inside:avoid}table{border-collapse:collapse;width:100%;table-layout:fixed}td,th{border:1px solid #b9cfc7;padding:5px;word-wrap:break-word}tr{page-break-inside:avoid}thead{display:table-header-group}.meta,footer{font-size:10px;color:#536a63}aside{padding:6px;background:#fff0ce;color:#805200;font-weight:bold}.safety{border:2px solid #9a4c17;padding:8px;background:#fff7e9}.signatures{display:table;width:100%}.signatures div{display:table-cell;width:33%;padding:8px}.worker{font-size:14px;line-height:1.4}.worker h2{font-size:16px;margin-top:7px}.worker h1{font-size:23px}footer{margin-top:12px;border-top:1px solid #b9cfc7;padding-top:5px}@media screen{body{background:#e8efec;padding:24px}main{padding:12mm;background:white;box-shadow:0 3px 20px #0002}}"""
 	html = (
 		'<!doctype html><html lang="'
 		+ language
@@ -313,12 +314,24 @@ def view(name, language="en", kind="jd"):
 	)
 
 
+def pdf_options():
+	"""Shared download/capture layout with explicit margins and page numbering."""
+	return {"page-size": "A4", "margin-top": "15mm", "margin-bottom": "15mm",
+		"margin-left": "12mm", "margin-right": "12mm", "footer-right": "[page] / [topage]",
+		"footer-font-size": "8", "footer-spacing": "4"}
+
+
 @frappe.whitelist()
 def download_pdf(name, language="en", kind="jd"):
 	from frappe.utils.pdf import get_pdf
 
 	output = render(name, language, kind)
-	frappe.local.response.filename = output["filename"] + ".pdf"
-	frappe.local.response.filecontent = get_pdf(output["html"], options={"page-size": "A4"})
-	frappe.local.response.type = "pdf"
-	frappe.local.response.display_content_as = "attachment"
+	return Response(
+		get_pdf(output["html"], options=pdf_options()),
+		mimetype="application/pdf",
+		headers={
+			"Content-Disposition": "attachment; filename*=UTF-8''" + quote(output["filename"] + ".pdf", safe=""),
+			"Cache-Control": "private, no-store",
+			"X-Content-Type-Options": "nosniff",
+		},
+	)

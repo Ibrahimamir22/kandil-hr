@@ -1,0 +1,14 @@
+{
+  "status": "FAIL",
+  "reviewed": [
+    "jd-ar-1.png",
+    "jd-ar-2.png",
+    "worker-ar-1.png",
+    "worker-ar-2.png"
+  ],
+  "findings": [
+    "JD section heading splits at the page boundary.",
+    "Arabic worker text extends beyond the right content boundary."
+  ],
+  "disposition": "Do not use these PDFs as accepted output; shared layout repair and re-render required."
+}

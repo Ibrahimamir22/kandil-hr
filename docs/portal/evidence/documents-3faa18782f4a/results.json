@@ -1,0 +1,132 @@
+{
+  "status": "PASS",
+  "run_id": "3faa18782f4a",
+  "checked_at": "2026-10-12T21:45:28.557Z",
+  "checks": [
+    {
+      "name": "ar jd UI downloads a readable actual PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "ar worker UI downloads a readable actual PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "en jd UI downloads a readable actual PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "en worker UI downloads a readable actual PDF",
+      "status": "PASS"
+    },
+    {
+      "name": "Portal captures locally with explicit no-provider result",
+      "status": "PASS"
+    },
+    {
+      "name": "Repeated unchanged capture reuses receipt without duplicate mail copies",
+      "status": "PASS"
+    },
+    {
+      "name": "Captured mail contains local marker and actual PDF attachment",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic recipient sees their local capture",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic document controls fit mobile",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot enumerate recipients or captures",
+      "status": "PASS"
+    },
+    {
+      "name": "Guessed original PDF and captured EML URLs are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recipient immediately loses history, PDF and captured mail access",
+      "status": "PASS"
+    },
+    {
+      "name": "Committed capture remains exactly once and is never marked sent",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JS errors, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser proof",
+      "status": "PASS"
+    }
+  ],
+  "pdfs": [
+    {
+      "file": "output/pdf/jd-ar.pdf",
+      "pages": 2,
+      "bytes": 38176,
+      "sha256": "0938beda667737a28d3157ec5a8d36d10b44fdd05c89949bdc575dd6381af037"
+    },
+    {
+      "file": "output/pdf/worker-ar.pdf",
+      "pages": 2,
+      "bytes": 35921,
+      "sha256": "2f01ba0a23fb03d7b214aab649c93545bd398a82293f67c432efae3e13ebc626"
+    },
+    {
+      "file": "output/pdf/jd-en.pdf",
+      "pages": 2,
+      "bytes": 31489,
+      "sha256": "0f37c21f35dbbc1882263d774d5cc60f4d23adb4a4fc6a4d124557cdf79f8427"
+    },
+    {
+      "file": "output/pdf/worker-en.pdf",
+      "pages": 2,
+      "bytes": 29515,
+      "sha256": "992f34e48b4522c296566d7f2e2b31a404463bbc5552b4e00c6254db089aa16a"
+    }
+  ],
+  "state": {
+    "captures": [
+      {
+        "name": "KDD-b5ff2675f67ac5c5447065363d541fc3becef93e",
+        "recipient": "portal-3faa18782f4a-recruiter@example.invalid",
+        "sender": "portal-3faa18782f4a-hr@example.invalid",
+        "language": "en",
+        "output_kind": "jd",
+        "status": "Captured locally"
+      }
+    ]
+  },
+  "cleanup": {
+    "run_id": "3faa18782f4a",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/JobDescriptions.tsx": "fdf549028eb797333823ec17797f99f7e9140089c8fab827c418c44400d18780",
+    "frontend/portal/src/DocumentDelivery.tsx": "542abc31173b68781f05023e179cfdd2318371691658fc910f9aa3cef971e07c",
+    "frontend/portal/src/portal.css": "30cce823ba8b8c10a533a1ffb7c63aff2c51d7a6e67a4490db050dfcc1b5c146",
+    "kandil_hr/public/portal/portal.js": "5555545db2fdfe3fb2c2c310d39b1dfc45562f09c7050810e57c42ea29876eab",
+    "kandil_hr/portal/document_delivery.py": "f791bed277888a1cea74f31fee9508c6e39bdb7f54b65be06d3eee4d2996aba3",
+    "kandil_hr/portal/document_fixture.py": "f9b56dea4cd872ccd0f840b0b73b7e4ec3fe13ccb95423fef944686bf9113fad",
+    "kandil_hr/organization/documents.py": "cd851dc6f9caa1349ce54e4dbe86d832fa63b3355e2ecbbb8f3e537292f5dc57",
+    "kandil_hr/organization/document_delivery.py": "90d2d15929f04c4c54642e3b78893efe3451c36dfe23cebe292a056db99a3d8d",
+    "docs/portal/test_documents.cjs": "81eea81c58e2aa96d798829b7441293bb60e62b444cdf0c2532558d22084e1c2"
+  },
+  "limits": [
+    "Synthetic local capture only; no real email delivery, production acceptance or sustained capacity proof.",
+    "PDF downloads and extraction checked automatically; page rendering review recorded separately."
+  ]
+}
