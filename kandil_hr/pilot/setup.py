@@ -1,6 +1,17 @@
 import frappe
 from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 from frappe.custom.doctype.property_setter.property_setter import make_property_setter
+from frappe.utils import cstr
+
+
+def ensure_property_setter(doctype, fieldname, property_name, value, property_type):
+    # Preserve an identical existing setter instead of delete/recreate on every
+    # migration (which needlessly enqueues dynamic-link cleanup).
+    rows = frappe.get_all("Property Setter", filters={"doc_type": doctype, "field_name": fieldname,
+        "property": property_name, "doctype_or_field": "DocField"}, fields=["name", "value", "property_type"])
+    if len(rows) == 1 and rows[0].value == cstr(value) and rows[0].property_type == property_type:
+        return rows[0].name
+    return make_property_setter(doctype, fieldname, property_name, value, property_type).name
 
 
 def install():
@@ -46,9 +57,9 @@ def install():
 			],
 		}
 	)
-	make_property_setter("Job Applicant", "email_id", "reqd", 0, "Check")
+	ensure_property_setter("Job Applicant", "email_id", "reqd", 0, "Check")
 	# HRMS's fetched offer email also assumes that every candidate has an email.
-	make_property_setter("Job Offer", "applicant_email", "reqd", 0, "Check")
+	ensure_property_setter("Job Offer", "applicant_email", "reqd", 0, "Check")
 	from kandil_hr.recruitment.setup import install as install_recruitment
 
 	install_recruitment()

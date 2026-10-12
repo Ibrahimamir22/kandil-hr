@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "site": "kandil-parity.localhost",
+  "patch_recorded": true,
+  "audits": 696,
+  "links": 631,
+  "idempotent_replay": {
+    "events_scanned": 696,
+    "links_created": 0,
+    "source_audits_unchanged": true
+  },
+  "source_audit_digest_unchanged": true,
+  "query_index": "position_history_lookup",
+  "elapsed_seconds": 0.503,
+  "queue_inventory": {
+    "queues": [
+      {
+        "queue": "default",
+        "site": "kandil-parity.localhost",
+        "method": "frappe.core.doctype.user.user.create_contact",
+        "count": 650
+      }
+    ],
+    "obsolete_synthetic_contacts": 0,
+    "candidate_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "rule": "Queued parity User contact job with exact synthetic identity and no existing User; no job arguments returned"
+  },
+  "contact_states": [
+    {
+      "object_type": "User",
+      "identity_present": true,
+      "exact_synthetic_pattern": true,
+      "enabled": 1,
+      "invalid_domain": true,
+      "count": 35
+    },
+    {
+      "object_type": "User",
+      "identity_present": true,
+      "exact_synthetic_pattern": false,
+      "enabled": 0,
+      "invalid_domain": true,
+      "count": 132
+    },
+    {
+      "object_type": "User",
+      "identity_present": true,
+      "exact_synthetic_pattern": false,
+      "enabled": null,
+      "invalid_domain": true,
+      "count": 28
+    },
+    {
+      "object_type": "User",
+      "identity_present": true,
+      "exact_synthetic_pattern": true,
+      "enabled": 0,
+      "invalid_domain": true,
+      "count": 455
+    }
+  ],
+  "limits": [
+    "Private synthetic migration/index consistency proof, not a sustained workload or security certification.",
+    "Index DDL was applied by migration. Replay here uses the existing index and rolls back its SQL session.",
+    "Existing queued jobs are inspected only; no worker, cancellation or execution."
+  ],
+  "checked_at": "2026-10-12T22:33:12.112773+00:00"
+}

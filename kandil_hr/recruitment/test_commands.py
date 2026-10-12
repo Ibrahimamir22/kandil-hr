@@ -13,6 +13,7 @@ concurrency between DB connections and browser rendering need separate suites.
 """
 
 import json
+import re
 import unittest
 import uuid
 from contextlib import contextmanager
@@ -40,6 +41,16 @@ class TestRecruitmentCommands(unittest.TestCase):
 	def setUp(self):
 		if not frappe.conf.get("allow_tests") or "parity" not in str(frappe.local.site):
 			self.skipTest("Requires explicitly opted-in isolated parity site")
+		enqueue = frappe.enqueue
+		def fixture_enqueue(method, *args, **kwargs):
+			identity = getattr(kwargs.get("user"), "name", "") or ""
+			if (method == "frappe.core.doctype.user.user.create_contact"
+					and re.fullmatch(r"rec-[0-9a-f]{10}-(?:requester|manager|hr|sector)@example\.invalid", identity)):
+				kwargs["now"] = True
+			return enqueue(method, *args, **kwargs)
+		contact_patch = patch("frappe.enqueue", side_effect=fixture_enqueue)
+		contact_patch.start()
+		self.addCleanup(contact_patch.stop)
 		self.original_user = frappe.session.user
 		self.flags_patch = patch.dict(
 			frappe.conf,

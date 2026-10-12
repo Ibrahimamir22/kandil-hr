@@ -194,14 +194,20 @@
         {
           "id": "S2-05",
           "description": "Show dated history and differences; prohibit silent overwrite of historical assignments.",
-          "status": "in_progress",
-          "progress": "Connected scoped recorded-command history and before/after comparisons for JD edits/approvals, JD revision comparison, and structural/individual-assignment submissions/decisions. 45 native and 50 AR/EN browser checks passed, including actual Employee User Permission, revocation, hidden anchors and preserved transfer snapshots. Unified position history across imports/joining and complete history acceptance remain open.",
+          "status": "complete",
+          "progress": "Engineering history complete: JD/structural comparisons plus a permission-checked indexed position timeline covering imports, structural changes, JD revisions, joining, no-show and joining reversal; captured assignment moves remain frozen. Final 26 native history and 21 AR/EN browser checks passed; broader affected 74-check regression passed before browser-only fixture corrections. Migrated 696 audits/631 links verified without changing audits. HR history/terminology acceptance, live email and broader release gates remain open.",
           "evidence": [
             "S2_STRUCTURE_CHECKPOINT.md",
             "S2_HISTORY_CHECKPOINT.md",
             "evidence/s2-regression-71dcff2fa65d.json",
             "../portal/evidence/history-jd-0b0c5ba48599/results.json",
-            "../portal/evidence/history-assignments-5dce1bbdaa4b/results.json"
+            "../portal/evidence/history-assignments-5dce1bbdaa4b/results.json",
+            "S2_POSITION_HISTORY_CHECKPOINT.md",
+            "evidence/s2-regression-96776fcd6669.json",
+            "evidence/s2-regression-317cfd98097f.json",
+            "evidence/position-history-index-2026-10-13.json",
+            "../portal/evidence/position-history-526d609093dc/results.json",
+            "../portal/evidence/position-history-526d609093dc/visual-review.json"
           ]
         }
       ],

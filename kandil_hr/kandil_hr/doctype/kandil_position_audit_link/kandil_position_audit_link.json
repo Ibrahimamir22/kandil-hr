@@ -1,0 +1,56 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Position Audit Link",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "prompt",
+  "field_order": [
+    "audit",
+    "position",
+    "company",
+    "source_hash",
+    "occurred_at"
+  ],
+  "fields": [
+    {
+      "fieldname": "audit",
+      "label": "Audit",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "position",
+      "label": "Position",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "source_hash",
+      "label": "Source Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "occurred_at",
+      "label": "Occurred At",
+      "fieldtype": "Datetime",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0,
+  "allow_rename": 0
+}

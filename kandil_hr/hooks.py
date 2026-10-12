@@ -478,3 +478,7 @@ permission_query_conditions["Kandil Document Delivery"] = "kandil_hr.organizatio
 
 doctype_js["Kandil JD Revision"] = "public/js/document_delivery.js"
 doctype_js["Kandil Document Delivery"] = "public/js/document_delivery.js"
+
+# A derived private lookup is never a replacement for source authorization.
+has_permission["Kandil Position Audit Link"] = "kandil_hr.foundation.command_audit.permission"
+permission_query_conditions["Kandil Position Audit Link"] = "kandil_hr.foundation.command_audit.query"

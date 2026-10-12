@@ -29,3 +29,25 @@ No real data, outbound email, enabled scheduler, external provider or production
 Use project-scoped stop commands. Never run global Docker prune or delete volumes for unrelated projects. `docker compose down -v` deletes this sandbox's DB and must not be used as routine restart.
 
 The installer runs `deployment/verify_checkout.py` before any installation work. It refuses a dirty app checkout (including untracked source), records the clean custom commit, upstream pins and image digests in `/workspace/kandil-source-checkpoint.json`, and never records secret contents. Run `python3 deployment/verify_checkout.py` locally for the same preflight. This is source provenance, not proof that a workflow or deployment passed.
+
+## Position-history schema upgrade
+
+The custom app now includes `Kandil Position Audit Link` and the post-model-sync patch
+`kandil_hr.foundation.position_history_index`. Back up and migrate each intended site;
+a web restart alone does not add the table or backfill. Other sites sharing code are
+not migrated automatically. The optional timeline is unavailable until its patch
+completes; existing audit writes tolerate an absent lookup table.
+
+On the existing isolated parity development setup, the following verifier runs inside
+Bench's environment (from the outer development compose directory):
+
+```sh
+docker compose exec -T -w /workspace/frappe-bench parity-web env/bin/python apps/kandil_hr/deployment/verify_position_history.py
+```
+
+It is deliberately guarded to the muted test-enabled parity site. It checks the patch,
+replays the derived index against immutable audits, verifies source digest preservation,
+checks query-index selection and reports aggregate queue state. It never starts workers
+or clears jobs. Do not use this hardcoded synthetic verifier as production acceptance.
+See `docs/roadmap/S2_POSITION_HISTORY_CHECKPOINT.md` for tested migration scope, the
+idempotent Property Setter correction, evidence and rollback limitations.

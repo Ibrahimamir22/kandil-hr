@@ -92,6 +92,9 @@ def differences(before, after):
 
 @frappe.whitelist(methods=['GET'])
 def events(kind, name, start=0, page_length=20):
+    if kind == 'position':
+        from kandil_hr.portal import position_history
+        return position_history.events(name, start, page_length)
     doc = target(kind, name); start, limit = paging(start, page_length)
     # Deliberate private-store read after target authorization, limited to one target.
     rows = frappe.get_all(AUDIT, filters=dict(domain='organization', company=doc.company,
@@ -139,6 +142,9 @@ def related_changes(value, doc, start, limit):
 
 @frappe.whitelist(methods=['GET'])
 def event(kind, name, event_id, related_start=0, page_length=20):
+    if kind == 'position':
+        from kandil_hr.portal import position_history
+        return position_history.event(name, event_id, related_start, page_length)
     doc = target(kind, name); start, limit = paging(related_start, page_length)
     row = frappe.db.get_value(AUDIT, dict(name=bounded_text(event_id), domain='organization',
         company=doc.company, target_doctype=doc.doctype, target_name=doc.name), [*META, 'envelope_json'], as_dict=True)

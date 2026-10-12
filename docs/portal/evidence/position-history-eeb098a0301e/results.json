@@ -1,0 +1,45 @@
+{
+  "status": "FAIL",
+  "run_id": "eeb098a0301e",
+  "checked_at": "2026-10-12T22:29:12.555Z",
+  "checks": [
+    {
+      "name": "Position history journey failure",
+      "status": "FAIL",
+      "error_type": "Error",
+      "error_message": "Private fixture prepare failed"
+    }
+  ],
+  "cleanup": {
+    "run_id": "eeb098a0301e",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/Organization.tsx": "4aa4fa0cfed67988f4caf05adad2cd47270b0d2b802983062986d4420b471159",
+    "frontend/portal/src/HistoryPanel.tsx": "71f2dd10e025382ecf23e01bcc5275e53f1eb536d82430d9d11f793c8206061d",
+    "frontend/portal/src/portal.css": "2a9ffbed0b44abf14b06da687ea14119ce18d3f7af4143a71e9c86e6d9b8d167",
+    "kandil_hr/public/portal/portal.js": "addf154bbf180315bd7c39489af5881b7cd3fb9a9eec94ba19bc8f258553c8d3",
+    "kandil_hr/portal/organization.py": "f111dd2ea59e565150ecb41729fcd3b2c73deaf41a7487c5b7bf2dc6dcd396c7",
+    "kandil_hr/portal/history.py": "d465026e848771ad771f132b91eca97819e5b92257f895f3f0db2c29a1880253",
+    "kandil_hr/portal/position_history.py": "6486d20f3455ae67d760499760167a6d638e2424798f31b977dff42458134174",
+    "kandil_hr/foundation/position_history_index.py": "061551c9755e6b80b1f96062c48074624b59684955f07085fdefa255bc9919c8",
+    "kandil_hr/foundation/command_audit.py": "ee904d311a14b10e687df7d5e912a068777d33a8b952db49ee96c958369a51a0",
+    "kandil_hr/hooks.py": "b2a5f890e7c9f7ed06ec3eba0d34a44337db62f979cbfee63570cce731c6b797",
+    "kandil_hr/portal/position_history_fixture.py": "d5a628b22118b4bb19f101353f692816e74f305ff369809c0f0b16d5319550b7",
+    "kandil_hr/portal/fixture.py": "24c08f35d66ca98f210005cbe7aad3164fe5d1b2fb439ff614b1ac1672596f6d",
+    "docs/portal/test_position_history.cjs": "e5d744c96f95e0dd86fbdb604a0ac2dbee21c13da0458495b8eb9b42fec23c47"
+  },
+  "limits": [
+    "Source records created by ordinary-role domain commands in a guarded CLI synthetic fixture; this does not prove future hiring/joining UI sprints.",
+    "History uses real authenticated personal sessions and captured source data, not mocked API responses.",
+    "No sustained-load, external-audit-custody, independent-security or HR acceptance claim."
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-12T22:33:57.947631+00:00",
+  "screenshots": {
+    "position-history-ar-mobile.png": "2b8583a21bb693ad1823dcd6e2bdd830cf2b2ad18a56cedce791b0687d33556d",
+    "position-history-en.png": "24cc0ba0f9fdeec3f21fed2d40dd4e7b817b0676338e4506017dd28f8c849a37"
+  },
+  "observations": [
+    "English desktop shows source-labelled events and separate before/after columns for joining reversal and capacity changes.",
+    "Arabic mobile shows RTL labels and stacked before/after import assignment fields; dates and identifiers remain readable.",
+    "API/browser viewport check passed at 390px; no horizontal overflow was reported.",
+    "Full-page captures include the fixed navigation at its scroll location; detail regions were additionally inspected at native scale using temporary crops."
+  ],
+  "limits": [
+    "Human HR terminology/design acceptance remains pending.",
+    "Screenshots use synthetic records and do not prove production load or independent security."
+  ]
+}

@@ -406,6 +406,11 @@ class KandilCommandAudit(Document):
 				_("Command audit records are server generated and immutable."), frappe.PermissionError
 			)
 
+	def after_insert(self):
+		from kandil_hr.foundation.position_history_index import index_event
+
+		index_event(self)
+
 	def on_trash(self):
 		frappe.throw(_("Command audit records cannot be deleted."), frappe.PermissionError)
 
