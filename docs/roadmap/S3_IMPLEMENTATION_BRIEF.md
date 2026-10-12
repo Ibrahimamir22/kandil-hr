@@ -8,7 +8,7 @@ The custom portal has create/save/submit, per-location quantities, approve/rejec
 
 The request wizard now exposes all four need reasons, scoped replacement identity, employment type, qualifications, skills, experience, working conditions, requested priority, date, exception reason, position and multiple location quantities. Review and saved detail display these fields. Paginated searchable selectors replace the eager 500-item choice fetch. The old choice API remains for compatibility; the new form does not call it. See `RequestForm.tsx` and the slice 1 checkpoint for current evidence.
 
-The portal now connects HR review quantities/priority, adding CEO approval, cancellation, approved corrections/relocation and linked amendments through the existing domain commands. It retains original requested amounts, shows proposed/approved amounts, and requires reviewed reasons. Adding CEO approval leaves the HR step pending. Board evidence, delegation management and the full frozen approval snapshot still need connected screens. The portal request list uses the scoped overview; the native own-only `review_views.my_requests` endpoint is not connected as a distinct My Requests mode. Existing backend tests are reusable evidence only for their precise clauses, not proof that these missing screens work.
+The portal now connects HR review quantities/priority, adding CEO approval, cancellation, approved corrections/relocation and linked amendments through the existing domain commands. It retains original requested amounts, shows proposed/approved amounts, and requires reviewed reasons. Adding CEO approval leaves the HR step pending. Delegation management is connected through `portal/delegations.py` and `Delegations.tsx`, including immutable versions, CEO decisions and reasoned revocation. Board evidence and the full frozen approval snapshot still need connected screens. The portal request list uses the scoped overview; the native own-only `review_views.my_requests` endpoint is not connected as a distinct My Requests mode. Existing backend tests are reusable evidence only for their precise clauses, not proof that these missing screens work.
 
 ## Requirements retained
 
@@ -65,6 +65,8 @@ Review each command's current signature/authority before wiring. Use `command_id
 **Evidence required:** each visible action succeeds at the correct role/stage; direct API misuse is denied; approved amendments top up existing openings exactly once; cancelled/rejected/returned requests release only their commitments; frozen prior snapshots remain byte-identical. Include actual simultaneous decisions and stale-screen failures.
 
 ## Slice 4 — delegation and Board evidence
+
+**Delegation engineering checkpoint:** [S3 delegation checkpoint](S3_DELEGATION_CHECKPOINT.md) records the connected AR/EN screens and guarded adapters. Board evidence remains unimplemented in the custom portal, so this slice and S3-03 remain in progress.
 
 Connect existing `foundation/delegation.py` rules through guarded portal adapters and bilingual screens for create/read/revise/revoke and CEO decisions. New versions preserve history; authority cannot be edited in place. Keep process scope, company/department, inclusive effective dates, independent CEO approval, immediate revocation and disabled-account behavior.
 

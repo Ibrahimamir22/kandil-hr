@@ -257,10 +257,14 @@
           "id": "S3-03",
           "description": "Connect dated delegation, independent CEO/Board decisions and supporting evidence.",
           "status": "in_progress",
-          "progress": "Independent CEO addition and the subsequent ordinary CEO decision are connected and tested; dated delegation management and Board evidence screens remain planned.",
+          "progress": "Dated delegation portal implemented: scoped list/directory, reviewed create/revise/revoke, immutable prior versions and configured CEO decisions. 76 native and 65 browser checks passed with current source. Board evidence and authorized on-behalf portal flow remain next; S3-03 remains in progress.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
-            "../portal/evidence/request-operations-617fb74d7f56/results.json"
+            "../portal/evidence/request-operations-617fb74d7f56/results.json",
+            "S3_DELEGATION_CHECKPOINT.md",
+            "evidence/s2-regression-6dcaabdeb994.json",
+            "../portal/evidence/delegations-8f6043507e32/results.json",
+            "../portal/evidence/browser-af0fc6b4a164/regression.json"
           ]
         },
         {
@@ -292,7 +296,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Slices 1–3 engineering implemented: complete request form, advisory route/headcount preview, HR quantity/priority review, added CEO approval, returned revision, cancellation, corrections/relocation and linked amendments. Current quantities and reason timelines are visible. Delegation/Board evidence and complete frozen review history remain; S3 and external acceptance are not complete.",
+      "progress": "Slices 1–3 engineering implemented, plus dated delegation management and CEO authority decisions in slice 4. Board evidence and full frozen review history remain; S3 and external acceptance are not complete.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -733,8 +737,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "S3 HR request actions implemented and verified: 89 native and 118 browser checks passed. Review, added CEO approval, cancellation, approved corrections/relocation and linked amendments are connected. All 98 requirements remain; delegation/Board, frozen history and production gates are open; goal active.",
-    "evidence": "S3_OPERATIONS_CHECKPOINT.md",
-    "next": "Connect dated delegation and Board evidence, then server-filtered My Requests and full permission-filtered frozen approval/revision history."
+    "summary": "Delegation screens and guarded adapters implemented in AR/EN. 76 native and 65 browser checks passed; synthetic cohorts cleaned. Board evidence, full review history and production acceptance remain open; all 98 requirements retained and goal active.",
+    "evidence": "S3_DELEGATION_CHECKPOINT.md",
+    "next": "Connect Board Chair/Vice and authorized on-behalf evidence, then server-filtered My Requests and frozen request/decision history."
   }
 }

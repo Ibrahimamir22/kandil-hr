@@ -54,3 +54,5 @@
  .request-operation .table-wrap td:last-child,.request-detail-quantities td:last-child{border-bottom:0}
  .request-operation .operation-quantity{min-width:0;width:5rem}
 }
+
+.delegation-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem}.delegation-details dt{font-weight:600;color:var(--muted)}.delegation-details dd{margin:0;padding-block:.35rem;white-space:pre-wrap;overflow-wrap:anywhere}.delegations .request-main{min-width:0;overflow-wrap:anywhere}.delegations fieldset{border:0;min-width:0}.delegations .actions{flex-wrap:wrap}

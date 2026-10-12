@@ -1,0 +1,197 @@
+{
+  "status": "PASS",
+  "run_id": "9d190d5f615a",
+  "checked_at": "2026-10-12T23:39:27.745Z",
+  "checks": [
+    {
+      "name": "en: only administrator sees creation control",
+      "status": "PASS"
+    },
+    {
+      "name": "create-review-en.png: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary 90-day delegation active and response minimal",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outside-scope read denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: delegate reads grant but cannot revise/revoke",
+      "status": "PASS"
+    },
+    {
+      "name": "en: revision retains original and creates linked version",
+      "status": "PASS"
+    },
+    {
+      "name": "en: stale original cannot revoke successor",
+      "status": "PASS"
+    },
+    {
+      "name": "en: revoke immediately stops both processes",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO grant starts pending and ineffective",
+      "status": "PASS"
+    },
+    {
+      "name": "en: delegate cannot approve CEO grant",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO review displays frozen dates process and participants",
+      "status": "PASS"
+    },
+    {
+      "name": "ceo-review-en.png: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "en: personal CEO decision activates delegation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: revocation preserves approved CEO and reason",
+      "status": "PASS"
+    },
+    {
+      "name": "en: 91-day grant denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: rejected input retained",
+      "status": "PASS"
+    },
+    {
+      "name": "en: simultaneous revoke retry returns same result",
+      "status": "PASS"
+    },
+    {
+      "name": "en: simultaneous creation retry creates one identifier",
+      "status": "PASS"
+    },
+    {
+      "name": "en: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: only administrator sees creation control",
+      "status": "PASS"
+    },
+    {
+      "name": "create-review-ar.png: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary 90-day delegation active and response minimal",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outside-scope read denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: delegate reads grant but cannot revise/revoke",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: revision retains original and creates linked version",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: stale original cannot revoke successor",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: revoke immediately stops both processes",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO grant starts pending and ineffective",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: delegate cannot approve CEO grant",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO review displays frozen dates process and participants",
+      "status": "PASS"
+    },
+    {
+      "name": "ceo-review-ar.png: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: personal CEO decision activates delegation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: revocation preserves approved CEO and reason",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: 91-day grant denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: rejected input retained",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: simultaneous revoke retry returns same result",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: simultaneous creation retry creates one identifier",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest listing denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS exceptions, server errors or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "9d190d5f615a",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_fixture_delegations_revoked": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/Delegations.tsx": "fa3c2c306d7c9449df04708866eafa4962ee518a4942b33c52eb4867344cff0e",
+    "frontend/portal/src/main.tsx": "ba917bb446568d341990ccb3cf14adf588db7360c79423e2ba447873a3f8a9e1",
+    "frontend/portal/src/portal.css": "42ab47a79844ddf7459d06c0ec2c365c545e134d325025edba1fbd232c072a88",
+    "kandil_hr/public/portal/portal.js": "4bf4dde9a922f31df631fb05a179f5d5c4f35d1b61b97e2f6721ed8925158649",
+    "kandil_hr/portal/delegations.py": "d847c11b271e3e5c2ee96c05657ec93089a5f845b23fed4815de0049bce753c1",
+    "kandil_hr/portal/delegations_fixture.py": "51a6da5d37e98586a78b72556025503b16b1e0436240c8b5fa0bb1c23e2b9b4a",
+    "kandil_hr/foundation/delegation.py": "af5cbe508eb032f453018151783b8d0f4f9f2ebd0049aa9514829858aa99bafa",
+    "kandil_hr/foundation/delegation_audit.py": "361d1b1dc1a7b008ef1383b28129869c411f2fcbd7d7e53682c6049a6b74dcbf",
+    "kandil_hr/translations/ar.csv": "604e354e9b4f294040b996f47e4e45fe9c47eb3cf497165c887f2d462a99106b",
+    "docs/portal/test_delegations.cjs": "da10c9dfa998d86d50c797dc686cc74fe1a0814cc8d01d03af1f7c279edca681"
+  },
+  "limits": [
+    "Synthetic AR/EN delegation screens and personal-session HTTP authority/retry checks. Board integration, complete S3, HR acceptance, security assessment and capacity remain open."
+  ]
+}

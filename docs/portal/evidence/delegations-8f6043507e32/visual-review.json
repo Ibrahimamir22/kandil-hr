@@ -1,0 +1,27 @@
+{
+  "status": "SCOPED_REVIEW_COMPLETE",
+  "checked_at": "2026-10-13",
+  "final_run": "8f6043507e32",
+  "final_images_reviewed": {
+    "revoked-history-ar.png": "89098c9407cdc88a672b60ad1d0a28eb1e69dce9036477fc2471ece0b93d27aa",
+    "ceo-review-en.png": "e03782b3f626f0c0565530573f3de94bf8ecd7848ad1ace4358b3cf808d16af9",
+    "create-review-ar.png": "49c18ff0b6b389e109bb58895145721cf551ec29e4d6d3d5125e56b5ee53fc33"
+  },
+  "additional_images_reviewed_from_same_product_source": {
+    "run": "9d190d5f615a",
+    "files": [
+      "ceo-review-ar.png",
+      "create-review-en.png",
+      "revoked-history-en.png"
+    ],
+    "basis": "Frontend/compiled asset hashes match final product source; only final screenshot harness adds top scroll for revoked history."
+  },
+  "observations": [
+    "Final Arabic 390px create review and revoked detail are legible with wrapped synthetic identifiers and full action labels.",
+    "Final English CEO confirmation includes reviewed participants, company/department, dates, scope, original reason and proposed decision.",
+    "Prior-run Arabic CEO and English create/revoked views used the same product source. Final Arabic revoked screenshot resolves the scroll-dependent capture overlap."
+  ],
+  "limits": [
+    "Scoped visual inspection only; HR terminology, full accessibility and business acceptance remain open."
+  ]
+}

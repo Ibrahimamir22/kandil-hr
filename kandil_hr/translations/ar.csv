@@ -1313,3 +1313,15 @@ Review quantities and priority are required.,أعداد المراجعة وال�
 Choose a valid request identifier.,اختر رقم طلب صحيحًا.
 A valid command identifier is required.,معرّف إجراء صحيح مطلوب.
 A valid reviewed record version is required.,إصدار صحيح للسجل الذي تمت مراجعته مطلوب.
+This delegation is unavailable for your current role or scope.,هذا التفويض غير متاح لدورك أو نطاق صلاحياتك الحالي.
+Choose a valid delegation reference.,اختر مرجع تفويض صالحًا.
+Choose a valid delegation approval status.,اختر حالة اعتماد تفويض صالحة.
+Choose a delegation participant type.,اختر نوع طرف التفويض.
+Delegation input is too large.,بيانات التفويض أكبر من الحد المسموح.
+Enter valid delegation fields.,أدخل بيانات تفويض صالحة.
+Only the selected delegation action fields are accepted.,تُقبل فقط الحقول الخاصة بإجراء التفويض المحدد.
+Delegation fields must contain bounded text values.,يجب أن تحتوي حقول التفويض على نصوص ضمن الحدود المسموحة.
+Enter a reason between 3 and 2000 characters.,أدخل سببًا بين ٣ و٢٠٠٠ حرف.
+Both delegation dates are required.,يجب تحديد تاريخي بداية التفويض ونهايته.
+Unknown delegation action.,إجراء التفويض غير معروف.
+This delegation changed. Reload before revoking.,تغير هذا التفويض. حدّث السجل قبل إلغائه.

@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "run_id": "0eadf862ac1a",
+  "checked_at": "2026-10-12T23:38:12.466Z",
+  "checks": [
+    {
+      "name": "Delegation journey failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "locator.click: Timeout 20000ms exceeded."
+    }
+  ],
+  "cleanup": {
+    "run_id": "0eadf862ac1a",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_fixture_delegations_revoked": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/Delegations.tsx": "462b0300a62a12dfd92c77dddb879cffb5e285c8ffd790008b26551ac0f92e8c",
+    "frontend/portal/src/main.tsx": "ba917bb446568d341990ccb3cf14adf588db7360c79423e2ba447873a3f8a9e1",
+    "frontend/portal/src/portal.css": "42ab47a79844ddf7459d06c0ec2c365c545e134d325025edba1fbd232c072a88",
+    "kandil_hr/public/portal/portal.js": "c26d43bd0b2250707d173ff5e83ce5195745e3a2cad83dbc5ddb3423a124916a",
+    "kandil_hr/portal/delegations.py": "d847c11b271e3e5c2ee96c05657ec93089a5f845b23fed4815de0049bce753c1",
+    "kandil_hr/portal/delegations_fixture.py": "51a6da5d37e98586a78b72556025503b16b1e0436240c8b5fa0bb1c23e2b9b4a",
+    "kandil_hr/foundation/delegation.py": "af5cbe508eb032f453018151783b8d0f4f9f2ebd0049aa9514829858aa99bafa",
+    "kandil_hr/foundation/delegation_audit.py": "361d1b1dc1a7b008ef1383b28129869c411f2fcbd7d7e53682c6049a6b74dcbf",
+    "kandil_hr/translations/ar.csv": "604e354e9b4f294040b996f47e4e45fe9c47eb3cf497165c887f2d462a99106b",
+    "docs/portal/test_delegations.cjs": "1c5dfd1660ffa3970fe059b97d578dc45fab4b928756ee8b119853444b6085a6"
+  },
+  "limits": [
+    "Synthetic AR/EN delegation screens and personal-session HTTP authority/retry checks. Board integration, complete S3, HR acceptance, security assessment and capacity remain open."
+  ]
+}
