@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-10-12",
   "goal_status": "active",
-  "current_sprint": "S1",
+  "current_sprint": "S2",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
   "scope": "Custom AR/EN HR portal over Frappe HR; all 98 frozen reference requirements plus security/operational acceptance. Not the wider company platform.",
   "cadence": "Up to two-week review cycles; split large sprints. No fixed completion date or promise of equal effort. Re-estimate after S1 against measured throughput and external decisions.",
@@ -51,7 +51,7 @@
     {
       "id": "S1",
       "title": "Stabilize the existing portal / تثبيت المسار الحالي",
-      "status": "in_progress",
+      "status": "complete",
       "depends_on": [
         "S0"
       ],
@@ -60,47 +60,58 @@
         {
           "id": "S1-01",
           "description": "Reconcile the 80-case historical baseline and current portal evidence with the actual source; list every unresolved clause without changing frozen expected results.",
-          "status": "in_progress"
+          "status": "complete",
+          "evidence": [
+            "REMAINING_GATES.md",
+            "../sprints/acceptance-results.json"
+          ]
         },
         {
           "id": "S1-02",
           "description": "Finish and prove exact pending reservation 2→3 delta, all-location atomicity, restarted approvals and durable shortage denial; retain existing headcount work.",
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "evidence/s1-regression-ff5ec84ca11a.json",
-            "../sprints/evidence/headcount-http-2026-10-12.json",
-            "S1_CHECKPOINT.md"
-          ],
-          "remaining": "Exact frozen headcount cases pass. Still verify simultaneous approval/revision, revocation after lock wait and obsolete notification handling before closing the broader increment."
+            "S1_CHECKPOINT.md",
+            "evidence/s1-regression-d24e0c92c969.json",
+            "evidence/s1-regression-df76c11d1162.json"
+          ]
         },
         {
           "id": "S1-03",
           "description": "Run affected authority/audit/outbox/permission regressions, independent-connection contention and ordinary-session HTTP tests.",
-          "status": "in_progress",
+          "status": "complete",
           "evidence": [
-            "evidence/s1-regression-ff5ec84ca11a.json",
-            "../sprints/evidence/headcount-http-2026-10-12.json"
-          ],
-          "remaining": "Five affected suites pass. Reconcile full authority/audit/outbox/permission coverage and any additional targeted regression needs."
+            "S1_CHECKPOINT.md",
+            "evidence/s1-regression-921d89f05205.json",
+            "../sprints/evidence/headcount-http-2026-10-12.json",
+            "../portal/evidence/browser-d3a934a3a027/regression.json"
+          ]
         },
         {
           "id": "S1-04",
           "description": "Verify real AR/EN screens for the pending revision and denial path; retain form input and show reviewed quantities.",
           "status": "complete",
           "evidence": [
-            "../portal/evidence/pending-934a2228d384/results.json",
+            "../portal/evidence/pending-a0edae4efa72/results.json",
             "../sprints/evidence/browser/headcount/a59d2611b3c9/results.json"
           ]
         },
         {
           "id": "S1-05",
           "description": "Freeze portal/API conventions: personal sessions, field projections, pagination, errors, command IDs, version checks and no browser-held service secrets.",
-          "status": "planned"
+          "status": "complete",
+          "evidence": [
+            "PORTAL_API_CONTRACT.md"
+          ]
         },
         {
           "id": "S1-06",
           "description": "Record HR terminology, role/policy questions, identity/MFA choice, audit custody and workload assumptions with owners.",
-          "status": "planned"
+          "status": "complete",
+          "evidence": [
+            "REMAINING_GATES.md",
+            "../phases_0_3/POLICY_DECISIONS.md"
+          ]
         }
       ],
       "acceptance": [
@@ -113,12 +124,13 @@
         "HR: authority/headcount policy and Arabic terms.",
         "IT: identity/MFA, recovery owner and external audit custody."
       ],
-      "checkpoint": "S1_CHECKPOINT.md"
+      "checkpoint": "S1_CHECKPOINT.md",
+      "completion_scope": "Engineering stabilization only; eight open acceptance cases remain assigned to later work or external decisions. HR/IT sign-off and production readiness are not complete."
     },
     {
       "id": "S2",
       "title": "Organization and job descriptions / الهيكل والوصف الوظيفي",
-      "status": "planned",
+      "status": "in_progress",
       "depends_on": [
         "S1"
       ],
@@ -127,7 +139,11 @@
         {
           "id": "S2-01",
           "description": "Build department/branch/position tree and distinguish job, position, employee and vacancy.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Existing organization source and eight mapped reference IDs inspected; implementation brief published. Portal organization screens are not implemented yet.",
+          "evidence": [
+            "S2_IMPLEMENTATION_BRIEF.md"
+          ]
         },
         {
           "id": "S2-02",

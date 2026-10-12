@@ -4,9 +4,9 @@
 
 **Starting point:** the first connected hiring journey is implemented and has recorded 10 native + 31 HTTP + 24 browser checks. The older 80-case baseline is 70 passed / 6 partial / 4 blocked at its own checkpoint. Neither result proves complete HR parity or production readiness.
 
-**Current sprint: S1.** S0 provides architecture/source links and this plan; S1 stabilizes existing headcount and approval behaviour before extending the portal.
+**Current sprint: S2.** S0 and S1 engineering stabilization are complete. [Sprint 1 closeout](S1_CHECKPOINT.md) records the current evidence and remaining release gates; [Sprint 2 brief](S2_IMPLEMENTATION_BRIEF.md) begins organization/JD portal implementation.
 
-**First S1 checkpoint:** ten native pending-revision tests pass. One initial assertion compared Python dates against JSON strings; it now compares the complete serialized responses, with unchanged-state checks preserved. Application logic was not changed. [Evidence](evidence/s1-pending-revision-native.json). HTTP persistence, independent-connection races, runtime AR/EN UI and full-case acceptance remain open.
+The current 80-case register is **72 passed / 4 partial / 4 blocked**. Completing S1 does not complete all 98 requirements or the pending HR/IT/security/production decisions.
 
 ## How to use this plan
 
@@ -18,11 +18,11 @@
 
 ## Sprint overview
 
-| Sprint | Outcome | Initial status | Depends on |
+| Sprint | Outcome | Current status | Depends on |
 |---|---|---|---|
 | S0 — Repository and architecture clarity / وضوح المعمارية والمستودع | One navigable project repo with all custom source, plans and exact upstream links. | complete | — |
-| S1 — Stabilize the existing portal / تثبيت المسار الحالي | The current hiring journey has a verified baseline and remaining defects are explicit. | in_progress | S0 |
-| S2 — Organization and job descriptions / الهيكل والوصف الوظيفي | HR can manage the organization through the custom website. | planned | S1 |
+| S1 — Stabilize the existing portal / تثبيت المسار الحالي | The current hiring journey has a verified baseline and remaining defects are explicit. | complete | S0 |
+| S2 — Organization and job descriptions / الهيكل والوصف الوظيفي | HR can manage the organization through the custom website. | in_progress | S1 |
 | S3 — Full hiring requests and approvals / الطلبات والاعتمادات | The reference request and authority workflow is available in the custom portal. | planned | S2 |
 | S4 — Vacancy operations and notifications / الشواغر والتنبيهات | Recruiters manage actionable vacancies and reliable follow-up from the portal. | planned | S3 |
 | S5 — Candidates and sourcing / المرشحون والمصادر | Recruiters can receive, find and manage candidates safely. | planned | S4 |
