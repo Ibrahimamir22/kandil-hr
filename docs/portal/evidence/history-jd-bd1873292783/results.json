@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "run_id": "bd1873292783",
+  "checked_at": "2026-10-12T22:03:55.002Z",
+  "checks": [
+    {
+      "name": "JD journey failure",
+      "status": "FAIL",
+      "error_type": "Error",
+      "error_message": "Private fixture prepare failed"
+    }
+  ],
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/fixture.py": "f36b789142e82769083298690e3add3a2f4f6c03d4edca61fc9c66460d42de69",
+    "kandil_hr/portal/structure_fixture.py": "427d931f6a193b12ec234baf31e9e6073716b58d19c05c27609a1821e7008e04",
+    "frontend/portal/src/HistoryPanel.tsx": "37199b69965d5470a6239475f4d56087cdac6ef44289c79e64b9b8de0af0ea56",
+    "kandil_hr/portal/history.py": "3490cc2a0f08dbd4ea7a416b9d205aa8f805201192a9f9b1a9c8f5f52e4d56ce",
+    "frontend/portal/src/main.tsx": "3a8148e05e0eca7e59c61032c13ca29b063aae6889852d29f28f15f719a9e9a8",
+    "frontend/portal/src/JobDescriptions.tsx": "d24b056e1b6df15b503cb65568de35dceca4e61b82f4873c181c7decf9e94fec",
+    "frontend/portal/src/portal.css": "d0a78beb2e987a131c151dff5cdedfdfcb9ddc1617fc124c0591557680406b59",
+    "kandil_hr/public/portal/portal.js": "59f5cbb249316c8c2e1995ec50d5560630f4ac205356600dc83cd940e53b1d9e",
+    "kandil_hr/portal/job_descriptions.py": "c17f5c20d86bcfd9f13d995092e05c621f936563b7544c4348bd5d7d00d91fc4",
+    "kandil_hr/foundation/command_audit.py": "0ac897505150512f537ed7c25a7c31abfac3b72ab1456380b7613d62645117d4",
+    "kandil_hr/translations/ar.csv": "a1be1c0bae7d30333d5e8268d56745917271f58ff5647f5bfdfb7f70dc4a7eee",
+    "kandil_hr/organization/api.py": "b9575724e25919e61d8258f9c55c851bcc063e275943eba437978e6d0f802145",
+    "kandil_hr/organization/models.py": "cb8716bcaec8a5e05962bd5ff0687c4ff6457a471ad93d9f1c3540c8919ec5e2",
+    "kandil_hr/organization/documents.py": "7098c77b89b50cda799dd4a1b3334055cf5225e3ea48abd271aa486a2cd43189",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/portal/jd_fixture.py": "89d9bcc7356f6847e361885805c14273a32531db223576765eae39ef33fc8b4e",
+    "docs/portal/test_jd.cjs": "697040d8c589bb8dc6eec269172b68bc5418af5d3ebd749696eef7a7bd18fd63"
+  },
+  "limits": [
+    "Synthetic JD portal journey, not full Sprint 2 acceptance.",
+    "Focused JD history and revision comparison proof; PDF rendering and real email delivery are separate.",
+    "Two concurrent approval requests do not certify sustained 1000-user capacity."
+  ]
+}

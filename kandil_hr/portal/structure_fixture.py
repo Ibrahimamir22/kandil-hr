@@ -15,7 +15,8 @@ def prepare(run_id):
     for role in ('manager','hr','sector'):
         insert('Kandil Access Grant',company=data['company'],user=data['users'][role]['email'],valid_from=today(),
                can_manage_recruitment=1,reason='Synthetic company-wide structural authority')
-    account=frappe.get_doc('User',data['users']['sector']['email']);account.append('roles',{'role':'Kandil CEO Approver'});account.save(ignore_permissions=True)
+    account=frappe.get_doc('User',data['users']['sector']['email']);account.append('roles',{'role':'Kandil CEO Approver'})
+    with base.local_user_contacts(run_id): account.save(ignore_permissions=True)
     settings=frappe.get_doc('Kandil Organization Settings',data['company']);settings.ceo_approver=account.name;settings.save(ignore_permissions=True)
     data['branch']=frappe.db.get_value('Kandil Position',data['positions'][0],'branch')
     data['today']=today();persist(base.path_for(run_id),data);frappe.db.commit()

@@ -20,3 +20,11 @@ def inspect(run_id):
 
 def cleanup(run_id):
     return structure_fixture.cleanup(run_id)
+
+
+def revoke_history_reader(run_id):
+    """Retire only this synthetic cohort's recruiter grants for revocation proof."""
+    guard(run_id);data=json.loads(base.path_for(run_id).read_text())
+    for name in frappe.get_all('Kandil Access Grant',filters={'user':data['users']['recruiter']['email'],'company':data['company']},pluck='name'):
+        doc=frappe.get_doc('Kandil Access Grant',name);doc.revoked=1;doc.save(ignore_permissions=True)
+    frappe.db.commit();return dict(revoked=True)

@@ -1,0 +1,202 @@
+{
+  "status": "PASS",
+  "run_id": "74cd4f3ee999",
+  "checked_at": "2026-10-12T21:58:38.453Z",
+  "checks": [
+    {
+      "name": "Lost detail response can retry save without duplicate creation",
+      "status": "PASS"
+    },
+    {
+      "name": "English author saves bilingual responsibilities, weighted KPI, authority and competency",
+      "status": "PASS"
+    },
+    {
+      "name": "Author has editing but no self-approval action",
+      "status": "PASS"
+    },
+    {
+      "name": "Direct HTTP self-approval denied",
+      "status": "PASS"
+    },
+    {
+      "name": "English draft history shows the saved before and after content",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale HTTP draft edit denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic reviewer must explicitly review before approval",
+      "status": "PASS"
+    },
+    {
+      "name": "Independent Arabic mobile reviewer approves revision one",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic editor fits mobile without horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar jd document renders through scoped session",
+      "status": "PASS"
+    },
+    {
+      "name": "ar worker document renders through scoped session",
+      "status": "PASS"
+    },
+    {
+      "name": "en jd document renders through scoped session",
+      "status": "PASS"
+    },
+    {
+      "name": "en worker document renders through scoped session",
+      "status": "PASS"
+    },
+    {
+      "name": "Simultaneous duplicate approvals return one revision-two outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "Revision comparison shows old and new purpose with explicit record timestamps",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic approval history shows reviewer and fits mobile",
+      "status": "PASS"
+    },
+    {
+      "name": "Approved predecessor remains unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Department reader cannot edit approve or revise",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-scope list and guessed ID disclose no JD",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-scope document request denied",
+      "status": "PASS"
+    },
+    {
+      "name": "History API refuses event IDs from a different revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot enumerate or guess history",
+      "status": "PASS"
+    },
+    {
+      "name": "Portal history does not grant raw audit REST access",
+      "status": "PASS"
+    },
+    {
+      "name": "Scoped reader can view history before revocation",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation immediately blocks history and revision comparisons",
+      "status": "PASS"
+    },
+    {
+      "name": "Committed revisions and approval audits have exactly one effect each",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JS errors, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser proof",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "revisions": [
+      {
+        "name": "s2284m42na",
+        "position": "PORTAL-74cd4f3ee999-0",
+        "status": "Approved",
+        "revision": 1,
+        "supersedes": null,
+        "valid_from": "2026-10-13",
+        "approved_by": "portal-74cd4f3ee999-sector@example.invalid"
+      },
+      {
+        "name": "s2udqo86p4",
+        "position": "PORTAL-74cd4f3ee999-0",
+        "status": "Approved",
+        "revision": 2,
+        "supersedes": "s2284m42na",
+        "valid_from": "2026-10-14",
+        "approved_by": "portal-74cd4f3ee999-sector@example.invalid"
+      }
+    ],
+    "audit": [
+      {
+        "target_name": "s2284m42na",
+        "operation": "portal_create_jd",
+        "actor": "portal-74cd4f3ee999-hr@example.invalid"
+      },
+      {
+        "target_name": "s2284m42na",
+        "operation": "portal_save_jd",
+        "actor": "portal-74cd4f3ee999-hr@example.invalid"
+      },
+      {
+        "target_name": "s2284m42na",
+        "operation": "approve_revision",
+        "actor": "portal-74cd4f3ee999-sector@example.invalid"
+      },
+      {
+        "target_name": "s2udqo86p4",
+        "operation": "portal_create_jd",
+        "actor": "portal-74cd4f3ee999-hr@example.invalid"
+      },
+      {
+        "target_name": "s2udqo86p4",
+        "operation": "approve_revision",
+        "actor": "portal-74cd4f3ee999-sector@example.invalid"
+      }
+    ]
+  },
+  "cleanup": {
+    "run_id": "74cd4f3ee999",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/HistoryPanel.tsx": "b26bc708ee33ed0750a5f68561b855ced63639458987d03c6bf67a1519d9cf09",
+    "kandil_hr/portal/history.py": "bc24de305b3f48b61d3c81a6e58cab66454a0e87548223c44476f2cf510cd7ba",
+    "frontend/portal/src/main.tsx": "3a8148e05e0eca7e59c61032c13ca29b063aae6889852d29f28f15f719a9e9a8",
+    "frontend/portal/src/JobDescriptions.tsx": "d24b056e1b6df15b503cb65568de35dceca4e61b82f4873c181c7decf9e94fec",
+    "frontend/portal/src/portal.css": "d0a78beb2e987a131c151dff5cdedfdfcb9ddc1617fc124c0591557680406b59",
+    "kandil_hr/public/portal/portal.js": "77520fbda0e7f5b42d745cc228165fcd25dc9bd043dac04dd98d87c62a4e16dd",
+    "kandil_hr/portal/job_descriptions.py": "c17f5c20d86bcfd9f13d995092e05c621f936563b7544c4348bd5d7d00d91fc4",
+    "kandil_hr/foundation/command_audit.py": "0ac897505150512f537ed7c25a7c31abfac3b72ab1456380b7613d62645117d4",
+    "kandil_hr/translations/ar.csv": "48ec8878ab109f028b13a12f1893b5c4c45a3787a33491a9b8f001ca0dcb7245",
+    "kandil_hr/organization/api.py": "b9575724e25919e61d8258f9c55c851bcc063e275943eba437978e6d0f802145",
+    "kandil_hr/organization/models.py": "cb8716bcaec8a5e05962bd5ff0687c4ff6457a471ad93d9f1c3540c8919ec5e2",
+    "kandil_hr/organization/documents.py": "7098c77b89b50cda799dd4a1b3334055cf5225e3ea48abd271aa486a2cd43189",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/portal/jd_fixture.py": "89d9bcc7356f6847e361885805c14273a32531db223576765eae39ef33fc8b4e",
+    "docs/portal/test_jd.cjs": "3737d1b4f1783958a69c0c4e3b4e990c063c77b5a6639c86be59b9e45b9ba0a7"
+  },
+  "limits": [
+    "Synthetic JD portal journey, not full Sprint 2 acceptance.",
+    "Focused JD history and revision comparison proof; PDF rendering and real email delivery are separate.",
+    "Two concurrent approval requests do not certify sustained 1000-user capacity."
+  ]
+}

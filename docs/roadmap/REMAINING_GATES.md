@@ -38,3 +38,7 @@ Plan a seeded dataset of at least 1,500 synthetic accounts. Measure typical and 
 Report p50/p95/p99 response time, error rate, deadlock/retry rate, throughput, queue lag and CPU/memory/database utilization. Check ledger/audit correctness after load. Existing 20-request correctness races do not certify these scenarios. Capacity results must name hardware, dataset size, application/dependency versions and duration.
 
 No external subscription, provider connection or real-data rollout is authorized by this decision register alone.
+
+## Local queue finding — 13 October 2026
+
+The shared development queue reached its configured 650-job limit during synthetic User contact setup/retirement. Matching test-account contact jobs now run inline under a guarded CLI fixture context; this preserves production hooks and does not clear queues or start workers. The existing backlog still needs a scoped inventory/drain and worker-ownership plan before queue-dependent notification/capacity proof. Owner: developer for isolated test operations, IT for production workers/monitoring. This is not evidence that production queue sizing or recovery has passed. See [history checkpoint](S2_HISTORY_CHECKPOINT.md) for failed attempts and cleanup/rollback evidence.

@@ -3,10 +3,10 @@ const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypt
 const {execFileSync}=require('node:child_process');
 const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const app=path.resolve(__dirname,'../..'),dev=path.resolve(app,'../../../..'),run=crypto.randomBytes(6).toString('hex');
-const out=path.join(__dirname,'evidence',`assignments-${run}`);fs.mkdirSync(out,{recursive:true});
+const out=path.join(__dirname,'evidence',`history-assignments-${run}`);fs.mkdirSync(out,{recursive:true});
 const manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-portal-${run}.json`);
 let data,browser,page,cleanup;const checks=[],errors=[],failures=[],external=[];
-const files=['frontend/portal/src/main.tsx','frontend/portal/src/StructureChanges.tsx','frontend/portal/src/portal.css','kandil_hr/portal/structure.py','kandil_hr/portal/reference_permissions.py','kandil_hr/recruitment/setup.py','kandil_hr/translations/ar.csv','kandil_hr/portal/structure_fixture.py','docs/portal/test_assignments.cjs','kandil_hr/portal/assignment_fixture.py','kandil_hr/organization/assignments.py','kandil_hr/organization/api.py','kandil_hr/organization/models.py'];
+const files=['kandil_hr/portal/fixture.py','kandil_hr/portal/structure_fixture.py','frontend/portal/src/HistoryPanel.tsx','kandil_hr/portal/history.py','kandil_hr/public/portal/portal.js','frontend/portal/src/main.tsx','frontend/portal/src/StructureChanges.tsx','frontend/portal/src/portal.css','kandil_hr/portal/structure.py','kandil_hr/portal/reference_permissions.py','kandil_hr/recruitment/setup.py','kandil_hr/translations/ar.csv','kandil_hr/portal/structure_fixture.py','docs/portal/test_assignments.cjs','kandil_hr/portal/assignment_fixture.py','kandil_hr/organization/assignments.py','kandil_hr/organization/api.py','kandil_hr/organization/models.py'];
 const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,f))).digest('hex')]));const before=hashes();
 function bench(action){try{const raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.portal.assignment_fixture.'+action,'--kwargs',JSON.stringify({run_id:run})],{cwd:dev,encoding:'utf8',timeout:240000,stdio:['ignore','pipe','pipe']});return JSON.parse(raw.split('\n').filter(l=>l.startsWith('{')).at(-1))}catch(e){const f=`/tmp/kandil-structure-${run}-${action}.txt`;fs.writeFileSync(f,String(e.stdout||'')+'\n'+String(e.stderr||''),{mode:0o600});throw Error('Private fixture '+action+' failed')}}
 function check(name,value){assert.ok(value,name);checks.push({name,status:'PASS'});console.log('PASS',name)}
@@ -14,6 +14,7 @@ async function ready(p){await p.locator('.structure-changes').waitFor();await p.
 async function get(p,method,args={}){return p.evaluate(async({method,args})=>{const r=await fetch('/api/method/kandil_hr.portal.structure.'+method+'?'+new URLSearchParams(args));return {status:r.status,body:await r.json()}},{method,args})}
 async function login(role,lang='en',mobile=false){const c=await browser.newContext({viewport:mobile?{width:390,height:844}:{width:1440,height:1000}});const p=await c.newPage();page=p;p.setDefaultTimeout(20000);p.on('pageerror',e=>errors.push(e.name));p.on('response',r=>{if(r.status()>=500)failures.push({status:r.status(),path:new URL(r.url()).pathname})});p.on('request',r=>{if(!r.url().startsWith('http://localhost:8102/')&&!r.url().startsWith('data:'))external.push(new URL(r.url()).origin)});await p.goto('http://localhost:8102/hr-portal');await p.locator('input[name=usr]').waitFor();if(lang==='en')await p.getByRole('button',{name:'English',exact:true}).click();await p.locator('input[name=usr]').fill(data.users[role].email);await p.locator('input[name=pwd]').fill(data.users[role].password);await p.locator('.login-submit').click();await p.locator('main.content').waitFor();await p.waitForFunction(()=>document.querySelector('main.content')?.getAttribute('aria-busy')==='false');if(mobile)await p.getByRole('button',{name:'فتح القائمة',exact:true}).click();await p.locator('.nav').getByRole('link',{name:lang==='en'?'Structure changes':'تغييرات الهيكل',exact:true}).click();await ready(p);return p}
 
+async function history(p,method,args){return p.evaluate(async({method,args})=>{const r=await fetch('/api/method/kandil_hr.portal.history.'+method+'?'+new URLSearchParams(args));return {status:r.status,body:await r.json()}},{method,args})}
 async function post(p,method,args){return p.evaluate(async({method,args})=>{const b=await fetch('/api/method/kandil_hr.portal.api.bootstrap');const token=(await b.json()).message.csrf_token;const r=await fetch('/api/method/kandil_hr.portal.structure.'+method,{method:'POST',headers:{'Content-Type':'application/json','X-Frappe-CSRF-Token':token},body:JSON.stringify(args)});return {status:r.status,body:await r.json()}},{method,args})}
 async function button(p,name,method){const response=p.waitForResponse(r=>r.url().includes('portal.structure.'+method)&&r.request().method()==='POST');await p.getByRole('button',{name,exact:true}).click();const r=await response;if(r.status()!==200)throw Error('Structural UI '+method+' HTTP '+r.status());await ready(p);return (await r.json()).message}
 async function openChange(p,name){
@@ -58,6 +59,11 @@ let state,race;
  const move=await create('MoveEmployee',data.move_on,{assignment:state.assignments[0].name});
  await approve(move);
  state=bench('inspect');check('Transfer retains source and creates a separate dated destination',state.assignments.length===2&&state.assignments[0].position===data.positions[0]&&state.assignments[1].position===data.positions[1]&&state.assignments[1].valid_from===data.move_on&&state.assignments[0].valid_until<data.move_on);
+ await ceo.getByRole('button',{name:'Open history',exact:true}).click();await ceo.locator('.history-event').first().click();await ceo.locator('.history-detail').waitFor();
+ check('Transfer approval history includes changed assignment records',await ceo.locator('.history-detail').getByText('Position Assignment',{exact:false}).count()>=1);
+ await ceo.locator('.history-detail').scrollIntoViewIfNeeded();await ceo.screenshot({path:path.join(out,'history-transfer-en.png')});
+ const historicalEvents=(await history(ceo,'events',{kind:'structure',name:move})).body.message.rows;const finalEvent=historicalEvents.find(e=>e.operation==='decide'&&e.actor===data.users.sector.email);
+ const capturedHistory=(await history(ceo,'event',{kind:'structure',name:move,event_id:finalEvent.name})).body.message;
  const frozen=(await get(ceo,'detail',{name:move})).body.message;
  check('Review retains submitted assignment before-values',frozen.review_basis==='submitted_snapshot'&&frozen.review[0].assignment_before.valid_until===null&&frozen.review[0].assignment_before.employee===data.employee);
  await ceo.screenshot({path:path.join(out,'transfer-en.png'),fullPage:true});await hr.screenshot({path:path.join(out,'review-ar-mobile.png'),fullPage:true});
@@ -65,6 +71,9 @@ let state,race;
  await back(author);await back(hr,'ar');await back(ceo);
  const end=await create('EndAssignment',data.end_on,{position:data.positions[1],assignment:state.assignments[1].name});await approve(end);
  state=bench('inspect');check('Ending preserves both historical episodes and applies the inclusive end date',state.assignments.length===2&&state.assignments[1].valid_until===data.end_on);
+ check('Later ending preserves the transfer event snapshot',JSON.stringify(capturedHistory)===JSON.stringify((await history(ceo,'event',{kind:'structure',name:move,event_id:finalEvent.name})).body.message));
+ await hr.getByRole('button',{name:'فتح السجل',exact:true}).click();await hr.locator('.history-event').first().click();await hr.locator('.history-detail').waitFor();await hr.locator('.history-detail').scrollIntoViewIfNeeded();
+ check('Arabic structural history fits mobile without overflow',await hr.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2));await hr.screenshot({path:path.join(out,'history-structure-ar-mobile.png')});
  const direct=await hr.evaluate(async({employee,position,department,branch,company,day})=>{
   const b=await fetch('/api/method/kandil_hr.portal.api.bootstrap');const csrf=(await b.json()).message.csrf_token;
   const r=await fetch('/api/resource/Kandil%20Position%20Assignment',{method:'POST',headers:{'Content-Type':'application/json','X-Frappe-CSRF-Token':csrf},body:JSON.stringify({employee,position,department,branch,company,valid_from:day,allocation:'Acting'})});return r.status;
@@ -73,6 +82,7 @@ let state,race;
  const edit=await hr.evaluate(async name=>{const b=await fetch('/api/method/kandil_hr.portal.api.bootstrap');const csrf=(await b.json()).message.csrf_token;return (await fetch('/api/resource/Kandil%20Position%20Assignment/'+encodeURIComponent(name),{method:'PUT',headers:{'Content-Type':'application/json','X-Frappe-CSRF-Token':csrf},body:JSON.stringify({valid_until:'2099-01-01'})})).status},state.assignments[1].name);
  check('Native REST edit cannot bypass reviewed dates',[403,417].includes(edit));
  const narrow=await login('recruiter');check('Department-only employee catalog is denied',(await get(narrow,'catalog',{company:data.company,kind:'employee'})).status===403);
+ check('Department-only user cannot read structural audit history',(await history(narrow,'events',{kind:'structure',name:move})).status===403&&(await history(narrow,'event',{kind:'structure',name:move,event_id:finalEvent.name})).status===403);
  check('Department-only assignment review is denied',(await get(narrow,'detail',{name:move})).status===403);
  // Submit another non-overlapping episode and race a repeated final command.
  await back(author);await back(hr,'ar');await back(ceo);

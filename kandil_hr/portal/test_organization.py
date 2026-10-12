@@ -1,5 +1,6 @@
 """Ordinary-role organization read contracts on rolled-back synthetic fixtures."""
 import json
+import re
 import unittest
 from unittest.mock import patch
 
@@ -12,6 +13,17 @@ from kandil_hr.recruitment.test_commands import TestRecruitmentCommands, acting_
 
 class TestOrganizationPortal(unittest.TestCase):
     def setUp(self):
+        # Synchronous contact setup stays inside the native fixture transaction.
+        # A full shared queue must not prevent setup/rollback of synthetic users.
+        enqueue = frappe.enqueue
+        def fixture_enqueue(method, *args, **kwargs):
+            identity = getattr(kwargs.get('user'), 'name', '') or ''
+            if (method == 'frappe.core.doctype.user.user.create_contact'
+                    and re.fullmatch(r'rec-[0-9a-f]{10}-(?:requester|manager|hr|sector)@example\.invalid', identity)):
+                kwargs['now'] = True
+            return enqueue(method, *args, **kwargs)
+        contact_patch = patch('frappe.enqueue', side_effect=fixture_enqueue)
+        contact_patch.start(); self.addCleanup(contact_patch.stop)
         self.f=TestRecruitmentCommands();self.addCleanup(self.f.doCleanups)
         original=self.f.insert
         def insert_fixture(doctype,**values):

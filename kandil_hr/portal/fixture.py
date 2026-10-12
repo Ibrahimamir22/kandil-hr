@@ -4,6 +4,8 @@ import json
 import secrets
 import uuid
 from pathlib import Path
+from contextlib import contextmanager
+from unittest.mock import patch
 
 import frappe
 from frappe.utils import today
@@ -16,6 +18,26 @@ from kandil_hr.recruitment.concurrency_fixture import insert, persist
 
 def path_for(run_id):
     return Path(frappe.get_site_path("private", f"kandil-portal-{run_id}.json"))
+
+
+@contextmanager
+def local_user_contacts(run_id):
+    """CLI synthetic account contact sync runs now, without filling shared queues.
+
+    Other job types/accounts retain their original behavior. This does not run
+    workers, delete queued jobs or alter production User hooks.
+    """
+    guard(run_id)
+    original = frappe.enqueue
+    def enqueue(method, *args, **kwargs):
+        user = kwargs.get('user')
+        identity = getattr(user, 'name', '') or ''
+        if (method == 'frappe.core.doctype.user.user.create_contact'
+                and identity.startswith('portal-' + run_id + '-') and identity.endswith('@example.invalid')):
+            kwargs['now'] = True
+        return original(method, *args, **kwargs)
+    with patch('frappe.enqueue', side_effect=enqueue):
+        yield
 
 
 def prepare(run_id):
@@ -45,8 +67,9 @@ def prepare(run_id):
         previous_import = frappe.flags.get("in_import")
         try:
             frappe.flags.in_import = True
-            insert("User", email=email, first_name=label, enabled=1, send_welcome_email=0,
-                   user_type="System User", language="ar", roles=[{"role": role} for role in roles])
+            with local_user_contacts(run_id):
+                insert("User", email=email, first_name=label, enabled=1, send_welcome_email=0,
+                       user_type="System User", language="ar", roles=[{"role": role} for role in roles])
         finally:
             frappe.flags.in_import = previous_import
         update_password(email, password, logout_all_sessions=True)
@@ -77,9 +100,11 @@ def prepare(run_id):
                          designation=designation, position=pos.name, structural=seats)
             positions.append(pos.name)
             capacities.append(cap.name)
-    employee = insert("Employee", first_name="Synthetic portal manager", gender="Male",
-                      date_of_birth="1990-01-01", date_of_joining=today(), company=company,
-                      department=department, user_id=users["manager"]["email"], status="Active")
+    # Employee linking saves the same synthetic User through ERPNext's hook.
+    with local_user_contacts(run_id):
+        employee = insert("Employee", first_name="Synthetic portal manager", gender="Male",
+                          date_of_birth="1990-01-01", date_of_joining=today(), company=company,
+                          department=department, user_id=users["manager"]["email"], status="Active")
     insert("Kandil Position Assignment", company=company, department=department, position=head.name,
            employee=employee.name, user=users["manager"]["email"], allocation="Primary", valid_from=today())
     data = dict(run_id=run_id, company=company, department=department, designation=designation,
@@ -124,13 +149,25 @@ def cleanup(run_id):
         for account in data['users'].values():
             user = frappe.get_doc('User', account['email'])
             user.enabled = 0
-            user.save(ignore_permissions=True)
+            with local_user_contacts(run_id):
+                user.save(ignore_permissions=True)
         frappe.db.commit()
         data['cleaned'] = True
         for account in data['users'].values(): account.pop('password', None)
         persist(path_for(run_id), data)
+    if any(frappe.db.get_value('User', account['email'], 'enabled') for account in data['users'].values()):
+        raise RuntimeError('Synthetic portal cleanup left an enabled account')
     state = inspect(run_id)
     if any(row[k] for row in state['capacities'] for k in ('reserved', 'occupied', 'open_slots')):
         raise RuntimeError('Portal cleanup did not reconcile capacity')
     return dict(run_id=run_id, cleaned=True, accounts_disabled=len(data['users']),
                 all_fixture_ledgers_zero=True, history_retained=True)
+
+
+def verify_absent(run_id):
+    """Read-only proof for an aborted, uncommitted synthetic preparation."""
+    guard(run_id)
+    counts = dict(users=frappe.db.count('User', {'name': ['like', 'portal-' + run_id + '-%']}),
+                  companies=frappe.db.count('Company', {'name': 'Kandil PORTAL TEST ' + run_id}))
+    return dict(run_id=run_id, absent=not any(counts.values()) and not path_for(run_id).exists(),
+                counts=counts, manifest_exists=path_for(run_id).exists())

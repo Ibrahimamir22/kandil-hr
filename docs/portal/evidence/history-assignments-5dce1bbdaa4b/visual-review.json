@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "checked_at": "2026-10-12T22:06:00.152039+00:00",
+  "screens_reviewed": [
+    "history-transfer-en.png",
+    "history-structure-ar-mobile.png"
+  ],
+  "reviewer": "Assistant visual inspection",
+  "checks": [
+    "Before/after text and labels readable.",
+    "Arabic approval values translated and mobile columns stack without horizontal clipping.",
+    "No visible overlapping controls in the reviewed viewports."
+  ],
+  "limits": [
+    "Screenshots capture scroll positions, not every pixel of the entire history.",
+    "Synthetic developer review; not HR acceptance or an accessibility audit."
+  ]
+}

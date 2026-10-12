@@ -1,0 +1,15 @@
+{
+  "run_id": "09c3edeede8a",
+  "status": "PASS",
+  "cleaned": true,
+  "accounts_disabled": 6,
+  "all_fixture_ledgers_zero": true,
+  "all_company_ledgers_zero": true,
+  "history_retained": true,
+  "cause": "Shared queue limit prevented native User contact enqueue during retirement.",
+  "recovery": "Reran guarded synthetic cleanup with matching contact jobs executed inline; no queue cleared or worker started.",
+  "limits": [
+    "Original browser result remains FAIL due to cleanup; use final fresh-cohort evidence.",
+    "Future assignment episodes retained; zero occupancy is current-date only."
+  ]
+}

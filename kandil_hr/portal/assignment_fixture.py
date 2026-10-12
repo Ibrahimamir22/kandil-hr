@@ -16,7 +16,8 @@ def prepare(run_id):
     data=json.loads(base.path_for(run_id).read_text())
     # An HR author and a separate configured HR reviewer; no production role changes.
     author=frappe.get_doc('User',data['users']['manager']['email'])
-    author.append('roles',{'role':'Kandil Recruiter'});author.save(ignore_permissions=True)
+    author.append('roles',{'role':'Kandil Recruiter'})
+    with base.local_user_contacts(run_id): author.save(ignore_permissions=True)
     frappe.db.delete('User Permission',{'user':author.name,'allow':'Employee'})
     frappe.clear_cache(user=author.name)
     employee=insert('Employee',first_name='Synthetic reviewed employee '+run_id,gender='Male',

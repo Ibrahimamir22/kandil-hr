@@ -1297,3 +1297,5 @@ Job description tables exceed the row limit.,تجاوزت جداول الوصف 
 Unsupported job description row field.,حقل غير مدعوم في صف الوصف الوظيفي.
 Weights must be numbers between zero and 100.,يجب أن تكون الأوزان أرقامًا بين صفر و100.
 Job description row text is limited to 4000 characters.,الحد الأقصى لنص الحقل في صف الوصف الوظيفي 4000 حرف.
+This history is unavailable for your role or scope.,هذا السجل غير متاح لدورك أو نطاق صلاحياتك.
+Choose job description or structure history.,اختر سجل الوصف الوظيفي أو سجل تغييرات الهيكل.

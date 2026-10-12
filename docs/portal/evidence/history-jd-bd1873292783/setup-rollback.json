@@ -1,0 +1,10 @@
+{
+  "run_id": "bd1873292783",
+  "absent": true,
+  "counts": {
+    "users": 0,
+    "companies": 0
+  },
+  "manifest_exists": false,
+  "verification": "Read-only guarded CLI verification after aborted setup; employee User hook also needs inline contact synchronization."
+}
