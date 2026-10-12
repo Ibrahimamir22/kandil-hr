@@ -1,0 +1,226 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: البحث
+- generic: إعلام
+- link "المنصب التنظيمي لقنديل":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: المنصب التنظيمي لقنديل
+- link "طلب توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: طلب توظيف قنديل
+- link "السعة الوظيفية لقنديل":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: السعة الوظيفية لقنديل
+- link "مسار توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: مسار توظيف قنديل
+- generic "قائمة المستخدم":
+  - generic "BROWSER-4b37edbcb6e3 requester":
+    - generic "BROWSER-4b37edbcb6e3 requester": Br
+  - generic: BROWSER-4b37edbcb6e3 requester
+  - generic: browser-4b37edbcb6e3-requester@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "طلب توظيف قنديل":
+      - /url: /desk/kandil-hiring-request
+      - generic: طلب توظيف قنديل
+    - generic "BROWSER-4b37edbcb6e3 shortage":
+      - generic: BROWSER-4b37edbcb6e3 shortage
+- generic: مسودة
+- button "مساحة الموارد البشرية":
+  - generic: مساحة الموارد البشرية
+- button "إرسال للاعتماد":
+  - generic: إرسال للاعتماد
+- button "إلغاء التوظيف":
+  - generic: إلغاء التوظيف
+- button:
+- button:
+- button "الخيارات":
+- button "حفظ":
+  - generic: حفظ
+- generic: "حالة التوظيف: مسودة"
+- strong: إرشادات العدد الوظيفي
+- paragraph: "السياسة الحالية: تحذير."
+- list:
+  - listitem: "BROWSER-4b37edbcb6e3: المطلوب 3؛ الطلب الإضافي 3؛ المتاح مع استبعاد حجز الطلب نفسه 1؛ العجز 2."
+- paragraph: تُعرض القيم المحفوظة فقط. لا تحجز المعاينة أي عدد وظيفي؛ ويتحقق التقديم من الطاقة الاستيعابية الحالية.
+- generic: الشركة *
+- combobox: Kandil BROWSER TEST 4b37edbcb6e3
+- status: Begin typing for results.
+- generic: company
+- generic: الإدارة *
+- combobox: BROWSER-4b37edbcb6e3 - B4b37e
+- status: Begin typing for results.
+- generic: department
+- generic: العنوان *
+- textbox: BROWSER-4b37edbcb6e3 shortage
+- generic: title
+- generic: مقدم الطلب
+- link "browser-4b37edbcb6e3-requester@example.invalid":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- generic: requested_by
+- generic: الحالة
+- generic: مسودة
+- generic: status
+- generic: سبب الاستثناء
+- textbox
+- generic: exception_reason
+- checkbox "يتطلب استثناءً" [disabled]
+- generic: يتطلب استثناءً
+- paragraph
+- generic: needs_exception
+- generic: lines
+- generic: البنود
+- checkbox
+- generic: لا.
+- generic "السعة الوظيفية":
+  - generic: السعة الوظيفية *
+- generic "العدد المطلوب":
+  - generic: العدد المطلوب *
+- generic "العدد المعتمد":
+  - generic: العدد المعتمد
+- generic "عدد المباشرين":
+  - generic: عدد المباشرين
+- generic "الشاغر الوظيفي":
+  - generic: الشاغر الوظيفي
+- checkbox
+- generic: "1"
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/kandil-capacity/KCAP-18979522a1f9d1374ab74fc8
+- generic: "3"
+- generic: "0"
+- generic: "0"
+- button "إضافة صف":
+  - generic: إضافة صف
+- text: "*"
+- generic: المنصب المطلوب
+- combobox: BROWSER-4b37edbcb6e3
+- status: Begin typing for results.
+- generic: requested_position
+- generic: نوع الطلب
+- generic: توظيف جديد
+- generic: request_kind
+- generic: المراجعة
+- generic: "1"
+- generic: revision
+- generic: سبب الاحتياج
+- combobox:
+  - option "منصب جديد"
+  - option "إحلال"
+  - option "تغطية مؤقتة"
+  - option "توسع" [selected]
+- generic: need_reason
+- generic: الموظف المستبدَل
+- combobox
+- status: Begin typing for results.
+- generic: replacement_employee
+- generic: نوع التوظيف
+- textbox
+- generic: employment_type
+- generic: مطلوب بحلول
+- textbox
+- generic: required_by
+- generic: المؤهلات
+- textbox: Original synthetic qualification
+- generic: qualifications
+- generic: المهارات المطلوبة
+- textbox
+- generic: skills_required
+- generic: الخبرة المطلوبة
+- textbox
+- generic: experience_required
+- generic: ظروف العمل
+- textbox
+- generic: working_conditions
+- generic: الأولوية المطلوبة
+- combobox:
+  - option "عادي" [selected]
+  - option "مهم"
+  - option "حرج"
+- generic: requested_priority
+- generic: أولوية الموارد البشرية
+- generic: عادي
+- generic: hr_priority
+- generic: تعليقات
+- generic "BROWSER-4b37edbcb6e3 requester":
+  - generic "BROWSER-4b37edbcb6e3 requester": Br
+- generic: comment
+- text: اكتب رداً / تعليقاً
+- paragraph
+- text: ×
+- heading "نشاط" [level=4]
+- text: أنت أنشأت هذا المستند
+- generic: · قبل 2 دقائق
+- text: آخر مرة قمت فيها بتعديل
+- generic: · قبل 2 دقائق
+- generic: BROWSER-4b37edbcb6e3 shortage
+- generic: vfi2f1p1ro
+- button:
+- button:
+- generic: عين
+- button "عين":
+- text: المرفقات
+- button "Add attachment":
+- generic: بطاقات
+- button "إضافة وسوم":
+- generic: مشاركة
+- button "مشاركة":
+- list:
+  - text: Last Edited By You
+  - generic "12-10-2026 06:52:05": قبل 2 دقائق
+  - text: من صنعك
+  - generic "12-10-2026 06:52:05": قبل 2 دقائق
+- contentinfo
+- navigation:
+  - text: اكتوبر,
+  - generic: "2026"
+- generic: الأحد
+- generic: الأثنين
+- generic: الثلاثاء
+- generic: الأربعاء
+- generic: الخميس
+- generic: الجمعه
+- generic: السبت
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "1"
+- generic: "2"
+- generic: "3"
+- generic: "4"
+- generic: "5"
+- generic: "6"
+- generic: "7"
+- generic: "8"
+- generic: "9"
+- generic: "10"
+- generic: "11"
+- generic: "12"
+- generic: "13"
+- generic: "14"
+- generic: "15"
+- generic: "16"
+- generic: "17"
+- generic: "18"
+- generic: "19"
+- generic: "20"
+- generic: "21"
+- generic: "22"
+- generic: "23"
+- generic: "24"
+- generic: "25"
+- generic: "26"
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "31"
+- generic: اليوم
+- dialog [active]:
+  - heading "رسالة" [level=4]
+  - button "إغلاق":
+  - generic: يتطلب استثناء العدد مبرراً.

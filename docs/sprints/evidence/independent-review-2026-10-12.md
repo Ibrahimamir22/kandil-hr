@@ -108,3 +108,28 @@ Recorded UTC: 2026-10-12T03:05:03.884432+00:00
 - `deployment/install.py`: `fe2da6233e4dd74347d958d03549e258d32a29c217d9f70f4ef06729299f22be`
 - `deployment/compose.yaml`: `ed839f08e71f88d6cfc5934e277eada8a41a3fac02815b477c5f1ca308abb5d9`
 - `.gitignore`: `cc7b39023ddc586d5a2d0016ea930309b3b0f9a0be6ad178b90193252b5a3c62`
+
+## Subsequent continuation — identity, register and organization-code review
+
+The earlier frozen-source sections are historical checkpoints, not claims about later changed code. The strict outbox in-flight revocation limitation above has since been addressed for its reviewed production reference adapters: `outbox-revocation-2026-10-12.json` records the controlled grant/account/role revocation races and local receipt safeguards. It does not retrospectively erase already committed receipts. `outbox-shared-recipient-2026-10-12.json` adds eight independent workers delivering two company references to one recipient. It does not establish universal deadlock freedom.
+
+The session hook and scoped position register are authored by this reviewer, so their validation is a self-check with real HTTP/browser evidence, not an independent audit. See `security-session-scope-2026-10-12.md`: 7 session groups and 12 equal-looking company/branch access groups passed; all committed fixtures were cleaned.
+
+Independent source review of the new `recruitment/corrections.py` found that a field-only edit could change an already Filled request to Closed. Root corrected the final status calculation to retain the existing terminal status for field-only edits. The current correction command uses the Company/request/capacity mutex, current recruiter authority, command receipt replay, same-scope destination checks, remaining-seat ledger updates and transaction rollback. No additional concrete correction ledger/replay defect was found in this bounded source pass. Confidential-note scope relocation remains deliberately restricted by the separate privacy guard.
+
+**Actionable organization-code finding:** `organization/codes.py::protect_target` initially used nonlocking `db.exists`. A native rename/delete transaction whose repeatable-read snapshot predates a newly committed registry mapping can therefore miss the mapping and bypass the mapped-target restriction. Native rename calls `before_rename` before taking its eventual target write lock. The recommended correction is a current target row lock followed by current registry reads; do not acquire Company after target. Organization owns the fix and independent-connection proof. At this review entry, runtime closure is pending. Existing-target imports can already lock Code before target, so introducing target→Code guards must also account for deadlock/retry behavior; correctness does not imply deadlock-free execution.
+
+Returned structure requests retain protected route/history/approval rows and re-preview/resubmit before approval. Current code-registration/import paths preserve explicit company identity and apply-time validation. Beyond the stale-read issue above, no additional high-confidence exploit or invariant failure was identified in the inspected changes. This is source review of these paths, not full HR-policy or production security acceptance.
+
+### Organization-code finding closure
+
+I independently reread the final `protect_target` correction: it locks the current target row, then reads current registry rows, with no target-to-Company acquisition. Saved `docs/organization-evidence/code-guard-current-read-2026-10-12.json` records 4/4 independent-connection Job/Unit rename/delete stale-snapshot probes passing, plus the owner's affected native organization regressions. The product `codes.py` hash matches the current source. The concrete old-snapshot bypass is resolved in these guarded paths. I did not independently rerun the owner's DB suite. The runner subsequently changed timestamp/path metadata, so I reported its recorded/current hash mismatch to the owner for an explicit evidence-boundary correction; no exact-current-runner claim is made here. The documented conflicting-global-master deadlock/whole-transaction retry limitation remains. No additional actionable product defect remains from this bounded review.
+
+Current reviewed product source hashes:
+
+- `kandil_hr/recruitment/corrections.py`: `4f406d0ed9332db2372cf5e7fd3f06e75c8a88192452d4a82b39f9540f97e1c4`
+- `kandil_hr/organization/codes.py`: `5f06a9c4eafa8b098036681db97e39b5e4b4a0d3f4e7277e8ee67e62b78373df`
+- `kandil_hr/organization/api.py`: `4b7a76290f9eca57d1894fbf256fc55f69da13190464f7e218b4b8788c54eba2`
+- `kandil_hr/organization/models.py`: `9566fc3fd1e151effc54778eec6d6f9f5bfca878dcd844ac0786e2672ddfd518`
+
+The owner subsequently corrected the evidence boundary: `source_unchanged=false`, `product_source_unchanged=true`, and explicit executed/current runner hashes. I verified current runner hash `e928b76c8d7d63b974b3ff987fda7522f319efda4cf16a1f74e42f64c9fd7d7f`. The documented post-run change is the equivalent Ruff UTC timestamp alias/import cleanup; product guard/hooks are unchanged. The metadata discrepancy is closed without claiming a rerun of that formatting-only runner.

@@ -16,6 +16,8 @@ APP = Path(__file__).resolve().parents[2]
 DEFAULT_MODULES = [
     'kandil_hr.organization.test_occupancy.run',
     'kandil_hr.recruitment.test_commands.run',
+    'kandil_hr.recruitment.test_contracts.run',
+    'kandil_hr.recruitment.test_corrections.run',
     'kandil_hr.recruitment.test_joining.run',
     'kandil_hr.recruitment.test_sla.run',
     'kandil_hr.recruitment.test_privacy.run',

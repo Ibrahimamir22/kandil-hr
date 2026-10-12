@@ -1,0 +1,71 @@
+{
+  "cases": [
+    "AT-ACC-003-01",
+    "AT-ORG-009-02"
+  ],
+  "checked_at": "2026-10-12T03:50:41.472Z",
+  "site": "kandil-parity.localhost",
+  "result": "PASS",
+  "checks": [
+    {
+      "test": "Native list contains A/A1 only among three equal-title records",
+      "status": "PASS"
+    },
+    {
+      "test": "Native report builder row query contains only permitted branch",
+      "status": "PASS"
+    },
+    {
+      "test": "A1 exact-ID detail, link search, native print, private download and File metadata scope",
+      "status": "PASS"
+    },
+    {
+      "test": "A2 exact-ID detail, link search, native print, private download and File metadata scope",
+      "status": "PASS"
+    },
+    {
+      "test": "B1 exact-ID detail, link search, native print, private download and File metadata scope",
+      "status": "PASS"
+    },
+    {
+      "test": "Unrestricted native CSV export remains denied for both allowed and forbidden rows",
+      "status": "PASS"
+    },
+    {
+      "test": "Narrow read-grant CSV exports only seven public fields and allowed A/A1 row with no-store header",
+      "status": "PASS"
+    },
+    {
+      "test": "Explicit forbidden-company/branch export filters yield only header",
+      "status": "PASS"
+    },
+    {
+      "test": "Read-only scope can view/export but native write is denied with unchanged record",
+      "status": "PASS"
+    },
+    {
+      "test": "Native Position list button and dialog download the same scoped CSV",
+      "status": "PASS"
+    },
+    {
+      "test": "Revoked grant blocks former direct record/private file and removes former row from CSV",
+      "status": "PASS"
+    },
+    {
+      "test": "Scoped synthetic records/accounts/private files cleanup",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/position_register.py": "2c77989db26c3aac0e1430c97882689bf6164ca495e0251d4f70e72217ab25ec",
+    "kandil_hr/foundation/scope_probe.py": "9038dd735eaa912ca9ab5c7879a87a63c272f5ed01a01a51351bc30bdda47b7b",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "docs/sprints/test_scope_security.cjs": "c58fb2c8d12dc2664017f5dcb73ad702d12b27a0e7a2057d99cd7baa6d9115af"
+  },
+  "limits": [
+    "Real native HTTP proof for positions and attached private files; not every HR DocType",
+    "Native unrestricted export stays forbidden; positive export uses the narrow scoped position register",
+    "One read-only Recruiter with a company-and-branch grant; no provider/MFA claims"
+  ]
+}

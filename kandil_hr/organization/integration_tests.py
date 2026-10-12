@@ -713,6 +713,12 @@ def run(company=None, export_documents=False):
 		from kandil_hr.organization.acceptance_tests import run_cases
 
 		acceptance_cases = run_cases(locals())
+		from kandil_hr.organization.structure_return_tests import run_cases as return_cases
+
+		acceptance_cases.append(return_cases(locals()))
+		from kandil_hr.organization.code_import_tests import run_cases as code_cases
+
+		acceptance_cases.extend(code_cases(locals()))
 		with user(outsider):
 			from kandil_hr.organization.documents import render
 

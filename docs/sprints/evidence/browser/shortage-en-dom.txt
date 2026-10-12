@@ -1,0 +1,259 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: Search
+- generic: Notification
+- link "Kandil Position":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: Kandil Position
+- link "Kandil Hiring Request":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: Kandil Hiring Request
+- link "Kandil JD Revision":
+  - /url: /desk/kandil-hr/kandil-jd-revision
+  - generic: Kandil JD Revision
+- link "Kandil Capacity":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: Kandil Capacity
+- link "Kandil HR Note":
+  - /url: /desk/kandil-hr/kandil-hr-note
+  - generic: Kandil HR Note
+- link "Kandil Structure Change":
+  - /url: /desk/kandil-hr/kandil-structure-change
+  - generic: Kandil Structure Change
+- link "Kandil Organization Code":
+  - /url: /desk/kandil-hr/kandil-organization-code
+  - generic: Kandil Organization Code
+- link "Kandil Organization Import":
+  - /url: /desk/kandil-hr/kandil-organization-import
+  - generic: Kandil Organization Import
+- link "Kandil Recruitment Route":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: Kandil Recruitment Route
+- link "Kandil Structure Snapshot":
+  - /url: /desk/kandil-hr/kandil-structure-snapshot
+  - generic: Kandil Structure Snapshot
+- link "Kandil Position Hierarchy":
+  - /url: /desk/kandil-hr/kandil-position-hierarchy
+  - generic: Kandil Position Hierarchy
+- link "Kandil Grade Band":
+  - /url: /desk/kandil-hr/kandil-grade-band
+  - generic: Kandil Grade Band
+- link "Vacancy Queue":
+  - /url: /desk/kandil-hr/kandil-vacancy-queue
+  - generic: Vacancy Queue
+- generic "User Menu":
+  - generic "BROWSER-4b37edbcb6e3 hr":
+    - generic "BROWSER-4b37edbcb6e3 hr": Bh
+  - generic: BROWSER-4b37edbcb6e3 hr
+  - generic: browser-4b37edbcb6e3-hr@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "Kandil Hiring Request":
+      - /url: /desk/kandil-hiring-request
+      - generic: Kandil Hiring Request
+    - generic "BROWSER-4b37edbcb6e3 shortage":
+      - generic: BROWSER-4b37edbcb6e3 shortage
+- generic: Draft
+- button "HR workspace":
+  - generic: HR workspace
+- button "Confidential HR Notes":
+  - generic: Confidential HR Notes
+- button "Add Confidential HR Note":
+  - generic: Add Confidential HR Note
+- button "Cancel Recruitment":
+  - generic: Cancel Recruitment
+- button:
+- button:
+- button "Menu":
+- button "Save":
+  - generic: Save
+- generic: "Recruitment status: Draft"
+- strong: Headcount guidance
+- paragraph: "Current policy: Warn."
+- list:
+  - listitem: "BROWSER-4b37edbcb6e3: Requested 3; additional demand 3; available excluding own reservation 1; shortage 2."
+- paragraph: Saved values only. Preview does not reserve headcount; submission checks current capacity.
+- generic: Company *
+- combobox: Kandil BROWSER TEST 4b37edbcb6e3
+- status: Begin typing for results.
+- generic: company
+- generic: Department *
+- combobox: BROWSER-4b37edbcb6e3 - B4b37e
+- status: Begin typing for results.
+- generic: department
+- generic: Title *
+- textbox: BROWSER-4b37edbcb6e3 shortage
+- generic: title
+- generic: Requested By
+- link "browser-4b37edbcb6e3-requester@example.invalid":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- generic: requested_by
+- generic: Status
+- generic: Draft
+- generic: status
+- generic: Exception Reason
+- textbox
+- generic: exception_reason
+- checkbox "Needs Exception" [disabled]
+- generic: Needs Exception
+- paragraph
+- generic: needs_exception
+- generic: lines
+- generic: Lines
+- checkbox
+- generic: No.
+- generic "Capacity":
+  - generic: Capacity *
+- generic "Requested Qty":
+  - generic: Requested Qty *
+- generic "Approved Qty":
+  - generic: Approved Qty
+- generic "Joined Qty":
+  - generic: Joined Qty
+- generic "Job Opening":
+  - generic: Job Opening
+- checkbox
+- generic: "1"
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/kandil-capacity/KCAP-18979522a1f9d1374ab74fc8
+- generic: "3"
+- generic: "0"
+- generic: "0"
+- button "Add row":
+  - generic: Add row
+- text: "*"
+- generic: Requested Position
+- combobox: BROWSER-4b37edbcb6e3
+- status: Begin typing for results.
+- generic: requested_position
+- generic: Request Kind
+- generic: New Recruitment
+- generic: request_kind
+- generic: Revision
+- generic: "1"
+- generic: revision
+- generic: Need Reason
+- combobox:
+  - option "New Position"
+  - option "Replacement"
+  - option "Temporary Cover"
+  - option "Expansion" [selected]
+- generic: need_reason
+- generic: Replacement Employee
+- combobox
+- status: Begin typing for results.
+- generic: replacement_employee
+- generic: Employment Type
+- textbox
+- generic: employment_type
+- generic: Required By
+- textbox
+- generic: required_by
+- generic: Qualifications
+- textbox: Original synthetic qualification
+- generic: qualifications
+- generic: Skills Required
+- textbox
+- generic: skills_required
+- generic: Experience Required
+- textbox
+- generic: experience_required
+- generic: Working Conditions
+- textbox
+- generic: working_conditions
+- generic: Requested Priority
+- combobox:
+  - option "Normal" [selected]
+  - option "Important"
+  - option "Critical"
+- generic: requested_priority
+- generic: HR Priority
+- generic: Normal
+- generic: hr_priority
+- generic: Comments
+- generic "BROWSER-4b37edbcb6e3 hr":
+  - generic "BROWSER-4b37edbcb6e3 hr": Bh
+- generic: comment
+- text: Type a reply / comment
+- paragraph
+- text: ×
+- heading "Activity" [level=4]
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- text: created this
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- text: last edited this
+- generic: · 1 minute ago
+- generic: BROWSER-4b37edbcb6e3 shortage
+- generic: vfi2f1p1ro
+- button:
+- button:
+- generic: Assign
+- button "Assign":
+- text: Attachments
+- button "Add attachment":
+- generic: Tags
+- button "Add Tags":
+- generic: Share
+- button "Share":
+- list:
+  - text: Last Edited By
+  - link "BROWSER-4b37edbcb6e3 requester":
+    - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+  - generic "12-10-2026 06:52:05": 1 minute ago
+  - text: Created By
+  - link "BROWSER-4b37edbcb6e3 requester":
+    - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+  - generic "12-10-2026 06:52:05": 1 minute ago
+- contentinfo
+- navigation:
+  - text: October,
+  - generic: "2026"
+- generic: Su
+- generic: Mo
+- generic: Tu
+- generic: We
+- generic: Th
+- generic: Fr
+- generic: Sa
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "1"
+- generic: "2"
+- generic: "3"
+- generic: "4"
+- generic: "5"
+- generic: "6"
+- generic: "7"
+- generic: "8"
+- generic: "9"
+- generic: "10"
+- generic: "11"
+- generic: "12"
+- generic: "13"
+- generic: "14"
+- generic: "15"
+- generic: "16"
+- generic: "17"
+- generic: "18"
+- generic: "19"
+- generic: "20"
+- generic: "21"
+- generic: "22"
+- generic: "23"
+- generic: "24"
+- generic: "25"
+- generic: "26"
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "31"
+- generic: Today

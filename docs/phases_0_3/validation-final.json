@@ -5,8 +5,8 @@
   "batch_cases": 80,
   "source_hashes_checked": true,
   "translation_csv": "PASS",
-  "translation_rows": 861,
-  "extracted_keys": 792,
+  "translation_rows": 937,
+  "extracted_keys": 863,
   "missing_translation_keys": [],
   "raw_throw_or_deny_calls_to_review": [
     {

@@ -345,7 +345,10 @@ for _doctype, _query in {
 doc_events.setdefault("User", {}).update(
 	{
 		"validate": _foundation + "security.validate_user_security",
-		"on_update": _foundation + "security.user_security_audit",
+		"on_update": [
+			_foundation + "security.user_security_audit",
+			_foundation + "account_sessions.revoke_disabled_sessions",
+		],
 	}
 )
 doc_events.setdefault("File", {})["validate"] = _foundation + "security.validate_private_file"
@@ -368,6 +371,7 @@ for _dt, _query in {
 	"Kandil Structure Change": "change",
 	"Kandil Structure Snapshot": "snapshot",
 	"Kandil Organization Import": "import_batch",
+	"Kandil Organization Code": "code",
 }.items():
 	has_permission[_dt] = "kandil_hr.organization.permissions.permission"
 	permission_query_conditions[_dt] = "kandil_hr.organization.permissions." + _query
@@ -408,3 +412,18 @@ permission_query_conditions["Prepared Report"] = "kandil_hr.foundation.reports.p
 # Separate confidential notes never inherit requester access or shared snapshots.
 has_permission["Kandil HR Note"] = "kandil_hr.recruitment.privacy.note_permission"
 permission_query_conditions["Kandil HR Note"] = "kandil_hr.recruitment.privacy.note_query"
+
+# Preserve literal import identities when native masters are renamed/deleted.
+for _dt in ("Department", "Designation"):
+	for _event in ("on_trash", "before_rename"):
+		_events = doc_events.setdefault(_dt, {})
+		_old = _events.get(_event)
+		_events[_event] = ([_old] if isinstance(_old, str) else list(_old or [])) + [
+			"kandil_hr.organization.codes.protect_target"
+		]
+
+_events = doc_events.setdefault("Department", {})
+_old = _events.get("validate")
+_events["validate"] = ([_old] if isinstance(_old, str) else list(_old or [])) + [
+	"kandil_hr.organization.codes.protect_target_scope"
+]

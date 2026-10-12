@@ -1,0 +1,125 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Organization Code",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "entity_type",
+    "external_code",
+    "title",
+    "job_family",
+    "target_doctype",
+    "target_name",
+    "import_batch"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "entity_type",
+      "label": "Entity Type",
+      "fieldtype": "Select",
+      "options": "Unit\nJob\nPosition",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "external_code",
+      "label": "External Code",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "title",
+      "label": "Original Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "job_family",
+      "label": "Job Family",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "target_doctype",
+      "label": "Target Type",
+      "fieldtype": "Link",
+      "options": "DocType",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "target_name",
+      "label": "Target",
+      "fieldtype": "Dynamic Link",
+      "options": "target_doctype",
+      "reqd": 1,
+      "in_list_view": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "import_batch",
+      "label": "Reviewed Import",
+      "fieldtype": "Link",
+      "options": "Kandil Organization Import",
+      "reqd": 1,
+      "read_only": 1
+    }
+  ],
+  "title_field": "external_code",
+  "search_fields": "external_code,title,target_name",
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil CEO Approver",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Board Approver",
+      "read": 1,
+      "report": 1,
+      "export": 1,
+      "print": 1
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "result": "PASS",
+  "total": 4,
+  "tests": [
+    {
+      "test": "eight_independent_workers_two_companies_one_recipient",
+      "status": "PASS",
+      "workers": 8
+    },
+    {
+      "test": "one_local_receipt_per_company_reference",
+      "status": "PASS",
+      "receipts": 2
+    },
+    {
+      "test": "no_email_queue_effect",
+      "status": "PASS"
+    },
+    {
+      "test": "uuid_fixture_cleanup",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/outbox_company_runner.py": "f5f488f9a72dc6f48b31b4f4da35d7320406f157b5cb1c838a6ab50284e3c107",
+    "kandil_hr/foundation/outbox.py": "27bac88ba59d69ad6fdc3eebda76c353981005af3048843772569a2db96b930f",
+    "kandil_hr/foundation/outbox_access.py": "0198d1a56a95686bade76d2308541e9ef10eb5edeb4b9cd65b7370aff6781643"
+  },
+  "limits": [
+    "Independent DB connections, not HTTP",
+    "Two companies and one shared recipient with eight workers",
+    "Each worker delivers one row per transaction, as process_pending does",
+    "No production-load or universal deadlock-freedom claim"
+  ],
+  "checked_at": "2026-10-12T06:50:56.773638",
+  "checked_at_timezone": "Africa/Cairo",
+  "checked_at_timezone_verification": "Verified on the same parity site using frappe.utils.get_system_timezone() by the DB-slot owner."
+}

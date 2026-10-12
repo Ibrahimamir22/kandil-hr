@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-12T03:58:34.272217+00:00",
+  "site": "kandil-parity.localhost",
+  "status": "PASS",
+  "before": {
+    "dev_server": 0,
+    "socket_host": "http://localhost:8102/kandil-parity.localhost",
+    "polling_http_status": 404,
+    "connected": false
+  },
+  "change": "Parity-only compose environment: DEV_SERVER=1, FRAPPE_SITE=kandil-parity.localhost. Recreated only parity-web.",
+  "after": {
+    "dev_server": 1,
+    "socket_host": "http://localhost:9102/kandil-parity.localhost",
+    "connected": true,
+    "polling_failures": [],
+    "socket_console_messages": []
+  },
+  "validation": "Actual synthetic HR login in headless Chrome; no credentials/session IDs retained. Prior bilingual UI evidence is preserved with its original polling caveat.",
+  "limits": [
+    "One local authenticated realtime connection; not realtime load or production deployment proof."
+  ],
+  "compose_sha256": "6f958c7ab57d6525b278780eb7aae278dd4d29de41bde2bc93b4e6800c8651ef"
+}

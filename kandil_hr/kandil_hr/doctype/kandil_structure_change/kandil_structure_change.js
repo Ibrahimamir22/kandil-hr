@@ -6,7 +6,7 @@ frappe.ui.form.on('Kandil Structure Change', {
     frm.fields_dict.operations_preview.$wrapper.html(`<table class="table table-bordered"><thead><tr><th>#</th><th>${__('Action')}</th><th>${__('Position')}</th><th>${__('Parent Position')}</th><th>${__('Details')}</th></tr></thead><tbody>${rows}</tbody></table>`);
     const created=JSON.parse(frm.doc.created_positions_json||'{}');
     Object.values(created).forEach(name=>frm.fields_dict.operations_preview.$wrapper.append(`<p><a href="/desk/kandil-position/${encodeURIComponent(name)}">${escape(name)}</a></p>`));
-    if (frm.doc.status === 'Draft' && (frm.is_new() || frm.doc.owner===frappe.session.user)) {
+    if (['Draft','Returned'].includes(frm.doc.status) && (frm.is_new() || frm.doc.owner===frappe.session.user)) {
       frm.add_custom_button(__('Add Structure Change'), () => {
         const dialog = new frappe.ui.Dialog({title:__('Add Structure Change'), fields:[
           {fieldname:'action',label:__('Action'),fieldtype:'Select',options:['Create','Reparent','Resize','Close'],reqd:1},
@@ -47,10 +47,15 @@ frappe.ui.form.on('Kandil Structure Change', {
         });
       }
     }
+    const history=JSON.parse(frm.doc.route_snapshot||'{}').history||[];
+    history.forEach(round=>{
+      const decisions=round.steps.filter(step=>step.decision!=='Pending').map(step=>`<li>${escape(__(step.authority))}: ${escape(__(step.decision))} — ${escape(step.comment||'')} (${escape(step.actor||'')})</li>`).join('');
+      frm.fields_dict.operations_preview.$wrapper.append(`<details><summary>${__('Previous Review')} ${escape(String(round.round))}</summary><ul>${decisions}</ul></details>`);
+    });
     const step=(frm.doc.approval_steps||[]).find(row=>row.decision==='Pending');
     if(frm.doc.status==='Pending'&&step&&step.principal===frappe.session.user) {
-      ['Approved','Rejected'].forEach(decision=>frm.add_custom_button(__(decision==='Approved'?'Approve Structure':'Reject Structure'),()=>{
-        frappe.prompt([{fieldname:'comment',label:__('Comment'),fieldtype:'Small Text',reqd:decision==='Rejected'}],async values=>{
+      ['Approved','Rejected','Returned'].forEach(decision=>frm.add_custom_button(__(decision==='Approved'?'Approve Structure':decision==='Returned'?'Return Structure':'Reject Structure'),()=>{
+        frappe.prompt([{fieldname:'comment',label:__('Comment'),fieldtype:'Small Text',reqd:decision!=='Approved'}],async values=>{
           await frappe.call({method:'kandil_hr.organization.api.decide_structure',args:{name:frm.doc.name,preview_hash:frm.doc.preview_hash,decision,comment:values.comment||'',step_id:step.step_key,command_id:crypto.randomUUID(),expected_version:frm.doc.modified}});
           await frm.reload_doc();
         },__('Structure Decision'),__('Submit'));

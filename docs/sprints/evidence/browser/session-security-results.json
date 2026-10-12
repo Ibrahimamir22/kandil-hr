@@ -1,0 +1,53 @@
+{
+  "case": "AT-ACC-001-01",
+  "checked_at": "2026-10-12T03:50:04.990Z",
+  "site": "kandil-parity.localhost",
+  "result": "PASS",
+  "checks": [
+    {
+      "test": "Enabled account native UI login and authenticated API",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "test": "Savepoint and full rollback preserve enabled native session",
+      "status": "PASS"
+    },
+    {
+      "test": "disabled previously authenticated session denied by API and Desk UI",
+      "status": "PASS",
+      "http_status": 401,
+      "ui": "redirected to native login"
+    },
+    {
+      "test": "expired previously authenticated session denied by API and Desk UI",
+      "status": "PASS",
+      "http_status": 401,
+      "ui": "redirected to native login"
+    },
+    {
+      "test": "Disabled account fresh native UI login denied",
+      "status": "PASS",
+      "http_status": 401
+    },
+    {
+      "test": "Disabled account fresh direct login API denied",
+      "status": "PASS",
+      "http_status": 401
+    },
+    {
+      "test": "Synthetic accounts and native sessions cleaned; private manifest removed",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/account_sessions.py": "133a6f96ce1742dea65ecbb03b81ff233ac3ad5899ce0e3729cf1ceb73d021ea",
+    "kandil_hr/foundation/session_probe.py": "14c3ee1eae885438cbc1992599c4e28adb626ec1efc85cfdfe63da77cb6ff421",
+    "docs/sprints/test_session_security.cjs": "57e4b3a5c01214bc72790861d17089170d7ddcba8b0b70b8bc6c7f5e3b0ee206"
+  },
+  "limits": [
+    "Expiry simulated only for a real synthetic session by aging its native Redis/DB record; no global session policy changed",
+    "No provider, MFA, new-device alert or production session-duration acceptance",
+    "Screenshots contain only synthetic accounts; passwords and session IDs excluded from evidence"
+  ]
+}

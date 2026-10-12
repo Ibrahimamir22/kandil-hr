@@ -12,6 +12,11 @@ frappe.ui.form.on('Kandil Organization Import', {
       {...link('department','Department','Department'),get_query:()=>({filters:{company:frm.doc.company}})},link('branch','Branch','Branch',false),link('designation','Designation','Designation'),
       {fieldname:'structural',label:__('Structural Seats'),fieldtype:'Int',in_list_view:1,reqd:1,default:1},data('external_id','External ID'),data('job_family','Job Family')
     ];
+    else if(['Units','Jobs'].includes(kind)) {
+      fields=[data('external_code','External Code',true),data('title','Title',true),link('target','Existing Target',kind==='Units'?'Department':'Designation',false)];
+      if(kind==='Units') fields.push({...link('parent_department','Parent Department','Department',false),get_query:()=>({filters:{company:frm.doc.company,is_group:1}})},{fieldname:'is_group',label:__('Is Group'),fieldtype:'Check',in_list_view:1,default:0});
+      else fields.push(data('job_family','Job Family'));
+    }
     else {
       fields=[{...link('position','Position','Kandil Position'),get_query:()=>({filters:{company:frm.doc.company}})}];
       if(kind==='Hierarchy') fields.push(
@@ -32,6 +37,7 @@ frappe.ui.form.on('Kandil Organization Import', {
         await frm.set_value('rows_json',JSON.stringify(clean));dialog.hide();frm.trigger('refresh');
       }});dialog.show();
     });
+    if(frm.doc.status==='Applied'&&['Units','Jobs','Positions'].includes(kind)) frm.add_custom_button(__('View Imported Codes'),()=>frappe.set_route('List','Kandil Organization Code',{import_batch:frm.doc.name}));
     if(frm.is_new()) return;
     if(frm.doc.status==='Draft'&&frm.doc.owner===frappe.session.user) frm.add_custom_button(__('Load CSV'),()=>{
       if(frm.is_dirty()) return frappe.msgprint(__('Save the import draft before loading CSV.'));

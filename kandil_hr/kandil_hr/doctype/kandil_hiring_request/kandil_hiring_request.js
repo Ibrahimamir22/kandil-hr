@@ -19,6 +19,38 @@ frappe.ui.form.on('Kandil Hiring Request', {
       callback: ({ message: actions }) => {
         if (!actions || frm.doc.name !== name || frm.kandil_action_generation !== generation) return;
         extended = actions.extended; version = actions.expected_version; step = actions.step_id;
+        if (extended) frappe.call({
+          method: 'kandil_hr.recruitment.preview.headcount', type: 'GET', args: {name},
+          callback: ({message: guidance}) => {
+            if (!guidance || frm.doc.name !== name || frm.kandil_action_generation !== generation) return;
+            const escape = frappe.utils.escape_html;
+            const rows = guidance.rows.map(row => '<li>' + escape(__('{0}: Requested {1}; additional demand {2}; available excluding own reservation {3}; shortage {4}.', [row.branch || row.position, row.requested, row.incremental_demand, row.available, row.shortage])) + '</li>').join('');
+            const submitted = guidance.submitted_mode ? ' ' + __('Submitted policy: {0}.', [__(guidance.submitted_mode)]) : '';
+            const note = __('Saved values only. Preview does not reserve headcount; submission checks current capacity.');
+            frm.dashboard.add_comment('<strong>' + escape(__('Headcount guidance')) + '</strong><p>' + escape(__('Current policy: {0}.', [__(guidance.current_mode)]) + submitted) + '</p><ul>' + rows + '</ul><p>' + escape(note) + '</p>', 'blue', true);
+          }
+        });
+        if (actions.correct_approved) frm.add_custom_button(__('Correct Approved Request'), () => {
+          const specs = [
+            ['employment_type','Employment Type','Link','Employment Type'], ['required_by','Required By','Date'],
+            ['qualifications','Qualifications','Small Text'], ['skills_required','Skills Required','Small Text'],
+            ['experience_required','Experience Required','Small Text'], ['working_conditions','Working Conditions','Small Text'],
+            ['need_reason','Need Reason','Select','New Position\nReplacement\nTemporary Cover\nExpansion'], ['hr_priority','HR Priority','Select','Normal\nImportant\nCritical']
+          ];
+          const fields = [{fieldname:'guidance',fieldtype:'HTML',options:'<p>'+frappe.utils.escape_html(__('Reductions cannot be below actual joiners. Increases require approval. Relocation moves only unfilled seats; resolve candidates first.'))+'</p>'}];
+          specs.forEach(([key,label,fieldtype,options]) => fields.push({fieldname:key,label:__(label),fieldtype,options,default:frm.doc[key] || ''}));
+          frm.doc.lines.forEach((row,i) => {
+            fields.push({fieldname:'q'+i,label:__('Approved quantity — {0}; joined {1}',[row.capacity,row.joined_qty]),fieldtype:'Int',default:row.approved_qty});
+            if (row.approved_qty > row.joined_qty + row.closed_qty) fields.push({fieldname:'to'+i,label:__('Move unfilled seats from {0} to', [row.capacity]),fieldtype:'Link',options:'Kandil Capacity',get_query:()=>({filters:{company:frm.doc.company,department:frm.doc.department,name:['not in',frm.doc.lines.map(x=>x.capacity)]}})});
+          });
+          fields.push({fieldname:'reason',label:__('Reason'),fieldtype:'Small Text',reqd:1});
+          frappe.prompt(fields, values => {
+            const changes={},quantities={},relocations={};
+            specs.forEach(([key])=>{if(String(values[key]||'')!==String(frm.doc[key]||''))changes[key]=values[key]||null});
+            frm.doc.lines.forEach((row,i)=>{if(values['q'+i]!==row.approved_qty)quantities[row.name]=values['q'+i];if(values['to'+i])relocations[row.name]=values['to'+i]});
+            frappe.call({method:'kandil_hr.recruitment.corrections.correct_approved',args:{name,command_id:crypto.randomUUID(),expected_version:version,reason:values.reason,fields:changes,quantities,relocations},freeze:true,callback:()=>frm.reload_doc()});
+          }, __('Correct Approved Request'), __('Apply Correction'));
+        });
         if (actions.confidential_notes) {
           frm.add_custom_button(__('Confidential HR Notes'), () => frappe.set_route('List', 'Kandil HR Note', {request: name}));
           frm.add_custom_button(__('Add Confidential HR Note'), () => frappe.new_doc('Kandil HR Note', {request: name}));

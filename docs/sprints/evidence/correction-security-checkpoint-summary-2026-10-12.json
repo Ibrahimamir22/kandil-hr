@@ -1,0 +1,37 @@
+{
+  "checked_at": "2026-10-12T04:02:09.970775+00:00",
+  "status": "PASS",
+  "scope": "Local synthetic development checkpoint; not goal completion or HR acceptance",
+  "serial": "docs/sprints/evidence/corrections-contracts-final-2026-10-12.json",
+  "serial_counts": {
+    "occupancy": 9,
+    "recruitment": 26,
+    "contracts": 9,
+    "corrections": 6,
+    "joining": 11,
+    "sla": 9,
+    "privacy": 8,
+    "foundation_mixed": 52
+  },
+  "other_evidence": [
+    "docs/organization-evidence/code-guard-current-read-2026-10-12.json",
+    "docs/sprints/evidence/browser/session-security-results.json",
+    "docs/sprints/evidence/browser/scope-security-results.json",
+    "docs/sprints/evidence/outbox-shared-recipient-2026-10-12.json",
+    "docs/sprints/evidence/browser/browser-contract-results.json",
+    "docs/sprints/evidence/corrections-contracts-http-2026-10-12.json",
+    "docs/sprints/evidence/realtime-browser-2026-10-12.json"
+  ],
+  "static_syntax": {
+    ".py": 158,
+    ".json": 32,
+    ".js": 15
+  },
+  "upstream_clones_unchanged": true,
+  "local_orchestration_commit": "5b290c8",
+  "limitations": [
+    "Serial source hashes unchanged. Earlier focused browser/organization proof records its own narrower source boundary.",
+    "No production data migration, MFA/provider integration, external email, payroll changes or HR approval.",
+    "Mapped code guards prevent observed stale-read bypass; concurrent import versus native master operation can require transaction retry."
+  ]
+}

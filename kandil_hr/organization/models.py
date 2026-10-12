@@ -178,6 +178,9 @@ class KandilPosition(HistoryDocument):
 		if cint(self.structural) < 1 or float(self.structural) != cint(self.structural):
 			fail("Structural seats must be a positive whole number.")
 		old = self.get_doc_before_save()
+		from kandil_hr.organization.codes import position_identity
+
+		position_identity(self, old)
 		if old:
 			for field in ["company", "department", "branch", "designation", "position_code"]:
 				if self.get(field) != old.get(field):
@@ -372,6 +375,8 @@ class KandilStructureChange(HistoryDocument):
 		guard(self)
 		old = self.get_doc_before_save()
 		draft_author(self, old)
+		if old and old.status == "Returned" and old.owner != frappe.session.user and not internal():
+			frappe.throw(_("Only the author can edit returned organization content."), frappe.PermissionError)
 		if old and old.status in ["Approved", "Rejected"]:
 			fail("Decided structure changes are immutable.")
 		if old and old.status == "Pending" and not internal():
@@ -390,8 +395,23 @@ class KandilStructureChange(HistoryDocument):
 				"created_positions_json",
 			],
 		)
-		if not internal() and self.approval_steps:
-			fail("Approval steps are managed by the server.")
+		if not internal():
+			fields = [f for f in frappe.get_meta("Kandil Approval Step").fields if f.fieldname]
+
+			def steps(doc):
+				result = []
+				for row in doc.approval_steps if doc else []:
+					value = {"name": row.name}
+					for field in fields:
+						item = row.get(field.fieldname)
+						value[field.fieldname] = (
+							get_datetime(item) if item and field.fieldtype == "Datetime" else item
+						)
+					result.append(value)
+				return result
+
+			if steps(self) != steps(old):
+				fail("Approval steps are managed by the server.")
 		if (
 			old
 			and old.status == "Pending"
@@ -404,7 +424,7 @@ class KandilStructureChange(HistoryDocument):
 				raise ValueError
 		except ValueError, TypeError:
 			fail("Proposed changes must be a non-empty JSON list with at most 200 operations.")
-		if getdate(self.effective_on) < getdate() and self.status != "Rejected":
+		if getdate(self.effective_on) < getdate() and self.status not in ("Rejected", "Returned"):
 			fail("Structure changes cannot be backdated.")
 		if old and (self.changes_json != old.changes_json or self.effective_on != old.effective_on):
 			self.preview_hash = None

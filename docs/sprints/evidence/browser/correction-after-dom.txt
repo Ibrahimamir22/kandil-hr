@@ -1,0 +1,330 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: Search
+- generic: Notification
+- link "Kandil Position":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: Kandil Position
+- link "Kandil Hiring Request":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: Kandil Hiring Request
+- link "Kandil JD Revision":
+  - /url: /desk/kandil-hr/kandil-jd-revision
+  - generic: Kandil JD Revision
+- link "Kandil Capacity":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: Kandil Capacity
+- link "Kandil HR Note":
+  - /url: /desk/kandil-hr/kandil-hr-note
+  - generic: Kandil HR Note
+- link "Kandil Structure Change":
+  - /url: /desk/kandil-hr/kandil-structure-change
+  - generic: Kandil Structure Change
+- link "Kandil Organization Code":
+  - /url: /desk/kandil-hr/kandil-organization-code
+  - generic: Kandil Organization Code
+- link "Kandil Organization Import":
+  - /url: /desk/kandil-hr/kandil-organization-import
+  - generic: Kandil Organization Import
+- link "Kandil Recruitment Route":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: Kandil Recruitment Route
+- link "Kandil Structure Snapshot":
+  - /url: /desk/kandil-hr/kandil-structure-snapshot
+  - generic: Kandil Structure Snapshot
+- link "Kandil Position Hierarchy":
+  - /url: /desk/kandil-hr/kandil-position-hierarchy
+  - generic: Kandil Position Hierarchy
+- link "Kandil Grade Band":
+  - /url: /desk/kandil-hr/kandil-grade-band
+  - generic: Kandil Grade Band
+- link "Vacancy Queue":
+  - /url: /desk/kandil-hr/kandil-vacancy-queue
+  - generic: Vacancy Queue
+- generic "User Menu":
+  - generic "BROWSER-4b37edbcb6e3 hr":
+    - generic "BROWSER-4b37edbcb6e3 hr": Bh
+  - generic: BROWSER-4b37edbcb6e3 hr
+  - generic: browser-4b37edbcb6e3-hr@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "Kandil Hiring Request":
+      - /url: /desk/kandil-hiring-request
+      - generic: Kandil Hiring Request
+    - generic "BROWSER-4b37edbcb6e3 correction":
+      - generic: BROWSER-4b37edbcb6e3 correction
+- generic: Approved
+- button "HR workspace":
+  - generic: HR workspace
+- button "Correct Approved Request":
+  - generic: Correct Approved Request
+- button "Confidential HR Notes":
+  - generic: Confidential HR Notes
+- button "Add Confidential HR Note":
+  - generic: Add Confidential HR Note
+- button "Propose Amendment":
+  - generic: Propose Amendment
+- button "Cancel Recruitment":
+  - generic: Cancel Recruitment
+- button:
+- button:
+- button "Menu":
+- generic: "Recruitment status: Approved"
+- strong: Headcount guidance
+- paragraph: "Current policy: Warn. Submitted policy: Warn."
+- list:
+  - listitem: "BROWSER-4b37edbcb6e3: Requested 4; additional demand 0; available excluding own reservation 1; shortage 0."
+- paragraph: Saved values only. Preview does not reserve headcount; submission checks current capacity.
+- generic: Company *
+- generic: Kandil BROWSER TEST 4b37edbcb6e3
+- generic: company
+- generic: Department *
+- generic: BROWSER-4b37edbcb6e3 - B4b37e
+- generic: department
+- generic: Title *
+- generic: BROWSER-4b37edbcb6e3 correction
+- generic: title
+- generic: Requested By
+- link "browser-4b37edbcb6e3-requester@example.invalid":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- generic: requested_by
+- generic: Status
+- generic: Approved
+- generic: status
+- checkbox "Needs Exception" [disabled]
+- generic: Needs Exception
+- paragraph
+- generic: needs_exception
+- generic: lines
+- generic: Lines
+- checkbox [disabled]
+- generic: No.
+- generic "Capacity":
+  - generic: Capacity *
+- generic "Requested Qty":
+  - generic: Requested Qty *
+- generic "Approved Qty":
+  - generic: Approved Qty
+- generic "Joined Qty":
+  - generic: Joined Qty
+- generic "Job Opening":
+  - generic: Job Opening
+- checkbox [disabled]
+- generic: "1"
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/kandil-capacity/KCAP-18979522a1f9d1374ab74fc8
+- generic: "4"
+- generic: "4"
+- generic: "0"
+- link "BROWSER-4b37edbcb6e3 — BROWSER-4b37edbcb6e3 — vfipsr91dv":
+  - /url: /desk/job-opening/HR-OPN-2026-0008
+- generic: approval_steps
+- generic: Approval Steps
+- checkbox [disabled]
+- generic: No.
+- generic "Principal":
+  - generic: Principal *
+- generic "Authority":
+  - generic: Authority
+- generic "Decision":
+  - generic: Decision
+- checkbox [disabled]
+- generic: "1"
+- link "browser-4b37edbcb6e3-manager@example.invalid":
+  - /url: /desk/user/browser-4b37edbcb6e3-manager%40example.invalid
+- generic: Department Approval
+- generic: Approved
+- checkbox [disabled]
+- generic: "2"
+- link "browser-4b37edbcb6e3-hr@example.invalid":
+  - /url: /desk/user/browser-4b37edbcb6e3-hr%40example.invalid
+- generic: HR Approval
+- generic: Approved
+- generic: Decision Note
+- generic: "{\"after\": {\"amends\": null, \"approval_steps\": [{\"actor\": \"browser-4b37edbcb6e3-manager@example.invalid\", \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-4b37edbcb6e3-HEAD\", \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 06:52:05.192335\", \"decision\": \"Approved\", \"idx\": 1, \"name\": \"vfj0idta92\", \"principal\": \"browser-4b37edbcb6e3-manager@example.invalid\", \"step_key\": \"c6f63501cde24d839033f18d24856443\", \"waiting_since\": \"2026-10-12 06:52:05.128443\"}, {\"actor\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 06:52:05.215080\", \"decision\": \"Approved\", \"idx\": 2, \"name\": \"vfju37fro1\", \"principal\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"step_key\": \"6f393d33a2c9420083536418def30dd0\", \"waiting_since\": \"2026-10-12 06:52:05.192340\"}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST 4b37edbcb6e3\", \"creation\": \"2026-10-12 06:52:05.040698\", \"department\": \"BROWSER-4b37edbcb6e3 - B4b37e\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 4, \"capacity\": \"KCAP-18979522a1f9d1374ab74fc8\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": \"HR-OPN-2026-0008\", \"joined_qty\": 0, \"name\": \"vfirnb58q8\", \"proposed_qty\": 4, \"requested_qty\": 4, \"reserved_qty\": 0}], \"modified\": \"2026-10-12 06:52:05.248555\", \"modified_by\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"name\": \"vfipsr91dv\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-4b37edbcb6e3-requester@example.invalid\", \"qualifications\": \"Browser verified qualification — bilingual QA\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-4b37edbcb6e3-requester@example.invalid\", \"requested_position\": \"BROWSER-4b37edbcb6e3\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 2, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-5c23d63ba70c27fc7d913385\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-5c23d63ba70c27fc7d913385\\\", \\\"config_modified\\\": \\\"2026-10-12 06:52:04.652009\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-4b37edbcb6e3-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-4b37edbcb6e3-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-4b37edbcb6e3-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-4b37edbcb6e3\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"vfimp0m8v2\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-4b37edbcb6e3-HEAD\\\", \\\"principal\\\": \\\"browser-4b37edbcb6e3-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-4b37edbcb6e3-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"e8a722cebb466df704132ea5ae09446dfc381ebdfe1c03428a3e2fd5ad8ea469\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-18979522a1f9d1374ab74fc8\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 0, \\\"additional\\\": 4, \\\"cohort\\\": {}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Approved\", \"title\": \"BROWSER-4b37edbcb6e3 correction\", \"working_conditions\": null}, \"before\": {\"amends\": null, \"approval_steps\": [{\"actor\": \"browser-4b37edbcb6e3-manager@example.invalid\", \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-4b37edbcb6e3-HEAD\", \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 06:52:05.192335\", \"decision\": \"Approved\", \"idx\": 1, \"name\": \"vfj0idta92\", \"principal\": \"browser-4b37edbcb6e3-manager@example.invalid\", \"step_key\": \"c6f63501cde24d839033f18d24856443\", \"waiting_since\": \"2026-10-12 06:52:05.128443\"}, {\"actor\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 06:52:05.215080\", \"decision\": \"Approved\", \"idx\": 2, \"name\": \"vfju37fro1\", \"principal\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"step_key\": \"6f393d33a2c9420083536418def30dd0\", \"waiting_since\": \"2026-10-12 06:52:05.192340\"}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST 4b37edbcb6e3\", \"creation\": \"2026-10-12 06:52:05.040698\", \"department\": \"BROWSER-4b37edbcb6e3 - B4b37e\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 4, \"capacity\": \"KCAP-18979522a1f9d1374ab74fc8\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": \"HR-OPN-2026-0008\", \"joined_qty\": 0, \"name\": \"vfirnb58q8\", \"proposed_qty\": 4, \"requested_qty\": 4, \"reserved_qty\": 0}], \"modified\": \"2026-10-12 06:52:05.248555\", \"modified_by\": \"browser-4b37edbcb6e3-hr@example.invalid\", \"name\": \"vfipsr91dv\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-4b37edbcb6e3-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-4b37edbcb6e3-requester@example.invalid\", \"requested_position\": \"BROWSER-4b37edbcb6e3\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-5c23d63ba70c27fc7d913385\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-5c23d63ba70c27fc7d913385\\\", \\\"config_modified\\\": \\\"2026-10-12 06:52:04.652009\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-4b37edbcb6e3-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-4b37edbcb6e3-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-4b37edbcb6e3-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-4b37edbcb6e3\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"vfimp0m8v2\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-4b37edbcb6e3-HEAD\\\", \\\"principal\\\": \\\"browser-4b37edbcb6e3-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-4b37edbcb6e3-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"e8a722cebb466df704132ea5ae09446dfc381ebdfe1c03428a3e2fd5ad8ea469\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-18979522a1f9d1374ab74fc8\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 0, \\\"additional\\\": 4, \\\"cohort\\\": {}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Approved\", \"title\": \"BROWSER-4b37edbcb6e3 correction\", \"working_conditions\": null}, \"reason\": \"Synthetic fields-only browser correction\"}"
+- generic: decision_note
+- generic: Requested Position
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/kandil-position/BROWSER-4b37edbcb6e3
+- generic: requested_position
+- generic: Request Kind
+- generic: New Recruitment
+- generic: request_kind
+- generic: Revision
+- generic: "2"
+- generic: revision
+- generic: Need Reason
+- generic: Expansion
+- generic: need_reason
+- generic: Qualifications
+- generic: Browser verified qualification — bilingual QA
+- generic: qualifications
+- generic: Requested Priority
+- generic: Normal
+- generic: requested_priority
+- generic: HR Priority
+- generic: Normal
+- generic: hr_priority
+- generic: Comments
+- generic "BROWSER-4b37edbcb6e3 hr":
+  - generic "BROWSER-4b37edbcb6e3 hr": Bh
+- generic: comment
+- text: Type a reply / comment
+- paragraph
+- text: ×
+- heading "Activity" [level=4]
+- 'link "You changed the value of Decision Note from Synthetic browser fixture approval to {\"after\": {\"amends\": null, \"approval_ste..., Revision from 1 to 2, Qualifications from Original synthetic qualification to Browser verified qualification — bilingu..."':
+  - /url: /desk/version/098aokuv4q
+- generic: · just now
+- text: You last edited this
+- generic: · just now
+- link "You changed the value of Status from Pending to Approved":
+  - /url: /desk/version/vfkhm4s513
+- generic: · 1 minute ago
+- 'link "You changed the values for Approved Qty from 0 to 4 in row #1, Job Opening from \"\" to BROWSER-4b37edbcb6e3 — BROWSER-4b37edbcb... in row #1, Reserved Qty from 4 to 0 in row #1"':
+  - /url: /desk/version/vfkhm4s513
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/user/browser-4b37edbcb6e3-manager%40example.invalid
+- link "changed the value of Decision Note from \"\" to Synthetic browser fixture approval":
+  - /url: /desk/version/vfjlme2iqo
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3":
+  - /url: /desk/user/browser-4b37edbcb6e3-manager%40example.invalid
+- 'link "changed the values for Decision from Pending to Approved in row #1, Actor from \"\" to browser-4b37edbcb6e3-manager@example.inv... in row #1, Decided At from null to 12-10-2026 06:52:05 in row #1"':
+  - /url: /desk/version/vfjlme2iqo
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- link "changed the value of Status from Draft to Pending, Decision Note from null to \"\"":
+  - /url: /desk/version/vfjm2ejnac
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- 'link "changed the values for Proposed Qty from 0 to 4 in row #1, Reserved Qty from 0 to 4 in row #1"':
+  - /url: /desk/version/vfjm2ejnac
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- link "added 2 rows to Approval Steps":
+  - /url: /desk/version/vfjm2ejnac
+- generic: · 1 minute ago
+- link "BROWSER-4b37edbcb6e3 requester":
+  - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+- text: created this
+- generic: · 1 minute ago
+- generic: BROWSER-4b37edbcb6e3 correction
+- generic: vfipsr91dv
+- button:
+- generic: Assign
+- button "Assign":
+- text: Attachments
+- button "Add attachment":
+- generic: Tags
+- button "Add Tags":
+- generic: Share
+- button "Share":
+- list:
+  - text: Last Edited By You
+  - generic "12-10-2026 06:53:27": just now
+  - text: Created By
+  - link "BROWSER-4b37edbcb6e3 requester":
+    - /url: /desk/user/browser-4b37edbcb6e3-requester%40example.invalid
+  - generic "12-10-2026 06:52:05": 1 minute ago
+- contentinfo
+- navigation:
+  - text: October,
+  - generic: "2026"
+- generic: Su
+- generic: Mo
+- generic: Tu
+- generic: We
+- generic: Th
+- generic: Fr
+- generic: Sa
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "1"
+- generic: "2"
+- generic: "3"
+- generic: "4"
+- generic: "5"
+- generic: "6"
+- generic: "7"
+- generic: "8"
+- generic: "9"
+- generic: "10"
+- generic: "11"
+- generic: "12"
+- generic: "13"
+- generic: "14"
+- generic: "15"
+- generic: "16"
+- generic: "17"
+- generic: "18"
+- generic: "19"
+- generic: "20"
+- generic: "21"
+- generic: "22"
+- generic: "23"
+- generic: "24"
+- generic: "25"
+- generic: "26"
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "31"
+- generic: Today
+- navigation:
+  - text: October,
+  - generic: "2026"
+- generic: Su
+- generic: Mo
+- generic: Tu
+- generic: We
+- generic: Th
+- generic: Fr
+- generic: Sa
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "1"
+- generic: "2"
+- generic: "3"
+- generic: "4"
+- generic: "5"
+- generic: "6"
+- generic: "7"
+- generic: "8"
+- generic: "9"
+- generic: "10"
+- generic: "11"
+- generic: "12"
+- generic: "13"
+- generic: "14"
+- generic: "15"
+- generic: "16"
+- generic: "17"
+- generic: "18"
+- generic: "19"
+- generic: "20"
+- generic: "21"
+- generic: "22"
+- generic: "23"
+- generic: "24"
+- generic: "25"
+- generic: "26"
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "31"
+- generic: Today
+- text: "*"

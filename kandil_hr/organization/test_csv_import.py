@@ -79,3 +79,17 @@ class CSVImportTests(unittest.TestCase):
 		self.assertEqual(len(parse(self.header + "\n\nP1,W,D,J\n\n", "Positions")), 1)
 		with self.assertRaises(CSVImportError):
 			parse(self.header + "\n", "Positions")
+
+	def test_unit_codes_and_group_are_preserved(self):
+		row = parse("external_code,title,is_group\nK-001,قطاع التصنيع,1", "Units")[0]
+		self.assertEqual(row, {"external_code": "K-001", "title": "قطاع التصنيع", "is_group": 1})
+		with self.assertRaises(CSVImportError):
+			parse("external_code,title,is_group\nK-001,Unit,2", "Units")
+
+	def test_job_explicit_target_and_family_are_preserved(self):
+		row = parse("external_code,title,target,job_family\nJ-01,Worker,Existing Worker,Production", "Jobs")[
+			0
+		]
+		self.assertEqual(row["target"], "Existing Worker")
+		self.assertEqual(row["external_code"], "J-01")
+		self.assertEqual(row["job_family"], "Production")

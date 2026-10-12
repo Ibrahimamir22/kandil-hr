@@ -13,6 +13,10 @@ def settings(user=None):
 	return scope_query("Kandil Organization Settings", user)
 
 
+def code(user=None):
+	return scope_query("Kandil Organization Code", user)
+
+
 def position(user=None):
 	return scope_query("Kandil Position", user)
 
@@ -46,6 +50,7 @@ def import_batch(user=None):
 
 
 HOOK_QUERIES = {
+	"Kandil Organization Code": "code",
 	"Kandil Organization Settings": "settings",
 	"Kandil Position": "position",
 	"Kandil Position Hierarchy": "hierarchy",

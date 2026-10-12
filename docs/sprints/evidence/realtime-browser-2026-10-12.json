@@ -1,0 +1,13 @@
+{
+  "checked_at": "2026-10-12T04:01:37.239Z",
+  "status": "PASS",
+  "state": {
+    "site": "kandil-parity.localhost",
+    "port": "9102",
+    "dev_server": 1,
+    "connected": true,
+    "host": "http://localhost:9102/kandil-parity.localhost"
+  },
+  "failures": [],
+  "messages": []
+}

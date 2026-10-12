@@ -68,7 +68,7 @@
       "fieldname": "status",
       "label": "Status",
       "fieldtype": "Select",
-      "options": "Draft\nPending\nApproved\nRejected",
+      "options": "Draft\nPending\nApproved\nRejected\nReturned",
       "default": "Draft",
       "read_only": 1,
       "in_list_view": 1

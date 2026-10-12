@@ -448,8 +448,8 @@ def planned_hierarchy(doc, state):
 @frappe.whitelist(methods=["POST"])
 def preview_structure(name):
 	doc = get_locked("Kandil Structure Change", name)
-	if doc.status != "Draft":
-		fail("Only draft structure changes can be previewed.")
+	if doc.status not in ("Draft", "Returned") or doc.owner != frappe.session.user:
+		fail("Only the author can preview a draft or returned structure change.")
 	state = structure_state(doc.company)
 	operations, rows = planned_hierarchy(doc, state)
 	with transition():
@@ -583,8 +583,10 @@ def structure_chain(doc):
 @frappe.whitelist(methods=["POST"])
 def submit_structure(name, preview_hash, command_id, expected_version):
 	def act(doc):
-		if doc.status != "Draft" or doc.owner != frappe.session.user:
-			frappe.throw(_("Only the author can submit this draft structure change."), frappe.PermissionError)
+		if doc.status not in ("Draft", "Returned") or doc.owner != frappe.session.user:
+			frappe.throw(
+				_("Only the author can submit a draft or returned structure change."), frappe.PermissionError
+			)
 		state = structure_state(doc.company)
 		if not preview_hash or preview_hash != doc.preview_hash or doc.snapshot_hash != digest(state):
 			fail("Structure changed after preview. Preview and review the changes again.")
@@ -603,7 +605,15 @@ def submit_structure(name, preview_hash, command_id, expected_version):
 					"waiting_since": now_datetime() if index == 0 else None,
 				},
 			)
-		doc.route_snapshot = serialized({"chain": chain, "skipped": skipped})
+		previous = json.loads(doc.route_snapshot or "{}")
+		doc.route_snapshot = serialized(
+			{
+				"chain": chain,
+				"skipped": skipped,
+				"round": previous.get("round", 0) + 1,
+				"history": previous.get("history", []),
+			}
+		)
 		doc.status = "Pending"
 		return {"name": doc.name, "status": doc.status, "snapshot": None}
 
@@ -629,15 +639,17 @@ def decide_structure(
 			frappe.throw(
 				_("Only the active structural authority may decide this step."), frappe.PermissionError
 			)
-		if decision not in ["Approved", "Rejected"]:
-			fail("Choose Approved or Rejected.")
-		if decision == "Rejected" and not comment.strip():
-			fail("A reason is required.")
+		if decision not in ["Approved", "Rejected", "Returned"]:
+			fail("Choose Approved, Rejected or Returned.")
+		if decision in ("Rejected", "Returned") and (
+			not isinstance(comment, str) or len(comment.strip()) < 3
+		):
+			fail("A reason of at least three characters is required.")
 		if preview_hash != doc.preview_hash:
 			fail("The reviewed structure preview does not match this request.")
 		state = structure_state(doc.company)
 		if decision == "Approved" and doc.snapshot_hash != digest(state):
-			fail("Structure changed after preview. Reject this change and create a new reviewed request.")
+			fail("Structure changed after preview. Return this change for a fresh review.")
 		operations, _rows = planned_hierarchy(doc, state) if decision == "Approved" else ([], [])
 		step.reviewed_snapshot = serialized(
 			{
@@ -652,8 +664,23 @@ def decide_structure(
 			now_datetime(),
 			comment,
 		)
-		if decision == "Rejected":
-			doc.status = "Rejected"
+		if decision in ("Rejected", "Returned"):
+			doc.status = decision
+			if decision == "Returned":
+				route = json.loads(doc.route_snapshot or "{}")
+				route.setdefault("history", []).append(
+					{
+						"round": route.get("round", 1),
+						"changes": json.loads(doc.changes_json),
+						"reason": doc.reason,
+						"effective_on": doc.effective_on,
+						"preview_hash": doc.preview_hash,
+						"steps": [row.as_dict() for row in doc.approval_steps],
+					}
+				)
+				doc.route_snapshot = serialized(route)
+				doc.preview_hash = None
+				doc.snapshot_hash = None
 		elif all(s.decision == "Approved" for s in doc.approval_steps):
 			apply_structure(doc, operations)
 			doc.status = "Approved"
@@ -859,7 +886,7 @@ def position_import_preview(doc):
 		"external_id",
 		"job_family",
 	}
-	seen, output = set(), []
+	seen, seen_external, output = set(), set(), []
 	for row in rows:
 		if (
 			not isinstance(row, dict)
@@ -872,6 +899,10 @@ def position_import_preview(doc):
 		if row["position_code"] in seen:
 			fail("Duplicate position code in import batch.")
 		seen.add(row["position_code"])
+		external = row.get("external_id") or row["position_code"]
+		if external in seen_external:
+			fail("Duplicate external code in import batch.")
+		seen_external.add(external)
 		quantity = row.get("structural", 1)
 		if not isinstance(quantity, int) or isinstance(quantity, bool) or quantity < 1:
 			fail("Imported structural seats must be positive whole numbers.")
@@ -882,6 +913,9 @@ def position_import_preview(doc):
 		):
 			fail("Imported designation and branch must already exist.")
 		data = {**row, "company": doc.company, "structural": quantity}
+		from kandil_hr.organization.codes import position_preview
+
+		position_preview(doc.company, data)
 		existing = frappe.db.get_value(
 			"Kandil Position",
 			row["position_code"],
@@ -1040,6 +1074,10 @@ def import_preview(doc):
 	kind = doc.get("import_kind") or "Positions"
 	if kind == "Positions":
 		return position_import_preview(doc)
+	if kind in ("Units", "Jobs"):
+		from kandil_hr.organization.codes import master_preview
+
+		return master_preview(doc)
 	if kind in ["Hierarchy", "Assignments"]:
 		return dated_import_preview(doc, kind)
 	fail("Select a supported organization import kind.")
@@ -1072,13 +1110,30 @@ def apply_import(name, reviewed_digest):
 		fail("A matching reviewed import is required.")
 	preview = import_preview(doc)
 	with transition():
-		for row in preview:
-			if row["action"] == "Create":
-				frappe.get_doc({"doctype": row.get("doctype", "Kandil Position"), **row["data"]}).insert()
+		from kandil_hr.organization.codes import apply_master, register
+
+		if doc.import_kind in ("Units", "Jobs"):
+			apply_master(doc, preview)
+		else:
+			for row in preview:
+				if row["action"] == "Create":
+					frappe.get_doc({"doctype": row.get("doctype", "Kandil Position"), **row["data"]}).insert()
+				if (doc.import_kind or "Positions") == "Positions":
+					register(
+						doc.company,
+						"Position",
+						row["data"].get("external_id") or row["code"],
+						row["code"],
+						row["data"]["title"],
+						doc.name,
+						row["data"].get("job_family"),
+					)
 		result = {
 			"kind": doc.get("import_kind") or "Positions",
 			"created": sum(r["action"] == "Create" for r in preview),
 			"unchanged": sum(r["action"] == "Unchanged" for r in preview),
+			"mapped": sum(r["action"] == "Map" for r in preview),
+			"targets": [r.get("target", r["code"]) for r in preview],
 			"positions": [r["data"].get("position", r["code"]) for r in preview],
 			"reconciliation": reconcile(doc.company),
 		}

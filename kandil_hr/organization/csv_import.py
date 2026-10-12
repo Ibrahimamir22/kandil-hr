@@ -9,6 +9,14 @@ MAX_BYTES = 1024 * 1024
 MAX_ROWS = 1000
 MAX_CELL = 8192
 SCHEMAS = {
+	"Units": {
+		"columns": ["external_code", "title", "target", "parent_department", "is_group"],
+		"required": ["external_code", "title"],
+	},
+	"Jobs": {
+		"columns": ["external_code", "title", "target", "job_family"],
+		"required": ["external_code", "title"],
+	},
 	"Positions": {
 		"columns": [
 			"position_code",
@@ -93,7 +101,11 @@ def parse(content, kind):
 						"CSV structural seats must be positive whole numbers within the supported integer range."
 					)
 				row["structural"] = int(quantity)
-			else:
+			elif kind == "Units":
+				if row.get("is_group", "0") not in ("0", "1"):
+					raise CSVImportError("Unit is_group must be 0 or 1.")
+				row["is_group"] = int(row.get("is_group", "0"))
+			elif kind != "Jobs":
 				for field in ["valid_from", "valid_until"]:
 					if row.get(field):
 						if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", row[field]):

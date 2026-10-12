@@ -102,3 +102,44 @@ bench --site kandil-parity.localhost execute kandil_hr.recruitment.test_joining.
 This native suite uses synthetic fixtures rolled back per case. Its sequential
 Hold/Freeze denial is not an independent-connection concurrency test. Refer to the
 recorded evidence checkpoint for executed case counts and source hashes.
+
+## Approved HR corrections / تصحيح طلب معتمد
+
+On the synthetic parity site, sign in as the ordinary scoped HR recruiter and open
+an approved original request. Use **Correct Approved Request**, edit its permitted
+fields and enter a reason. The saved revision records the previous and new values
+and notifies the requester locally. The requester cannot invoke this action.
+
+من حساب الموارد البشرية المخوّل، افتح الطلب الأصلي المعتمد واختر **تصحيح الطلب
+المعتمد**. سجّل السبب مع التعديل؛ يحتفظ النظام بالقيم قبل التغيير وبعده في نسخة
+جديدة، ويُخطر مقدم الطلب داخل النظام.
+
+- Increasing approved quantity uses a linked amendment and fresh approval. It
+  adds only the difference to the existing vacancy after final approval.
+- Decreasing quantity cannot go below actual joiners. Only unused open seats are
+  released; seats already closed are not released twice.
+- Moving location relocates unfilled seats only. Employees already joined and
+  their historical position assignments stay at the original location. The
+  destination must have available approved capacity and requires a fresh
+  recruitment-team assignment before intake.
+- Resolve active amendments and unresolved candidates before corrections that
+  affect their seats. A request containing confidential HR notes cannot expand
+  into a different capacity scope. Field-only corrections remain possible.
+- Changing a request does not reverse actual joining, edit payroll, or move an
+  employee. Joining reversal is still a separate unimplemented workflow.
+
+زيادة العدد تحتاج إلى تعديل مرتبط وإعادة اعتماد. تخفيض العدد لا يقل عن الملتحقين
+فعليًا. نقل الموقع ينقل المقاعد الشاغرة فقط، ولا ينقل الموظفين أو سجلات تكليفهم.
+الطلب الذي يحتوي ملاحظات سرية لا يمكن توسيع نطاق مواقعه بهذه العملية.
+
+## Position register / سجل الوظائف التنظيمية
+
+Open the native **Kandil Position** list and choose **Download Position Register**.
+Its dialog has separate optional company, department and branch filters. The CSV
+contains only public organizational fields from records the current account can
+read. It excludes pay, employee data and confidential notes. Downloading the
+register does not enable unrestricted native data export.
+
+من قائمة الوظائف التنظيمية اختر **تنزيل سجل الوظائف التنظيمية** وحدد المرشحات
+داخل نافذة التنزيل. لا يوسّع التصدير صلاحيات المستخدم ولا يتضمن الرواتب أو بيانات
+الموظفين أو الملاحظات السرية.

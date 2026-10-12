@@ -68,6 +68,7 @@ def command(name, operation, command_id, expected_version, payload, handler):
 	hr_operations = {
 		"review",
 		"send_to_ceo",
+		"hr_correction",
 		"vacancy_state",
 		"vacancy_team",
 		"bulk_vacancy_team",
@@ -207,6 +208,7 @@ def resolve_chain(doc, excess):
 			chain.insert(0, (authority, "Headcount Exception", None))
 	if config.ceo_for_critical and doc.requested_priority == "Critical":
 		chain.append((config.ceo_approver, "CEO Approval", None))
+	applied_rules = []
 	for rule in rows(
 		"Kandil Authority Rule",
 		filters={"company": doc.company, "enabled": 1},
@@ -221,6 +223,12 @@ def resolve_chain(doc, excess):
 			rule.to_date and getdate(rule.to_date) < getdate(today())
 		):
 			continue
+		applied_rules.append(
+			{
+				key: rule.get(key)
+				for key in ("name", "modified", "from_date", "to_date", "authority", "principal", "reason")
+			}
+		)
 		if not any(p == rule.principal and a == rule.authority for p, a, _ in chain):
 			chain.append((rule.principal, rule.authority, None))
 	if config.board_after_ceo and any(a == "CEO Approval" for _, a, _ in chain):
@@ -243,7 +251,29 @@ def resolve_chain(doc, excess):
 		filtered.append((principal, authority, position))
 	if not filtered:
 		frappe.throw(_("At least one independent approval is required."))
-	doc.route_snapshot = dump({"resolved": resolved, "skipped": skips, "config": config.name})
+	# Freeze only explicit public policy fields; future configuration changes must
+	# not rewrite what an approver reviewed or expose unknown configuration fields.
+	policy = {
+		key: config.get(key)
+		for key in (
+			"headcount_mode",
+			"ceo_for_critical",
+			"board_after_ceo",
+			"hr_approver",
+			"exception_approver",
+			"ceo_approver",
+			"board_approver",
+		)
+	}
+	policy.update(
+		config=config.name,
+		config_modified=str(config.modified),
+		evaluated_on=str(today()),
+		authority_rules=applied_rules,
+	)
+	doc.route_snapshot = dump(
+		{"resolved": resolved, "skipped": skips, "config": config.name, "policy": policy}
+	)
 	return filtered
 
 

@@ -1,0 +1,32 @@
+{
+  "case": "AT-ACC-001-01",
+  "checked_at": "2026-10-12T03:40:24.539Z",
+  "site": "kandil-parity.localhost",
+  "result": "FAIL",
+  "checks": [
+    {
+      "test": "Enabled account native UI login and authenticated API",
+      "status": "PASS",
+      "http_status": 200
+    },
+    {
+      "test": "Native session acceptance execution",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "message": "disabled session must fail authenticated API"
+    },
+    {
+      "test": "Synthetic accounts and native sessions cleaned; private manifest removed",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/session_probe.py": "4d8a5ab30bd8b28bbbc20321014f51b7ae4bb4991522014490f0b583942a8668",
+    "docs/sprints/test_session_security.cjs": "ce5ae6461a10dccd6b3b55603c795a7e2f02a059f6b1c5d454cde6382d2e077e"
+  },
+  "limits": [
+    "Expiry simulated only for a real synthetic session by aging its native Redis/DB record; no global session policy changed",
+    "No provider, MFA, new-device alert or production session-duration acceptance",
+    "Screenshots contain only synthetic accounts; passwords and session IDs excluded from evidence"
+  ]
+}

@@ -10,6 +10,7 @@ ordinary password login, then scrubbed during cleanup. Each HTTP request opens
 its own connection. Existing review records are never selected or modified.
 """
 import concurrent.futures
+import argparse
 import copy
 import datetime
 import http.cookiejar
@@ -182,4 +183,8 @@ def main():
     return 0 if evidence['status']=='PASS' else 1
 
 
-if __name__=='__main__':raise SystemExit(main())
+if __name__=='__main__':
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--output',type=Path,default=OUTPUT)
+    OUTPUT=parser.parse_args().output
+    raise SystemExit(main())

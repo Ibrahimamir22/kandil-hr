@@ -81,7 +81,7 @@
       "fieldname": "import_kind",
       "label": "Import Kind",
       "fieldtype": "Select",
-      "options": "Positions\nHierarchy\nAssignments",
+      "options": "Positions\nHierarchy\nAssignments\nUnits\nJobs",
       "default": "Positions",
       "reqd": 1
     },
