@@ -140,9 +140,12 @@
           "id": "S2-01",
           "description": "Build department/branch/position tree and distinguish job, position, employee and vacancy.",
           "status": "in_progress",
-          "progress": "Existing organization source and eight mapped reference IDs inspected; implementation brief published. Portal organization screens are not implemented yet.",
+          "progress": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed editing/imports and full S2 acceptance remain open.",
           "evidence": [
-            "S2_IMPLEMENTATION_BRIEF.md"
+            "S2_IMPLEMENTATION_BRIEF.md",
+            "S2_CHECKPOINT.md",
+            "evidence/s2-regression-16468fd2e2a8.json",
+            "../portal/evidence/organization-e8e1d1c633f1/results.json"
           ]
         },
         {
@@ -654,9 +657,9 @@
     "Human acceptance is separately recorded and never inferred from automated tests."
   ],
   "latest_checkpoint": {
-    "sprint": "S1",
-    "summary": "10 native pending-revision checks pass after fixing JSON/date test comparison; business code unchanged.",
-    "evidence": "evidence/s1-pending-revision-native.json",
-    "next": "Prove headcount denial/revision through ordinary-session HTTP and independent connections, then real AR/EN UI."
+    "sprint": "S2",
+    "summary": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed editing/imports and full S2 acceptance remain open.",
+    "evidence": "S2_CHECKPOINT.md",
+    "next": "Connect reviewed structural change preview, version checks and independent approval in the portal; then imports and JD editing/history."
   }
 }

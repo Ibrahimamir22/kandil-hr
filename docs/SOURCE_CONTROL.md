@@ -1,4 +1,6 @@
-# Repository publication checkpoint — 12 October 2026
+# Historical initial publication checkpoint — 12 October 2026
+
+**Superseded status:** use [current sprint tracker](roadmap/tracker.json) and [source map](START_HERE.md). All three upstream sources are now pinned Git submodules under `upstream/`, visible on GitHub. The local runtime still installs them as sibling Frappe apps. Earlier pending-revision status below belongs to the original checkpoint; Sprint 1 has since closed its selected engineering gates.
 
 Repository: https://github.com/Ibrahimamir22/kandil-hr (private, main).
 

@@ -2,9 +2,11 @@
 
 Custom Frappe HR extension for Kandil's HR department. Odoo and the broader company platform remain separate. This repository contains Kandil's application source, schemas, native Frappe screens, tests and deployment package. The official Frappe, ERPNext and HRMS sources are installed as separate pinned dependencies, without modifying their core code.
 
-**Current status: Sprint 1 stabilization is complete; Sprint 2 organization/JD work has started with source review and planning. The full HR system remains in development.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/roadmap/SPRINT_PLAN.md), [task tracker](docs/roadmap/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
+**Current status: Sprint 1 stabilization is complete; Sprint 2 now includes a tested read-only AR/EN organization portal; reviewed editing/imports remain in progress. The full HR system remains in development.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/roadmap/SPRINT_PLAN.md), [task tracker](docs/roadmap/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
 
 The [current Sprint 1 checkpoint](docs/roadmap/S1_CHECKPOINT.md) records **72 passed, 4 partial and 4 blocked** baseline cases, with source identity, new portal evidence and remaining gates.
+
+The [Sprint 2 checkpoint](docs/roadmap/S2_CHECKPOINT.md) records the organization directory, scoped reporting/assignments and document links.
 
 ## Start here
 

@@ -1,0 +1,129 @@
+{
+  "status": "PASS",
+  "run_id": "f52211eb6a30",
+  "checked_at": "2026-10-12T20:28:26.286Z",
+  "checks": [
+    {
+      "name": "Company choices exclude three real foreign synthetic legal entities",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign position direct detail is forbidden ORG-f52211eb6a30-FOREIGN-0",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign position direct detail is forbidden ORG-f52211eb6a30-FOREIGN-1",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign position direct detail is forbidden ORG-f52211eb6a30-FOREIGN-2",
+      "status": "PASS"
+    },
+    {
+      "name": "Foreign company filter returns no positions",
+      "status": "PASS"
+    },
+    {
+      "name": "Position pagination traverses scoped records without overlap",
+      "status": "PASS"
+    },
+    {
+      "name": "Next page is usable in the real portal",
+      "status": "PASS"
+    },
+    {
+      "name": "Server search finds a closed position across pages",
+      "status": "PASS"
+    },
+    {
+      "name": "Closed position remains inspectable",
+      "status": "PASS"
+    },
+    {
+      "name": "HR receives the effective dated assignment with minimal fields",
+      "status": "PASS"
+    },
+    {
+      "name": "Ended assignment excluded after inclusive end date",
+      "status": "PASS"
+    },
+    {
+      "name": "History retains the ended assignment",
+      "status": "PASS"
+    },
+    {
+      "name": "Scoped JD projection excludes grade and private body",
+      "status": "PASS"
+    },
+    {
+      "name": "ar JD document renders through its own permission endpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "en JD document renders through its own permission endpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "Branch viewer sees only its branch and no hidden parent identity",
+      "status": "PASS"
+    },
+    {
+      "name": "Hidden parent is explicitly redacted",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic RTL mobile page fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester cannot read assignments",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester cannot read job_descriptions",
+      "status": "PASS"
+    },
+    {
+      "name": "Document URL cannot bypass requester role",
+      "status": "PASS"
+    },
+    {
+      "name": "Unscoped account sees an empty directory",
+      "status": "PASS"
+    },
+    {
+      "name": "Unscoped guessed position is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JavaScript failures, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser verification",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "f52211eb6a30",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "d8c0383739160b09287a8bf4b07085ce94ca814393a2a4bfd13815a662c7bba4",
+    "frontend/portal/src/Organization.tsx": "f58ef94ce283f25f099f9b5f835a0b35c9659b1f283488c918bcb4a51d008116",
+    "frontend/portal/src/portal.css": "41af1162c0232df8a2c1ff9a5c7a065802d9113daa0e94d07e7d5d537f7c981b",
+    "kandil_hr/portal/organization.py": "f111dd2ea59e565150ecb41729fcd3b2c73deaf41a7487c5b7bf2dc6dcd396c7",
+    "kandil_hr/portal/organization_fixture.py": "f447e613ad9f5adf835c1e09a0b6b30082c1d2d7ec4755d43c9851c1e013b3ba",
+    "docs/portal/test_organization.cjs": "c16991bac159decf6df7062afb87ecf304d339858e17593c9b67b2fb5a8b88f7"
+  },
+  "limits": [
+    "Synthetic read-only organization slice; reviewed edits/imports/JD editor are later S2 work.",
+    "Four legal entities tested for isolation; not full multi-company operating acceptance or load certification."
+  ]
+}

@@ -9,3 +9,14 @@
 .local-test-note{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px;margin-bottom:18px}
 
 .pending-revision table{table-layout:fixed;min-width:0}.pending-revision th,.pending-revision td{white-space:normal;overflow-wrap:anywhere;padding:10px 6px}.pending-revision th:first-child{width:34%}.pending-revision caption{text-align:start;color:var(--muted);font-size:12px;padding-bottom:10px}
+
+/* Organization directory: scoped records, dated episodes and mobile detail. */
+.org-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.org-filters label,.org-filters select{display:block;width:100%;min-width:0}.org-filters select{margin-top:8px}
+.org-search{display:flex;flex-wrap:wrap;gap:12px}.org-search .search-field{flex:1;min-width:180px}.org-search select{max-width:100%}
+.org-date-note{margin:16px 0;line-height:1.7}.org-position-list{display:grid;gap:12px}.org-position{border:1px solid var(--line,#e8e3dd);border-radius:14px;padding:18px;overflow-wrap:anywhere}
+.org-position-top{display:flex;justify-content:space-between;align-items:start;gap:12px}.org-position-title{font-size:18px;text-align:start}.org-position p{margin:8px 0}.org-reporting .text-button{white-space:normal;text-align:start}
+.org-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:16px 0}.org-metrics>div{background:#f8f5f0;padding:14px;border-radius:10px;text-align:center}.org-metrics strong,.org-metrics span{display:block}.org-metrics strong{font-size:24px}.org-metrics span{font-size:12px;margin-top:5px}
+.org-related{display:grid;gap:12px}.org-related article{border-bottom:1px solid #e8e3dd;padding:12px 0;overflow-wrap:anywhere}.org-tabs{flex-wrap:wrap;gap:14px}.org-history{display:flex;align-items:center;gap:8px;font-size:13px}.org-history input{width:auto}.organization .summary-list dd{overflow-wrap:anywhere}
+@media(max-width:900px){.org-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.org-filters{grid-template-columns:1fr}.org-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}.org-position{padding:12px}.org-tabs .actions{flex-wrap:wrap}.organization .form-footer{gap:10px;flex-wrap:wrap}}
