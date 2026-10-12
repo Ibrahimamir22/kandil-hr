@@ -1,6 +1,4 @@
 {
-  "recorded_at_utc": "2026-10-12T03:04:18.392620+00:00",
-  "site": "kandil-parity.localhost",
   "result": "PASS",
   "discovered": 52,
   "total": 52,
@@ -13,7 +11,9 @@
     "test_boundaries": 6,
     "test_reports_accounts": 4
   },
-  "execution": "Exclusive serial native unittest; per-test synthetic fixtures rolled back; no migrations/external effects",
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
   "tests": [
     {
       "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_cairo_date_uses_timezone",
@@ -224,84 +224,38 @@
       "status": "PASS"
     }
   ],
-  "failures": 0,
-  "errors": 0,
-  "skipped": 0,
-  "previous_verified_run": {
-    "recorded_at_utc": "2026-10-12T02:36:42.501709+00:00",
-    "total": 47,
-    "result": "PASS"
+  "executed_at_utc": "2026-10-12T03:21:39.877549+00:00",
+  "classification": {
+    "pure_calendar_clock": 14,
+    "mocked_authorization": 13,
+    "native_database": 25
   },
-  "initial_development_run": {
-    "result": "FAIL",
-    "passed": 20,
-    "failures": 2,
-    "errors": 4,
-    "corrections": [
-      "Normalize access-grant dates with Document.has_value_changed",
-      "Permission hooks return True to defer to native role permissions; None is deny in this Frappe version",
-      "Reload native test documents so retained insert ignore_permissions flags cannot bypass assertions",
-      "Verify actual TextEditor sanitization rather than literal HTML escaping representation"
-    ]
-  },
-  "limits": [
-    "Mixed checks: 14 pure, 13 mocked authorization, 25 native database; not 52 native tests",
-    "Callable native entrypoints, not HTTP authentication evidence",
-    "Independent outbox and mutation races have separate evidence files",
-    "MFA and external identity integration remain incomplete",
-    "Team/HR override policy requires HR acceptance",
-    "Unaudited HR script/query reports are blocked pending scoped replacements",
-    "In-flight outbox access revocation after a lock wait is not certified"
-  ],
   "source_sha256": {
-    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
-    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
-    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
-    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
-    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
     "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/test_security.py": "f4b8fe087f35c77182c7fa06445194bf4ab0c1fa24a6519a401bc05093089083",
     "kandil_hr/foundation/models.py": "114fda83fd43b42376b5140c25fb4d02e9a4e65cda8502746d58b183766b93b4",
-    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
-    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
-    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
-    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
-    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/test_payroll_boundary.py": "b35aeb016f3c0355ad8f3240b3a94a372e9b99c98d04a218919824aa54470ac9",
+    "kandil_hr/foundation/test_reports_accounts.py": "bbff700532df9f2859e5e27bcc13870ab17b34c016983f8e07c49c31ef4fcca0",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/foundation/test_mutation_access.py": "ac364de13cacf5eb8e18bf42dfb2199334e1f2f3327afc84e166fc152c77e1b3",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
     "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
     "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
-    "kandil_hr/foundation/test_boundaries.py": "a5c2b7459cac9246db4f763033f69dfbc07d6f208cb9e234402220edca55a20b",
-    "kandil_hr/foundation/test_calendar.py": "e4b80690fb22e1283c63f69a07f4a14a2ac72d08e15b7181bb34d622e844311f",
-    "kandil_hr/foundation/test_clock.py": "5a07436d78ceba49530122337c7d0577b9e5438c3c049c59cc9f9ce903420e4e",
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
     "kandil_hr/foundation/test_foundation.py": "f5783ac44aba448fb27d1457a8c82a4351e5cde982b26c223221d3d936ef64ef",
-    "kandil_hr/foundation/test_mutation_access.py": "ac364de13cacf5eb8e18bf42dfb2199334e1f2f3327afc84e166fc152c77e1b3",
-    "kandil_hr/foundation/test_reports_accounts.py": "bbff700532df9f2859e5e27bcc13870ab17b34c016983f8e07c49c31ef4fcca0",
-    "kandil_hr/foundation/test_security.py": "f4b8fe087f35c77182c7fa06445194bf4ab0c1fa24a6519a401bc05093089083",
-    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b"
-  },
-  "runner": "kandil_hr.foundation.tests_runner.run",
-  "previous_report_fixture_run": {
-    "result": "FAIL",
-    "total": 47,
-    "failures": 1,
-    "correction": "Legacy File owner explicitly set after insert; native insert normalizes to session user"
-  },
-  "report_guard_development_runs": [
-    {
-      "passed": 46,
-      "failures": 1,
-      "errors": 0,
-      "fix": "Legacy File owner set explicitly after native insert normalized it to Administrator"
-    },
-    {
-      "passed": 46,
-      "failures": 0,
-      "errors": 1,
-      "fix": "Replaced literal SQL wildcard in File list permission with LEFT comparison to avoid DB parameter formatting error"
-    }
-  ],
-  "classification": {
-    "pure_clock_calendar": 14,
-    "mocked_authorization": 13,
-    "native_database": 25,
-    "total": 52
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/test_calendar.py": "e4b80690fb22e1283c63f69a07f4a14a2ac72d08e15b7181bb34d622e844311f",
+    "kandil_hr/foundation/outbox_access.py": "0198d1a56a95686bade76d2308541e9ef10eb5edeb4b9cd65b7370aff6781643",
+    "kandil_hr/foundation/test_clock.py": "5a07436d78ceba49530122337c7d0577b9e5438c3c049c59cc9f9ce903420e4e",
+    "kandil_hr/foundation/outbox_revocation_runner.py": "52ea6a3ced8d4f7ca40db0c7adbc8edf48c46ff763549ea5de460c5d817189e2",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/test_boundaries.py": "a5c2b7459cac9246db4f763033f69dfbc07d6f208cb9e234402220edca55a20b",
+    "kandil_hr/foundation/test_outbox_access.py": "ffbc3d57183f454b7e5c35b4a7debb8202f81b89da548df40f8f593261677bdc",
+    "kandil_hr/foundation/outbox.py": "27bac88ba59d69ad6fdc3eebda76c353981005af3048843772569a2db96b930f",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d"
   }
 }

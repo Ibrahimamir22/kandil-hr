@@ -1,0 +1,1372 @@
+{
+  "status": "PASS",
+  "site": "kandil-parity.localhost",
+  "finished_at": "2026-10-12T03:30:29.486257+00:00",
+  "reports": [
+    "followup-checkpoint-runner-failure-2026-10-12.json",
+    "followup-checkpoint-2026-10-12.json"
+  ],
+  "suites": [
+    {
+      "module": "kandil_hr.organization.test_occupancy.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "organization-authoritative-occupancy",
+        "tests_run": 9,
+        "successful": true,
+        "checks": [
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_stale_zero_with_two_assignments_requires_shortage_two_exception",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_exception_approval_cannot_cover_later_larger_shortage",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_authorized_hr_reduction_offsets_later_occupancy_growth",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_block_mode_rejects_stale_zero_three_request",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_effective_end_refreshes_cache_availability_and_native_display",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_assignment_growth_requires_fresh_approval_review",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancy.test_unmatched_import_fails_closed_but_release_and_review_are_possible",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancyJoining.test_other_open_seat_join_preserves_earlier_reservation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.organization.test_occupancy.TestOccupancyJoining.test_later_exception_topup_does_not_refill_original_joined_cohort",
+            "status": "PASS"
+          }
+        ],
+        "fixtures_rolled_back": true
+      }
+    },
+    {
+      "module": "kandil_hr.organization.integration_tests.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "organization-native",
+        "results": [
+          {
+            "check": "CSV preview normalizes rows without modifying draft or creating positions",
+            "status": "PASS"
+          },
+          {
+            "check": "CSV preview rejects stale draft version",
+            "status": "PASS"
+          },
+          {
+            "check": "CSV preview rejects malformed schema",
+            "status": "PASS"
+          },
+          {
+            "check": "CSV preview applies existing department validation",
+            "status": "PASS"
+          },
+          {
+            "check": "HR role without company scope cannot preview CSV",
+            "status": "PASS"
+          },
+          {
+            "check": "Independent reviewer cannot load CSV into another author draft",
+            "status": "PASS"
+          },
+          {
+            "check": "CSV cannot replace an independently reviewed import",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed baseline position identity distinct from designation; default one seat",
+            "status": "PASS"
+          },
+          {
+            "check": "Native Position creation cannot bypass structure approval",
+            "status": "PASS"
+          },
+          {
+            "check": "Unreviewed excess structural seats blocked",
+            "status": "PASS"
+          },
+          {
+            "check": "Structure author cannot be rewritten to bypass independence",
+            "status": "PASS"
+          },
+          {
+            "check": "Future approver cannot edit another author draft",
+            "status": "PASS"
+          },
+          {
+            "check": "Structure author cannot self approve",
+            "status": "PASS"
+          },
+          {
+            "check": "CEO cannot bypass pending HR approval",
+            "status": "PASS"
+          },
+          {
+            "check": "HR approval retry returns the receipt without advancing CEO step",
+            "status": "PASS"
+          },
+          {
+            "check": "Reused structural command ID with changed decision rejected",
+            "status": "PASS"
+          },
+          {
+            "check": "Fresh command on stale structural version rejected",
+            "status": "PASS"
+          },
+          {
+            "check": "Independent HR then CEO creates immutable snapshot; retry is stable",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct approval child save cannot rewrite structural decision",
+            "status": "PASS"
+          },
+          {
+            "check": "Vacant manager escalates to enabled authority then terminal HR",
+            "status": "PASS"
+          },
+          {
+            "check": "Overlapping employee primary assignment blocked",
+            "status": "PASS"
+          },
+          {
+            "check": "Future hierarchy cycle blocked at preview",
+            "status": "PASS"
+          },
+          {
+            "check": "Native JD rejects weighted KPI total 90",
+            "status": "PASS"
+          },
+          {
+            "check": "Native JD rejects monitoring KPI weight",
+            "status": "PASS"
+          },
+          {
+            "check": "Native JD responsibility band requires exception reason",
+            "status": "PASS"
+          },
+          {
+            "check": "Approved JD cannot be overwritten",
+            "status": "PASS"
+          },
+          {
+            "check": "Structured JD with independent KPIs and competency profile approved",
+            "status": "PASS"
+          },
+          {
+            "check": "Scoped AR/EN JD and worker-card rendering excludes internal grade and KPI weights on card",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct child save cannot rewrite approved JD competency",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct child delete cannot remove approved JD competency",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct Kandil JD Responsibility save is blocked",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct Kandil JD KPI save is blocked",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed import and repeated batches do not duplicate positions",
+            "status": "PASS"
+          },
+          {
+            "check": "Occupied baseline mismatch explicitly reported, never silently reset",
+            "status": "PASS"
+          },
+          {
+            "check": "Direct capacity resize cannot bypass approved Position",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed hierarchy-HR-CEO resize updates position and capacity atomically",
+            "status": "PASS"
+          },
+          {
+            "check": "New Position ID is not issued on draft or submission",
+            "status": "PASS"
+          },
+          {
+            "check": "Final hierarchy-HR-CEO approval creates one Position ID and one capacity",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed hierarchy re-import preserves dated edges without duplicates",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed assignment re-import preserves one explicit allocation",
+            "status": "PASS"
+          },
+          {
+            "check": "Import cannot double-allocate an employee",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed hierarchy import creates one native edge and snapshot; replay stable",
+            "status": "PASS"
+          },
+          {
+            "check": "Reviewed historical allocation import creates native history without double counting",
+            "status": "PASS"
+          },
+          {
+            "check": "HR role without company scope cannot print JD",
+            "status": "PASS"
+          },
+          {
+            "check": "Guest cannot preview organization CSV",
+            "status": "PASS"
+          },
+          {
+            "check": "Guest cannot query organization reconciliation",
+            "status": "PASS"
+          },
+          {
+            "check": "Guest cannot view or download JD documents",
+            "status": "PASS"
+          }
+        ],
+        "passed": 47,
+        "rolled_back": true,
+        "acceptance_cases": [
+          {
+            "case_id": "AT-HC-001-01",
+            "status": "PASS",
+            "assertions": [
+              "Approved Create with structural input omitted produces Position and capacity=1",
+              "Explicit approved structural=3 persists as Position and capacity=3"
+            ]
+          },
+          {
+            "case_id": "AT-HC-002-01",
+            "status": "PASS",
+            "assertions": [
+              "Dated assignment-derived occupied=2 for two active primary episodes",
+              "Valid Until is inclusive: count stays2 through end date and becomes1 next day",
+              "Both episodes remain stored; ledger discrepancy remains explicit and is not overwritten"
+            ]
+          },
+          {
+            "case_id": "AT-ORG-001-02",
+            "status": "PASS",
+            "assertions": [
+              "Position title and Employee Designation changed through native saves",
+              "Stable assignment IDs, Position references and dated episodes unchanged",
+              "Occupied stays2 in original Position and0 in sibling Position"
+            ]
+          },
+          {
+            "case_id": "AT-HC-001-02",
+            "status": "PASS",
+            "assertions": [
+              "Several positions share one Designation while capacities remain individually1 and3",
+              "Attempt to replace one approved capacity with same-Designation position count rejected",
+              "Rejected write leaves both position-linked ledgers unchanged"
+            ]
+          },
+          {
+            "case_id": "AT-ORG-002-01",
+            "status": "PASS",
+            "assertions": [
+              "Approved R1 renders original root relationship",
+              "Approved dated R2 renders new parent independently in Arabic RTL",
+              "R1 remains byte-identical after R2 and live title edits",
+              "Snapshot mutation and unscoped read denied"
+            ]
+          },
+          {
+            "case_id": "AT-ORG-002-02",
+            "status": "PASS",
+            "assertions": [
+              "Independent HR/CEO approved closure preserves past occupancy and episode",
+              "New allocation on closure date rejected",
+              "Native API delete of closed referenced Position and its historical assignment rejected even as Administrator"
+            ]
+          },
+          {
+            "case_id": "AT-ORG-003-01",
+            "status": "PASS",
+            "assertions": [
+              "Existing fixture creates Draft JD and independently approves it",
+              "frappe.client.save cannot edit approved top-level JD",
+              "frappe.client.delete cannot delete approved JD; original approved content remains"
+            ]
+          },
+          {
+            "case_id": "AT-ORG-007-02",
+            "status": "PASS",
+            "assertions": [
+              "Reparent ancestor under its dated descendant rejected as cycle",
+              "Cross-company parent rejected at request preview",
+              "Cross-company parent also rejected by native hierarchy invariant"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "module": "kandil_hr.recruitment.test_commands.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "recruitment-native",
+        "tests_run": 26,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "site": "kandil-parity.localhost",
+        "fixtures_rolled_back": true,
+        "failed_tests": [],
+        "checked_at": "2026-10-12T03:29:01.634050+00:00",
+        "source_fingerprint_before": "ff91351d0c51d857cee4ab2c573a148c4aaba7796e36d0abb0785ba09298bf29",
+        "source_fingerprint_after": "ff91351d0c51d857cee4ab2c573a148c4aaba7796e36d0abb0785ba09298bf29",
+        "source_unchanged_during_run": true,
+        "checks": [
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_all_closed_vacancies_close_parent_and_unresolved_candidate_blocks",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_amendment_increase_tops_up_existing_openings_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_closed_second_vacancy_rolls_back_first_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_same_request_locations_replay_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_second_parent_stale_rolls_back_first_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_guard_does_not_change_nonparity_behavior",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_save_cannot_forge_approval_or_capacity_outcomes",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_closing_one_vacancy_then_parent_cancel_releases_each_slot_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_command_collision_stale_version_and_wrong_step_fail_without_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_hr_reduction_releases_only_delta_and_preserves_requested_quantities",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_linked_opening_rejects_direct_mutation_even_with_ignore_permissions",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_other_recruiter_cannot_take_over_draft_requester",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_parent_cancel_cannot_bypass_candidate_disposition_guard",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_pending_cancellation_replay_releases_reservations_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_priority_pin_and_unassigned_queue_observe_live_vacancy_state",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_quantity_amendment_preserves_hold_and_freeze_state",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_read_only_or_revoked_grant_cannot_mutate_or_replay",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_replay_cannot_advance_consecutive_steps_for_same_principal",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_requester_json_draft_edit_preserves_datetime_authorship",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_return_revision_preserves_history_and_releases_old_reservation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_revoked_hr_role_cannot_review_pending_quantities",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_sector_cannot_self_grant_ceo_delegation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_submit_replay_does_not_duplicate_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_two_locations_reserve_approve_and_cancel_exact_balances",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_pause_freeze_resume_preserves_capacity",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_team_is_deduplicated_scoped_and_command_replay_safe",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "module": "kandil_hr.recruitment.test_joining.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "recruitment-joining",
+        "tests_run": 11,
+        "successful": true,
+        "checks": [
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_changed_replay_payload_denied",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_failed_onboarding_request_rolls_back_all_joining_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_filled_and_closed_locations_complete_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_hold_and_freeze_block_joining_without_ledger_changes",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_joining_assignment_reference_cannot_be_forged",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_no_show_and_withdrawal_preserve_vacancies",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_overfill_denied_and_no_employee_created",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_partial_full_and_parent_completion_reconcile",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_replay_retains_original_assignment_after_later_assignment",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_revoked_management_grant_blocks_joining",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_terminal_replay_has_identical_links_and_no_duplicate_effect",
+            "status": "PASS"
+          }
+        ],
+        "fixtures_rolled_back": true
+      }
+    },
+    {
+      "module": "kandil_hr.recruitment.test_sla.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "recruitment-sla",
+        "tests_run": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "fixtures_rolled_back": true,
+        "cases": [
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_delayed_scheduler_catches_up_only_highest_milestone",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_frozen_step_changes_and_completed_request_is_ignored",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_internal_scheduler_guard_rejects_business_user_and_http",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_milestones_replay_and_expiry_preserves_pending_reservations",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_notification_insert_failure_can_rollback_every_recipient",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_parity_opt_out_performs_no_sla_processing",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_revoked_recipient_scope_is_suppressed_at_delivery",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_scheduler_continues_after_bad_calendar_and_records_local_error",
+          "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_weekend_and_company_holiday_pause_notices"
+        ]
+      }
+    },
+    {
+      "module": "kandil_hr.recruitment.test_privacy.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "recruitment-confidential-notes",
+        "checked_at": "2026-10-12T03:30:05.612882+00:00",
+        "tests_run": 8,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "fixtures_rolled_back": true,
+        "cases": [
+          "test_note_is_private_across_request_response_timeline_notices_print",
+          "test_requester_cannot_read_create_search_export_or_print_notes",
+          "test_note_immutable_and_correction_is_separate",
+          "test_sensitive_grant_revocation_removes_note_detail_and_list_access",
+          "test_snapshot_schema_excludes_internal_pay_and_nested_custom_fields",
+          "test_note_does_not_change_immutable_approval_snapshot_or_public_result",
+          "test_requester_cannot_export_shared_snapshots_or_nested_reviewed_payloads",
+          "test_noted_draft_cannot_move_scope_but_can_edit_quantity_and_public_text"
+        ]
+      }
+    },
+    {
+      "module": "kandil_hr.foundation.test_payroll_boundary.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "result": "PASS",
+        "discovered": 3,
+        "total": 3,
+        "tests": [
+          {
+            "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_implemented_overdue_sla_and_notification_jobs_have_zero_wage_effect",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_recruitment_roles_cannot_call_native_payroll_controller_endpoints",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_recruitment_roles_cannot_mutate_wages_via_native_client_endpoints",
+            "status": "PASS"
+          }
+        ],
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "classification": "3 native database/endpoint-execution checks; no HTTP session proof",
+        "observations": [
+          {
+            "case": "WAG-001-01",
+            "before": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "0d6356314b7483665c2f7acc40c15ae6ecb4f03418740f6ecef0888e805ca64c"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "685f64945c3d9b16568107b67492bdfb326fc1072422ec4a70511d99746c665d"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "0770fbad748112d431cab360fde2877f7cb557cca318957730ee90778d3869c5"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "88499bbcf58868e664a63b1f7a391dd7b0bfea1a5880192bb11d29393ff3d762"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "66b995d9ce25e10858ade8838a015059670657d4b6e75a426faf6e5c2e5bed35"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "ae2e6e82ba36986b126381dacd2e1ac8c56694c26c07c33fe85c1a4e7f61861a"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "3152becd172b5ba36cb5f986031959dfeb90a9c2697061a1849e5c3f30f15f91"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "after": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "0d6356314b7483665c2f7acc40c15ae6ecb4f03418740f6ecef0888e805ca64c"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "685f64945c3d9b16568107b67492bdfb326fc1072422ec4a70511d99746c665d"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "0770fbad748112d431cab360fde2877f7cb557cca318957730ee90778d3869c5"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "88499bbcf58868e664a63b1f7a391dd7b0bfea1a5880192bb11d29393ff3d762"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "66b995d9ce25e10858ade8838a015059670657d4b6e75a426faf6e5c2e5bed35"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "ae2e6e82ba36986b126381dacd2e1ac8c56694c26c07c33fe85c1a4e7f61861a"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "3152becd172b5ba36cb5f986031959dfeb90a9c2697061a1849e5c3f30f15f91"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "queued_jobs": 0,
+            "payroll_fixtures": [
+              {
+                "doctype": "Salary Slip",
+                "docstatus": 0
+              },
+              {
+                "doctype": "Payroll Entry",
+                "docstatus": 0
+              },
+              {
+                "doctype": "Additional Salary",
+                "docstatus": 1
+              },
+              {
+                "doctype": "Salary Structure Assignment",
+                "docstatus": 1
+              },
+              {
+                "doctype": "Payment Entry",
+                "docstatus": 0
+              }
+            ],
+            "scope": "Actual SLA process_request and outbox deliver, including expiry/replay; scheduler batch commit wrappers not called"
+          },
+          {
+            "case": "test_recruitment_roles_cannot_call_native_payroll_controller_endpoints",
+            "before": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "b5886e5da5f97e9e39a0897ea81b81f18b63b7b00a2cc43f87e20f7c62d68e2e"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "26e47c3d3a22c6def0cc06a8d39125182db9acf86fd51bf1a914d6218296cd56"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "37312b01072729fd8bdf18ca9c3d5b8067e528d764147a092670b851089be605"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "5666c1c5d136fa00fc52b200d895a3710a7c131aaa212446d3eaa7253bfdff2d"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "a3669d0e5ced504cb74c27a4eec69150a6ec83e430610e3969c4a65262fb9d9e"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "8d746c86902f2e79f0cd0f18fc7ad5745fad860b548f1266b057bbed9c265d9f"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "91233fc14c188a92b7584ee949c18d555f17ac91333039190eaf41b159ae17b9"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "after": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "b5886e5da5f97e9e39a0897ea81b81f18b63b7b00a2cc43f87e20f7c62d68e2e"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "26e47c3d3a22c6def0cc06a8d39125182db9acf86fd51bf1a914d6218296cd56"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "37312b01072729fd8bdf18ca9c3d5b8067e528d764147a092670b851089be605"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "5666c1c5d136fa00fc52b200d895a3710a7c131aaa212446d3eaa7253bfdff2d"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "a3669d0e5ced504cb74c27a4eec69150a6ec83e430610e3969c4a65262fb9d9e"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "8d746c86902f2e79f0cd0f18fc7ad5745fad860b548f1266b057bbed9c265d9f"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "91233fc14c188a92b7584ee949c18d555f17ac91333039190eaf41b159ae17b9"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "roles": [
+              "requester",
+              "manager",
+              "hr",
+              "sector"
+            ],
+            "endpoint_denials": true
+          },
+          {
+            "case": "test_recruitment_roles_cannot_mutate_wages_via_native_client_endpoints",
+            "before": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "2149e1c95e21bc6146d22321b6f6f4dcdab866fda3261a46fda4e5c522de1ff0"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "35404b5f723f1096901d7185f771a0ebe4bba446f21014ea7da194da4c8ce221"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "8207c86d629864f9edf9edec5aa499f0277a6dbc54a6214f0bf1ec4ed4f21983"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "e42143c85d608688172f94e9dd554300a329b2128865db93880de847336e63a2"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "4814bff331e52e32a71efe001de4c615bf5d4039c9f941ef9ac5fd4722d006ae"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "3e81ae55fa4bb3fefa5c8941ae5e36c857b3c0f514960b3450cafa22c18d5fb8"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "b8fbf575675be955b5b122febd0725b742ad5b9767aaf195149f7147b24954db"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "after": {
+              "Salary Slip": {
+                "count": 1,
+                "sha256": "2149e1c95e21bc6146d22321b6f6f4dcdab866fda3261a46fda4e5c522de1ff0"
+              },
+              "Salary Detail": {
+                "count": 4,
+                "sha256": "35404b5f723f1096901d7185f771a0ebe4bba446f21014ea7da194da4c8ce221"
+              },
+              "Payroll Entry": {
+                "count": 1,
+                "sha256": "8207c86d629864f9edf9edec5aa499f0277a6dbc54a6214f0bf1ec4ed4f21983"
+              },
+              "Payroll Employee Detail": {
+                "count": 1,
+                "sha256": "e42143c85d608688172f94e9dd554300a329b2128865db93880de847336e63a2"
+              },
+              "Additional Salary": {
+                "count": 1,
+                "sha256": "4814bff331e52e32a71efe001de4c615bf5d4039c9f941ef9ac5fd4722d006ae"
+              },
+              "Salary Structure Assignment": {
+                "count": 1,
+                "sha256": "3e81ae55fa4bb3fefa5c8941ae5e36c857b3c0f514960b3450cafa22c18d5fb8"
+              },
+              "Salary Withholding": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Salary Withholding Cycle": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry": {
+                "count": 1,
+                "sha256": "b8fbf575675be955b5b122febd0725b742ad5b9767aaf195149f7147b24954db"
+              },
+              "Payment Entry Reference": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Entry Deduction": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Journal Entry Account": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "GL Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              },
+              "Payment Ledger Entry": {
+                "count": 0,
+                "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+              }
+            },
+            "roles": [
+              "requester",
+              "manager",
+              "hr",
+              "sector"
+            ],
+            "endpoint_denials": true
+          }
+        ],
+        "limitation": "No overdue-document job exists yet; only implemented recruitment SLA and local notifications are exercised."
+      }
+    },
+    {
+      "module": "kandil_hr.recruitment.test_acceptance.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "recruitment-acceptance",
+        "total": 7,
+        "native_db": 6,
+        "pure": 1,
+        "successful": true,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "checks": [
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_hc_003_02_invalid_quantities_never_change_ledger",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_org_005_01_inclusive_ninety_days_and_self_delegation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_pri_001_02_pin_authority_reason_and_original_score_history",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_req_003_02_duplicate_location_rejected_before_reservation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_req_007_01_every_requester_notice_once_including_replay",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestRecruitmentAcceptance.test_req_008_01_returned_revision_remains_readable_and_immutable",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_acceptance.TestPriorityAcceptance.test_pri_001_01_full_weight_fixture_is_deterministic",
+            "status": "PASS"
+          }
+        ],
+        "fixtures_rolled_back": true
+      }
+    },
+    {
+      "module": "kandil_hr.foundation.tests_runner.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "result": "PASS",
+        "discovered": 52,
+        "total": 52,
+        "groups": {
+          "test_calendar": 9,
+          "test_clock": 5,
+          "test_security": 8,
+          "test_mutation_access": 5,
+          "test_foundation": 15,
+          "test_boundaries": 6,
+          "test_reports_accounts": 4
+        },
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "tests": [
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_cairo_date_uses_timezone",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_datetime_inputs_respect_cairo_date_boundary",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_different_workweek",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_elapsed_excludes_start_includes_end_and_skips_holidays",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_invalid_calendar_cannot_loop_forever",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_invalid_duration",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_leap_day_and_year_boundary",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_weekend_and_holiday_are_excluded",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_calendar.TestBusinessCalendar.test_zero_days_preserves_start_even_on_weekend",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_clock.TestCairoClock.test_default_clock_is_aware_without_test_mode",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_clock.TestCairoClock.test_frozen_cairo_date_and_nested_restoration",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_clock.TestCairoClock.test_http_context_cannot_override_clock_even_on_test_site",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_clock.TestCairoClock.test_naive_time_is_rejected_and_stale_override_fails_closed",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_clock.TestCairoClock.test_test_mode_and_site_opt_in_are_both_required",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_all_request_locations_must_be_permitted",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_branch_grant_does_not_imply_company_wide_access",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_disabled_employee_query_does_not_allow_self_record",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_expired_grant_and_disabled_account_fail",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_private_hr_file_cannot_be_detached_to_escape_scope",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_read_scope_does_not_grant_management_or_compensation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_scope_hook_adds_a_restriction_to_native_permissions",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_security.TestAccessScope.test_sensitive_read_capability_cannot_authorize_writing_an_offer",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_mutation_access.TestMutationAccess.test_current_queries_are_locking_and_ordered",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_mutation_access.TestMutationAccess.test_disabled_account_and_removed_role_deny",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_mutation_access.TestMutationAccess.test_every_branch_and_department_must_match",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_mutation_access.TestMutationAccess.test_read_grant_cannot_manage_or_read_compensation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_mutation_access.TestMutationAccess.test_revocation_expiry_and_future_grants_deny",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_already_disabled_recipient_does_not_abort_business_transaction",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_business_user_cannot_change_access_grants",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_company_calendar_rejects_ambiguous_default_selection",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_company_calendar_uses_configured_weekends_holidays_and_controlled_date",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_disabled_recipient_is_suppressed",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_disabled_user_grant_can_still_be_revoked",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_failed_outbox_requires_audited_operator_retry",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_native_list_detail_and_revocation_agree",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_outbox_failure_rolls_back_receipt_for_safe_retry",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_outbox_replay_has_one_receipt_and_never_emails",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_privilege_escalation_is_blocked_even_if_native_permission_is_bypassed",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_read_grant_cannot_manage_and_expiry_is_immediate",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_revoked_reference_suppresses_local_notification",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_scope_company_isolation_revocation_and_audit",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_foundation.TestFoundationDatabase.test_security_events_cannot_be_edited_or_forged_through_native_documents",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_assigned_readonly_recruiter_can_read_but_not_write",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_hr_authority_override_and_disabled_lead_are_explicit",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_nonteam_scoped_recruiter_cannot_read_list_or_mutate_candidates",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_private_file_and_child_cannot_be_shared",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_revoked_uploader_cannot_download_zip_or_alias_protected_file",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_stale_docshare_bypass_is_removed_and_new_shares_denied",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_reports_accounts.TestReportsAndAccounts.test_existing_prepared_payload_and_owned_file_cannot_bypass_report_gate",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_reports_accounts.TestReportsAndAccounts.test_language_is_self_service_but_session_and_identity_controls_are_not",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_reports_accounts.TestReportsAndAccounts.test_native_run_export_script_and_prepare_reject_unscoped_hr_report",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.foundation.test_reports_accounts.TestReportsAndAccounts.test_report_guard_preserves_builder_nonhr_and_nonparity_behavior",
+            "status": "PASS"
+          }
+        ]
+      }
+    },
+    {
+      "module": "kandil_hr.organization.concurrency_tests.run",
+      "exit_code": 0,
+      "status": "PASS",
+      "result": {
+        "suite": "organization-independent-connections",
+        "result": "PASS",
+        "total": 6,
+        "tests": [
+          {
+            "test": "two_old_snapshots_cannot_overfill_one_seat",
+            "status": "PASS",
+            "connections": 2,
+            "isolation": [
+              "REPEATABLE-READ"
+            ]
+          },
+          {
+            "test": "two_old_snapshots_cannot_double_allocate_one_employee",
+            "status": "PASS",
+            "connections": 2,
+            "isolation": [
+              "REPEATABLE-READ"
+            ]
+          },
+          {
+            "test": "two_old_snapshots_cannot_commit_hierarchy_cycle",
+            "status": "PASS",
+            "connections": 2,
+            "isolation": [
+              "REPEATABLE-READ"
+            ]
+          },
+          {
+            "test": "old_snapshot_observes_committed_route_and_settings_after_company_wait",
+            "status": "PASS",
+            "connections": 2,
+            "isolation": [
+              "REPEATABLE-READ"
+            ]
+          },
+          {
+            "test": "native_assignment_rejects_grant_revoked_while_waiting_for_company",
+            "status": "PASS",
+            "connections": 2,
+            "isolation": [
+              "REPEATABLE-READ"
+            ]
+          },
+          {
+            "test": "synthetic_fixture_cleanup",
+            "status": "PASS"
+          }
+        ],
+        "source_hashes": {
+          "concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+          "current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+          "models.py": "902dc2faf04756f29be5e3d3268e8d92ed32c09dda69ed0ed4582034ec151f67",
+          "api.py": "9f02c0151fee156e5a5f027b7031325b764bdeae398dd5db0bc885451ac77777",
+          "mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d"
+        },
+        "limits": [
+          "Two contenders with pre-established snapshots; not sustained production load.",
+          "Native ORM invariants, not HTTP/browser authentication.",
+          "Only UUID-owned synthetic fixture rows were committed and cleaned."
+        ]
+      }
+    }
+  ],
+  "product_source_unchanged_across_reports": true,
+  "only_changed_path_between_reports": [
+    "kandil_hr/recruitment/test_sla.py"
+  ],
+  "explanation": "Initial runner stopped on missing test_sla.run; preceding four suites passed. Added only explicit test runner entry point, then six remaining suites passed. No product source changed between these reports. Each report hashes source before and after execution.",
+  "limits": [
+    "Mixed technical checks; not HR acceptance or production certification",
+    "The initial harness failure remains preserved; it was not a product assertion failure"
+  ]
+}

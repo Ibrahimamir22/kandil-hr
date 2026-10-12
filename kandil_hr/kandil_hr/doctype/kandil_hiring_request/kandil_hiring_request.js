@@ -19,6 +19,10 @@ frappe.ui.form.on('Kandil Hiring Request', {
       callback: ({ message: actions }) => {
         if (!actions || frm.doc.name !== name || frm.kandil_action_generation !== generation) return;
         extended = actions.extended; version = actions.expected_version; step = actions.step_id;
+        if (actions.confidential_notes) {
+          frm.add_custom_button(__('Confidential HR Notes'), () => frappe.set_route('List', 'Kandil HR Note', {request: name}));
+          frm.add_custom_button(__('Add Confidential HR Note'), () => frappe.new_doc('Kandil HR Note', {request: name}));
+        }
         if (actions.next_authority) {
           frm.set_intro(__('Next approval: {0}', [frappe.utils.escape_html(__(actions.next_authority))]), 'blue');
         } else {

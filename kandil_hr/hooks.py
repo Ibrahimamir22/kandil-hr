@@ -404,3 +404,7 @@ extend_doctype_class["Report"] = ["kandil_hr.foundation.reports.ReportMixin"]
 extend_doctype_class["Prepared Report"] = ["kandil_hr.foundation.reports.PreparedReportMixin"]
 has_permission["Prepared Report"] = "kandil_hr.foundation.reports.prepared_permission"
 permission_query_conditions["Prepared Report"] = "kandil_hr.foundation.reports.prepared_query"
+
+# Separate confidential notes never inherit requester access or shared snapshots.
+has_permission["Kandil HR Note"] = "kandil_hr.recruitment.privacy.note_permission"
+permission_query_conditions["Kandil HR Note"] = "kandil_hr.recruitment.privacy.note_query"

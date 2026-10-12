@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-12T03:34:38.931Z",
+  "site": "kandil-parity.localhost",
+  "note": "l7tj5uqpjg",
+  "checks": [
+    {
+      "name": "Scoped HR creates confidential note through native form",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester HTTP detail access denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester form and HTTP response exclude note and note controls",
+      "status": "PASS"
+    },
+    {
+      "name": "No client runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Synthetic note retained as review fixture; no real personal data",
+    "Native note controls reviewed in English; Arabic strings statically covered, separate RTL suite covers shared request"
+  ]
+}

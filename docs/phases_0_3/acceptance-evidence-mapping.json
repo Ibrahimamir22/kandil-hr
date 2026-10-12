@@ -1,12 +1,12 @@
 {
   "assessment": "Proposed technical execution status, not HR acceptance",
-  "checked_at": "2026-10-12T03:03:33.877378+00:00",
+  "checked_at": "2026-10-12T03:23:15.267157+00:00",
   "source_checkpoint": "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
   "source_hashes_sha256": "182b4a199a3b2bddf8caec92e4b08740d50fcd8e1c4b514fce7ac9bf11637a88",
   "counts": {
-    "proposed_pass": 10,
-    "partial": 53,
-    "blocked": 17
+    "partial": 49,
+    "blocked": 14,
+    "proposed_pass": 17
   },
   "cases": [
     {
@@ -286,12 +286,12 @@
     },
     {
       "case_id": "AT-ORG-005-01",
-      "status": "blocked",
-      "actual": "90-day and91-day boundaries plus self-delegation have code guards but no current recorded native boundary test.",
+      "status": "proposed_pass",
+      "actual": "Ordinary sector actor creates and reloads a 90-inclusive-calendar-day delegation; 91 days and self-delegation fail with no extra delegation records.",
       "evidence": [
-        "POLICY_DECISIONS.md#PD-04"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "90-day and91-day boundaries plus self-delegation have code guards but no current recorded native boundary test."
+      "gap": ""
     },
     {
       "case_id": "AT-ORG-005-02",
@@ -342,12 +342,12 @@
     },
     {
       "case_id": "AT-HC-003-02",
-      "status": "blocked",
-      "actual": "No current recorded three-way negative/fractional/zero native request test with unchanged ledger.",
+      "status": "proposed_pass",
+      "actual": "Native requester JSON saves with zero, negative and fractional quantities each fail; original normal draft, all capacity ledger terms and command/revision/event/opening counts remain unchanged.",
       "evidence": [
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "No current recorded three-way negative/fractional/zero native request test with unchanged ledger."
+      "gap": ""
     },
     {
       "case_id": "AT-HC-004-01",
@@ -484,12 +484,12 @@
     },
     {
       "case_id": "AT-REQ-003-02",
-      "status": "blocked",
-      "actual": "Duplicate-line guard exists but no current native duplicate-location/position acceptance execution is recorded.",
+      "status": "proposed_pass",
+      "actual": "Native requester save with a duplicate capacity/location/position line fails before reservation; original request, zero reservations/open slots and audit counts remain unchanged.",
       "evidence": [
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "Duplicate-line guard exists but no current native duplicate-location/position acceptance execution is recorded."
+      "gap": ""
     },
     {
       "case_id": "AT-REQ-004-01",
@@ -551,14 +551,12 @@
     },
     {
       "case_id": "AT-REQ-007-01",
-      "status": "partial",
-      "actual": "Submission/decision/replay notification counts and SLA dedupe pass; every edit/cancel intended-recipient matrix is not explicitly asserted.",
+      "status": "proposed_pass",
+      "actual": "Exact recipient counters pass for submission, Manager/HR Approve/Reject/Return, HR priority edit and requester cancellation: 15 unique transitions and 15 command replays produce each intended requester notice once. This proves local outbox creation and deduplication, not external delivery.",
       "evidence": [
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "../sprints/evidence/concurrency-http-2026-10-12.json",
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "Submission/decision/replay notification counts and SLA dedupe pass; every edit/cancel intended-recipient matrix is not explicitly asserted."
+      "gap": ""
     },
     {
       "case_id": "AT-REQ-007-02",
@@ -572,12 +570,12 @@
     },
     {
       "case_id": "AT-REQ-008-01",
-      "status": "partial",
-      "actual": "Returned revision1 becomes edited/resubmitted revision2; previous JSON stays unchanged and old step fails. Explicit revision-reader access and direct immutable-revision mutation tests remain.",
+      "status": "proposed_pass",
+      "actual": "Return revision1 records its reason; requester edits/resubmits revision2 with new step identities. Requester, Manager and HR read byte-identical revision1 payload/steps; native revision save/delete fail for requester and Administrator, leaving originals unchanged.",
       "evidence": [
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "Returned revision1 becomes edited/resubmitted revision2; previous JSON stays unchanged and old step fails. Explicit revision-reader access and direct immutable-revision mutation tests remain."
+      "gap": ""
     },
     {
       "case_id": "AT-REQ-008-02",
@@ -646,22 +644,21 @@
     },
     {
       "case_id": "AT-PRI-001-01",
-      "status": "partial",
-      "actual": "Hand-calculated classification/age/due/pin boundaries pass. Explicit repeated same-input recalculation assertion and full configured weight fixture remain.",
+      "status": "proposed_pass",
+      "actual": "Hand-calculated Critical60 + age61days40 + overdue1day30 + inclusive pin100 =230, with exact factor breakdown; ten repeated evaluations are identical.",
       "evidence": [
-        "COMMAND_TEST_MAPPING.md#PR"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "Hand-calculated classification/age/due/pin boundaries pass. Explicit repeated same-input recalculation assertion and full configured weight fixture remain."
+      "gap": ""
     },
     {
       "case_id": "AT-PRI-001-02",
-      "status": "partial",
-      "actual": "Native pin changes queue score; expiry/inactive score rules pass. Forbidden role pin attempt and original requested priority/score history preservation need dedicated assertions.",
+      "status": "proposed_pass",
+      "actual": "Unauthorized requester and empty-reason HR pins fail without mutation; authorized HR pin records original requested priority Normal and live score20→120. Removing the pin leaves the prior immutable revision unchanged. The discovered first-pin before-score0 defect was fixed and the exact case reran successfully.",
       "evidence": [
-        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "COMMAND_TEST_MAPPING.md#PR"
+        "../sprints/evidence/recruitment-acceptance-2026-10-12.json"
       ],
-      "gap": "Native pin changes queue score; expiry/inactive score rules pass. Forbidden role pin attempt and original requested priority/score history preservation need dedicated assertions."
+      "gap": ""
     },
     {
       "case_id": "AT-BRD-001-01",
@@ -769,5 +766,7 @@
       ],
       "gap": "Native queue states and browser scoped approved openings pass; complete approved/pending/excluded-state/site-company list fixture still needed."
     }
-  ]
+  ],
+  "latest_acceptance_checkpoint": "../sprints/evidence/recruitment-acceptance-2026-10-12.json",
+  "latest_acceptance_source_hashes_sha256": "7c5b908e0d32e7afa19c6b5ac3e18589565de58d84ea2567783269f4557f9009"
 }

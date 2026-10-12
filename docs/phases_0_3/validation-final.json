@@ -5,8 +5,8 @@
   "batch_cases": 80,
   "source_hashes_checked": true,
   "translation_csv": "PASS",
-  "translation_rows": 824,
-  "extracted_keys": 758,
+  "translation_rows": 861,
+  "extracted_keys": 792,
   "missing_translation_keys": [],
   "raw_throw_or_deny_calls_to_review": [
     {
@@ -116,32 +116,32 @@
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 156,
+      "line": 172,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 179,
+      "line": 195,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 229,
+      "line": 245,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 236,
+      "line": 252,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 291,
+      "line": 307,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/api.py",
-      "line": 330,
+      "line": 346,
       "call": "deny"
     },
     {

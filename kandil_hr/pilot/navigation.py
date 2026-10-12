@@ -155,7 +155,10 @@ def request_actions(name):
 		and can_act(doc, step.principal)
 		and role in frappe.get_roles(step.principal)
 	)
+	from kandil_hr.recruitment.privacy import can_read_notes
+
 	return dict(
+		confidential_notes=can_read_notes(doc),
 		extended=bool(frappe.conf.get("kandil_parity_enabled")),
 		step_id=step.step_key if step and frappe.conf.get("kandil_parity_enabled") else None,
 		expected_version=str(doc.modified),

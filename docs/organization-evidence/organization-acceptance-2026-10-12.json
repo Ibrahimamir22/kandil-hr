@@ -1,0 +1,302 @@
+{
+  "suite": "organization-native",
+  "results": [
+    {
+      "check": "CSV preview normalizes rows without modifying draft or creating positions",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview rejects stale draft version",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview rejects malformed schema",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview applies existing department validation",
+      "status": "PASS"
+    },
+    {
+      "check": "HR role without company scope cannot preview CSV",
+      "status": "PASS"
+    },
+    {
+      "check": "Independent reviewer cannot load CSV into another author draft",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV cannot replace an independently reviewed import",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed baseline position identity distinct from designation; default one seat",
+      "status": "PASS"
+    },
+    {
+      "check": "Native Position creation cannot bypass structure approval",
+      "status": "PASS"
+    },
+    {
+      "check": "Unreviewed excess structural seats blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Structure author cannot be rewritten to bypass independence",
+      "status": "PASS"
+    },
+    {
+      "check": "Future approver cannot edit another author draft",
+      "status": "PASS"
+    },
+    {
+      "check": "Structure author cannot self approve",
+      "status": "PASS"
+    },
+    {
+      "check": "CEO cannot bypass pending HR approval",
+      "status": "PASS"
+    },
+    {
+      "check": "HR approval retry returns the receipt without advancing CEO step",
+      "status": "PASS"
+    },
+    {
+      "check": "Reused structural command ID with changed decision rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "Fresh command on stale structural version rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "Independent HR then CEO creates immutable snapshot; retry is stable",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct approval child save cannot rewrite structural decision",
+      "status": "PASS"
+    },
+    {
+      "check": "Vacant manager escalates to enabled authority then terminal HR",
+      "status": "PASS"
+    },
+    {
+      "check": "Overlapping employee primary assignment blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Future hierarchy cycle blocked at preview",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD rejects weighted KPI total 90",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD rejects monitoring KPI weight",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD responsibility band requires exception reason",
+      "status": "PASS"
+    },
+    {
+      "check": "Approved JD cannot be overwritten",
+      "status": "PASS"
+    },
+    {
+      "check": "Structured JD with independent KPIs and competency profile approved",
+      "status": "PASS"
+    },
+    {
+      "check": "Scoped AR/EN JD and worker-card rendering excludes internal grade and KPI weights on card",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct child save cannot rewrite approved JD competency",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct child delete cannot remove approved JD competency",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct Kandil JD Responsibility save is blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct Kandil JD KPI save is blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed import and repeated batches do not duplicate positions",
+      "status": "PASS"
+    },
+    {
+      "check": "Occupied baseline mismatch explicitly reported, never silently reset",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct capacity resize cannot bypass approved Position",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy-HR-CEO resize updates position and capacity atomically",
+      "status": "PASS"
+    },
+    {
+      "check": "New Position ID is not issued on draft or submission",
+      "status": "PASS"
+    },
+    {
+      "check": "Final hierarchy-HR-CEO approval creates one Position ID and one capacity",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy re-import preserves dated edges without duplicates",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed assignment re-import preserves one explicit allocation",
+      "status": "PASS"
+    },
+    {
+      "check": "Import cannot double-allocate an employee",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy import creates one native edge and snapshot; replay stable",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed historical allocation import creates native history without double counting",
+      "status": "PASS"
+    },
+    {
+      "check": "HR role without company scope cannot print JD",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot preview organization CSV",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot query organization reconciliation",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot view or download JD documents",
+      "status": "PASS"
+    }
+  ],
+  "passed": 47,
+  "rolled_back": true,
+  "acceptance_cases": [
+    {
+      "case_id": "AT-HC-001-01",
+      "status": "PASS",
+      "assertions": [
+        "Approved Create with structural input omitted produces Position and capacity=1",
+        "Explicit approved structural=3 persists as Position and capacity=3"
+      ]
+    },
+    {
+      "case_id": "AT-HC-002-01",
+      "status": "PASS",
+      "assertions": [
+        "Dated assignment-derived occupied=2 for two active primary episodes",
+        "Valid Until is inclusive: count stays2 through end date and becomes1 next day",
+        "Both episodes remain stored; ledger discrepancy remains explicit and is not overwritten"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-001-02",
+      "status": "PASS",
+      "assertions": [
+        "Position title and Employee Designation changed through native saves",
+        "Stable assignment IDs, Position references and dated episodes unchanged",
+        "Occupied stays2 in original Position and0 in sibling Position"
+      ]
+    },
+    {
+      "case_id": "AT-HC-001-02",
+      "status": "PASS",
+      "assertions": [
+        "Several positions share one Designation while capacities remain individually1 and3",
+        "Attempt to replace one approved capacity with same-Designation position count rejected",
+        "Rejected write leaves both position-linked ledgers unchanged"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-002-01",
+      "status": "PASS",
+      "assertions": [
+        "Approved R1 renders original root relationship",
+        "Approved dated R2 renders new parent independently in Arabic RTL",
+        "R1 remains byte-identical after R2 and live title edits",
+        "Snapshot mutation and unscoped read denied"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-002-02",
+      "status": "PASS",
+      "assertions": [
+        "Independent HR/CEO approved closure preserves past occupancy and episode",
+        "New allocation on closure date rejected",
+        "Native API delete of closed referenced Position and its historical assignment rejected even as Administrator"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-003-01",
+      "status": "PASS",
+      "assertions": [
+        "Existing fixture creates Draft JD and independently approves it",
+        "frappe.client.save cannot edit approved top-level JD",
+        "frappe.client.delete cannot delete approved JD; original approved content remains"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-007-02",
+      "status": "PASS",
+      "assertions": [
+        "Reparent ancestor under its dated descendant rejected as cycle",
+        "Cross-company parent rejected at request preview",
+        "Cross-company parent also rejected by native hierarchy invariant"
+      ]
+    }
+  ],
+  "source_hashes": {
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.js": "29ee477994941890ad3938a5c34e9a37c24eea46b552ca46198c6d1aa1f9c5c5",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.json": "6dc638a33f73efa446927148c6fe17bc6b0980adb2a1b72ecab3c933dab82864",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.py": "445df470c05b48d2c46c2d568d09c3a71e37c75eebce05e6c0977f35344dccbc",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/acceptance_tests.py": "7ec6a633bf801a4b023d1118647c0193e448ebdfc897b7ac757ea8ace11413e4",
+    "kandil_hr/organization/api.py": "a0b161410f2c1bb5dc292e80b9e646037bd0d07a7b3418eb497a147cda9dea41",
+    "kandil_hr/organization/capacity.py": "bb03df511a53d6eb569ca2404ea0559523b66e99728fbe352765d3fb81b2f509",
+    "kandil_hr/organization/concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/integration_tests.py": "25616bcf7e6bf4f2b324568513ce34ca60fd71e10ebab019d0cb0f32a4f87b4c",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "902dc2faf04756f29be5e3d3268e8d92ed32c09dda69ed0ed4582034ec151f67",
+    "kandil_hr/organization/occupancy.py": "377b9135119ce9aed998e7cc74234dc1c32b131d84430e5a3efefa8e4a2c53af",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/organization/snapshots.py": "d04ab80a7cb2cb268e1dfb0ab39082485bb1f55d77bfc4ad2532148a62d4f147",
+    "kandil_hr/organization/test_csv_import.py": "970ddada5b43da1295c3dec0270fbb72de00ba341525a2478374f815a2bac068",
+    "kandil_hr/organization/test_jd_rules.py": "861812b85456afc1da77563757d6946869f0db5bfddddf14e73fd4923baad9a0",
+    "kandil_hr/organization/test_occupancy.py": "c8b3424c1be72f8b4f7e5ee83741c4447b1a50070b683061c64cb5ecde1498bd",
+    "kandil_hr/organization/test_rules.py": "aa9cd1c134af52ad73143d6e24e2b82dc636da34adb8255f5092bfb3bfc49672",
+    "kandil_hr/pilot/api.py": "63e7bc3a4a4384f8416340e9e485390e76ca5618789acf9d44fcc27e736ce0dd",
+    "kandil_hr/recruitment/api.py": "9f02c0151fee156e5a5f027b7031325b764bdeae398dd5db0bc885451ac77777"
+  },
+  "occupancy_integration_evidence": "occupancy-integration-2026-10-12.json",
+  "limitations": [
+    "An occupied employee from a later approved exception beyond the original frozen cohort conservatively requires fresh review of an earlier pending request. The proof covers original-cohort joins after a top-up; it does not claim every possible later-exception conversion order."
+  ]
+}

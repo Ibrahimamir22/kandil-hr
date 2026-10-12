@@ -29,6 +29,8 @@ def extract_strings():
             continue
         if data.get('doctype') == 'DocType':
             keys.add(data['name'])
+            if data.get('description'):
+                keys.add(data['description'])
         for field in data.get('fields', []):
             if field.get('label'):
                 keys.add(field['label'])

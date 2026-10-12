@@ -1,0 +1,455 @@
+{
+  "result": "PASS",
+  "discovered": 3,
+  "total": 3,
+  "tests": [
+    {
+      "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_implemented_overdue_sla_and_notification_jobs_have_zero_wage_effect",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_recruitment_roles_cannot_call_native_payroll_controller_endpoints",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_payroll_boundary.TestPayrollBoundary.test_recruitment_roles_cannot_mutate_wages_via_native_client_endpoints",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "classification": "3 native database/endpoint-execution checks; no HTTP session proof",
+  "observations": [
+    {
+      "case": "WAG-001-01",
+      "before": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "a0f8e6c9a98b49d956328d4313ee3773d2cdd01888a1dbe25c322261b112280c"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "243a99b02c58d2c2a5b6e414e0526a0267414e62407d6e760e6a1dcfbb71f92e"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "b70453faa6d122228fbe0895d62903edd9a7998504f489e344d0dfef8bb6610c"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "4c51cad4cda13a12ef4e1746cc0508d64818fcc53e246b5e3025820cb75b7359"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "ab811ccd9edebff1886bf4cb2dc7d7a4d4a9a308a68ed9536a6091083a38767d"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "15952d14c9497ed78ea3c13c862df326553544af67b3c6a7d42332c0df64b385"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "a750cc294341058f957904199ae66b6a24eb5c0c7534fb192a868192f808f2f4"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "after": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "a0f8e6c9a98b49d956328d4313ee3773d2cdd01888a1dbe25c322261b112280c"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "243a99b02c58d2c2a5b6e414e0526a0267414e62407d6e760e6a1dcfbb71f92e"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "b70453faa6d122228fbe0895d62903edd9a7998504f489e344d0dfef8bb6610c"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "4c51cad4cda13a12ef4e1746cc0508d64818fcc53e246b5e3025820cb75b7359"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "ab811ccd9edebff1886bf4cb2dc7d7a4d4a9a308a68ed9536a6091083a38767d"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "15952d14c9497ed78ea3c13c862df326553544af67b3c6a7d42332c0df64b385"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "a750cc294341058f957904199ae66b6a24eb5c0c7534fb192a868192f808f2f4"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "queued_jobs": 0,
+      "payroll_fixtures": [
+        {
+          "doctype": "Salary Slip",
+          "docstatus": 0
+        },
+        {
+          "doctype": "Payroll Entry",
+          "docstatus": 0
+        },
+        {
+          "doctype": "Additional Salary",
+          "docstatus": 1
+        },
+        {
+          "doctype": "Salary Structure Assignment",
+          "docstatus": 1
+        },
+        {
+          "doctype": "Payment Entry",
+          "docstatus": 0
+        }
+      ],
+      "scope": "Actual SLA process_request and outbox deliver, including expiry/replay; scheduler batch commit wrappers not called"
+    },
+    {
+      "case": "test_recruitment_roles_cannot_call_native_payroll_controller_endpoints",
+      "before": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "49af6e4da0d301105f1420bb88fe50ae1110cc348242c14cc6575ed5fdaa0521"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "e950a85f8aa490fd886cec70516d36ffd5829e5c611ce3212d278e35c625ec5b"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "c931cce35ff5077a03c758702758f48caf90662a6f189f1a261f5617f09e7575"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "11ded96121d1bace1aa6ce22cd19501f8907f689788434d0c224ff5527870d6f"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "270d3424575ff70f8d351320fb0b82e02bc6edfc7b2d669e8300306c1029fbff"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "d22465767c03f2c3fe61c9c5704a45195d32ef9943e25f4dc3873c9b9c876c09"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "be02de4a8443d53463aeab0d20138a2e4846eeeb283d47aec876370b48377996"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "after": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "49af6e4da0d301105f1420bb88fe50ae1110cc348242c14cc6575ed5fdaa0521"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "e950a85f8aa490fd886cec70516d36ffd5829e5c611ce3212d278e35c625ec5b"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "c931cce35ff5077a03c758702758f48caf90662a6f189f1a261f5617f09e7575"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "11ded96121d1bace1aa6ce22cd19501f8907f689788434d0c224ff5527870d6f"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "270d3424575ff70f8d351320fb0b82e02bc6edfc7b2d669e8300306c1029fbff"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "d22465767c03f2c3fe61c9c5704a45195d32ef9943e25f4dc3873c9b9c876c09"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "be02de4a8443d53463aeab0d20138a2e4846eeeb283d47aec876370b48377996"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "roles": [
+        "requester",
+        "manager",
+        "hr",
+        "sector"
+      ],
+      "endpoint_denials": true
+    },
+    {
+      "case": "test_recruitment_roles_cannot_mutate_wages_via_native_client_endpoints",
+      "before": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "aef0b5b8060909eda1786bb84968c9ba7a69980a64e84c6228a16281928b6e31"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "b301ad0b661feef3331c67959a5f97a5b00847f8d9882d23943f1925965f6356"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "3a6f8c714f7dda79e2f1a2cde7f3d71f463cbdc545ba295ba28691317e658c58"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "8b8c8067b80269ad2cc3374bfd9e4fbe02a2f1ab826e1c7141be97b36cb58290"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "6a63ebaf7cba78d34c96f3e5d76afd5f947a5f7a63bab9599e06a7d116428402"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "dfa81508a80d17ae8e5083fef701805e79cc925b42039fab6081387c3cca2327"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "f07593d4e66dd8dfaf438809cd6ed7ff551a09c3ac94af5397bcd9e4886f9c9a"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "after": {
+        "Salary Slip": {
+          "count": 1,
+          "sha256": "aef0b5b8060909eda1786bb84968c9ba7a69980a64e84c6228a16281928b6e31"
+        },
+        "Salary Detail": {
+          "count": 4,
+          "sha256": "b301ad0b661feef3331c67959a5f97a5b00847f8d9882d23943f1925965f6356"
+        },
+        "Payroll Entry": {
+          "count": 1,
+          "sha256": "3a6f8c714f7dda79e2f1a2cde7f3d71f463cbdc545ba295ba28691317e658c58"
+        },
+        "Payroll Employee Detail": {
+          "count": 1,
+          "sha256": "8b8c8067b80269ad2cc3374bfd9e4fbe02a2f1ab826e1c7141be97b36cb58290"
+        },
+        "Additional Salary": {
+          "count": 1,
+          "sha256": "6a63ebaf7cba78d34c96f3e5d76afd5f947a5f7a63bab9599e06a7d116428402"
+        },
+        "Salary Structure Assignment": {
+          "count": 1,
+          "sha256": "dfa81508a80d17ae8e5083fef701805e79cc925b42039fab6081387c3cca2327"
+        },
+        "Salary Withholding": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Salary Withholding Cycle": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry": {
+          "count": 1,
+          "sha256": "f07593d4e66dd8dfaf438809cd6ed7ff551a09c3ac94af5397bcd9e4886f9c9a"
+        },
+        "Payment Entry Reference": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Entry Deduction": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Journal Entry Account": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "GL Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        },
+        "Payment Ledger Entry": {
+          "count": 0,
+          "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+        }
+      },
+      "roles": [
+        "requester",
+        "manager",
+        "hr",
+        "sector"
+      ],
+      "endpoint_denials": true
+    }
+  ],
+  "limitation": "No overdue-document job exists yet; only implemented recruitment SLA and local notifications are exercised.",
+  "source_sha256": {
+    "kandil_hr/foundation/test_payroll_boundary.py": "b35aeb016f3c0355ad8f3240b3a94a372e9b99c98d04a218919824aa54470ac9",
+    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/hooks.py": "bb141609e6c6123a7001ecbb163b905f8923c8afed69a48e4e77291106daffc1"
+  },
+  "executed_at_utc": "2026-10-12T03:13:28.311450+00:00",
+  "site": "kandil-parity.localhost",
+  "fixture_cleanup": "Per-test savepoint rollback; final transaction rollback; no payroll submissions or outbound payments"
+}

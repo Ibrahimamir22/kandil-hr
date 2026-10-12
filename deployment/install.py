@@ -1,10 +1,10 @@
 """Install a pinned local sandbox. Does not update existing checkouts or other sites."""
 
-import hashlib
 import json
-import os
 import subprocess
 from pathlib import Path
+
+from verify_checkout import verify
 
 SOURCE = Path("/opt/kandil-source")
 BASE = Path("/workspace")
@@ -53,6 +53,9 @@ def stage(name):
 		raise RuntimeError("Pinned source mismatch; manual repair required: " + name)
 	return p
 
+
+source_checkpoint = verify(SOURCE)
+(BASE / "kandil-source-checkpoint.json").write_text(json.dumps(source_checkpoint, indent=2) + "\n")
 
 for name in LOCK["apps"]:
 	stage(name)

@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-12T03:31:50.568Z",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    {
+      "name": "Native confidential-note journey",
+      "status": "FAIL",
+      "error": "locator.fill: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-fieldname=\"note\"] textarea')\u001b[22m\n"
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Synthetic note retained as review fixture; no real personal data",
+    "Native note controls reviewed in English; Arabic strings statically covered, separate RTL suite covers shared request"
+  ]
+}

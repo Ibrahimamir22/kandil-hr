@@ -237,7 +237,11 @@ class KandilPositionAssignment(HistoryDocument):
 		old = self.get_doc_before_save()
 		if old and not internal():
 			if any(
-				self.get(k) != old.get(k)
+				(
+					getdate(self.get(k)) != getdate(old.get(k))
+					if k == "valid_from"
+					else (self.get(k) or "") != (old.get(k) or "")
+				)
 				for k in [
 					"employee",
 					"position",

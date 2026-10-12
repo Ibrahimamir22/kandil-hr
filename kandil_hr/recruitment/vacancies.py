@@ -28,8 +28,8 @@ def opening_for(doc, name):
 	return opening, line, caps[line.capacity]
 
 
-def vacancy_snapshot(opening):
-	return {
+def vacancy_snapshot(opening, request):
+	value = {
 		k: opening.get(k)
 		for k in [
 			"name",
@@ -46,13 +46,27 @@ def vacancy_snapshot(opening):
 		]
 	}
 
+	# The queue computes a live score; the stored field may still be its default
+	# before the first pin. Record the same evaluated value the reviewer saw.
+	value["custom_kandil_priority_score"] = score(
+		request.hr_priority or request.requested_priority,
+		opening.custom_kandil_started_on or opening.creation,
+		request.required_by,
+		opening.custom_kandil_pin_until,
+		today(),
+		opening.custom_kandil_vacancy_state in ("Approved", "Open", "Partially Filled"),
+	)["score"]
+	value["requested_priority"] = request.requested_priority
+	value["hr_priority"] = request.hr_priority
+	return value
+
 
 def audit(doc, opening, action, reason):
-	before = vacancy_snapshot(frappe.get_doc("Job Opening", opening.name))
+	before = vacancy_snapshot(frappe.get_doc("Job Opening", opening.name, for_update=True), doc)
 	opening.save(ignore_permissions=True)
 	# Vacancy before/after history lives in immutable request revisions, including this snapshot.
 	doc.decision_note = frappe.as_json(
-		{"reason": reason, "before": before, "after": vacancy_snapshot(opening)}
+		{"reason": reason, "before": before, "after": vacancy_snapshot(opening, doc)}
 	)
 	return save(doc, action, doc.decision_note)
 

@@ -21,6 +21,7 @@ A position can have only one capacity ledger.,يمكن أن يكون للمنص�
 A position cannot have overlapping acting authorities.,لا يمكن أن تكون للمنصب صلاحيات قائم بالأعمال متداخلة زمنياً.
 A position must map to at most one capacity ledger.,يجب ألا يرتبط المنصب بأكثر من سجل سعة واحد.
 A reason is required.,يلزم ذكر السبب.
+A reconciliation reason is required.,يجب إدخال سبب المطابقة.
 A revision must supersede an approved description for the same position on a later date.,يجب أن تحل المراجعة محل وصف معتمد للمنصب نفسه بتاريخ لاحق.
 A revoked delegation cannot be reactivated.,لا يمكن إعادة تفعيل تفويض ملغى.
 A structural authority must approve this action.,يجب أن يعتمد هذا الإجراء صاحب صلاحية الهيكل التنظيمي.
@@ -38,6 +39,7 @@ Actor,منفذ الإجراء
 Actual Joining Date,تاريخ المباشرة الفعلية
 Actual joining cannot be in the future.,لا يمكن أن يكون تاريخ المباشرة الفعلية في المستقبل.
 Add,إضافة
+Add Confidential HR Note,إضافة ملاحظة سرية للموارد البشرية
 Add Structure Change,إضافة تغيير هيكل
 Add at least one location line.,أضف بند موقع واحداً على الأقل.
 Additional recruiters,مسؤولو توظيف إضافيون
@@ -186,6 +188,7 @@ Changed Fields,الحقول المتغيرة
 Choose Approve or Reject.,اختر الاعتماد أو الرفض.
 "Choose Approve, Reject or Return.",اختر الاعتماد أو الرفض أو الإرجاع.
 Choose Approved or Rejected.,اختر معتمداً أو مرفوضاً.
+Choose Arabic or English.,اختر العربية أو الإنجليزية.
 Choose CSV File,اختيار ملف CSV
 "Choose Joined, No Show or Withdrawn.",اختر باشر العمل أو لم يحضر أو انسحب.
 Classification,التصنيف
@@ -209,6 +212,11 @@ Competency,الكفاءة
 Competency Group,مجموعة الكفاءات
 Competency weights must be positive,يجب أن تكون أوزان الكفاءات أكبر من صفر
 Competency weights must total 100 percent,يجب أن يكون مجموع أوزان الكفاءات 100 بالمائة
+Confidential HR Note,ملاحظة سرية للموارد البشرية
+Confidential HR Notes,ملاحظات سرية للموارد البشرية
+Confidential HR notes are immutable; add a correction note instead.,لا يمكن تعديل ملاحظات الموارد البشرية السرية؛ أضف ملاحظة تصحيح بدلًا من ذلك.
+Confidential HR notes cannot be deleted.,لا يمكن حذف ملاحظات الموارد البشرية السرية.
+Confidential internal HR notes. Public decision reasons belong on the request.,ملاحظات داخلية سرية للموارد البشرية. تُسجّل أسباب القرارات المتاحة للمشاركين في الطلب نفسه.
 Configure an enabled terminal HR authority before submitting a request.,اضبط صاحب صلاحية نهائيًا ومفعّلًا للموارد البشرية قبل إرسال الطلب.
 Configure an independent CEO authority.,اضبط صاحب صلاحية مستقلًا للرئيس التنفيذي.
 Configure an independent authority for this personal request.,اضبط صاحب صلاحية مستقلًا لهذا الطلب الشخصي.
@@ -229,9 +237,14 @@ Created Positions,المناصب المُنشأة
 Critical,حرج
 Currency,العملة
 Current assignment imports require an enabled linked user.,يتطلب استيراد التكليفات الحالية مستخدمًا مرتبطًا ومفعّلًا.
+Current dated occupancy: {0}. Current availability: {1}. Cached occupied: {2}. As of: {3}.,الإشغال الحالي حسب تواريخ التكليف: {0}. المتاح حاليًا: {1}. العدد المشغول المحفوظ: {2}. اعتبارًا من: {3}.
+Current dated occupancy: {0}. Current availability: {1}. Cached occupied: {2}. As of: {3}. Basis: {4}.,الإشغال الحالي حسب تواريخ التكليف: {0}. المتاح حاليًا: {1}. العدد المشغول المحفوظ: {2}. اعتبارًا من: {3}. الأساس: {4}.
+Current dated occupancy: {0}. Current availability: {1}. Recorded occupied: {2}. Evaluation date: {3}. Basis: {4}. Recorded as of: {5}.,الإشغال الحالي حسب تواريخ التكليف: {0}. المتاح حاليًا: {1}. العدد المشغول المسجل: {2}. تاريخ التقييم: {3}. الأساس: {4}. مسجل اعتبارًا من: {5}.
 Date of Birth,تاريخ الميلاد
 Date of birth must precede joining.,يجب أن يسبق تاريخ الميلاد تاريخ المباشرة.
+Dated Assignments,التكليفات المؤرّخة
 Dated imports require a position and valid-from date with supported fields only.,تتطلب السجلات المؤرخة المستوردة تحديد الوظيفة وتاريخ بدء السريان، مع استخدام الحقول المدعومة فقط.
+Dated occupancy requires the parity HR site.,يتطلب احتساب الإشغال المؤرّخ تفعيل وظائف الموارد البشرية الموسّعة على هذا الموقع.
 Decide,اتخاذ القرار
 Decided At,تاريخ القرار
 Decided structure changes are immutable.,لا يمكن تعديل تغييرات الهيكل التي تم حسمها.
@@ -272,6 +285,7 @@ Employee must belong to the selected company.,يجب أن يتبع الموظف 
 Employment Type,نوع التوظيف
 Enabled,مفعّل
 "End assignments, commitments and subordinate hierarchy links before closing a position.",أنه الإسنادات والالتزامات وروابط المناصب التابعة قبل إغلاق المنصب.
+Enter a confidential HR note of 1 to 10000 characters.,أدخل ملاحظة سرية للموارد البشرية من حرف واحد إلى 10000 حرف.
 Enter a valid contact phone number.,أدخل رقم هاتف صحيحاً للتواصل.
 "Enter company, department, designation and title first.",أدخل الشركة والإدارة والمسمى الوظيفي والعنوان أولًا.
 "Enter title, department and designation.",أدخل العنوان والإدارة والمسمى الوظيفي.
@@ -380,6 +394,7 @@ Kandil Capacity,السعة الوظيفية لقنديل
 Kandil Command Receipt,إيصال أمر قنديل
 Kandil Delegation,تفويض قنديل
 Kandil Grade Band,نطاق الدرجة الوظيفية لقنديل
+Kandil HR Note,ملاحظة الموارد البشرية في قنديل
 Kandil HR attachments must be private.,يجب أن تكون مرفقات الموارد البشرية لقنديل خاصة.
 Kandil HR foundation is not enabled on this site.,أساس الموارد البشرية لقنديل غير مفعّل على هذا الموقع.
 Kandil Hiring Request,طلب توظيف قنديل
@@ -415,6 +430,7 @@ Last Error,آخر خطأ
 Lead Recruiter,قائد فريق التوظيف
 Leave empty to assign a permanent position code automatically.,اتركه فارغاً لتعيين رمز منصب دائم تلقائياً.
 Legacy Arabic Responsibilities,المسؤوليات بالعربية - الحقل السابق
+Legacy Baseline,خط الأساس السابق
 Legacy Competency Weight,وزن الكفاءة - الحقل السابق
 Legacy Responsibilities,المسؤوليات - الحقل السابق
 Line outcomes are server managed.,تُدار نتائج البنود بواسطة الخادم.
@@ -451,6 +467,7 @@ No active authorized lead; HR assignment required.,لا يوجد مسؤول رئ
 No vacancies match this view.,لا توجد شواغر تطابق عوامل التصفية الحالية.
 No-show or withdrawal requires a reason.,يلزم ذكر سبب عدم الحضور أو الانسحاب.
 Normal,عادي
+Not recorded,غير مسجل
 Not reviewed,لم تتم مراجعته
 Note,ملاحظة
 Notification Log,سجل الإشعارات
@@ -459,9 +476,16 @@ Notification key was already used with different content.,استُخدم مفت�
 Notification outbox records are managed by the server.,تُدار سجلات صندوق الإشعارات الصادرة بواسطة الخادم.
 Notification recipient must be enabled.,يجب أن يكون حساب مستلم الإشعار مفعّلاً.
 Notification recipient must exist.,يجب أن يكون مستلم الإشعار موجوداً.
+Notification reference needs a reviewed current-access adapter,يتطلب مرجع الإشعار آلية معتمدة للتحقق من صلاحيات الوصول الحالية
+Occupancy As Of,تاريخ احتساب الإشغال
+Occupancy Basis,أساس احتساب الإشغال
 Occupancy Reconciliation,مطابقة الإشغال
+Occupancy changed. Preview the reconciliation again.,تغير الإشغال. عاين المطابقة مرة أخرى.
+Occupancy provenance is managed by reviewed server actions.,تُدار مصادر بيانات الإشغال عبر إجراءات معتمدة على الخادم.
 Occupied,المشغول
+Occupied baseline reconciled,تمت مطابقة خط أساس العدد المشغول
 Occupied count is a baseline on creation; joining changes it through the pilot.,يُحدد العدد المشغول الأساسي عند الإنشاء؛ وتعدله إجراءات المباشرة في التجربة.
+Occupied headcount changed. Return this request for a fresh headcount review.,تغير عدد شاغلي الوظائف. أعد هذا الطلب لمراجعة جديدة للأعداد.
 On Hold,معلّق
 Only System Managers may administer access grants.,يمكن لمديري النظام فقط إدارة منح الوصول.
 Only System Managers may create system accounts.,يمكن لمديري النظام فقط إنشاء حسابات النظام.
@@ -562,9 +586,13 @@ Reason,السبب
 Recipient,المستلم
 Recommend,توصية
 Reconcile Occupancy,مطابقة الإشغال
+Reconciliation Reason,سبب المطابقة
+Reconciliation reason cannot exceed 2000 characters.,يجب ألا يتجاوز سبب التسوية 2000 حرف.
 Record Joining Outcome,تسجيل نتيجة المباشرة
 Record evidence; this policy does not configure or enforce MFA.,سجّل الأدلة؛ هذه السياسة لا تضبط المصادقة متعددة العوامل ولا تفرضها.
 Record not found.,السجل غير موجود.
+Recorded Available,العدد المتاح المسجل
+Recorded Occupied,العدد المشغول المسجل
 Recorded joining details cannot change on replay.,لا يمكن تغيير بيانات الالتحاق المسجلة عند إعادة الطلب.
 Recorded joining is inconsistent. Request an authorized reconciliation.,توجد بيانات غير متسقة في الالتحاق المسجل. اطلب مطابقة من مسؤول مخوّل.
 Recorded outcome reason cannot change on replay.,لا يمكن تغيير سبب النتيجة المسجل عند إعادة الطلب.
@@ -591,6 +619,8 @@ Reload the saved import before reviewing.,أعد تحميل دفعة الاست�
 Reload the saved revision before approving.,أعد تحميل الإصدار المحفوظ قبل اعتماده.
 Remarks,ملاحظات
 Remove Last Change,إزالة آخر تغيير
+Replace cached occupied {0} with dated assignment occupancy {1}?,هل تريد استبدال العدد المشغول المحفوظ {0} بإشغال التكليفات المؤرّخة {1}؟
+Replace recorded occupied {0} with dated assignment occupancy {1}?,هل تريد استبدال العدد المشغول المسجل {0} بالإشغال حسب تواريخ التكليف {1}؟
 Replacement,إحلال
 Replacement Employee,الموظف المستبدَل
 Replacement employee must be within this department.,يجب أن يكون الموظف المستبدَل من هذه الإدارة.
@@ -637,7 +667,9 @@ Return for Revision,إرجاع للتعديل
 Returned,مُعاد للتعديل
 Review Date,تاريخ المراجعة
 Review Import,مراجعة الاستيراد
+Review Occupancy,مراجعة الإشغال
 Review Quantities,مراجعة الأعداد
+Review the unmatched occupied baseline before adding or approving headcount.,راجع الاختلاف في خط أساس العدد المشغول قبل إضافة أعداد أو اعتمادها.
 Reviewed,تمت مراجعته
 Reviewed By,راجعه
 Reviewed Snapshot,النسخة المرجعية المُراجعة
@@ -741,6 +773,7 @@ The request is outside your assigned scope.,الطلب خارج النطاق ا�
 The requisition must be approved before creating an opening.,يجب اعتماد طلب التوظيف قبل إنشاء شاغر.
 The reviewed structure preview does not match this request.,معاينة الهيكل التي تمت مراجعتها لا تتطابق مع هذا الطلب.
 The selected holiday list must define its coverage dates.,يجب تحديد تواريخ التغطية في قائمة العطلات المختارة.
+The stored structure snapshot failed its integrity check.,فشل التحقق من سلامة لقطة الهيكل التنظيمي المحفوظة.
 This HR report is unavailable until its scoped data access has been verified.,هذا التقرير غير متاح حتى يتم التحقق من التزامه بنطاق صلاحيات الوصول إلى البيانات.
 This account is no longer enabled for this action.,لم يعد هذا الحساب مفعّلًا لتنفيذ هذا الإجراء.
 This field is managed by an authorized server action.,يُدار هذا الحقل بواسطة إجراء خادم مخوّل.
@@ -750,6 +783,7 @@ This offer already has a final joining outcome.,تم تسجيل نتيجة نه�
 This offer is not part of the Kandil pilot.,هذا العرض ليس ضمن تجربة قنديل.
 This record changed. Reload it before deciding.,تغيّر هذا السجل. أعد تحميله قبل اتخاذ القرار.
 This request cannot be cancelled.,لا يمكن إلغاء هذا الطلب.
+"This request has confidential HR notes. Create a new request to change its company, department or locations.",يحتوي هذا الطلب على ملاحظات سرية للموارد البشرية. أنشئ طلبًا جديدًا لتغيير الشركة أو الإدارة أو المواقع.
 This vacancy cannot be frozen.,لا يمكن تجميد هذا الشاغر.
 This vacancy cannot be put on hold.,لا يمكن تعليق هذا الشاغر.
 This vacancy is already closed.,هذا الشاغر مغلق بالفعل.
@@ -765,6 +799,7 @@ Unassigned,غير مسند
 Unassigned only,غير المسندة فقط
 Unfreeze,إلغاء التجميد
 Unknown vacancy action.,إجراء الشاغر غير معروف.
+Unmatched imported baseline requires review. Availability is conservative; assignment-only availability is {0}.,يحتاج خط الأساس المستورد غير المطابق إلى مراجعة. يُحتسب المتاح بصورة تحفظية؛ والمتاح حسب التكليفات فقط هو {0}.
 Unsupported document output.,نوع إخراج المستند غير مدعوم.
 Unsupported revision type.,نوع المراجعة غير مدعوم.
 Use Cancel; recruitment history is retained.,استخدم الإلغاء؛ يتم الاحتفاظ بتاريخ التوظيف.
@@ -801,6 +836,8 @@ Validate CSV Import,التحقق من استيراد CSV
 Validated {0} rows. Preview shows up to 50 rows; loading replaces the draft rows only.,تم التحقق من {0} صف. تعرض المعاينة حتى 50 صفًا؛ يستبدل التحميل صفوف المسودة فقط.
 Verification Notes,ملاحظات التحقق
 View / Print,عرض / طباعة
+View Structure (Arabic),عرض الهيكل التنظيمي (العربية)
+View Structure (English),عرض الهيكل التنظيمي (الإنجليزية)
 Waiting Since,قيد الانتظار منذ
 Warn,تحذير
 Weekend Days,أيام الراحة الأسبوعية

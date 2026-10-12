@@ -71,19 +71,17 @@ def enqueue(key, recipient, subject, body="", reference_doctype=None, reference_
 
 def deliver(name):
 	guard()
-	doc = frappe.get_doc("Kandil Notification Outbox", name, for_update=True)
+	from kandil_hr.foundation.outbox_access import lock_delivery
+
+	doc, suppression_reason = lock_delivery(name)
 	if doc.status in ("Delivered locally", "Suppressed", "Failed"):
 		return doc.status
 	if doc.next_attempt and doc.next_attempt > now_datetime():
 		return doc.status
 	doc.attempts += 1
 	with effect():
-		if not frappe.db.get_value("User", doc.recipient, "enabled"):
-			doc.status, doc.last_error = "Suppressed", "Recipient disabled"
-		elif doc.reference_doctype and not frappe.has_permission(
-			doc.reference_doctype, "read", doc=doc.reference_name, user=doc.recipient
-		):
-			doc.status, doc.last_error = "Suppressed", "Reference access revoked"
+		if suppression_reason:
+			doc.status, doc.last_error = "Suppressed", suppression_reason
 		else:
 			from markupsafe import escape
 

@@ -116,11 +116,9 @@ def command(name, operation, command_id, expected_version, payload, handler):
 
 
 def snapshot_payload(doc):
-	value = doc.as_dict()
-	value.pop("submitted_snapshot", None)
-	for step in value.get("approval_steps", []):
-		step.pop("reviewed_snapshot", None)
-	return value
+	from kandil_hr.recruitment.privacy import shared_snapshot
+
+	return shared_snapshot(doc)
 
 
 def snapshot(doc, action):
@@ -289,6 +287,9 @@ def submit_request(name, command_id, expected_version):
 		if excess and config.headcount_mode == "Block":
 			frappe.throw(_("Headcount blocking is enabled. Adjust capacity or requested quantity."))
 		chain = resolve_chain(doc, excess)
+		from kandil_hr.organization.occupancy import capture_basis
+
+		capture_basis(doc, caps)
 		doc.set("approval_steps", [])
 		for i, (principal, authority, position) in enumerate(chain):
 			doc.append(
@@ -418,6 +419,10 @@ def decide(name, decision, step_id, command_id, expected_version, comment="", bo
 				)
 			evidence.check_permission("read")
 		caps = lock_capacities(doc)
+		if decision == "Approve":
+			from kandil_hr.organization.occupancy import assert_approval
+
+			assert_approval(doc, caps)
 		step.reviewed_snapshot = dump(snapshot_payload(doc))
 		step.actor = frappe.session.user
 		step.decided_at = now_datetime()

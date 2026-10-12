@@ -17,6 +17,13 @@ def validate_capacity(doc):
 	):
 		fail("Capacity dimensions must match the position.")
 	old = doc.get_doc_before_save()
+	if not frappe.flags.get("kandil_occupancy_refresh"):
+		for field in ("occupancy_basis", "occupancy_as_of"):
+			default = "Legacy Baseline" if field == "occupancy_basis" else None
+			if str(doc.get(field) or default or "") != str(
+				(old.get(field) if old else default) or default or ""
+			):
+				fail("Occupancy provenance is managed by reviewed server actions.")
 	if old and old.get("position") != doc.position:
 		fail("Capacity position cannot change.")
 	expected = 0 if p.closed_on and getdate(p.closed_on) <= getdate() else cint(p.structural)

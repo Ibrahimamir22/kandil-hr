@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-10-12T03:33:32.287Z",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    {
+      "name": "Native confidential-note journey",
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    }
+  ],
+  "errors": [],
+  "limits": [
+    "Synthetic note retained as review fixture; no real personal data",
+    "Native note controls reviewed in English; Arabic strings statically covered, separate RTL suite covers shared request"
+  ]
+}

@@ -76,7 +76,17 @@ def structure_state(company):
 		"positions": current_rows(
 			"Kandil Position",
 			filters={"company": company},
-			fields=["name", "department", "branch", "designation", "structural", "status", "closed_on"],
+			fields=[
+				"name",
+				"title",
+				"title_ar",
+				"department",
+				"branch",
+				"designation",
+				"structural",
+				"status",
+				"closed_on",
+			],
 			order_by="name",
 		),
 		"hierarchy": current_rows(
@@ -97,9 +107,26 @@ def structure_state(company):
 		result["capacities"] = current_rows(
 			"Kandil Capacity",
 			filters={"company": company},
-			fields=["name", "position", "structural", "occupied", "reserved", "open_slots"],
+			fields=[
+				"name",
+				"position",
+				"structural",
+				"occupied",
+				"reserved",
+				"open_slots",
+				"occupancy_basis",
+			],
 			order_by="name",
 		)
+		from kandil_hr.foundation.clock import today_cairo
+
+		for cap in result["capacities"]:
+			derived = sum(
+				a.position == cap.position and a.allocation == "Primary" and rules.effective(a, today_cairo())
+				for a in result["assignments"]
+			)
+			if cap.occupancy_basis == "Dated Assignments" or cap.occupied in (0, derived):
+				cap.occupied = derived
 	return result
 
 
@@ -264,6 +291,7 @@ def reconcile(company, as_of=None):
 				"position": p.name,
 				"structural": p.structural,
 				"allocated": allocated,
+				"occupied": allocated,
 				"capacity_occupied": baseline,
 				"difference": baseline - allocated,
 				"capacities": [c.name for c in ledgers],
@@ -381,15 +409,7 @@ def planned_hierarchy(doc, state):
 				for a in state["assignments"]
 				if a.position == position and (not a.valid_until or getdate(a.valid_until) >= at)
 			]
-			capacities = (
-				current_rows(
-					"Kandil Capacity",
-					filters={"position": position},
-					fields=["occupied", "reserved", "open_slots", "name"],
-				)
-				if frappe.get_meta("Kandil Capacity").has_field("position")
-				else []
-			)
+			capacities = [c for c in state.get("capacities", []) if c.position == position]
 			if len(capacities) > 1:
 				fail("A position must map to at most one capacity ledger.")
 			committed = sum(c.occupied + c.reserved + c.open_slots for c in capacities)
@@ -772,6 +792,10 @@ def sync_capacity(position, quantity):
 		fail("A position must map to at most one capacity ledger.")
 	for name in names:
 		cap = frappe.get_doc("Kandil Capacity", name, for_update=True)
+		from kandil_hr.organization.occupancy import refresh_locked
+
+		cap.structural = quantity
+		refresh_locked(cap)
 		if quantity < cap.occupied + cap.reserved + cap.open_slots:
 			fail("Structural seats cannot be below allocated or committed headcount.")
 		with recruitment_transition():

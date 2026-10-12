@@ -25,3 +25,5 @@ No real data, outbound email, enabled scheduler, external provider or production
 5. A synthetic blank-company restore was executed successfully (see `docs/sprints/evidence/restore-sandbox-2026-10-12.json`). Final release acceptance still requires the tested commit, representative data and approved recovery procedures.
 
 Use project-scoped stop commands. Never run global Docker prune or delete volumes for unrelated projects. `docker compose down -v` deletes this sandbox's DB and must not be used as routine restart.
+
+The installer runs `deployment/verify_checkout.py` before any installation work. It refuses a dirty app checkout (including untracked source), records the clean custom commit, upstream pins and image digests in `/workspace/kandil-source-checkpoint.json`, and never records secret contents. Run `python3 deployment/verify_checkout.py` locally for the same preflight. This is source provenance, not proof that a workflow or deployment passed.

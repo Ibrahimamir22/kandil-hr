@@ -710,6 +710,9 @@ def run(company=None, export_documents=False):
 			assert applied["created"] == 1 and applied["snapshot"]
 			assert api.apply_import(history.name, history.digest) == applied
 			passed("Reviewed historical allocation import creates native history without double counting")
+		from kandil_hr.organization.acceptance_tests import run_cases
+
+		acceptance_cases = run_cases(locals())
 		with user(outsider):
 			from kandil_hr.organization.documents import render
 
@@ -728,6 +731,7 @@ def run(company=None, export_documents=False):
 			"results": results,
 			"passed": len(results),
 			"rolled_back": True,
+			"acceptance_cases": acceptance_cases,
 		}
 	finally:
 		frappe.db.rollback()

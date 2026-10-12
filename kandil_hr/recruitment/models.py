@@ -70,6 +70,9 @@ def validate_request(doc):
 
 	guard()
 	old = doc.get_doc_before_save()
+	from kandil_hr.recruitment.privacy import protect_noted_request_scope
+
+	protect_noted_request_scope(doc, old)
 	if not internal():
 		if doc.status != "Draft" or (old and old.status != "Draft"):
 			frappe.throw(_("Use recruitment actions to change a submitted request."), frappe.PermissionError)

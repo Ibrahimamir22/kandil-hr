@@ -61,13 +61,29 @@ def lock_request(name):
 
 
 def lock_capacities(doc):
-	return {
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.organization.models import lock_company
+
+		lock_company(doc.company)
+	caps = {
 		key: frappe.get_doc("Kandil Capacity", key, for_update=True)
 		for key in sorted({line.capacity for line in doc.lines})
 	}
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.organization.occupancy import refresh_locked
+
+		for cap in caps.values():
+			if cap.company != doc.company:
+				frappe.throw(frappe._("Every capacity must match the request company and department."))
+			refresh_locked(cap)
+	return caps
 
 
 def change_capacity(cap, reserved=0, opened=0, occupied=0):
+	if frappe.conf.get("kandil_parity_enabled") and any(x > 0 for x in (reserved, opened, occupied)):
+		from kandil_hr.organization.occupancy import assert_increase
+
+		assert_increase(cap)
 	cap.reserved = cint(cap.reserved) + reserved
 	cap.open_slots = cint(cap.open_slots) + opened
 	cap.occupied = cint(cap.occupied) + occupied

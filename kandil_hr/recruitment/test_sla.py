@@ -179,3 +179,27 @@ class TestApprovalSLA(unittest.TestCase):
 		with patch.dict(frappe.conf, {"kandil_parity_enabled": 0}):
 			self.assertEqual(sla.process_pending(), {"processed": 0, "failed": 0, "disabled": True})
 			self.assertEqual(sla.process_request(self.request.name)["status"], "Disabled")
+
+
+def run():
+	"""Explicit native suite entry point for the serial checkpoint runner."""
+	import json
+	import sys
+
+	suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestApprovalSLA)
+	cases = [test.id() for test in suite]
+	result = unittest.TextTestRunner(stream=sys.stderr, verbosity=2).run(suite)
+	summary = dict(
+		suite="recruitment-sla",
+		tests_run=result.testsRun,
+		failures=len(result.failures),
+		errors=len(result.errors),
+		skipped=len(result.skipped),
+		successful=result.wasSuccessful() and not result.skipped and result.testsRun == len(cases) > 0,
+		fixtures_rolled_back=True,
+		cases=cases,
+	)
+	if not summary["successful"]:
+		print(json.dumps(summary))
+		raise AssertionError("SLA suite failed or skipped")
+	return summary

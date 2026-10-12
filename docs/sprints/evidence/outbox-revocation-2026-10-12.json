@@ -1,0 +1,80 @@
+{
+  "result": "PASS",
+  "site": "kandil-parity.localhost",
+  "recorded_at_utc": "2026-10-12T03:21:56.803592+00:00",
+  "total": 8,
+  "classification": {
+    "native_reference_cases": 3,
+    "independent_revocation_races": 3,
+    "no_email_gate": 1,
+    "uuid_cleanup_gate": 1
+  },
+  "source_sha256": {
+    "kandil_hr/foundation/outbox.py": "27bac88ba59d69ad6fdc3eebda76c353981005af3048843772569a2db96b930f",
+    "kandil_hr/foundation/outbox_access.py": "0198d1a56a95686bade76d2308541e9ef10eb5edeb4b9cd65b7370aff6781643",
+    "kandil_hr/foundation/outbox_revocation_runner.py": "52ea6a3ced8d4f7ca40db0c7adbc8edf48c46ff763549ea5de460c5d817189e2",
+    "kandil_hr/foundation/test_outbox_access.py": "ffbc3d57183f454b7e5c35b4a7debb8202f81b89da548df40f8f593261677bdc",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d"
+  },
+  "tests": [
+    {
+      "test": "all_production_reference_types_deliver_with_current_access",
+      "status": "PASS"
+    },
+    {
+      "test": "referenced_delivery_rollback_then_retry_has_one_receipt",
+      "status": "PASS"
+    },
+    {
+      "test": "unreviewed_target_is_visible_failure_without_receipt_or_suppression",
+      "status": "PASS"
+    },
+    {
+      "test": "grant_revoked_while_delivery_waits",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": "REPEATABLE-READ",
+      "initially_authorized": true,
+      "notification_count": 0,
+      "terminal_replay": "Suppressed"
+    },
+    {
+      "test": "disabled_revoked_while_delivery_waits",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": "REPEATABLE-READ",
+      "initially_authorized": true,
+      "notification_count": 0,
+      "terminal_replay": "Suppressed"
+    },
+    {
+      "test": "role_revoked_while_delivery_waits",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": "REPEATABLE-READ",
+      "initially_authorized": true,
+      "notification_count": 0,
+      "terminal_replay": "Suppressed"
+    },
+    {
+      "test": "no_email_queue_effect",
+      "status": "PASS"
+    },
+    {
+      "test": "uuid_fixture_cleanup",
+      "status": "PASS"
+    }
+  ],
+  "source_of_results": "Captured successful CLI runs of test_outbox_access.run and outbox_revocation_runner.run in this exclusive DB slot; both returned PASS with nonzero counts.",
+  "regressions": {
+    "existing_outbox_race_gates": "5/5 PASS; foundation-concurrency-2026-10-12.json",
+    "foundation_mixed_checks": "52/52 PASS; foundation-native-2026-10-12.json"
+  },
+  "limits": [
+    "Native independent database transactions, not HTTP authentication.",
+    "Revocation committed before delivery obtains authorization locks prevents receipt creation; revocation after a committed delivery does not erase its receipt.",
+    "Supported production targets: Hiring Request, Job Opening and Structure Change; company-scoped organization adapters also supported. Unknown targets are visible retryable failures, not silent delivery.",
+    "No external adapter, sustained production load or global deadlock-free claim.",
+    "Native User Permission restriction updates and provider session invalidation are not covered by the three explicit account/role/grant races."
+  ]
+}

@@ -15,7 +15,9 @@
     "reserved",
     "open_slots",
     "available",
-    "position"
+    "position",
+    "occupancy_basis",
+    "occupancy_as_of"
   ],
   "fields": [
     {
@@ -93,6 +95,20 @@
       "fieldtype": "Link",
       "options": "Kandil Position",
       "unique": 1
+    },
+    {
+      "fieldname": "occupancy_basis",
+      "label": "Occupancy Basis",
+      "fieldtype": "Select",
+      "options": "Legacy Baseline\nDated Assignments",
+      "default": "Legacy Baseline",
+      "read_only": 1
+    },
+    {
+      "fieldname": "occupancy_as_of",
+      "label": "Occupancy As Of",
+      "fieldtype": "Date",
+      "read_only": 1
     }
   ],
   "permissions": [
