@@ -202,6 +202,18 @@ class TestRecruitmentCommands(unittest.TestCase):
 
 	@staticmethod
 	def insert(doctype, **values):
+		if doctype == "User":
+			# Rolled-back synthetic accounts must not consume the live signup throttle.
+			previous = frappe.flags.get("in_import")
+			try:
+				frappe.flags.in_import = True
+				return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
+			finally:
+				frappe.flags.in_import = previous
+		if doctype == "Kandil Position Assignment":
+			from kandil_hr.organization.api import transition
+			with transition():
+				return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
 		return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
 
 	def request(self, quantities=(2, 1)):

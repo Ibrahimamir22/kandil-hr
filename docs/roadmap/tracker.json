@@ -151,11 +151,14 @@
         {
           "id": "S2-02",
           "description": "Connect effective-dated assignments, structural revisions and independent organization approvals.",
-          "status": "in_progress",
-          "progress": "Structural create/resize/reparent/close proposals and independent HR/CEO decisions are connected. Reviewed CSV baseline assignments and occupancy comparison are now connected. Individual effective-dated reassignment editing remains open.",
+          "status": "complete",
+          "progress": "Engineering workflow connected: structural revisions and individual assign/end/transfer operations use reviewed independent decisions. User selected HR + CEO for individual changes. 18 focused native and 18 assignment browser checks passed, with 65 other native and 45 existing browser regressions. HR acceptance, profile synchronization and full S2 history/JD work remain separate gates.",
           "evidence": [
             "S2_STRUCTURE_CHECKPOINT.md",
-            "S2_IMPORT_CHECKPOINT.md"
+            "S2_IMPORT_CHECKPOINT.md",
+            "S2_ASSIGNMENT_CHECKPOINT.md",
+            "evidence/s2-regression-012b73e818c7.json",
+            "../portal/evidence/assignments-2118251b82d9/results.json"
           ]
         },
         {
@@ -178,7 +181,7 @@
           "id": "S2-05",
           "description": "Show dated history and differences; prohibit silent overwrite of historical assignments.",
           "status": "in_progress",
-          "progress": "Returned structural rounds retain their proposals, reasons and decisions; current submitted comparisons use the immutable submit audit. Complete structural/JD/assignment history and differences remain open.",
+          "progress": "Returned structural rounds retain proposals and decisions. Submitted comparisons use immutable audit before-values, now including individual assignment episodes. Complete structural/JD/assignment history and differences remain open.",
           "evidence": [
             "S2_STRUCTURE_CHECKPOINT.md"
           ]
@@ -673,8 +676,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "Reviewed organization CSV imports and occupancy comparison connected, alongside the prior structural workflow and directory. Individual assignment changes, JD editing and full S2 acceptance remain open.",
-    "evidence": "S2_IMPORT_CHECKPOINT.md",
-    "next": "Connect individual effective-dated assignment changes, then JD editing/approvals/KPIs/documents and full history acceptance."
+    "summary": "Individual employee assignment/end/transfer portal connected with independent HR + CEO approval, dated history, capacity checks and native write protection. Verified 83 native and 63 browser checks across affected workflows. S2 remains in progress.",
+    "evidence": "S2_ASSIGNMENT_CHECKPOINT.md",
+    "next": "Connect JD editing/independent approval, responsibility/KPI validation and document views; complete S2 history/difference acceptance with HR."
   }
 }

@@ -56,3 +56,19 @@ The submitted comparison projects only whitelisted position before-values from t
 `portal/imports.py` exposes GET `choices`, `listing`, `detail` and POST `validate_csv`, `batch_rows`, `save`, `review`, `apply`, `occupancy`. Whole-company access and native import read/write permissions are required. `validate_csv` takes the selected company/type, bounded CSV and baseline reference; existing drafts also require name/version. Its digest binds normalized rows/type/reference. Saving reparses/revalidates and requires that digest. Independent review and application reuse native domain rules with current versions and actor/company/operation command receipts.
 
 Draft batch rows are validated against live records. A business validation error is returned with the submitted rows so the author can correct the draft; authorization errors still reject the request. Reviewed rows retain the frozen review actions. `batch_rows` and `occupancy` use POST for consistent locking reads and do not repair or update records. Lists default to 20 and row comparisons to 30, capped at 100. CSV validation returns at most 1,000 rows / 1 MiB of source; saved detail never includes raw snapshot/audit payloads. See [import checkpoint](S2_IMPORT_CHECKPOINT.md).
+
+## Individual employee-position changes (S2, 2026-10-13)
+
+The existing `portal.structure` save/preview/submit/decide contract accepts one of:
+
+- `AssignEmployee`: `position`, `employee`, optional `allocation` (`Primary` default or `Acting`), optional `valid_until`.
+- `EndAssignment`: `position`, `assignment`; request `effective_on` is the inclusive final day.
+- `MoveEmployee`: source `position`, `assignment`, `target_position`, optional destination `valid_until`; source ends the preceding day. Without an explicit destination end, the prior finite end is retained.
+
+Use the existing proposal company/effective date/reason, optimistic version and actor-specific command ID. These operations cannot be mixed or batched in this slice. They require separate HR and CEO decisions; the author and affected employee cannot decide. Assignment records cannot be created/edited through ordinary native resource writes. Reviewed baseline import and approved joining/reversal remain separate server-controlled workflows.
+
+`catalog` additionally accepts `kind=employee` or `kind=assignment` (the latter requires a scoped `position`). Both require whole-company management plus native Employee/Assignment read permissions. Employee choices use native `get_list` and its User Permissions; selecting/guessing an unreadable Employee also fails server-side proposal validation. These catalogs return bounded identifiers and labels only. They do not grant broader Employee access.
+
+For a selected source episode, review rows add `assignment_before` with `employee`, `position`, `allocation`, `valid_from`, `valid_until`. Submitted before-values come from the matching immutable audit. Review authorization is the existing whole-company structure permission; no general employee profile/salary/user payload is projected. The existing route history contains the reviewed operation identifiers.
+
+Dated assignments are authoritative for this operation. No promise of standard Employee profile department/branch synchronization, automatic midnight ledger refresh, payroll effects or external account changes is made by this API.

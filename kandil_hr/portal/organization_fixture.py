@@ -24,7 +24,8 @@ def prepare(run_id):
     insert('Kandil Access Grant',company=data['company'],department=data['department'],branch=main.branch,
            user=user,valid_from=today(),can_manage_recruitment=0,reason='Synthetic branch-only organization viewer')
     assignment=frappe.get_doc('Kandil Position Assignment',{'position':data['head']})
-    assignment.valid_until=today();assignment.save(ignore_permissions=True)
+    with transition():
+        assignment.valid_until=today();assignment.save(ignore_permissions=True)
     data['foreign_companies']=[];data['foreign_positions']=[]
     with transition():
         for index in range(3):

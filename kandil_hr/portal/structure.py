@@ -9,6 +9,7 @@ from frappe.utils import get_datetime
 from kandil_hr.foundation.mutation_access import assert_current_scope
 from kandil_hr.foundation.security import has_scope
 from kandil_hr.organization import api as domain
+from kandil_hr.organization.assignments import ACTIONS as ASSIGNMENT_ACTIONS
 from kandil_hr.organization.contracts import AUTHORITY_ROLES
 from kandil_hr.pilot.api import transactional_retry, transition as receipt_transition
 from kandil_hr.portal.api import authenticated
@@ -24,6 +25,7 @@ OP_FIELDS = {
     'Resize': {'action', 'position', 'structural'},
     'Reparent': {'action', 'position', 'parent_position', 'authority'},
     'Close': {'action', 'position'},
+    **ASSIGNMENT_ACTIONS,
 }
 
 
@@ -101,10 +103,26 @@ def choices():
 
 
 @frappe.whitelist(methods=['GET'])
-def catalog(company, kind, search='', start=0, page_length=30):
+def catalog(company, kind, search='', start=0, page_length=30, position=None):
     authenticated();access(company)
     if not frappe.has_permission(DT, 'read'): deny()
     start, limit = paging(start, page_length);term=bounded_text(search)
+    if kind in ('employee', 'assignment'):
+        access(company, manage=True)
+        if not frappe.has_permission('Employee', 'read') or not frappe.has_permission('Kandil Position Assignment', 'read'): deny()
+        if kind == 'employee':
+            result=frappe.get_list('Employee',filters={'company':company,'status':'Active'},
+                or_filters=[['name','like','%'+term+'%'],['employee_name','like','%'+term+'%']] if term else None,
+                fields=['name','employee_name'],order_by='name',start=start,page_length=limit+1)
+            return page([dict(id=r.name,label=r.employee_name+' · '+r.name) for r in result],start,limit)
+        if not position:return page([],start,limit)
+        position=bounded_text(position)
+        p=frappe.get_doc('Kandil Position',position);p.check_permission('read')
+        if p.company!=company:deny()
+        result=frappe.get_list('Kandil Position Assignment',filters={'company':company,'position':position,'is_voided':0},
+            or_filters=[['name','like','%'+term+'%'],['employee','like','%'+term+'%']] if term else None,
+            fields=['name','employee','valid_from','valid_until','allocation'],order_by='valid_from desc, name',start=start,page_length=limit+1)
+        return page([dict(id=r.name,label=f"{r.employee} · {r.allocation} · {r.valid_from} → {r.valid_until or '…'}") for r in result],start,limit)
     if kind not in ('department', 'branch', 'designation', 'position'):
         frappe.throw(_('Choose a supported organization reference.'))
     dt = {'department':'Department','branch':'Branch','designation':'Designation','position':'Kandil Position'}[kind]
@@ -257,7 +275,8 @@ def submitted_review(doc):
                    and str(r.get('valid_from'))<=at and (not r.get('valid_until') or str(r['valid_until'])>=at)]
             old={key:p.get(key) for key in ('title','title_ar','structural','status')}
             old['parent_position']=edges[0].get('parent_position') if len(edges)==1 else None
-        result.append(dict(operation=op,before=old))
+        assignment=next((r for r in records if r.get('doctype')=='Kandil Position Assignment' and r.get('name')==op.get('assignment') and r.get('company')==doc.company),None)
+        result.append(dict(operation=op,before=old,assignment_before={k:assignment.get(k) for k in ('employee','position','allocation','valid_from','valid_until')} if assignment else None))
     return result
 
 
@@ -274,7 +293,12 @@ def review_rows(doc):
             edge=hierarchy.get(p.name)
             old=dict(title=p.title,title_ar=p.title_ar,structural=p.structural,status=p.status,
                      parent_position=(edge.get('parent') or {}).get('name') if edge else None)
-        rows.append(dict(operation=op,before=old))
+        assignment=None
+        if op.get('assignment'):
+            a=frappe.get_doc('Kandil Position Assignment',op['assignment'])
+            if a.company!=doc.company or a.position!=op.get('position'):deny()
+            assignment={k:a.get(k) for k in ('employee','position','allocation','valid_from','valid_until')}
+        rows.append(dict(operation=op,before=old,assignment_before=assignment))
     return rows
 
 

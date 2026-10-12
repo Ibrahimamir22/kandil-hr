@@ -57,6 +57,10 @@ def load(run_id):
 
 
 def insert(doctype, **values):
+	if doctype == "Kandil Position Assignment":
+		from kandil_hr.organization.api import transition
+		with transition():
+			return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
 	return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
 
 

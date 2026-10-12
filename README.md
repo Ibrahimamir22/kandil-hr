@@ -6,7 +6,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 The [current Sprint 1 checkpoint](docs/roadmap/S1_CHECKPOINT.md) records **72 passed, 4 partial and 4 blocked** baseline cases, with source identity, new portal evidence and remaining gates.
 
-The [Sprint 2 organization checkpoint](docs/roadmap/S2_CHECKPOINT.md) records browsing and document links; the [structural-change checkpoint](docs/roadmap/S2_STRUCTURE_CHECKPOINT.md) records reviewed proposals and independent decisions. The [import checkpoint](docs/roadmap/S2_IMPORT_CHECKPOINT.md) records CSV validation, independent review, application and occupancy comparison.
+The [Sprint 2 organization checkpoint](docs/roadmap/S2_CHECKPOINT.md) records browsing and document links; the [structural-change checkpoint](docs/roadmap/S2_STRUCTURE_CHECKPOINT.md) records reviewed proposals and independent decisions. The [import checkpoint](docs/roadmap/S2_IMPORT_CHECKPOINT.md) records CSV validation, independent review, application and occupancy comparison. The [individual assignment checkpoint](docs/roadmap/S2_ASSIGNMENT_CHECKPOINT.md) records the user-selected HR + CEO route for assigning, ending and transferring employees.
 
 ## Start here
 

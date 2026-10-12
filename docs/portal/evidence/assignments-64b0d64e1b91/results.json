@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "run_id": "64b0d64e1b91",
+  "reason": "Browser harness opened a newly created transfer from a stale reviewer list; an unhandled response wait stopped the harness.",
+  "completed_checks": 5,
+  "source_hash": "7abd2bc18bc1cc6b38fad882325e65841981b750508e9496e5f67fd678f51e01",
+  "cleanup": {
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3,
+    "history_retained": true,
+    "future_assignments_retained": true
+  }
+}

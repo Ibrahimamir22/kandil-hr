@@ -227,7 +227,10 @@ class TestJoining(unittest.TestCase):
 		result = self.outcome(offer)
 		assignment = frappe.get_doc("Kandil Position Assignment", result["assignment"])
 		assignment.valid_until = today()
-		assignment.save(ignore_permissions=True)
+		# Seed a later reviewed episode; approval behavior is tested in assignment_changes.
+		from kandil_hr.organization.api import transition as organization_transition
+		with organization_transition():
+			assignment.save(ignore_permissions=True)
 		later = self.f.insert(
 			"Kandil Position Assignment",
 			company=self.f.company,

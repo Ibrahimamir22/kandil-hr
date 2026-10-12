@@ -231,6 +231,8 @@ class KandilPositionHierarchy(HistoryDocument):
 class KandilPositionAssignment(HistoryDocument):
 	def validate(self):
 		guard(self)
+		if not internal():
+			fail("Individual assignments, endings and transfers require reviewed HR and CEO approval.")
 		protected(self, ["is_voided", "void_reason", "voided_by", "voided_on"])
 		old = self.get_doc_before_save()
 		if old and old.get("is_voided"):

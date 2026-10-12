@@ -11,6 +11,7 @@ from frappe.utils import cint, getdate
 from kandil_hr.foundation.clock import today_cairo
 from kandil_hr.foundation.security import request_scope
 from kandil_hr.foundation.teams import effective_lead
+from kandil_hr.organization.api import transition as organization_transition
 from kandil_hr.pilot.api import change_capacity, lock_capacities, require_role, transition
 from kandil_hr.recruitment import joining_audit
 from kandil_hr.recruitment.api import save
@@ -207,19 +208,21 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 					custom_kandil_applicant=applicant.name,
 				)
 			).insert(ignore_permissions=True)
-			assignment = frappe.get_doc(
-				dict(
-					doctype="Kandil Position Assignment",
-					company=doc.company,
-					department=doc.department,
-					branch=cap.branch,
-					position=cap.position,
-					employee=employee.name,
-					user=employee.user_id or None,
-					allocation="Primary",
-					valid_from=joining_date,
-				)
-			).insert(ignore_permissions=True)
+			# Assignment follows the already-approved recruitment joining command.
+			with organization_transition():
+				assignment = frappe.get_doc(
+					dict(
+						doctype="Kandil Position Assignment",
+						company=doc.company,
+						department=doc.department,
+						branch=cap.branch,
+						position=cap.position,
+						employee=employee.name,
+						user=employee.user_id or None,
+						allocation="Primary",
+						valid_from=joining_date,
+					)
+				).insert(ignore_permissions=True)
 			line.joined_qty = cint(line.joined_qty) + 1
 			change_capacity(cap, opened=-1, occupied=1)
 			full = cint(line.joined_qty) + cint(line.closed_qty) >= cint(line.approved_qty)

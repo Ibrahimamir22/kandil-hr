@@ -1265,3 +1265,26 @@ Organization imports require the appropriate role and whole-company access.,يت
 Unknown import status.,حالة الاستيراد غير معروفة.
 Resolve unmatched employee and position references before saving.,صحح مراجع الموظفين والمناصب غير المطابقة قبل الحفظ.
 CSV or baseline reference changed. Validate it again before saving.,تغير محتوى الملف أو مرجعه. أعد التحقق قبل الحفظ.
+"Individual assignments, endings and transfers require reviewed HR and CEO approval.",إسناد الموظف أو إنهاء إسناده أو نقله يتطلب اعتماد الموارد البشرية ثم الرئيس التنفيذي.
+"Submit one individual employee change per request, separately from structural changes.",قدّم تغيير موظف واحد في كل طلب منفصل عن تغييرات الهيكل.
+Unsupported employee assignment operation or field.,عملية أو حقل غير مدعوم في تغيير إسناد الموظف.
+Assignment references must be bounded text.,يجب أن تكون مراجع الإسناد نصوصًا ضمن الحد المسموح.
+Individual employee changes cannot be backdated.,لا يمكن تطبيق تغييرات الموظف بأثر رجعي.
+Select an active position in this company.,اختر منصبًا نشطًا في هذه الشركة.
+Select an assignment active at the effective date in the selected position.,اختر إسنادًا ساريًا في تاريخ السريان للمنصب المحدد.
+A transfer must start after the original assignment start date.,يجب أن يبدأ النقل بعد تاريخ بداية الإسناد الأصلي.
+The proposed end must shorten the existing assignment episode.,يجب أن يكون تاريخ الإنهاء المقترح قبل نهاية الإسناد الحالية.
+Select an employee in this company.,اختر موظفًا في هذه الشركة.
+Select a different active destination position in this company.,اختر منصبًا جديدًا مختلفًا ونشطًا في هذه الشركة.
+Only an active employee with a valid joining can receive an assignment.,لا يمكن إسناد منصب إلا لموظف نشط ذي مباشرة عمل سارية.
+The employee linked account must be enabled.,يجب أن يكون حساب الموظف المرتبط مفعّلًا.
+Assignment cannot begin before the employee joins.,لا يمكن أن يبدأ الإسناد قبل مباشرة الموظف للعمل.
+Choose a valid assignment end date.,اختر تاريخًا صحيحًا لنهاية الإسناد.
+Assignment end cannot precede its start.,لا يمكن أن تنتهي فترة الإسناد قبل بدايتها.
+Assignment cannot continue beyond the employee relieving date.,لا يمكن أن يستمر الإسناد بعد تاريخ مغادرة الموظف.
+Assignment cannot overlap position closure.,لا يمكن أن يمتد الإسناد إلى فترة إغلاق المنصب.
+Choose Primary or Acting allocation.,اختر إسنادًا أساسيًا أو قائمًا بالأعمال.
+An employee cannot have overlapping primary assignments.,لا يمكن أن يكون للموظف إسنادان أساسيان في الفترة نفسها.
+Review the unmatched occupied baseline before changing assignments.,راجع اختلاف العدد المشغول المسجل قبل تغيير الإسنادات.
+The destination has insufficient seats after reserved and open hiring commitments.,سعة المنصب الجديد غير كافية بعد احتساب الحجوزات والشواغر المفتوحة.
+An employee cannot approve their own position change.,لا يمكن للموظف اعتماد تغيير منصبه بنفسه.

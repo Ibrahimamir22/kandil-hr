@@ -334,7 +334,16 @@ def validate_new_position(op, company):
 			fail("Position text fields cannot exceed 140 characters.")
 
 
+def reviewed_structure_state(doc):
+	from kandil_hr.organization.assignments import review_state
+	return review_state(doc, structure_state(doc.company))
+
+
 def planned_hierarchy(doc, state):
+	from kandil_hr.organization import assignments
+	if assignments.requested(doc):
+		assignments.plan(doc, assignments.review_state(doc, state))
+		return json.loads(doc.changes_json), state["hierarchy"]
 	rows = [dict(r) for r in state["hierarchy"]]
 	at = getdate(doc.effective_on)
 	operations = json.loads(doc.changes_json)
@@ -450,7 +459,11 @@ def preview_structure(name):
 	doc = get_locked("Kandil Structure Change", name)
 	if doc.status not in ("Draft", "Returned") or doc.owner != frappe.session.user:
 		fail("Only the author can preview a draft or returned structure change.")
-	state = structure_state(doc.company)
+	from kandil_hr.organization import assignments
+	if assignments.requested(doc):
+		frappe.has_permission("Employee", "read", throw=True)
+		frappe.has_permission("Kandil Position Assignment", "read", throw=True)
+	state = reviewed_structure_state(doc)
 	operations, rows = planned_hierarchy(doc, state)
 	with transition():
 		doc.snapshot_hash = digest(state)
@@ -540,7 +553,10 @@ def structure_chain(doc):
 	settings = frappe.get_doc("Kandil Organization Settings", doc.company, for_update=True)
 	chain, skipped, seen = [], [], set()
 	hierarchy = active_hierarchy(doc.company, doc.effective_on)
-	for operation in json.loads(doc.changes_json):
+	from kandil_hr.organization import assignments
+	subjects = assignments.subject_users(doc, reviewed_structure_state(doc)) if assignments.requested(doc) else set()
+	# Individual changes follow the explicitly chosen HR + CEO route.
+	for operation in ([] if assignments.requested(doc) else json.loads(doc.changes_json)):
 		if operation["action"] == "Create":
 			if not operation.get("parent_position"):
 				skipped.append(
@@ -599,6 +615,7 @@ def structure_chain(doc):
 		if (
 			not principal
 			or principal == doc.owner
+			or principal in subjects
 			or not frappe.db.get_value("User", principal, "enabled")
 			or AUTHORITY_ROLES[authority] not in frappe.get_roles(principal)
 		):
@@ -619,7 +636,7 @@ def submit_structure(name, preview_hash, command_id, expected_version):
 			frappe.throw(
 				_("Only the author can submit a draft or returned structure change."), frappe.PermissionError
 			)
-		state = structure_state(doc.company)
+		state = reviewed_structure_state(doc)
 		if not preview_hash or preview_hash != doc.preview_hash or doc.snapshot_hash != digest(state):
 			fail("Structure changed after preview. Preview and review the changes again.")
 		planned_hierarchy(doc, state)
@@ -660,6 +677,9 @@ def decide_structure(
 ):
 	def act(doc):
 		require_independent(doc)
+		from kandil_hr.organization import assignments
+		if assignments.requested(doc) and frappe.session.user in assignments.subject_users(doc, reviewed_structure_state(doc)):
+			fail("An employee cannot approve their own position change.")
 		step = next((s for s in doc.approval_steps if s.decision == "Pending"), None)
 		if doc.status != "Pending" or not step or step.step_key != step_id:
 			fail("This is no longer the active approval step.")
@@ -679,7 +699,7 @@ def decide_structure(
 			fail("A reason of at least three characters is required.")
 		if preview_hash != doc.preview_hash:
 			fail("The reviewed structure preview does not match this request.")
-		state = structure_state(doc.company)
+		state = reviewed_structure_state(doc)
 		if decision == "Approved" and doc.snapshot_hash != digest(state):
 			fail("Structure changed after preview. Return this change for a fresh review.")
 		operations, _rows = planned_hierarchy(doc, state) if decision == "Approved" else ([], [])
@@ -732,6 +752,10 @@ def decide_structure(
 
 
 def apply_structure(doc, operations):
+	from kandil_hr.organization import assignments
+	if assignments.requested(doc):
+		assignments.apply(doc, reviewed_structure_state(doc))
+		operations = []
 	# End all prior edges first: a valid bulk reorganization must not be
 	# rejected merely because its new edges are inserted in another order.
 	for op in operations:
