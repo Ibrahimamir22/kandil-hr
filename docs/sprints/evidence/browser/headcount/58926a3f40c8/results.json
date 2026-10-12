@@ -1,0 +1,67 @@
+{
+  "checked_at": "2026-10-12T17:48:34.488Z",
+  "run_id": "58926a3f40c8",
+  "site": "kandil-parity.localhost",
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "Native en own reservation2-to3 success restarts approvals",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    },
+    {
+      "name": "Native en denial retains dialog and quantities",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    },
+    {
+      "name": "Native ar own reservation2-to3 success restarts approvals",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    },
+    {
+      "name": "Native ar denial retains dialog and quantities",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    },
+    {
+      "name": "Ordinary HR cannot see requester-only revision action",
+      "status": "PASS"
+    },
+    {
+      "name": "Native headcount pages have no runtime JavaScript or HTTP500 failures",
+      "status": "PASS"
+    },
+    {
+      "name": "Source remains unchanged during native proof",
+      "status": "PASS"
+    }
+  ],
+  "runtimeErrors": [],
+  "consoleErrors": [],
+  "serverFailures": [],
+  "cleanup": {
+    "run_id": "58926a3f40c8",
+    "cleaned": true,
+    "users_disabled": 4,
+    "all_fixture_ledgers_zero": true,
+    "immutable_audit_retained": true
+  },
+  "source_hashes": {
+    "kandil_hr/recruitment/api.py": "cb6a54fb8d2b92e49085e04d4e7fbcf1bb2f155db8cd8ae8a83429b20e40bfff",
+    "kandil_hr/recruitment/pending_revision.py": "3a5c462ee086ef95abe918a380c0379c24121197c5e2e12f19769949b2d77f6e",
+    "kandil_hr/recruitment/headcount_contract.py": "e427246224b3f2745a8ed9819705fffb0f584bb6f80d7a431ae2fe049dea0061",
+    "kandil_hr/recruitment/headcount_denials.py": "61231aa26ed39378a00ff34ea1aec07b77644ed0ceff1c63cdee1fa7a601137c",
+    "kandil_hr/recruitment/headcount_http_fixture.py": "27c4b3d969fbfebe1cd8845952df0432b37403749d8bf907c7af2266d96d386c",
+    "kandil_hr/pilot/navigation.py": "421056372d697d6e463da8151d76b1b66c5bc5a5861090d599a9d8aa434e6ea9",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "e9c00f99307963d4f4834a22864c663c0cd6690d14764679cf495cebd40767f9",
+    "kandil_hr/translations/ar.csv": "54615260d16eea55611e5759f3daf49c6e212710a891846a4a93994cc83ec690",
+    "docs/sprints/test_headcount_browser.cjs": "d5672e819c123fd21ce1ad585f521d7e03fedba38aa8664bb9bf34fe2e562cc5"
+  },
+  "source_unchanged": true,
+  "limits": [
+    "Synthetic native UI proof, no production data or external messages.",
+    "Database snapshots obtained through separate CLI connection; credentials omitted.",
+    "Console errors are recorded separately, not silently classified as clean."
+  ]
+}

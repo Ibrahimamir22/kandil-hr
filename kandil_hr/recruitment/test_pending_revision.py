@@ -246,17 +246,72 @@ class TestPendingRevision(unittest.TestCase):
 		self.assertEqual(self.state(name), before)
 
 
+	def test_block_denial_retains_evaluation_and_replays_without_business_changes(self):
+		route = frappe.get_doc("Kandil Recruitment Route", self.f.route.name)
+		route.headcount_mode = "Block"
+		route.save(ignore_permissions=True)
+		self.seed_capacity(0, 3)
+		name = self.pending()
+		before = self.state(name)
+		key, version = uuid.uuid4().hex, str(self.f.load(name).modified)
+		result = self.revise(name, (5,), command_id=key, expected_version=version)
+		self.assertEqual((result["outcome"], result["code"]), ("denied", "HEADCOUNT_BLOCKED"))
+		self.assertEqual(self.state(name), before)
+		event = frappe.get_doc("Kandil Security Event", result["event"])
+		value = json.loads(event.changed_fields)
+		line = value["evaluation"]["lines"][0]
+		self.assertEqual(
+			[line[k] for k in ("requested_qty", "own_reserved_qty", "available", "effective_available", "excess")],
+			[5, 2, 1, 3, 2],
+		)
+		self.assertEqual(value["business_before_hash"], value["business_after_hash"])
+		self.assertEqual(value["actor"], self.f.users["requester"])
+		self.assertEqual(self.revise(name, (5,), command_id=key, expected_version=version), result)
+		self.assertEqual(frappe.db.count("Kandil Security Event", {"reference": event.reference}), 1)
+		self.assertEqual(self.state(name), before)
+
+	def test_warn_short_reason_denial_retains_exact_evaluation_then_valid_reason_succeeds(self):
+		self.seed_capacity(0, 3)
+		name = self.pending()
+		before = self.state(name)
+		result = self.revise(name, (4,), exception_reason="123456789")
+		self.assertEqual(result["code"], "HEADCOUNT_REASON_REQUIRED")
+		value = json.loads(frappe.get_doc("Kandil Security Event", result["event"]).changed_fields)
+		self.assertEqual(value["evaluation"]["exception_reason"], "123456789")
+		self.assertEqual(value["evaluation"]["policy"]["mode"], "Warn")
+		self.assertEqual(self.state(name), before)
+		self.revise(name, (4,), exception_reason="1234567890")
+		self.assertTrue(self.f.load(name).needs_exception)
+		self.assertEqual(frappe.get_doc("Kandil Capacity", self.f.capacities[0]).reserved, 4)
+
+
+	def test_denial_storage_failure_restores_business_state_and_callbacks(self):
+		route = frappe.get_doc("Kandil Recruitment Route", self.f.route.name)
+		route.headcount_mode = "Block"
+		route.save(ignore_permissions=True)
+		self.seed_capacity(0, 3)
+		name = self.pending()
+		before = self.state(name)
+		callbacks = {key: len(getattr(frappe.db, key)) for key in ("before_commit", "after_commit", "before_rollback", "after_rollback")}
+		with patch("kandil_hr.foundation.models.record_security_event", side_effect=RuntimeError("Synthetic denial storage failure")):
+			with self.assertRaisesRegex(RuntimeError, "Synthetic denial storage failure"):
+				self.revise(name, (4,))
+		self.assertEqual(self.state(name), before)
+		self.assertEqual({key: len(getattr(frappe.db, key)) for key in callbacks}, callbacks)
+		self.assertEqual(self.revise(name, (4,))["outcome"], "denied")
+
+
 def run():
 	from kandil_hr.foundation.concurrency_runner import _guard
 	from kandil_hr.foundation.tests_runner import RecordedResult
 
 	_guard()
 	suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestPendingRevision)
-	assert suite.countTestCases() == 10
+	assert suite.countTestCases() == 13
 	result = unittest.TextTestRunner(verbosity=2, resultclass=RecordedResult).run(suite)
 	summary = dict(
 		result="PASS" if result.wasSuccessful() and not result.skipped else "FAIL",
-		discovered=10,
+		discovered=13,
 		executed=result.testsRun,
 		failures=len(result.failures),
 		errors=len(result.errors),
@@ -264,7 +319,7 @@ def run():
 		tests=result.checks,
 		limits="Native synthetic rollback tests; independent connection races and EN/AR HTTP/UI require separate proof",
 	)
-	if not result.wasSuccessful() or result.skipped or result.testsRun != 10:
+	if not result.wasSuccessful() or result.skipped or result.testsRun != 13:
 		error = AssertionError("Pending quantity revision checks failed")
 		error.summary = summary
 		raise error

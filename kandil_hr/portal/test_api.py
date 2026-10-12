@@ -193,6 +193,20 @@ class TestPortalAPI(unittest.TestCase):
 		self.assertTrue(self.f.load(first["name"]).lines[0].job_opening)
 
 
+	def test_pending_quantity_capability_is_requester_only_and_projects_current_quantities(self):
+		request = self.save()
+		self.f.submit(request["name"])
+		with fixtures.acting_as(self.f.users["requester"]):
+			view = api.detail(request["name"])
+		self.assertTrue(view["actions"]["revise_pending_quantities"])
+		self.assertEqual(view["request"]["lines"][0]["proposed_qty"], 2)
+		with fixtures.acting_as(self.f.users["hr"]):
+			self.assertFalse(api.detail(request["name"])["actions"]["revise_pending_quantities"])
+		self.f.approve_all(request["name"])
+		with fixtures.acting_as(self.f.users["requester"]):
+			self.assertFalse(api.detail(request["name"])["actions"]["revise_pending_quantities"])
+
+
 def run():
 	import sys
 
@@ -208,12 +222,12 @@ def run():
 	):
 		raise RuntimeError("Portal checks require the opted-in Administrator parity CLI")
 	suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestPortalAPI)
-	if suite.countTestCases() != 10:
-		raise AssertionError("Expected ten explicit portal checks")
+	if suite.countTestCases() != 11:
+		raise AssertionError("Expected eleven explicit portal checks")
 	result = unittest.TextTestRunner(stream=sys.stderr, verbosity=2, resultclass=RecordedResult).run(suite)
 	summary = dict(
-		suite="portal-api", total=result.testsRun, native_db=10, pure=0,
-		successful=result.wasSuccessful() and not result.skipped and result.testsRun == 10,
+		suite="portal-api", total=result.testsRun, native_db=11, pure=0,
+		successful=result.wasSuccessful() and not result.skipped and result.testsRun == 11,
 		failures=len(result.failures), errors=len(result.errors), skipped=len(result.skipped),
 		checks=result.checks, fixtures_rolled_back=True,
 	)

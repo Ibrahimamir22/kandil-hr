@@ -12,6 +12,7 @@ import datetime
 import json
 import subprocess
 import threading
+import traceback
 import uuid
 from pathlib import Path
 
@@ -33,7 +34,7 @@ def bench(action, run_id, **kwargs):
 			"-T",
 			"-w",
 			"/workspace/frappe-bench",
-			"frappe",
+			"parity-web",
 			"bench",
 			"--site",
 			SITE,
@@ -154,6 +155,7 @@ def main():
 		barrier = threading.Barrier(2)
 		with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
 			results = list(pool.map(lambda item: actor.call(item[0], item[1], barrier), commands))
+		evidence["race_http_statuses"] = [result["status"] for result in results]
 		replies = [message(result) for result in results]
 		assert sum(reply.get("outcome") == "denied" for reply in replies) == 1
 		after = bench("inspect", run_id)
@@ -220,6 +222,21 @@ def main():
 				events=[row["denied"]["event"] for row in denials.values()],
 			)
 		)
+
+
+		before = bench("inspect", run_id)
+		duplicate_results, peak = batch(actor, SUBMIT, [denials["block_blank"]["payload"]] * 20)
+		assert all(message(row) == denials["block_blank"]["denied"] for row in duplicate_results)
+		assert bench("inspect", run_id) == before, "Denied retries created additional events or business effects"
+		unauthorized = call(actors["hr"], SUBMIT, denials["block_blank"]["payload"])
+		assert unauthorized["status"] == 403, "Different actor replay was not denied"
+		assert denials["block_blank"]["denied"]["event"] not in json.dumps(unauthorized["body"])
+		assert bench("inspect", run_id) == before
+		evidence["checks"].append(dict(
+			name="Twenty simultaneous denied-command retries preserve one event; another actor cannot replay it",
+			status="PASS", unauthorized_status=unauthorized["status"],
+			**sanitized_batch(duplicate_results, peak),
+		))
 
 		bench("policy", run_id, mode="Warn")
 		before = bench("inspect", run_id)
@@ -288,6 +305,8 @@ def main():
 		evidence["status"] = "FAIL"
 		# Never include exception text: third-party failures can include credentials.
 		evidence["error_type"] = type(error).__name__
+		frame = traceback.extract_tb(error.__traceback__)[-1]
+		evidence["failure_location"] = dict(file=Path(frame.filename).name, line=frame.lineno)
 		evidence["failed_after_check"] = len(evidence["checks"])
 		raise RuntimeError("Headcount HTTP gate failed; see sanitized evidence") from None
 	finally:

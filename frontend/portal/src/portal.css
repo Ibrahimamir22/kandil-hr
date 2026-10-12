@@ -7,3 +7,5 @@
 .stats{grid-template-columns:repeat(3,minmax(0,1fr))}
 
 .local-test-note{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px;margin-bottom:18px}
+
+.pending-revision table{table-layout:fixed;min-width:0}.pending-revision th,.pending-revision td{white-space:normal;overflow-wrap:anywhere;padding:10px 6px}.pending-revision th:first-child{width:34%}.pending-revision caption{text-align:start;color:var(--muted);font-size:12px;padding-bottom:10px}

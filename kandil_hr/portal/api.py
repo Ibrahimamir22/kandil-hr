@@ -52,7 +52,7 @@ def project(doc):
         cap = frappe.db.get_value("Kandil Capacity", row.capacity, ["branch", "designation"], as_dict=True)
         result["lines"].append(dict(
             name=row.name, capacity=row.capacity, branch=cap.branch, designation=cap.designation,
-            requested_qty=row.requested_qty, approved_qty=row.approved_qty,
+            requested_qty=row.requested_qty, proposed_qty=row.proposed_qty, approved_qty=row.approved_qty,
             reserved_qty=row.reserved_qty, joined_qty=row.joined_qty, job_opening=row.job_opening,
         ))
     result["approval_steps"] = [
@@ -65,10 +65,10 @@ def project(doc):
 def capabilities(doc):
     hints = request_actions(doc.name)
     manage = request_scope(doc, frappe.session.user, "manage")
-    for key in ("submit", "decide", "revise"):
+    for key in ("submit", "decide", "revise", "revise_pending_quantities"):
         hints[key] = bool(hints.get(key) and manage)
     return {key: hints.get(key) for key in (
-        "submit", "decide", "revise", "step_id", "expected_version", "status", "next_authority",
+        "submit", "decide", "revise", "revise_pending_quantities", "step_id", "expected_version", "status", "next_authority",
     )} | {"edit": bool(manage and doc.status == "Draft" and doc.requested_by == frappe.session.user and doc.has_permission("write"))}
 
 

@@ -17,7 +17,7 @@ assert(!fs.existsSync(path.join(out,'results.json')),'Use a fresh fixture; do no
 fs.mkdirSync(out,{recursive:true});
 function bench(action, args={}) {
   let output;
-  try {output=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','frappe','bench','--site','kandil-parity.localhost','execute','kandil_hr.recruitment.headcount_http_fixture.'+action,'--kwargs',JSON.stringify({run_id:runId,...args})],{cwd:devRoot,encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:240000});}
+  try {output=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.recruitment.headcount_http_fixture.'+action,'--kwargs',JSON.stringify({run_id:runId,...args})],{cwd:devRoot,encoding:'utf8',stdio:['ignore','pipe','pipe'],timeout:240000});}
   catch {throw new Error('Private synthetic fixture '+action+' failed; raw output withheld');}
   return JSON.parse(output.split('\n').filter(line=>line.startsWith('{')).at(-1));
 }
@@ -27,7 +27,7 @@ const sourceHashes=hashes();
 (async()=>{
   const checks=[], runtimeErrors=[], consoleErrors=[], serverFailures=[];
   let browser, cleanup;
-  async function check(name,fn){try{await fn();checks.push({name,status:'PASS'});console.log('PASS '+name);}catch(error){checks.push({name,status:'FAIL',error_type:error.name});process.exitCode=1;console.log('FAIL '+name);}}
+  async function check(name,fn){try{await fn();checks.push({name,status:'PASS'});console.log('PASS '+name);}catch(error){checks.push({name,status:'FAIL',error_type:error.name,error_message:String(error.message).slice(0,180),failure_location:error.stack?.split('\n').find(line=>line.includes(__filename))});process.exitCode=1;console.log('FAIL '+name);}}
   async function login(key){
     const context=await browser.newContext({viewport:{width:1500,height:1050}});
     const user=fixture.users[key];
@@ -68,8 +68,9 @@ const sourceHashes=hashes();
           assert.deepEqual(cells.slice(1,4),[denied?'4':'3','2',denied?'2':'1']);
           await page.screenshot({path:path.join(out,`${locale}-${denied?'denied':'success'}-review.png`),fullPage:true});
           await dialog.getByRole('button',{name:await label(page,'Review and restart approvals'),exact:true}).click();
-          const confirmation=page.locator('.modal:visible').last();
           const text=await label(page,'Apply the reviewed quantities and restart all approvals? Existing reservations will change only by the difference.');
+          const confirmation=page.locator('.modal').filter({hasText:text}).last();
+          await confirmation.waitFor({state:'visible'});
           assert((await confirmation.innerText()).includes(text));
           const responsePromise=page.waitForResponse(response=>response.url().includes('/api/method/kandil_hr.recruitment.pending_revision.revise_pending_quantities')&&response.request().method()==='POST');
           await confirmation.locator('.btn-modal-primary').click();
@@ -79,7 +80,8 @@ const sourceHashes=hashes();
           if(denied){
             assert.equal(result.outcome,'denied');
             assert.deepEqual(after.requests[key],record);assert.deepEqual(after.capacities,before.capacities);
-            const notice=page.locator('.modal:visible').last();
+            const notice=page.locator('.modal').filter({hasText:await label(page,'Headcount change denied')}).last();
+            await notice.waitFor({state:'visible'});
             assert((await notice.innerText()).includes(await label(page,'Headcount change denied')));
             assert.equal(await notice.locator('.indicator.red').count(),1);
             assert.equal(await page.evaluate(()=>cur_frm.doc.modified),record.modified);

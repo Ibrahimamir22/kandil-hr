@@ -109,7 +109,17 @@ def revise_pending_quantities(name, command_id, expected_version, quantities, re
 		justification = doc.exception_reason if exception_reason is None else exception_reason
 		# Bounded denial adapter integrates here: this is the exact evaluated
 		# point, after current authorization/locks and before business changes.
-		enforce_shortage(excess=excess, mode=config.headcount_mode, reason=justification)
+		from kandil_hr.recruitment.headcount_denials import build_evaluation
+
+		enforce_shortage(
+			excess=excess,
+			mode=config.headcount_mode,
+			reason=justification,
+			evaluation=build_evaluation(
+				doc, caps, config, requested_quantities=parsed,
+				own_reservations=old_reserved, exception_reason=justification,
+			),
+		)
 		api.snapshot(doc, "Pending quantity revision source")
 		doc.revision = cint(doc.revision) + 1
 		doc.exception_reason = justification

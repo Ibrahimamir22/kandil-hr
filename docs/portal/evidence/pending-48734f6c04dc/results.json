@@ -1,0 +1,59 @@
+{
+  "run_id": "48734f6c04dc",
+  "status": "FAIL",
+  "checked_at": "2026-10-12T17:52:44.678Z",
+  "checks": [
+    {
+      "name": "en: reviewed reservation delta is explicit (success)",
+      "status": "PASS"
+    },
+    {
+      "name": "en: real portal revises 2 to 3, reserves only delta and restarts approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "en: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: reviewed reservation delta is explicit (denial)",
+      "status": "PASS"
+    },
+    {
+      "name": "en: denial retains input and committed audit without business changes",
+      "status": "PASS"
+    },
+    {
+      "name": "en: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError"
+    }
+  ],
+  "cleanup": {
+    "run_id": "48734f6c04dc",
+    "cleaned": true,
+    "users_disabled": 4,
+    "all_fixture_ledgers_zero": true,
+    "immutable_audit_retained": true
+  },
+  "errors": [],
+  "external": [],
+  "server_failures": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "a845a84f4967a3f51757fe0a42f859bcd6d1d6d8a8d81fb74748efcce318c966",
+    "frontend/portal/src/PendingRevision.tsx": "88ef609ec55a454aa19608da5c0b7116057b2b62ef9be58f88ae43a2cb73af81",
+    "frontend/portal/src/portal.css": "1d116e3848d0a1d3b3afb03cd05644848d7698011d99b328e7209de5b2460f17",
+    "kandil_hr/portal/api.py": "22587433efdf2306ea5c229ac95b8e3425509c67c0b6bce7889494acb31e2b65",
+    "kandil_hr/recruitment/pending_revision.py": "3a5c462ee086ef95abe918a380c0379c24121197c5e2e12f19769949b2d77f6e",
+    "kandil_hr/recruitment/headcount_denials.py": "61231aa26ed39378a00ff34ea1aec07b77644ed0ceff1c63cdee1fa7a601137c",
+    "kandil_hr/recruitment/api.py": "cb6a54fb8d2b92e49085e04d4e7fbcf1bb2f155db8cd8ae8a83429b20e40bfff",
+    "docs/portal/test_pending_revision.cjs": "cf092254e083aab4e6957fb365605b5da58766cd6e20d793bc1cee8fb2dc0c37"
+  },
+  "limits": [
+    "Synthetic ordinary-role custom portal journey; not production or full-reference acceptance."
+  ]
+}

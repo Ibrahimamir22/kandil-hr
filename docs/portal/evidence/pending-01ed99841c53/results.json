@@ -1,0 +1,93 @@
+{
+  "run_id": "01ed99841c53",
+  "status": "PASS",
+  "checked_at": "2026-10-12T17:47:34.022Z",
+  "checks": [
+    {
+      "name": "en: reviewed reservation delta is explicit (success)",
+      "status": "PASS"
+    },
+    {
+      "name": "en: real portal revises 2 to 3, reserves only delta and restarts approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "en: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: reviewed reservation delta is explicit (denial)",
+      "status": "PASS"
+    },
+    {
+      "name": "en: denial retains input and committed audit without business changes",
+      "status": "PASS"
+    },
+    {
+      "name": "en: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: reviewed reservation delta is explicit (success)",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: real portal revises 2 to 3, reserves only delta and restarts approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: reviewed reservation delta is explicit (denial)",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: denial retains input and committed audit without business changes",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: page layout fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale portal submission denied and preserves ledger",
+      "status": "PASS"
+    },
+    {
+      "name": "HR cannot see requester-only quantity action",
+      "status": "PASS"
+    },
+    {
+      "name": "No runtime JavaScript errors, HTTP500s or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during portal check",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "01ed99841c53",
+    "cleaned": true,
+    "users_disabled": 4,
+    "all_fixture_ledgers_zero": true,
+    "immutable_audit_retained": true
+  },
+  "errors": [],
+  "external": [],
+  "server_failures": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "4defd427066bb6dfc59f543c29fa95ea17280e6843cacd9136d922aef0d48c98",
+    "frontend/portal/src/PendingRevision.tsx": "1d76c946c3f6a33adcee1bb3f7ea8365bd13fcf3ce30281027df8ff9bd8b9787",
+    "kandil_hr/portal/api.py": "22587433efdf2306ea5c229ac95b8e3425509c67c0b6bce7889494acb31e2b65",
+    "kandil_hr/recruitment/pending_revision.py": "3a5c462ee086ef95abe918a380c0379c24121197c5e2e12f19769949b2d77f6e",
+    "kandil_hr/recruitment/headcount_denials.py": "61231aa26ed39378a00ff34ea1aec07b77644ed0ceff1c63cdee1fa7a601137c",
+    "kandil_hr/recruitment/api.py": "cb6a54fb8d2b92e49085e04d4e7fbcf1bb2f155db8cd8ae8a83429b20e40bfff",
+    "docs/portal/test_pending_revision.cjs": "4235c872a3a4d4e261cd9a99edfa532ba776e03a81220714090d25c6f9ad58a5"
+  },
+  "limits": [
+    "Synthetic ordinary-role custom portal journey; not production or full-reference acceptance."
+  ]
+}
