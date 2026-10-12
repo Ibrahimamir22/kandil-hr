@@ -140,7 +140,7 @@
           "id": "S2-01",
           "description": "Build department/branch/position tree and distinguish job, position, employee and vacancy.",
           "status": "in_progress",
-          "progress": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed editing/imports and full S2 acceptance remain open.",
+          "progress": "Read-only AR/EN organization directory, scoped filters/search/pagination, page reporting view, position detail, dated assignments and JD document links implemented. Nine native and 26 personal-session browser/API checks passed. Reviewed changes/imports are tracked separately in S2-02/03. Full tree and S2 acceptance remain open.",
           "evidence": [
             "S2_IMPLEMENTATION_BRIEF.md",
             "S2_CHECKPOINT.md",
@@ -175,7 +175,13 @@
         {
           "id": "S2-04",
           "description": "Connect JD versions, weighted KPIs and approved AR/EN documents/worker cards.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "JD draft/editor, independent native approval, immutable successors, responsibilities/KPIs/competencies and scoped bilingual JD/worker HTML views are connected. 58 affected native checks and 20 personal-session browser checks passed; evidence is in S2_JD_CHECKPOINT.md. PDF/mail delivery and document acceptance remain open.",
+          "evidence": [
+            "S2_JD_CHECKPOINT.md",
+            "evidence/s2-regression-388118be3749.json",
+            "../portal/evidence/jd-1baa1b2ba681/results.json"
+          ]
         },
         {
           "id": "S2-05",
@@ -676,8 +682,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S2",
-    "summary": "Individual employee assignment/end/transfer portal connected with independent HR + CEO approval, dated history, capacity checks and native write protection. Verified 83 native and 63 browser checks across affected workflows. S2 remains in progress.",
-    "evidence": "S2_ASSIGNMENT_CHECKPOINT.md",
-    "next": "Connect JD editing/independent approval, responsibility/KPI validation and document views; complete S2 history/difference acceptance with HR."
+    "summary": "JD portal authoring, independent revision approval, KPI validation and scoped bilingual document views implemented. Engineering evidence in S2_JD_CHECKPOINT.md; PDF/mail/full history and HR acceptance remain open.",
+    "evidence": "S2_JD_CHECKPOINT.md",
+    "next": "Complete JD document/PDF/mail workflow proof and S2 structural/JD/assignment history differences, then HR acceptance."
   }
 }

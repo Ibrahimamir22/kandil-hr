@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "run_id": "dd687f980690",
+  "checked_at": "2026-10-12T21:37:25.879Z",
+  "checks": [
+    {
+      "name": "JD journey failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "locator.waitFor: Timeout 20000ms exceeded."
+    }
+  ],
+  "cleanup": {
+    "run_id": "dd687f980690",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/main.tsx": "3a8148e05e0eca7e59c61032c13ca29b063aae6889852d29f28f15f719a9e9a8",
+    "frontend/portal/src/JobDescriptions.tsx": "932870f845b65b30d6f5574e0663e1fa456735d9aecea8e9753f2be9b6eff3ce",
+    "frontend/portal/src/portal.css": "7fcba5e9666d6b0efaa4712d8ffa27a65b614a68cd027a177f38936987a5ba7f",
+    "kandil_hr/public/portal/portal.js": "7ebd050969a0f39cc781eef724b3954714e24bd660abc102b47908476bdcfc8e",
+    "kandil_hr/portal/job_descriptions.py": "c17f5c20d86bcfd9f13d995092e05c621f936563b7544c4348bd5d7d00d91fc4",
+    "kandil_hr/organization/api.py": "b9575724e25919e61d8258f9c55c851bcc063e275943eba437978e6d0f802145",
+    "kandil_hr/organization/models.py": "cb8716bcaec8a5e05962bd5ff0687c4ff6457a471ad93d9f1c3540c8919ec5e2",
+    "kandil_hr/organization/documents.py": "58b9bf49ec936736266774eb5f00c5aaf5ce61d74abdb92164a56552cabff682",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/portal/jd_fixture.py": "1bafae3faa9876fb84b9ffb9c79c1207d39b317f69abbfd108fa487a1ad20ca2",
+    "docs/portal/test_jd.cjs": "d6794147fa64e50892293250ebfe98bc62f3b8aba70368c1419297ec52204b35"
+  },
+  "limits": [
+    "Synthetic JD portal journey, not full Sprint 2 acceptance.",
+    "HTML document links verified; PDF pagination and real mail delivery require separate proof.",
+    "Two concurrent approval requests do not certify sustained 1000-user capacity."
+  ]
+}

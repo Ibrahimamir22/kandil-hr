@@ -1288,3 +1288,12 @@ An employee cannot have overlapping primary assignments.,لا يمكن أن يك
 Review the unmatched occupied baseline before changing assignments.,راجع اختلاف العدد المشغول المسجل قبل تغيير الإسنادات.
 The destination has insufficient seats after reserved and open hiring commitments.,سعة المنصب الجديد غير كافية بعد احتساب الحجوزات والشواغر المفتوحة.
 An employee cannot approve their own position change.,لا يمكن للموظف اعتماد تغيير منصبه بنفسه.
+This job description is unavailable for your role or scope.,هذا الوصف الوظيفي غير متاح لدورك أو نطاق صلاحياتك.
+Unknown job description status.,حالة الوصف الوظيفي غير معروفة.
+Only bounded editable job description fields are accepted.,تُقبل فقط حقول الوصف الوظيفي القابلة للتعديل ضمن الحدود المحددة.
+Each job description text field is limited to 12000 characters.,الحد الأقصى لكل حقل نصي في الوصف الوظيفي 12000 حرف.
+Choose an effective date for the job description.,اختر تاريخ سريان الوصف الوظيفي.
+Job description tables exceed the row limit.,تجاوزت جداول الوصف الوظيفي الحد الأقصى للصفوف.
+Unsupported job description row field.,حقل غير مدعوم في صف الوصف الوظيفي.
+Weights must be numbers between zero and 100.,يجب أن تكون الأوزان أرقامًا بين صفر و100.
+Job description row text is limited to 4000 characters.,الحد الأقصى لنص الحقل في صف الوصف الوظيفي 4000 حرف.

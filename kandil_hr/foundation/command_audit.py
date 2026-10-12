@@ -58,7 +58,7 @@ OPERATIONS = {
 			"revise_pending_quantities",
 		}
 	),
-	"organization": frozenset({"submit", "decide", "approve_revision", "review_import", "apply_import"}),
+	"organization": frozenset({"submit", "decide", "approve_revision", "review_import", "apply_import", "portal_save_jd", "portal_create_jd"}),
 	"delegation": frozenset({"create", "revoke", "decide", "revise"}),
 }
 COMMON = (
@@ -321,7 +321,7 @@ def checked_projection(value, *, allow_absent=False):
 	doctype = value.get("doctype")
 	if (
 		allow_absent
-		and doctype == "Kandil Delegation"
+		and doctype in ("Kandil Delegation", "Kandil JD Revision")
 		and set(value) == {"doctype", "name", "record_exists"}
 		and value["record_exists"] is False
 	):
@@ -464,7 +464,9 @@ def record_command(
 	actor = frappe.session.user
 	if actor == "Guest":
 		frappe.throw(_("Command audit requires an authenticated actor."), frappe.PermissionError)
-	creating = domain == "delegation" and operation == "create"
+	creating = (domain == "delegation" and operation == "create") or (
+		domain == "organization" and operation == "portal_create_jd" and target.doctype == "Kandil JD Revision"
+	)
 	before = checked_projection(before, allow_absent=creating)
 	after = checked_projection(after)
 	if creating and before.get("record_exists") is not False:

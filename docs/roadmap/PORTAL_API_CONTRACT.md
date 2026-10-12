@@ -72,3 +72,15 @@ Use the existing proposal company/effective date/reason, optimistic version and 
 For a selected source episode, review rows add `assignment_before` with `employee`, `position`, `allocation`, `valid_from`, `valid_until`. Submitted before-values come from the matching immutable audit. Review authorization is the existing whole-company structure permission; no general employee profile/salary/user payload is projected. The existing route history contains the reviewed operation identifiers.
 
 Dated assignments are authoritative for this operation. No promise of standard Employee profile department/branch synchronization, automatic midnight ledger refresh, payroll effects or external account changes is made by this API.
+
+## S2 JD portal increment
+
+`kandil_hr.portal.job_descriptions` exposes bounded personal-session endpoints:
+
+- GET `listing(position?, status?, search?, start?, page_length?)`: native/scoped revision pages. A position filters its company/job; it does not grant access to sibling anchors.
+- GET `positions(search?, start?, page_length?)`: scoped active anchor positions with current `can_create`; capped pages, no global employee/salary lookup.
+- GET `detail(name)`: explicit editable text/child projections plus status, version, predecessor, approval metadata, warnings and action capabilities. No grade/salary/raw audit data.
+- POST `save(position, payload, command_id, name?, expected_version?, supersedes?)`: validated company-wide author command. Existing name requires author ownership and exact version; anchor/predecessor cannot change. Approved predecessor must be readable and match company/job. Native rules govern approval chronology.
+- POST `approve(name, expected_version, command_id)`: independent native Sector Approver, immutable approval, latest-predecessor recheck. Personal receipt replay revalidates current role/scope and native write permission.
+
+Payload allowlist and row limits live in `portal/job_descriptions.py`. This is a full editable-content replacement; callers must round-trip the editable fields they want retained. Hidden grade data is excluded and left unchanged on updates; new revisions do not inherit that hidden link automatically. Existing native document view/print routes remain authoritative for AR/EN JD and worker-card HTML. PDF/mail acceptance is not implied.

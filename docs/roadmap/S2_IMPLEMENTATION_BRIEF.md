@@ -1,6 +1,6 @@
 # Sprint 2 — organization and job descriptions in the HR portal
 
-**In progress: organization browsing, reviewed structural changes and reviewed CSV imports are implemented; individual assignment editing and JD workflows remain open.** See [organization checkpoint](S2_CHECKPOINT.md) and [structural-change checkpoint](S2_STRUCTURE_CHECKPOINT.md), and [import checkpoint](S2_IMPORT_CHECKPOINT.md) for exact evidence and remaining work. Existing native organization capabilities will be reused through permission-checked adapters. This sprint does not replace Odoo or introduce another HR database.
+**In progress: organization browsing, reviewed structural changes and reviewed CSV imports are implemented; individual assignment approvals are connected; JD authoring/review and bilingual HTML documents are connected, while PDF/mail and full history acceptance remain open.** See [JD checkpoint](S2_JD_CHECKPOINT.md), [individual assignment checkpoint](S2_ASSIGNMENT_CHECKPOINT.md), and [organization checkpoint](S2_CHECKPOINT.md) and [structural-change checkpoint](S2_STRUCTURE_CHECKPOINT.md), and [import checkpoint](S2_IMPORT_CHECKPOINT.md) for exact evidence and remaining work. Existing native organization capabilities will be reused through permission-checked adapters. This sprint does not replace Odoo or introduce another HR database.
 
 Reference coverage: ORG-001, ORG-002, ORG-003, ORG-007, ORG-008, ORG-009, HC-001 and HC-002. Their full definitions remain in the frozen baseline/traceability files; this brief does not replace them.
 
