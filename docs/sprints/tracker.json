@@ -5,7 +5,7 @@
   "title": "قنديل | HR delivery sprints",
   "release_goal": "Deliver a reproducible, bilingual local Frappe HR release for P0–P3, with the selected 40 requirements verified against 80 baseline cases and targeted regression tests.",
   "scope": "P0 baseline + P1 security + P2 organization + P3 requests and vacancies. Full HR parity (P4–P10), company platform, Odoo integrations and production are separate milestones.",
-  "status_note": "Development checkpoint: 28 passed, 42 partial and 10 blocked baseline cases; HR acceptance pending. Occupancy, confidential notes, payroll boundary and notification revocation have new proof. Ten serial suite results, HTTP races and native AR/EN screens are recorded; the implementation goal remains active.",
+  "status_note": "Development checkpoint: 45 passed, 27 partial and 8 blocked baseline cases; HR acceptance pending. Approved HR corrections, structural Return/code imports, session revocation, scoped export and AR/EN shortage display have new native/browser proof. The implementation goal remains active.",
   "sprints": [
     {
       "id": "S0",
@@ -151,7 +151,7 @@
         "T02"
       ],
       "acceptance": "Mutations require manage scope plus authority; direct API, form, query, search/export and file access deny unauthorized scope; revocation is immediate.",
-      "evidence": "Final foundation 52 checks: 25 native DB, 14 pure calendar/clock, 13 mocked scope/helper. Independent stale-snapshot revocation/disabled-account/role-removal gates passed. Complete HTTP channel matrix remains.",
+      "evidence": "Equal-looking A/A1, A/A2, B/B1 native browser/API matrix passed across list, detail, report, links, print, private files and narrow CSV. Broader role/self-interest cases remain.",
       "requirement_ids": [
         "ACC-003"
       ],
@@ -211,7 +211,7 @@
         "T06"
       ],
       "acceptance": "Reviewed mapping for existing employees/seats; default one seat; reimport idempotent; database-enforced unique position capacity; no resize below occupied+reserved+open; concurrent duplicate prevented.",
-      "evidence": "Nine occupancy integration checks passed: dated assignments drive recruitment and closure; unmatched imports require reviewed reconciliation with immutable audit. Later exception hires can conservatively require fresh review.",
+      "evidence": "Reviewed repeated Unit/Job/Position K-001 imports, scoped search/export and conflicting mapping denials pass. Stale-snapshot target rename/delete guard passed four independent-connection probes. Real migration mapping remains unapproved.",
       "requirement_ids": [
         "HC-001",
         "HC-002"
@@ -248,7 +248,7 @@
         "T06"
       ],
       "acceptance": "Transactional outbox rollback/dedupe/retry/exhaustion/revocation tested; operator retry view; no email side effects; SLA uses injectable Cairo clock and calendar.",
-      "evidence": "Five in-flight outbox revocation checks passed; current grants, account state and role removal are checked after locks. Existing outbox race/delivery suites pass. No external delivery or retroactive notification removal is claimed.",
+      "evidence": "Session-safe and currently scoped local notifications remain implemented. Eight workers across two companies and one shared recipient produced exactly two local receipts and no email. External delivery is not configured.",
       "requirement_ids": [],
       "risk": "External email delivery is not configured."
     },
@@ -285,7 +285,7 @@
         "T09"
       ],
       "acceptance": "HR-REC-F02 fields; scoped positions; multilocation lines; vacant manager, same-person steps, self-interest, CEO dated rules and board evidence all tested.",
-      "evidence": "26native recruitment checks passed with26 sourcecheck point; additions include requester and childAPI guards,revokedHRrole,protecteddelegation failure. Full routingbaseline notyetcomplete.",
+      "evidence": "Nine native contract checks pass for complete form fields, Cairo-effective CEO rules, independent exception authority and frozen routes/policies. Board and remaining self-interest/delegation cases stay open.",
       "requirement_ids": [
         "REQ-001",
         "REQ-002",
@@ -308,7 +308,7 @@
         "T13"
       ],
       "acceptance": "Approve/reject/return/edit/send CEO require Pending state and authority; per-step snapshot; returned revision; increased qty reapproval updates same vacancy; allowed reductions/branch edits conserve capacity.",
-      "evidence": "Native checks passed return/revise/amend/reduce/stale and command replay; full baseline mapping and broader HR edits remain.",
+      "evidence": "Six correction checks plus actual native form correction pass: exact 2-to-3 linked increase, actual-joiner floor, reasoned type/date/spec changes, unfilled-seat relocation, immutable revision and replay. Additional baseline workflow clauses remain tracked separately.",
       "requirement_ids": [
         "REQ-006",
         "REQ-008",
@@ -330,7 +330,7 @@
         "T06"
       ],
       "acceptance": "Scoped dated delegation incl revocation/90-day limit and CEO authorization; independent structural-change approval; immutable snapshots; no self-approval via delegate.",
-      "evidence": "Native structural approval/import checks passed. CEO/Boarddelegation nowfailclosed pending independent approval workflow; do not claim exactdelegation parity.",
+      "evidence": "Structural Return/revision/review history and final creation replay pass; mandatory reject/return reasons recorded. CEO/Board delegation stays fail-closed pending its approved workflow.",
       "requirement_ids": [
         "ORG-005",
         "ORG-006"
@@ -350,7 +350,7 @@
         "T09"
       ],
       "acceptance": "Atomic reservations; warn/block approved rule; exception authority; partial joins; hold/resume/close; cancellation releases only intended balances; guidance and actual joins reconcile.",
-      "evidence": "Atomic joining passed 11 native cases: partial/full filling, dated assignment, stable replay and protected submitted offers. Onboarding is Draft only; joining correction/void and concurrent joining proof remain.",
+      "evidence": "Exact 10-3-2-1 headcount and independent Warn exception proofs pass. AR/EN displays requested3/available1/shortage2 and rejects missing justification. Block-denial durable audit and joining void/reopen remain absent.",
       "requirement_ids": [
         "HC-003",
         "HC-004",
@@ -392,13 +392,13 @@
       "lane": "Security",
       "title": "Native identity, MFA and account controls",
       "ar": "الهوية والتحقق وتغيير الحسابات",
-      "status": "planned",
+      "status": "in_progress",
       "depends": [
         "T04",
         "T06"
       ],
       "acceptance": "Record selected identity contract; test enrollment/recovery/session revocation/MFA policy; implement dual-control privileged changes and disabled-user handling; external identity remains gated on provider/configuration.",
-      "evidence": "Security Policy record is configuration only; not enforced MFA or dual control.",
+      "evidence": "Seven real native session checks passed: enabled UI/API, disabled/expired denial and rollback preservation. Server-side disable revokes sessions after commit. MFA, trusted devices, external provider and privileged recovery remain unresolved.",
       "requirement_ids": [
         "ACC-001",
         "ACC-002"
@@ -419,7 +419,7 @@
         "T11"
       ],
       "acceptance": "EN/AR per-user language; translated errors/actions; RTL/mobile; My Requests and approval timeline; every step/edit creates scoped local notification; five missing static keys and untranslated throws resolved.",
-      "evidence": "Native request and queue render in English and Arabic on desktop/mobile. Manager approval, HR approval, bulk assignment and Open buttons passed. Full timeline and notification UI acceptance remains.",
+      "evidence": "Actual native HR correction and EN/AR shortage form proof passed. 937 translation entries cover all extracted keys; terminology and complete timelines still need HR review.",
       "requirement_ids": [
         "REQ-007",
         "REQ-010"
@@ -502,7 +502,7 @@
         "T22"
       ],
       "acceptance": "Actual low-privilege sessions cover two companies/branches, grants/delegates, files, searches/exports and sensitive fields; MFA/recovery/dual-control cases evidenced; no reliance on mocked checks.",
-      "evidence": "Foundation52, mutation authorization4 and scoped browser denials passed on final source. MFA/provider and complete channel matrix remain.",
+      "evidence": "Real session7 and scoped-access12 grouped checks passed with synthetic cleanup. Broader identity/provider and beneficiary authority clauses remain.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -518,7 +518,7 @@
         "T22"
       ],
       "acceptance": "Run native suite for dated routes, hierarchy cycles, acting authority, scope, unique capacity, imports/reimports, resize, JD snapshot/print; record failures and retest evidence.",
-      "evidence": "Organization47 native +35 pure +6 independent races passed. Native CSV preview/load and AR/EN document downloads passed.",
+      "evidence": "Organization47 plus11 exact cases and four stale-snapshot target guards passed. Unit/job/position external identities are preserved; future scheduling and JD distribution gaps remain.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -569,7 +569,7 @@
         "T26"
       ],
       "acceptance": "All 80 baseline cases have actual evidence or explicit failing/blocked status; supplemental defect and concurrency cases included; existing pilot regression checked; no critical open defects.",
-      "evidence": "Strict baseline now 28 passed /42 partial /10 blocked; 80 IDs and expected definitions retained. See checkpoint summary and per-case evidence; technical proof is not HR UAT.",
+      "evidence": "80 baseline definitions preserved: 45 passed, 27 partial, 8 blocked. Eight final source-stable serial suites and three HTTP race batches passed; each case retains exact evidence and source boundary. HR acceptance pending.",
       "requirement_ids": [],
       "risk": "Passing focused checks is not full requirement acceptance."
     },
@@ -602,7 +602,7 @@
         "T27"
       ],
       "acceptance": "Reviewer checks final code/permission boundaries; staged source excludes credentials/uploads/DB; resolve critical defects; record reviewed revision.",
-      "evidence": "Scoped source review resolved identified defects. Final known-local-secret staged scan passed with zero findings; tool limitations and review limits documented. Full release gate remains.",
+      "evidence": "Independent review found and verified the registry stale-read guard fix; no further actionable findings in this bounded diff. Static checks pass; staged credential scan recorded before publication.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -619,7 +619,7 @@
         "T29"
       ],
       "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
-      "evidence": "Tested source d3e2c66100926cfa8ad8f886e6a3debf5a4c0865 pushed to the private repository; checkpoint includes source, tests and evidence. Final tagged release and handover remain pending.",
+      "evidence": "Tested source d94afe79ec59b9d38a15cdd00345684f38dcc6d0 published to the private repository after passing regressions and staged credential checks. Final exact-source install/restore and release tag remain pending.",
       "requirement_ids": [],
       "risk": ""
     },
@@ -724,5 +724,5 @@
       "name": "Full integration and production readiness"
     }
   ],
-  "tested_source_commit": "d3e2c66100926cfa8ad8f886e6a3debf5a4c0865"
+  "tested_source_commit": "d94afe79ec59b9d38a15cdd00345684f38dcc6d0"
 }

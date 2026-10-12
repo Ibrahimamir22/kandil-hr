@@ -1,0 +1,79 @@
+{
+  "checked_at": "2026-10-12T04:03:10.616Z",
+  "results": [
+    {
+      "name": "HTTP preview",
+      "status": "PASS"
+    },
+    {
+      "name": "All tasks visible",
+      "status": "PASS"
+    },
+    {
+      "name": "Five sprints",
+      "status": "PASS"
+    },
+    {
+      "name": "All 40 requirement rows",
+      "status": "PASS"
+    },
+    {
+      "name": "All 80 acceptance cases visible in details",
+      "status": "PASS"
+    },
+    {
+      "name": "Search risk text",
+      "status": "PASS"
+    },
+    {
+      "name": "Sprint filter",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner filter",
+      "status": "PASS"
+    },
+    {
+      "name": "Evidence status filter",
+      "status": "PASS"
+    },
+    {
+      "name": "Review persists",
+      "status": "PASS"
+    },
+    {
+      "name": "Note persists",
+      "status": "PASS"
+    },
+    {
+      "name": "Review cannot promote engineering status",
+      "status": "PASS"
+    },
+    {
+      "name": "Review export",
+      "status": "PASS"
+    },
+    {
+      "name": "Dependency navigation clears filters",
+      "status": "PASS"
+    },
+    {
+      "name": "Mobile no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS errors",
+      "status": "PASS"
+    },
+    {
+      "name": "Artifact link ../SPRINT_PLAN.md",
+      "status": "PASS"
+    },
+    {
+      "name": "Artifact link ../tracker.json",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "scope": "Tracker only; no HR application acceptance tests executed."
+}

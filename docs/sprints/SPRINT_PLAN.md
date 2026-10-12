@@ -12,10 +12,10 @@ Implementation is active. Source work overlaps safely across four lanes; databas
 
 - 98 total requirements; 40 in this delivery; all 80 selected cases assessed individually. Passing focused tests does not automatically pass a complete case.
 - Fresh pinned ARM64 sandbox and synthetic restore passed: database IDs, private files, encrypted field and migration. A final tagged release remains pending.
-- Latest affected suites and independent races passed; detailed results are in CHECKPOINT.md. Baseline: 28 passed, 42 partial, 10 blocked; HR acceptance pending.
+- Latest affected suites and independent races passed; detailed results are in CHECKPOINT.md. Baseline: 45 passed, 27 partial, 8 blocked; HR acceptance pending.
 - Native manager/HR approvals, bulk vacancy assignment, opening action and AR/EN document downloads passed in the browser. Initial Arabic/English desktop/mobile rendering and scoped access checks also passed.
 - HTTP approval replay and capacity races passed; eight-worker notification enqueue/delivery/rollback proof passed.
-- Tested development source `d3e2c66100926cfa8ad8f886e6a3debf5a4c0865` is pushed to the private custom repository. A production or final tagged release is not claimed.
+- Tested development source `d94afe79ec59b9d38a15cdd00345684f38dcc6d0` is pushed to the private custom repository. A production or final tagged release is not claimed.
 - See tracker task evidence and the strict acceptance mapping for current limits. HR policy decisions and human acceptance remain explicit gates.
 
 ## Sprint sequence
@@ -83,7 +83,7 @@ Status vocabulary: verified = task-specific evidence; in_progress = active and i
 | T15 | S2 / Organization | Structural approval and delegated authority | in_progress | T08, T06 |
 | T16 | S2 / Lead | Close headcount and vacancy lifecycle gaps | in_progress | T14, T09 |
 | T17 | S2 / Lead | Recruiter team, priority and queue | in_progress | T13, T06 |
-| T18 | S2 / Security | Native identity, MFA and account controls | planned | T04, T06 |
+| T18 | S2 / Security | Native identity, MFA and account controls | in_progress | T04, T06 |
 | T19 | S2 / QA | Bilingual native workspace and timelines | in_progress | T13, T14, T11 |
 | T20 | S2 / Security | SLA reminders and escalation | in_progress | T11, T13 |
 | T21 | S2 / QA | Verify no payroll actions | in_progress | T13, T18 |
