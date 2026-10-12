@@ -22,12 +22,10 @@ class TestHeadcountContract(unittest.TestCase):
 		before = self.f.load(name).as_dict()
 		counts = self.f.counts(name)
 		caps = [frappe.get_doc("Kandil Capacity", x).as_dict() for x in self.f.capacities]
-		with self.f.rejected(frappe.ValidationError):
-			try:
-				self.f.submit(name)
-			except frappe.ValidationError as error:
-				self.assertIn(message, str(error))
-				raise
+		result = self.f.submit(name)
+		self.assertEqual(result["outcome"], "denied")
+		self.assertIn(message, result["message"])
+		self.assertTrue(frappe.db.exists("Kandil Security Event", result["event"]))
 		self.assertEqual(before, self.f.load(name).as_dict())
 		self.assertEqual(counts, self.f.counts(name))
 		self.assertEqual(caps, [frappe.get_doc("Kandil Capacity", x).as_dict() for x in self.f.capacities])
@@ -177,7 +175,7 @@ def run():
 		fixtures_rolled_back=True,
 		limits=[
 			"Pending2→Return→revise3→resubmit is not atomic Pending edit.",
-			"Rejected attempts roll back; no durable denial audit added.",
+			"Business effects roll back; a private denial audit is retained by the command boundary.",
 		],
 	)
 	print(json.dumps(value))

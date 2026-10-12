@@ -1,0 +1,47 @@
+{
+  "recorded_at": "2026-10-11T18:03:03.010138+03:00",
+  "sources": {
+    "frappe": {
+      "commit": "2871914b69b6e14a4b023d9b7cc52dc3e269cc1b",
+      "directory": "development/frappe-bench/apps/frappe",
+      "version": "16.51.1"
+    },
+    "erpnext": {
+      "commit": "7474d9e786277383de1242ab882f16856d17a9c9",
+      "directory": "development/frappe-bench/apps/erpnext",
+      "version": "16.50.0"
+    },
+    "hrms": {
+      "commit": "7c037698ce57d1492f05a8b4a586a7578f722879",
+      "directory": "development/frappe-bench/apps/hrms",
+      "version": "16.50.0"
+    },
+    "frappe_docker": {
+      "commit": "2b26e9ab8d751e5ea33bb7b930aea3550bb81ded",
+      "directory": "vendor/frappe_docker"
+    },
+    "recruitment_reference": {
+      "commit": "7824be24292c4743b4005e14e2df540786cfe167",
+      "directory": "reference/kandil-recruitment-portal"
+    },
+    "kandil_hr": {
+      "version": "0.0.1",
+      "commit": "890667dd0f8604132094e10776c2ef5ccb5c068d",
+      "directory": "development/frappe-bench/apps/kandil_hr",
+      "remote": null
+    }
+  },
+  "container_images": [
+    "frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557",
+    "mariadb@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15",
+    "redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952"
+  ],
+  "status": "Local recruitment pilot and native workspace verified; source committed locally; HR acceptance pending",
+  "verified_at": "2026-10-11T17:07:29.744465+00:00",
+  "pending": [
+    "HR business acceptance and remaining policy rules",
+    "Production security, recovery and workload validation",
+    "Confirm Odoo/identity/integration scope",
+    "Select private GitHub owner and connect prepared repositories"
+  ]
+}

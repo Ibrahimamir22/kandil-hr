@@ -118,8 +118,9 @@ class TestRecruitmentContracts(unittest.TestCase):
 		self.assertEqual(self.f.load(req.name).as_dict(), before_preview)
 
 		counts = self.f.counts(req.name)
-		with self.f.rejected(frappe.ValidationError):
-			self.f.submit(req.name)
+		denied = self.f.submit(req.name)
+		self.assertEqual(denied["outcome"], "denied")
+		self.assertTrue(frappe.db.exists("Kandil Security Event", denied["event"]))
 		self.assertEqual(self.f.counts(req.name), counts)
 		self.edit(req, exception_reason="Two additional seats require independent review")
 		self.f.submit(req.name)
@@ -186,8 +187,9 @@ class TestRecruitmentContracts(unittest.TestCase):
 		req = self.edit(self.f.request((3,)), exception_reason="Shortage comparison")
 		self.mode("Block")
 		counts = self.f.counts(req.name)
-		with self.f.rejected(frappe.ValidationError):
-			self.f.submit(req.name)
+		denied = self.f.submit(req.name)
+		self.assertEqual(denied["outcome"], "denied")
+		self.assertTrue(frappe.db.exists("Kandil Security Event", denied["event"]))
 		self.assertEqual(self.f.counts(req.name), counts)
 		self.assertEqual(frappe.db.get_value("Kandil Capacity", cap.name, "reserved"), 0)
 		self.mode("Warn")
@@ -217,8 +219,8 @@ class TestRecruitmentContracts(unittest.TestCase):
 		self.assertEqual(after.route_snapshot, route)
 		self.assertEqual(after.status, "Approved")
 		future = self.edit(self.f.request((3,)), exception_reason="Future evaluation must Block")
-		with self.f.rejected(frappe.ValidationError):
-			self.f.submit(future.name)
+		denied = self.f.submit(future.name)
+		self.assertEqual(denied["code"], "HEADCOUNT_BLOCKED")
 		self.assertFalse(self.f.load(future.name).approval_steps)
 		self.assertEqual(self.f.load(req.name).approval_steps[0].principal, self.f.users["sector"])
 

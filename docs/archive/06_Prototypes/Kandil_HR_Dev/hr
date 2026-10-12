@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+case "${1:-status}" in
+  start) docker compose up -d ;;
+  stop) docker compose stop ;;
+  status) docker compose ps ;;
+  logs) docker compose logs --tail 80 frappe ;;
+  shell) docker compose exec -w /workspace/frappe-bench frappe bash ;;
+  backup) docker compose exec -w /workspace/frappe-bench frappe bench --site kandil.localhost backup --with-files ;;
+  *) echo 'Usage: ./hr {start|stop|status|logs|shell|backup}' >&2; exit 2 ;;
+esac

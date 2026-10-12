@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>فترة الاختبار — قنديل مصر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Unna:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5; --card:#FFFFFF; --primary:#A8111C; --primary-2:#8C0E17; --gold:#C6A151; --gold-bg:#F6EEDC; --gold-t:#7A5B17;
+  --heading:#1F1A17; --text:#3F3B37; --muted:#6E6862; --border:#ECE7E0; --line:#F1EDE7; --select:#FBECEC;
+  --ok-t:#157F4A; --ok-bg:#E5F4EC; --warn-t:#B45309; --warn-bg:#FEF1DC; --err-t:#B42318; --err-bg:#FCE8E8;
+  --input:#FFFFFF; --input-b:#DDD6CC; --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);min-height:100vh;color:var(--text);font-family:Almarai,Tahoma,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Almarai,Tahoma,sans-serif;font-weight:800;color:var(--heading);margin:0}
+[lang="en"] h1,[lang="en"] h2,[lang="en"] .brand b{font-family:Unna,Georgia,serif;font-weight:700}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Almarai;font-weight:700;font-size:21px;flex-shrink:0}
+.brand b{display:block;font-family:Almarai;color:var(--heading);font-size:17px;line-height:1.3}
+.brand small{color:var(--muted);font-size:12.5px}
+.lang{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:none;background:transparent;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang button.on{background:var(--primary);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 1px 2px rgba(36,59,69,.06),0 4px 16px rgba(36,59,69,.04)}
+.job{padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--gold)}
+.job h1{font-size:28px;line-height:1.35}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--gold-bg);color:var(--gold-t);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+.summary{white-space:pre-line;font-size:14.5px;color:var(--text);border-top:1px solid var(--line);padding-top:10px}
+.sec{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.sec h2{font-size:20px;color:var(--primary);display:flex;align-items:center;gap:10px}
+.sec h2 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:Almarai;font-size:14px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid > *{min-width:0}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:600;color:var(--heading)}
+.req{color:var(--err-t)}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.inp{height:46px;border:1.5px solid var(--input-b);background:var(--input);border-radius:10px;padding:0 12px;font-size:15px;color:var(--heading);width:100%;outline:none}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,81,.18);background:#fff}
+textarea.inp{height:auto;min-height:80px;padding:10px 12px;resize:vertical}
+.ltr{direction:ltr;text-align:right}
+[dir="ltr"] .ltr{text-align:left}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;color:var(--heading);background:#fff}
+.radios input{accent-color:var(--primary);width:17px;height:17px}
+.file{border:2px dashed #DDD6CC;border-radius:12px;padding:18px;text-align:center;cursor:pointer;background:#FBFCFC;display:flex;flex-direction:column;gap:6px;align-items:center}
+.file:hover{border-color:var(--gold)}
+.file b{color:var(--primary)}
+.file.has{border-style:solid;border-color:var(--ok-t);background:var(--ok-bg)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.8;background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin-top:4px;accent-color:var(--primary);flex:none}
+.btn{height:50px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:16px;font-weight:700;cursor:pointer;width:100%}
+.btn:hover{background:var(--primary-2)}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{border-radius:10px;padding:11px 14px;font-size:14px}
+.msg.err{background:var(--err-bg);color:var(--err-t)}
+.msg.info{background:var(--gold-bg);color:var(--gold-t)}
+.done{padding:34px 24px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.done .ok{width:68px;height:68px;border-radius:50%;background:var(--ok-bg);color:var(--ok-t);display:grid;place-items:center;font-size:32px}
+.ref{font-family:Almarai;font-size:20px;color:var(--heading);direction:ltr;background:var(--bg);border-radius:10px;padding:6px 16px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0;pointer-events:none}
+.foot{text-align:center;font-size:12px;color:var(--muted)}
+.loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 0;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:sp .9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (max-width:640px){ .grid{grid-template-columns:1fr} .job h1{font-size:21px} .sec,.job{padding:18px 16px} }
+
+.doc{padding:14px 16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.doc:last-child{border-bottom:none}
+.doc .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.doc b{color:var(--heading);font-size:15px}
+.doc .meta{font-size:12.5px;color:var(--muted)}
+.pill{border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.p-miss{background:var(--warn-bg);color:var(--warn-t)} .p-up{background:var(--gold-bg);color:var(--gold-t)} .p-ok{background:var(--ok-bg);color:var(--ok-t)}
+.p-rej{background:var(--err-bg);color:var(--err-t)} .p-paper{background:#EEF1F4;color:#4A5763}
+.up{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--primary);color:var(--primary);background:#fff;border-radius:10px;padding:7px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.up input{display:none}
+.up.busy{opacity:.6;pointer-events:none}
+.note{font-size:13px;background:var(--err-bg);color:var(--err-t);border-radius:8px;padding:6px 10px}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok-t)}
+
+.q{padding:16px 18px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:none}
+.q b{color:var(--heading);font-size:15.5px;line-height:1.6}
+.q b i{font-style:normal;color:var(--primary);margin-inline-end:6px}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.scale button{border:1.5px solid var(--border);background:#fff;border-radius:12px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font-family:inherit;color:var(--text)}
+.scale button span{font-size:24px;line-height:1.2}
+.scale button small{font-size:11px;color:var(--muted);line-height:1.3}
+.scale button.on{border-color:var(--primary);background:var(--select);color:var(--primary)}
+.scale button.on small{color:var(--primary);font-weight:700}
+.q.miss{background:var(--err-bg)}
+
+.goal{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;gap:12px}
+.goal:last-child{border-bottom:none}
+.goal i{font-style:normal;flex:none;width:26px;height:26px;border-radius:50%;background:var(--gold-bg);color:var(--gold-t);display:grid;place-items:center;font-weight:800;font-size:13px}
+.goal b{display:block;color:var(--heading)} .goal small{color:var(--muted);font-size:13px}
+.ackd{display:flex;align-items:center;gap:8px;background:var(--ok-bg);color:var(--ok-t);border-radius:10px;padding:10px 14px;font-weight:700;font-size:14px}
+.nt{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:6px;border-inline-start:4px solid var(--ok-t)}
+.nt.cor{border-inline-start-color:var(--warn-t)} .nt:last-child{border-bottom:none}
+.nt .h{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;color:var(--muted)}
+.nt .k{font-weight:700;color:var(--ok-t)} .nt.cor .k{color:var(--warn-t)}
+.nt .rep{background:var(--bg);border-radius:8px;padding:8px 10px;font-size:13.5px}
+.rbox{display:flex;gap:8px;align-items:flex-end}.rbox textarea{min-height:44px}
+.sbtn{height:44px;border-radius:10px;border:1.5px solid var(--primary);background:#fff;color:var(--primary);font-weight:700;padding:0 14px;cursor:pointer;flex:none}
+.prog2{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+.prog2 .bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}.prog2 .bar i{display:block;height:100%;background:var(--gold)}
+.scale.n button span{font-size:20px;font-weight:800}
+.grp{font-size:12.5px;font-weight:700;color:var(--gold-t);background:var(--gold-bg);padding:6px 18px}
+.rv{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}.rv:last-child{border-bottom:none}
+.rv .h{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}.rv .h b{color:var(--heading)}
+.rvs{font-size:13px;color:var(--muted)}.rvs b{font-size:20px;color:var(--primary)!important}
+.rvg{font-size:12px;font-weight:700;color:var(--gold-t)}
+.rvi{display:flex;align-items:center;gap:10px;font-size:14px}.rvi>span:first-child{flex:1}.rvi b{min-width:18px;text-align:center;color:var(--heading)}
+.rvb{width:90px;height:8px;background:var(--line);border-radius:99px;overflow:hidden;flex:none}.rvb i{display:block;height:100%;background:var(--gold)}
+.rvt{font-size:13.5px;background:var(--ok-bg);border-radius:8px;padding:8px 10px}.rvt.cor{background:var(--warn-bg)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><div class="loading"><div class="spin"></div><span>…</span></div></div>
+<script>
+var TOKEN = '<?= token ?>';
+var ST = { lang: 'ar', info: null, err: '', busy: '', done: '', sc: {}, comment: '', replies: {} };
+var TX = {
+  ar: { company: 'قنديل مصر', hr: 'الموارد البشرية', title: 'فترة الاختبار', hi: 'أهلاً', day: 'اليوم {d} من {n}', from: 'من {a} لحد {b}',
+    intro: 'الصفحة دي بتاعتك انت بس: أهدافك في فترة الاختبار، الملاحظات اللي مديرك سجلها على شغلك، وتقييمك لنفسك قبل التقييم النهائي. فترة الاختبار مرة واحدة ومدتها {n} يوم بالكتير.',
+    goals: 'أهدافك', noGoals: 'مديرك لسه بيحط الأهداف — هتلاقيها هنا أول ما تتسجل.', measure: 'هيتقاس بـ', by: 'لحد', ack: 'اطلعت على الأهداف واتفقنا عليها', acked: 'أقريت بالأهداف',
+    log: 'سجل الأداء', noNotes: 'مفيش ملاحظات لسه.', pos: 'إيجابي', cor: 'محتاج تحسين', impact: 'الأثر', reply: 'ردك', replyPh: 'اكتب ردك أو توضيحك (اختياري)', send: 'إرسال',
+    pip: 'خطة تحسين الأداء', support: 'الدعم', review: 'ميعاد المراجعة',
+    self: 'قيّم نفسك', selfIntro: 'قيّم نفسك بصراحة في كل بند من 1 لـ 5 قبل ما مديرك يسجل التقييم النهائي. تقييمك بيتشاف جنب تقييمه.', selfSoon: 'تقييمك لنفسك هيتفتح يوم {d}.', selfDone: 'اتسجل تقييمك لنفسك — شكراً.', selfClosed: 'التقييم الذاتي اتقفل.',
+    comment: 'حابب تضيف حاجة؟ (اختياري)', submit: 'إرسال التقييم', need: 'قيّم نفسك في كل البنود.', sending: 'جارٍ الإرسال…',
+    GOALS: 'الأهداف', VALUES: 'القيم الأساسية', PROD: 'الإنتاجية', QUAL: 'الجودة', V1: 'التميز والمبادرة', V2: 'الالتزام والمسؤولية', V3: 'الانتماء والاحترام', V4: 'العمل الجماعي',
+    s1: 'لا يحقق', s2: 'جزئي', s3: 'يحقق', s4: 'يتجاوز', s5: 'متميز', confirmed: 'مبروك — اتثبت في الوظيفة', saved: 'اتسجل',
+    revs: 'تقييماتك', noRevs: 'تقييماتك هتظهر هنا بعد ما مديرك يسجلها. التقييم النهائي بيظهر بعد قرار الموارد البشرية.', revDay: 'متابعة يوم {d}', revFinal: 'التقييم النهائي', overall: 'التقييم العام', result: 'النتيجة',
+    good: 'اللي ماشي كويس', strengths: 'نقاط القوة', improve: 'محتاج تحسين', ON: 'ماشي في ميعاده', BEHIND: 'متأخر', DONE: 'اتحقق', of5: 'من 5', decCONFIRMED: 'القرار: تثبيت', decTERMINATED: 'القرار: عدم تثبيت',
+    loading: 'لحظات من فضلك…', badT: 'اللينك مش شغال', netErr: 'تعذر الاتصال. اتأكد من الإنترنت وجرب تاني.', foot: 'الصفحة دي ليك انت بس — ماتبعتش اللينك لحد.' },
+  en: { company: 'Kandil Egypt', hr: 'Human Resources', title: 'Probation period', hi: 'Hello', day: 'Day {d} of {n}', from: 'From {a} to {b}',
+    intro: 'This page is yours only: your probation goals, the notes your manager recorded on your work, and your self-assessment before the final evaluation. Probation happens once and lasts at most {n} days.',
+    goals: 'Your goals', noGoals: 'Your manager is still setting your goals — they will appear here once recorded.', measure: 'Measured by', by: 'By', ack: 'I have read the goals and we agreed on them', acked: 'Goals acknowledged',
+    log: 'Performance log', noNotes: 'No notes yet.', pos: 'Positive', cor: 'Needs improvement', impact: 'Impact', reply: 'Your reply', replyPh: 'Write your reply or explanation (optional)', send: 'Send',
+    pip: 'Performance improvement plan', support: 'Support', review: 'Review date',
+    self: 'Rate yourself', selfIntro: 'Rate yourself honestly on each item from 1 to 5 before your manager records the final evaluation. Your rating is seen next to his.', selfSoon: 'Your self-assessment opens on {d}.', selfDone: 'Your self-assessment was recorded — thank you.', selfClosed: 'The self-assessment is closed.',
+    comment: 'Anything to add? (optional)', submit: 'Send my assessment', need: 'Please rate every item.', sending: 'Sending…',
+    GOALS: 'Objectives', VALUES: 'Core values', PROD: 'Productivity', QUAL: 'Quality', V1: 'Excellence and initiative', V2: 'Commitment and responsibility', V3: 'Belonging and respect', V4: 'Teamwork',
+    s1: 'Not met', s2: 'Partly', s3: 'Meets', s4: 'Exceeds', s5: 'Outstanding', confirmed: 'Congratulations — you have been confirmed in the job', saved: 'Saved',
+    revs: 'Your evaluations', noRevs: 'Your evaluations will appear here once your manager records them. The final evaluation appears after the HR decision.', revDay: 'Day {d} follow-up', revFinal: 'Final evaluation', overall: 'Overall rating', result: 'Result',
+    good: 'What is going well', strengths: 'Strengths', improve: 'Needs improvement', ON: 'On track', BEHIND: 'Behind', DONE: 'Achieved', of5: 'out of 5', decCONFIRMED: 'Decision: confirmed', decTERMINATED: 'Decision: not confirmed',
+    loading: 'Please wait…', badT: 'Link not active', netErr: 'Could not connect. Check your internet and try again.', foot: 'This page is for you only — do not share the link.' }
+};
+function t(k){ return TX[ST.lang][k] || k; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s===undefined||s===null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function call(action, payload){
+  return new Promise(function(res, rej){
+    google.script.run.withSuccessHandler(function(r){ r && r.ok ? res(r.data) : rej(r || {}); })
+      .withFailureHandler(function(){ rej({ error: t('netErr') }); }).apiPublic(action, payload);
+  });
+}
+function header(){
+  return '<div class="top"><div class="brand"><div class="mark">' + (ST.lang === 'en' ? 'K' : 'ق') + '</div><div><b>' + t('company') + '</b><small>' + t('hr') + '</small></div></div>' +
+    '<div class="lang"><button data-l="ar" class="' + (ST.lang === 'ar' ? 'on' : '') + '">عربي</button><button data-l="en" class="' + (ST.lang === 'en' ? 'on' : '') + '">English</button></div></div>';
+}
+function setLang(l){ ST.lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl'; render(); }
+function keep(){ var c = $('cm'); if (c) ST.comment = c.value; Array.prototype.forEach.call(document.querySelectorAll('[data-rt]'), function(x){ ST.replies[x.dataset.rt] = x.value; }); }
+function render(){
+  var app = $('app'), I = ST.info; keep();
+  if (!I) { app.innerHTML = header() + '<div class="loading"><div class="spin"></div><span>' + t('loading') + '</span></div>'; bind(); return; }
+  if (I.bad) { app.innerHTML = header() + '<div class="card done"><div class="ok" style="background:var(--warn-bg);color:var(--warn-t)">!</div><h2>' + t('badT') + '</h2><p style="margin:0">' + esc(I.bad) + '</p></div>'; bind(); return; }
+  var pct = Math.round(I.day / I.days * 100), h = header();
+  h += '<div class="card job"><span class="hint">' + t('title') + '</span><h1>' + t('hi') + ' ' + esc(I.name) + '</h1>' +
+    (I.job ? '<div class="tags"><span class="tag">' + esc(I.job) + '</span></div>' : '') +
+    (I.decided === 'CONFIRMED' ? '<div class="ackd">✓ ' + t('confirmed') + '</div>' :
+      '<div class="prog2"><span>' + t('day').replace('{d}', I.day).replace('{n}', I.days) + '</span><span class="bar"><i style="width:' + pct + '%"></i></span><span dir="ltr">' + esc(I.end) + '</span></div>') +
+    '<div class="summary">' + esc(t('intro').replace('{n}', I.days)) + '</div></div>';
+  // goals
+  h += '<div class="card"><div class="sec" style="padding-bottom:8px"><h2><i>1</i>' + t('goals') + '</h2></div>' +
+    (I.goals.length ? I.goals.map(function(g, i){ return '<div class="goal"><i>' + (i + 1) + '</i><div><b>' + esc(g.t) + '</b><small>' + t('measure') + ': ' + esc(g.m) + (g.d ? ' · ' + t('by') + ' <span dir="ltr">' + esc(g.d) + '</span>' : '') + '</small></div></div>'; }).join('') +
+      '<div class="sec" style="padding-top:12px">' + (I.ackAt ? '<div class="ackd">✓ ' + t('acked') + ' <span dir="ltr" style="font-weight:400">' + esc(String(I.ackAt).slice(0, 10)) + '</span></div>' :
+        '<button class="btn" id="ack"' + (ST.busy ? ' disabled' : '') + '>' + t('ack') + '</button>') + '</div>'
+      : '<div class="sec"><div class="msg info">' + t('noGoals') + '</div></div>') + '</div>';
+  // performance log
+  h += '<div class="card"><div class="sec" style="padding-bottom:8px"><h2><i>2</i>' + t('log') + '</h2></div>' +
+    (I.notes.length ? I.notes.map(function(n){
+      return '<div class="nt' + (n.kind === 'COR' ? ' cor' : '') + '"><div class="h"><span class="k">' + t(n.kind === 'COR' ? 'cor' : 'pos') + '</span><span dir="ltr">' + esc(n.date) + '</span></div>' +
+        '<div>' + esc(n.text) + '</div>' + (n.impact ? '<small class="hint">' + t('impact') + ': ' + esc(n.impact) + '</small>' : '') +
+        (n.reply ? '<div class="rep"><b>' + t('reply') + ':</b> ' + esc(n.reply) + '</div>' :
+          '<div class="rbox"><textarea class="inp" data-rt="' + esc(n.id) + '" maxlength="1000" placeholder="' + t('replyPh') + '">' + esc(ST.replies[n.id] || '') + '</textarea><button class="sbtn" data-rs="' + esc(n.id) + '">' + t('send') + '</button></div>') + '</div>';
+    }).join('') : '<div class="sec"><span class="hint">' + t('noNotes') + '</span></div>') + '</div>';
+  // improvement plan
+  if (I.pip) h += '<div class="card sec"><h2><i>!</i>' + t('pip') + '</h2>' + I.pip.goals.map(function(g, i){ return '<div><b>' + (i + 1) + '. ' + esc(g.t) + '</b><br><small class="hint">' + t('measure') + ': ' + esc(g.m) + '</small></div>'; }).join('') +
+    '<div><b>' + t('support') + ':</b> ' + esc(I.pip.support) + '</div><div><b>' + t('review') + ':</b> <span dir="ltr">' + esc(I.pip.review) + '</span></div></div>';
+  // self-assessment
+  if (I.self) {
+    h += '<div class="card"><div class="sec" style="padding-bottom:8px"><h2><i>3</i>' + t('self') + '</h2>';
+    if (I.self.status === 'DONE') h += '<div class="ackd">✓ ' + t('selfDone') + '</div></div></div>';
+    else if (!I.self.open) h += '<div class="msg info">' + (I.self.status === 'OPEN' && I.status !== 'CONFIRMED' && I.day < I.days ? t('selfSoon').replace('{d}', I.self.opensOn) : t('selfClosed')) + '</div></div></div>';
+    else {
+      h += '<span class="hint">' + t('selfIntro') + '</span></div>';
+      var grp = '';
+      I.items.forEach(function(it){
+        if (it.group !== grp) { grp = it.group; h += '<div class="grp">' + t(grp) + '</div>'; }
+        h += '<div class="q' + (ST.miss && ST.miss[it.code] ? ' miss' : '') + '"><b>' + t(it.code) + '</b><div class="scale n" role="radiogroup">' +
+          [1, 2, 3, 4, 5].map(function(v){ return '<button type="button" role="radio" aria-checked="' + (ST.sc[it.code] === v) + '" class="' + (ST.sc[it.code] === v ? 'on' : '') + '" data-q="' + it.code + '" data-v="' + v + '"><span>' + v + '</span><small>' + t('s' + v) + '</small></button>'; }).join('') + '</div></div>';
+      });
+      h += '<div class="sec"><label class="f">' + t('comment') + '<textarea class="inp" id="cm" maxlength="1500">' + esc(ST.comment) + '</textarea></label>' +
+        '<button class="btn" id="selfB"' + (ST.busy ? ' disabled' : '') + '>' + t(ST.busy === 'self' ? 'sending' : 'submit') + '</button></div></div>';
+    }
+  }
+  // v0.27.0 — the employee's own evaluations, once recorded (the final one after the HR decision)
+  var R = I.reviews || [];
+  h += '<div class="card"><div class="sec" style="padding-bottom:8px"><h2><i>' + (I.self ? 4 : 3) + '</i>' + t('revs') + '</h2></div>' + (R.length ? R.map(function(r){
+    var top = r.kind === 'FINAL' ? t('revFinal') : t('revDay').replace('{d}', r.day), sc = r.kind === 'FINAL' ? r.weighted : r.overall;
+    var x = '<div class="rv"><div class="h"><b>' + top + '</b><span class="rvs">' + (r.kind === 'FINAL' ? t('result') : t('overall')) + ' <b>' + sc + '</b> ' + t('of5') + '</span></div>';
+    if (r.kind === 'FINAL') {
+      var grp = '';
+      (I.items || []).forEach(function(it){
+        if (r.items[it.code] === undefined) return;
+        if (it.group !== grp) { grp = it.group; x += '<div class="rvg">' + t(grp) + '</div>'; }
+        x += '<div class="rvi"><span>' + t(it.code) + '</span><span class="rvb"><i style="width:' + (r.items[it.code] * 20) + '%"></i></span><b>' + r.items[it.code] + '</b></div>';
+      });
+    } else if (r.goals.length) {
+      x += r.goals.map(function(g, i){ var gl = (I.goals[i] || {}).t || ''; return '<div class="rvi"><span>' + (i + 1) + '. ' + esc(gl) + (g.n ? '<br><small class="hint">' + esc(g.n) + '</small>' : '') + '</span><span class="pill ' + (g.st === 'BEHIND' ? 'p-miss' : 'p-ok') + '">' + t(g.st) + '</span></div>'; }).join('');
+    }
+    x += (r.strengths ? '<div class="rvt"><b>' + t(r.kind === 'FINAL' ? 'strengths' : 'good') + ':</b> ' + esc(r.strengths) + '</div>' : '') + (r.improve ? '<div class="rvt cor"><b>' + t('improve') + ':</b> ' + esc(r.improve) + '</div>' : '');
+    if (r.kind === 'FINAL' && r.decision) x += '<div class="ackd"' + (r.decision === 'TERMINATED' ? ' style="background:var(--bg);color:var(--heading)"' : '') + '>' + t('dec' + r.decision) + '</div>';
+    return x + '</div>';
+  }).join('') : '<div class="sec"><span class="hint">' + t('noRevs') + '</span></div>') + '</div>';
+  if (ST.err) h += '<div class="msg err">' + esc(ST.err) + '</div>';
+  if (ST.done) h += '<div class="msg info">✓ ' + t('saved') + '</div>';
+  h += '<div class="foot">' + t('foot') + '</div>';
+  app.innerHTML = h; bind();
+  if ($('ack')) $('ack').onclick = function(){ send({ action: 'ACK' }, 'ack'); };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-q]'), function(b){ b.onclick = function(){ ST.sc[b.dataset.q] = Number(b.dataset.v); if (ST.miss) delete ST.miss[b.dataset.q]; render(); }; });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-rs]'), function(b){ b.onclick = function(){ keep(); var id = b.dataset.rs; send({ action: 'REPLY', Note_ID: id, text: ST.replies[id] || '' }, 'reply'); }; });
+  if ($('selfB')) $('selfB').onclick = function(){
+    keep(); ST.miss = {};
+    ST.info.items.forEach(function(it){ if (!ST.sc[it.code]) ST.miss[it.code] = 1; });
+    if (Object.keys(ST.miss).length) { ST.err = t('need'); render(); return; }
+    send({ action: 'SELF', scores: ST.sc, comment: ST.comment, lang: ST.lang }, 'self');
+  };
+}
+function send(pl, kind){
+  ST.err = ''; ST.done = ''; ST.busy = kind; render();
+  pl.token = TOKEN;
+  call('prob.submit', pl).then(function(d){ ST.busy = ''; ST.info = d; ST.done = kind; render(); })
+    .catch(function(e){ ST.busy = ''; ST.err = e.error || t('netErr'); render(); });
+}
+function bind(){ Array.prototype.forEach.call(document.querySelectorAll('[data-l]'), function(b){ b.onclick = function(){ setLang(b.dataset.l); }; }); }
+setLang('ar');
+call('prob.info', { token: TOKEN }).then(function(d){ ST.info = d; render(); }).catch(function(e){ ST.info = { bad: e.error || t('badT') }; render(); });
+</script>
+</body>
+</html>

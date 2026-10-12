@@ -1,0 +1,53 @@
+{
+  "suite": "portal-api",
+  "total": 10,
+  "native_db": 10,
+  "pure": 0,
+  "successful": true,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "checks": [
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_approval_uses_existing_commands_and_pending_draft_edit_fails",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_branch_choices_and_write_scope_match",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_create_and_exact_replay_have_one_document_and_effect",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_edit_preserves_line_identity_and_stale_save_is_rejected",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_overview_detail_are_scoped_and_project_only_public_fields",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_protected_request_and_line_fields_are_rejected",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_read_only_grant_can_read_but_not_create_or_edit",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_revoked_grant_removes_choices_read_and_replay",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_same_command_changed_payload_is_rejected_without_mutation",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.portal.test_api.TestPortalAPI.test_scoped_manager_cannot_edit_requesters_draft",
+      "status": "PASS"
+    }
+  ],
+  "fixtures_rolled_back": true
+}

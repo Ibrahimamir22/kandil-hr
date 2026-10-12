@@ -1,0 +1,164 @@
+[
+  {
+    "name": "E03 Native request submission cannot bypass lifecycle",
+    "status": "PASS",
+    "evidence": "HTTP 403: {'exc_type': 'PermissionError', '_server_messages': '[\"{\\\\\"message\\\\\":\\\\\"Document Type is not submittable\\\\\",\\\\\"as_table\\\\\":false,\\\\\"title\\\\\":\\\\\"Message\\\\\"}\"]', '_error_message': 'No permission for Kandil Hiring Request'}"
+  },
+  {
+    "name": "E04 Draft and list privacy",
+    "status": "PASS",
+    "evidence": "Unassigned approver cannot read the record directly or via list."
+  },
+  {
+    "name": "E05 Requester in route cannot approve their own step",
+    "status": "PASS",
+    "evidence": "Requester step skipped and independent HR approval retained."
+  },
+  {
+    "name": "E06 Delegation history immutable",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Delegation is immutable; revoke it and create a new record."
+  },
+  {
+    "name": "E07 Expired delegation rejected at creation when reversed dates",
+    "status": "PASS",
+    "evidence": "HTTP 417: frappe.exceptions.ValidationError: Delegation must cover 1 to 90 calendar days."
+  },
+  {
+    "name": "E08 Twenty simultaneous requests for five seats",
+    "status": "PASS",
+    "evidence": {
+      "concurrent_submissions": 20,
+      "seats": 5,
+      "reserved": 5,
+      "correct_capacity_rejections": 15,
+      "observations": [
+        {
+          "ok": true,
+          "retries": 0
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": true,
+          "retries": 0
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": true,
+          "retries": 0
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": true,
+          "retries": 0
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": true,
+          "retries": 0
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        },
+        {
+          "ok": false,
+          "http_status": 417,
+          "error": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved."
+        }
+      ]
+    }
+  },
+  {
+    "name": "E09 Simultaneous joining is exactly-once and fills request",
+    "status": "PASS",
+    "evidence": {
+      "results": [
+        {
+          "outcome": "Joined",
+          "employee": "HR-EMP-00908",
+          "onboarding": "HR-EMP-ONB-2026-00004"
+        },
+        {
+          "outcome": "Joined",
+          "employee": "HR-EMP-00908",
+          "idempotent": true
+        }
+      ],
+      "one_employee": true,
+      "request_filled": true
+    }
+  },
+  {
+    "name": "E01 Joined employee assignment cannot be rewritten",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Pilot joining assignment is immutable; transfers and exits require a separate workflow."
+  },
+  {
+    "name": "E02 Joined employee cannot be deleted",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: A joined pilot employee cannot be deleted; a separate exit workflow is required."
+  }
+]

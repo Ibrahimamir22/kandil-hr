@@ -1,0 +1,104 @@
+name: kandil-hr-dev
+services:
+  mariadb:
+    image: mariadb@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15
+    platform: linux/arm64
+    command: [--character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --skip-character-set-client-handshake, --innodb-snapshot-isolation=OFF]
+    environment:
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes:
+      - database:/var/lib/mysql
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  redis-cache:
+    image: redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    platform: linux/arm64
+  redis-queue:
+    image: redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    platform: linux/arm64
+    command: [redis-server, --appendonly, 'yes']
+    volumes:
+      - queue:/data
+  frappe:
+    image: frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557
+    platform: linux/arm64
+    init: true
+    working_dir: /workspace
+    command: [bash, /opt/kandil/start.sh]
+    environment:
+      SHELL: /bin/bash
+      FRAPPE_BIND_ADDR: 0.0.0.0
+    ports:
+      - '127.0.0.1:8100:8000'
+      - '127.0.0.1:9100:9100'
+    volumes:
+      - ./development:/workspace
+      - ./scripts:/opt/kandil:ro
+    secrets: [db_password, admin_password]
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_started
+      redis-queue:
+        condition: service_started
+  test-web:
+    image: frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557
+    platform: linux/arm64
+    profiles: [testing]
+    init: true
+    working_dir: /workspace/frappe-bench
+    command: [bash, /opt/kandil/start-test.sh]
+    environment:
+      FRAPPE_BIND_ADDR: 0.0.0.0
+      FRAPPE_SITE: kandil-test.localhost
+      FRAPPE_SOCKETIO_PORT: '9101'
+    ports:
+      - '127.0.0.1:8101:8000'
+      - '127.0.0.1:9101:9101'
+    volumes:
+      - ./development:/workspace
+      - ./scripts:/opt/kandil:ro
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_started
+      redis-queue:
+        condition: service_started
+  parity-web:
+    image: frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557
+    platform: linux/arm64
+    profiles: [parity]
+    init: true
+    working_dir: /workspace/frappe-bench
+    command: [bash, -c, "node apps/frappe/socketio.js & exec bench --site kandil-parity.localhost serve --port 8000 --noreload"]
+    environment:
+      FRAPPE_BIND_ADDR: 0.0.0.0
+      DEV_SERVER: '1'
+      FRAPPE_SITE: kandil-parity.localhost
+      FRAPPE_SOCKETIO_PORT: '9102'
+    ports:
+      - '127.0.0.1:8102:8000'
+      - '127.0.0.1:9102:9102'
+    volumes:
+      - ./development:/workspace
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis-cache:
+        condition: service_started
+      redis-queue:
+        condition: service_started
+secrets:
+  db_password:
+    file: ./.secrets/db_password
+  admin_password:
+    file: ./.secrets/admin_password
+volumes:
+  database:
+  queue:

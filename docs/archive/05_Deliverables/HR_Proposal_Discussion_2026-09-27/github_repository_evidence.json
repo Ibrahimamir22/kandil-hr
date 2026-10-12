@@ -1,0 +1,498 @@
+{
+  "retrieved": "2026-09-27",
+  "repositories": [
+    {
+      "full_name": "frappe/hrms",
+      "html_url": "https://github.com/frappe/hrms",
+      "description": "Open Source HR and Payroll Software",
+      "archived": false,
+      "pushed_at": "2026-09-27T09:37:21Z",
+      "updated_at": "2026-09-27T10:03:06Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "default_branch": "develop",
+      "stargazers_count": 8829,
+      "open_issues_count": 468,
+      "license_file_url": "https://github.com/frappe/hrms/blob/develop/license.txt",
+      "license_text_excerpt": "### GNU GENERAL PUBLIC LICENSE\n\nVersion 3, 29 June 2007\n\nCopyright (C) 2007 Free Software Foundation, Inc.\n<http://fsf.org/>\n\nEveryone is permitted to copy and distribute verbatim copies of this\nlicense document, but changing it is not allowed.\n\n### Preamble\n\nThe GNU General Public License is a free, copyleft license for\nsoftware and other kinds of works.\n\nThe licenses for most software and other practical works are designed\nto take away your freedom to share and change the works. By contrast,\nthe GNU General Public License is intended to guarantee your freedom\nto share and change all versions of a program--to make sure it remains\nfree software for all its users. We, the Free Software Foundation, use\nthe GNU General Public License for most of our software; it applies\nalso to any other work released this way by its authors. You can apply\nit to your programs, too.\n\nWhen we speak of free software, we are referring to freedom, not\nprice. Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use "
+    },
+    {
+      "full_name": "horilla/horilla-hr",
+      "html_url": "https://github.com/horilla/horilla-hr",
+      "description": "Horilla is a free and open source HR software.",
+      "archived": false,
+      "pushed_at": "2026-09-26T11:41:25Z",
+      "updated_at": "2026-09-26T20:59:45Z",
+      "license": {
+        "key": "lgpl-2.1",
+        "name": "GNU Lesser General Public License v2.1",
+        "spdx_id": "LGPL-2.1",
+        "url": "https://api.github.com/licenses/lgpl-2.1",
+        "node_id": "MDc6TGljZW5zZTEx"
+      },
+      "default_branch": "2.0",
+      "stargazers_count": 1437,
+      "open_issues_count": 127,
+      "license_file_url": "https://github.com/horilla/horilla-hr/blob/2.0/LICENSE",
+      "license_text_excerpt": "                  GNU LESSER GENERAL PUBLIC LICENSE\n                       Version 2.1, February 1999\n\n Copyright (C) 1991, 1999 Free Software Foundation, Inc.\n 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n[This is the first released version of the Lesser GPL.  It also counts\n as the successor of the GNU Library Public License, version 2, hence\n the version number 2.1.]\n\n                            Preamble\n\n  The licenses for most software are designed to take away your\nfreedom to share and change it.  By contrast, the GNU General Public\nLicenses are intended to guarantee your freedom to share and change\nfree software--to make sure the software is free for all its users.\n\n  This license, the Lesser General Public License, applies to some\nspecially designated software packages--typically libraries--of the\nFree Software Foundation and other authors who decide to use it.  You\ncan use it too, but we suggest you first think carefully about whether\nthis license or the ordinary General Public License is the better\nstrategy to use in any particular case"
+    },
+    {
+      "full_name": "orangehrm/orangehrm",
+      "html_url": "https://github.com/orangehrm/orangehrm",
+      "description": "OrangeHRM is a comprehensive Human Resource Management (HRM) System that captures  all the essential functionalities required for any enterprise. ",
+      "archived": false,
+      "pushed_at": "2026-06-28T23:52:36Z",
+      "updated_at": "2026-09-25T13:37:49Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "default_branch": "main",
+      "stargazers_count": 1144,
+      "open_issues_count": 110,
+      "license_file_url": "https://github.com/orangehrm/orangehrm/blob/main/LICENSE",
+      "license_text_excerpt": "                    GNU GENERAL PUBLIC LICENSE\r\n                       Version 3, 29 June 2007\r\n\r\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\r\n Everyone is permitted to copy and distribute verbatim copies\r\n of this license document, but changing it is not allowed.\r\n\r\n                            Preamble\r\n\r\n  The GNU General Public License is a free, copyleft license for\r\nsoftware and other kinds of works.\r\n\r\n  The licenses for most software and other practical works are designed\r\nto take away your freedom to share and change the works.  By contrast,\r\nthe GNU General Public License is intended to guarantee your freedom to\r\nshare and change all versions of a program--to make sure it remains free\r\nsoftware for all its users.  We, the Free Software Foundation, use the\r\nGNU General Public License for most of our software; it applies also to\r\nany other work released this way by its authors.  You can apply it to\r\nyour programs, too.\r\n\r\n  When we speak of free software, we are referring to freedom, not\r\nprice.  Our General Public Licenses are designed to make sure that you\r\nhave the freedom to distribute copies of free software (and charge for\r\nthem if you wish), "
+    },
+    {
+      "full_name": "gamonoid/icehrm",
+      "html_url": "https://github.com/gamonoid/icehrm",
+      "description": "Manage your employees easily with a robust and efficient Human Resource Management System",
+      "archived": false,
+      "pushed_at": "2026-09-14T02:48:13Z",
+      "updated_at": "2026-09-25T13:25:20Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "master",
+      "stargazers_count": 728,
+      "open_issues_count": 178,
+      "license_file_url": "https://github.com/gamonoid/icehrm/blob/master/LICENSE",
+      "license_text_excerpt": "Copyright (c) Ice Hrm Pty Ltd. All rights reserved.\n\nElastic License 2.0 (ELv2)\n\nURL: https://www.elastic.co/licensing/elastic-license\n\n## Acceptance\n\nBy using the software, you agree to all of the terms and conditions below.\n\n## Copyright License\n\nThe licensor grants you a non-exclusive, royalty-free, worldwide,\nnon-sublicensable, non-transferable license to use, copy, distribute, make\navailable, and prepare derivative works of the software, in each case subject to\nthe limitations and conditions below.\n\n## Limitations\n\nYou may not provide the software to third parties as a hosted or managed\nservice, where the service provides users with access to any substantial set of\nthe features or functionality of the software.\n\nYou may not move, change, disable, or circumvent the license key functionality\nin the software, and you may not remove or obscure any functionality in the\nsoftware that is protected by the license key.\n\nYou may not alter, remove, or obscure any licensing, copyright, or other notices\nof the licensor in the software. Any use of the licensor's trademarks is subject\nto applicable law.\n\n## Patents\n\nThe licensor grants you a license, under any patent claims the licensor can\n"
+    },
+    {
+      "full_name": "sapplica/sentrifugo",
+      "html_url": "https://github.com/sapplica/sentrifugo",
+      "description": "Sentrifugo is a FREE and powerful Human Resource Management System (HRMS) that can be easily configured to meet your organizational needs.",
+      "archived": false,
+      "pushed_at": "2021-07-02T11:35:43Z",
+      "updated_at": "2026-09-25T14:01:37Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "default_branch": "master",
+      "stargazers_count": 542,
+      "open_issues_count": 321,
+      "license_file_url": "https://github.com/sapplica/sentrifugo/blob/master/LICENSE.txt",
+      "license_text_excerpt": "GNU GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU General Public License is a free, copyleft license for\nsoftware and other kinds of works.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nthe GNU General Public License is intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.  We, the Free Software Foundation, use the\nGNU General Public License for most of our software; it applies also to\nany other work released this way by its authors.  You can apply it to\nyour programs, too.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if"
+    },
+    {
+      "full_name": "minthcm/minthcm",
+      "html_url": "https://github.com/minthcm/minthcm",
+      "description": "Open-source HCM system for managing HR processes with AI agents. Full data ownership, MCP/A2A-native, no vendor lock-in.",
+      "archived": false,
+      "pushed_at": "2026-09-22T07:16:13Z",
+      "updated_at": "2026-09-22T07:16:33Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "master",
+      "stargazers_count": 440,
+      "open_issues_count": 1,
+      "license_file_url": "https://github.com/minthcm/minthcm/blob/master/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\r\n                       Version 3, 19 November 2007\r\n\r\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\r\n Everyone is permitted to copy and distribute verbatim copies\r\n of this license document, but changing it is not allowed.\r\n\r\n                            Preamble\r\n\r\n  The GNU Affero General Public License is a free, copyleft license for\r\nsoftware and other kinds of works, specifically designed to ensure\r\ncooperation with the community in the case of network server software.\r\n\r\n  The licenses for most software and other practical works are designed\r\nto take away your freedom to share and change the works.  By contrast,\r\nour General Public Licenses are intended to guarantee your freedom to\r\nshare and change all versions of a program--to make sure it remains free\r\nsoftware for all its users.\r\n\r\n  When we speak of free software, we are referring to freedom, not\r\nprice.  Our General Public Licenses are designed to make sure that you\r\nhave the freedom to distribute copies of free software (and charge for\r\nthem if you wish), that you receive source code or can get it if you\r\nwant it, that you can change the soft"
+    },
+    {
+      "full_name": "ever-co/ever-gauzy",
+      "html_url": "https://github.com/ever-co/ever-gauzy",
+      "description": "Ever® Gauzy™ - Open Business Management Platform (ERP/CRM/HRM/ATS/PM) - https://gauzy.co",
+      "archived": false,
+      "pushed_at": "2026-09-27T07:14:17Z",
+      "updated_at": "2026-09-27T11:44:50Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "develop",
+      "stargazers_count": 8118,
+      "open_issues_count": 457,
+      "license_file_url": "https://github.com/ever-co/ever-gauzy/blob/develop/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "timeoff-management/timeoff-management-application",
+      "html_url": "https://github.com/timeoff-management/timeoff-management-application",
+      "description": "Simple yet powerful absence management software for small and medium size business (community edition)",
+      "archived": false,
+      "pushed_at": "2024-03-06T17:35:17Z",
+      "updated_at": "2026-09-19T09:41:43Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "master",
+      "stargazers_count": 1044,
+      "open_issues_count": 266,
+      "license_file_url": "https://github.com/timeoff-management/timeoff-management-application/blob/master/LICENSE",
+      "license_text_excerpt": "Copyright (c) 2015-2017 TimeOff.Management\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "full_name": "jorani/jorani",
+      "html_url": "https://github.com/jorani/jorani",
+      "description": "Leave and Overtime Management System",
+      "archived": false,
+      "pushed_at": "2026-04-04T20:05:34Z",
+      "updated_at": "2026-09-21T15:20:45Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "master",
+      "stargazers_count": 411,
+      "open_issues_count": 19,
+      "license_file_url": "https://github.com/jorani/jorani/blob/master/LICENSE",
+      "license_text_excerpt": "The MIT License\r\n\r\nCopyright (c) 2012-2026, Benjamin BALET.\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\r\n"
+    },
+    {
+      "full_name": "opencats/OpenCATS",
+      "html_url": "https://github.com/opencats/OpenCATS",
+      "description": "Open-source applicant tracking system (ATS) and recruitment CRM for staffing agencies and hiring teams.",
+      "archived": false,
+      "pushed_at": "2026-09-25T20:16:21Z",
+      "updated_at": "2026-09-27T03:14:02Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "master",
+      "stargazers_count": 755,
+      "open_issues_count": 98,
+      "license_file_url": "https://github.com/opencats/OpenCATS/blob/master/LICENSE.md",
+      "license_text_excerpt": "This application is available under two licenses.\n\n 1) OpenCATS code is under Mozilla Public License 2.0\n \n 2) Original code from the 'CATS Project' circa 2007 is under CATS Public License Version 1.1a (a modified Mozilla Public License)\n\nMozilla Public License Version 2.0\n==================================\n\n1. Definitions\n--------------\n\n1.1. \"Contributor\"\n    means each individual or legal entity that creates, contributes to\n    the creation of, or owns Covered Software.\n\n1.2. \"Contributor Version\"\n    means the combination of the Contributions of others (if any) used\n    by a Contributor and that particular Contributor's Contribution.\n\n1.3. \"Contribution\"\n    means Covered Software of a particular Contributor.\n\n1.4. \"Covered Software\"\n    means Source Code Form to which the initial Contributor has attached\n    the notice in Exhibit A, the Executable Form of such Source Code\n    Form, and Modifications of such Source Code Form, in each case\n    including portions thereof.\n\n1.5. \"Incompatible With Secondary Licenses\"\n    means\n\n    (a) that the initial Contributor has attached the notice described\n        in Exhibit B to the Covered Software; or\n\n    (b) that the Covered Software "
+    },
+    {
+      "full_name": "odoo/odoo",
+      "html_url": "https://github.com/odoo/odoo",
+      "description": "Odoo. Open Source Apps To Grow Your Business.",
+      "archived": false,
+      "pushed_at": "2026-09-27T11:44:57Z",
+      "updated_at": "2026-09-27T11:22:42Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "20.0",
+      "stargazers_count": 54698,
+      "open_issues_count": 10519,
+      "license_file_url": "https://github.com/odoo/odoo/blob/20.0/LICENSE",
+      "license_text_excerpt": "\nFor copyright information, please see the COPYRIGHT file.\n\nOdoo is published under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3\n(LGPLv3), as included below. Since the LGPL is a set of additional\npermissions on top of the GPL, the text of the GPL is included at the\nbottom as well.\n\nSome external libraries and contributions bundled with Odoo may be published\nunder other GPL-compatible licenses. For these, please refer to the relevant\nsource files and/or license files, in the source code tree.\n\n**************************************************************************\n\n                   GNU LESSER GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n\n  This version of the GNU Lesser General Public License incorporates\nthe terms and conditions of version 3 of the GNU General Public\nLicense, supplemented by the additional permissions listed below.\n\n  0. Additional Definitions.\n\n  As used herein, \"this License\" refers to version 3 of the GNU Lesser\nGeneral Public License, and "
+    },
+    {
+      "full_name": "OCA/hr",
+      "html_url": "https://github.com/OCA/hr",
+      "description": "Odoo Human Resources Addons",
+      "archived": false,
+      "pushed_at": "2026-09-22T15:28:46Z",
+      "updated_at": "2026-09-25T21:10:32Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "18.0",
+      "stargazers_count": 287,
+      "open_issues_count": 49,
+      "license_file_url": "https://github.com/OCA/hr/blob/18.0/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "OCA/payroll",
+      "html_url": "https://github.com/OCA/payroll",
+      "description": "Odoo modules for payroll management",
+      "archived": false,
+      "pushed_at": "2026-09-25T20:47:03Z",
+      "updated_at": "2026-09-26T02:34:20Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "18.0",
+      "stargazers_count": 123,
+      "open_issues_count": 32,
+      "license_file_url": "https://github.com/OCA/payroll/blob/18.0/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "OCA/hr-attendance",
+      "html_url": "https://github.com/OCA/hr-attendance",
+      "description": "HR Attendance OCA modules for Odoo",
+      "archived": false,
+      "pushed_at": "2026-09-23T06:56:22Z",
+      "updated_at": "2026-09-16T23:41:59Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "18.0",
+      "stargazers_count": 79,
+      "open_issues_count": 45,
+      "license_file_url": "https://github.com/OCA/hr-attendance/blob/18.0/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "OCA/hr-holidays",
+      "html_url": "https://github.com/OCA/hr-holidays",
+      "description": "Human Resources Holidays OCA modules for Odoo",
+      "archived": false,
+      "pushed_at": "2026-09-16T16:08:09Z",
+      "updated_at": "2026-09-16T15:38:11Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "18.0",
+      "stargazers_count": 66,
+      "open_issues_count": 42,
+      "license_file_url": "https://github.com/OCA/hr-holidays/blob/18.0/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "Dolibarr/dolibarr",
+      "html_url": "https://github.com/Dolibarr/dolibarr",
+      "description": "Dolibarr ERP CRM is a modern software package to manage your company or foundation's activity (contacts, suppliers, invoices, orders, stocks, agenda, accounting, ...). it's an open source Web application (written in PHP) designed for businesses of any sizes, foundations and freelancers.",
+      "archived": false,
+      "pushed_at": "2026-09-26T22:56:32Z",
+      "updated_at": "2026-09-27T03:32:39Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "default_branch": "develop",
+      "stargazers_count": 7663,
+      "open_issues_count": 1040,
+      "license_file_url": "https://github.com/Dolibarr/dolibarr/blob/develop/COPYING",
+      "license_text_excerpt": "                    GNU GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU General Public License is a free, copyleft license for\nsoftware and other kinds of works.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nthe GNU General Public License is intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.  We, the Free Software Foundation, use the\nGNU General Public License for most of our software; it applies also to\nany other work released this way by its authors.  You can apply it to\nyour programs, too.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source "
+    },
+    {
+      "full_name": "frappe/erpnext",
+      "html_url": "https://github.com/frappe/erpnext",
+      "description": "Free and Open Source Enterprise Resource Planning (ERP)",
+      "archived": false,
+      "pushed_at": "2026-09-27T09:43:34Z",
+      "updated_at": "2026-09-27T11:31:13Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "default_branch": "develop",
+      "stargazers_count": 39590,
+      "open_issues_count": 1775,
+      "license_file_url": "https://github.com/frappe/erpnext/blob/develop/license.txt",
+      "license_text_excerpt": "                    GNU GENERAL PUBLIC LICENSE\n                       Version 3, 29 June 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU General Public License is a free, copyleft license for\nsoftware and other kinds of works.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nthe GNU General Public License is intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.  We, the Free Software Foundation, use the\nGNU General Public License for most of our software; it applies also to\nany other work released this way by its authors.  You can apply it to\nyour programs, too.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source "
+    },
+    {
+      "full_name": "kimai/kimai",
+      "html_url": "https://github.com/kimai/kimai",
+      "description": "Kimai is the #1 open-source time-tracking application. From freelancers to companies and organisations - everyone can manage timesheets, generate reports, create invoices and so much more... Web-based multi-user application, available as On-Premise or SaaS version: https://www.kimai.org",
+      "archived": false,
+      "pushed_at": "2026-09-26T21:24:58Z",
+      "updated_at": "2026-09-26T23:30:42Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "main",
+      "stargazers_count": 5044,
+      "open_issues_count": 348,
+      "license_file_url": "https://github.com/kimai/kimai/blob/main/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of i"
+    },
+    {
+      "full_name": "anuko/timetracker",
+      "html_url": "https://github.com/anuko/timetracker",
+      "description": "Simple, easy to use, open source time tracking system.",
+      "archived": false,
+      "pushed_at": "2023-12-28T18:07:38Z",
+      "updated_at": "2026-08-17T08:34:38Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "master",
+      "stargazers_count": 208,
+      "open_issues_count": 24,
+      "license_file_url": "https://github.com/anuko/timetracker/blob/master/license.txt",
+      "license_text_excerpt": "Server Side Public License\n\nVERSION 1, OCTOBER 16, 2018\n\nCopyright © 2018 MongoDB, Inc.\n\nEveryone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.\nTERMS AND CONDITIONS\n0. Definitions.\n\n“This License” refers to Server Side Public License.\n\n“Copyright” also means copyright-like laws that apply to other kinds of works, such as semiconductor masks.\n\n“The Program” refers to any copyrightable work licensed under this License. Each licensee is addressed as “you”. “Licensees” and “recipients” may be individuals or organizations.\n\nTo “modify” a work means to copy from or adapt all or part of the work in a fashion requiring copyright permission, other than the making of an exact copy. The resulting work is called a “modified version” of the earlier work or a work “based on” the earlier work.\n\nA “covered work” means either the unmodified Program or a work based on the Program.\n\nTo “propagate” a work means to do anything with it that, without permission, would make you directly or secondarily liable for infringement under applicable copyright law, except executing it on a computer or modifying a private copy. Propagation includes cop"
+    },
+    {
+      "full_name": "frappe/lms",
+      "html_url": "https://github.com/frappe/lms",
+      "description": "Easy to Use, 100% Open Source Learning Management System",
+      "archived": false,
+      "pushed_at": "2026-09-25T19:45:08Z",
+      "updated_at": "2026-09-27T04:21:54Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "develop",
+      "stargazers_count": 3262,
+      "open_issues_count": 121,
+      "license_file_url": "https://github.com/frappe/lms/blob/develop/license.txt",
+      "license_text_excerpt": "GNU AFFERO GENERAL PUBLIC LICENSE\n   Version 3, 19 November 2007\n\nCopyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\nEveryone is permitted to copy and distribute verbatim copies\nof this license document, but changing it is not allowed.\n\n        Preamble\n\nThe GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\nThe licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\nWhen we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of it in new\nfree programs, and that you know you can do these things.\n\nDe"
+    },
+    {
+      "full_name": "CybroOdoo/OpenHRMS",
+      "html_url": "https://github.com/CybroOdoo/OpenHRMS",
+      "description": null,
+      "archived": false,
+      "pushed_at": "2026-09-22T15:13:25Z",
+      "updated_at": "2026-08-19T09:36:04Z",
+      "license": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "default_branch": "18.0",
+      "stargazers_count": 169,
+      "open_issues_count": 74,
+      "license_file_url": "https://github.com/CybroOdoo/OpenHRMS/blob/18.0/LICENSE",
+      "license_text_excerpt": "                    GNU AFFERO GENERAL PUBLIC LICENSE\n                       Version 3, 19 November 2007\n\n Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>\n Everyone is permitted to copy and distribute verbatim copies\n of this license document, but changing it is not allowed.\n\n                            Preamble\n\n  The GNU Affero General Public License is a free, copyleft license for\nsoftware and other kinds of works, specifically designed to ensure\ncooperation with the community in the case of network server software.\n\n  The licenses for most software and other practical works are designed\nto take away your freedom to share and change the works.  By contrast,\nour General Public Licenses are intended to guarantee your freedom to\nshare and change all versions of a program--to make sure it remains free\nsoftware for all its users.\n\n  When we speak of free software, we are referring to freedom, not\nprice.  Our General Public Licenses are designed to make sure that you\nhave the freedom to distribute copies of free software (and charge for\nthem if you wish), that you receive source code or can get it if you\nwant it, that you can change the software or use pieces of it in new\nfree programs, and that you know you can do these things.\n\n  Developers that use our General Public Licenses protect your rights\nwith two steps: (1) assert copyright on the software, and (2) offer\nyou this License which gives you legal permission to copy, distribute\nand/or modify the software.\n\n  A secondary benefit of defending all users' freedom is that\nimprovements made in alternate versions of the program, if they\nreceive widespread use, become available for other developers to\nincorporate.  Many developers of free software are heartened and\nencouraged by the resulting cooperation."
+    },
+    {
+      "full_name": "sevendyne/sevendyne_hrms",
+      "html_url": "https://github.com/sevendyne/sevendyne_hrms",
+      "description": "Open-source Django HRMS — Docker-ready, MIT license, free for commercial use",
+      "archived": false,
+      "pushed_at": "2026-07-15T05:18:36Z",
+      "updated_at": "2026-07-23T09:47:19Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "stargazers_count": 9,
+      "open_issues_count": 1,
+      "license_file_url": "https://github.com/sevendyne/sevendyne_hrms/blob/main/LICENSE",
+      "license_text_excerpt": "MIT License\n\nCopyright (c) 2016-2026 Sevendyne Consultancy Services LLP\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "full_name": "chamanbravo/hrms",
+      "html_url": "https://github.com/chamanbravo/hrms",
+      "description": "Open Source Human Resource Management System",
+      "archived": false,
+      "pushed_at": "2024-10-29T11:20:28Z",
+      "updated_at": "2024-10-29T11:20:32Z",
+      "license": null,
+      "default_branch": "master",
+      "stargazers_count": 0,
+      "open_issues_count": 0,
+      "license_error": "HTTP Error 404: Not Found"
+    },
+    {
+      "full_name": "mimnets/OpenHRApp",
+      "html_url": "https://github.com/mimnets/OpenHRApp",
+      "description": "Open source self-hosted HR and employee attendance system, developed by the help of Google AI Studio, Claude Code - DeepSeek AI without prior knowledge, zero cost, zero knowledge, production ready, Supabase user-friendly database, supports SMTP for email.",
+      "archived": false,
+      "pushed_at": "2026-08-26T17:17:05Z",
+      "updated_at": "2026-09-25T14:00:13Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "stargazers_count": 17,
+      "open_issues_count": 1,
+      "license_file_url": "https://github.com/mimnets/OpenHRApp/blob/main/LICENSE",
+      "license_text_excerpt": "MIT License\n\nCopyright (c) 2026 Monirul Islam\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "full_name": "XynaxDev/hrms-lite",
+      "html_url": "https://github.com/XynaxDev/hrms-lite",
+      "description": "HRMS Lite is an enterprise-grade, AI powered Human Resource Management System built with React 18, FastAPI, PostgreSQL, and LangChain. It enables intelligent workforce analytics, real-time attendance tracking, and secure people operations through a modern, scalable full-stack architecture.",
+      "archived": false,
+      "pushed_at": "2026-02-08T21:02:02Z",
+      "updated_at": "2026-07-25T03:46:24Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "main",
+      "stargazers_count": 2,
+      "open_issues_count": 0,
+      "license_file_url": "https://github.com/XynaxDev/hrms-lite/blob/main/LICENSE",
+      "license_text_excerpt": "MIT License\n\nCopyright (c) 2026 Akash Kumar Sah\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    }
+  ]
+}

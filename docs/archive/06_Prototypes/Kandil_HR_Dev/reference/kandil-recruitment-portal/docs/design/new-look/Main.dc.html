@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>نظام الألوان والخطوط والحالات</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&amp;family=Unna:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FAF8F5}
+a{color:#A8111C}a:hover{color:#7E0D15}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Almarai', sans-serif; color: #3F3B37; background: #FAF8F5; min-height: 1900px; box-sizing: border-box; padding: 48px 24px">
+<div style="max-width: 1180px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px">
+
+<div style="display: flex; flex-direction: column; gap: 8px; border-bottom: 3px solid #C6A151; padding-bottom: 20px">
+<span style="font-size: 13px; font-weight: 700; color: #A8111C">بوابة التوظيف — قنديل مصر</span>
+<h1 style="margin: 0; font-size: 32px; font-weight: 800; color: #1F1A17">نظام الألوان والخطوط والحالات</h1>
+<p style="margin: 0; font-size: 15px; color: #6E6862; max-width: 780px; line-height: 1.9">الألوان الأساسية من دليل الهوية: الأحمر المصري القديم والدهبي. ألوان الحالات ثابتة في كل الشاشات، وكل حالة معاها أيقونة وكلمة.</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #ECE7E0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; color: #A8111C">١ — ألوان الهوية</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+<div style="display: flex; gap: 16px; align-items: stretch; border: 1px solid #ECE7E0; border-radius: 14px; overflow: hidden">
+<div style="width: 150px; background: #A8111C; flex: none"></div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 17px; font-weight: 800; color: #1F1A17">الأحمر المصري</b>
+<span style="font-size: 12.5px; color: #6E6862; direction: ltr; text-align: right">#A8111C · Pantone 7621C</span>
+<span style="font-size: 13px; line-height: 1.8">الشريط العلوي، عناوين الأقسام، الأزرار الأساسية، والقائمة المختارة.</span>
+</div>
+</div>
+<div style="display: flex; gap: 16px; align-items: stretch; border: 1px solid #ECE7E0; border-radius: 14px; overflow: hidden">
+<div style="width: 150px; background: #C6A151; flex: none"></div>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 6px">
+<b style="font-size: 17px; font-weight: 800; color: #1F1A17">الدهبي</b>
+<span style="font-size: 12.5px; color: #6E6862; direction: ltr; text-align: right">#C6A151 · Pantone 7407C</span>
+<span style="font-size: 13px; line-height: 1.8">خط التاب المفتوح، فواصل العناوين، واللمسات المميزة. مش للنصوص لأنه فاتح على الأبيض.</span>
+</div>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{base}}" as="c" hint-placeholder-count="6">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="height: 52px; border-radius: 10px; border: 1px solid #ECE7E0; background: {{c.hex}}"></div>
+<b style="font-size: 12.5px; color: #1F1A17">{{c.name}}</b>
+<span style="font-size: 11.5px; color: #6E6862; direction: ltr; text-align: right">{{c.hex}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #ECE7E0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 16px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; color: #A8111C">٢ — مقاسات الخط (كل مستوى أصغر من اللي فوقه بوضوح)</h2>
+<sc-for list="{{type}}" as="t" hint-placeholder-count="6">
+<div style="display: flex; gap: 20px; align-items: baseline; border-top: 1px solid #F1EDE7; padding-top: 12px">
+<span style="width: 190px; flex: none; font-size: 12px; color: #6E6862; line-height: 1.7">{{t.role}}<br><span style="direction: ltr; display: inline-block">{{t.spec}}</span></span>
+<span style="font-size: {{t.size}}; font-weight: {{t.weight}}; color: {{t.color}}; line-height: 1.5">{{t.sample}}</span>
+</div>
+</sc-for>
+<p style="margin: 0; font-size: 12.5px; color: #6E6862; line-height: 1.8">الخط العربي في دليل الهوية GE SS Two. استخدمت هنا Almarai لأنه الأقرب له ومتاح مجاناً على الإنترنت. لو الشركة عندها ملفات GE SS Two مرخّصة، نحطها مكانه. والخط الإنجليزي Unna، زي الدليل.</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #ECE7E0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 20px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; color: #A8111C">٣ — ألوان الحالات (6 عائلات)</h2>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px">
+<sc-for list="{{statuses}}" as="s" hint-placeholder-count="6">
+<div style="border: 1px solid #ECE7E0; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px; background: #FFFFFF">
+<div style="display: flex; align-items: center; gap: 12px">
+<span style="width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-size: 18px; font-weight: 800; background: {{s.bg}}; color: {{s.fg}}">{{s.icon}}</span>
+<div style="display: flex; flex-direction: column">
+<b style="font-size: 16px; font-weight: 800; color: #1F1A17">{{s.name}}</b>
+<span style="font-size: 12.5px; color: #6E6862">{{s.rule}}</span>
+</div>
+</div>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{s.examples}}" as="e" hint-placeholder-count="3">
+<span style="display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; padding: 4px 12px; font-size: 12.5px; font-weight: 700; background: {{s.bg}}; color: {{s.fg}}"><span style="width: 7px; height: 7px; border-radius: 50%; background: {{s.fg}}"></span>{{e}}</span>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 13px; color: #6E6862; line-height: 1.8">أحمر «مرفوض» قريب من أحمر الهوية، فبيتميّز بالشكل: دايماً جوه شارة صغيرة، ومعاه علامة ✕، وعلى خلفية وردي فاتح. أحمر الهوية مش بيتحط أبداً على شارة حالة.</p>
+</div>
+
+<div style="background: #FFFFFF; border: 1px solid #ECE7E0; border-radius: 16px; padding: 28px; display: flex; flex-direction: column; gap: 18px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800; color: #A8111C">٤ — التابات والأزرار</h2>
+<div style="display: flex; gap: 26px; border-bottom: 1px solid #ECE7E0; font-size: 14px; font-weight: 700; flex-wrap: wrap">
+<span style="padding: 0 0 12px; color: #1F1A17; border-bottom: 3px solid #C6A151">الكل <span style="background: #F6EEDC; color: #7A5B17; border-radius: 999px; padding: 1px 8px; font-size: 12px">24</span></span>
+<span style="padding: 0 0 12px; color: #6E6862; display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #B45309"></span>مستني قرارك <span style="background: #F3EFEA; border-radius: 999px; padding: 1px 8px; font-size: 12px">3</span></span>
+<span style="padding: 0 0 12px; color: #6E6862; display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1F5FBF"></span>جاري <span style="background: #F3EFEA; border-radius: 999px; padding: 1px 8px; font-size: 12px">9</span></span>
+<span style="padding: 0 0 12px; color: #6E6862; display: inline-flex; align-items: center; gap: 6px"><span style="width: 8px; height: 8px; border-radius: 50%; background: #157F4A"></span>معتمد <span style="background: #F3EFEA; border-radius: 999px; padding: 1px 8px; font-size: 12px">12</span></span>
+</div>
+<div style="display: flex; gap: 10px; flex-wrap: wrap">
+<button style="height: 44px; padding: 0 22px; border-radius: 10px; border: none; background: #A8111C; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700">حفظ وإرسال</button>
+<button style="height: 44px; padding: 0 22px; border-radius: 10px; border: none; background: #157F4A; color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 700">✓ اعتماد</button>
+<button style="height: 44px; padding: 0 22px; border-radius: 10px; border: 1px solid #DDD6CC; background: #FFFFFF; color: #1F1A17; font-family: inherit; font-size: 14px; font-weight: 700">رجّع للتعديل</button>
+<button style="height: 44px; padding: 0 22px; border-radius: 10px; border: 1px solid #F2C9CB; background: #FFFFFF; color: #B42318; font-family: inherit; font-size: 14px; font-weight: 700">✕ رفض</button>
+<button style="height: 44px; padding: 0 16px; border-radius: 10px; border: none; background: transparent; color: #A8111C; font-family: inherit; font-size: 14px; font-weight: 700">عرض التفاصيل</button>
+</div>
+<p style="margin: 0; font-size: 13px; color: #6E6862; line-height: 1.8">الزرار الأساسي بأحمر الهوية. أزرار القرار بلون نتيجتها: الاعتماد أخضر، والرفض إطار أحمر. التاب المفتوح خطه دهبي، وتابات الحالات عليها نقطة بلون الحالة.</p>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1900}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      base: [
+        { name: 'عناوين الصفحات', hex: '#1F1A17' },
+        { name: 'النص', hex: '#3F3B37' },
+        { name: 'نص ثانوي', hex: '#6E6862' },
+        { name: 'الخطوط والإطارات', hex: '#ECE7E0' },
+        { name: 'خلفية الصفحة', hex: '#FAF8F5' },
+        { name: 'الكروت', hex: '#FFFFFF' }
+      ],
+      type: [
+        { role: 'عنوان الصفحة', spec: '28px · ExtraBold 800', size: '28px', weight: '800', color: '#1F1A17', sample: 'اعتماداتي' },
+        { role: 'عنوان قسم', spec: '20px · ExtraBold 800 · أحمر', size: '20px', weight: '800', color: '#A8111C', sample: 'مسار الاعتماد' },
+        { role: 'عنوان كارت / اسم', spec: '16px · Bold 700', size: '16px', weight: '700', color: '#1F1A17', sample: 'محاسب تكاليف — العبور' },
+        { role: 'النص العادي', spec: '14px · Regular 400', size: '14px', weight: '400', color: '#3F3B37', sample: 'الطلب عند مدير القطاع المالي من يومين.' },
+        { role: 'تسمية خانة / شارة', spec: '12.5px · Bold 700', size: '12.5px', weight: '700', color: '#6E6862', sample: 'تاريخ الاحتياج' },
+        { role: 'ملاحظة صغيرة', spec: '12px · Regular 400', size: '12px', weight: '400', color: '#6E6862', sample: 'آخر تحديث من ساعة' }
+      ],
+      statuses: [
+        { name: 'اتعمل / اتقبل', rule: 'نتيجة إيجابية نهائية', icon: '✓', fg: '#157F4A', bg: '#E5F4EC', examples: ['معتمد', 'اتعيّن', 'قائمة مختصرة'] },
+        { name: 'اترفض / متأخر', rule: 'نتيجة سلبية أو معاد فات', icon: '✕', fg: '#B42318', bg: '#FCE8E8', examples: ['مرفوض', 'متأخر', 'اتلغى بالرفض'] },
+        { name: 'محتاج تصرّف منك', rule: 'الكرة في ملعبك دلوقتي', icon: '!', fg: '#B45309', bg: '#FEF1DC', examples: ['مستني قرارك', 'رجعلك للتعديل', 'متابعة النهارده'] },
+        { name: 'جاري / عند حد تاني', rule: 'ماشي ومحدش مطلوب منك حاجة', icon: '↻', fg: '#1F5FBF', bg: '#E7F0FD', examples: ['عند المديرين', 'جاري التوظيف', 'تم التواصل'] },
+        { name: 'جزئي / بتعديل / تصعيد', rule: 'اتوافق بشروط أو اتحوّل لمستوى أعلى', icon: '◐', fg: '#6D3FC0', bg: '#F1EBFC', examples: ['اتعتمد بعدد أقل', 'عند مجلس الإدارة', 'اكتمل جزئياً'] },
+        { name: 'محايد / مقفول', rule: 'مسودة، اتلغى، أو اتقفل من غير نتيجة', icon: '–', fg: '#5F5952', bg: '#F1EDE7', examples: ['مسودة', 'اتلغى', 'تم التخطي'] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

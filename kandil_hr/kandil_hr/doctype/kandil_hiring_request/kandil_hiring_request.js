@@ -9,10 +9,15 @@ frappe.ui.form.on('Kandil Hiring Request', {
     const generation = (frm.kandil_action_generation || 0) + 1;
     frm.kandil_action_generation = generation;
     let extended = false, version = null, step = null;
+    const show_denial = result => {
+      if (result?.outcome !== 'denied') return false;
+      frappe.msgprint({title: __('Headcount change denied'), indicator: 'red', message: frappe.utils.escape_html(result.message || __('The headcount change was denied. Your request has not changed.'))});
+      return true;
+    };
     const call = (method, args) => frappe.call({
       method: (extended ? 'kandil_hr.recruitment.api.' : 'kandil_hr.pilot.api.') + method,
       args: { name, ...(extended ? { command_id: crypto.randomUUID(), expected_version: version } : {}), ...args }, freeze: true,
-      callback: (r) => { if (method === 'amend' && r.message?.name) frappe.set_route('Form', 'Kandil Hiring Request', r.message.name); else frm.reload_doc(); }
+      callback: (r) => { if (show_denial(r.message)) return; if (method === 'amend' && r.message?.name) frappe.set_route('Form', 'Kandil Hiring Request', r.message.name); else frm.reload_doc(); }
     });
     frappe.call({
       method: 'kandil_hr.pilot.navigation.request_actions', type: 'GET', args: { name },
@@ -82,6 +87,51 @@ frappe.ui.form.on('Kandil Hiring Request', {
         if (actions.submit) frm.add_custom_button(__('Submit for Approval'), () => {
           if (frm.is_dirty()) return frappe.msgprint(__('Save your changes first.'));
           frappe.confirm(__('Reserve the requested headcount and start approvals?'), () => call('submit_request', {}));
+        });
+        if (extended && actions.revise_pending_quantities && actions.status === 'Pending' && !frm.doc.amends && frm.doc.requested_by === frappe.session.user) frm.add_custom_button(__('Revise pending quantities'), () => {
+          if (frm.is_dirty()) return frappe.msgprint(__('Save your changes first.'));
+          const lines = frm.doc.lines.map(row => ({name: row.name, capacity: row.capacity, quantity: Number(row.proposed_qty), reserved: Number(row.reserved_qty)}));
+          const escape = value => frappe.utils.escape_html(String(value ?? ''));
+          let guidance = null, dialog, submitting = false, previous_attempt = null;
+          const render = () => {
+            if (!dialog) return;
+            const headings = [__('Capacity'), __('New total quantity'), __('Current reservation'), __('Reservation change'), __('Available excluding own reservation'), __('Shortage')];
+            const rows = lines.map((row, i) => {
+              const quantity = Number(dialog.get_value('q' + i));
+              const current = guidance?.rows.find(item => item.capacity === row.capacity);
+              return '<tr>' + [row.capacity, quantity, row.reserved, quantity - row.reserved, current ? current.available : __('Not available'), current ? Math.max(0, quantity - current.available) : __('Not available')].map(value => '<td>' + escape(value) + '</td>').join('') + '</tr>';
+            }).join('');
+            const mode = guidance ? __('Current policy: {0}.', [__(guidance.current_mode)]) : __('Live headcount guidance is unavailable for your role.');
+            dialog.fields_dict.review.$wrapper.html('<p>' + escape(mode) + '</p><div class="table-responsive"><table class="table table-bordered"><thead><tr>' + headings.map(label => '<th>' + escape(label) + '</th>').join('') + '</tr></thead><tbody>' + rows + '</tbody></table></div><p>' + escape(__('Guidance is read-only. Saving checks current capacity again.')) + '</p>');
+          };
+          const fields = [{fieldname:'restart_notice',fieldtype:'HTML',options:'<p>'+escape(__('Changing pending quantities restarts all approvals. Earlier decisions remain in history and do not approve the new quantities.'))+'</p>'}];
+          lines.forEach((row, i) => fields.push({fieldname:'q'+i,fieldtype:'Int',label:__('New total quantity — {0}', [row.capacity]),default:row.quantity,reqd:1,onchange:render}));
+          fields.push({fieldname:'review',fieldtype:'HTML'}, {fieldname:'reason',fieldtype:'Small Text',label:__('Revision reason'),reqd:1}, {fieldname:'exception_reason',fieldtype:'Small Text',label:__('Headcount exception justification'),default:frm.doc.exception_reason || '',description:__('WARN shortages require at least 10 trimmed characters. BLOCK shortages cannot proceed.')});
+          dialog = new frappe.ui.Dialog({title:__('Revise pending quantities'),size:'extra-large',fields,primary_action_label:__('Review and restart approvals'),primary_action: () => {
+            if (submitting) return;
+            const values = dialog.get_values();
+            if (!values) return;
+            const quantities = Object.fromEntries(lines.map((row, i) => [row.name, values['q' + i]]));
+            if (Object.values(quantities).some(value => !Number.isInteger(value) || value <= 0)) return frappe.msgprint(__('Enter a positive whole quantity for every location.'));
+            render();
+            const payload = {name,expected_version:version,quantities,reason:values.reason,exception_reason:values.exception_reason || ''};
+            frappe.confirm(__('Apply the reviewed quantities and restart all approvals? Existing reservations will change only by the difference.'), () => {
+              if (submitting) return;
+              const signature = JSON.stringify(payload);
+              if (!previous_attempt || previous_attempt.signature !== signature) previous_attempt = {signature,command_id:crypto.randomUUID()};
+              submitting = true;
+              dialog.get_primary_btn().prop('disabled', true);
+              frappe.call({method:'kandil_hr.recruitment.pending_revision.revise_pending_quantities',args:{...payload,command_id:previous_attempt.command_id},freeze:true,callback:r => {
+                if (show_denial(r.message)) { previous_attempt = null; return; }
+                dialog.hide(); frm.reload_doc();
+              },always:() => {submitting = false; dialog.get_primary_btn().prop('disabled', false);}});
+            });
+          }});
+          dialog.show(); render();
+          if (actions.headcount_preview) frappe.call({method:'kandil_hr.recruitment.preview.headcount',type:'GET',args:{name},callback:({message:data}) => {
+            if (!data || data.name !== name || data.expected_version !== version) return;
+            guidance = data; render();
+          }});
         });
         if (extended && actions.board_record) frm.add_custom_button(__('Record External Board Decision'), () => {
           frappe.prompt([

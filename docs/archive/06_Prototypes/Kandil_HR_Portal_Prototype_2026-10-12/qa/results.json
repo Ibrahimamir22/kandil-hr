@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "checked_at": "2026-10-12T15:56:22.144Z",
+  "checks": [
+    "Arabic login and role dashboard",
+    "Invalid quantities stay on form",
+    "Demo capacity rejection keeps input",
+    "Draft survives browser reload",
+    "Language switch preserves draft",
+    "Two-location request submitted",
+    "HR approval creates exactly one vacancy per location",
+    "Lead recruiter assignment persists",
+    "Pause vacancy changes view",
+    "Resume vacancy and status filter",
+    "Return requires reviewer note",
+    "Requester revision preserves history and increments version",
+    "Global search returns request and related vacancies",
+    "Arabic mobile dashboard has no page overflow",
+    "Mobile navigation and scrollable request table",
+    "Mobile request wizard layout",
+    "English mobile layout",
+    "Scoped demo reset restores sample state",
+    "Sign out returns to demo login",
+    "Offline file entry loads and enters dashboard",
+    "No browser errors or external network calls"
+  ],
+  "errors": [],
+  "external": [],
+  "scope": "Synthetic browser interactions only. No backend, authentication-security, load or production acceptance is implied."
+}

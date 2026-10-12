@@ -1,0 +1,21 @@
+{
+  "last": "Arabic mobile dashboard has no page overflow",
+  "checks": [
+    "Arabic login and role dashboard",
+    "Invalid quantities stay on form",
+    "Demo capacity rejection keeps input",
+    "Draft survives browser reload",
+    "Language switch preserves draft",
+    "Two-location request submitted",
+    "HR approval creates exactly one vacancy per location",
+    "Lead recruiter assignment persists",
+    "Pause vacancy changes view",
+    "Resume vacancy and status filter",
+    "Return requires reviewer note",
+    "Requester revision preserves history and increments version",
+    "Global search returns request and related vacancies",
+    "Arabic mobile dashboard has no page overflow"
+  ],
+  "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[data-action=\"menu\"]').first()\u001b[22m\n\u001b[2m    - locator resolved to <button data-action=\"menu\" aria-label=\"إغلاق القائمة\" class=\"icon-btn sidebar-close\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n",
+  "errors": []
+}

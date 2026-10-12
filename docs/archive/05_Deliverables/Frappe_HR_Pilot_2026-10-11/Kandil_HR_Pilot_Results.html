@@ -1,0 +1,238 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>قنديل | HR Pilot Results</title><style>
+body{margin:0;background:#f4f6f8;color:#20333b;font:16px/1.6 system-ui,sans-serif}main{max-width:1150px;margin:auto;padding:42px 28px}h1{font-size:40px;line-height:1.15}h2{margin-top:36px}p{max-width:1000px}.top{color:#657680;font-size:13px;text-transform:uppercase;letter-spacing:.1em}.cards{display:flex;flex-wrap:wrap;gap:16px;margin:24px 0}.cards div{background:#fff;border-radius:12px;padding:20px;min-width:180px}.cards strong{display:block;font-size:34px;color:#166e52}table{width:100%;border-collapse:collapse;background:white}td,th{padding:13px;border-bottom:1px solid #e0e5e7;text-align:left;vertical-align:top}th{background:#21343e;color:white}.PASS{color:#097044;font-weight:bold}.FAIL{color:#aa2a37;font-weight:bold}.notice{border-left:4px solid #a72732;background:#fff;padding:20px}pre{font-size:12px;white-space:pre-wrap;overflow-wrap:anywhere}summary{cursor:pointer;color:#3e6f82}a{color:#12647b}img{width:100%;border:1px solid #d9e2e5;border-radius:12px;margin:16px 0}li{margin:9px 0}.flow{padding:20px;background:#20333b;color:white;border-radius:12px;font-size:19px}@media(max-width:650px){main{padding:25px 14px}h1{font-size:30px}td,th{padding:8px}}
+</style><main><div class="top">قنديل · Local implementation and verification · 11 October 2026</div><h1>Recruitment pilot built.<br>Ready for HR review.</h1>
+<p class="notice"><b>Conclusion:</b> Continue evaluating Frappe as the HR foundation. The three previously confirmed fit gaps now have working pilot implementations, and the original numbering conflict no longer reproduces in the tested workload. HR's business acceptance, production security, deployment, payroll and sustained load validation remain pending. This is not the complete recruitment blueprint or the company-wide platform.</p>
+<div class="cards"><div><strong>35 / 35</strong>Custom workflow checks passed</div><div><strong>1,000</strong>Synthetic volume employees</div><div><strong>600 / 600</strong>Mixed volume operations passed</div></div>
+<p>In addition: a phone-only candidate completed a standard interview and scored feedback, received an accepted offer, and remained unjoined. Request submission and two approval steps were also completed through the actual browser buttons, without page JavaScript errors or HTTP 5xx responses.</p>
+<p><a href="http://localhost:8101/kandil-pilot">Open the pilot</a> · <a href="HR_Review_Checklist_AR_EN.md">Arabic / English HR review checklist</a></p>
+<h2>What was built</h2><div class="flow">Request with location lines → Reserve quantities → Independent approvals → Opening per location → Candidate → Interview → Offer → Actual joining / No-show</div>
+<ul><li>Versioned custom DocTypes, action endpoints, role rules, form buttons and a bilingual review entry page in <code>kandil_hr</code>.</li><li>Atomic capacity reservations, an exception gate, partial filling, rejection and cancellation without losing actual joiners.</li><li>Phone-only Job Applicants with internal IDs, optional email metadata and an application duplicate constraint. No fabricated email addresses.</li><li>Dated, revocable delegation with principal/actor attribution and prevention of delegated self-approval.</li><li>Accepted offers do not count as hires. Actual joining creates an Employee and an onboarding task; repeated joining creates no duplicate. A no-show retains the vacancy.</li><li>Server controls reject direct status changes, fake audit events, manual pilot openings and employee conversion that bypasses joining.</li></ul>
+<h2>The concurrency investigation</h2><p>The local database is MariaDB 11.8.9. Its snapshot-isolation setting was ON with REPEATABLE-READ. Standard Frappe numbering locks conflicted under that setting. MariaDB documents the changed default and the record-changed error behavior in its <a href="https://mariadb.com/docs/server/server-usage/storage-engines/innodb/innodb-system-variables#innodb_snapshot_isolation">official system-variable reference</a>.</p>
+<table><tr><th>Controlled probe</th><th>Concurrency</th><th>Result</th></tr><tr><td>Original setting</td><td>5</td><td>2 of 10 writes saved; 8 failed</td></tr><tr><td>Snapshot isolation OFF, row locking retained</td><td>10</td><td>100 of 100 saved; 100 distinct record IDs; no retries</td></tr></table>
+<p>The compatibility setting is persisted in this local Compose project's MariaDB command. It affects the shared local server used by both local sites; main-site business records were not migrated or populated by this work. No global Docker setting or unrelated project was changed.</p>
+<p>A separate custom-pilot deadlock involved locking an empty approval-step range. The pilot now avoids that unnecessary draft lock and has at most three retries of a fully rolled-back transaction for transient database deadlocks. Authorization and validation errors are not retried. No external effects are performed in those transactions.</p>
+<table><tr><th>Pilot race</th><th>Observed result</th></tr><tr><td>Two requests for one seat</td><td>One reservation; one controlled exception-required rejection.</td></tr><tr><td>Twenty simultaneous requests for five seats</td><td>Exactly five reservations and fifteen controlled rejections. No HTTP 500. Successful submissions reported zero retries in this run.</td></tr><tr><td>Two simultaneous joining submissions</td><td>Both returned the same Employee; only one occupied-headcount increment.</td></tr><tr><td>Ledger reconciliation</td><td>All six fixture capacities balanced against pending/approved request lines and actual employees. Earlier failed-run requests remain as labeled synthetic history; their reservations are accounted for.</td></tr></table>
+<h2>Volume test: what the numbers mean</h2><p>1,000 additional synthetic Employee records were created through normal validation. The test site then contained 1,008 employees in total. Ten authenticated sessions performed a short batch of 600 business operations, using 700 HTTP requests: 300 individual reads, 200 paginated list reads, and 100 attendance create-and-submit pairs.</p>
+<table><tr><th>Operation</th><th>Count</th><th>Failures</th><th>95th percentile</th></tr><tr><td>attendance write</td><td>100</td><td>0</td><td>130.58 ms</td></tr><tr><td>employee list</td><td>200</td><td>0</td><td>36.37 ms</td></tr><tr><td>employee read</td><td>300</td><td>0</td><td>36.34 ms</td></tr></table>
+<p>The batch took 2.52 seconds on this Mac's local Docker development environment. The 95th percentile means 95% of measured operations completed within that time. These figures exclude network travel to a production server, login storms, 1,000 simultaneous users, payroll runs, biometric history, notifications and sustained soak testing. They are evidence for this pilot dataset, not an SLA or a hosting specification.</p>
+<h2>Actual screens</h2><img src="pilot-review-home.png" alt="Bilingual pilot entry page"><img src="pilot-review-request.png" alt="Approved multi-location hiring request"><p>Native Frappe forms are functional review surfaces. This is not the final Kandil design; broader Arabic translation and UX work remain.</p>
+<h2>Where this pilot differs from the full requirements</h2><ul><li><b>Approval routing:</b> a configurable department route with an independent exception approver. Full organization hierarchy resolution, effective-dated CEO rules and compensation authority are not implemented.</li><li><b>Quantities:</b> approved quantity equals requested quantity. Reductions, return-for-amendment versions and changing an approved position need further workflow work.</li><li><b>Capacity:</b> the pilot enforces a justification/exception gate; HR must decide whether the first operational phase should use the blueprint's warning mode. Baseline occupied values are setup inputs. Transfers, exits and ongoing reconciliation/imports remain to be designed.</li><li><b>Identity:</b> one normalized contact per opening prevents the tested duplicate. Shared phone numbers, alternative country formats, identity correction and reapplication rules need HR review.</li><li><b>Security:</b> requester scope, unrelated-reader rejection, selected employee restrictions and action authorization were tested. Recruiter/Sector roles see all pilot records. This is not a full field-level or multi-company privacy audit.</li><li><b>Joining:</b> final outcomes and employee assignments are protected. Reversals, rehire, approved transfers and exits require new audited flows.</li><li><b>Readiness:</b> no Egypt payroll validation, Odoo/BioTime/Sheets integration, backup restoration, external notification delivery or production deployment.</li></ul>
+<h2>HR review is the remaining human step</h2><p>I can run automated scenarios and prepare the system, but cannot provide HR's approval of their policies or working experience. The linked bilingual checklist has ten hands-on scenarios, named synthetic role accounts and a blank result column. Its decisions are marked Pending.</p>
+<p>The prepared example is request <a href="http://localhost:8101/desk/kandil-hiring-request/tc488tee8d">tc488tee8d</a>, with accepted offer <a href="http://localhost:8101/desk/job-offer/HR-OFF-2026-00007">HR-OFF-2026-00007</a>. HR can review it and record actual joining with synthetic details. No employee has yet been created for that example candidate.</p>
+<h2>Acceptance checks</h2><table><tr><th>Scenario</th><th>Result</th><th>Evidence</th></tr><tr><td>P01 Configure capacity and route</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;Capacity and approval route configured through the Sector role.&quot;</pre></details></td></tr><tr><td>P02 Multi-location submit reserves capacity</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;request&quot;: &quot;qpaic54go0&quot;,
+  &quot;reserved_a&quot;: 2,
+  &quot;reserved_b&quot;: 1
+}</pre></details></td></tr><tr><td>P03 Requester cannot self-approve</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.&quot;</pre></details></td></tr><tr><td>P04 Wrong or out-of-order approver blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.&quot;</pre></details></td></tr><tr><td>P05 Direct REST status change blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Use the recruitment action buttons to change a submitted request.&quot;</pre></details></td></tr><tr><td>P06 Manual opening bypass blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Pilot openings are generated and managed by approved recruitment actions.&quot;</pre></details></td></tr><tr><td>P07 Complete approvals creates an opening per location</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;openings&quot;: [
+    &quot;HR-OPN-2026-0004&quot;,
+    &quot;HR-OPN-2026-0005&quot;
+  ],
+  &quot;a&quot;: {
+    &quot;structural&quot;: 10,
+    &quot;occupied&quot;: 1,
+    &quot;reserved&quot;: 0,
+    &quot;open_slots&quot;: 2,
+    &quot;available&quot;: 7
+  },
+  &quot;b&quot;: {
+    &quot;structural&quot;: 10,
+    &quot;occupied&quot;: 0,
+    &quot;reserved&quot;: 0,
+    &quot;open_slots&quot;: 1,
+    &quot;available&quot;: 9
+  }
+}</pre></details></td></tr><tr><td>P08 Phone-only applicant without fabricated email</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;name&quot;: &quot;KJA-d827ef2feea44c7b89d5&quot;,
+  &quot;owner&quot;: &quot;kandil-test-manager@example.invalid&quot;,
+  &quot;creation&quot;: &quot;2026-10-11 18:54:06.168309&quot;,
+  &quot;modified&quot;: &quot;2026-10-11 18:54:06.168309&quot;,
+  &quot;modified_by&quot;: &quot;kandil-test-manager@example.invalid&quot;,
+  &quot;docstatus&quot;: 0,
+  &quot;idx&quot;: 0,
+  &quot;custom_kandil_application_key&quot;: &quot;f3ab72238ff72db2989b08bd&quot;,
+  &quot;applicant_name&quot;: &quot;مرشح قنديل تجريبي candidate1&quot;,
+  &quot;phone_number&quot;: &quot;01091734045&quot;,
+  &quot;job_title&quot;: &quot;HR-OPN-2026-0004&quot;,
+  &quot;designation&quot;: &quot;PILOT Assembly Operator&quot;,
+  &quot;country&quot;: &quot;Egypt&quot;,
+  &quot;status&quot;: &quot;Open&quot;,
+  &quot;applicant_rating&quot;: 0,
+  &quot;currency&quot;: &quot;EGP&quot;,
+  &quot;lower_range&quot;: 0.0,
+  &quot;upper_range&quot;: 0.0,
+  &quot;doctype&quot;: &quot;Job Applicant&quot;
+}</pre></details></td></tr><tr><td>P09 Duplicate phone/application rejected</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 417: frappe.exceptions.UniqueValidationError: (&#x27;Job Applicant&#x27;, &#x27;KJA-fecae266998545249278&#x27;, IntegrityError(1062, \&quot;Duplicate entry &#x27;f3ab72238ff72db2989b08bd&#x27; for key &#x27;custom_kandil_application_key&#x27;\&quot;))&quot;</pre></details></td></tr><tr><td>P10 Employee cannot read pilot applicant</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: {&#x27;exc_type&#x27;: &#x27;PermissionError&#x27;, &#x27;_server_messages&#x27;: &#x27;[\&quot;{\\\\\&quot;message\\\\\&quot;:\\\\\&quot;User &lt;strong&gt;kandil-test-employee_a@example.invalid&lt;/strong&gt; does not have doctype access via role permission for document &lt;strong&gt;Job Applicant&lt;/strong&gt;\\\\\&quot;,\\\\\&quot;as_table\\\\\&quot;:false,\\\\\&quot;title\\\\\&quot;:\\\\\&quot;Message\\\\\&quot;}\&quot;]&#x27;, &#x27;_error_message&#x27;: &#x27;No permission for Job Applicant&#x27;}&quot;</pre></details></td></tr><tr><td>P11 Accepted phone-only offer without creating employee</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;offer&quot;: &quot;HR-OFF-2026-00004&quot;,
+  &quot;employee_count&quot;: 0
+}</pre></details></td></tr><tr><td>P12 Employee conversion bypass blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Confirm actual joining using the pilot action; direct conversion is blocked.&quot;</pre></details></td></tr><tr><td>P13 Actual joining creates employee/onboarding and partial fill</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;result&quot;: {
+    &quot;outcome&quot;: &quot;Joined&quot;,
+    &quot;employee&quot;: &quot;HR-EMP-00007&quot;,
+    &quot;onboarding&quot;: &quot;HR-EMP-ONB-2026-00003&quot;
+  },
+  &quot;before&quot;: {
+    &quot;structural&quot;: 10,
+    &quot;occupied&quot;: 1,
+    &quot;reserved&quot;: 0,
+    &quot;open_slots&quot;: 2,
+    &quot;available&quot;: 7
+  },
+  &quot;after&quot;: {
+    &quot;structural&quot;: 10,
+    &quot;occupied&quot;: 2,
+    &quot;reserved&quot;: 0,
+    &quot;open_slots&quot;: 1,
+    &quot;available&quot;: 7
+  }
+}</pre></details></td></tr><tr><td>P14 Repeated joining is idempotent</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;outcome&quot;: &quot;Joined&quot;,
+  &quot;employee&quot;: &quot;HR-EMP-00007&quot;,
+  &quot;idempotent&quot;: true
+}</pre></details></td></tr><tr><td>P15 No-show does not create employee or close vacancy</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;result&quot;: {
+    &quot;outcome&quot;: &quot;No Show&quot;,
+    &quot;employee&quot;: null,
+    &quot;onboarding&quot;: null
+  },
+  &quot;vacancy_retained&quot;: true
+}</pre></details></td></tr><tr><td>P16 Joined after final no-show blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 417: frappe.exceptions.ValidationError: This offer already has a final joining outcome.&quot;</pre></details></td></tr><tr><td>P17 Rejection releases reservations</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;qpjcf3b6kc&quot;</pre></details></td></tr><tr><td>P18 Pending cancellation releases once</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;Reservation released once.&quot;</pre></details></td></tr><tr><td>P19 Quantity exception justified and separately authorized</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;unjustified_rejected&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;,
+  &quot;independent_exception_approval_tested&quot;: true
+}</pre></details></td></tr><tr><td>P20 Effective and revoked delegation</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;Effective delegate approved; attribution retained; revoked delegate denied.&quot;</pre></details></td></tr><tr><td>P21 Delegation cannot enable self-approval</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.&quot;</pre></details></td></tr><tr><td>P22 Capacity-counter tampering blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Reservation counters are server managed.&quot;</pre></details></td></tr><tr><td>P23 Audit events exist and reject API forgery</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;events&quot;: 5,
+  &quot;immutable&quot;: true
+}</pre></details></td></tr><tr><td>P24 Concurrent requests cannot double-reserve a seat</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>[
+  {
+    &quot;ok&quot;: true,
+    &quot;name&quot;: &quot;qpp1lqua8k&quot;
+  },
+  {
+    &quot;ok&quot;: false,
+    &quot;status&quot;: 417,
+    &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+  }
+]</pre></details></td></tr><tr><td>P25 Cancel partially filled request preserves actual joiner</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;joined_employee_retained&quot;: &quot;HR-EMP-00007&quot;,
+  &quot;remaining_open_slots_released&quot;: true
+}</pre></details></td></tr><tr><td>P26 Applications to cancelled opening blocked</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 417: frappe.exceptions.ValidationError: Kandil request must be approved and open.&quot;</pre></details></td></tr><tr><td>E03 Native request submission cannot bypass lifecycle</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: {&#x27;exc_type&#x27;: &#x27;PermissionError&#x27;, &#x27;_server_messages&#x27;: &#x27;[\&quot;{\\\\\&quot;message\\\\\&quot;:\\\\\&quot;Document Type is not submittable\\\\\&quot;,\\\\\&quot;as_table\\\\\&quot;:false,\\\\\&quot;title\\\\\&quot;:\\\\\&quot;Message\\\\\&quot;}\&quot;]&#x27;, &#x27;_error_message&#x27;: &#x27;No permission for Kandil Hiring Request&#x27;}&quot;</pre></details></td></tr><tr><td>E04 Draft and list privacy</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;Unassigned approver cannot read the record directly or via list.&quot;</pre></details></td></tr><tr><td>E05 Requester in route cannot approve their own step</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;Requester step skipped and independent HR approval retained.&quot;</pre></details></td></tr><tr><td>E06 Delegation history immutable</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Delegation is immutable; revoke it and create a new record.&quot;</pre></details></td></tr><tr><td>E07 Expired delegation rejected at creation when reversed dates</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 417: frappe.exceptions.ValidationError: Delegation must cover 1 to 90 calendar days.&quot;</pre></details></td></tr><tr><td>E08 Twenty simultaneous requests for five seats</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;concurrent_submissions&quot;: 20,
+  &quot;seats&quot;: 5,
+  &quot;reserved&quot;: 5,
+  &quot;correct_capacity_rejections&quot;: 15,
+  &quot;observations&quot;: [
+    {
+      &quot;ok&quot;: true,
+      &quot;retries&quot;: 0
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: true,
+      &quot;retries&quot;: 0
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: true,
+      &quot;retries&quot;: 0
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: true,
+      &quot;retries&quot;: 0
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: true,
+      &quot;retries&quot;: 0
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    },
+    {
+      &quot;ok&quot;: false,
+      &quot;http_status&quot;: 417,
+      &quot;error&quot;: &quot;HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.&quot;
+    }
+  ]
+}</pre></details></td></tr><tr><td>E09 Simultaneous joining is exactly-once and fills request</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>{
+  &quot;results&quot;: [
+    {
+      &quot;outcome&quot;: &quot;Joined&quot;,
+      &quot;employee&quot;: &quot;HR-EMP-00908&quot;,
+      &quot;onboarding&quot;: &quot;HR-EMP-ONB-2026-00004&quot;
+    },
+    {
+      &quot;outcome&quot;: &quot;Joined&quot;,
+      &quot;employee&quot;: &quot;HR-EMP-00908&quot;,
+      &quot;idempotent&quot;: true
+    }
+  ],
+  &quot;one_employee&quot;: true,
+  &quot;request_filled&quot;: true
+}</pre></details></td></tr><tr><td>E01 Joined employee assignment cannot be rewritten</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: Pilot joining assignment is immutable; transfers and exits require a separate workflow.&quot;</pre></details></td></tr><tr><td>E02 Joined employee cannot be deleted</td><td class="PASS">PASS</td><td><details><summary>Evidence</summary><pre>&quot;HTTP 403: frappe.exceptions.PermissionError: A joined pilot employee cannot be deleted; a separate exit workflow is required.&quot;</pre></details></td></tr></table>
+<h2>Validation and change boundaries</h2><p>Six existing checks were rerun for own-record access, colleague-record denial, recruitment access denial, leave balance enforcement, PDF export and colleague leave-balance denial; all passed. Python compilation, JavaScript syntax checks and diff whitespace checks passed. Ruff lint and formatting checks also passed.</p>
+<p>Upstream Frappe, ERPNext and HRMS source remains unmodified. The new application code is local and uncommitted. Runtime flags and optional-email metadata were applied only to <code>kandil-test.localhost</code>; no real data was imported or external service connected. The original baseline report is preserved as historical evidence, not the current pilot result.</p>
+<h2>Evidence files</h2><p><a href="pilot-results.json">26 workflow checks</a> · <a href="pilot-edge-results.json">9 edge checks</a> · <a href="volume-results.json">Volume timings</a> · <a href="concurrency-before.json">Before probe</a> · <a href="concurrency-after.json">After probe</a> · <a href="pilot-ledger-audit.json">Ledger audit</a> · <a href="pilot-browser-results.json">Browser approvals</a> · <a href="pilot-demo.json">Phone-only interview and review example</a> · <a href="Engineering_Notes.md">Engineering notes</a></p></main></html>

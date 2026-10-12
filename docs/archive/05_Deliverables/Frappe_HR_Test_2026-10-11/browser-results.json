@@ -1,0 +1,34 @@
+[
+  {
+    "account": "manager",
+    "url": "http://localhost:8101/desk/hr-setup/employee?status=Active",
+    "title": "Employee",
+    "text": "Tm\nHR Setup\nSearch\nNotification\nHome\nDashboard\nEmployee\nOrganizational Chart\nMasters\nSettings\nEmployee\nList View\nAdd Employee\nname\nemployee_name\nBegin typing for results.\ndepartment\n Filters\n1\nCreated On \nFull Name\nStatus\nDepartment\nEmployment Type\nDesignation\nBranch\nID\n5 of 5\nمرشح تجريبي قنديل\nActive\nTEST HR Operations - KTEST\nTEST Production Operator\nHR-EMP-00005\n2 m\n0\n·\nTEST employee_b\nActive\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00004\n7 m\n0\n·\nTEST employee_a\nActive\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00003\n7 m\n0\n·\nTEST manager2\nActive\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00002\n2 m\n0\n·\nTEST manager\nActive\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00001\n2 m\n0\n·\n20\n100\n500\n2500",
+    "pageErrors": [],
+    "serverErrors": []
+  },
+  {
+    "account": "manager2",
+    "url": "http://localhost:8101/desk/hr-setup/employee?status=Active",
+    "title": "الموظف",
+    "text": "Tm\nHR Setup\nالبحث\nإعلام\nالصفحة الرئيسية\nلوحة القيادة\nالموظف\nOrganizational Chart\nالرئيسية\nإعدادات\nالموظف\nعرض منسدل\nأضِف الموظف\nالاسم\nemployee_name\nBegin typing for results.\ndepartment\n الفلاتر\n1\nمنشئه في \nالاسم الكامل\nالحالة\nقسم\nEmployment Type\nتعيين\nBranch\nهوية شخصية\n5 من 5\nمرشح تجريبي قنديل\nنشط\nTEST HR Operations - KTEST\nTEST Production Operator\nHR-EMP-00005\n2 م\n0\n·\nTEST employee_b\nنشط\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00004\n7 م\n0\n·\nTEST employee_a\nنشط\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00003\n7 م\n0\n·\nTEST manager2\nنشط\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00002\n2 م\n0\n·\nTEST manager\nنشط\nTEST HR Operations - KTEST\nTEST Production Operator\nTEST Factory A\nHR-EMP-00001\n2 م\n0\n·\n20\n100\n500\n2500",
+    "pageErrors": [],
+    "serverErrors": []
+  },
+  {
+    "account": "employee_a",
+    "url": "http://localhost:8101/hrms/home",
+    "title": "Frappe HR",
+    "text": "Frappe HR\nT\nHey, TEST employee_a 👋\nCheck In\nQuick Links\nRequest Attendance\nRequest a Shift\nRequest Leave\nClaim an Expense\nRequest an Advance\nView Salary Slips\nMy Requests\nTeam Requests\nTEST Annual Leave\n12 Oct - 13 Oct · 2d\nApproved\nHome\nAttendance\nLeaves\nExpenses\nSalary",
+    "pageErrors": [],
+    "serverErrors": []
+  },
+  {
+    "account": "employee_a",
+    "check": "Navigate to leave request form from mobile home",
+    "url": "http://localhost:8101/hrms/leave-applications/new",
+    "text": "New Leave Application\nLeave Type\nSelect Leave Type\nDates & Reason\nFrom Date\nTo Date\nHalf Day\nReason\nApproval\nLeave Approver\nkandil-test-manager@example.invalid : TEST manager\nLeave Approver Name\nAttachments\nUpload images or documents\nSave",
+    "pageErrors": [],
+    "serverErrors": []
+  }
+]

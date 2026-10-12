@@ -1,0 +1,13 @@
+.secrets/
+development/
+vendor/
+reference/
+*.log
+.DS_Store
+__pycache__/
+*.py[cod]
+.env
+.env.*
+*.sql
+*.sql.gz
+*.backup

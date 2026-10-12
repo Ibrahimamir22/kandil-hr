@@ -1,0 +1,11 @@
+node_modules/
+*.png
+.clasprc.json
+*.xlsx
+*.xls
+*.csv
+!tests/fixtures/*.xlsx
+!docs/**/*.png
+
+# PDFs written by browser tests
+tests/*.pdf

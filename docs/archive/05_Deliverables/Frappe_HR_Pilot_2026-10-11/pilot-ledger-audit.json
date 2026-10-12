@@ -1,0 +1,73 @@
+{
+  "all_balanced": true,
+  "capacities": [
+    {
+      "capacity": "KCAP-f45fd96930c246e4e720ec4f",
+      "reserved": 0,
+      "expected_reserved": 0,
+      "open": 0,
+      "expected_open": 0,
+      "occupied": 0,
+      "joined": 0,
+      "employees": 0,
+      "pass_check": true
+    },
+    {
+      "capacity": "KCAP-fd217cf18d299f19eed83c9a",
+      "reserved": 0,
+      "expected_reserved": 0,
+      "open": 0,
+      "expected_open": 0,
+      "occupied": 0,
+      "joined": 0,
+      "employees": 0,
+      "pass_check": true
+    },
+    {
+      "capacity": "KCAP-19e79989a2dd86ecb5bf685b",
+      "reserved": 1,
+      "expected_reserved": 1,
+      "open": 0,
+      "expected_open": 0,
+      "occupied": 0,
+      "joined": 0,
+      "employees": 0,
+      "pass_check": true
+    },
+    {
+      "capacity": "KCAP-1a53fe0ed49ccd2229672ce4",
+      "reserved": 0,
+      "expected_reserved": 0,
+      "open": 0,
+      "expected_open": 0,
+      "occupied": 0,
+      "joined": 0,
+      "employees": 0,
+      "pass_check": true
+    },
+    {
+      "capacity": "KCAP-5a16939aebcabc1540caf3e0",
+      "reserved": 1,
+      "expected_reserved": 1,
+      "open": 1,
+      "expected_open": 1,
+      "occupied": 1,
+      "joined": 1,
+      "employees": 1,
+      "pass_check": true
+    },
+    {
+      "capacity": "KCAP-9bc98030c03158e43374a6b0",
+      "reserved": 1,
+      "expected_reserved": 1,
+      "open": 1,
+      "expected_open": 1,
+      "occupied": 2,
+      "joined": 2,
+      "employees": 2,
+      "pass_check": true
+    }
+  ],
+  "total_employees": 1008,
+  "baseline_note": "All pilot capacities in this fixture set started with occupied=0."
+}

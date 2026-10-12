@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-12",
+  "scope": "Source publication only; no production deployment or full acceptance rerun",
+  "base_commit": "dd3b7598da0e198037322e9c3a479e9b649b1197",
+  "checks": {
+    "portal_typescript": "PASS",
+    "native_headcount_ui_callback_contract": "PASS; mocked callbacks only",
+    "active_python_syntax": {
+      "passed": 18
+    },
+    "original_tested_source_hashes": {
+      "matched": 306,
+      "mismatches": []
+    },
+    "archive": {
+      "tracked_files": 708,
+      "sha256_mismatches": []
+    },
+    "known_local_credential_scan": "PASS; no staged credential matches, forbidden runtime filenames or private-key headers",
+    "gitleaks": {
+      "version": "8.30.1",
+      "scope": "all indexed files exported to a temporary directory, default rules with base64 decoding",
+      "raw_findings": 979,
+      "reviewed_false_positives": {
+        "file_integrity_sha256": 975,
+        "synthetic_candidate_application_identifier": 1,
+        "synthetic_delegation_idempotency_digest": 2,
+        "decoded_javascript_property_comparison": 1
+      },
+      "unresolved": 0
+    },
+    "active_source_whitespace": "PASS excluding preserved upstream font license files; historical archive whitespace retained byte-for-byte"
+  },
+  "limitations": [
+    "Automated secret checks are not a complete security audit.",
+    "Original test evidence remains historical; unaccepted features remain unaccepted.",
+    "GitHub remote equality is verified separately after the push."
+  ]
+}

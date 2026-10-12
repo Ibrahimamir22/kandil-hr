@@ -2,9 +2,20 @@
 
 Custom Frappe HR extension for Kandil's HR department. Odoo and the broader company platform remain separate. This repository contains Kandil's application source, schemas, native Frappe screens, tests and deployment package. The official Frappe, ERPNext and HRMS sources are installed as separate pinned dependencies, without modifying their core code.
 
-**Current status: P0–P3 implementation and verification in progress.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/sprints/SPRINT_PLAN.md), [task tracker](docs/sprints/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
+**Current status: the first custom React HR portal milestone is connected and locally tested; the full HR system remains in development.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/sprints/SPRINT_PLAN.md), [task tracker](docs/sprints/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
 
-The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **69 passed, 7 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
+The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **70 passed, 6 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
+
+## Project source and current portal
+
+All project source is kept in this private repository. The connected portal lives in [`frontend/portal/`](frontend/portal/), its Frappe API in [`kandil_hr/portal/`](kandil_hr/portal/) and its served assets in [`kandil_hr/public/portal/`](kandil_hr/public/portal/). Open http://localhost:8102/hr-portal on the existing development machine.
+
+- [Current portal progress](docs/portal/PROGRESS.md) and [testing walkthrough](docs/portal/README.md).
+- [Source-control checkpoint, limits and next steps](docs/SOURCE_CONTROL.md).
+- [Historical research, proposals, designs, prototypes and development harness](docs/archive/README.md).
+- [Pinned clean installation](deployment/README.md).
+
+The portal milestone has 10 native, 31 HTTP and 24 browser checks recorded in `docs/portal/evidence/`. Pending-quantity revision work is preserved in source, but its full acceptance remains open. The older 80-case baseline is a separate acceptance scope; do not add its totals to the portal results or treat this checkpoint as a production release.
 
 ## Running locally
 

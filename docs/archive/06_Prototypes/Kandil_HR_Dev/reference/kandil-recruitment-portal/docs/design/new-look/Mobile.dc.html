@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>الرئيسية على الموبايل</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&amp;family=Unna:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#A8111C}a:hover{color:#7E0D15}
+</style>
+</helmet>
+<div dir="rtl" style="width: 390px; height: 844px; box-sizing: border-box; font-family: 'Almarai', sans-serif; color: #3F3B37; background: #FAF8F5; display: flex; flex-direction: column; overflow: hidden">
+<header style="background: #A8111C; color: #FFFFFF; padding: 20px 18px 26px; display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<b style="font-family: 'Almarai', sans-serif; font-weight: 800; font-size: 16px">بوابة التوظيف</b>
+<span style="width: 34px; height: 34px; border-radius: 50%; background: #FFFFFF; color: #A8111C; display: grid; place-items: center; font-weight: 700">و</span>
+</div>
+<span style="font-family: 'Almarai', sans-serif; font-weight: 800; font-size: 21px; margin-top: 10px">صباح الخير يا وليد</span>
+<span style="font-size: 13px; opacity: .85">عندك حاجتين مستنيين منك النهارده</span>
+</header>
+<div style="padding: 16px; display: flex; flex-direction: column; gap: 10px; margin-top: -14px">
+<sc-for list="{{items}}" as="i" hint-placeholder-count="5">
+<a href="#" style="text-decoration: none; background: #FFFFFF; border: 1px solid #ECE7E0; border-radius: 14px; padding: 14px; display: flex; gap: 12px; align-items: center; min-height: 44px">
+<span style="width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; font-weight: 700; font-size: 17px; background: {{i.bg}}; color: {{i.fg}}; flex: none">{{i.n}}</span>
+<span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 14.5px; color: #1F1A17">{{i.t}}</b><span style="font-size: 12.5px; color: #6E6862">{{i.h}}</span></span>
+<span style="display: inline-flex; align-items: center; gap: 5px; border-radius: 999px; padding: 3px 9px; font-size: 11.5px; font-weight: 600; background: {{i.bg}}; color: {{i.fg}}">{{i.s}}</span>
+</a>
+</sc-for>
+</div>
+<nav style="margin-top: auto; height: 64px; background: #FFFFFF; border-top: 1px solid #ECE7E0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); font-size: 11.5px; font-weight: 600; text-align: center">
+<a href="#" style="text-decoration: none; color: #A8111C; display: grid; place-items: center">الرئيسية</a>
+<a href="#" style="text-decoration: none; color: #6E6862; display: grid; place-items: center">الطلبات</a>
+<a href="#" style="text-decoration: none; color: #6E6862; display: grid; place-items: center">اعتماداتي</a>
+<a href="#" style="text-decoration: none; color: #6E6862; display: grid; place-items: center">الشواغر</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = { act: ['#B45309', '#FEF1DC'], run: ['#1F5FBF', '#E7F0FD'], ok: ['#157F4A', '#E5F4EC'], part: ['#6D3FC0', '#F1EBFC'], no: ['#B42318', '#FCE8E8'] };
+    const it = (k, n, t, h, s) => ({ n, t, h, s, fg: S[k][0], bg: S[k][1] });
+    return { items: [
+      it('act', '1', 'طلب رجعلك للتعديل', 'مدير الإدارة طلب توضيح المبرر', 'مطلوب منك'),
+      it('no', '1', 'متابعة مرشح متأخرة', 'مقابلة كان معادها امبارح', 'متأخر'),
+      it('run', '2', 'طلبات جارية', 'عند الموارد البشرية', 'جاري'),
+      it('part', '1', 'طلب اتعتمد بعدد أقل', 'اتعتمد 1 من 2', 'جزئي'),
+      it('ok', '1', 'مرشح في القائمة المختصرة', 'ياسمين طارق — محاسب تكاليف', 'جديد')
+    ] };
+  }
+}
+</script>
+</body>
+</html>

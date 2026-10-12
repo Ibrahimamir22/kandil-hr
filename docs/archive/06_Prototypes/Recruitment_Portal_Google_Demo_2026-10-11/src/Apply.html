@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>التقديم على وظيفة — قنديل مصر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Unna:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5; --card:#FFFFFF; --primary:#A8111C; --primary-2:#8C0E17; --gold:#C6A151; --gold-bg:#F6EEDC; --gold-t:#7A5B17;
+  --heading:#1F1A17; --text:#3F3B37; --muted:#6E6862; --border:#ECE7E0; --line:#F1EDE7; --select:#FBECEC;
+  --ok-t:#157F4A; --ok-bg:#E5F4EC; --warn-t:#B45309; --warn-bg:#FEF1DC; --err-t:#B42318; --err-bg:#FCE8E8;
+  --input:#FFFFFF; --input-b:#DDD6CC; --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);min-height:100vh;color:var(--text);font-family:Almarai,Tahoma,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Almarai,Tahoma,sans-serif;font-weight:800;color:var(--heading);margin:0}
+[lang="en"] h1,[lang="en"] h2,[lang="en"] .brand b{font-family:Unna,Georgia,serif;font-weight:700}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Almarai;font-weight:700;font-size:21px;flex-shrink:0}
+.brand b{display:block;font-family:Almarai;color:var(--heading);font-size:17px;line-height:1.3}
+.brand small{color:var(--muted);font-size:12.5px}
+.lang{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:none;background:transparent;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang button.on{background:var(--primary);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 1px 2px rgba(36,59,69,.06),0 4px 16px rgba(36,59,69,.04)}
+.job{padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--gold)}
+.job h1{font-size:28px;line-height:1.35}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--gold-bg);color:var(--gold-t);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+.summary{white-space:pre-line;font-size:14.5px;color:var(--text);border-top:1px solid var(--line);padding-top:10px}
+.sec{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.sec h2{font-size:20px;color:var(--primary);display:flex;align-items:center;gap:10px}
+.sec h2 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:Almarai;font-size:14px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid > *{min-width:0}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:600;color:var(--heading)}
+.req{color:var(--err-t)}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.inp{height:46px;border:1.5px solid var(--input-b);background:var(--input);border-radius:10px;padding:0 12px;font-size:15px;color:var(--heading);width:100%;outline:none}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,81,.18);background:#fff}
+textarea.inp{height:auto;min-height:80px;padding:10px 12px;resize:vertical}
+.ltr{direction:ltr;text-align:right}
+[dir="ltr"] .ltr{text-align:left}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;color:var(--heading);background:#fff}
+.radios input{accent-color:var(--primary);width:17px;height:17px}
+.file{border:2px dashed #DDD6CC;border-radius:12px;padding:18px;text-align:center;cursor:pointer;background:#FBFCFC;display:flex;flex-direction:column;gap:6px;align-items:center}
+.file:hover{border-color:var(--gold)}
+.file b{color:var(--primary)}
+.phrow{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap}
+.phav{width:56px;height:56px;border-radius:50%;background:#F1ECE4 center/cover no-repeat;flex:none}
+.phbtn{border:1px solid #DDD6CC;background:#fff;border-radius:10px;padding:8px 14px;cursor:pointer;font:inherit;color:var(--primary);font-weight:600}
+.file.has{border-style:solid;border-color:var(--ok-t);background:var(--ok-bg)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.8;background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin-top:4px;accent-color:var(--primary);flex:none}
+.btn{height:50px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:16px;font-weight:700;cursor:pointer;width:100%}
+.btn:hover{background:var(--primary-2)}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{border-radius:10px;padding:11px 14px;font-size:14px}
+.msg.err{background:var(--err-bg);color:var(--err-t)}
+.msg.info{background:var(--gold-bg);color:var(--gold-t)}
+.done{padding:34px 24px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.done .ok{width:68px;height:68px;border-radius:50%;background:var(--ok-bg);color:var(--ok-t);display:grid;place-items:center;font-size:32px}
+.ref{font-family:Almarai;font-size:20px;color:var(--heading);direction:ltr;background:var(--bg);border-radius:10px;padding:6px 16px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0;pointer-events:none}
+.foot{text-align:center;font-size:12px;color:var(--muted)}
+.loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 0;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:sp .9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (max-width:640px){ .grid{grid-template-columns:1fr} .job h1{font-size:21px} .sec,.job{padding:18px 16px} }
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><div class="loading"><div class="spin"></div><span>…</span></div></div>
+<script>
+var CODE = '<?= code ?>', SRC = '<?= src ?>', AD = '<?= ad ?>';
+var ST = { lang: 'ar', info: null, f: {}, cv: null, err: '', busy: false, done: null, t0: Date.now() };
+var TX = {
+  ar: {
+    company: 'قنديل مصر', careers: 'وظائف — الموارد البشرية', apply: 'التقديم على الوظيفة', loading: 'لحظات من فضلك…',
+    closedT: 'التقديم مقفول', closedB: 'التقديم على الوظيفة دي مقفول حالياً أو اللينك غير صحيح. تابع إعلانات قنديل مصر للفرص الجديدة.',
+    s1: 'بياناتك الأساسية', s2: 'التعليم والخبرة', s3: 'المرتب والالتحاق', s4: 'السيرة الذاتية', s5: 'إرسال الطلب',
+    name: 'الاسم بالكامل', mobile: 'رقم الموبايل', mobileH: 'هنتواصل معاك عليه — ويُفضّل يكون عليه واتساب', email: 'البريد الإلكتروني',
+    nid: 'الرقم القومي', nidH: 'اختياري — 14 رقم', gov: 'المحافظة', city: 'المدينة / المنطقة', birth: 'تاريخ الميلاد', gender: 'النوع', male: 'ذكر', female: 'أنثى',
+    edu: 'المؤهل', spec: 'التخصص', grad: 'سنة التخرج', exp: 'سنوات الخبرة', expH: 'اكتب 0 لو لسه بتبدأ', employer: 'جهة العمل الحالية / الأخيرة', title: 'المسمى الوظيفي الحالي / الأخير',
+    cur: 'المرتب الحالي', exp2: 'المرتب المتوقع من', exp3: 'إلى', salH: 'شهري بالجنيه المصري — اختياري', notice: 'تقدر تبدأ إمتى؟',
+    rel: 'ليك قريب شغال في قنديل؟', relName: 'اسمه', relRel: 'صلة القرابة', acc: 'محتاج أي تسهيلات في المقابلة أو الشغل؟ (اختياري)', accH: 'مثلاً: مكان دور أرضي، وقت إضافي', dis: 'عندي إعاقة (اختياري — بيساعدنا في نسبة الـ 5% القانونية، والإجابة بتشوفها الموارد البشرية بس)', minor: 'سني أقل من 18 سنة', gName: 'اسم ولي الأمر', gMob: 'موبايل ولي الأمر', cGuard: 'ولي أمري موافق على تقديمي ومعالجة بياناتي لأغراض التوظيف.', cPhoto: 'اختياري: أوافق إن صورتي تتحفظ مع طلبي.', needRel: 'اكتب اسم قريبك وصلة القرابة.', needGuard: 'سنك أقل من 18 سنة: اكتب اسم ولي الأمر وموبايله ووافق بالنيابة عنه.',
+    emp: 'هل انت موظف حالياً في قنديل مصر؟', yes: 'نعم', no: 'لا', empId: 'كودك الوظيفي', ref: 'حد من موظفي قنديل رشّحك؟', refH: 'اكتب اسمه (اختياري)',
+    photo: 'صورة شخصية', photoPick: 'اضغط لاختيار صورة (اختياري)', photoChange: 'تغيير الصورة', photoOff: 'شيل الصورة',
+    cv: 'ارفع سيرتك الذاتية', cvH: 'PDF أو Word أو صورة — حتى 5 ميجا', cvOpt: '(اختياري)', cvPick: 'اضغط لاختيار الملف', cvChange: 'تغيير الملف',
+    consent: 'قرأت إشعار الخصوصية وأوافق على معالجة بياناتي لأغراض التوظيف:', cTransfer: 'أوافق على حفظ بياناتي على خدمات Google، وممكن تتعالج خارج مصر.',
+    cSalary: 'أوافق على معالجة بيانات المرتب اللي كتبتها (بيانات مالية حساسة) لأغراض التوظيف بس.', cPool: 'اختياري: احتفظوا ببياناتي في قاعدة المرشحين {n} شهر للتواصل معايا لو فيه وظيفة مناسبة.',
+    full: 'اقرا الإشعار الكامل', employer: 'صاحب العمل', privacyMail: 'للاستفسار عن بياناتك:', needTransfer: 'لازم توافق على حفظ البيانات عشان نستلم طلبك.', needSalary: 'كتبت المرتب — وافق على معالجة بيانات المرتب، أو امسح خانات المرتب.', salZero: 'المرتب مايبقاش صفر — اكتب المرتب الشهري أو سيب الخانة فاضية.', send: 'إرسال الطلب', sending: 'جارٍ الإرسال…',
+    doneT: 'استلمنا طلبك بنجاح', doneB: 'شكراً لاهتمامك بالعمل في قنديل مصر. فريق التوظيف هيراجع بياناتك وهيتواصل معاك في حالة التوافق مع متطلبات الوظيفة.', doneRef: 'رقم الطلب',
+    choose: '— اختار —', bigFile: 'حجم الملف أكبر من 5 ميجا.', badFile: 'نوع الملف غير مدعوم. ارفع PDF أو Word أو صورة.', needConsent: 'لازم توافق على سياسة الخصوصية.',
+    netErr: 'تعذر الاتصال. اتأكد من الإنترنت وجرب تاني.', reqNote: 'الخانات اللي عليها * مطلوبة.', other: 'English',
+    sQ: 'أسئلة عن الوظيفة', qYes: 'نعم', qNo: 'لا'
+  },
+  en: {
+    company: 'Kandil Egypt', careers: 'Careers — Human Resources', apply: 'Apply for this job', loading: 'Please wait…',
+    closedT: 'Applications closed', closedB: 'Applications for this job are closed or the link is not valid. Follow Kandil Egypt announcements for new opportunities.',
+    s1: 'Your details', s2: 'Education & experience', s3: 'Salary & availability', s4: 'Your CV', s5: 'Submit',
+    name: 'Full name', mobile: 'Mobile number', mobileH: 'We will contact you on it — preferably with WhatsApp', email: 'Email',
+    nid: 'National ID', nidH: 'Optional — 14 digits', gov: 'Governorate', city: 'City / area', birth: 'Date of birth', gender: 'Gender', male: 'Male', female: 'Female',
+    edu: 'Education', spec: 'Field of study', grad: 'Graduation year', exp: 'Years of experience', expH: 'Enter 0 if you are just starting', employer: 'Current / last employer', title: 'Current / last job title',
+    cur: 'Current salary', exp2: 'Expected salary from', exp3: 'to', salH: 'Monthly, in EGP — optional', notice: 'When can you start?',
+    rel: 'Do you have a relative working at Kandil?', relName: 'Name', relRel: 'Relation', acc: 'Do you need any accommodation for the interview or the job? (optional)', accH: 'e.g. ground floor, extra time', dis: 'I have a disability (optional — helps us with the legal 5 % quota; only HR sees the answer)', minor: 'I am under 18', gName: 'Guardian\'s name', gMob: 'Guardian\'s mobile', cGuard: 'My guardian agrees to my application and to the processing of my data for recruitment.', cPhoto: 'Optional: I agree that my photo is kept with my application.', needRel: 'Please enter your relative\'s name and the relation.', needGuard: 'You are under 18: enter your guardian\'s name and mobile and the guardian\'s consent.',
+    emp: 'Do you currently work at Kandil Egypt?', yes: 'Yes', no: 'No', empId: 'Your employee code', ref: 'Did a Kandil employee refer you?', refH: 'Their name (optional)',
+    photo: 'Personal photo', photoPick: 'Tap to choose a photo (optional)', photoChange: 'Change photo', photoOff: 'Remove photo',
+    cv: 'Upload your CV', cvH: 'PDF, Word or image — up to 5 MB', cvOpt: '(optional)', cvPick: 'Tap to choose a file', cvChange: 'Change file',
+    consent: 'I have read the privacy notice and agree to the processing of my data for recruitment:', cTransfer: 'I agree that my data is kept on Google services and may be processed outside Egypt.',
+    cSalary: 'I agree to the processing of the salary details I entered (sensitive financial data) for recruitment only.', cPool: 'Optional: keep my data in the candidate database for {n} months to contact me about suitable jobs.',
+    full: 'Read the full notice', employer: 'Employer', privacyMail: 'Questions about your data:', needTransfer: 'Please accept the data storage so we can receive your application.', needSalary: 'You entered a salary — accept the salary-data consent, or clear the salary fields.', salZero: 'Salary cannot be zero — enter the monthly salary or leave the field empty.', send: 'Submit application', sending: 'Sending…',
+    doneT: 'Application received', doneB: 'Thank you for your interest in working at Kandil Egypt. Our recruitment team will review your application and contact you if your profile matches the job requirements.', doneRef: 'Reference number',
+    choose: '— Choose —', bigFile: 'The file is larger than 5 MB.', badFile: 'File type not supported. Upload a PDF, Word file or image.', needConsent: 'Please accept the privacy notice.',
+    netErr: 'Could not connect. Check your internet and try again.', reqNote: 'Fields marked * are required.', other: 'عربي',
+    sQ: 'Questions about the job', qYes: 'Yes', qNo: 'No'
+  }
+};
+var GOV = [['القاهرة','Cairo'],['الجيزة','Giza'],['القليوبية','Qalyubia'],['الإسكندرية','Alexandria'],['الشرقية','Sharqia'],['الدقهلية','Dakahlia'],['الغربية','Gharbia'],
+  ['المنوفية','Monufia'],['البحيرة','Beheira'],['كفر الشيخ','Kafr El Sheikh'],['دمياط','Damietta'],['بورسعيد','Port Said'],['الإسماعيلية','Ismailia'],['السويس','Suez'],
+  ['الفيوم','Faiyum'],['بني سويف','Beni Suef'],['المنيا','Minya'],['أسيوط','Asyut'],['سوهاج','Sohag'],['قنا','Qena'],['الأقصر','Luxor'],['أسوان','Aswan'],
+  ['البحر الأحمر','Red Sea'],['الوادي الجديد','New Valley'],['مطروح','Matrouh'],['شمال سيناء','North Sinai'],['جنوب سيناء','South Sinai']];
+var EDU = [['NONE','بدون مؤهل / يقرأ ويكتب','No formal qualification'],['INTERMEDIATE','مؤهل متوسط (دبلوم فني)','Technical diploma'],['SECONDARY','ثانوية عامة','High school'],
+  ['ABOVE_INTERMEDIATE','مؤهل فوق متوسط (معهد)','Institute (2 years)'],['BACHELOR','مؤهل عالي (بكالوريوس / ليسانس)','Bachelor’s degree'],['MASTER','ماجستير','Master’s degree'],['PHD','دكتوراه','PhD']];
+var NOTICE = [['IMMEDIATE','فوراً','Immediately'],['TWO_WEEKS','خلال أسبوعين','Within 2 weeks'],['ONE_MONTH','خلال شهر','Within 1 month'],['TWO_MONTHS','خلال شهرين','Within 2 months'],['THREE_PLUS','3 شهور أو أكتر','3 months or more']];
+var EMP_TYPE_EN = { DAILY:'Daily', FULL_TIME:'Full time', PART_TIME:'Part time', CONTRACT:'Fixed-term contract', TEMPORARY:'Temporary / seasonal', INTERNSHIP:'Internship' };
+
+function t(k){ return TX[ST.lang][k] || k; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s===undefined||s===null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function call(action, payload){
+  return new Promise(function(res, rej){
+    google.script.run.withSuccessHandler(function(r){ r && r.ok ? res(r.data) : rej(r || {}); })
+      .withFailureHandler(function(){ rej({ error: t('netErr') }); }).apiPublic(action, payload);
+  });
+}
+function opts(list, val, li){ return '<option value="">' + t('choose') + '</option>' + list.map(function(o){ var v = o[0], n = o[li]; return '<option value="' + esc(v) + '"' + (v === val ? ' selected' : '') + '>' + esc(n) + '</option>'; }).join(''); }
+function fv(k){ return ST.f[k] || ''; }
+function field(k, label, inner, req, hint, cls){
+  return '<label class="f' + (cls ? ' ' + cls : '') + '"><span>' + label + (req ? ' <span class="req">*</span>' : '') + (hint ? ' <span class="hint">— ' + hint + '</span>' : '') + '</span>' + inner + '</label>';
+}
+function inp(k, type, attrs){ return '<input class="inp' + (/tel|email|number/.test(type) || k === 'National_ID' ? ' ltr' : '') + '" id="f_' + k + '" type="' + type + '" value="' + esc(fv(k)) + '"' + (attrs || '') + '>'; }
+function collect(){
+  Array.prototype.forEach.call(document.querySelectorAll('[id^="f_"]'), function(el){ ST.f[el.id.slice(2)] = el.value; });
+  var r = document.querySelector('input[name="emp"]:checked'); if (r) ST.f.Is_Employee = r.value;
+  var g = document.querySelector('input[name="gen"]:checked'); if (g) ST.f.Gender = g.value;
+  var rl = document.querySelector('input[name="rel"]:checked'); if (rl) ST.f.Has_Relative = rl.value;
+  [['cDis', 'Disability'], ['cMinor', 'Minor'], ['cGuard', 'consentGuardian'], ['cPhoto', 'consentPhoto']].forEach(function(x){ var e = $(x[0]); if (e) ST.f[x[1]] = e.checked ? 'Y' : ''; });
+  var c = $('consent'); if (c) ST.f.consent = c.checked ? 'Y' : '';
+  [['cTransfer', 'consentTransfer'], ['cSalary', 'consentSalary'], ['cPool', 'consentPool']].forEach(function(x){ var e = $(x[0]); if (e) ST.f[x[1]] = e.checked ? 'Y' : ''; });
+  collectQ();
+}
+function setLang(l){ if ($('f_Full_Name')) collect(); ST.lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl'; render(); }
+
+function header(){
+  return '<div class="top"><div class="brand"><div class="mark">' + (ST.lang === 'en' ? 'K' : 'ق') + '</div><div><b>' + t('company') + '</b><small>' + t('careers') + '</small></div></div>' +
+    '<div class="lang"><button data-l="ar" class="' + (ST.lang === 'ar' ? 'on' : '') + '">عربي</button><button data-l="en" class="' + (ST.lang === 'en' ? 'on' : '') + '">English</button></div></div>';
+}
+function render(){
+  var app = $('app'), I = ST.info;
+  if (!I) { app.innerHTML = header() + '<div class="loading"><div class="spin"></div><span>' + t('loading') + '</span></div>'; bindLang(); return; }
+  if (I.closed) { app.innerHTML = header() + '<div class="card done"><div class="ok" style="background:var(--warn-bg);color:var(--warn-t)">!</div><h2>' + t('closedT') + '</h2><p style="margin:0">' + t('closedB') + '</p></div>'; bindLang(); return; }
+  if (ST.done) {
+    app.innerHTML = header() + '<div class="card done"><div class="ok">✓</div><h2>' + t('doneT') + '</h2><p style="margin:0;max-width:520px">' + t('doneB') + '</p>' +
+      '<span class="hint">' + t('doneRef') + '</span><span class="ref">' + esc(ST.done) + '</span></div>';
+    bindLang(); return;
+  }
+  var J = I.job, en = ST.lang === 'en';
+  var title = en && J.titleEn ? J.titleEn : J.titleAr, loc = en && J.locationEn ? J.locationEn : J.locationAr;
+  var et = en ? EMP_TYPE_EN[J.employmentType] : J.employmentTypeAr;
+  var li = en ? 2 : 1;
+  app.innerHTML = header() +
+    '<div class="card job"><span class="hint">' + t('apply') + '</span><h1>' + esc(title) + '</h1><div class="tags">' + (loc ? '<span class="tag">📍 ' + esc(loc) + '</span>' : '') + (et ? '<span class="tag">' + esc(et) + '</span>' : '') + '</div>' + (J.address ? '<span class="hint">' + esc(J.address) + '</span>' : '') +
+      (J.summary ? '<div class="summary">' + esc(J.summary) + '</div>' : '') + '</div>' +
+    '<div class="msg info">' + t('reqNote') + '</div>' +
+    '<div class="card sec"><h2><i>1</i>' + t('s1') + '</h2><div class="grid">' +
+      field('Full_Name', t('name'), inp('Full_Name', 'text', ' autocomplete="name"'), true, '', 'full') +
+      field('Mobile', t('mobile'), inp('Mobile', 'tel', ' inputmode="tel" autocomplete="tel" placeholder="01XXXXXXXXX"'), true, t('mobileH'), 'full') +
+      field('Email', t('email'), inp('Email', 'email', ' autocomplete="email"')) +
+      field('National_ID', t('nid'), inp('National_ID', 'text', ' inputmode="numeric" maxlength="14"'), false, t('nidH')) +
+      field('Governorate', t('gov'), '<select class="inp" id="f_Governorate">' + opts(GOV.map(function(g){ return [g[0], g[0], g[1]]; }), fv('Governorate'), li) + '</select>', true) +
+      field('City', t('city'), inp('City', 'text')) +
+      field('Birth_Date', t('birth'), inp('Birth_Date', 'date')) +
+      '<div class="f"><label class="f"><span>' + t('gender') + '</span></label><div class="radios"><label><input type="radio" name="gen" value="M"' + (fv('Gender') === 'M' ? ' checked' : '') + '>' + t('male') + '</label><label><input type="radio" name="gen" value="F"' + (fv('Gender') === 'F' ? ' checked' : '') + '>' + t('female') + '</label></div></div>' +
+    '</div></div>' +
+    '<div class="card sec"><h2><i>2</i>' + t('s2') + '</h2><div class="grid">' +
+      field('Education', t('edu'), '<select class="inp" id="f_Education">' + opts(EDU, fv('Education'), li) + '</select>', true) +
+      field('Specialization', t('spec'), inp('Specialization', 'text')) +
+      field('Graduation_Year', t('grad'), inp('Graduation_Year', 'text', ' inputmode="numeric" maxlength="4"')) +
+      field('Experience_Years', t('exp'), inp('Experience_Years', 'text', ' inputmode="decimal" maxlength="4"'), true, t('expH')) +
+      field('Current_Employer', t('employer'), inp('Current_Employer', 'text')) +
+      field('Current_Title', t('title'), inp('Current_Title', 'text')) +
+    '</div></div>' +
+    '<div class="card sec"><h2><i>3</i>' + t('s3') + '</h2><div class="grid">' +
+      field('Expected_Salary', t('exp2'), inp('Expected_Salary', 'text', ' inputmode="numeric"'), false, t('salH')) +
+      field('Expected_Salary_Max', t('exp3'), inp('Expected_Salary_Max', 'text', ' inputmode="numeric"'), false, t('salH')) +
+      field('Notice_Period', t('notice'), '<select class="inp" id="f_Notice_Period">' + opts(NOTICE, fv('Notice_Period'), li) + '</select>') +
+      '<div class="f full"><label class="f"><span>' + t('emp') + '</span></label><div class="radios"><label><input type="radio" name="emp" value="Y"' + (fv('Is_Employee') === 'Y' ? ' checked' : '') + '>' + t('yes') + '</label><label><input type="radio" name="emp" value=""' + (fv('Is_Employee') !== 'Y' ? ' checked' : '') + '>' + t('no') + '</label></div></div>' +
+      '<div id="empBox" class="full' + (fv('Is_Employee') === 'Y' ? '' : '" style="display:none') + '">' + field('Employee_ID', t('empId'), inp('Employee_ID', 'text', ' inputmode="numeric"'), true) + '</div>' +
+      field('Referrer_Name', t('ref'), inp('Referrer_Name', 'text'), false, t('refH'), 'full') +
+      '<div class="f full"><label class="f"><span>' + t('rel') + '</span></label><div class="radios"><label><input type="radio" name="rel" value="Y"' + (fv('Has_Relative') === 'Y' ? ' checked' : '') + '>' + t('yes') + '</label><label><input type="radio" name="rel" value="N"' + (fv('Has_Relative') === 'N' ? ' checked' : '') + '>' + t('no') + '</label></div></div>' +
+      '<div id="relBox" class="full grid' + (fv('Has_Relative') === 'Y' ? '' : '" style="display:none') + '">' + field('Relative_Name', t('relName'), inp('Relative_Name', 'text')) + field('Relative_Relation', t('relRel'), inp('Relative_Relation', 'text')) + '</div>' +
+      field('Accommodation', t('acc'), inp('Accommodation', 'text'), false, t('accH'), 'full') +
+      '<label class="consent full"><input type="checkbox" id="cDis"' + (fv('Disability') === 'Y' ? ' checked' : '') + '><span>' + t('dis') + '</span></label>' +
+      '<label class="consent full"><input type="checkbox" id="cMinor"' + (fv('Minor') === 'Y' ? ' checked' : '') + '><span>' + t('minor') + '</span></label>' +
+      '<div id="minorBox" class="full grid' + (fv('Minor') === 'Y' ? '' : '" style="display:none') + '">' + field('Guardian_Name', t('gName'), inp('Guardian_Name', 'text'), true) + field('Guardian_Mobile', t('gMob'), inp('Guardian_Mobile', 'tel'), true) +
+        '<label class="consent full"><input type="checkbox" id="cGuard"' + (fv('consentGuardian') === 'Y' ? ' checked' : '') + '><span>' + t('cGuard') + '</span></label></div>' +
+    '</div></div>' +
+    questionsHtml(I.questions || [], en) +
+    '<div class="card sec"><h2><i>4</i>' + t('s4') + (I.cvRequired ? ' <span class="req">*</span>' : ' <span class="hint">' + t('cvOpt') + '</span>') + '</h2>' +
+      '<label class="file' + (ST.cv ? ' has' : '') + '" id="cvBox"><input type="file" id="cvIn" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none">' +
+      (ST.cv ? '<b>✓ ' + esc(ST.cv.name) + '</b><span class="hint">' + t('cvChange') + '</span>' : '<b>' + t('cvPick') + '</b><span class="hint">' + t('cvH') + '</span>') + '</label>' +
+      '<div class="phrow"><span class="phav"' + (ST.photo ? ' style="background-image:url(' + ST.photo + ')"' : '') + '></span><label class="phbtn"><input type="file" id="phIn" accept="image/jpeg,image/png" style="display:none">' +
+        (ST.photo ? t('photoChange') : t('photoPick')) + '</label>' + (ST.photo ? '<button type="button" class="phbtn" id="phOff">' + t('photoOff') + '</button>' : '') + '</div></div>' +
+    '<div class="card sec"><h2><i>5</i>' + t('s5') + '</h2>' +
+      (I.privacy.entity ? '<div class="hint">' + t('employer') + ': <b>' + esc(en && I.privacy.entityEn ? I.privacy.entityEn : I.privacy.entity) + '</b></div>' : '') +
+      '<label class="consent"><input type="checkbox" id="consent"' + (fv('consent') === 'Y' ? ' checked' : '') + '><span><b>' + t('consent') + '</b> ' + esc(en ? I.privacy.en : I.privacy.ar) +
+        ((en ? I.privacy.fullEn : I.privacy.fullAr) ? ' <a href="#" id="fullLink" style="color:var(--primary)">' + t('full') + '</a>' : '') + '</span></label>' +
+      '<div id="fullBox" class="summary" style="display:none;max-height:320px;overflow:auto;border:1px solid var(--border);border-radius:10px;padding:10px">' + esc(en ? I.privacy.fullEn : I.privacy.fullAr) + '</div>' +
+      '<label class="consent"><input type="checkbox" id="cTransfer"' + (fv('consentTransfer') === 'Y' ? ' checked' : '') + '><span>' + t('cTransfer') + '</span></label>' +
+      '<label class="consent"><input type="checkbox" id="cSalary"' + (fv('consentSalary') === 'Y' ? ' checked' : '') + '><span>' + t('cSalary') + '</span></label>' +
+      '<label class="consent"><input type="checkbox" id="cPool"' + (fv('consentPool') === 'Y' ? ' checked' : '') + '><span>' + t('cPool').replace('{n}', I.privacy.poolMonths || 12) + '</span></label>' +
+      (ST.photo ? '<label class="consent"><input type="checkbox" id="cPhoto"' + (fv('consentPhoto') === 'Y' ? ' checked' : '') + '><span>' + t('cPhoto') + '</span></label>' : '') +
+      (I.privacy.email ? '<div class="hint">' + t('privacyMail') + ' <span dir="ltr">' + esc(I.privacy.email) + '</span></div>' : '') +
+      '<div class="hp" aria-hidden="true"><input id="website" tabindex="-1" autocomplete="off"></div>' +
+      '<div id="err">' + (ST.err ? '<div class="msg err">' + esc(ST.err) + '</div>' : '') + '</div>' +
+      '<button class="btn" id="send"' + (ST.busy ? ' disabled' : '') + '>' + (ST.busy ? t('sending') : t('send')) + '</button></div>' +
+    '<div class="foot">© ' + t('company') + '</div>';
+  bindLang();
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="emp"]'), function(r){ r.onchange = function(){ $('empBox').style.display = r.value === 'Y' && r.checked ? '' : 'none'; }; });
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="rel"]'), function(r){ r.onchange = function(){ $('relBox').style.display = r.value === 'Y' && r.checked ? '' : 'none'; }; });
+  $('cMinor').onchange = function(){ $('minorBox').style.display = this.checked ? '' : 'none'; };
+  $('cvIn').onchange = pickCv;
+  $('phIn').onchange = pickPhoto;
+  if ($('phOff')) $('phOff').onclick = function(){ collect(); ST.photo = null; render(); };
+  $('send').onclick = submit;
+  if ($('fullLink')) $('fullLink').onclick = function(e){ e.preventDefault(); var b = $('fullBox'); b.style.display = b.style.display === 'none' ? '' : 'none'; };
+}
+/* job-specific screening questions (no pass rules reach this page) */
+function questionsHtml(qs, en){
+  if (!qs.length) return '';
+  return '<div class="card sec"><h2><i>✓</i>' + t('sQ') + '</h2><div class="grid">' + qs.map(function(q){
+    var label = en ? q.en : q.ar, cur = (ST.q || {})[q.id] || '', inner;
+    if (q.type === 'YES_NO') inner = '<div class="radios"><label><input type="radio" name="q_' + q.id + '" value="Y"' + (cur === 'Y' ? ' checked' : '') + '>' + t('qYes') + '</label><label><input type="radio" name="q_' + q.id + '" value="N"' + (cur === 'N' ? ' checked' : '') + '>' + t('qNo') + '</label></div>';
+    else if (q.type === 'CHOICE') inner = '<select class="inp" data-q="' + q.id + '"><option value="">' + t('choose') + '</option>' + q.options.map(function(o){ return '<option value="' + esc(o.v) + '"' + (o.v === cur ? ' selected' : '') + '>' + esc(en ? (o.en || o.ar) : o.ar) + '</option>'; }).join('') + '</select>';
+    else if (q.type === 'NUMBER') inner = '<input class="inp ltr" data-q="' + q.id + '" inputmode="decimal" maxlength="5" value="' + esc(cur) + '">';
+    else inner = '<input class="inp" data-q="' + q.id + '" maxlength="200" value="' + esc(cur) + '">';
+    return '<div class="f full"><label class="f"><span>' + esc(label) + (q.required ? ' <span class="req">*</span>' : '') + '</span></label>' + inner + '</div>';
+  }).join('') + '</div></div>';
+}
+function collectQ(){
+  ST.q = ST.q || {};
+  Array.prototype.forEach.call(document.querySelectorAll('[data-q]'), function(el){ ST.q[el.dataset.q] = el.value; });
+  Array.prototype.forEach.call(document.querySelectorAll('input[type="radio"][name^="q_"]:checked'), function(el){ ST.q[el.name.slice(2)] = el.value; });
+}
+function bindLang(){ Array.prototype.forEach.call(document.querySelectorAll('[data-l]'), function(b){ b.onclick = function(){ setLang(b.dataset.l); }; }); }
+var MIME_BY_EXT = { pdf:'application/pdf', doc:'application/msword', docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document', jpg:'image/jpeg', jpeg:'image/jpeg', png:'image/png' };
+function pickCv(){
+  var file = this.files && this.files[0]; if (!file) return;
+  collect();
+  var ext = (file.name.split('.').pop() || '').toLowerCase(), mime = MIME_BY_EXT[ext];
+  if (!mime) { ST.err = t('badFile'); render(); return; }
+  if (file.size > 5 * 1024 * 1024) { ST.err = t('bigFile'); render(); return; }
+  var rd = new FileReader();
+  rd.onload = function(){ ST.cv = { name: file.name, mime: mime, data: String(rd.result).split(',')[1] }; ST.err = ''; render(); };
+  rd.readAsDataURL(file);
+}
+/* optional personal photo: shrunk here to a 160×160 JPEG (~10 KB) before it is sent */
+function pickPhoto(){
+  var file = this.files && this.files[0]; if (!file) return;
+  collect();
+  if (!/^image\/(jpeg|png)$/.test(file.type) || file.size > 15 * 1024 * 1024) { ST.err = t('badFile'); render(); return; }
+  var rd = new FileReader();
+  rd.onload = function(){
+    var img = new Image();
+    img.onload = function(){
+      var S = 160, c = document.createElement('canvas'); c.width = S; c.height = S;
+      var k = Math.max(S / img.width, S / img.height), w = img.width * k, h = img.height * k;
+      var g = c.getContext('2d'); g.fillStyle = '#fff'; g.fillRect(0, 0, S, S); g.drawImage(img, (S - w) / 2, (S - h) / 2, w, h);
+      ST.photo = c.toDataURL('image/jpeg', 0.82); ST.err = ''; render();
+    };
+    img.onerror = function(){ ST.err = t('badFile'); render(); };
+    img.src = rd.result;
+  };
+  rd.readAsDataURL(file);
+}
+function submit(){
+  collect();
+  if (ST.f.consent !== 'Y') { ST.err = t('needConsent'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  if (ST.f.consentTransfer !== 'Y') { ST.err = t('needTransfer'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  if (ST.f.Has_Relative === 'Y' && (String(ST.f.Relative_Name || '').trim().length < 3 || !String(ST.f.Relative_Relation || '').trim())) { ST.err = t('needRel'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  if (ST.f.Minor === 'Y' && (String(ST.f.Guardian_Name || '').trim().length < 5 || !String(ST.f.Guardian_Mobile || '').trim() || ST.f.consentGuardian !== 'Y')) { ST.err = t('needGuard'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  if (['Expected_Salary', 'Expected_Salary_Max'].some(function(k){ var x = String(ST.f[k] || '').replace(/[,\s]/g, '').replace(/[٠-٩]/g, function(d){ return '٠١٢٣٤٥٦٧٨٩'.indexOf(d); }); return x !== '' && /^\d+$/.test(x) && Number(x) === 0; })) { ST.err = t('salZero'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  if ((ST.f.Expected_Salary || ST.f.Expected_Salary_Max) && ST.f.consentSalary !== 'Y') { ST.err = t('needSalary'); render(); $('err').scrollIntoView({ block: 'center' }); return; }
+  var p = {}; for (var k in ST.f) p[k] = ST.f[k];
+  p.code = CODE; p.src = SRC; p.ad = AD; p.lang = ST.lang; p.consentVersion = ST.info.privacy.version; p.elapsed = Date.now() - ST.t0; p.stamp = ST.info.stamp || '';
+  p.website = $('website').value; if (ST.cv) p.cv = ST.cv; if (ST.photo && ST.f.consentPhoto === 'Y') p.photo = ST.photo;
+  p.answers = ST.q || {};
+  ST.busy = true; ST.err = ''; render();
+  call('apply.submit', p).then(function(d){ ST.busy = false; ST.done = d.ref; render(); window.scrollTo(0, 0); })
+    .catch(function(e){ ST.busy = false; ST.err = e.error || t('netErr'); render(); $('err').scrollIntoView({ block: 'center' }); });
+}
+ST.lang = '<?= lang ?>' === 'en' ? 'en' : 'ar';
+setLang(ST.lang);
+call('apply.info', { code: CODE }).then(function(d){ ST.info = d; render(); }).catch(function(e){ ST.info = { closed: true }; render(); });
+</script>
+</body>
+</html>

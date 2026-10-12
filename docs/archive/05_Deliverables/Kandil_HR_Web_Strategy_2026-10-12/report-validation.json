@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-12T15:00:10.518Z",
+  "desktop": {
+    "sections": 18,
+    "figures": 3,
+    "loadedImages": true,
+    "tables": 11,
+    "overflow": false,
+    "brokenAnchors": 0
+  },
+  "mobile": {
+    "overflow": false,
+    "width": 390,
+    "scrollWidth": 390
+  },
+  "missingFiles": [],
+  "errors": [],
+  "scope": "Report rendering only; no HR implementation tests were run."
+}

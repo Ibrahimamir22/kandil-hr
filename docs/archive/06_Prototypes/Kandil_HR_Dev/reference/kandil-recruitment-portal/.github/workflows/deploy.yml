@@ -1,0 +1,133 @@
+name: Test and deploy to Apps Script
+
+on:
+  push:
+    branches: [main]
+    paths: ['src/**', 'tests/**', '.github/workflows/**', '.clasp.json', 'deploy.json']
+  # pull requests: tests only (the deploy job below never runs for them)
+  pull_request:
+    branches: [main]
+    paths: ['src/**', 'tests/**', '.github/workflows/**', '.clasp.json', 'deploy.json']
+  workflow_dispatch:
+
+concurrency:
+  # deploys queue one after another; a newer push to the same PR replaces its older test run
+  group: ${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.number) || 'deploy' }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Apps Script file names are unique
+        run: |
+          # Apps Script keys files by name without the extension: X.gs and X.html cannot both exist
+          dup=$(ls src | grep -E '\.(gs|html)$' | sed -E 's/\.(gs|html)$//' | sort | uniq -d)
+          if [ -n "$dup" ]; then echo "::error::Same name for a .gs and an .html file: $dup"; exit 1; fi
+      - name: Server tests (mock Apps Script)
+        run: |
+          cd tests
+          node harness.js
+          node phase2.js
+          node orgadmin.js
+          node phase3.js
+          node phase4.js
+          node phase5.js
+          node phase6.js
+          node phase7.js
+          node phase8.js
+          node phase9.js
+          node phase10.js
+          node phase11.js
+          node phase12.js
+          node phase13.js
+          node phase14.js
+          node phase15.js
+          node phase16.js
+          node phase17.js
+          node phase18.js
+          node phase19.js
+          node phase20.js
+          node phase21.js
+          node phase22.js
+          node phase23.js
+          node phase24.js
+          node phase25.js
+          node phase26.js
+          node phase27.js
+          node phase28.js
+          node phase29.js
+          node phase30.js
+          node phase31.js
+          node phase32.js
+          node phase33.js
+          node phase34.js
+          node phase35.js
+          node phase36.js
+          node phase37.js
+          node phase38.js
+          node phase39.js
+          node phase40.js
+          node phase41.js
+          node phase42.js
+          node phase43.js
+          node phase44.js
+          node phase45.js
+          node phase46.js
+          node phase47.js
+          node phase48.js
+          node phase49.js
+          node phase50.js
+          node phase51.js
+          node phase52.js
+          node phase53.js
+          node phase54.js
+          node i18n.js
+
+  deploy:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check setup
+        id: check
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          if [ -z "$CLASPRC_JSON" ] || [ ! -f .clasp.json ]; then
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "::warning::Deploy skipped: CLASPRC_JSON secret or .clasp.json is not set up yet."
+          else
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Push code and update the live deployment
+        if: steps.check.outputs.ready == 'true'
+        env:
+          CLASPRC_JSON: ${{ secrets.CLASPRC_JSON }}
+        run: |
+          set -o pipefail
+          report() { echo "::error title=$1::$(tail -c 900 out.txt | tr '\n' ' ' | sed -E 's/(ya29|1\/\/)[A-Za-z0-9._-]+/[hidden]/g')"; exit 1; }
+          npm install -g @google/clasp@3 > /dev/null 2>&1
+          clasp --version
+          printf '%s' "$CLASPRC_JSON" > ~/.clasprc.json
+          node -e "const j=JSON.parse(require('fs').readFileSync(process.env.HOME+'/.clasprc.json','utf8'));console.log('credential keys:',Object.keys(j).join(','))" > out.txt 2>&1 || report "Secret CLASPRC_JSON is not valid JSON"
+          cat out.txt
+          DEPLOYMENT_ID=$(node -e "console.log(require('./deploy.json').deploymentId||'')")
+          clasp push --force > out.txt 2>&1 || report "clasp push failed"
+          cat out.txt
+          MSG="$(git log -1 --pretty=%s | cut -c1-90)"
+          if [ -n "$DEPLOYMENT_ID" ]; then
+            clasp create-deployment --deploymentId "$DEPLOYMENT_ID" --description "${GITHUB_SHA::7} $MSG" > out.txt 2>&1 || report "clasp create-deployment failed"
+            cat out.txt
+          else
+            echo "::warning::No deploymentId in deploy.json — code pushed, live link not updated."
+          fi
+          rm -f ~/.clasprc.json

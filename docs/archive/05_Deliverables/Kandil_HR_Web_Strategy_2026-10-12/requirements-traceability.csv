@@ -1,0 +1,99 @@
+﻿id,requirement,source_phase,source_claim,primary_sprint,existing_scoped_evidence,new_portal_status,owner,final_gate
+ACC-001,"OTP login, personal Gmail; spreadsheets owner-only",P1,Built,W2,1 blocked; 1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ACC-002,AuthService swappable for Workspace identity,P1,Built,W2,2 blocked,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ACC-003,Role and scope resolved on the server only,P1,Built,W2,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ACC-004,One login shared with the Performance Appraisal portal,P10,Later,W11,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+UX-001,Same design and spirit as the Performance Appraisal portal,P10,Built,W1,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-001,"Job, Position, Employee, Vacancy as separate entities",P2,Built,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-002,Versioned organization; closed positions kept,P2,Partial,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-003,"Structured, versioned JD with view / print / PDF / email",P2,Built,W3,3 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-004,"Only HR Sector Manager changes grade, salary, benefits, conditions",P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-005,Delegation / acting authority with dates and history,P3,Built,W4,1 partial; 2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-006,"Structural change: chain, HR review, CEO approval, Position ID on approval",P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-007,Structure maintained from the portal,P2,Built,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-008,"Coding of units and jobs, automatic codes",P2,Built,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ORG-009,Multi-company (4 legal entities + sister companies),P2,Partial,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-001,Structural HC = 1 per position until a manpower plan,P2,Built,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-002,Occupied HC by HR; payroll-sheet import later,P2,Partial,W3,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-003,Current / available HC shown as guidance; any number requestable,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-004,HC exception approved by the HR Sector Manager only (CHG-40/2),P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-005,Available = Structural − Occupied − Open; no double counting,P3,Built,W4,1 partial; 2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-006,HC checks warn-only until switched to block,P3,Built,W4,1 partial; 1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+HC-007,Filled HC counts actual joiners only,P3,Built,W9,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-001,"Manager requests only positions in his scope, server-side",P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-002,Current form fields kept (HR-REC-F02),P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-003,"One request, several locations via request lines",P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-004,Chain from structure; missing level skipped; self-approval blocked,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-005,"CEO by HR routing, dated CEO rules, Sector Manager → CEO",P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-006,HR Manager approve / reject / return / edit / send to CEO,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-007,"Requester notified of every step, rejection and HR edit",P3,Built,W5,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-008,Return for revision with timestamps and versions,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-009,Approval snapshot of what each approver saw,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-010,Request timeline and My Requests,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+REQ-011,Change request and reapproval for material post-approval changes,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+PRI-001,Requested priority / HR classification / dynamic score / override,P3,Built,W5,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+BRD-001,Board approval (Chairman or Vice) after the CEO,P3,Built,W4,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-001,One vacancy per location line,P3,Built,W5,1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-002,Partial fill; request closes fully or partially,P3,Built,W5,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-003,Several recruiters per vacancy; lead; one owner per application,P3,Built,W5,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-004,Missing recruitment roles skipped with record,P3,Built,W5,1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-005,Unassigned work queue and bulk reassignment,P3,Built,W5,2 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+VAC-006,Recruitment screen listing all approved requests / vacancies,P3,Built,W5,1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ADV-001,"Ads per platform from JD templates, copyable",P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ADV-002,Apply link per ad with automatic source,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+SRC-001,"Source mandatory per application, with sub-source",P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+SRC-002,"Subscriptions: credits, usage, expiry, unused-credit alerts",P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+SRC-003,Referral attribution lock; agency terms,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-001,"Person master; candidate ≠ application; duplicate warning, no auto-merge",P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-002,Hybrid journey; recruiter acts on behalf with audit,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-003,Online application intake,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-004,Privacy notice acceptance stored with version,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-005,Salaries required with disclosure states; never zero,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-006,National ID optional at application,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-007,Bulk import of 50–100 rows with duplicate review and batch ID,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-008,Hybrid talent pool,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+CAN-009,Former employee detection and hiring restriction,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+SCR-001,Knockout flags for human review; AI evidence-only,P9,Built,W11,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+SCR-002,Coded rejection reasons; internal reason separate from message,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ACT-001,"Activity log: calls, manager discussions, no silent edits",P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ACT-002,Action queue with next action per application,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+COM-001,Message templates; copy for WhatsApp,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+COM-002,Rejection message by WhatsApp or email as an explicit step,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+MOV-001,Vacancy fill method recorded (external / internal transfer),P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+MOV-002,Internal candidates (source Internal); manager told before first interview,P4,Built,W6,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ASM-001,Practical / technical assessment stage,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-001,Invite blocked until the manager confirms,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-002,Manager screen of interview dates and locations,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-003,Reminders and optional reconfirmation,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-004,"Check-in, waiting timer, evidence trail",P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-005,"Interview plan, panel roles, waiver with reason",P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-006,Interviewer workspace shows the JD,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-007,Question bank; HR standard questions in the HR interview,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-008,"Structured, independent evaluations (HR, direct, higher manager)",P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-009,Live comparison; continuous pipeline; decision readiness,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INT-010,SLA on confirmation and evaluation with escalation,P5,Built,W7,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-001,Offer sent by email from the system or printed,P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-002,Offer authority by salary band; HR Manager above max,P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-003,"Basic + allowances; incentives in the system, not in the offer",P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-004,Offer versions and negotiation with reapproval,P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-005,Valid Until and audited extension,P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-006,Five-figure salary trail,P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+OFF-007,"Decline reasons, over-hiring warning, reserve candidates",P6,Built,W8,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+JOI-001,"Joining date agreed after acceptance, with history",P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+JOI-002,Did-not-join tracked with reasons,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+DOC-001,"Upload by employee or HR, HR review, physical receipt",P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+DOC-002,Deferred documents with approver and due date; HR alerts only,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+FIL-001,Electronic employee file with document versions and expiry,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ONB-001,Orientation with separate manager and HR screens,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ONB-002,First-day welcome gift,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+ONB-003,30-day New Hire Voice with confidentiality,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INS-001,Social insurance case within the first month,P7,Built,W9,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+MOV-003,Transfer process with approvals and HC check on the target,P8,Built,W10,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+MOV-004,"On the effective date: positions / HC move, vacancy updated, history, replacement offered",P8,Built,W10,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+PRB-001,"Probation checkpoints, log, final evaluation, reminders",P8,Built,W10,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+INS-002,Medical insurance after successful probation,P8,Built,W10,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+RPT-001,"Status report per request; log of calls, appointments, no-shows",P9,Built,W11,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+RPT-002,Role dashboards; drill-down KPIs,P9,Built,W11,Not assessed in old 80-case checkpoint,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+AUD-001,"Audit: who, what, when, before, after",P1,Built,W2,1 blocked; 1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+AUD-002,Controlled overrides instead of admin bypass,P1,Built,W2,2 partial,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance
+WAG-001,No wage or payroll action anywhere,P1,Built,W9,1 partial; 1 passed,Planned; unverified,HR + technical lead,W12 tests + W13 HR acceptance

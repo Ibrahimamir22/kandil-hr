@@ -1223,3 +1223,30 @@ Import audit target is outside the reviewed company,السجل المستهدف 
 client_command,أمر من الواجهة
 server_invocation,استدعاء من الخادم
 Creation audit requires explicit absent before state,يتطلب تدقيق الإنشاء تسجيلًا صريحًا بأن السجل لم يكن موجودًا قبل العملية.
+A revision reason of 3 to 2000 characters is required.,يجب إدخال سبب للمراجعة يتراوح بين 3 و2000 حرف.
+Apply the reviewed quantities and restart all approvals? Existing reservations will change only by the difference.,هل تريد تطبيق الأعداد التي راجعتها وبدء جميع الموافقات من جديد؟ ستتغير الحجوزات الحالية بمقدار الفرق فقط.
+Available excluding own reservation,المتاح بعد استبعاد حجز هذا الطلب
+Changing pending quantities restarts all approvals. Earlier decisions remain in history and do not approve the new quantities.,تعديل الأعداد أثناء انتظار الموافقة يعيد بدء جميع الموافقات. تبقى القرارات السابقة في السجل ولا تُعد موافقة على الأعداد الجديدة.
+Current reservation,الحجز الحالي
+Each request line must appear exactly once.,يجب إدراج كل بند في الطلب مرة واحدة فقط.
+Enter a positive whole quantity for every location.,أدخل عددًا صحيحًا موجبًا لكل موقع.
+Guidance is read-only. Saving checks current capacity again.,هذه المعلومات للاطلاع فقط. يُعاد فحص السعة الحالية عند الحفظ.
+Headcount change denied,رُفض تعديل العدد الوظيفي
+Headcount exception justification,مبرر استثناء العدد الوظيفي
+New total quantity,العدد الإجمالي الجديد
+New total quantity — {0},العدد الإجمالي الجديد — {0}
+Not available,غير متاح
+Only the requester can revise quantities on this pending original request.,يمكن لصاحب الطلب فقط تعديل أعداد هذا الطلب الأصلي أثناء انتظار الموافقة.
+Pending quantity revisions cannot change an existing vacancy.,لا يمكن لمراجعة الأعداد أثناء انتظار الموافقة تعديل شاغر موجود.
+Provide a complete quantity map for the existing request lines.,أدخل الأعداد لجميع بنود الطلب الحالية.
+Provide every existing request line exactly once; locations cannot change.,أدرج كل بند حالي في الطلب مرة واحدة فقط؛ لا يمكن تغيير المواقع.
+Reservation change,التغير في الحجز
+Review and restart approvals,مراجعة وبدء الموافقات من جديد
+Revise pending quantities,تعديل الأعداد أثناء انتظار الموافقة
+Revised quantities must be positive whole numbers.,يجب أن تكون الأعداد المعدلة أعدادًا صحيحة موجبة.
+Revision reason,سبب المراجعة
+Shortage,العجز
+The exception justification must contain at most 2000 characters.,يجب ألا يتجاوز مبرر الاستثناء 2000 حرف.
+The headcount change was denied. Your request has not changed.,رُفض تعديل العدد الوظيفي. لم يتغير طلبك.
+The reservation ledger needs reconciliation before this revision.,يجب تسوية سجل الحجوزات قبل إجراء هذه المراجعة.
+WARN shortages require at least 10 trimmed characters. BLOCK shortages cannot proceed.,عند وجود عجز في وضع التحذير، يلزم مبرر من 10 أحرف على الأقل بعد استبعاد المسافات في البداية والنهاية. في وضع المنع، لا يمكن متابعة الطلب عند وجود عجز.

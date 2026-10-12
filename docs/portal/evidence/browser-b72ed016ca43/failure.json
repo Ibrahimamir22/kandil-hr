@@ -1,0 +1,55 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "Personal requester login renders scoped dashboard",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero quantity rejected in form",
+      "status": "PASS"
+    },
+    {
+      "name": "EN portal creates and submits a real two-location request",
+      "status": "PASS"
+    },
+    {
+      "name": "Manager has no requester create control",
+      "status": "PASS"
+    },
+    {
+      "name": "Manager UI approval advances only to HR",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale second browser approval is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale error visible to reviewer",
+      "status": "PASS"
+    },
+    {
+      "name": "HR UI final approval creates both vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "One vacancy card per requested location",
+      "status": "PASS"
+    },
+    {
+      "name": "Assigned lead displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "Return UI changes request state and releases seats",
+      "status": "PASS"
+    },
+    {
+      "name": "Returned draft retains title and quantity",
+      "status": "PASS"
+    }
+  ],
+  "error": "locator.fill: Timeout 30000ms exceeded.",
+  "runtime_errors": []
+}

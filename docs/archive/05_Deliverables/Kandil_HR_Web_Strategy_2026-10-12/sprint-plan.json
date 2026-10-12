@@ -1,0 +1,236 @@
+{
+  "report_date": "2026-10-12",
+  "status": "proposed_not_started",
+  "reference_commit": "7824be24292c4743b4005e14e2df540786cfe167",
+  "option_A_sequence": [
+    "W0",
+    "W1",
+    "W2",
+    "W3",
+    "W4",
+    "W5",
+    "W6",
+    "W7",
+    "W8",
+    "W9",
+    "W10",
+    "W11",
+    "W12",
+    "W13"
+  ],
+  "option_B_sequence": [
+    "W0",
+    "W1",
+    "W2",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "W3",
+    "W4",
+    "W5",
+    "W6",
+    "W7",
+    "W8",
+    "W9",
+    "W10",
+    "W11",
+    "W12",
+    "W13"
+  ],
+  "sprints": [
+    {
+      "id": "W0",
+      "title": "Scope, decisions and threat model / تثبيت النطاق",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "None; begin with the pinned reference and current checkpoint.",
+      "work": "Lead: inventory all 98 IDs, 16 supplemental packages, source decisions and current unfinished changes. HR: approve personas, legal entities, authority, headcount interpretation, contract-template owner and source-of-truth mapping. UX: observe five reference tasks and record baseline completion/time. Security: classify pay, identity documents and candidate data; draw trust boundaries and attack cases. Operations: identify account volumes, peak patterns, retention, identity provider and recovery owner.",
+      "option_specific_work": "A: inventory reusable endpoints and Frappe coupling. B: estimate missing domain services and data migration. Both: create an architecture decision record, backlog and decision register without modifying production.",
+      "exit_gate": "Approved scope/must-have list; every reference ID has a delivery owner and sprint; every unknown has a decision owner/date. Threat model and load assumptions recorded. HR agrees which source behavior is preserved or deliberately replaced.",
+      "parallel_work": "UX research, source mapping and infrastructure discovery run in parallel; HR policy decisions constrain dependent implementation."
+    },
+    {
+      "id": "W1",
+      "title": "Design system and complete prototype / التصميم وتجربة الاستخدام",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W0 personas and scope; synthetic data only.",
+      "work": "UX/frontend: Kandil design tokens, branded login, AR/EN switch, RTL/LTR layouts, role sidebar, task inbox, request wizard, approval detail and vacancy view. Include loading, empty, error, forbidden, stale-version and session-expired states. QA: keyboard, mobile, zoom and low-connectivity walkthroughs. Backend: define typed request/response contracts and meaningful fixture names.",
+      "option_specific_work": "Same frontend work for both choices. Keep backend-neutral domain terminology; do not expose Frappe DocType labels as the information architecture.",
+      "exit_gate": "Ibrahim and HR review five linked screens and one complete clickable journey in both languages. Prototype meets the agreed navigation and usability criteria. Record changes and unresolved issues; a mock prototype is not API or security proof.",
+      "parallel_work": "Frontend components, translation review and API contract drafting can overlap; freeze accepted contracts before separate implementations."
+    },
+    {
+      "id": "W2",
+      "title": "Connected proof and architecture decision / تجربة فعلية وحسم المسار",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W1 screen review and W0 identity/authority decisions for the proof.",
+      "work": "Build a thin real journey: requester submits multi-location request, manager/HR review a version, approved vacancies appear with correct capacity. Use ordinary role sessions, same-origin security, private document access, scoped search and denied-action UI. QA: duplicate click, replay, stale edit, revoked user and cross-company tests. Operations: staging configuration, logs and basic metrics.",
+      "option_specific_work": "A: connect selected existing commands through reviewed adapters and fix API gaps; isolate unverified headcount changes. B: if selected early, prove a minimal authenticated command/transaction spike and use B1–B4 to complete its foundation. Never label a mocked B journey as integrated. Decision record compares implementation effort, security, upgrade impact and measured latency.",
+      "exit_gate": "A may proceed only if the complete real flow stays in the portal and all critical permission/ledger cases pass. Otherwise document a fixable gap or choose B. B must repeat the full real journey at B4 before W3 feature expansion. User/HR approves experience; lead approves backend evidence.",
+      "parallel_work": "Frontend and API work can overlap on stable contracts; integrated DB mutation tests are serialized. This is the first product decision gate, not the first security discussion."
+    },
+    {
+      "id": "W3",
+      "title": "Organization, positions and job descriptions / الهيكل والأوصاف",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W2 successful A proof, or B4 successful B proof.",
+      "work": "Build organization tree, stable Job/Position/Employee separation, branch allocations, effective-dated assignments, unit coding and controlled imports. Deliver full structure snapshots/date comparisons, closed-position history and company-specific authority roots. Add versioned JD editing, manager review, weighted KPIs, approved outputs and worker cards. Reconcile occupied baseline against employees.",
+      "option_specific_work": "A: reuse eligible organization services and file generation, expose custom screens and close source-deferred gaps. B: implement equivalent relational models, migrations and command services. Both: consistent codes and no silent overwrite during import.",
+      "exit_gate": "HR approves imported synthetic examples and JD layouts. Cross-company hierarchy access is denied. Invalid CSV remains reviewable without partial silent writes; history, PDF/Arabic layout and capacity reconciliation pass.",
+      "parallel_work": "Organization UI, JD documents and import validation can proceed independently once entity IDs/schema are fixed."
+    },
+    {
+      "id": "W4",
+      "title": "Hiring requests, authority and headcount / الطلبات والاعتمادات",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W3 position model and agreed authority/headcount rules.",
+      "work": "Implement all HR-REC-F02 fields, multi-location quantities, replacements, skills and terms. Deliver drafts, immutable submission versions, route previews, self-interest handling, vacant authority rules, dated delegation, CEO/board evidence, returns, rejection, cancellation and approved amendments. Finish exact pending-quantity revision and durable denial audit. Record requested versus approved values and reasoned changes.",
+      "option_specific_work": "A: revalidate existing commands behind portal APIs; test direct native/resource entry points too. B: implement transactional state machines and row locks, with the same frozen case intent. Neither frontend may decide authority or reserve seats itself.",
+      "exit_gate": "Independent authority matrix passes. Own reservation is not double-counted; simultaneous attempts reconcile exactly. Material revision follows approved reapproval policy, old approval history persists, denial is retained without business mutation, and UI preserves entered values.",
+      "parallel_work": "Request wizard and approval inbox can be built in parallel; shared capacity/approval schema and migrations have one integrator."
+    },
+    {
+      "id": "W5",
+      "title": "Vacancy operations and communications / تشغيل الشواغر",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W4 approved-request and capacity contracts.",
+      "work": "Deliver per-location vacancies; assigned lead/team, unassigned queue, bulk reassignment, priority score and reasoned pinning; pause/resume/close/cancel and partial fill status. Add role home counts, search, timeline and action inbox. Implement reliable scheduled reminders, business calendar, in-app notices, email templates, local test capture and delivery monitoring.",
+      "option_specific_work": "A: retain reviewed vacancy/outbox logic; expose purpose-built read models. B: build equivalent lifecycle/outbox and state projections. Provider sending remains gated to approved test recipients until release authorization.",
+      "exit_gate": "Requester sees accurate progress; team changes preserve private history. Parallel assignment/retry does not duplicate work or notices. Restarted workers recover; daily reminders run without a user opening the site. Disabled recruiter work is reassigned safely.",
+      "parallel_work": "Vacancy UI, template design and job operations can overlap; queue integration tests share controlled fixtures."
+    },
+    {
+      "id": "W6",
+      "title": "Candidates, sourcing and public intake / المرشحون والمصادر",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W5 vacancy API; approved privacy/retention and public-domain boundary.",
+      "work": "Build Person master plus Applications, duplicate review, former-employee flag and internal candidate process. Add ads/apply links/source attribution, agency/referral records, subscription-credit tracking, 50–100-row imports, consent versions, talent pool and recruiter-on-behalf history. Deliver private activity log, next-action queue and explicit rejection communications. Add token-scoped candidate uploads and self-service.",
+      "option_specific_work": "A: extend HRMS applicant-related records where appropriate without losing Person/Application separation. B: create native domain models and private storage services. Both: do not copy a generic applicant list and call it full parity.",
+      "exit_gate": "Shared phone does not auto-merge people. Guessed tokens/IDs, other-company records and unsafe uploads are denied. Consent, retention holds, deletion/export and source attribution tests pass. Recruiter cannot expose internal rejection notes to candidates.",
+      "parallel_work": "Public intake, recruiter workspace, sourcing and import tools can overlap after data/privacy contracts are stable."
+    },
+    {
+      "id": "W7",
+      "title": "Interviews and selection / المقابلات والاختيار",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W6 candidate identity/application and scoped access.",
+      "work": "Add manager-confirmed slots, invitations, reminders, reconfirmation, candidate check-in and waiting timer. Build interview plans, panel roles, waivers, assessments, JD/question-bank view and independent structured feedback. Deliver comparison, decision readiness, reserve candidates and consented reference-check records; track SLA/escalation.",
+      "option_specific_work": "A: assess standard Interview support, extend only needed behavior through server services. B: build equivalent scheduling/evaluation modules. Scheduling/provider operations must be retry-safe in both.",
+      "exit_gate": "Unconfirmed interview cannot send an invitation. Interviewer cannot read others’ blind evaluations before permitted release through any API/export. Timezone, reschedule, no-show, conflicts and late feedback pass. HR accepts comparison and decision evidence.",
+      "parallel_work": "Scheduler UI, feedback forms and assessment library can proceed in parallel with contract-based integration."
+    },
+    {
+      "id": "W8",
+      "title": "Compensation and offers / العروض والصلاحيات المالية",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W7 selection and approved grade/compensation policy; supplied reviewed templates.",
+      "work": "Implement restricted grade/pay/benefit tables, optional salary disclosure states and the approved five-figure salary trail. Build guided offer calculations, authority thresholds, negotiation/reapproval, versioning, expiry/extension, decline reasons and reserve-candidate handling. Deliver branded AR/EN offers and preliminary contract/print templates with controlled audience.",
+      "option_specific_work": "A: review Job Offer mapping and reuse valid models while enforcing Kandil-specific authority. B: implement monetary precision, model constraints and versioned calculation services. Both: keep calculation rules and effective dates versioned; do not infer legal formulas from a prototype.",
+      "exit_gate": "HR/payroll reviewers sign off reference examples and authority boundaries. No unauthorized compensation exposure. Expired or superseded offers cannot be accepted; concurrent offer revisions cannot overwrite decisions. Printed outputs match approved templates.",
+      "parallel_work": "Offer UX, calculation tests and document templates can overlap; HR policy approval blocks real financial use."
+    },
+    {
+      "id": "W9",
+      "title": "Joining, employee file and onboarding / المباشرة والملف",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W8 accepted-offer rules and document policy.",
+      "work": "Build agreed start-date history, actual joining confirmation, no-show/reason and seat release policy. Create Employee/Assignment/Onboarding once, with replay-safe commands. Add document upload/review/version/expiry, physical receipts, approved deferrals and follow-up notices. Deliver orientation checklists, HR/manager tasks, welcome gift, confidential day-7/day-30 voice and social-insurance case tracking. Include BioTime enrollment task; real device sync is separate.",
+      "option_specific_work": "A: reuse narrowly tested joining behavior after portal integration; implement the remaining lifecycle. B: implement cross-record transactions and durable task creation. Both: missing documents must not trigger wage withholding or payroll actions.",
+      "exit_gate": "Concurrent joining creates one effect set. No-show does not count as occupied. Private files and survey records respect roles; deferred documents alert only. Required case checklists, receipts, AR/EN outputs and employee mapping reconcile.",
+      "parallel_work": "Document service, onboarding views and survey confidentiality tests can overlap after employee/joining contracts are fixed."
+    },
+    {
+      "id": "W10",
+      "title": "Probation, transfers and lifecycle corrections / المتابعة والنقل",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W9 employee/assignment and document foundation.",
+      "work": "Add probation checkpoints, reminders, observations, final evaluation and confidential follow-ups; medical-insurance case after approved outcome. Build internal transfer approvals, target-capacity checks, effective-date updates, source/target history and replacement prompts. Specify controlled void/correction and exit/deactivation handling, including session revocation and assigned-work reassignment.",
+      "option_specific_work": "Both choices must implement lifecycle side effects as audited transactions. Integrate standard modules only after authority and scope tests. Broader exit settlement and payroll remain separately scoped.",
+      "exit_gate": "Future-dated transfer does not move today’s headcount; actual effective transfer updates both sides once. Probation privacy, no premature medical case, authorized corrections, duplicate event/retry and disabled-account handling pass.",
+      "parallel_work": "Probation and transfer UI can overlap; shared assignment/headcount mutations are integrated by one owner."
+    },
+    {
+      "id": "W11",
+      "title": "Reports, assisted review and connected services / التقارير والربط",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W6–W10 stable events/data; identity/email/appraisal test access.",
+      "work": "Deliver request status, funnel/source yield, bottlenecks, interviewer calibration and hiring forecast with defined metrics. Add guided process map and role guides. Integrate selected identity/appraisal SSO and real email in a sandbox; complete payroll-sheet import mapping for occupied baselines. Prove privacy-safe search/export. Implement SCR-001 assisted CV evidence only if approved provider and budget exist; otherwise record the unmet core requirement explicitly.",
+      "option_specific_work": "A: use bounded read models/report queries and reviewed adapters. B: equivalent reporting projections/adapters. Neither option treats copying WhatsApp text as API sending, or an enrollment task as BioTime synchronization.",
+      "exit_gate": "Reports reconcile with source transactions and maintain small-group/privacy protections under filters/exports. Provider timeout/outage never grants access. AI has consent/purpose controls, cost caps, redaction, prompt-injection tests and human decision ownership. All 98 IDs have a tested outcome or explicit unresolved gate.",
+      "parallel_work": "Reporting, guides and integration adapters can overlap; third-party outages must not block independent report work."
+    },
+    {
+      "id": "W12",
+      "title": "Full assurance and migration rehearsal / الاختبار الشامل",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "Feature-complete W3–W11, approved policies/templates and production-like staging.",
+      "work": "Freeze release candidate; run unchanged original acceptance tests plus full portal/full-reference and negative cases. Perform specified load, contention and soak tests; profile queries and queues. Complete independent penetration assessment and retest. Rehearse clean install/upgrade, data import, file reconciliation, encrypted backups, recovery and rollback. Validate AR/EN/mobile/accessibility, support runbooks and alert routing.",
+      "option_specific_work": "A: include upstream compatibility rehearsal, custom API and native bypass tests. B: include schema migration, object/list permissions and imported audit provenance. Both: benchmark final topology, not a developer laptop.",
+      "exit_gate": "No unapproved critical/high security findings; zero data/authority/ledger corruption; accepted performance and recovery targets met; all mandatory parity cases pass, or release scope is explicitly revised with deferred items visible. HR completes real-role UAT; release candidate and evidence hashes agree.",
+      "parallel_work": "Security, browser and performance reviews use isolated environments where needed. Schema/source freeze is required for a single release claim; fixes trigger affected retests."
+    },
+    {
+      "id": "W13",
+      "title": "Staged release, hypercare and handover / التشغيل والتسليم",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W12 evidence; named HR/IT approval, operating budget and trained support.",
+      "work": "Finalize cutover journal, backup, legacy write freeze and reconciled delta import. Roll out to named HR/department pilot, then 50/200/full approved cohorts with monitoring and stop criteria. Train roles; publish user/admin guides and incident contacts. Tag/publish release, archive evidence and hand over secrets through approved private channels. Run at least ten business days of hypercare and a restore drill follow-up.",
+      "option_specific_work": "Same release discipline for both. Transition ownership explicitly; do not retire the legacy write path until reconciliation and rollback decision are agreed. Additional defects may extend hypercare beyond one sprint.",
+      "exit_gate": "HR signs acceptance; IT accepts restore/monitoring/on-call ownership; users complete agreed tasks; no open critical incidents or unexplained reconciliation variance. Known issues have owners/dates, operating review is scheduled and final handover is recorded.",
+      "parallel_work": "Training and documentation can overlap final preparation; actual cutover has one commander and controlled write window."
+    }
+  ],
+  "option_B_foundation": [
+    {
+      "id": "B1",
+      "title": "Identity, project and secure API foundation",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "W2 decision selects B.",
+      "work": "Create Django/DRF project, PostgreSQL schema baseline, environments, authentication/provider adapter, MFA/recovery policy, session/CSRF protection, secrets and CI. Implement role/company/unit scopes and protected admin access; avoid public generic CRUD for consequential records.",
+      "exit_gate": "Ordinary-account login/logout/revocation and cross-company/list/object/create negative tests pass. Repeat tests against real HTTP, not only mocked permissions."
+    },
+    {
+      "id": "B2",
+      "title": "Domain model and durable state changes",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "B1 identity and database foundation.",
+      "work": "Build Job/Position/Assignment/Capacity, request/approval/version records, generic business-command infrastructure, row-lock ordering, idempotency receipts and reviewed-version conflicts. Implement independent authority and transactional audit/outbox. Define import IDs and audit provenance.",
+      "exit_gate": "Atomic last-seat reservation, repeated commands, failed audit/outbox rollback and stale-update tests pass. No direct ORM/admin route bypasses domain invariants."
+    },
+    {
+      "id": "B3",
+      "title": "Files, jobs, administration and migration tools",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "B1; B2 event/identity contracts.",
+      "work": "Implement private document metadata/storage, quarantine scanner, authorized downloads, workers/scheduler, retry/dead-letter monitoring, approved operator corrections, backup/restore scripts and import validation. Establish deletion/retention and protected audit integrity design.",
+      "exit_gate": "Unsafe file/revoked-download tests, worker restart/replay, isolated restore with files/keys and import rollback pass. No dependency on a browser being open for scheduled tasks."
+    },
+    {
+      "id": "B4",
+      "title": "Backend parity bridge and full portal proof",
+      "duration_weeks": 2,
+      "status": "planned",
+      "dependencies": "B2/B3 plus W1 frontend contracts.",
+      "work": "Connect actual requester/approver/vacancy screens to the new backend. Translate original case intent without copying Frappe-specific test internals. Run reconciliation against synthetic reference examples; validate API schema, permissions, replay, file access and performance baseline. Re-estimate remaining domain work.",
+      "exit_gate": "Repeat the W2 complete real journey successfully. Lead and HR approve proceeding to W3; migration map and retained/missing functionality are explicit. Passing this bridge does not certify all 98 requirements."
+    }
+  ],
+  "notes": "Estimates, not commitments. Original implementation tracker and goal are unchanged. Extensions E1–E4 are separately estimated in Report.md."
+}

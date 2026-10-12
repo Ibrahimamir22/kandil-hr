@@ -1,0 +1,72 @@
+{
+  "label": "before",
+  "requests": 10,
+  "concurrency": 5,
+  "passed": 2,
+  "failed": 8,
+  "seconds": 0.1,
+  "p95_ms": 64.4,
+  "unique_saved_names": 2,
+  "rows": [
+    {
+      "index": 0,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 61.9
+    },
+    {
+      "index": 5,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 39.3
+    },
+    {
+      "index": 1,
+      "ok": true,
+      "name": "HR-HIREQ-00007",
+      "ms": 54.5
+    },
+    {
+      "index": 6,
+      "ok": true,
+      "name": "HR-HIREQ-00008",
+      "ms": 44.0
+    },
+    {
+      "index": 2,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 63.5
+    },
+    {
+      "index": 7,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 38.0
+    },
+    {
+      "index": 3,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 60.5
+    },
+    {
+      "index": 8,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 39.2
+    },
+    {
+      "index": 4,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 64.4
+    },
+    {
+      "index": 9,
+      "ok": false,
+      "error": "HTTP 500: frappe.exceptions.QueryDeadlockError: (1020, \"Record has changed since last read in table 'tabSeries'; try restarting transaction\")",
+      "ms": 37.3
+    }
+  ]
+}

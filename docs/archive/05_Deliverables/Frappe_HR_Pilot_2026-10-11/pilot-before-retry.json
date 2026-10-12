@@ -1,0 +1,243 @@
+[
+  {
+    "name": "P01 Configure capacity and route",
+    "status": "PASS",
+    "evidence": "Capacity and approval route configured through the Sector role.",
+    "ms": 17.4
+  },
+  {
+    "name": "P02 Multi-location submit reserves capacity",
+    "status": "PASS",
+    "evidence": {
+      "request": "q3jcrf2msd",
+      "reserved_a": 2,
+      "reserved_b": 1
+    },
+    "ms": 61.8
+  },
+  {
+    "name": "P03 Requester cannot self-approve",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.",
+    "ms": 65.0
+  },
+  {
+    "name": "P04 Wrong or out-of-order approver blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.",
+    "ms": 11.3
+  },
+  {
+    "name": "P05 Direct REST status change blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Use the recruitment action buttons to change a submitted request.",
+    "ms": 11.7
+  },
+  {
+    "name": "P06 Manual opening bypass blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Pilot openings are generated and managed by approved recruitment actions.",
+    "ms": 50.7
+  },
+  {
+    "name": "P07 Complete approvals creates an opening per location",
+    "status": "PASS",
+    "evidence": {
+      "openings": [
+        "HR-OPN-2026-0002",
+        "HR-OPN-2026-0003"
+      ],
+      "a": {
+        "structural": 10,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 2,
+        "available": 8
+      },
+      "b": {
+        "structural": 10,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 1,
+        "available": 9
+      }
+    },
+    "ms": 163.1
+  },
+  {
+    "name": "P08 Phone-only applicant without fabricated email",
+    "status": "PASS",
+    "evidence": {
+      "name": "KJA-1696e5d2ea094e39baa8",
+      "owner": "kandil-test-manager@example.invalid",
+      "creation": "2026-10-11 18:52:56.750502",
+      "modified": "2026-10-11 18:52:56.750502",
+      "modified_by": "kandil-test-manager@example.invalid",
+      "docstatus": 0,
+      "idx": 0,
+      "custom_kandil_application_key": "1b0705b81c071f69cd4c4e8b",
+      "applicant_name": "مرشح قنديل تجريبي candidate1",
+      "phone_number": "01091733976",
+      "job_title": "HR-OPN-2026-0002",
+      "designation": "PILOT Assembly Operator",
+      "country": "Egypt",
+      "status": "Open",
+      "applicant_rating": 0,
+      "currency": "EGP",
+      "lower_range": 0.0,
+      "upper_range": 0.0,
+      "doctype": "Job Applicant"
+    },
+    "ms": 27.7
+  },
+  {
+    "name": "P09 Duplicate phone/application rejected",
+    "status": "PASS",
+    "evidence": "HTTP 417: frappe.exceptions.UniqueValidationError: ('Job Applicant', 'KJA-2a60a878c3c84bb2ba70', IntegrityError(1062, \"Duplicate entry '1b0705b81c071f69cd4c4e8b' for key 'custom_kandil_application_key'\"))",
+    "ms": 12.7
+  },
+  {
+    "name": "P10 Employee cannot read pilot applicant",
+    "status": "PASS",
+    "evidence": "HTTP 403: {'exc_type': 'PermissionError', '_server_messages': '[\"{\\\\\"message\\\\\":\\\\\"User <strong>kandil-test-employee_a@example.invalid</strong> does not have doctype access via role permission for document <strong>Job Applicant</strong>\\\\\",\\\\\"as_table\\\\\":false,\\\\\"title\\\\\":\\\\\"Message\\\\\"}\"]', '_error_message': 'No permission for Job Applicant'}",
+    "ms": 6.5
+  },
+  {
+    "name": "P11 Accepted phone-only offer without creating employee",
+    "status": "PASS",
+    "evidence": {
+      "offer": "HR-OFF-2026-00002",
+      "employee_count": 0
+    },
+    "ms": 55.2
+  },
+  {
+    "name": "P12 Employee conversion bypass blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Confirm actual joining using the pilot action; direct conversion is blocked.",
+    "ms": 41.2
+  },
+  {
+    "name": "P13 Actual joining creates employee/onboarding and partial fill",
+    "status": "PASS",
+    "evidence": {
+      "result": {
+        "outcome": "Joined",
+        "employee": "HR-EMP-00006",
+        "onboarding": "HR-EMP-ONB-2026-00002"
+      },
+      "before": {
+        "structural": 10,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 2,
+        "available": 8
+      },
+      "after": {
+        "structural": 10,
+        "occupied": 1,
+        "reserved": 0,
+        "open_slots": 1,
+        "available": 8
+      }
+    },
+    "ms": 443.3
+  },
+  {
+    "name": "P14 Repeated joining is idempotent",
+    "status": "PASS",
+    "evidence": {
+      "outcome": "Joined",
+      "employee": "HR-EMP-00006",
+      "idempotent": true
+    },
+    "ms": 12.4
+  },
+  {
+    "name": "P15 No-show does not create employee or close vacancy",
+    "status": "PASS",
+    "evidence": {
+      "result": {
+        "outcome": "No Show",
+        "employee": null,
+        "onboarding": null
+      },
+      "vacancy_retained": true
+    },
+    "ms": 76.2
+  },
+  {
+    "name": "P16 Joined after final no-show blocked",
+    "status": "PASS",
+    "evidence": "HTTP 417: frappe.exceptions.ValidationError: This offer already has a final joining outcome.",
+    "ms": 14.4
+  },
+  {
+    "name": "P17 Rejection releases reservations",
+    "status": "PASS",
+    "evidence": "q3umjf9okj",
+    "ms": 121.3
+  },
+  {
+    "name": "P18 Pending cancellation releases once",
+    "status": "PASS",
+    "evidence": "Reservation released once.",
+    "ms": 43.0
+  },
+  {
+    "name": "P19 Quantity exception justified and separately authorized",
+    "status": "PASS",
+    "evidence": {
+      "unjustified_rejected": "HTTP 417: frappe.exceptions.ValidationError: Headcount exception requires a justification; no capacity was reserved.",
+      "independent_exception_approval_tested": true
+    },
+    "ms": 91.2
+  },
+  {
+    "name": "P20 Effective and revoked delegation",
+    "status": "PASS",
+    "evidence": "Effective delegate approved; attribution retained; revoked delegate denied.",
+    "ms": 110.5
+  },
+  {
+    "name": "P21 Delegation cannot enable self-approval",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: You are not the active independent approver or an effective delegate.",
+    "ms": 51.8
+  },
+  {
+    "name": "P22 Capacity-counter tampering blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Reservation counters are server managed.",
+    "ms": 6.7
+  },
+  {
+    "name": "P23 Audit events exist and reject API forgery",
+    "status": "PASS",
+    "evidence": {
+      "events": 5,
+      "immutable": true
+    },
+    "ms": 19.1
+  },
+  {
+    "name": "P24 Concurrent requests cannot double-reserve a seat",
+    "status": "FAIL",
+    "evidence": "[{'ok': True, 'name': 'q43mdvn93g'}, {'ok': False, 'status': 500, 'error': \"HTTP 500: frappe.exceptions.QueryDeadlockError: (1213, 'Deadlock found when trying to get lock; try restarting transaction')\"}]"
+  },
+  {
+    "name": "P25 Cancel partially filled request preserves actual joiner",
+    "status": "PASS",
+    "evidence": {
+      "joined_employee_retained": "HR-EMP-00006",
+      "remaining_open_slots_released": true
+    },
+    "ms": 33.2
+  },
+  {
+    "name": "P26 Applications to cancelled opening blocked",
+    "status": "PASS",
+    "evidence": "HTTP 417: frappe.exceptions.ValidationError: Kandil request must be approved and open.",
+    "ms": 7.2
+  }
+]

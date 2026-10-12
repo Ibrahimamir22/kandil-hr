@@ -1,0 +1,9 @@
+{
+  "name": "Kandil HR development",
+  "dockerComposeFile": "../compose.yaml",
+  "service": "frappe",
+  "workspaceFolder": "/workspace/frappe-bench",
+  "remoteUser": "frappe",
+  "overrideCommand": false,
+  "shutdownAction": "none"
+}

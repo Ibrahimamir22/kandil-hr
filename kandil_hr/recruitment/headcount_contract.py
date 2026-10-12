@@ -1,18 +1,25 @@
-"""Frozen Requests.gs shortage contract, before reservation mutation.
-
-BLOCK forbids shortage regardless of justification. WARN requires at least ten
-trimmed characters and still needs independent approval through the normal route.
-Rejected command transactions roll back: this helper is not durable denial audit.
-"""
+"""Typed shortage rejection; command transport owns rollback and durable audit."""
 
 import frappe
-from frappe import _
+
+MESSAGES = {
+	"HEADCOUNT_BLOCKED": "Headcount blocking is enabled. Adjust capacity or requested quantity.",
+	"HEADCOUNT_REASON_REQUIRED": "Headcount exception justification must contain at least 10 characters.",
+}
 
 
-def enforce_shortage(*, excess, mode, reason):
+class HeadcountDenied(frappe.ValidationError):
+	def __init__(self, code, evaluation=None):
+		self.code = code
+		self.message = MESSAGES[code]
+		self.evaluation = evaluation
+		super().__init__(self.message)
+
+
+def enforce_shortage(*, excess, mode, reason, evaluation=None):
 	if not excess:
 		return
 	if mode == "Block":
-		frappe.throw(_("Headcount blocking is enabled. Adjust capacity or requested quantity."))
+		raise HeadcountDenied("HEADCOUNT_BLOCKED", evaluation)
 	if len((reason or "").strip()) < 10:
-		frappe.throw(_("Headcount exception justification must contain at least 10 characters."))
+		raise HeadcountDenied("HEADCOUNT_REASON_REQUIRED", evaluation)

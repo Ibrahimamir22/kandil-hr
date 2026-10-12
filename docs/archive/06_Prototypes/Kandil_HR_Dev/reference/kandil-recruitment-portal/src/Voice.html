@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رأيك يهمنا — قنديل مصر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Unna:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5; --card:#FFFFFF; --primary:#A8111C; --primary-2:#8C0E17; --gold:#C6A151; --gold-bg:#F6EEDC; --gold-t:#7A5B17;
+  --heading:#1F1A17; --text:#3F3B37; --muted:#6E6862; --border:#ECE7E0; --line:#F1EDE7; --select:#FBECEC;
+  --ok-t:#157F4A; --ok-bg:#E5F4EC; --warn-t:#B45309; --warn-bg:#FEF1DC; --err-t:#B42318; --err-bg:#FCE8E8;
+  --input:#FFFFFF; --input-b:#DDD6CC; --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);min-height:100vh;color:var(--text);font-family:Almarai,Tahoma,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Almarai,Tahoma,sans-serif;font-weight:800;color:var(--heading);margin:0}
+[lang="en"] h1,[lang="en"] h2,[lang="en"] .brand b{font-family:Unna,Georgia,serif;font-weight:700}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Almarai;font-weight:700;font-size:21px;flex-shrink:0}
+.brand b{display:block;font-family:Almarai;color:var(--heading);font-size:17px;line-height:1.3}
+.brand small{color:var(--muted);font-size:12.5px}
+.lang{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:none;background:transparent;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang button.on{background:var(--primary);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 1px 2px rgba(36,59,69,.06),0 4px 16px rgba(36,59,69,.04)}
+.job{padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--gold)}
+.job h1{font-size:28px;line-height:1.35}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--gold-bg);color:var(--gold-t);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+.summary{white-space:pre-line;font-size:14.5px;color:var(--text);border-top:1px solid var(--line);padding-top:10px}
+.sec{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.sec h2{font-size:20px;color:var(--primary);display:flex;align-items:center;gap:10px}
+.sec h2 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:Almarai;font-size:14px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid > *{min-width:0}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:600;color:var(--heading)}
+.req{color:var(--err-t)}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.inp{height:46px;border:1.5px solid var(--input-b);background:var(--input);border-radius:10px;padding:0 12px;font-size:15px;color:var(--heading);width:100%;outline:none}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,81,.18);background:#fff}
+textarea.inp{height:auto;min-height:80px;padding:10px 12px;resize:vertical}
+.ltr{direction:ltr;text-align:right}
+[dir="ltr"] .ltr{text-align:left}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;color:var(--heading);background:#fff}
+.radios input{accent-color:var(--primary);width:17px;height:17px}
+.file{border:2px dashed #DDD6CC;border-radius:12px;padding:18px;text-align:center;cursor:pointer;background:#FBFCFC;display:flex;flex-direction:column;gap:6px;align-items:center}
+.file:hover{border-color:var(--gold)}
+.file b{color:var(--primary)}
+.file.has{border-style:solid;border-color:var(--ok-t);background:var(--ok-bg)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.8;background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin-top:4px;accent-color:var(--primary);flex:none}
+.btn{height:50px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:16px;font-weight:700;cursor:pointer;width:100%}
+.btn:hover{background:var(--primary-2)}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{border-radius:10px;padding:11px 14px;font-size:14px}
+.msg.err{background:var(--err-bg);color:var(--err-t)}
+.msg.info{background:var(--gold-bg);color:var(--gold-t)}
+.done{padding:34px 24px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.done .ok{width:68px;height:68px;border-radius:50%;background:var(--ok-bg);color:var(--ok-t);display:grid;place-items:center;font-size:32px}
+.ref{font-family:Almarai;font-size:20px;color:var(--heading);direction:ltr;background:var(--bg);border-radius:10px;padding:6px 16px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0;pointer-events:none}
+.foot{text-align:center;font-size:12px;color:var(--muted)}
+.loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 0;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:sp .9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (max-width:640px){ .grid{grid-template-columns:1fr} .job h1{font-size:21px} .sec,.job{padding:18px 16px} }
+
+.doc{padding:14px 16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.doc:last-child{border-bottom:none}
+.doc .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.doc b{color:var(--heading);font-size:15px}
+.doc .meta{font-size:12.5px;color:var(--muted)}
+.pill{border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.p-miss{background:var(--warn-bg);color:var(--warn-t)} .p-up{background:var(--gold-bg);color:var(--gold-t)} .p-ok{background:var(--ok-bg);color:var(--ok-t)}
+.p-rej{background:var(--err-bg);color:var(--err-t)} .p-paper{background:#EEF1F4;color:#4A5763}
+.up{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--primary);color:var(--primary);background:#fff;border-radius:10px;padding:7px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.up input{display:none}
+.up.busy{opacity:.6;pointer-events:none}
+.note{font-size:13px;background:var(--err-bg);color:var(--err-t);border-radius:8px;padding:6px 10px}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok-t)}
+
+.q{padding:16px 18px;display:flex;flex-direction:column;gap:10px;border-bottom:1px solid var(--line)}
+.q:last-child{border-bottom:none}
+.q b{color:var(--heading);font-size:15.5px;line-height:1.6}
+.q b i{font-style:normal;color:var(--primary);margin-inline-end:6px}
+.scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.scale button{border:1.5px solid var(--border);background:#fff;border-radius:12px;padding:8px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;font-family:inherit;color:var(--text)}
+.scale button span{font-size:24px;line-height:1.2}
+.scale button small{font-size:11px;color:var(--muted);line-height:1.3}
+.scale button.on{border-color:var(--primary);background:var(--select);color:var(--primary)}
+.scale button.on small{color:var(--primary);font-weight:700}
+.q.miss{background:var(--err-bg)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><div class="loading"><div class="spin"></div><span>…</span></div></div>
+<script>
+var TOKEN = '<?= token ?>';
+var ST = { lang: 'ar', info: null, err: '', busy: false, done: false, a: {}, comment: '', miss: {} };
+var TX = {
+  ar: { company: 'قنديل مصر', hr: 'الموارد البشرية', title: 'رأيك يهمنا', hi: 'أهلاً', intro: 'عدّى {d} يوم على انضمامك لقنديل مصر. جاوب على الأسئلة دي بصراحة — دقيقتين بس. ردك بيوصل لفريق الموارد البشرية بس، ومديرك مش بيشوف ردك باسمك.',
+    s1: 'لأ خالص', s2: 'مش أوي', s3: 'نص نص', s4: 'أيوه', s5: 'جداً', comment: 'حابب تقول حاجة تانية؟ (اختياري)', commentPh: 'أي حاجة تساعدنا نحسّن — أو مشكلة محتاج حد يساعدك فيها',
+    send: 'إرسال', sending: 'جارٍ الإرسال…', need: 'جاوب على كل الأسئلة.', doneT: 'شكراً — ردك وصل', doneB: 'رأيك هيساعدنا نحسّن تجربة كل موظف جديد. لو في حاجة محتاجة تدخّل سريع، حد من الموارد البشرية هيكلمك.',
+    already: 'اتسجل ردك قبل كده — شكراً.', loading: 'لحظات من فضلك…', badT: 'اللينك مش شغال', netErr: 'تعذر الاتصال. اتأكد من الإنترنت وجرب تاني.', foot: 'ردك سري ومش بيظهر غير لفريق الموارد البشرية.' },
+  en: { company: 'Kandil Egypt', hr: 'Human Resources', title: 'Your opinion matters', hi: 'Hello', intro: 'It has been {d} days since you joined Kandil Egypt. Please answer honestly — it takes two minutes. Your answers go to Human Resources only; your manager does not see them under your name.',
+    s1: 'Not at all', s2: 'Not really', s3: 'So-so', s4: 'Yes', s5: 'Very much', comment: 'Anything else you want to tell us? (optional)', commentPh: 'Anything that would help us improve — or a problem you need help with',
+    send: 'Send', sending: 'Sending…', need: 'Please answer every question.', doneT: 'Thank you — your answers were received', doneB: 'Your opinion helps us improve every new hire’s experience. If something needs quick attention, someone from HR will contact you.',
+    already: 'Your answers were already recorded — thank you.', loading: 'Please wait…', badT: 'Link not active', netErr: 'Could not connect. Check your internet and try again.', foot: 'Your answers are confidential and visible to Human Resources only.' }
+};
+var FACES = ['😞', '🙁', '😐', '🙂', '😄'];
+function t(k){ return TX[ST.lang][k] || k; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s===undefined||s===null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function call(action, payload){
+  return new Promise(function(res, rej){
+    google.script.run.withSuccessHandler(function(r){ r && r.ok ? res(r.data) : rej(r || {}); })
+      .withFailureHandler(function(){ rej({ error: t('netErr') }); }).apiPublic(action, payload);
+  });
+}
+function header(){
+  return '<div class="top"><div class="brand"><div class="mark">' + (ST.lang === 'en' ? 'K' : 'ق') + '</div><div><b>' + t('company') + '</b><small>' + t('hr') + '</small></div></div>' +
+    '<div class="lang"><button data-l="ar" class="' + (ST.lang === 'ar' ? 'on' : '') + '">عربي</button><button data-l="en" class="' + (ST.lang === 'en' ? 'on' : '') + '">English</button></div></div>';
+}
+function setLang(l){ ST.lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl'; render(); }
+function render(){
+  var app = $('app'), I = ST.info;
+  var c = $('cm'); if (c) ST.comment = c.value;
+  if (!I) { app.innerHTML = header() + '<div class="loading"><div class="spin"></div><span>' + t('loading') + '</span></div>'; bind(); return; }
+  if (I.bad) { app.innerHTML = header() + '<div class="card done"><div class="ok" style="background:var(--warn-bg);color:var(--warn-t)">!</div><h2>' + t('badT') + '</h2><p style="margin:0">' + esc(I.bad) + '</p></div>'; bind(); return; }
+  if (ST.done || I.answered) { app.innerHTML = header() + '<div class="card done"><div class="ok">✓</div><h2>' + t(ST.done ? 'doneT' : 'already') + '</h2>' + (ST.done ? '<p style="margin:0">' + t('doneB') + '</p>' : '') + '</div><div class="foot">' + t('foot') + '</div>'; bind(); return; }
+  app.innerHTML = header() +
+    '<div class="card job"><span class="hint">' + t('title') + '</span><h1>' + t('hi') + ' ' + esc(I.name) + '</h1><div class="summary">' + esc(t('intro').replace('{d}', I.day)) + '</div></div>' +
+    '<div class="card">' + I.questions.map(function(q, i){
+      return '<div class="q' + (ST.miss[q.id] ? ' miss' : '') + '" id="q_' + esc(q.id) + '"><b><i>' + (i + 1) + '.</i>' + esc(ST.lang === 'en' ? q.en : q.ar) + '</b><div class="scale" role="radiogroup">' +
+        [1, 2, 3, 4, 5].map(function(v){ return '<button type="button" role="radio" aria-checked="' + (ST.a[q.id] === v) + '" class="' + (ST.a[q.id] === v ? 'on' : '') + '" data-q="' + esc(q.id) + '" data-v="' + v + '"><span>' + FACES[v - 1] + '</span><small>' + t('s' + v) + '</small></button>'; }).join('') +
+        '</div></div>';
+    }).join('') + '</div>' +
+    '<div class="card sec"><label class="f">' + t('comment') + '<textarea class="inp" id="cm" maxlength="1500" placeholder="' + t('commentPh') + '">' + esc(ST.comment) + '</textarea></label>' +
+      (ST.err ? '<div class="msg err">' + esc(ST.err) + '</div>' : '') +
+      '<button class="btn" id="send"' + (ST.busy ? ' disabled' : '') + '>' + t(ST.busy ? 'sending' : 'send') + '</button></div>' +
+    '<div class="foot">' + t('foot') + '</div>';
+  bind();
+  Array.prototype.forEach.call(document.querySelectorAll('[data-q]'), function(b){ b.onclick = function(){ ST.a[b.dataset.q] = Number(b.dataset.v); delete ST.miss[b.dataset.q]; if (!Object.keys(ST.miss).length) ST.err = ''; render(); }; });
+  $('send').onclick = submit;
+}
+function submit(){
+  ST.comment = $('cm').value; ST.miss = {};
+  ST.info.questions.forEach(function(q){ if (!ST.a[q.id]) ST.miss[q.id] = 1; });
+  if (Object.keys(ST.miss).length) { ST.err = t('need'); render(); var f = document.querySelector('.q.miss'); if (f && f.scrollIntoView) f.scrollIntoView({ block: 'center' }); return; }
+  ST.err = ''; ST.busy = true; render();
+  call('voice.submit', { token: TOKEN, answers: ST.a, comment: ST.comment, lang: ST.lang }).then(function(){ ST.busy = false; ST.done = true; render(); window.scrollTo(0, 0); })
+    .catch(function(e){ ST.busy = false; ST.err = e.error || t('netErr'); render(); });
+}
+function bind(){ Array.prototype.forEach.call(document.querySelectorAll('[data-l]'), function(b){ b.onclick = function(){ setLang(b.dataset.l); }; }); }
+setLang('ar');
+call('voice.info', { token: TOKEN }).then(function(d){ ST.info = d; render(); }).catch(function(e){ ST.info = { bad: e.error || t('badT') }; render(); });
+</script>
+</body>
+</html>

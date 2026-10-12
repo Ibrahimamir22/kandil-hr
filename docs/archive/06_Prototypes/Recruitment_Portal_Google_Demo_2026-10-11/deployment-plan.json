@@ -1,0 +1,39 @@
+{
+  "source": "https://github.com/mohamedomara-hr/kandil-recruitment-portal",
+  "commit": "7824be24292c4743b4005e14e2df540786cfe167",
+  "owner": "ibrahimamiir22@gmail.com",
+  "title": "Kandil Recruitment — Ibrahim Private Demo",
+  "access": "MYSELF",
+  "status": "Private demo deployed; initial setup complete; login screen verified; end-to-end signed-in review pending user login",
+  "test_data_only": true,
+  "scheduled_triggers": false,
+  "external_ai": false,
+  "mail_recipients": "owner only",
+  "source_files": 67,
+  "script_id": "1WfyPFvHJg4rJUtWqyapPMFhTC7hn-jkvkb_CHhAtmu-QAQqkRLKEvrsQ",
+  "editor_url": "https://script.google.com/home/projects/1WfyPFvHJg4rJUtWqyapPMFhTC7hn-jkvkb_CHhAtmu-QAQqkRLKEvrsQ/edit",
+  "deployment_id": "AKfycbxuEpSrQMzUmkQxrES2y0_HD3wJdwqQP-x4zTgQC5cuBUILiaWINDXTcSo9ZLpFM2e2",
+  "web_url": "https://script.google.com/macros/s/AKfycbxuEpSrQMzUmkQxrES2y0_HD3wJdwqQP-x4zTgQC5cuBUILiaWINDXTcSo9ZLpFM2e2/exec",
+  "folder_url": "https://drive.google.com/drive/folders/1EiZhcrjfLPJeqyg73yaNUIaHFKhlPm6P",
+  "verified_access": "MYSELF",
+  "setup_complete": true,
+  "demo_stages_completed": [
+    "PEOPLE",
+    "REQUESTS"
+  ],
+  "demo_stages_not_run": [
+    "CANDIDATES",
+    "INTERVIEWS",
+    "OFFERS",
+    "JOINING",
+    "MORE"
+  ],
+  "verified_sample_counts": {
+    "synthetic_positions": 12,
+    "synthetic_users": 12,
+    "synthetic_employees": 18,
+    "recruitment_requests": 9,
+    "vacancies": 4,
+    "new_position_requests": 1
+  }
+}

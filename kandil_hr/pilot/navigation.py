@@ -199,6 +199,13 @@ def request_actions(name):
 				if frappe.get_doc("File", file.name).has_permission("read"):
 					board_files.append(dict(name=file.name, label=file.file_name))
 	return dict(
+		revise_pending_quantities=bool(
+			frappe.conf.get("kandil_parity_enabled")
+			and doc.status == "Pending"
+			and not doc.amends
+			and doc.requested_by == frappe.session.user
+			and request_scope(doc, frappe.session.user, "manage")
+		),
 		board_record=board_record,
 		board_members=board_members,
 		board_files=board_files,

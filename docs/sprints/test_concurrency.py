@@ -126,8 +126,8 @@ def main():
         before=bench('inspect',run_id)
         payloads=[dict(name=r['name'],command_id=uuid.uuid4().hex,expected_version=r['modified']) for r in data['requests']]
         results,peak=batch(actors['requester'],'kandil_hr.recruitment.api.submit_request',payloads)
-        successes=[r for r in results if r['status']==200]
-        denied=[r for r in results if r['status']==417 and 'Headcount blocking is enabled' in json.dumps(r['body'])]
+        successes=[r for r in results if r['status']==200 and r['body'].get('message',{}).get('status')=='Pending']
+        denied=[r for r in results if r['status']==200 and r['body'].get('message',{}).get('outcome')=='denied' and r['body']['message'].get('code')=='HEADCOUNT_BLOCKED']
         after=bench('inspect',run_id)
         assert len(successes)==5 and len(denied)==15, 'Expected five reservations and fifteen controlled BLOCK denials'
         assert after['ledger']==dict(structural=5,occupied=0,reserved=5,open_slots=0,available=0), 'Reservation ledger mismatch'

@@ -1,0 +1,2234 @@
+{
+  "title": "Kandil HR — Implementation and Acceptance Plan",
+  "date": "2026-10-12",
+  "baseline": {
+    "reference_commit": "7824be24292c4743b4005e14e2df540786cfe167",
+    "reference_version": "v0.50.0",
+    "remote_HEAD_verified": true,
+    "custom_app_commit": "890667dd0f8604132094e10776c2ef5ccb5c068d",
+    "source_status_counts": {
+      "Built": 94,
+      "Later": 1,
+      "Partial": 3
+    },
+    "baseline_requirements": 98
+  },
+  "review_limit": "Read-only planning review of requirements, blueprint/change log, selected source/test modules and current custom app. Source test claims were not independently rerun. No parity acceptance or production readiness is asserted. Supplemental packages expand bundled requirements; they are not extra unique requirement counts.",
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Baseline and rule decisions / تثبيت المتطلبات",
+      "depends": [],
+      "build": "Freeze the v0.50.0 reference; reconcile 98 requirement IDs with change entries CHG-01–109, source code, forms and UAT. Break bundled requirements into testable rules. Record conflicts and source-deferred work explicitly. Map current pilot records to the target model.",
+      "gate": "Every baseline ID has scope, delivery phase and acceptance criteria; conflicting policies have an owner and a recorded decision before dependent work. No source Built label becomes Frappe Tested automatically."
+    },
+    {
+      "id": "P1",
+      "title": "Secure foundation and safe commands / الصلاحيات والأساس",
+      "depends": [
+        "P0"
+      ],
+      "build": "Expand role/company/site/field scopes; Frappe-native identity and MFA policy; scoped delegation; command IDs, exact approval-step IDs, expected versions; audit, reliable notification outbox and clock/calendar service. Add security-sensitive account change controls. Keep optional external identity adapters separate.",
+      "gate": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated."
+    },
+    {
+      "id": "P2",
+      "title": "Organization, positions and JDs / الهيكل والوصف الوظيفي",
+      "depends": [
+        "P1"
+      ],
+      "build": "Company and org-unit hierarchy, distinct Job and Position, effective-dated occupants/head roles, structure history and snapshots, grades and approved JD versions, competencies, structural-change requests, imports and position-based capacity. Preserve standard Company/Department/Designation/Employee links.",
+      "gate": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation."
+    },
+    {
+      "id": "P3",
+      "title": "Requests, approvals and vacancies / الطلبات والاعتمادات",
+      "depends": [
+        "P2"
+      ],
+      "build": "Complete HR-REC-F02; structure-derived chain, CEO/board cases, authority-specific snapshots, return/revision, reduced approvals, post-approval change requests, capacity top-ups/release, warning/block policy, priority, vacancy pause/resume/close, recruiter lead/team and unassigned queue.",
+      "gate": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile."
+    },
+    {
+      "id": "P4",
+      "title": "Candidates, sourcing and private journey / المرشحون والمصادر",
+      "depends": [
+        "P3"
+      ],
+      "build": "Person master linked to multiple applications and later employment; phone-only/shared-phone rules; reviewed duplicate resolution, source/sub-source, advertisements, subscription credits, referrals/agencies, imports, talent pool, former-employee checks, versioned consent, private candidate links, activities, next actions and rejection communication.",
+      "gate": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent."
+    },
+    {
+      "id": "P5",
+      "title": "Assessments, interviews and selection / التقييم والمقابلات",
+      "depends": [
+        "P4"
+      ],
+      "build": "Practical tests, competencies/question versions, manager-confirmation gates, panel roles/waivers, candidate confirmation, arrival/waiting events, blind feedback, comparison/readiness, selected/reserve states, reference checks, conflict-of-interest declarations and deadline escalation.",
+      "gate": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence."
+    },
+    {
+      "id": "P6",
+      "title": "Compensation, offers and printed forms / العروض والمستندات",
+      "depends": [
+        "P5"
+      ],
+      "build": "Versioned grade bands and incentive schemes; five-stage salary trail; calculated fixed package, authority thresholds and exceptions; negotiation/reapproval, validity/extensions, payroll-supervisor review of estimated net; offer/contract/salary-detail templates, working hours and weekly rest fields.",
+      "gate": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs."
+    },
+    {
+      "id": "P7",
+      "title": "Joining, files, onboarding and insurance / المباشرة والتهيئة",
+      "depends": [
+        "P6"
+      ],
+      "build": "Joining-date history; document matrix, versions, review/receipt, waivers/deferrals, non-waivable rules and expiry; actual joining/no-show, audited correction; Employee and employment linkage; configurable onboarding tasks, IT/admin/safety owners, custody/PPE, social-insurance cases, welcome gift and new-hire surveys.",
+      "gate": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding."
+    },
+    {
+      "id": "P8",
+      "title": "Probation, movement and exit / الاختبار والنقل والخروج",
+      "depends": [
+        "P7"
+      ],
+      "build": "Goals/acknowledgment, probation reviews and PIP, final recommendation/decision, employee view, medical-insurance case, stay interview; permanent/temporary transfer, receiving-manager initiation, scheduled effect/return, handover and replacement; two-person exit and rehire continuity.",
+      "gate": "Controlled clock verifies checkpoints, weekends and overdue paths; no duplicate probation on rehire under the agreed employer rule. Transfer moves occupancy once on its effective date. Temporary cover preserves the home position correctly; exit revokes accounts and reallocates open work."
+    },
+    {
+      "id": "P9",
+      "title": "Reports, insights and assisted CV review / التقارير والذكاء المساعد",
+      "depends": [
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8"
+      ],
+      "build": "Operational reports, role dashboards/inboxes, KPI formulas and drill-down, recruiter scorecards, source ROI, bottlenecks, interviewer calibration, forecast with history sufficiency indicators. AI CV extraction/evidence, human-reviewed suggestions, redaction, quotas/cost limits, provider errors and audit.",
+      "gate": "Metrics reconcile to a hand-calculated synthetic dataset, respect scopes and handle zero denominators. Low-data forecasts are labeled insufficient. AI output is reviewed, cannot authorize a hiring decision, rejects instructions embedded in CVs, and observes configured payload/cost limits."
+    },
+    {
+      "id": "P10",
+      "title": "Integration, acceptance and controlled rollout / الاختبار والتشغيل",
+      "depends": [
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5",
+        "P6",
+        "P7",
+        "P8",
+        "P9"
+      ],
+      "build": "Complete provider adapters and live smoke tests where configured; payroll-file import/SSO/short-link source-deferred items tracked separately. Role-based native-browser UAT, Arabic/mobile/print review, migration rehearsal, restore and upgrade drill, realistic load, operator runbook, HR/admin/user guides and readiness dashboard.",
+      "gate": "All agreed requirement subcases have implementation and evidence, critical defects closed, HR acceptance recorded, seed-free production migration rehearsed and restore proven. Sandbox integrations remain labeled sandbox until live verification. No real cutover based on local test counts alone."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "ACC-001",
+      "requirement": "OTP login, personal Gmail; spreadsheets owner-only",
+      "source_status": "Built",
+      "source_evidence": "`Auth.gs`; sheets protected (`protectAllSheets_`); authenticator app added in 0.15 — `harness`, `phase16`. 0.37: authenticator for every user (CEO exempt), 12-hour / 7-day sessions, idle lock on the server, go-live button, weekly backups, incident log (CHG-79, CHG-82) — `phase37`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P1",
+      "target": "Frappe provides user accounts and OTP-app authentication. Reproduce the exact CEO exception, trusted-device, session, idle-lock and incident policies separately. Google owner-only Sheet protection is not the new storage model.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ACC-001",
+        "functional": "Frappe provides user accounts and OTP-app authentication. Reproduce the exact CEO exception, trusted-device, session, idle-lock and incident policies separately. Google owner-only Sheet protection is not the new storage model.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/twofactor.py"
+    },
+    {
+      "id": "ACC-002",
+      "requirement": "AuthService swappable for Workspace identity",
+      "source_status": "Built",
+      "source_evidence": "Sign-in lives in `Auth.gs` / `Security.gs` only; services take a session context",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P1",
+      "target": "Frappe has its own authentication system. Connect the selected identity provider and define account lifecycle; the Apps Script AuthService cannot be copied unchanged.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ACC-002",
+        "functional": "Frappe has its own authentication system. Connect the selected identity provider and define account lifecycle; the Apps Script AuthService cannot be copied unchanged.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/twofactor.py"
+    },
+    {
+      "id": "ACC-003",
+      "requirement": "Role and scope resolved on the server only",
+      "source_status": "Built",
+      "source_evidence": "`Perm.gs`, role check in `api()`; scope per service — all suites. 0.36: separation of duties — CEO queue for top roles / heads, CEO trusted phone + PIN, two-person rule, access review (CHG-74…78) — `phase36`, `phase4`, `ui20`, `ui26`",
+      "current_status": "Pilot subset",
+      "current_note": "Server checks exist for the pilot; recruiter/sector scopes are broad and field-level production policy is incomplete.",
+      "phase": "P1",
+      "target": "Roles and server permissions are available. Kandil's position scopes, CEO phone/PIN route, two-person restrictions and access review need explicit server rules and tests.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ACC-003",
+        "functional": "Roles and server permissions are available. Kandil's position scopes, CEO phone/PIN route, two-person restrictions and access review need explicit server rules and tests.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "ACC-004",
+      "requirement": "One login shared with the Performance Appraisal portal",
+      "source_status": "Later",
+      "source_evidence": "Owner: later phase",
+      "current_status": "Source-deferred integration",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P10",
+      "target": "Shared login with another portal requires an identity integration. This requirement is also deferred in the source repo.",
+      "rule_note": "Retain in full scope as a provider-dependent final integration; do not hold local HR workflow development for company-wide SSO.",
+      "acceptance": {
+        "id": "AT-ACC-004",
+        "functional": "Shared login with another portal requires an identity integration. This requirement is also deferred in the source repo.",
+        "scenarios": "All agreed requirement subcases have implementation and evidence, critical defects closed, HR acceptance recorded, seed-free production migration rehearsed and restore proven. Sandbox integrations remain labeled sandbox until live verification. No real cutover based on local test counts alone.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/twofactor.py"
+    },
+    {
+      "id": "UX-001",
+      "requirement": "Same design and spirit as the Performance Appraisal portal",
+      "source_status": "Built",
+      "source_evidence": "Greeting, «المطلوب منك», idle lock, remember-me, guide. 0.42: new look (CHG-87) — section colours, inbox home with filters, global search checked per kind on the server, stage board with drag-to-move, tabbed candidate file, guided offer steps — `phase42`, `ui43`",
+      "current_status": "Pilot subset",
+      "current_note": "Native forms, role-aware links, action buttons and small Arabic catalogue exist; inbox/board/wizard/presence and full branding are not parity-complete.",
+      "phase": "P10",
+      "target": "Desk lists, forms and Kanban are available. The exact Arabic inbox, candidate tabs, offer wizard and cross-module experience require UI work.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-UX-001",
+        "functional": "Desk lists, forms and Kanban are available. The exact Arabic inbox, candidate tabs, offer wizard and cross-module experience require UI work.",
+        "scenarios": "All agreed requirement subcases have implementation and evidence, critical defects closed, HR acceptance recorded, seed-free production migration rehearsed and restore proven. Sandbox integrations remain labeled sandbox until live verification. No real cutover based on local test counts alone.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "ORG-001",
+      "requirement": "Job, Position, Employee, Vacancy as separate entities",
+      "source_status": "Built",
+      "source_evidence": "`JOBS` / `POSITIONS` / `EMPLOYEES` / `VACANCIES` — `harness`, `phase4`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Employee, Department, Designation and Job Opening exist. Add Kandil Position as an occupied or vacant organizational seat, distinct from a job title and recruitment opening.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-001",
+        "functional": "Employee, Department, Designation and Job Opening exist. Add Kandil Position as an occupied or vacant organizational seat, distinct from a job title and recruitment opening.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/employee/employee.json"
+    },
+    {
+      "id": "ORG-002",
+      "requirement": "Versioned organization; closed positions kept",
+      "source_status": "Partial",
+      "source_evidence": "Unit / position history and closing (never delete) — `orgadmin`. **Missing:** full structure version snapshots (`Structural.gs`: \"come later\")",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Document change history is available. Full organization snapshots and dated structural versions require a model; the source repo itself marks these incomplete.",
+      "rule_note": "Include full dated organization snapshots as an explicit extension beyond the source’s Partial status.",
+      "acceptance": {
+        "id": "AT-ORG-002",
+        "functional": "Document change history is available. Full organization snapshots and dated structural versions require a model; the source repo itself marks these incomplete.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/version/version.py"
+    },
+    {
+      "id": "ORG-003",
+      "requirement": "Structured, versioned JD with view / print / PDF / email",
+      "source_status": "Built",
+      "source_evidence": "Versions, approval, view, print / PDF — `phase5`. E-mail (0.28): the approved version in the mail + PDF, to portal users only (owner decision, no candidates), up to 10, audited — `phase28`, `ui32`. 0.42.1: responsibilities by job level (CHG-88), 3 … 16, a reason above the band. 0.42.2: weighted / monitoring KPIs, weights add up to 100 (CHG-89). 0.43: worker card, certificates, locations from the structure (CHG-90) — `phase42`, `ui8`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Job descriptions and print facilities are building blocks. Structured approved JD versions, responsibility bands, worker cards and validated KPI weights need custom records and logic.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-003",
+        "functional": "Job descriptions and print facilities are building blocks. Structured approved JD versions, responsibility bands, worker cards and validated KPI weights need custom records and logic.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "ORG-004",
+      "requirement": "Only HR Sector Manager changes grade, salary, benefits, conditions",
+      "source_status": "Built",
+      "source_evidence": "Grade and pay tables restricted (`Services.gs`, `payEditRoles_`) — `phase13`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P6",
+      "target": "Configure role and field permissions for grade/pay/benefits, including exports and API reads. Test with HR Sector Manager and other HR accounts.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-004",
+        "functional": "Configure role and field permissions for grade/pay/benefits, including exports and API reads. Test with HR Sector Manager and other HR accounts.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/permissions.py"
+    },
+    {
+      "id": "ORG-005",
+      "requirement": "Delegation / acting authority with dates and history",
+      "source_status": "Built",
+      "source_evidence": "`DELEGATIONS` with dates; used by approvals — `phase7`. 0.36: delegation by process (approvals / unit's work), the CEO's authority only after his approval (CHG-76) — `phase36`",
+      "current_status": "Pilot subset",
+      "current_note": "Dated, revocable delegation exists; process scope, hierarchy and CEO-controlled delegation remain.",
+      "phase": "P3",
+      "target": "The exact dated delegation by process and CEO-approved delegation are additional business rules, not implied by ordinary workflow roles.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-005",
+        "functional": "The exact dated delegation by process and CEO-approved delegation are additional business rules, not implied by ordinary workflow roles.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "ORG-006",
+      "requirement": "Structural change: chain, HR review, CEO approval, Position ID on approval",
+      "source_status": "Built",
+      "source_evidence": "`Structural.gs` (new-position requests) — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Implement a structural-change request linked to positions and use workflow states for approvals. Create the Position only after the authorized final decision.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-006",
+        "functional": "Implement a structural-change request linked to positions and use workflow states for approvals. Create the Position only after the authorized final decision.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "ORG-007",
+      "requirement": "Structure maintained from the portal",
+      "source_status": "Built",
+      "source_evidence": "`OrgAdmin.gs` — `orgadmin`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Standard masters can be maintained through forms. The proposed Kandil Position and hierarchy editor need their own interface and permissions.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-007",
+        "functional": "Standard masters can be maintained through forms. The proposed Kandil Position and hierarchy editor need their own interface and permissions.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/employee/employee.json"
+    },
+    {
+      "id": "ORG-008",
+      "requirement": "Coding of units and jobs, automatic codes",
+      "source_status": "Built",
+      "source_evidence": "`Import.gs`, job families — `harness`, `orgadmin`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Naming series and custom code/family fields can implement agreed coding. Existing Kandil IDs must be preserved during import.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ORG-008",
+        "functional": "Naming series and custom code/family fields can implement agreed coding. Existing Kandil IDs must be preserved during import.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/designation/designation.json"
+    },
+    {
+      "id": "ORG-009",
+      "requirement": "Multi-company (4 legal entities + sister companies)",
+      "source_status": "Partial",
+      "source_evidence": "Legal entities recorded for privacy notices — `phase15`. **Missing:** separate companies with their own top position for approvals (owner: later)",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Company records provide a stronger base for multiple legal entities. Per-company top approver and record isolation still need explicit configuration and custom routing.",
+      "rule_note": "Include isolated multi-company HR routes as an explicit extension beyond the source’s Partial status.",
+      "acceptance": {
+        "id": "AT-ORG-009",
+        "functional": "Company records provide a stronger base for multiple legal entities. Per-company top approver and record isolation still need explicit configuration and custom routing.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/company/company.json"
+    },
+    {
+      "id": "HC-001",
+      "requirement": "Structural HC = 1 per position until a manpower plan",
+      "source_status": "Built",
+      "source_evidence": "`Structural_HC` default 1 — `harness`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Staffing Plan stores quantities by designation. A one-seat default on each Kandil Position needs the Position model.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-HC-001",
+        "functional": "Staffing Plan stores quantities by designation. A one-seat default on each Kandil Position needs the Position model.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json"
+    },
+    {
+      "id": "HC-002",
+      "requirement": "Occupied HC by HR; payroll-sheet import later",
+      "source_status": "Partial",
+      "source_evidence": "Occupied HC counted from the employee records — `phase4`. **Missing:** payroll-sheet import (owner: later, open item 2)",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P2",
+      "target": "Employee records and imports provide the base. Count occupancy against positions; map and reconcile any payroll-sheet import. The repo's payroll import is partial.",
+      "rule_note": "Separate employee/position occupancy from a later payroll-file import. Import reconciliation is not wage processing.",
+      "acceptance": {
+        "id": "AT-HC-002",
+        "functional": "Employee records and imports provide the base. Count occupancy against positions; map and reconcile any payroll-sheet import. The repo's payroll import is partial.",
+        "scenarios": "Import/re-import is reconciled without duplicates; position is distinct from designation; hierarchy cannot cycle; missing manager routes safely; approved JD/structure revisions remain reproducible; baseline occupied counts reconcile to an explicit allocation.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/employee/employee.json"
+    },
+    {
+      "id": "HC-003",
+      "requirement": "Current / available HC shown as guidance; any number requestable",
+      "source_status": "Built",
+      "source_evidence": "Request form — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Available capacity and exceptions exist at aggregate department/designation/site level; position model and warning policy remain.",
+      "phase": "P3",
+      "target": "Show position-level availability and permit over-capacity requests without accidentally applying the standard offer vacancy block.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-HC-003",
+        "functional": "Show position-level availability and permit over-capacity requests without accidentally applying the standard offer vacancy block.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/staffing_plan_detail/staffing_plan_detail.json"
+    },
+    {
+      "id": "HC-004",
+      "requirement": "HC exception approved by the HR Sector Manager only (CHG-40/2)",
+      "source_status": "Built",
+      "source_evidence": "Separate HC-exception step — `phase7`",
+      "current_status": "Pilot subset",
+      "current_note": "Independent exception authority exists; reconcile conflicting source authority rules and personal-interest escalation.",
+      "phase": "P3",
+      "target": "Create a separate headcount-exception decision with HR Sector Manager authority and an auditable result.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-HC-004",
+        "functional": "Create a separate headcount-exception decision with HR Sector Manager authority and an auditable result.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "HC-005",
+      "requirement": "Available = Structural − Occupied − Open; no double counting",
+      "source_status": "Built",
+      "source_evidence": "0.40: headcount asked for by requests still in approval is reserved — another request for the same position sees it as taken (a request never reserves against itself); the request view shows it — `phase40`, before `phase2`, `phase18`",
+      "current_status": "Pilot subset",
+      "current_note": "Atomic reserved/open/occupied counters exist. Move to position-linked allocation without double-counting the same commitment.",
+      "phase": "P3",
+      "target": "Implement a transactional reservation ledger for pending requests, open vacancies and occupancy. Standard offer vacancy validation counts submitted offers; it is a different calculation.",
+      "rule_note": "Use the later reserved-capacity rule (v0.40/§5); the short heading omits Reserved. Display Structural − Occupied − Open − Reserved; exclude the current request’s own reservation when evaluating its amendment.",
+      "acceptance": {
+        "id": "AT-HC-005",
+        "functional": "Implement a transactional reservation ledger for pending requests, open vacancies and occupancy. Standard offer vacancy validation counts submitted offers; it is a different calculation.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "HC-006",
+      "requirement": "HC checks warn-only until switched to block",
+      "source_status": "Built",
+      "source_evidence": "`HC_ENFORCEMENT_MODE` — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Provide a Kandil warning-versus-block setting across the full request lifecycle. The standard vacancy check does not express this complete policy.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-HC-006",
+        "functional": "Provide a Kandil warning-versus-block setting across the full request lifecycle. The standard vacancy check does not express this complete policy.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "HC-007",
+      "requirement": "Filled HC counts actual joiners only",
+      "source_status": "Built",
+      "source_evidence": "Joined on actual joining — `phase14`",
+      "current_status": "Pilot subset",
+      "current_note": "Actual joining increments occupied; acceptance does not. Audited reversals, exits and transfer effects remain.",
+      "phase": "P3",
+      "target": "Occupancy must change on actual joining, not offer acceptance or submission. Define cancellations, no-shows and reversals consistently.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-HC-007",
+        "functional": "Occupancy must change on actual joining, not offer acceptance or submission. Define cancellations, no-shows and reversals consistently.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "REQ-001",
+      "requirement": "Manager requests only positions in his scope, server-side",
+      "source_status": "Built",
+      "source_evidence": "`reqScopePositions_` — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Requester company/department restriction exists; full managerial position hierarchy is absent.",
+      "phase": "P3",
+      "target": "Use server permissions but derive allowed positions from Kandil's manager hierarchy, including delegation and direct API calls.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-001",
+        "functional": "Use server permissions but derive allowed positions from Kandil's manager hierarchy, including delegation and direct API calls.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/permissions.py"
+    },
+    {
+      "id": "REQ-002",
+      "requirement": "Current form fields kept (HR-REC-F02)",
+      "source_status": "Built",
+      "source_evidence": "`REQUEST_LINES`, skills, replacements — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Minimal request and location lines exist; full HR-REC-F02 field set remains.",
+      "phase": "P3",
+      "target": "Job Requisition is a useful base. Add the agreed HR-REC-F02 fields; related multi-line and routing behavior is covered separately.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-002",
+        "functional": "Job Requisition is a useful base. Add the agreed HR-REC-F02 fields; related multi-line and routing behavior is covered separately.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_requisition/job_requisition.json"
+    },
+    {
+      "id": "REQ-003",
+      "requirement": "One request, several locations via request lines",
+      "source_status": "Built",
+      "source_evidence": "`phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Multi-location parent and lines exist and were pilot-tested; full upstream form and amendment behavior remain separate work.",
+      "phase": "P3",
+      "target": "The standard requisition has one designation and department, not Kandil's multiple location lines. Add a parent request with lines and linked openings.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-003",
+        "functional": "The standard requisition has one designation and department, not Kandil's multiple location lines. Add a parent request with lines and linked openings.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_requisition/job_requisition.json"
+    },
+    {
+      "id": "REQ-004",
+      "requirement": "Chain from structure; missing level skipped; self-approval blocked",
+      "source_status": "Built",
+      "source_evidence": "`Workflow.gs` — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Configured manager→HR chain and self-approval checks exist; structure-derived traversal/CEO fallback remain.",
+      "phase": "P3",
+      "target": "Frappe has workflow conditions and an owner-based self-approval check. Dynamic hierarchy traversal, missing-level skips and requester-versus-creator checks need added logic.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-004",
+        "functional": "Frappe has workflow conditions and an owner-based self-approval check. Dynamic hierarchy traversal, missing-level skips and requester-versus-creator checks need added logic.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "REQ-005",
+      "requirement": "CEO by HR routing, dated CEO rules, Sector Manager → CEO",
+      "source_status": "Built",
+      "source_evidence": "Approval rules screen — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Implement dated CEO routing rules and resolved approver records; role-based workflow transitions alone are insufficient.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-005",
+        "functional": "Implement dated CEO routing rules and resolved approver records; role-based workflow transitions alone are insufficient.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "REQ-006",
+      "requirement": "HR Manager approve / reject / return / edit / send to CEO",
+      "source_status": "Built",
+      "source_evidence": "`phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Configure approval/return states and implement the special HR edit/reroute actions with permissions and revision rules.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-006",
+        "functional": "Configure approval/return states and implement the special HR edit/reroute actions with permissions and revision rules.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "REQ-007",
+      "requirement": "Requester notified of every step, rejection and HR edit",
+      "source_status": "Built",
+      "source_evidence": "`notify_` — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Configure notifications for each agreed workflow transition and edit. Custom workflow actions must trigger those events consistently.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-007",
+        "functional": "Configure notifications for each agreed workflow transition and edit. Custom workflow actions must trigger those events consistently.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/email/doctype/notification/notification.py"
+    },
+    {
+      "id": "REQ-008",
+      "requirement": "Return for revision with timestamps and versions",
+      "source_status": "Built",
+      "source_evidence": "`REQUEST_VERSIONS` — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Use history as a base, but preserve formal request revisions, return reasons and timestamps as business records.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-008",
+        "functional": "Use history as a base, but preserve formal request revisions, return reasons and timestamps as business records.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/version/version.py"
+    },
+    {
+      "id": "REQ-009",
+      "requirement": "Approval snapshot of what each approver saw",
+      "source_status": "Built",
+      "source_evidence": "`Snapshot_JSON` on each step — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Submission snapshot/events exist; exact immutable snapshot per decision/version remains.",
+      "phase": "P3",
+      "target": "Store an immutable business snapshot linked to each approval. A general document diff is not the exact payload that an approver saw.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-009",
+        "functional": "Store an immutable business snapshot linked to each approval. A general document diff is not the exact payload that an approver saw.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/version/version.py"
+    },
+    {
+      "id": "REQ-010",
+      "requirement": "Request timeline and My Requests",
+      "source_status": "Built",
+      "source_evidence": "`EVENTS`, «طلباتي» — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Native lists and event trail exist; complete next-action inbox and stakeholder notification parity remain.",
+      "phase": "P3",
+      "target": "Filtered lists, ownership filters and document timelines provide the base for My Requests. Configure visibility and displayed events.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-010",
+        "functional": "Filtered lists, ownership filters and document timelines provide the base for My Requests. Configure visibility and displayed events.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_requisition/job_requisition.json"
+    },
+    {
+      "id": "REQ-011",
+      "requirement": "Change request and reapproval for material post-approval changes",
+      "source_status": "Built",
+      "source_evidence": "HR edits before approval are versioned and notified. After approval (0.28): owner decision — only a headcount **increase** goes back to approval, as a linked request through the normal chain that tops up the same vacancy; date, specs, priority, employment type, branch and decreases are recorded by HR with a reason as amendment versions — `phase28`, `ui32`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Implement linked change requests: increases reapprove and top up the same vacancy; other approved changes need reasons and amendment versions.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-REQ-011",
+        "functional": "Implement linked change requests: increases reapprove and top up the same vacancy; other approved changes need reasons and amendment versions.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_requisition/job_requisition.json"
+    },
+    {
+      "id": "PRI-001",
+      "requirement": "Requested priority / HR classification / dynamic score / override",
+      "source_status": "Built",
+      "source_evidence": "`PRIORITY_WEIGHTS`, pin — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Add requested priority, HR classification, scored factors and controlled override/pin with recalculation and audit.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-PRI-001",
+        "functional": "Add requested priority, HR classification, scored factors and controlled override/pin with recalculation and audit.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_requisition/job_requisition.json"
+    },
+    {
+      "id": "BRD-001",
+      "requirement": "Board approval (Chairman or Vice) after the CEO",
+      "source_status": "Built",
+      "source_evidence": "`SEND_BOARD`, on-behalf recording — `phase2`, `phase7`. 0.36: on-behalf needs a proof file (CHG-78) — `phase36`, `ui4`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Add board routing after CEO and required evidence for on-behalf approval. Generic workflow does not supply this evidence policy.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-BRD-001",
+        "functional": "Add board routing after CEO and required evidence for on-behalf approval. Generic workflow does not supply this evidence policy.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "VAC-001",
+      "requirement": "One vacancy per location line",
+      "source_status": "Built",
+      "source_evidence": "`phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "One Job Opening per approved location line exists and was pilot-tested; preserve this invariant during expansion.",
+      "phase": "P3",
+      "target": "Generate a linked Job Opening or custom vacancy per request location line, preserving parent IDs and approved quantities.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-001",
+        "functional": "Generate a linked Job Opening or custom vacancy per request location line, preserving parent IDs and approved quantities.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "VAC-002",
+      "requirement": "Partial fill; request closes fully or partially",
+      "source_status": "Built",
+      "source_evidence": "0.40: the request closes by itself («Closed») when all its vacancies are filled, closed or cancelled, and opens again when a fill is voided; event + requester told — `phase40`, before `phase2`, `phase14`",
+      "current_status": "Pilot subset",
+      "current_note": "Partial joins and Filled state exist; close-balance, void/reopen and amendment rules remain.",
+      "phase": "P3",
+      "target": "Standard opening states are Open/Closed. Partial fills, automatic parent closure and reopening on voided fills require coordinated state logic.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-002",
+        "functional": "Standard opening states are Open/Closed. Partial fills, automatic parent closure and reopening on voided fills require coordinated state logic.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "VAC-003",
+      "requirement": "Several recruiters per vacancy; lead; one owner per application",
+      "source_status": "Built",
+      "source_evidence": "`VACANCY_RECRUITERS`, application owner — `phase2`, `phase8`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Assignments provide a base. Add lead recruiter, recruiter team and accountable application owner with their distinct permissions.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-003",
+        "functional": "Assignments provide a base. Add lead recruiter, recruiter team and accountable application owner with their distinct permissions.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/desk/form/assign_to.py"
+    },
+    {
+      "id": "VAC-004",
+      "requirement": "Missing recruitment roles skipped with record",
+      "source_status": "Built",
+      "source_evidence": "Fallback to HR; skip reason — `phase2`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Implement deterministic HR fallback when roles are missing and record the skipped role and reason.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-004",
+        "functional": "Implement deterministic HR fallback when roles are missing and record the skipped role and reason.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/desk/form/assign_to.py"
+    },
+    {
+      "id": "VAC-005",
+      "requirement": "Unassigned work queue and bulk reassignment",
+      "source_status": "Built",
+      "source_evidence": "v0.33 review: a deactivated recruiter's work did not return to «not assigned» — fixed in v0.34 (`phase34`); bulk reassignment built in 0.28",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P3",
+      "target": "Add the exact unassigned queue and reassignment behavior when a recruiter is disabled; test open tasks, applications and vacancies together.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-005",
+        "functional": "Add the exact unassigned queue and reassignment behavior when a recruiter is disabled; test open tasks, applications and vacancies together.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/desk/form/assign_to.py"
+    },
+    {
+      "id": "VAC-006",
+      "requirement": "Recruitment screen listing all approved requests / vacancies",
+      "source_status": "Built",
+      "source_evidence": "«الشواغر» — `phase2`",
+      "current_status": "Pilot subset",
+      "current_note": "Native opening/request lists exist; assignment-scoped recruitment console remains.",
+      "phase": "P3",
+      "target": "Configure approved-request and vacancy lists/reports, filters and permissions against the chosen data model.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-VAC-006",
+        "functional": "Configure approved-request and vacancy lists/reports, filters and permissions against the chosen data model.",
+        "scenarios": "Multiple locations, excess quantity, vacant authority, same-person steps and delegation are tested. Quantity reduction never drops below committed joins; approved changes adjust the existing vacancy safely. Concurrent requests cannot double-reserve; all balances reconcile.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "ADV-001",
+      "requirement": "Ads per platform from JD templates, copyable",
+      "source_status": "Built",
+      "source_evidence": "`Sourcing.gs` — `phase6`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Job publishing exists. Platform-specific ad drafts, approved JD-version references and copy templates need an advertising model and UI.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ADV-001",
+        "functional": "Job publishing exists. Platform-specific ad drafts, approved JD-version references and copy templates need an advertising model and UI.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "ADV-002",
+      "requirement": "Apply link per ad with automatic source",
+      "source_status": "Built",
+      "source_evidence": "`&ad=` link — `phase6`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Create ad-linked URLs and server-validated source attribution. Website Listing as a default source does not preserve campaign attribution.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ADV-002",
+        "functional": "Create ad-linked URLs and server-validated source attribution. Website Listing as a default source does not preserve campaign attribution.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "SRC-001",
+      "requirement": "Source mandatory per application, with sub-source",
+      "source_status": "Built",
+      "source_evidence": "`phase3`, `phase6`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Job Applicant Source exists. Add sub-source and enforce mandatory source in forms, imports and APIs.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-SRC-001",
+        "functional": "Job Applicant Source exists. Add sub-source and enforce mandatory source in forms, imports and APIs.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant_source/job_applicant_source.json"
+    },
+    {
+      "id": "SRC-002",
+      "requirement": "Subscriptions: credits, usage, expiry, unused-credit alerts",
+      "source_status": "Built",
+      "source_evidence": "`phase6`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Build recruitment subscription/credit records, consumption, expiry and unused-credit alerts. No equivalent was identified in the reviewed HR models.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-SRC-002",
+        "functional": "Build recruitment subscription/credit records, consumption, expiry and unused-credit alerts. No equivalent was identified in the reviewed HR models.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant_source/job_applicant_source.json"
+    },
+    {
+      "id": "SRC-003",
+      "requirement": "Referral attribution lock; agency terms",
+      "source_status": "Built",
+      "source_evidence": "`Referrals.gs` — `phase8`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Employee Referral supplies a starting point. Lock attribution and add agency terms; account for its required email field.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-SRC-003",
+        "functional": "Employee Referral supplies a starting point. Lock attribution and add agency terms; account for its required email field.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_referral/employee_referral.json"
+    },
+    {
+      "id": "CAN-001",
+      "requirement": "Person master; candidate ≠ application; duplicate warning, no auto-merge",
+      "source_status": "Built",
+      "source_evidence": "`phase3`. 0.38: own consent before passing «Contacted» (consent link), relatives, accommodation, minors, photo consent (CHG-81) — `phase38`",
+      "current_status": "Pilot subset",
+      "current_note": "Phone-only Job Applicant and application uniqueness exist; reusable Person, shared-phone decisions and cross-application identity do not.",
+      "phase": "P4",
+      "target": "Standard Job Applicant represents an application and uses email for naming. Add a reusable Person master, identity/dedup rules, consent and linked applications without auto-merging.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-001",
+        "functional": "Standard Job Applicant represents an application and uses email for naming. Add a reusable Person master, identity/dedup rules, consent and linked applications without auto-merging.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-002",
+      "requirement": "Hybrid journey; recruiter acts on behalf with audit",
+      "source_status": "Built",
+      "source_evidence": "Candidate's own page (private link, 7 days): consent, data and CV, confirm / decline interview, answer the offer; recruiter on-behalf kept (CHG-83) — `phase39`, `ui40`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Build the private expiring candidate journey, offer/interview responses and audited recruiter-on-behalf actions. Standard intake is not the whole journey.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-002",
+        "functional": "Build the private expiring candidate journey, offer/interview responses and audited recruiter-on-behalf actions. Standard intake is not the whole journey.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-003",
+      "requirement": "Online application intake",
+      "source_status": "Built",
+      "source_evidence": "`Apply.html` — `phase3`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P4",
+      "target": "Standard online job application intake exists. Adapt fields, Arabic text and branding; email-less intake remains a separate custom compatibility issue.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-003",
+        "functional": "Standard online job application intake exists. Adapt fields, Arabic text and branding; email-less intake remains a separate custom compatibility issue.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/web_form/job_application/job_application.json"
+    },
+    {
+      "id": "CAN-004",
+      "requirement": "Privacy notice acceptance stored with version",
+      "source_status": "Built",
+      "source_evidence": "`CONSENTS` — `phase3`, `phase15`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Record consent text version, time, purpose and actor, and enforce consent gates across channels rather than adding only a checkbox.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-004",
+        "functional": "Record consent text version, time, purpose and actor, and enforce consent gates across channels rather than adding only a checkbox.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-005",
+      "requirement": "Salaries required with disclosure states; never zero",
+      "source_status": "Built",
+      "source_evidence": "Owner decision (0.28): salary optional for everyone, the form does not label it optional; a separate sensitive-data consent when entered (0.14.1); zero refused on the form and the server — `phase28`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Implement optional salary disclosure states, no-zero validation and separate sensitive-data consent. Use the source note's later decision, not its outdated short heading.",
+      "rule_note": "Later source decision makes expected salary optional, with disclosure state/range and no zero-as-unknown. Do not implement the older heading as mandatory salary disclosure.",
+      "acceptance": {
+        "id": "AT-CAN-005",
+        "functional": "Implement optional salary disclosure states, no-zero validation and separate sensitive-data consent. Use the source note's later decision, not its outdated short heading.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-006",
+      "requirement": "National ID optional at application",
+      "source_status": "Built",
+      "source_evidence": "`phase3`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P4",
+      "target": "National ID is not required by the standard applicant schema. If added, keep it optional at intake and separately restrict access.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-006",
+        "functional": "National ID is not required by the standard applicant schema. If added, keep it optional at intake and separately restrict access.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-007",
+      "requirement": "Bulk import of 50–100 rows with duplicate review and batch ID",
+      "source_status": "Built",
+      "source_evidence": "`IMPORT_BATCHES` — `phase9`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P4",
+      "target": "Data Import provides bulk loading. Add reviewed duplicate decisions, Person/Application linkage, batch IDs and predictable rollback/retry handling.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-007",
+        "functional": "Data Import provides bulk loading. Add reviewed duplicate decisions, Person/Application linkage, batch IDs and predictable rollback/retry handling.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/data_import/data_import.py"
+    },
+    {
+      "id": "CAN-008",
+      "requirement": "Hybrid talent pool",
+      "source_status": "Built",
+      "source_evidence": "`Pool.gs` — `phase9`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Applicants can be searched and filtered. A reusable person-based talent pool and reassignment to new applications needs the custom candidate model.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-008",
+        "functional": "Applicants can be searched and filtered. A reusable person-based talent pool and reassignment to new applications needs the custom candidate model.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "CAN-009",
+      "requirement": "Former employee detection and hiring restriction",
+      "source_status": "Built",
+      "source_evidence": "Restrictions, rehire confirmation — `phase9`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Match against former employees with reviewed identity evidence; add rehire restrictions, reason and override approval.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-CAN-009",
+        "functional": "Match against former employees with reviewed identity evidence; add rehire restrictions, reason and override approval.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/erpnext/blob/7474d9e786277383de1242ab882f16856d17a9c9/erpnext/setup/doctype/employee/employee.json"
+    },
+    {
+      "id": "SCR-001",
+      "requirement": "Knockout flags for human review; AI evidence-only",
+      "source_status": "Built",
+      "source_evidence": "Knockout flags reviewed by a person — `phase9`. AI CV reading (0.31, `CvAi.gs`) gives suggestions only: fields the recruiter picks to save, a summary and a 1–5 match on job-related criteria (age, gender, religion, marital status, nationality, photo excluded); it never moves or rejects a candidate — `phase31`, `ui35`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P9",
+      "target": "No equivalent of this exact AI evidence-only CV workflow was established in standard HRMS. Port human selection, allowed criteria and provider integration with usage controls.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-SCR-001",
+        "functional": "No equivalent of this exact AI evidence-only CV workflow was established in standard HRMS. Port human selection, allowed criteria and provider integration with usage controls.",
+        "scenarios": "Metrics reconcile to a hand-calculated synthetic dataset, respect scopes and handle zero denominators. Low-data forecasts are labeled insufficient. AI output is reviewed, cannot authorize a hiring decision, rejects instructions embedded in CVs, and observes configured payload/cost limits.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "SCR-002",
+      "requirement": "Coded rejection reasons; internal reason separate from message",
+      "source_status": "Built",
+      "source_evidence": "`REASON_MASTER` — `phase3`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Add coded internal rejection reasons and a separate outward message with independent access and disclosure rules.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-SCR-002",
+        "functional": "Add coded internal rejection reasons and a separate outward message with independent access and disclosure rules.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_applicant/job_applicant.py"
+    },
+    {
+      "id": "ACT-001",
+      "requirement": "Activity log: calls, manager discussions, no silent edits",
+      "source_status": "Built",
+      "source_evidence": "`ACTIVITIES`, void instead of edit — `phase3`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Timeline/comments are available. Use a dedicated append-only activity record with explicit voiding and reasons for calls and manager discussions.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ACT-001",
+        "functional": "Timeline/comments are available. Use a dedicated append-only activity record with explicit voiding and reasons for calls and manager discussions.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/version/version.py"
+    },
+    {
+      "id": "ACT-002",
+      "requirement": "Action queue with next action per application",
+      "source_status": "Built",
+      "source_evidence": "«مهامي» — `phase3`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Assignments and tasks provide a base. Configure next-action fields and filtered action queues; special SLA rules remain custom.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ACT-002",
+        "functional": "Assignments and tasks provide a base. Configure next-action fields and filtered action queues; special SLA rules remain custom.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/desk/form/assign_to.py"
+    },
+    {
+      "id": "COM-001",
+      "requirement": "Message templates; copy for WhatsApp",
+      "source_status": "Built",
+      "source_evidence": "`MESSAGE_TEMPLATES` — `phase3`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Email templates are available. Build WhatsApp copy actions and Kandil message templates; copying is not automated WhatsApp delivery.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-COM-001",
+        "functional": "Email templates are available. Build WhatsApp copy actions and Kandil message templates; copying is not automated WhatsApp delivery.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/communication/communication.py"
+    },
+    {
+      "id": "COM-002",
+      "requirement": "Rejection message by WhatsApp or email as an explicit step",
+      "source_status": "Built",
+      "source_evidence": "`cand.rejectMsg`; preferred contact channel kept on the person and shown at the rejection step (v0.39) — `phase3`, `phase39`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Make rejection communication an explicit workflow step, respecting preferred channel and recording actual send versus manual copy/confirmation.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-COM-002",
+        "functional": "Make rejection communication an explicit workflow step, respecting preferred channel and recording actual send versus manual copy/confirmation.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/communication/communication.py"
+    },
+    {
+      "id": "MOV-001",
+      "requirement": "Vacancy fill method recorded (external / internal transfer)",
+      "source_status": "Built",
+      "source_evidence": "`VACANCY_FILLS` — `phase2`, `phase4`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P7",
+      "target": "Record internal/external fill source and link a transfer or joining event to the vacancy and reservation ledger.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-MOV-001",
+        "functional": "Record internal/external fill source and link a transfer or joining event to the vacancy and reservation ledger.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_opening/job_opening.json"
+    },
+    {
+      "id": "MOV-002",
+      "requirement": "Internal candidates (source Internal); manager told before first interview",
+      "source_status": "Built",
+      "source_evidence": "Told at shortlist (`Candidates.gs`) — `phase3`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P4",
+      "target": "Link internal applicants to employees and notify their current manager before the defined shortlist/interview transition.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-MOV-002",
+        "functional": "Link internal applicants to employees and notify their current manager before the defined shortlist/interview transition.",
+        "scenarios": "One person can have multiple applications; a shared phone never forces an automatic merge. Imports are previewed and replay-safe. Expired/revoked tokens fail; candidate A cannot access candidate B; sensitive fields and internal rejection reasons do not leak. Manual copy is not reported as sent.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_transfer/employee_transfer.py"
+    },
+    {
+      "id": "ASM-001",
+      "requirement": "Practical / technical assessment stage",
+      "source_status": "Built",
+      "source_evidence": "`Assessments.gs` — `phase12`. Assessment data entry deferred by the owner (open item 7)",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Skills and interview feedback provide building blocks. Add practical test stages, evidence, scoring and agreed technical assessment content.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ASM-001",
+        "functional": "Skills and interview feedback provide building blocks. Add practical test stages, evidence, scoring and agreed technical assessment content.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview_feedback/interview_feedback.py"
+    },
+    {
+      "id": "INT-001",
+      "requirement": "Invite blocked until the manager confirms",
+      "source_status": "Built",
+      "source_evidence": "Confirmation chain — `phase10`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P5",
+      "target": "Add a manager-confirmation gate before invitation is sent; prevent bypass through direct APIs and rescheduling.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-001",
+        "functional": "Add a manager-confirmation gate before invitation is sent; prevent bypass through direct APIs and rescheduling.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-002",
+      "requirement": "Manager screen of interview dates and locations",
+      "source_status": "Built",
+      "source_evidence": "`phase10`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Interview schedule fields and filtered views provide dates and managers. Add location fields and role-specific calendar/list views as needed.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-002",
+        "functional": "Interview schedule fields and filtered views provide dates and managers. Add location fields and role-specific calendar/list views as needed.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-003",
+      "requirement": "Reminders and optional reconfirmation",
+      "source_status": "Built",
+      "source_evidence": "Day-before reminder to the panel by e-mail too; candidate e-mail ~2 hours before a confirmed interview; reconfirmation — `phase12`, `phase39`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Standard interview and missing-feedback reminders exist. Configure or extend the exact panel day-before, candidate two-hour and reconfirmation rules with duplicate-send protection.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-003",
+        "functional": "Standard interview and missing-feedback reminders exist. Configure or extend the exact panel day-before, candidate two-hour and reconfirmation rules with duplicate-send protection.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-004",
+      "requirement": "Check-in, waiting timer, evidence trail",
+      "source_status": "Built",
+      "source_evidence": "`phase10`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P5",
+      "target": "Create candidate arrival/check-in events and waiting-time calculations. This is distinct from employee attendance check-ins.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-004",
+        "functional": "Create candidate arrival/check-in events and waiting-time calculations. This is distinct from employee attendance check-ins.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-005",
+      "requirement": "Interview plan, panel roles, waiver with reason",
+      "source_status": "Built",
+      "source_evidence": "`phase10`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P5",
+      "target": "Use interview participants and types as the base. Enforce panel-role requirements and controlled waivers with reasons.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-005",
+        "functional": "Use interview participants and types as the base. Enforce panel-role requirements and controlled waivers with reasons.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-006",
+      "requirement": "Interviewer workspace shows the JD",
+      "source_status": "Built",
+      "source_evidence": "Interview kit — `phase5`, `phase10`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Link the approved JD version to a focused interviewer workspace. Merely linking Job Opening does not freeze the interview kit.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-006",
+        "functional": "Link the approved JD version to a focused interviewer workspace. Merely linking Job Opening does not freeze the interview kit.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "INT-007",
+      "requirement": "Question bank; HR standard questions in the HR interview",
+      "source_status": "Built",
+      "source_evidence": "`INTERVIEW_QUESTIONS` — `phase10`. Bank content pending from HR (open item 8)",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Skill assessment is available. Add question-bank versions and mandatory HR questions; HR must still supply the content.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-007",
+        "functional": "Skill assessment is available. Add question-bank versions and mandatory HR questions; HR must still supply the content.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview_feedback/interview_feedback.py"
+    },
+    {
+      "id": "INT-008",
+      "requirement": "Structured, independent evaluations (HR, direct, higher manager)",
+      "source_status": "Built",
+      "source_evidence": "`phase10`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P5",
+      "target": "Separate feedback per interviewer exists. Exact HR/direct/higher-manager forms and blind or independent visibility need explicit access rules and testing.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-008",
+        "functional": "Separate feedback per interviewer exists. Exact HR/direct/higher-manager forms and blind or independent visibility need explicit access rules and testing.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview_feedback/interview_feedback.py"
+    },
+    {
+      "id": "INT-009",
+      "requirement": "Live comparison; continuous pipeline; decision readiness",
+      "source_status": "Built",
+      "source_evidence": "`int.compare` — `phase10`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P5",
+      "target": "Ratings support comparison. Build the live comparison and decision-readiness conditions across the continuous candidate pipeline.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-009",
+        "functional": "Ratings support comparison. Build the live comparison and decision-readiness conditions across the continuous candidate pipeline.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview_feedback/interview_feedback.py"
+    },
+    {
+      "id": "INT-010",
+      "requirement": "SLA on confirmation and evaluation with escalation",
+      "source_status": "Built",
+      "source_evidence": "`EVAL_SLA_HOURS`, daily job — `phase10`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P5",
+      "target": "Extend reminder jobs with confirmation/evaluation deadlines, escalation hierarchy, holidays and resolution tracking.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INT-010",
+        "functional": "Extend reminder jobs with confirmation/evaluation deadlines, escalation hierarchy, holidays and resolution tracking.",
+        "scenarios": "Invitation cannot bypass confirmation; each interviewer cannot view another’s answers before authorized release; salary/photo restrictions apply to forms and APIs. Rescheduling invalidates obsolete reminders; no-show and incomplete-panel cases resolve with evidence.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/interview/interview.py"
+    },
+    {
+      "id": "OFF-001",
+      "requirement": "Offer sent by email from the system or printed",
+      "source_status": "Built",
+      "source_evidence": "`OFFER_VIA_` — `phase13`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P6",
+      "target": "Job Offer supports applicant, terms, print/letterhead and email workflows. Configure the approved Arabic/English templates and delivery.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-001",
+        "functional": "Job Offer supports applicant, terms, print/letterhead and email workflows. Configure the approved Arabic/English templates and delivery.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-002",
+      "requirement": "Offer authority by salary band; HR Manager above max",
+      "source_status": "Built",
+      "source_evidence": "`OFFER_AUTHORITY` — `phase13`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P6",
+      "target": "Add salary-band authority, exceptions and server checks on proposed/approved values. This is not supplied by generic offer status.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-002",
+        "functional": "Add salary-band authority, exceptions and server checks on proposed/approved values. This is not supplied by generic offer status.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-003",
+      "requirement": "Basic + allowances; incentives in the system, not in the offer",
+      "source_status": "Built",
+      "source_evidence": "Incentive annex — `phase13`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P6",
+      "target": "Model basic, allowances and incentives with separate visibility and print templates; prevent the internal incentive annex leaking into the candidate offer.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-003",
+        "functional": "Model basic, allowances and incentives with separate visibility and print templates; prevent the internal incentive annex leaking into the candidate offer.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-004",
+      "requirement": "Offer versions and negotiation with reapproval",
+      "source_status": "Built",
+      "source_evidence": "`phase13`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P6",
+      "target": "Document amendments are a base. Add negotiation rounds, salary-change detection and mandatory reapproval before a revised offer can be sent.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-004",
+        "functional": "Document amendments are a base. Add negotiation rounds, salary-change detection and mandatory reapproval before a revised offer can be sent.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-005",
+      "requirement": "Valid Until and audited extension",
+      "source_status": "Built",
+      "source_evidence": "`phase13`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P6",
+      "target": "Add validity, expiry processing and approved extension history; current standard schema does not express this complete rule.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-005",
+        "functional": "Add validity, expiry processing and approved extension history; current standard schema does not express this complete rule.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-006",
+      "requirement": "Five-figure salary trail",
+      "source_status": "Built",
+      "source_evidence": "Current / expected / proposed / approved / agreed — `phase13`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P6",
+      "target": "Preserve current, expected, proposed, approved and agreed salary as distinct controlled stages, not one overwritten salary field.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-006",
+        "functional": "Preserve current, expected, proposed, approved and agreed salary as distinct controlled stages, not one overwritten salary field.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "OFF-007",
+      "requirement": "Decline reasons, over-hiring warning, reserve candidates",
+      "source_status": "Built",
+      "source_evidence": "`phase13`, `phase14`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P6",
+      "target": "Add decline reasons, reserve-candidate state and over-hiring checks tied to actual joins and reservations.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-OFF-007",
+        "functional": "Add decline reasons, reserve-candidate state and over-hiring checks tied to actual joins and reservations.",
+        "scenarios": "Boundary values route to the correct approver; changes after approval require the agreed revision policy. Internal incentives and pay-only fields cannot leak to candidate/interviewer outputs. Arabic/English PDF renders correctly; missing mandatory template inputs block issuance. No actual payroll deduction or payment occurs.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/job_offer/job_offer.py"
+    },
+    {
+      "id": "JOI-001",
+      "requirement": "Joining date agreed after acceptance, with history",
+      "source_status": "Built",
+      "source_evidence": "`phase14`; 0.47 (CHG-101): the fixed-term employment contract prints the two-page preliminary template on the contribution wage, refused while its legal data is missing — `phase51`, `ui51`; 0.48 (CHG-102): the salary details at hire (company copy, pay-view roles, one page) — `phase52`, `ui51`",
+      "current_status": "Pilot subset",
+      "current_note": "Actual joining action exists; planned-date coordination/history and complete contract/clearance rules remain.",
+      "phase": "P7",
+      "target": "Expected joining and appointment-letter templates are available. Add date agreement history, required contract data and separate restricted salary-details printout.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-JOI-001",
+        "functional": "Expected joining and appointment-letter templates are available. Add date agreement history, required contract data and separate restricted salary-details printout.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/controllers/employee_boarding_controller.py"
+    },
+    {
+      "id": "JOI-002",
+      "requirement": "Did-not-join tracked with reasons",
+      "source_status": "Built",
+      "source_evidence": "`phase14`",
+      "current_status": "Pilot subset",
+      "current_note": "No Show/Withdrawn require a reason and preserve the vacancy; complete reason lists and correction workflow remain.",
+      "phase": "P7",
+      "target": "Add no-show/non-joiner closure, reasons, reservation release and the correct vacancy reopening behavior.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-JOI-002",
+        "functional": "Add no-show/non-joiner closure, reasons, reservation release and the correct vacancy reopening behavior.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/controllers/employee_boarding_controller.py"
+    },
+    {
+      "id": "DOC-001",
+      "requirement": "Upload by employee or HR, HR review, physical receipt",
+      "source_status": "Built",
+      "source_evidence": "Private upload link, receipts — `phase14`; 0.46.2 (CHG-100): the signed no-insurance acknowledgement is a required joining document of a no-insurance contract, never deferred or waived — `phase50`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P7",
+      "target": "Private files provide storage. Build employee/recruiter upload permissions, HR verification, physical receipts and non-waivable document rules.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-DOC-001",
+        "functional": "Private files provide storage. Build employee/recruiter upload permissions, HR verification, physical receipts and non-waivable document rules.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/file/file.py"
+    },
+    {
+      "id": "DOC-002",
+      "requirement": "Deferred documents with approver and due date; HR alerts only",
+      "source_status": "Built",
+      "source_evidence": "0.40: the employee is e-mailed 3 days before and on the due date; 7 days after it the HR manager is told (DOC\\_DEFER\\_ESCALATE\\_DAYS); never on days off; no payroll action — `phase40`, before `phase14`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P7",
+      "target": "Create document deferral records, approving authority, due dates and timed escalation. Keep these notifications isolated from payroll actions.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-DOC-002",
+        "functional": "Create document deferral records, approving authority, due dates and timed escalation. Keep these notifications isolated from payroll actions.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/email/doctype/notification/notification.py"
+    },
+    {
+      "id": "FIL-001",
+      "requirement": "Electronic employee file with document versions and expiry",
+      "source_status": "Built",
+      "source_evidence": "0.40: the 13 document states (§14.2) shown on every document; «suspected issue» (only an HR manager clears it) and «replacement requested» (the reason reaches the candidate's link); a verified document past its expiry becomes «Expired» every day, renewal notice 30 days before (employee e-mailed, team told), a renewed copy clears it — `phase40`, `ui41`, before `phase19`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P7",
+      "target": "Attachments and history are available. Add typed employee documents, versions, expiry, renewal, 13 states and HR-only issue clearance.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-FIL-001",
+        "functional": "Attachments and history are available. Add typed employee documents, versions, expiry, renewal, 13 states and HR-only issue clearance.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/file/file.py"
+    },
+    {
+      "id": "ONB-001",
+      "requirement": "Orientation with separate manager and HR screens",
+      "source_status": "Built",
+      "source_evidence": "0.41: IT / administration / safety owners (named in settings, else the HR site specialist) with their own tasks; custody & PPE log on the program and the employee file, flagged at end of service; «arriving tomorrow» screen; survey axes — `phase41`, `ui42`, before `phase19`. 0.44: ZKBioTime enrolment task (face + fingers, punch type, mobile licences, stop on exit — CHG-91) — `phase43`, `ui44`",
+      "current_status": "Pilot subset",
+      "current_note": "Joining creates submitted onboarding with one hard-coded pilot task; replace with templates and department owners.",
+      "phase": "P7",
+      "target": "Standard onboarding creates tasks/projects and assigns owners. Add Kandil site screens, custody/PPE, arrival dashboard and BioTime enrollment/license tracking; real BioTime sync is a separate integration.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ONB-001",
+        "functional": "Standard onboarding creates tasks/projects and assigns owners. Add Kandil site screens, custody/PPE, arrival dashboard and BioTime enrollment/license tracking; real BioTime sync is a separate integration.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/controllers/employee_boarding_controller.py"
+    },
+    {
+      "id": "ONB-002",
+      "requirement": "First-day welcome gift",
+      "source_status": "Built",
+      "source_evidence": "`phase20`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P7",
+      "target": "Represent the welcome gift as an onboarding task with responsible person, due date and completion evidence.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ONB-002",
+        "functional": "Represent the welcome gift as an onboarding task with responsible person, due date and completion evidence.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/controllers/employee_boarding_controller.py"
+    },
+    {
+      "id": "ONB-003",
+      "requirement": "30-day New Hire Voice with confidentiality",
+      "source_status": "Built",
+      "source_evidence": "7 / 30 days, HR-only answers — `phase20`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P7",
+      "target": "Create confidential day-7/day-30 new-hire surveys and strict HR-only response access; ordinary appraisal visibility is not equivalent.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-ONB-003",
+        "functional": "Create confidential day-7/day-30 new-hire surveys and strict HR-only response access; ordinary appraisal visibility is not equivalent.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/appraisal/appraisal.json"
+    },
+    {
+      "id": "INS-001",
+      "requirement": "Social insurance case within the first month",
+      "source_status": "Built",
+      "source_evidence": "`INSURANCE_CASES` — `phase20`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P7",
+      "target": "Build a social-insurance case with owner, first-month deadline, evidence and escalation. Employee Health Insurance is not this case workflow.",
+      "rule_note": "The short heading says first month; later source decision says start from first working day with controlled exceptions. Record the approved operational rule and supplied content; this plan does not certify legal deadlines.",
+      "acceptance": {
+        "id": "AT-INS-001",
+        "functional": "Build a social-insurance case with owner, first-month deadline, evidence and escalation. Employee Health Insurance is not this case workflow.",
+        "scenarios": "Concurrent joining creates one intended employment event and correct headcount; mandatory documents follow the approved policy. Correction reverses dependent effects without deleting history. Joining opens each required case once. Deferred documents cause follow-up, never wage withholding.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_health_insurance/employee_health_insurance.json"
+    },
+    {
+      "id": "MOV-003",
+      "requirement": "Transfer process with approvals and HC check on the target",
+      "source_status": "Built",
+      "source_evidence": "0.41: the receiving manager can open (towards his own scope); the two managers give an opinion (an objection is recorded, never ends it) — HR decides; temporary transfer (cover) to an end date — `phase41`, `phase21`, `ui42`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P8",
+      "target": "Employee Transfer exists. Add both managers' opinions, HR final authority, target capacity checks and temporary-cover rules.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-MOV-003",
+        "functional": "Employee Transfer exists. Add both managers' opinions, HR final authority, target capacity checks and temporary-cover rules.",
+        "scenarios": "Controlled clock verifies checkpoints, weekends and overdue paths; no duplicate probation on rehire under the agreed employer rule. Transfer moves occupancy once on its effective date. Temporary cover preserves the home position correctly; exit revokes accounts and reallocates open work.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_transfer/employee_transfer.py"
+    },
+    {
+      "id": "MOV-004",
+      "requirement": "On the effective date: positions / HC move, vacancy updated, history, replacement offered",
+      "source_status": "Built",
+      "source_evidence": "0.41: handover list (ticked, open items named at the move); the old manager offered a prefilled replacement request; a cover keeps the home position and ends by itself — `phase41`, `phase21`, `phase4`",
+      "current_status": "Custom work remains",
+      "current_note": "No matching completed Kandil feature was evidenced in the reviewed custom pilot scope.",
+      "phase": "P8",
+      "target": "Standard transfer applies on submission and blocks early submission. Add scheduled effect, home-position retention, automatic return, handover and replacement-request logic.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-MOV-004",
+        "functional": "Standard transfer applies on submission and blocks early submission. Add scheduled effect, home-position retention, automatic return, handover and replacement-request logic.",
+        "scenarios": "Controlled clock verifies checkpoints, weekends and overdue paths; no duplicate probation on rehire under the agreed employer rule. Transfer moves occupancy once on its effective date. Temporary cover preserves the home position correctly; exit revokes accounts and reallocates open work.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_transfer/employee_transfer.py"
+    },
+    {
+      "id": "PRB-001",
+      "requirement": "Probation checkpoints, log, final evaluation, reminders",
+      "source_status": "Built",
+      "source_evidence": "`Probation.gs`, `Probation.html`: one period ≤ 90 days, no extension; goals + acknowledgement, performance log, reviews 30/60, self-assessment, final evaluation on day 75 (annual appraisal items), PIP by day 60, decision by day 80 (ending = HR sector only), reminders and escalation. Checkpoint days in `PROB_CHECKPOINTS` — `phase25`, `ui29`. Stay interview and KPIs in 0.26; the employee sees his follow-ups and, after the decision, his final evaluation (0.27) — `phase27`, `ui31`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P8",
+      "target": "Appraisal, goals and confirmation dates are useful components. Build the precise probation lifecycle: 30/60 reviews, day-75 evaluation, day-80 decision, PIP and restricted termination authority.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-PRB-001",
+        "functional": "Appraisal, goals and confirmation dates are useful components. Build the precise probation lifecycle: 30/60 reviews, day-75 evaluation, day-80 decision, PIP and restricted termination authority.",
+        "scenarios": "Controlled clock verifies checkpoints, weekends and overdue paths; no duplicate probation on rehire under the agreed employer rule. Transfer moves occupancy once on its effective date. Temporary cover preserves the home position correctly; exit revokes accounts and reallocates open work.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/appraisal/appraisal.json"
+    },
+    {
+      "id": "INS-002",
+      "requirement": "Medical insurance after successful probation",
+      "source_status": "Built",
+      "source_evidence": "`MEDICAL_CASES`: opened on confirmation, due in `MEDICAL_ADD_DAYS`, HR only — `phase25`, `ui29`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P8",
+      "target": "Trigger a medical-insurance case from successful confirmation, with due date, restricted access and closure evidence.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-INS-002",
+        "functional": "Trigger a medical-insurance case from successful confirmation, with due date, restricted access and closure evidence.",
+        "scenarios": "Controlled clock verifies checkpoints, weekends and overdue paths; no duplicate probation on rehire under the agreed employer rule. Transfer moves occupancy once on its effective date. Temporary cover preserves the home position correctly; exit revokes accounts and reallocates open work.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/doctype/employee_health_insurance/employee_health_insurance.json"
+    },
+    {
+      "id": "RPT-001",
+      "requirement": "Status report per request; log of calls, appointments, no-shows",
+      "source_status": "Built",
+      "source_evidence": "Request timeline and activity log; **Operational reports** screen (0.22): requests, vacancies, candidates, ads, offers, joiners with filters and Excel export — `phase24`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P9",
+      "target": "Standard recruitment analytics and report tools exist. Build the repo's request/activity/no-show reports from the custom event model and match exports.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-RPT-001",
+        "functional": "Standard recruitment analytics and report tools exist. Build the repo's request/activity/no-show reports from the custom event model and match exports.",
+        "scenarios": "Metrics reconcile to a hand-calculated synthetic dataset, respect scopes and handle zero denominators. Low-data forecasts are labeled insufficient. AI output is reviewed, cannot authorize a hiring decision, rejects instructions embedded in CVs, and observes configured payload/cost limits.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/report/recruitment_analytics/recruitment_analytics.py"
+    },
+    {
+      "id": "RPT-002",
+      "requirement": "Role dashboards; drill-down KPIs",
+      "source_status": "Built",
+      "source_evidence": "`Kpi.gs`: KPI screen — process KPIs (speed, quality, efficiency, candidate experience, compliance), scorecards per recruiter, recruitment lead and HR site specialist (weighted, 1–5), managers and approvers; filters, drill-down to cases, Excel export, monthly e-mail. Targets and weights edited on the KPI screen (v0.27, validated + audited); \"my evaluation\" for every user — `phase26`, `phase27`, `ui30`, `ui31`. Phase 8 part 1 (0.29): source return with cost per hire, bottlenecks per step, interviewer calibration — `phase29`, `ui33`. Hiring forecast (0.30), confidence by months of history — `phase30`, `ui34`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P9",
+      "target": "Appraisal and reporting tools do not supply the exact operational KPIs, weighted recruiter scorecards, source ROI, bottleneck analytics or forecast-confidence method. Port metric definitions and validate denominators.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-RPT-002",
+        "functional": "Appraisal and reporting tools do not supply the exact operational KPIs, weighted recruiter scorecards, source ROI, bottleneck analytics or forecast-confidence method. Port metric definitions and validate denominators.",
+        "scenarios": "Metrics reconcile to a hand-calculated synthetic dataset, respect scopes and handle zero denominators. Low-data forecasts are labeled insufficient. AI output is reviewed, cannot authorize a hiring decision, rejects instructions embedded in CVs, and observes configured payload/cost limits.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/hr/report/recruitment_analytics/recruitment_analytics.py"
+    },
+    {
+      "id": "AUD-001",
+      "requirement": "Audit: who, what, when, before, after",
+      "source_status": "Built",
+      "source_evidence": "`AUDIT_LOG`, `auditDiff_` — all suites; 0.49 (CHG-106): every row sealed and chained, checked daily — `phase53`",
+      "current_status": "Pilot subset",
+      "current_note": "Application-level immutable event records exist; cryptographic tamper evidence, anchors and redaction protocol remain.",
+      "phase": "P1",
+      "target": "Frappe Version provides change differences. The repo adds HMAC-sealed chained audit rows; reproducing that tamper-evidence needs separate design, key control and verification jobs.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-AUD-001",
+        "functional": "Frappe Version provides change differences. The repo adds HMAC-sealed chained audit rows; reproducing that tamper-evidence needs separate design, key control and verification jobs.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/core/doctype/version/version.py"
+    },
+    {
+      "id": "AUD-002",
+      "requirement": "Controlled overrides instead of admin bypass",
+      "source_status": "Built",
+      "source_evidence": "HC exception, waivers, on-behalf, all with reason and audit — `phase7`, `phase10`, `phase14`",
+      "current_status": "Pilot subset",
+      "current_note": "Selected exception/delegation controls exist; full override catalogue and separation of duties remain.",
+      "phase": "P1",
+      "target": "Model each exception explicitly with authorized role, reason and audit. Framework Administrator privileges are not the repo's controlled business-override policy.",
+      "rule_note": "",
+      "acceptance": {
+        "id": "AT-AUD-002",
+        "functional": "Model each exception explicitly with authorized role, reason and audit. Framework Administrator privileges are not the repo's controlled business-override policy.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/frappe/blob/2871914b69b6e14a4b023d9b7cc52dc3e269cc1b/frappe/model/workflow.py"
+    },
+    {
+      "id": "WAG-001",
+      "requirement": "No wage or payroll action anywhere",
+      "source_status": "Built",
+      "source_evidence": "Portal records and prints notices only (payroll notice, salary-items notice) — `phase14`, `phase21`",
+      "current_status": "Native building block",
+      "current_note": "A native building block is identified; exact Kandil configuration and acceptance are not demonstrated.",
+      "phase": "P1",
+      "target": "Keep payroll actions out of recruitment/document workflows and disable unneeded access. HRMS has payroll functionality, unlike this repo; do not enable deductions through document-compliance automation.",
+      "rule_note": "Keep compensation estimates and follow-up notices separate from payroll execution. Older STOP labels must not become wage-stopping operations.",
+      "acceptance": {
+        "id": "AT-WAG-001",
+        "functional": "Keep payroll actions out of recruitment/document workflows and disable unneeded access. HRMS has payroll functionality, unlike this repo; do not enable deductions through document-compliance automation.",
+        "scenarios": "Two companies and multiple sites cannot read each other’s protected records, files, search results or exports. Replayed approval cannot advance another step. Stale commands fail clearly; revoked access/delegation takes effect. Notification retry is deduplicated.",
+        "common": "Positive path; unauthorized role and scope; invalid/stale/replayed transition where applicable; native UI/Arabic and API consistency; audit/notifications/files and migration effects where applicable.",
+        "status": "Planned — not executed in this review"
+      },
+      "frappe_reference": "https://github.com/frappe/hrms/blob/7c037698ce57d1492f05a8b4a586a7578f722879/hrms/payroll/doctype/payroll_entry/payroll_entry.py"
+    }
+  ],
+  "supplemental_packages": [
+    {
+      "id": "X01",
+      "phase": "P1",
+      "title": "Account lifecycle and strong authentication",
+      "source": "ACC-001, ACC-003; CHG-104–108; §23.1",
+      "scope": "MFA/recovery, server idle expiry, remembered sessions, device alerts, dormant accounts, usage-policy versions, consultant restrictions and access review; CEO mobile/PIN route requires an explicit threat model and approved alternative if standard MFA is chosen."
+    },
+    {
+      "id": "X02",
+      "phase": "P1",
+      "title": "Privileged changes and CEO/board evidence",
+      "source": "ACC-003, REQ-005, BRD-001; §19",
+      "scope": "CEO/board appointment and delegation queues, two-person reset/termination controls, board-on-behalf proof, monthly exception report. Demo wipe/impersonation remains confined to disposable test environments."
+    },
+    {
+      "id": "X03",
+      "phase": "P4",
+      "title": "Privacy, consent and retention",
+      "source": "CAN-001/002/004/008; §9.6, §22",
+      "scope": "Purpose/version/channel consent, relatives/conflict declarations, optional photos/accommodations, minors path, restricted background/reference evidence, access/export/deletion cases, retention holds, purge of files/AI results/search projections and a restore-time deletion replay policy."
+    },
+    {
+      "id": "X04",
+      "phase": "P1",
+      "title": "Operational security and recovery",
+      "source": "ACC-001, AUD-001; CHG-79/82/106",
+      "scope": "Incident workflow, backup/restore evidence, audit integrity checks, secret rotation and readiness signals. Alerts are test-captured locally; no regulatory deadline is certified by this plan."
+    },
+    {
+      "id": "X05",
+      "phase": "P1",
+      "title": "Scheduled jobs and communication",
+      "source": "REQ-007, INT-003/010, COM; §20",
+      "scope": "Versioned templates, priorities/budgets, in-app notices, outbox, daily digest, five-working-day approval policy after confirmation, Cairo timezone, business calendar, retries, duplicate suppression and failed-job visibility."
+    },
+    {
+      "id": "X06",
+      "phase": "P5",
+      "title": "Selection and reference evidence",
+      "source": "ASM-001, INT-005–009; §13.1",
+      "scope": "Selection snapshot, reserve candidates, consented reference checks and follow-up, interviewer/approver conflict declarations; blind feedback must survive exports and APIs."
+    },
+    {
+      "id": "X07",
+      "phase": "P6",
+      "title": "Forms and legal-template register",
+      "source": "OFF-001, JOI-001; CHG-100–103,107",
+      "scope": "Catalogue every printed form: JD/worker card, request/org chart, interview kit, offer, contract, receipts, onboarding/probation, data copy and salary notice. Version supplied templates; record required fields and audience; compare page breaks and Arabic text."
+    },
+    {
+      "id": "X08",
+      "phase": "P6",
+      "title": "Compensation presentation",
+      "source": "OFF-002/003/006; §13.6; CHG-102/107",
+      "scope": "Grade minimum rule versus older around-minimum wording; gross/net estimates, payroll review, separate contribution/comprehensive/fixed/variable amounts, working hours/rest and private internal printout. Validate example calculations with approved reference cases."
+    },
+    {
+      "id": "X09",
+      "phase": "P4",
+      "title": "Candidate public/private surfaces",
+      "source": "CAN-002/003; §9.7",
+      "scope": "Branded application page and token-scoped self-service, consent, interview response, offer response, uploads and recruiter-on-behalf audit. Hash tokens, expiry/revocation, rate limits, file validation and no access through guessed record IDs."
+    },
+    {
+      "id": "X10",
+      "phase": "P9",
+      "title": "AI CV provider and evidence boundary",
+      "source": "SCR-001; src/CvAi.gs",
+      "scope": "Explicit user action, minimum payload, redacted identifiers, human review, cost cap, usage history, key management, malformed/timeout handling, document prompt-injection tests and no automatic hiring/rejection decision."
+    },
+    {
+      "id": "X11",
+      "phase": "P7",
+      "title": "Employee voice and confidentiality",
+      "source": "ONB-003, PRB-001, RPT-002",
+      "scope": "Day-7/day-30 and stay surveys, follow-up cases, appropriate owner visibility, small-group suppression including filtered/exported results; prepare schema now even if reporting ships P9."
+    },
+    {
+      "id": "X12",
+      "phase": "P10",
+      "title": "Complete native HR experience and guides",
+      "source": "UX-001; §24; CHG-87,97–99,109",
+      "scope": "Role home/inbox, candidates tabs/board, guided offer steps, global scoped search, back navigation, admin grouping, presence where agreed, branded login, interactive process map and manager/admin/employee guides. Build usable screens in each phase; P10 is final polish, not first UI delivery."
+    },
+    {
+      "id": "X13",
+      "phase": "P10",
+      "title": "Migration, imports and production transition",
+      "source": "CAN-007, HC-002; §27–30",
+      "scope": "Dry-run and reconciliation for org, employees, open requests, candidates, offers and files. Preserve old IDs/timestamps/source IDs, keep recoverable migration journal, rehearse rollback, train roles and define a limited parallel run. Do not wipe current sites."
+    },
+    {
+      "id": "X14",
+      "phase": "P10",
+      "title": "Real external connections",
+      "source": "ACC-002/004, ONB-001, HC-002; §30",
+      "scope": "Email provider, identity/appraisal SSO, payroll-file column mapping and optional branded public domain. BioTime enrollment task is part of parity; actual device synchronization and Odoo are separate integrations unless explicitly added. WhatsApp copying does not imply WhatsApp API sending."
+    },
+    {
+      "id": "X15",
+      "phase": "P2",
+      "title": "Source-deferred business completeness",
+      "source": "ORG-002, ORG-009, HC-002, ACC-004; §30",
+      "scope": "Full organization snapshots, complete company isolation, payroll import and appraisal SSO stay visible with independent dependencies. Manager JD review awaits source interview content; build the workflow with synthetic content first."
+    },
+    {
+      "id": "X16",
+      "phase": "P1",
+      "title": "Auditable corrections and data minimization",
+      "source": "AUD-001/002; CHG-106; §22",
+      "scope": "Separate immutable business facts from personal-data payloads. Define authorized redaction/erasure, audit seal verification, external anchors, key rotation and reconciliation. Immutable through application APIs does not mean tamper-proof against database administrators."
+    }
+  ],
+  "decisions": [
+    {
+      "id": "D01",
+      "before": "P2/P3",
+      "topic": "Position versus capacity",
+      "decision": "Pilot capacity is company/department/designation/branch; source has Position with configurable structural quantity. Add stable Position and effective-dated allocation; migrate links and reconcile before enabling new routing. Do not equate one designation to one position."
+    },
+    {
+      "id": "D02",
+      "before": "P3",
+      "topic": "Headcount policy",
+      "decision": "Older formula omits reservations; later §5 includes them. Preserve atomic reservations. Resolve warning/block switch and exact exception authority; record requested vs approved quantities and no self-double-count during amendments."
+    },
+    {
+      "id": "D03",
+      "before": "P1/P3",
+      "topic": "Self-interest and repeated authorities",
+      "decision": "Source includes special HR-sector/CEO cases; pilot blocks direct/delegated requester self-approval and skips normal own steps. Agree a decision table for requester, beneficiary, creator and principal. Repeated authority needs a distinct decision step and a replay-safe command."
+    },
+    {
+      "id": "D04",
+      "before": "P3",
+      "topic": "Hierarchy at submission versus changes later",
+      "decision": "Resolve route from effective hierarchy, then freeze that revision’s steps and reviewed payloads. A later org change must use an explicit reroute/version event, not silently replace prior authority."
+    },
+    {
+      "id": "D05",
+      "before": "P4",
+      "topic": "Person versus application and shared phones",
+      "decision": "Pilot unique key uses opening + email/phone. Add Person identity and application links; warn/review potential duplicates. Preserve verified matches and historical applicant IDs; no automatic merge based only on a shared phone."
+    },
+    {
+      "id": "D06",
+      "before": "P6",
+      "topic": "Salary disclosure and authority",
+      "decision": "Older heading requires salaries/around-minimum authority; later decisions make expected salary optional and recruiter authority exactly at grade minimum. Reconcile config/examples against latest source code and HR decisions before thresholds are enabled."
+    },
+    {
+      "id": "D07",
+      "before": "P7/P8",
+      "topic": "Contracts, insurance and probation rules",
+      "decision": "Source labels and later decisions differ; contract content is marked preliminary. Treat templates, dates and rates as versioned HR/legal inputs. Build configurable case workflows using synthetic examples; do not certify the source’s legal statements."
+    },
+    {
+      "id": "D08",
+      "before": "P1/P4",
+      "topic": "Audit integrity versus deletion",
+      "decision": "Source requires tamper evidence and erasure of personal payloads. Define supported redaction evidence, retention holds, backup expiry and restoration replay before calling the audit immutable or privacy-complete."
+    },
+    {
+      "id": "D09",
+      "before": "P1/P10",
+      "topic": "Authentication and mobile executive access",
+      "decision": "Translate the source’s Gmail/OTP/CEO trusted-device requirements into a supported Frappe identity design. Standard Frappe authentication is not proof of exact source parity. Record any deliberate security-equivalent replacement."
+    },
+    {
+      "id": "D10",
+      "before": "P10",
+      "topic": "Scope of everything",
+      "decision": "Full reference business behavior includes source-deferred items as explicit work. Delivery/estimator/Odoo integration and a complete payroll/attendance rollout are separate from this recruitment-and-employment reference; installed modules do not expand accepted scope automatically."
+    }
+  ],
+  "model_plan": [
+    [
+      "Reuse standard",
+      "Company, Department, Designation, User/Role, Employee, Job Opening, Job Applicant, Interview/Feedback, Job Offer, Employee Onboarding, File, print formats",
+      "Use standard records as operational owners where their semantics match; extend via the custom app, not upstream edits."
+    ],
+    [
+      "Extend existing custom",
+      "Hiring Request/Lines, Capacity, Approval Step, Recruitment Route, Delegation, Recruitment Event",
+      "Migrate aggregate capacity to position-linked allocation; add revision/step identities and exact command results; retain historical links."
+    ],
+    [
+      "Add organizational records",
+      "Position, Position Assignment/History, Organization Revision, JD Revision, Grade/Pay Scheme Revision, Authority Rule",
+      "Effective dates and approved snapshots; keep Designation as a job title, not an occupied seat."
+    ],
+    [
+      "Add recruitment records",
+      "Person, Candidate Profile, Application-linked history, Source/Ad/Subscription/Agency, Assessment, Selection, Offer Revision",
+      "Prefer extending Job Applicant as the Application over creating a second competing application master; prove this in a schema spike."
+    ],
+    [
+      "Add employment cases",
+      "Joining/Correction, Employment Episode, Document Requirement/Version/Deferral, Insurance, Probation/Review, Transfer/Exit, Survey",
+      "Link cases to standard Employee; preserve person continuity across exit/rehire without assuming a new Employee row is always required."
+    ],
+    [
+      "Add cross-cutting records",
+      "Command Receipt, Notification Outbox, Business Calendar/SLA Policy, Consent/Privacy Case, Security Review, Integration Job",
+      "Source ownership remains inside HR; expose versioned business actions for a later company portal."
+    ]
+  ],
+  "test_plan": [
+    [
+      "T1 Rules and schema",
+      "Fresh test site, deterministic seed, domain state transitions, quantity/pay/date boundary cases; migration upgrade and rollback/recovery rehearsal."
+    ],
+    [
+      "T2 Authorization",
+      "Real separate role accounts; company/site/team scope; list/detail/search/export/print/private file checks; self-interest, delegation expiry and disabled users. Never rely solely on Administrator or simulated role switching."
+    ],
+    [
+      "T3 Concurrency and retries",
+      "Competing final vacancy claims; repeated approvals for same and consecutive steps; joining retry with different payload; concurrent correction/transfer; all counters and linked cases reconcile."
+    ],
+    [
+      "T4 Lifecycle and schedules",
+      "Controllable clock in tests for 2/3/4/5-working-day SLAs, Cairo timezone, weekends, expiry, transfer dates, probation checkpoints and interrupted job recovery. No waiting real months to test."
+    ],
+    [
+      "T5 Native browser and documents",
+      "Each role completes native screens on desktop and phone in Arabic/English. Match the reference UAT’s intent, not old Apps Script selectors. Check PDFs visually, field visibility, downloads and errors."
+    ],
+    [
+      "T6 External effects and AI",
+      "Mail sink/fake provider first; replayed/failed jobs, expiring candidate links, provider timeouts, cost caps and unsafe CV instructions. Real provider smoke tests are separate, explicitly labeled evidence."
+    ],
+    [
+      "T7 End-to-end business acceptance",
+      "Trace from structure → request → vacancy → application → interview → offer → documents → joining → onboarding/insurance → probation → transfer/exit/rehire. HR validates ordinary and exception paths, reports and audit."
+    ],
+    [
+      "T8 Operations",
+      "Agreed workload profile, not employee count alone; restore database/files/keys, restore privacy-deletion state, upgrade rehearsal, queued-work recovery, monitoring and operator response."
+    ]
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "date": "2026-10-12",
+  "reference_commit": "7824be24292c4743b4005e14e2df540786cfe167",
+  "reference_requirements": 98,
+  "supplemental_packages": 16,
+  "old_checkpoint_cases": 80,
+  "old_checkpoint_statuses": {
+    "passed": 70,
+    "blocked": 4,
+    "partial": 6
+  },
+  "new_roadmap_sprints": 14,
+  "extra_B_sprints": 4,
+  "implementation_tests_run_for_report": false,
+  "assets": {
+    "03-native-frappe-list.png": "2e9773d68e5000a3fda35093d4e0d420bf307da12b2dc433f91cc75cfc812e48",
+    "02-current-pilot.png": "38b10a6b761c7ff703a0b2133fd4723db1c75dbf76629ba225f8279536c225e8",
+    "01-reference-portal.png": "851be3d4d2e32bfc0676478b2f1c21d3b49d67a0578abb6c60fbcd1ea8e74a68"
+  }
+}

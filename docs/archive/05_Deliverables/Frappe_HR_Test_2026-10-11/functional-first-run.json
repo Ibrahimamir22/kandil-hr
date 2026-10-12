@@ -1,0 +1,168 @@
+[
+  {
+    "id": "T01",
+    "title": "Isolated company and four synthetic employee records",
+    "at": "2026-10-11T18:21:12.892655+03:00",
+    "status": "PASS",
+    "evidence": "Egypt / EGP test company and four user-linked employees available through HTTP API."
+  },
+  {
+    "id": "T02",
+    "title": "Employee can read their own record",
+    "at": "2026-10-11T18:21:12.950107+03:00",
+    "status": "PASS",
+    "evidence": "Employee A read their own employee record using an ordinary Employee account."
+  },
+  {
+    "id": "T03",
+    "title": "Employee cannot read another employee record",
+    "at": "2026-10-11T18:21:12.988193+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "id": "T04",
+    "title": "Hiring manager creates a requisition; self-approval is rejected",
+    "at": "2026-10-11T18:21:13.136118+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 417: frappe.exceptions.ValidationError: Self approval is not allowed"
+  },
+  {
+    "id": "T05",
+    "title": "A different HR manager approves the requisition",
+    "at": "2026-10-11T18:21:13.190630+03:00",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "id": "T06",
+    "title": "One requisition containing multiple location lines",
+    "at": "2026-10-11T18:21:13.200224+03:00",
+    "status": "GAP",
+    "evidence": "Runtime standard Job Requisition metadata has no child tables for location lines. Exact Kandil multi-location request remains custom work."
+  },
+  {
+    "id": "T07",
+    "title": "Create an opening linked to the approved requisition",
+    "at": "2026-10-11T18:21:13.208548+03:00",
+    "status": "PASS",
+    "evidence": {
+      "opening": "HR-OPN-2026-0001",
+      "requisition": "HR-HIREQ-00001",
+      "location": "TEST Factory A"
+    }
+  },
+  {
+    "id": "T08",
+    "title": "Phone-only applicant fails in standard Frappe",
+    "at": "2026-10-11T18:21:13.242790+03:00",
+    "status": "GAP",
+    "evidence": "HTTP 417: frappe.exceptions.MandatoryError: [Job Applicant, HR-APP-2026-00001]: email_id"
+  },
+  {
+    "id": "T09",
+    "title": "Create an Arabic-named applicant with email",
+    "at": "2026-10-11T18:21:13.264707+03:00",
+    "status": "PASS",
+    "evidence": {
+      "applicant": "candidate-182112@example.invalid",
+      "arabic_name_preserved": true
+    }
+  },
+  {
+    "id": "T10",
+    "title": "Duplicate application to the same opening is rejected",
+    "at": "2026-10-11T18:21:13.283760+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 417: hrms.hr.doctype.job_applicant.job_applicant.DuplicationError: You have already applied for this position."
+  },
+  {
+    "id": "T11",
+    "title": "Ordinary employee cannot read recruitment candidate",
+    "at": "2026-10-11T18:21:13.299875+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 403: {'exc_type': 'PermissionError', '_server_messages': '[\"{\\\\\"message\\\\\":\\\\\"User <strong>kandil-test-employee_a@example.invalid</strong> does not have doctype access via role permission for document <strong>Job Applicant</strong>\\\\\",\\\\\"as_table\\\\\":false,\\\\\"title\\\\\":\\\\\"Message\\\\\"}\"]', '_error_message': 'No permission for Job Applicant'}"
+  },
+  {
+    "id": "T12",
+    "title": "Schedule an interview and submit scored feedback",
+    "at": "2026-10-11T18:21:13.307445+03:00",
+    "status": "PASS",
+    "evidence": {
+      "interview": "HR-INT-2026-0001",
+      "feedback": "HR-INT-FEED-0001",
+      "average_rating": 0.8
+    }
+  },
+  {
+    "id": "T13",
+    "title": "Accepted offer does not automatically create an employee",
+    "at": "2026-10-11T18:21:13.383004+03:00",
+    "status": "PASS",
+    "evidence": {
+      "offer": "HR-OFF-2026-00001",
+      "employee_count_before_joining_conversion": 0
+    }
+  },
+  {
+    "id": "T14",
+    "title": "Convert a hired candidate into an employee",
+    "at": "2026-10-11T18:21:13.431534+03:00",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "id": "T15",
+    "title": "Onboarding generates an assigned task",
+    "at": "2026-10-11T18:21:13.439222+03:00",
+    "status": "FAIL",
+    "evidence": "'joined_employee'"
+  },
+  {
+    "id": "T16",
+    "title": "Employee requests two leave days; HR approves and balance becomes eight",
+    "at": "2026-10-11T18:21:13.439386+03:00",
+    "status": "PASS",
+    "evidence": {
+      "application": "HR-LAP-2026-00001",
+      "starting_allocation": 10,
+      "days_used": 2,
+      "remaining": 8.0
+    }
+  },
+  {
+    "id": "T17",
+    "title": "Leave request exceeding remaining balance is rejected",
+    "at": "2026-10-11T18:21:13.607046+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 417: hrms.hr.doctype.leave_application.leave_application.InsufficientLeaveBalanceError: Insufficient leave balance for Leave Type <strong>TEST Annual Leave</strong>"
+  },
+  {
+    "id": "T18",
+    "title": "Record attendance and reject a duplicate day",
+    "at": "2026-10-11T18:21:13.624646+03:00",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "id": "T19",
+    "title": "Two pending requests can be created against one planned vacancy",
+    "at": "2026-10-11T18:21:13.631220+03:00",
+    "status": "FAIL",
+    "evidence": "HTTP 417: frappe.exceptions.ValidationError: Please set the document name"
+  },
+  {
+    "id": "T20",
+    "title": "Generate offer PDF",
+    "at": "2026-10-11T18:21:13.643967+03:00",
+    "status": "FAIL",
+    "evidence": "HTTP 500: "
+  },
+  {
+    "id": "T21",
+    "title": "Employee cannot query another employee leave balance",
+    "at": "2026-10-11T18:21:14.976033+03:00",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Not permitted"
+  }
+]

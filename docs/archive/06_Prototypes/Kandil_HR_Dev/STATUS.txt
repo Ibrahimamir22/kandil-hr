@@ -1,0 +1,82 @@
+Current sprint checkpoint — 12 October 2026
+
+P0–P3 is actively implemented in the custom kandil_hr application. The earlier
+11 October sections below are historical pilot evidence, not current release status.
+
+Private custom source repository: https://github.com/Ibrahimamir22/kandil-hr
+Official Frappe, ERPNext and HRMS clones remain separate pinned dependencies.
+Current source checkpoint/publication details: app docs/sprints/CHECKPOINT.md.
+Current progress: app docs/sprints/tracker.json and SPRINT_PLAN.md.
+Strict case evidence: app docs/phases_0_3/ACCEPTANCE_EVIDENCE_MAPPING.md.
+
+8100 main: no business-data migration performed.
+8101: original synthetic recruitment pilot, preserved.
+8102: P0–P3 synthetic parity review; new native UI and guarded workflows.
+8110: separate reproducible-install sandbox; synthetic restore also rehearsed.
+All addresses are loopback-only. Email is muted. No production acceptance.
+
+Latest source includes organization/position/JD models, scoped security,
+transactional outbox, versioned requests, vacancies, recruiter queue and native
+AR/EN screens. Exact checks and remaining gaps are recorded in the tracker.
+HR decisions, complete baseline-case proof and production hardening remain open.
+
+Historical pilot record follows:
+--------------------------------
+Local development only. Updated 11 October 2026 after recruitment pilot implementation.
+
+Main site: http://localhost:8100 — business data not migrated or populated by pilot work.
+Synthetic pilot: http://localhost:8101/kandil-pilot — kandil-test.localhost.
+Frappe 16.51.1, ERPNext 16.50.0, HRMS 16.50.0; custom Kandil app is versioned locally.
+
+Implemented on test site:
+- Multi-location hiring request, department route and independent quantity exception gate.
+- Atomic capacity reservations, approvals, partial filling, rejection and cancellation.
+- Phone-only applicants without fabricated email; duplicate application constraint.
+- Effective-dated/revocable delegation; direct and delegated self-approval blocked.
+- Accepted offer -> explicit actual joining -> Employee + onboarding task; no-show keeps vacancy.
+- Immutable audit events, joining links and selected API bypass protections.
+- Native form buttons and bilingual pilot entry page. Full UI design/Arabic polish remains.
+
+Verified:
+- 26 workflow checks + 9 edge checks passed. Phone-only interview/scored feedback also passed.
+- Actual browser request submission and two approval steps passed; no observed JS errors/5xx.
+- Standard numbering probe: before, 8/10 writes failed; after compatibility change, 100/100 passed at concurrency 10 with no retries or duplicate IDs.
+- Twenty simultaneous requests for five seats: five reservations, fifteen controlled rejections, no 500s.
+- Simultaneous joining: one employee, one headcount increment.
+- 1000 synthetic volume employees added; test site total 1008 at audit.
+- 600 mixed operations at concurrency 10: all passed; p95 read/list ~36ms, attendance create+submit ~131ms. Short local batch, not production capacity certification.
+- All six pilot capacity ledgers reconciled against requests and actual employee records.
+- Existing privacy/leave/PDF regression checks passed.
+- Python compilation, JS syntax, whitespace and Ruff checks passed.
+- Upstream Frappe/ERPNext/HRMS source unchanged. Custom changes committed locally; no GitHub remote or push.
+
+Compatibility change:
+- Local project's shared MariaDB 11.8.9 server now uses innodb_snapshot_isolation=OFF.
+- REPEATABLE-READ and row locking retained; setting persisted in compose.yaml.
+- Custom actions additionally avoid empty draft approval range locks and retry whole rolled-back deadlock transactions at most three times. No external effects in transactions.
+
+Pending:
+- HR hands-on acceptance and policy confirmation; checklist and ready example provided.
+- Full hierarchy/CEO/offer authority, amendments, transfers/exits, full privacy audit.
+- Egypt payroll validation, sustained/production load testing, backup restoration.
+- Odoo/BioTime/Sheets/AI integrations and production deployment are not configured.
+
+Current report:
+../../05_Deliverables/Frappe_HR_Pilot_2026-10-11/Kandil_HR_Pilot_Results.html
+The older Frappe_HR_Test report is preserved as a baseline, not current pilot status.
+
+Start main: ./hr start
+Start pilot: docker compose --profile testing up -d test-web
+Stop local services: docker compose --profile testing stop
+Secrets remain in .secrets and development/test-credentials.json; not included in deliverables.
+
+Native workspace update — 11 October 2026:
+- Company hub: http://localhost:8101/kandil; native HR entry: /kandil-pilot.
+- Role-aware HR navigation and request actions; explicit joining on pilot offers.
+- Custom action Arabic translations; native upstream screens retained.
+- 12 grouped browser/workflow checks passed; separate boundary checks recorded.
+- New synthetic joining case: HR-OFF-2026-00008 -> HR-EMP-01009; test total 1009.
+- Original HR-review offer HR-OFF-2026-00007 remains pending joining.
+- Six capacity ledgers reconciled after the case.
+- See NATIVE_REVIEW.md, GITHUB_SETUP.md and development/testing/native-ui/.
+- Both repos local only. HR business acceptance and production readiness pending.

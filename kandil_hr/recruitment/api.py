@@ -34,7 +34,101 @@ def dump(value):
 	return json.dumps(value, sort_keys=True, ensure_ascii=False, default=str)
 
 
+def business_hash(doc):
+	"""Hash persisted request/ledger state; private fields never enter the event body."""
+	current = frappe.get_doc(doc.doctype, doc.name, for_update=True)
+	caps = [
+		frappe.get_doc("Kandil Capacity", key, for_update=True).as_dict()
+		for key in sorted({line.capacity for line in current.lines})
+	]
+	return hashlib.sha256(dump([current.as_dict(), caps]).encode()).hexdigest()
+
+
 def command(name, operation, command_id, expected_version, payload, handler):
+	from kandil_hr.recruitment import headcount_denials
+	from kandil_hr.recruitment.headcount_contract import HeadcountDenied
+
+	point = "command_" + uuid.uuid4().hex
+	callbacks = [
+		(getattr(frappe.db, key), len(getattr(frappe.db, key)))
+		for key in ("before_commit", "after_commit", "before_rollback", "after_rollback")
+	]
+	frappe.db.savepoint(point)
+	state = {}
+
+	def rollback():
+		frappe.db.rollback(save_point=point)
+		for manager, length in callbacks:
+			manager.truncate(length)
+		frappe.local.document_cache = {}
+
+	try:
+		return _command(name, operation, command_id, expected_version, payload, handler, state)
+	except frappe.QueryDeadlockError:
+		raise  # Outer transactional_retry owns full rollback after an InnoDB deadlock.
+	except HeadcountDenied as denial:
+		rollback()
+		try:
+			if operation not in {"submit", "revise_pending_quantities"} or not state.get("before_hash"):
+				raise denial
+			doc = frappe.get_doc("Kandil Hiring Request", name, for_update=True)
+			with headcount_denials.context():
+				return headcount_denials.record(
+					doc,
+					operation,
+					command_id,
+					expected_version,
+					payload,
+					denial,
+					business_before_hash=state["before_hash"],
+					business_after_hash=business_hash(doc),
+				)
+		except frappe.QueryDeadlockError:
+			raise
+		except Exception:
+			rollback()
+			raise
+	except Exception:
+		rollback()
+		raise
+
+
+def route_candidate_users(doc):
+	"""Collect domain-controlled route identities before sorted User locks."""
+	from kandil_hr.organization.api import active_hierarchy
+	from kandil_hr.organization.current import rows
+
+	settings = frappe.get_doc("Kandil Organization Settings", doc.company, for_update=True)
+	users = {
+		settings.get(key)
+		for key in ("hr_approver", "sector_approver", "ceo_approver", "board_approver", "board_vice_approver")
+	}
+	hierarchy = active_hierarchy(doc.company, getdate(today()))
+	positions, current = set(), doc.requested_position
+	while current and current not in positions:
+		positions.add(current)
+		current = hierarchy.get(current, {}).get("parent_position")
+	for position in sorted(positions):
+		frappe.db.sql("SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (position,))
+	if positions:
+		users.update(
+			row.user
+			for row in rows(
+				"Kandil Position Assignment",
+				filters={"company": doc.company, "position": ["in", sorted(positions)]},
+				fields=["user"],
+			)
+		)
+	users.update(
+		row.principal
+		for row in rows(
+			"Kandil Authority Rule", filters={"company": doc.company, "enabled": 1}, fields=["principal"]
+		)
+	)
+	return users - {None, ""}
+
+
+def _command(name, operation, command_id, expected_version, payload, handler, state):
 	guard()
 	if not command_id or len(command_id) > 100 or not expected_version:
 		frappe.throw(_("A command ID and reviewed record version are required."))
@@ -56,7 +150,9 @@ def command(name, operation, command_id, expected_version, payload, handler):
 		frappe.db.sql(
 			"SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (doc.requested_position,)
 		)
-	lock_capacities(doc)
+	# Acquire capacity locks without refreshing: denial/replay must be read-only.
+	for capacity in sorted({line.capacity for line in doc.lines}):
+		frappe.db.sql("SELECT name FROM `tabKandil Capacity` WHERE name=%s FOR UPDATE", (capacity,))
 	for opening_name in sorted({x.job_opening for x in doc.lines if x.job_opening}):
 		frappe.db.sql("SELECT name FROM `tabJob Opening` WHERE name=%s FOR UPDATE", (opening_name,))
 	from kandil_hr.foundation.command_audit import record_command
@@ -70,6 +166,8 @@ def command(name, operation, command_id, expected_version, payload, handler):
 	# Lock related domain records before the shared sorted User/grant order.
 	related_before = related_state(doc, operation, payload)
 	users = {frappe.session.user, doc.requested_by} | {s.principal for s in doc.approval_steps if s.principal}
+	if operation in {"submit", "revise_pending_quantities"}:
+		users.update(route_candidate_users(doc))
 	for step in doc.approval_steps:
 		if step.get("board_vice"):
 			users.add(step.board_vice)
@@ -121,8 +219,16 @@ def command(name, operation, command_id, expected_version, payload, handler):
 		if prior.payload_hash != digest:
 			frappe.throw(_("Command ID was already used with different data."))
 		return json.loads(prior.result_json)
+	from kandil_hr.recruitment import headcount_denials
+
+	with headcount_denials.context():
+		denied = headcount_denials.replay(doc, operation, command_id, expected_version, payload)
+	if denied is not None:
+		return denied
 	if get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This record changed. Reload it before deciding."), frappe.TimestampMismatchError)
+	if operation in {"submit", "revise_pending_quantities"}:
+		state["before_hash"] = business_hash(doc)
 	before = request_state(doc)
 	authority = frozen_authority(doc, operation)
 	with transition():
@@ -288,12 +394,13 @@ def resolve_chain(doc, excess):
 	from kandil_hr.recruitment.authority import enforce_chain
 
 	filtered, skips, interests = enforce_chain(doc, chain, config)
+	from kandil_hr.foundation.mutation_access import current_identity
+
 	for principal, authority, _position in filtered:
-		if (
-			not principal
-			or not frappe.db.get_value("User", principal, "enabled")
-			or ROLES.get(authority) not in frappe.get_roles(principal)
-		):
+		if not principal:
+			frappe.throw(_("Approval authority is missing, disabled or has the wrong role."))
+		roles = current_identity(principal)
+		if ROLES.get(authority) not in roles:
 			frappe.throw(_("Approval authority is missing, disabled or has the wrong role."))
 	# Freeze only explicit public policy fields; future configuration changes must
 	# not rewrite what an approver reviewed or expose unknown configuration fields.
@@ -364,8 +471,19 @@ def submit_request(name, command_id, expected_version):
 			)
 			excess = excess or (line.reserved_qty > 0 and line.reserved_qty > caps[line.capacity].available)
 		from kandil_hr.recruitment.headcount_contract import enforce_shortage
+		from kandil_hr.recruitment.headcount_denials import build_evaluation
 
-		enforce_shortage(excess=excess, mode=config.headcount_mode, reason=doc.exception_reason)
+		evaluation = build_evaluation(
+			doc,
+			caps,
+			config,
+			baseline_quantities={
+				line.name: cint(old[line.capacity].approved_qty) if parent else 0 for line in doc.lines
+			},
+		)
+		enforce_shortage(
+			excess=excess, mode=config.headcount_mode, reason=doc.exception_reason, evaluation=evaluation
+		)
 		chain = resolve_chain(doc, excess)
 		from kandil_hr.organization.occupancy import capture_basis
 

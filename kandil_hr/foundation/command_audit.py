@@ -55,6 +55,7 @@ OPERATIONS = {
 			"hr_correction",
 			"void_joining",
 			"record_outcome",
+			"revise_pending_quantities",
 		}
 	),
 	"organization": frozenset({"submit", "decide", "approve_revision", "review_import", "apply_import"}),

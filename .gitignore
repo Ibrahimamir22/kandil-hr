@@ -21,3 +21,17 @@ deployment/.local/
 parity-credentials.json
 
 docs/sprints/_generated/
+
+# Private runtime artifacts must never enter source control.
+sites/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql.*
+.clasp.json
+.clasprc*
+.credentials*
+portal-credentials*.json
+*private-test-accounts*.html
+Kandil_Portal_Private_Test_Accounts.html

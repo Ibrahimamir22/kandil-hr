@@ -1,0 +1,4 @@
+.clasprc*
+.clasp.json
+.credentials*
+node_modules/

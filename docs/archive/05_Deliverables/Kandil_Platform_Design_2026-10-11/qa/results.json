@@ -1,0 +1,60 @@
+{
+  "testedAt": "2026-10-11T16:36:29.125Z",
+  "scope": "Local synthetic design prototype, not Frappe/Odoo integration or production security",
+  "results": [
+    {
+      "name": "Desktop overview renders",
+      "result": "PASS"
+    },
+    {
+      "name": "Multi-location form rejects unreasoned capacity exception",
+      "result": "PASS"
+    },
+    {
+      "name": "Requester cannot approve; sector then HR sequence works",
+      "result": "PASS"
+    },
+    {
+      "name": "Rejection requires a reason and removes pending action",
+      "result": "PASS"
+    },
+    {
+      "name": "Delivery requires note and proof review before completion",
+      "result": "PASS"
+    },
+    {
+      "name": "Estimator arithmetic, review gate and immutable snapshot",
+      "result": "PASS"
+    },
+    {
+      "name": "Employee letter is labeled SAMPLE and uses Cairo date",
+      "result": "PASS"
+    },
+    {
+      "name": "Executive has aggregate HR and read-only delivery/estimator",
+      "result": "PASS"
+    },
+    {
+      "name": "All allowed desktop routes render for all seven roles",
+      "result": "PASS"
+    },
+    {
+      "name": "Arabic RTL mobile routes fit and navigation works",
+      "result": "PASS"
+    },
+    {
+      "name": "English mobile and Arabic desktop render",
+      "result": "PASS"
+    },
+    {
+      "name": "Esc closes dialog",
+      "result": "PASS"
+    },
+    {
+      "name": "No browser runtime errors or failed page assets",
+      "result": "PASS"
+    }
+  ],
+  "errors": [],
+  "failed": []
+}

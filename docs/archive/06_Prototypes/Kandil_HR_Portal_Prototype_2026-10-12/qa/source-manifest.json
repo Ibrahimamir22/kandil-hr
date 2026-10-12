@@ -1,0 +1,14 @@
+{
+  "kind": "local-design-prototype",
+  "frappe_connected": false,
+  "synthetic_data_only": true,
+  "verified_browser_checks": 21,
+  "files": {
+    "dist/app.js": "cb160cb58e993dad4a0cdf4e32e5b8b962870bf0d4218d0d20f0d1026657b0f3",
+    "dist/fonts/IBMPlexSansArabic-Regular.ttf": "6f611412270a132bbac838da9259d4c68569b4175f3b3b8fa3fa36a30b56dab9",
+    "dist/fonts/IBMPlexSansArabic-SemiBold.ttf": "597bd5502e5997be4414e4c9c88834b30ff3784250c84f20bce2b20e53ebd467",
+    "dist/fonts/OFL.txt": "7e6b2818edbd8f6a01ae80641cc8f16a51080d08fb4e532be3a0b6f74adb07da",
+    "dist/index.html": "00824aa768ba88c2c52468941314b2c8e17da29d6674484de60fef0f79571417",
+    "dist/styles.css": "918e0d83415283559a709cb0f473b57f651f252e0da188c1f9acc43609850e97"
+  }
+}

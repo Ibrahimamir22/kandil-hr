@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<base target="_top">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>مسوغات التعيين — قنديل مصر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Unna:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF8F5; --card:#FFFFFF; --primary:#A8111C; --primary-2:#8C0E17; --gold:#C6A151; --gold-bg:#F6EEDC; --gold-t:#7A5B17;
+  --heading:#1F1A17; --text:#3F3B37; --muted:#6E6862; --border:#ECE7E0; --line:#F1EDE7; --select:#FBECEC;
+  --ok-t:#157F4A; --ok-bg:#E5F4EC; --warn-t:#B45309; --warn-bg:#FEF1DC; --err-t:#B42318; --err-bg:#FCE8E8;
+  --input:#FFFFFF; --input-b:#DDD6CC; --r:14px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);min-height:100vh;color:var(--text);font-family:Almarai,Tahoma,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Almarai,Tahoma,sans-serif;font-weight:800;color:var(--heading);margin:0}
+[lang="en"] h1,[lang="en"] h2,[lang="en"] .brand b{font-family:Unna,Georgia,serif;font-weight:700}
+button,input,select,textarea{font-family:inherit}
+:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 48px;display:flex;flex-direction:column;gap:16px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:44px;height:44px;border-radius:12px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Almarai;font-weight:700;font-size:21px;flex-shrink:0}
+.brand b{display:block;font-family:Almarai;color:var(--heading);font-size:17px;line-height:1.3}
+.brand small{color:var(--muted);font-size:12.5px}
+.lang{display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:#fff}
+.lang button{border:none;background:transparent;padding:7px 14px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang button.on{background:var(--primary);color:#fff}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:0 1px 2px rgba(36,59,69,.06),0 4px 16px rgba(36,59,69,.04)}
+.job{padding:22px 22px 20px;display:flex;flex-direction:column;gap:10px;border-top:4px solid var(--gold)}
+.job h1{font-size:28px;line-height:1.35}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--gold-bg);color:var(--gold-t);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+.summary{white-space:pre-line;font-size:14.5px;color:var(--text);border-top:1px solid var(--line);padding-top:10px}
+.sec{padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.sec h2{font-size:20px;color:var(--primary);display:flex;align-items:center;gap:10px}
+.sec h2 i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-family:Almarai;font-size:14px;flex:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid > *{min-width:0}
+.full{grid-column:1/-1}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:13.5px;font-weight:600;color:var(--heading)}
+.req{color:var(--err-t)}
+.hint{font-size:12px;color:var(--muted);font-weight:400}
+.inp{height:46px;border:1.5px solid var(--input-b);background:var(--input);border-radius:10px;padding:0 12px;font-size:15px;color:var(--heading);width:100%;outline:none}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(198,161,81,.18);background:#fff}
+textarea.inp{height:auto;min-height:80px;padding:10px 12px;resize:vertical}
+.ltr{direction:ltr;text-align:right}
+[dir="ltr"] .ltr{text-align:left}
+.radios{display:flex;gap:10px;flex-wrap:wrap}
+.radios label{display:flex;align-items:center;gap:8px;border:1.5px solid var(--border);border-radius:10px;padding:9px 14px;cursor:pointer;font-weight:600;color:var(--heading);background:#fff}
+.radios input{accent-color:var(--primary);width:17px;height:17px}
+.file{border:2px dashed #DDD6CC;border-radius:12px;padding:18px;text-align:center;cursor:pointer;background:#FBFCFC;display:flex;flex-direction:column;gap:6px;align-items:center}
+.file:hover{border-color:var(--gold)}
+.file b{color:var(--primary)}
+.file.has{border-style:solid;border-color:var(--ok-t);background:var(--ok-bg)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;line-height:1.8;background:var(--bg);border-radius:12px;padding:12px 14px;cursor:pointer}
+.consent input{width:20px;height:20px;margin-top:4px;accent-color:var(--primary);flex:none}
+.btn{height:50px;border-radius:12px;border:none;background:var(--primary);color:#fff;font-size:16px;font-weight:700;cursor:pointer;width:100%}
+.btn:hover{background:var(--primary-2)}
+.btn:disabled{opacity:.6;cursor:wait}
+.msg{border-radius:10px;padding:11px 14px;font-size:14px}
+.msg.err{background:var(--err-bg);color:var(--err-t)}
+.msg.info{background:var(--gold-bg);color:var(--gold-t)}
+.done{padding:34px 24px;display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.done .ok{width:68px;height:68px;border-radius:50%;background:var(--ok-bg);color:var(--ok-t);display:grid;place-items:center;font-size:32px}
+.ref{font-family:Almarai;font-size:20px;color:var(--heading);direction:ltr;background:var(--bg);border-radius:10px;padding:6px 16px}
+.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);opacity:0;pointer-events:none}
+.foot{text-align:center;font-size:12px;color:var(--muted)}
+.loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:60px 0;color:var(--muted)}
+.spin{width:34px;height:34px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:sp .9s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (max-width:640px){ .grid{grid-template-columns:1fr} .job h1{font-size:21px} .sec,.job{padding:18px 16px} }
+
+.doc{padding:14px 16px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.doc:last-child{border-bottom:none}
+.doc .row{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap}
+.doc b{color:var(--heading);font-size:15px}
+.doc .meta{font-size:12.5px;color:var(--muted)}
+.pill{border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.p-miss{background:var(--warn-bg);color:var(--warn-t)} .p-up{background:var(--gold-bg);color:var(--gold-t)} .p-ok{background:var(--ok-bg);color:var(--ok-t)}
+.p-rej{background:var(--err-bg);color:var(--err-t)} .p-paper{background:#EEF1F4;color:#4A5763}
+.up{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--primary);color:var(--primary);background:#fff;border-radius:10px;padding:7px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.up input{display:none}
+.up.busy{opacity:.6;pointer-events:none}
+.note{font-size:13px;background:var(--err-bg);color:var(--err-t);border-radius:8px;padding:6px 10px}
+.prog{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ok-t)}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"><div class="loading"><div class="spin"></div><span>…</span></div></div>
+<script>
+var TOKEN = '<?= token ?>';
+var ST = { lang: 'ar', info: null, err: '', busy: '', okMsg: '' };
+var TX = {
+  ar: { company: 'قنديل مصر', hr: 'الموارد البشرية', title: 'مسوغات التعيين', hi: 'أهلاً', welcome: 'مبروك انضمامك لقنديل مصر. ارفع صورة واضحة من كل مستند هنا عشان فريق التوظيف يراجعها قبل ميعاد الاستلام.',
+    job: 'الوظيفة', planned: 'ميعاد الاستلام', until: 'اللينك شغال لحد', loading: 'لحظات من فضلك…', badT: 'اللينك مش شغال', badB: 'اللينك ده انتهى أو غير صحيح. كلّم مسؤول التوظيف يبعتلك لينك جديد.',
+    paperNote: 'مهم: رفع الصورة مش بديل عن الورق. هات الأصول والصور المطلوبة معاك يوم الاستلام — الأصول اللي مكتوب عليها «يتحفظ» بتفضل في ملفك في الشركة.',
+    upload: 'ارفع صورة', replace: 'غيّر الملف', uploading: 'جارٍ الرفع…', st_MISSING: 'لسه', st_UPLOADED: 'اترفع — مستني المراجعة', st_VERIFIED: 'اتراجع ✓', st_REJECTED: 'محتاج صورة تانية', st_WAIVED: 'مش مطلوب',
+    paper: 'ورقي — هاته يوم الاستلام', optional: 'اختياري', keep_ORIGINAL: 'الأصل يتحفظ', keep_COPY: 'صورة', keep_PHYSICAL: 'ورقي', copies: 'صور', reason: 'سبب الرفض:',
+    done: 'من المستندات اترفعت', okUp: 'الملف اترفع — شكراً.', big: 'حجم الملف أكبر من 5 ميجا.', bad: 'ارفع صورة (JPG / PNG) أو PDF.', netErr: 'تعذر الاتصال. اتأكد من الإنترنت وجرب تاني.',
+    foot: 'البيانات دي سرية ومش بتظهر غير لفريق الموارد البشرية.', privT: 'قبل ما ترفع — إشعار الخصوصية', agree: 'أوافق صراحةً على حفظ ومعالجة المستندات اللي هرفعها، ومنها البيانات الحساسة (الفيش والكشف الطبي)، لإتمام إجراءات تعييني بس.', agreeBtn: 'موافق — كمّل', needAgree: 'علّم على الموافقة الأول.', employer: 'صاحب العمل', mail: 'للاستفسار عن بياناتك:' },
+  en: { company: 'Kandil Egypt', hr: 'Human Resources', title: 'Hiring documents', hi: 'Hello', welcome: 'Congratulations on joining Kandil Egypt. Upload a clear copy of each document here so the recruitment team can review it before your joining date.',
+    job: 'Job', planned: 'Joining date', until: 'Link valid until', loading: 'Please wait…', badT: 'Link not active', badB: 'This link has expired or is not valid. Ask your recruitment contact for a new one.',
+    paperNote: 'Important: an upload does not replace the paper documents. Bring the originals and copies on your joining day — originals marked «kept» stay in your company file.',
+    upload: 'Upload', replace: 'Replace file', uploading: 'Uploading…', st_MISSING: 'Missing', st_UPLOADED: 'Uploaded — under review', st_VERIFIED: 'Reviewed ✓', st_REJECTED: 'Please upload again', st_WAIVED: 'Not required',
+    paper: 'Paper only — bring it on joining day', optional: 'Optional', keep_ORIGINAL: 'Original kept', keep_COPY: 'Copy', keep_PHYSICAL: 'Paper', copies: 'copies', reason: 'Reason:',
+    done: 'documents uploaded', okUp: 'File uploaded — thank you.', big: 'The file is larger than 5 MB.', bad: 'Upload an image (JPG / PNG) or a PDF.', netErr: 'Could not connect. Check your internet and try again.',
+    foot: 'This information is confidential and visible only to Human Resources.', privT: 'Before you upload — privacy notice', agree: 'I expressly consent to the storage and processing of the documents I upload, including sensitive data (criminal record and medical examination), only to complete my hiring.', agreeBtn: 'I agree — continue', needAgree: 'Please tick the consent first.', employer: 'Employer', mail: 'Questions about your data:' }
+};
+function t(k){ return TX[ST.lang][k] || k; }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s===undefined||s===null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+function call(action, payload){
+  return new Promise(function(res, rej){
+    google.script.run.withSuccessHandler(function(r){ r && r.ok ? res(r.data) : rej(r || {}); })
+      .withFailureHandler(function(){ rej({ error: t('netErr') }); }).apiPublic(action, payload);
+  });
+}
+function header(){
+  return '<div class="top"><div class="brand"><div class="mark">' + (ST.lang === 'en' ? 'K' : 'ق') + '</div><div><b>' + t('company') + '</b><small>' + t('hr') + '</small></div></div>' +
+    '<div class="lang"><button data-l="ar" class="' + (ST.lang === 'ar' ? 'on' : '') + '">عربي</button><button data-l="en" class="' + (ST.lang === 'en' ? 'on' : '') + '">English</button></div></div>';
+}
+function setLang(l){ ST.lang = l; document.documentElement.lang = l; document.documentElement.dir = l === 'en' ? 'ltr' : 'rtl'; render(); }
+function pill(d){
+  if (d.status === 'WAIVED') return '<span class="pill p-paper">' + t('st_WAIVED') + '</span>';
+  if (d.digital !== 'Y') return '<span class="pill p-paper">' + t('paper') + '</span>';
+  var c = { MISSING: 'p-miss', UPLOADED: 'p-up', VERIFIED: 'p-ok', REJECTED: 'p-rej' }[d.status] || 'p-miss';
+  return '<span class="pill ' + c + '">' + t('st_' + d.status) + '</span>';
+}
+function render(){
+  var app = $('app'), I = ST.info;
+  if (!I) { app.innerHTML = header() + '<div class="loading"><div class="spin"></div><span>' + t('loading') + '</span></div>'; bind(); return; }
+  if (I.bad) { app.innerHTML = header() + '<div class="card done"><div class="ok" style="background:var(--warn-bg);color:var(--warn-t)">!</div><h2>' + t('badT') + '</h2><p style="margin:0">' + esc(I.bad) + '</p><p style="margin:0" class="hint">' + t('badB') + '</p></div>'; bind(); return; }
+  var dig = I.docs.filter(function(d){ return d.digital === 'Y' && d.status !== 'WAIVED'; });
+  var up = dig.filter(function(d){ return d.status === 'UPLOADED' || d.status === 'VERIFIED'; }).length;
+  var pct = dig.length ? Math.round(up * 100 / dig.length) : 100;
+  app.innerHTML = header() +
+    '<div class="card job"><span class="hint">' + t('title') + '</span><h1>' + t('hi') + ' ' + esc(I.name) + '</h1>' +
+      '<div class="tags">' + (I.job ? '<span class="tag">' + t('job') + ': ' + esc(ST.lang === 'en' && I.jobEn ? I.jobEn : I.job) + '</span>' : '') + (I.planned ? '<span class="tag">' + t('planned') + ': <span dir="ltr">' + esc(I.planned) + '</span></span>' : '') + '</div>' +
+      '<div class="summary">' + t('welcome') + '</div>' +
+      '<div class="prog" title="' + pct + '%"><i style="width:' + pct + '%"></i></div><span class="hint">' + up + ' / ' + dig.length + ' ' + t('done') + '</span></div>' +
+    '<div class="msg info">' + t('paperNote') + '</div>' +
+    (I.consented ? '' : '<div class="card sec" id="privBox"><h2>' + t('privT') + '</h2><div class="summary" style="border-top:none;padding-top:0">' + esc(ST.lang === 'en' ? I.notice.en : I.notice.ar) + '</div>' +
+      (I.notice.entity ? '<div class="hint">' + t('employer') + ': <b>' + esc(ST.lang === 'en' && I.notice.entityEn ? I.notice.entityEn : I.notice.entity) + '</b></div>' : '') +
+      (I.notice.email ? '<div class="hint">' + t('mail') + ' <span dir="ltr">' + esc(I.notice.email) + '</span></div>' : '') +
+      '<label class="consent"><input type="checkbox" id="agree"><span>' + t('agree') + '</span></label><button class="btn" id="agreeBtn"' + (ST.busy === 'agree' ? ' disabled' : '') + '>' + t('agreeBtn') + '</button></div>') +
+    (ST.err ? '<div class="msg err" id="err">' + esc(ST.err) + '</div>' : '') +
+    (ST.okMsg ? '<div class="msg" style="background:var(--ok-bg);color:var(--ok-t)">' + esc(ST.okMsg) + '</div>' : '') +
+    '<div class="card">' + I.docs.map(function(d){
+      var canUp = I.consented && d.digital === 'Y' && d.status !== 'VERIFIED' && d.status !== 'WAIVED';
+      var keep = t('keep_' + d.keep) + (Number(d.copies) ? ' + ' + d.copies + ' ' + t('copies') : '');
+      return '<div class="doc"><div class="row"><div><b>' + esc(d.name) + '</b>' + (d.required !== 'Y' ? ' <span class="hint">(' + t('optional') + ')</span>' : '') +
+        '<div class="meta">' + esc(keep) + '</div></div>' + pill(d) + '</div>' +
+        (d.status === 'REJECTED' && d.note ? '<div class="note">' + t('reason') + ' ' + esc(d.note) + '</div>' : '') +
+        (canUp ? '<div><label class="up' + (ST.busy === d.code ? ' busy' : '') + '"><input type="file" accept="image/*,application/pdf" data-code="' + esc(d.code) + '">⬆ ' +
+          (ST.busy === d.code ? t('uploading') : (d.count ? t('replace') : t('upload'))) + '</label></div>' : '') + '</div>';
+    }).join('') + '</div>' +
+    '<div class="foot">' + t('foot') + (I.until ? ' · ' + t('until') + ' <span dir="ltr">' + esc(I.until) + '</span>' : '') + '</div>';
+  bind();
+  Array.prototype.forEach.call(document.querySelectorAll('input[type=file][data-code]'), function(el){ el.onchange = function(){ pick(el); }; });
+  if ($('agreeBtn')) $('agreeBtn').onclick = function(){
+    if (!$('agree').checked) { ST.err = t('needAgree'); render(); return; }
+    ST.busy = 'agree'; ST.err = ''; render();
+    call('docs.consent', { token: TOKEN, version: I.notice.version }).then(function(d){ ST.busy = ''; ST.info = d; render(); }).catch(function(e){ ST.busy = ''; ST.err = e.error || t('netErr'); render(); });
+  };
+}
+function bind(){ Array.prototype.forEach.call(document.querySelectorAll('[data-l]'), function(b){ b.onclick = function(){ setLang(b.dataset.l); }; }); }
+/* phone photos are often large: shrink images to at most 2000px as JPEG before upload */
+function shrink(file, cb){
+  var url = URL.createObjectURL(file), img = new Image();
+  img.onload = function(){
+    var k = Math.min(1, 2000 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+    c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+    c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(url);
+    cb({ name: file.name.replace(/\.[^.]+$/, '') + '.jpg', mime: 'image/jpeg', data: c.toDataURL('image/jpeg', 0.85).split(',')[1] });
+  };
+  img.onerror = function(){ URL.revokeObjectURL(url); cb(null); };
+  img.src = url;
+}
+function pick(el){
+  var file = el.files && el.files[0], code = el.dataset.code; if (!file) return;
+  ST.err = ''; ST.okMsg = '';
+  var ext = (file.name.split('.').pop() || '').toLowerCase();
+  var isPdf = file.type === 'application/pdf' || ext === 'pdf', isImg = /^image\//.test(file.type) || /^(jpe?g|png|heic|webp)$/.test(ext);
+  if (!isPdf && !isImg) { ST.err = t('bad'); render(); return; }
+  function send(f){
+    if (!f) { ST.err = t('bad'); render(); return; }
+    if (f.data.length * 0.75 > 5 * 1024 * 1024) { ST.err = t('big'); ST.busy = ''; render(); return; }
+    ST.busy = code; render();
+    call('docs.upload', { token: TOKEN, code: code, file: f }).then(function(d){ ST.busy = ''; ST.info = d; ST.okMsg = t('okUp'); render(); })
+      .catch(function(e){ ST.busy = ''; ST.err = e.error || t('netErr'); render(); });
+  }
+  if (isPdf) { var rd = new FileReader(); rd.onload = function(){ send({ name: file.name, mime: 'application/pdf', data: String(rd.result).split(',')[1] }); }; rd.readAsDataURL(file); }
+  else shrink(file, send);
+}
+setLang('ar');
+call('docs.info', { token: TOKEN }).then(function(d){ ST.info = d; render(); }).catch(function(e){ ST.info = { bad: e.error || t('badB') }; render(); });
+</script>
+</body>
+</html>

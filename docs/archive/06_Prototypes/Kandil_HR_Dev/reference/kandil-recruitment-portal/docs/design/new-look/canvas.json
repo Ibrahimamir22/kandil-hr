@@ -1,0 +1,63 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Approvals.dc.html": {
+      "expand": "fill",
+      "h": 980,
+      "title": "اعتماداتي — مسار الاعتماد بالألوان",
+      "w": 1280,
+      "x": 1360,
+      "y": 0
+    },
+    "Candidates.dc.html": {
+      "expand": "fill",
+      "h": 1080,
+      "title": "المرشحين — كروت مستوحاة من التصميم المرفق",
+      "w": 1280,
+      "x": 0,
+      "y": 2020
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 1900,
+      "title": "نظام الألوان والخطوط والحالات",
+      "w": 1280,
+      "x": 0,
+      "y": 0
+    },
+    "Mobile.dc.html": {
+      "h": 844,
+      "title": "الموبايل — المطلوب منك",
+      "w": 390,
+      "x": 1360,
+      "y": 1100
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-03T22:10:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "t1": {
+      "kind": "title1",
+      "maxW": 2640,
+      "text": "بوابة التوظيف — الشكل الجديد (مقترح)",
+      "w": 240,
+      "x": 0,
+      "y": -260
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Approvals.dc.html",
+    "Candidates.dc.html",
+    "Mobile.dc.html"
+  ],
+  "pages": [],
+  "title": "Kandil Recruitment Portal — New Look"
+}

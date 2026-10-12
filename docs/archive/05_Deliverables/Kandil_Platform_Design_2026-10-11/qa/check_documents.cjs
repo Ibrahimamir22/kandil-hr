@@ -1,0 +1,10 @@
+const { chromium } = require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const fs=require('fs'); const path=require('path'); const assert=require('assert/strict');
+(async()=>{
+const root=path.dirname(__dirname); const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true}); const page=await browser.newPage({viewport:{width:1440,height:1000}}); const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.goto('file://'+root+'/dist/index.html');await page.getByRole('heading',{name:'Good morning. Let’s move work forward.'}).waitFor();await page.locator('#sidebar a').click();await page.getByRole('heading',{level:1}).waitFor();assert(page.url().endsWith('Platform_Blueprint.html'));await page.screenshot({path:path.join(root,'qa','blueprint-desktop.png'),fullPage:false,animations:'disabled'});
+for(const width of [1440,390]){await page.setViewportSize({width,height:900});assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);}
+await page.getByRole('link',{name:'Open clickable prototype ↗'}).click();await page.locator('#role').selectOption('manager');await page.locator('[data-action=language]').click();await page.screenshot({path:path.join(root,'qa','overview-ar-mobile-clean.png'),fullPage:true,animations:'disabled'});
+await page.locator('[data-action=menu]').first().click();await page.locator('#sidebar [data-page=hr]').click();await page.locator('[data-action=new-request]').click();await page.screenshot({path:path.join(root,'qa','request-ar-mobile.png'),fullPage:false,animations:'disabled'});await page.keyboard.press('Escape');
+const result={testedAt:new Date().toISOString(),directFileNavigation:'PASS',blueprintAt1440And390:'PASS',arabicMobileRequest:'rendered',errors};assert.deepEqual(errors,[]);fs.writeFileSync(path.join(root,'qa','document-results.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));await browser.close();
+})().catch(e=>{console.error(e);process.exitCode=1;});

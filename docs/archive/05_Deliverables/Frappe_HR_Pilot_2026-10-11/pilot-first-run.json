@@ -1,0 +1,134 @@
+[
+  {
+    "name": "P01 Configure capacity and route",
+    "status": "PASS",
+    "evidence": "Capacity and approval route configured through the Sector role.",
+    "ms": 135.6
+  },
+  {
+    "name": "P02 Multi-location submit reserves capacity",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P03 Requester cannot self-approve",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P04 Wrong or out-of-order approver blocked",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P05 Direct REST status change blocked",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P06 Manual opening bypass blocked",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P07 Complete approvals creates an opening per location",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P08 Phone-only applicant without fabricated email",
+    "status": "FAIL",
+    "evidence": "'open_a'"
+  },
+  {
+    "name": "P09 Duplicate phone/application rejected",
+    "status": "FAIL",
+    "evidence": "'open_a'"
+  },
+  {
+    "name": "P10 Employee cannot read pilot applicant",
+    "status": "FAIL",
+    "evidence": "'candidate1'"
+  },
+  {
+    "name": "P11 Accepted phone-only offer without creating employee",
+    "status": "FAIL",
+    "evidence": "'candidate1'"
+  },
+  {
+    "name": "P12 Employee conversion bypass blocked",
+    "status": "FAIL",
+    "evidence": "'candidate1'"
+  },
+  {
+    "name": "P13 Actual joining creates employee/onboarding and partial fill",
+    "status": "FAIL",
+    "evidence": "'offer1'"
+  },
+  {
+    "name": "P14 Repeated joining is idempotent",
+    "status": "FAIL",
+    "evidence": "'offer1'"
+  },
+  {
+    "name": "P15 No-show does not create employee or close vacancy",
+    "status": "FAIL",
+    "evidence": "'open_b'"
+  },
+  {
+    "name": "P16 Joined after final no-show blocked",
+    "status": "FAIL",
+    "evidence": "'offer2'"
+  },
+  {
+    "name": "P17 Rejection releases reservations",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P18 Pending cancellation releases once",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P19 Quantity exception justified and separately authorized",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P20 Effective and revoked delegation",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P21 Delegation cannot enable self-approval",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P22 Capacity-counter tampering blocked",
+    "status": "PASS",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError: Reservation counters are server managed.",
+    "ms": 7.7
+  },
+  {
+    "name": "P23 Audit events exist and reject API forgery",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P24 Concurrent requests cannot double-reserve a seat",
+    "status": "FAIL",
+    "evidence": "HTTP 403: frappe.exceptions.PermissionError"
+  },
+  {
+    "name": "P25 Cancel partially filled request preserves actual joiner",
+    "status": "FAIL",
+    "evidence": "'main'"
+  },
+  {
+    "name": "P26 Applications to cancelled opening blocked",
+    "status": "FAIL",
+    "evidence": "'open_a'"
+  }
+]

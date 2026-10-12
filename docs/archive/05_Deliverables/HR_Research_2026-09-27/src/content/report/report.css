@@ -1,0 +1,23 @@
+.report-page { --data-app-layout-intent: authored-report; --data-app-content-width: 1120px; }
+.hr-research { font-size:16px; line-height:1.65; }
+.hr-research .report-hero { margin:24px 0 38px; }
+.hr-research h1 { max-width:940px; font-size:46px; line-height:1.12; letter-spacing:-1.5px; }
+.hr-research h2 { font-size:25px; line-height:1.3; margin-top:24px; }
+.hr-research .research-section { margin:38px 0; }
+.hr-research table { display:block; width:100%; overflow-x:auto; border-collapse:collapse; font-size:14px; margin:20px 0; }
+.hr-research th,.hr-research td { padding:12px; border-bottom:1px solid #d6dadd; min-width:145px; text-align:left; vertical-align:top; }
+.hr-research .directory-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:end; margin:20px 0; }
+.hr-research .directory-controls label { display:flex; flex-direction:column; gap:5px; font-size:13px; }
+.hr-research .directory-controls input,.hr-research .directory-controls select,.hr-research .directory-controls button { font:inherit; border:1px solid #89959c; border-radius:6px; padding:9px 12px; background:transparent; color:inherit; }
+.hr-research .directory-controls input { min-width:270px; }
+.hr-research .directory-controls span { font-size:13px; padding:9px 0; }
+.hr-research .vendor-profile { border-bottom:1px solid #d6dadd; }
+.hr-research .vendor-profile summary { cursor:pointer; padding:14px 0; display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+.hr-research .vendor-profile summary strong { min-width:245px; flex:1; }
+.hr-research .vendor-profile summary span { font-size:12px; }
+.hr-research .fit { padding:3px 9px; border-radius:12px; border:1px solid #9aa8b0; }
+.hr-research .fit.priority { background:#dcefe8; color:#174d40; border-color:#7fac9c; }
+.hr-research dl { display:grid; grid-template-columns:210px 1fr; gap:12px; margin:5px 0 22px; font-size:14px; }
+.hr-research dt { font-weight:600; }
+.hr-research dd { margin:0; overflow-wrap:anywhere; }
+@media(max-width:650px){ .hr-research h1{font-size:34px;} .hr-research dl{grid-template-columns:1fr;gap:5px;} .hr-research dd{margin-bottom:12px;} .hr-research .directory-controls input{min-width:0;width:100%;} .hr-research .vendor-profile summary{gap:8px;} }

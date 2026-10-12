@@ -1,0 +1,76 @@
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parent
+evidence=json.loads((ROOT/'github_repository_evidence.json').read_text())
+# Assessment: scope, verified licence interpretation, advantage, limitation, fit.
+assess={
+'frappe/hrms':('HR/payroll suite','GPL-3.0','Broad HR/payroll functions and extension framework; strong candidate for reuse.','Egypt payroll localization, device connectors, upgrades and support still need an owner.','Primary proof-of-fit candidate'),
+'horilla/horilla-hr':('HR suite','LGPL-2.1','Broad HR functions in a Django project; configurable workflows worth comparing.','Validate actual payroll scope, Arabic usability, audit/export and 1,000+ workload; no production test performed here.','Alternative proof-of-fit candidate'),
+'orangehrm/orangehrm':('Core HR suite / Starter','GPL-3.0','Established core employee-management codebase; community path.','Starter differs from paid Advanced; complete Egyptian payroll is not established.','Alternative core HR foundation'),
+'gamonoid/icehrm':('HR software; source-available','Elastic License 2.0','Public code and HR functions allow inspection and internal evaluation.','Current licence restricts hosted/managed third-party access to substantial functionality; not a default basis for Kandil SaaS/RaaS resale.','Exclude resale foundation absent suitable separate permission'),
+'sapplica/sentrifugo':('HR suite','GPL-3.0','Substantial traditional HR functionality can inform requirements.','Last repository push in 2021 and older documented stack increase modernization/support uncertainty. Not a security finding from an audit.','Historical reference; poor new production starting point'),
+'minthcm/minthcm':('HCM suite','AGPL-3.0','Broad employee/organizational workflows; actively pushed repository.','Egypt payroll and factory attendance depth need proof; licence and upgrade implications remain. README AI claims are not execution evidence.','Secondary foundation evaluation'),
+'ever-co/ever-gauzy':('ERP/HR/time/ATS platform','AGPL-3.0','Broad operational/project/time scope offers reusable components.','Wide scope raises configuration and maintenance complexity; not demonstrated as an Egypt industrial payroll engine.','Secondary platform, especially for project work'),
+'timeoff-management/timeoff-management-application':('Leave management','MIT','Narrow leave use case and permissive licence simplify targeted reuse.','Not payroll or complete HR; last push 2024 and small/medium positioning limit evidence for Kandil-scale operation.','Component/reference only'),
+'jorani/jorani':('Leave/overtime management','MIT (current repository)','Focused leave workflow; current licence file is MIT, not a licence inferred from older articles.','Narrow scope and documented approval constraints; no payroll/complete HR coverage.','Component/reference only'),
+'opencats/OpenCATS':('Applicant tracking','MPL-2.0 plus legacy CATS Public License 1.1a portions','Recruitment pipeline specialization can avoid building an ATS from scratch.','Mixed legacy licensing needs file-level review; recruitment only, not core HR/payroll.','Later ATS component evaluation'),
+'odoo/odoo':('Community ERP with HR apps','LGPL-3.0','ERP integration and extensible community foundation.','Community is different from Enterprise; payroll and required modules/localization need independent verification and maintenance.','Reference only unless user elects Community evaluation'),
+'OCA/hr':('Odoo HR add-ons','AGPL-3.0 root; check each module manifest','Community extensions add HR capabilities to an Odoo base.','Not standalone; version, module licence and upgrade compatibility must be checked.','Component collection'),
+'OCA/payroll':('Odoo payroll add-ons','AGPL-3.0 root; check each module manifest','Reusable payroll components within Odoo ecosystem.','Repository existence does not prove current Egyptian statutory rules; requires compatible Odoo and payroll owner.','Component collection'),
+'OCA/hr-attendance':('Odoo attendance add-ons','AGPL-3.0 root; check each module manifest','Targeted attendance extensions may reduce integration work.','Device models, offline behavior and Odoo version compatibility need testing.','Component collection'),
+'OCA/hr-holidays':('Odoo leave add-ons','AGPL-3.0 root; check each module manifest','Reusable leave extensions and policies.','Not a full HR platform; policy correctness depends on chosen modules and configuration.','Component collection'),
+'Dolibarr/dolibarr':('ERP with basic HR functions','GPL-3.0','Business administration, leave/expense linkage and open ERP foundation.','Less direct fit for a complex factory HR/payroll replacement; payroll depth/localization unproven.','ERP reference, not first HR foundation'),
+'frappe/erpnext':('ERP companion','GPL-3.0','Accounts/operations integration alongside Frappe HR.','Do not count as an additional complete HRMS when evaluating the separate HR app; ERP rollout adds scope.','Companion if wider ERP integration is useful'),
+'kimai/kimai':('Time/project tracking','AGPL-3.0','Focused timesheets, project tracking and invoicing use cases.','Project timesheets are different from factory punch attendance, rostering and payroll.','Specialist component only'),
+'anuko/timetracker':('Time tracking; source-available','Server Side Public License v1 (SSPL)','Focused time tracking with inspectable source.','Service-offering licence obligations differ from ordinary permissive open source; last push 2023; not a full HR suite.','Exclude default commercial foundation; licensing and maintenance review first'),
+'frappe/lms':('Learning management','AGPL-3.0','Learning component within the Frappe ecosystem.','Training module only; separate feature, operating and licence considerations.','Later learning add-on'),
+'CybroOdoo/OpenHRMS':('Odoo HR module suite','AGPL-3.0 root; check module manifests','Collection of attendance, loans and HR extensions can accelerate an Odoo-based route.','Depends on Odoo edition/version; module-level testing, licensing and Egypt payroll gaps remain.','Odoo-based alternative, not standalone'),
+'sevendyne/sevendyne_hrms':('Django HRMS','MIT','Permissive licence and documented deployment approach are attractive for reuse.','Small public contributor/adoption evidence; vendor README deployment claims are not independent 1,000+ scale proof.','Exploratory candidate; due diligence before shortlist'),
+'chamanbravo/hrms':('Sandbox HRMS repository','README says MIT; standalone licence not found by GitHub licence API','Public source and a modern application structure can inform evaluation.','No standalone licence file verified and last push 2024; do not treat README claim as completed rights/maturity review.','Hold reuse pending licence/provenance confirmation'),
+'mimnets/OpenHRApp':('Attendance/basic HR app','MIT','Simple self-hosting direction and permissive licence; suitable exploratory reference.','README target scale 20–500 is below Kandil; production claims not independently validated; full payroll coverage unproven.','Prototype/reference, not first 1,000+ deployment choice'),
+'XynaxDev/hrms-lite':('HR demo/MVP','MIT','Readable small application with HR and AI demonstrations.','README explicitly says no user authentication, no production multi-user suitability and missing multi-company separation; device IDs are not authorization.','Demo only; exclude production foundation as delivered'),
+}
+assert {r['full_name'] for r in evidence['repositories']}==set(assess)
+out='''# GitHub HR catalogue / الأنظمة مفتوحة المصدر ومكوّناتها
+
+Reviewed 27 September 2026. **25 repositories** inspected through public repository metadata, README evidence and licence files where available. This is a broad curated catalogue, not a claim to enumerate every HR repository or fork on GitHub. Repositories are not all complete HR systems: the table separates suites, components, demonstrations and source-available projects.
+
+**ما يهم كنديل:** وجود الكود على GitHub لا يكفي ليكون مناسبًا للإنتاج أو مسموحًا بإعادة بيعه كخدمة. نحتاج رخصة واضحة، خصائص مناسبة، دعم وصيانة، وتجربة فعلية على بيانات وإجراءات ممثلة.
+
+Dates below are GitHub **last repository push** timestamps, not stable release dates or proof of current security/support. None of these repositories was installed, load-tested or audited in this research. Exact release/commit and dependency licences must be frozen during proof of fit; a moving default branch is not a deployment recommendation.
+
+## Catalogue
+
+| Repository | Scope | Licence checked | Last push | Pros | Cons / Kandil gaps | Recommended role |
+|---|---|---|---|---|---|---|
+'''
+for r in evidence['repositories']:
+    name=r['full_name']; scope,lic,pro,con,role=assess[name]
+    liclink=f"[{lic}]({r['license_file_url']})" if r.get('license_file_url') else lic
+    row=[f"[{name}]({r['html_url']})",scope,liclink,r['pushed_at'][:10],pro,con,role]
+    out+='| '+' | '.join(x.replace('|','/') for x in row)+' |\n'
+out+='''
+## Licensing implications for Kandil's business
+
+- **MIT:** permits broad reuse and commercial distribution subject to its conditions, including copyright/licence notices. It does not prove security, ownership of every dependency or production suitability. See [Sevendyne's licence](https://github.com/sevendyne/sevendyne_hrms/blob/main/LICENSE).
+- **GPL:** commercial activity is allowed; conveying covered software/derivatives creates source and licence obligations. Ordinary internal/server operation is not identical to distributing software. Frappe HR is currently **GPL-3.0**, not AGPL. See its [actual licence](https://github.com/frappe/hrms/blob/develop/license.txt).
+- **AGPL:** adds a source-offer requirement for users interacting remotely with a modified covered program. This affects the design/licensing of a hosted modified product; it is not a blanket prohibition on charging for service. See [Frappe LMS licence](https://github.com/frappe/lms/blob/develop/license.txt), especially section 13.
+- **LGPL:** has different rules from GPL for modifications and combinations. Check the selected version and modules rather than assuming the whole stack has one licence. Horilla's current root licence is [LGPL-2.1](https://github.com/horilla/horilla-hr/blob/2.0/LICENSE); Odoo Community's is [LGPL-3.0](https://github.com/odoo/odoo/blob/20.0/LICENSE).
+- **IceHrm:** the current [Elastic License 2.0 file](https://github.com/gamonoid/icehrm/blob/master/LICENSE) restricts offering substantial functionality to third parties as a hosted/managed service. It is therefore a materially different proposition from a freely reusable SaaS foundation. An older version's licence cannot be assumed to cover current code.
+- **Anuko:** current repository contains [SSPL v1](https://github.com/anuko/timetracker/blob/master/license.txt), with service-source obligations. Keep it in the source-available section of the decision, not the ordinary permissive-open-source shortlist.
+- **OpenCATS and Odoo add-ons:** review mixed/file/module-level licences for the actual selected build. A root GitHub licence label does not settle every component.
+
+Kandil can own its commissioned original code, brand, customer relationships and operational know-how. It cannot claim exclusive ownership of third-party upstream code. Before a commercial release, record each component, version, licence, notices, modifications and how its obligations will be fulfilled. A separate agentic service boundary is an architectural option, not an automatic exemption from licence obligations.
+
+## Recommended proof-of-fit exercise
+
+Evaluate **Frappe HR first**, then **Horilla** and **OrangeHRM** against the same workflows. This order is an assessment of likely fit and reuse, not a tested performance ranking. Odoo Community/OpenHRMS remain a distinct reference from the user's excluded Enterprise subscription option.
+
+For each candidate, produce: a feature-gap list; Egyptian payroll responsibility and rule-update plan; Arabic/RTL assessment; device and accounting integration evidence; employee/manager permissions; full export; restore and upgrade test; load test representing Kandil's attendance peaks; and a three-year hosting/support/development estimate. An open-source licence cost can be zero while this work is substantial.
+
+Build one complete letter/leave workflow on the best candidate before committing to a platform. Prove employee-specific data access, fresh issue dates, approval exceptions, audit evidence and repeat-safe actions. Do not select a repository mainly because it has the most stars or an AI feature in its README.
+
+Raw public evidence is preserved in `github_repository_evidence.json`. No private repositories, employee data or vendor accounts were accessed.
+'''
+(ROOT/'GitHub_HR_Catalogue.md').write_text(out)
+print('Wrote',len(assess),'repository assessments')
