@@ -9,6 +9,18 @@ import frappe
 
 
 def rows(doctype, **kwargs):
+	include_voided = kwargs.pop("include_voided", False)
+	if (
+		doctype == "Kandil Position Assignment"
+		and not include_voided
+		and frappe.conf.get("kandil_parity_enabled")
+	):
+		filters = kwargs.get("filters") or {}
+		if isinstance(filters, dict):
+			filters = {**filters, "is_voided": 0}
+		else:
+			filters = [*filters, ["is_voided", "=", 0]]
+		kwargs["filters"] = filters
 	pluck = kwargs.pop("pluck", None)
 	if pluck:
 		kwargs["fields"] = [pluck]

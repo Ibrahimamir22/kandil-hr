@@ -143,7 +143,9 @@ class HistoryDocument(Document):
 				if self.get(field) and AUTHORITY_ROLES[authority] not in current_identity(self.get(field)):
 					fail("Configured authorities must be enabled users with the appropriate approval role.")
 		if self.doctype == "Kandil Position Assignment" and self.get("user"):
-			historical = internal() and self.valid_until and getdate(self.valid_until) < getdate()
+			historical = internal() and (
+				self.get("is_voided") or (self.valid_until and getdate(self.valid_until) < getdate())
+			)
 			if not historical:
 				current_identity(self.user)
 
@@ -224,14 +226,47 @@ class KandilPositionHierarchy(HistoryDocument):
 class KandilPositionAssignment(HistoryDocument):
 	def validate(self):
 		guard(self)
+		protected(self, ["is_voided", "void_reason", "voided_by", "voided_on"])
+		old = self.get_doc_before_save()
+		if old and old.get("is_voided"):
+			fail("Voided assignments are immutable history.")
+		if self.get("is_voided"):
+			if not old or not internal():
+				fail("Only an authorized joining reversal can void an existing assignment.")
+			for field in [
+				"employee",
+				"position",
+				"company",
+				"department",
+				"branch",
+				"valid_from",
+				"valid_until",
+				"user",
+				"allocation",
+			]:
+				if self.get(field) != old.get(field):
+					fail("Voiding preserves assignment identity and effective dates.")
+			if (
+				not self.void_reason
+				or len(self.void_reason.strip()) < 3
+				or self.voided_by != frappe.session.user
+				or not self.voided_on
+			):
+				fail("A joining reversal requires its reason, actor and timestamp.")
+			position_guard(self)
+			return
 		dates(self)
 		p = position_guard(self)
 		if p.closed_on and (not self.valid_until or getdate(self.valid_until) >= getdate(p.closed_on)):
 			fail("An assignment cannot overlap a position closure.")
 		employee = frappe.get_doc("Employee", self.employee, for_update=True)
+		if employee.get("custom_kandil_joining_voided"):
+			fail("A voided joining employee cannot receive new position assignments.")
 		if employee.company != self.company:
 			fail("Employee must belong to the selected company.")
-		historical = internal() and self.valid_until and getdate(self.valid_until) < getdate()
+		historical = internal() and (
+			self.get("is_voided") or (self.valid_until and getdate(self.valid_until) < getdate())
+		)
 		if self.user and (
 			employee.get("user_id") != self.user
 			or (not historical and not frappe.db.get_value("User", self.user, "enabled"))

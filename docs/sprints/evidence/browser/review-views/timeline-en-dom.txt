@@ -1,0 +1,234 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: Search
+- generic: Notification
+- link "Kandil Position":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: Kandil Position
+- link "Kandil Hiring Request":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: Kandil Hiring Request
+- link "Kandil Capacity":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: Kandil Capacity
+- link "Kandil Structure Change":
+  - /url: /desk/kandil-hr/kandil-structure-change
+  - generic: Kandil Structure Change
+- link "Kandil Organization Code":
+  - /url: /desk/kandil-hr/kandil-organization-code
+  - generic: Kandil Organization Code
+- link "Kandil Recruitment Route":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: Kandil Recruitment Route
+- link "Kandil Structure Snapshot":
+  - /url: /desk/kandil-hr/kandil-structure-snapshot
+  - generic: Kandil Structure Snapshot
+- link "Kandil Position Hierarchy":
+  - /url: /desk/kandil-hr/kandil-position-hierarchy
+  - generic: Kandil Position Hierarchy
+- generic "User Menu":
+  - generic "BROWSER-b6c847d19e20 delegate":
+    - generic "BROWSER-b6c847d19e20 delegate": Bd
+  - generic: BROWSER-b6c847d19e20 delegate
+  - generic: browser-b6c847d19e20-delegate@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "Kandil Hiring Request":
+      - /url: /desk/kandil-hiring-request
+      - generic: Kandil Hiring Request
+    - generic "BROWSER-b6c847d19e20 delegated timeline":
+      - generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: Pending
+- button "HR workspace":
+  - generic: HR workspace
+- button "Decision Timeline":
+  - generic: Decision Timeline
+- button:
+- button:
+- button "Menu":
+- generic: "Next approval: HR Approval"
+- strong: Headcount guidance
+- paragraph: "Current policy: Warn. Submitted policy: Warn."
+- list:
+  - listitem: "BROWSER-b6c847d19e20: Requested 1; additional demand 1; available excluding own reservation 1; shortage 0."
+- paragraph: Saved values only. Preview does not reserve headcount; submission checks current capacity.
+- generic: Company *
+- generic: Kandil BROWSER TEST b6c847d19e20
+- generic: company
+- generic: Department *
+- generic: BROWSER-b6c847d19e20 - Bb6c84
+- generic: department
+- generic: Title *
+- generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: title
+- generic: Requested By
+- link "browser-b6c847d19e20-requester@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- generic: requested_by
+- generic: Status
+- generic: Pending
+- generic: status
+- checkbox "Needs Exception" [disabled]
+- generic: Needs Exception
+- paragraph
+- generic: needs_exception
+- generic: lines
+- generic: Lines
+- checkbox [disabled]
+- generic: No.
+- generic "Capacity":
+  - generic: Capacity *
+- generic "Requested Qty":
+  - generic: Requested Qty *
+- generic "Approved Qty":
+  - generic: Approved Qty
+- generic "Joined Qty":
+  - generic: Joined Qty
+- generic "Job Opening":
+  - generic: Job Opening
+- checkbox [disabled]
+- generic: "1"
+- link "BROWSER-b6c847d19e20":
+  - /url: /desk/kandil-capacity/KCAP-aaf7e929f1ef82cb6fb35ffb
+- generic: "1"
+- generic: "0"
+- generic: "0"
+- generic: approval_steps
+- generic: Approval Steps
+- checkbox [disabled]
+- generic: No.
+- generic "Principal":
+  - generic: Principal *
+- generic "Authority":
+  - generic: Authority
+- generic "Decision":
+  - generic: Decision
+- checkbox [disabled]
+- generic: "1"
+- link "browser-b6c847d19e20-manager@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-manager%40example.invalid
+- generic: Department Approval
+- generic: Approved
+- checkbox [disabled]
+- generic: "2"
+- link "browser-b6c847d19e20-hr@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-hr%40example.invalid
+- generic: HR Approval
+- generic: Pending
+- generic: Decision Note
+- generic: <img src="x"> synthetic delegated decision
+- generic: decision_note
+- generic: Requested Position
+- link "BROWSER-b6c847d19e20":
+  - /url: /desk/kandil-position/BROWSER-b6c847d19e20
+- generic: requested_position
+- generic: Request Kind
+- generic: New Recruitment
+- generic: request_kind
+- generic: Revision
+- generic: "1"
+- generic: revision
+- generic: Need Reason
+- generic: Expansion
+- generic: need_reason
+- generic: Qualifications
+- generic: Original synthetic qualification
+- generic: qualifications
+- generic: Requested Priority
+- generic: Normal
+- generic: requested_priority
+- generic: HR Priority
+- generic: Normal
+- generic: hr_priority
+- generic: Comments
+- generic "BROWSER-b6c847d19e20 delegate":
+  - generic "BROWSER-b6c847d19e20 delegate": Bd
+- generic: comment
+- text: Type a reply / comment
+- paragraph
+- text: ×
+- heading "Activity" [level=4]
+- link "You changed the value of Decision Note from \"\" to synthetic delegated decision":
+  - /url: /desk/version/f82a5arvep
+- generic: · just now
+- 'link "You changed the values for Decision from Pending to Approved in row #1, Actor from \"\" to browser-b6c847d19e20-delegate@example.in... in row #1, Decided At from null to 12-10-2026 07:18:59 in row #1"':
+  - /url: /desk/version/f82a5arvep
+- generic: · just now
+- text: You last edited this
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- link "changed the value of Status from Draft to Pending, Decision Note from null to \"\"":
+  - /url: /desk/version/eqg0052d4o
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- 'link "changed the values for Proposed Qty from 0 to 1 in row #1, Reserved Qty from 0 to 1 in row #1"':
+  - /url: /desk/version/eqg0052d4o
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- link "added 2 rows to Approval Steps":
+  - /url: /desk/version/eqg0052d4o
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- link "changed the value of Title from BROWSER-b6c847d19e20 shortage to BROWSER-b6c847d19e20 delegated timeline":
+  - /url: /desk/version/eqg90q4avs
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- 'link "changed the values for Requested Qty from 3 to 1 in row #1"':
+  - /url: /desk/version/eqg90q4avs
+- generic: · just now
+- link "BROWSER-b6c847d19e20 requester":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- text: created this
+- generic: · just now
+- generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: eqc1vn7t88
+- button:
+- generic: Assign
+- button "Assign":
+- text: Attachments
+- generic: Tags
+- button "Add Tags":
+- generic: Share
+- button "Share":
+- list:
+  - text: Last Edited By You
+  - generic "12-10-2026 07:18:59": just now
+  - text: Created By
+  - link "BROWSER-b6c847d19e20 requester":
+    - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+  - generic "12-10-2026 07:18:15": just now
+- contentinfo
+- dialog [active]:
+  - heading "Decision Timeline" [level=4]
+  - button "Close":
+  - paragraph: Event times use Africa/Cairo.
+  - paragraph: Missing historical principals are not inferred from the current route.
+  - table:
+    - rowgroup:
+      - row "Action Actor Principal Time Note":
+        - columnheader "Action"
+        - columnheader "Actor"
+        - columnheader "Principal"
+        - columnheader "Time"
+        - columnheader "Note"
+    - rowgroup:
+      - row "Submitted browser-b6c847d19e20-requester@example.invalid Not recorded 2026-10-12 07:18:16.045778":
+        - cell "Submitted"
+        - cell "browser-b6c847d19e20-requester@example.invalid"
+        - cell "Not recorded"
+        - cell "2026-10-12 07:18:16.045778"
+        - cell
+      - row "Approve browser-b6c847d19e20-delegate@example.invalid browser-b6c847d19e20-manager@example.invalid 2026-10-12 07:18:59.452622 <img src=\"x\"> synthetic delegated decision":
+        - cell "Approve"
+        - cell "browser-b6c847d19e20-delegate@example.invalid"
+        - cell "browser-b6c847d19e20-manager@example.invalid"
+        - cell "2026-10-12 07:18:59.452622"
+        - cell "<img src=\"x\"> synthetic delegated decision"

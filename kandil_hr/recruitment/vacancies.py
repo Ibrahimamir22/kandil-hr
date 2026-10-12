@@ -61,12 +61,17 @@ def vacancy_snapshot(opening, request):
 	return value
 
 
-def audit(doc, opening, action, reason):
+def audit(doc, opening, action, reason, initiated_by=None):
 	before = vacancy_snapshot(frappe.get_doc("Job Opening", opening.name, for_update=True), doc)
 	opening.save(ignore_permissions=True)
 	# Vacancy before/after history lives in immutable request revisions, including this snapshot.
 	doc.decision_note = frappe.as_json(
-		{"reason": reason, "before": before, "after": vacancy_snapshot(opening, doc)}
+		{
+			"reason": reason,
+			"before": before,
+			"after": vacancy_snapshot(opening, doc),
+			"initiated_by": initiated_by or frappe.session.user,
+		}
 	)
 	return save(doc, action, doc.decision_note)
 
@@ -170,6 +175,9 @@ def _assign(doc, opening_name, lead, members, reason):
 	opening.custom_kandil_lead = lead
 	opening.set("custom_kandil_team", [{"user": x} for x in team])
 	result = audit(doc, opening, "Recruiter team changed", reason)
+	from kandil_hr.recruitment.ownership import reconcile_team
+
+	result["application_handoffs"] = reconcile_team(opening, doc, reason)
 	from kandil_hr.foundation.outbox import enqueue
 
 	for user in sorted(set(team) - set(previous)):
@@ -264,6 +272,8 @@ def queue(unassigned=0, limit=100, start=0):
 		if request_name not in requests:
 			requests[request_name] = frappe.get_doc("Kandil Hiring Request", request_name)
 		doc = requests[request_name]
+		if doc.status != "Approved" or not any(line.job_opening == opening.name for line in doc.lines):
+			continue
 		from kandil_hr.foundation.teams import effective_lead
 
 		lead = effective_lead(opening)
@@ -368,6 +378,8 @@ def bulk_assign(items, lead, members, reason, command_id):
 			frappe.throw(_("This vacancy is not part of an open approved request."))
 		docs[name] = doc
 	# Prelock shared resources globally to keep bulk operations in a deterministic order.
+	for name in sorted({d.requested_position for d in docs.values() if d.requested_position}):
+		frappe.db.sql("SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (name,))
 	caps = sorted({x.capacity for doc in docs.values() for x in doc.lines})
 	for name in caps:
 		frappe.db.sql("SELECT name FROM `tabKandil Capacity` WHERE name=%s FOR UPDATE", (name,))
@@ -390,11 +402,20 @@ def bulk_assign(items, lead, members, reason, command_id):
 
 			def act(doc):
 				assigned = []
+				handoffs = []
 				for item in sorted(groups[doc.name], key=lambda x: x["opening_name"]):
 					# Internal handler: one receipt represents the complete reviewed batch.
-					_assign(doc, item["opening_name"], lead, members, reason)
+					change = _assign(doc, item["opening_name"], lead, members, reason)
+					handoffs.append(
+						dict(opening=item["opening_name"], applications=change["application_handoffs"])
+					)
 					assigned.append(item["opening_name"])
-				return dict(name=doc.name, openings=assigned, modified=str(doc.modified))
+				return dict(
+					name=doc.name,
+					openings=assigned,
+					application_handoffs=handoffs,
+					modified=str(doc.modified),
+				)
 
 			result.append(
 				command(

@@ -52,6 +52,10 @@ def command(name, operation, command_id, expected_version, payload, handler):
 		frappe.throw(_("The request is outside your assigned scope."), frappe.PermissionError)
 	# Domain locks precede current User/role/grant checks. Lock known recipients
 	# together so approval notifications do not reverse the account lock order.
+	if doc.requested_position:
+		frappe.db.sql(
+			"SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (doc.requested_position,)
+		)
 	lock_capacities(doc)
 	for opening_name in sorted({x.job_opening for x in doc.lines if x.job_opening}):
 		frappe.db.sql("SELECT name FROM `tabJob Opening` WHERE name=%s FOR UPDATE", (opening_name,))
@@ -66,6 +70,9 @@ def command(name, operation, command_id, expected_version, payload, handler):
 	from kandil_hr.foundation.mutation_access import assert_current_request_scope
 
 	hr_operations = {
+		"void_joining",
+		"application_owner",
+		"application_task",
 		"review",
 		"send_to_ceo",
 		"hr_correction",
@@ -122,7 +129,7 @@ def snapshot_payload(doc):
 	return shared_snapshot(doc)
 
 
-def snapshot(doc, action):
+def snapshot(doc, action, principal=None):
 	from kandil_hr.pilot.api import event
 
 	frappe.get_doc(
@@ -137,13 +144,13 @@ def snapshot(doc, action):
 			snapshot_json=dump(snapshot_payload(doc)),
 		)
 	).insert(ignore_permissions=True)
-	event(doc, action, doc.decision_note or "")
+	event(doc, action, doc.decision_note or "", principal=principal)
 
 
-def save(doc, action, note=""):
+def save(doc, action, note="", principal=None):
 	doc.decision_note = note
 	doc.save(ignore_permissions=True)
-	snapshot(doc, action)
+	snapshot(doc, action, principal=principal)
 	from kandil_hr.foundation.outbox import enqueue
 
 	step = next((x for x in doc.approval_steps if x.decision == "Pending"), None)
@@ -468,7 +475,7 @@ def decide(name, decision, step_id, command_id, expected_version, comment="", bo
 			finalize(doc, caps)
 		else:
 			next(s for s in doc.approval_steps if s.decision == "Pending").waiting_since = now_datetime()
-		return save(doc, decision, comment)
+		return save(doc, decision, comment, principal=step.principal)
 
 	return command(
 		name,

@@ -1,0 +1,93 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: البحث
+- generic: إعلام
+- link "المنصب التنظيمي لقنديل":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: المنصب التنظيمي لقنديل
+- link "طلب توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: طلب توظيف قنديل
+- link "السعة الوظيفية لقنديل":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: السعة الوظيفية لقنديل
+- link "مسار توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: مسار توظيف قنديل
+- generic "قائمة المستخدم":
+  - generic "BROWSER-b6c847d19e20 requester":
+    - generic "BROWSER-b6c847d19e20 requester": Br
+  - generic: BROWSER-b6c847d19e20 requester
+  - generic: browser-b6c847d19e20-requester@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - generic "طلب توظيف قنديل":
+      - generic: طلب توظيف قنديل
+- button "طلباتي" [active]:
+  - generic: طلباتي
+- button "الطلبات ضمن نطاقي":
+  - generic: الطلبات ضمن نطاقي
+- button "مساحة الموارد البشرية":
+  - generic: مساحة الموارد البشرية
+- button "عرض منسدل":
+  - generic: عرض منسدل
+- button:
+- button "الخيارات":
+- button "أضِف طلب توظيف قنديل":
+  - generic: أضِف طلب توظيف قنديل
+- textbox "هوية شخصية"
+- button:
+- generic: الاسم
+- textbox "العنوان"
+- button:
+- generic: title
+- button "الفلاتر 1":
+  - text: الفلاتر
+  - generic: "1"
+- button "Clear all filters":
+- button "تنازلي":
+- button "منشئه في":
+  - text: منشئه في
+- banner:
+  - checkbox "حدد الكل"
+  - generic "انقر للفرز حسب Title": العنوان
+  - generic: الحالة
+  - generic: الشركة
+  - generic: الإدارة
+  - generic: مقدم الطلب
+  - generic: هوية شخصية
+  - generic: 2 من 2
+  - generic "أعجبني":
+- checkbox
+- link "BROWSER-b6c847d19e20 delegated timeline":
+  - /url: /desk/kandil-hiring-request/eqc1vn7t88
+- generic "المستند في حالة مسودة":
+  - generic: قيد الانتظار
+- 'generic "الشركة: Kandil BROWSER TEST b6c847d19e20"': Kandil BROWSER TEST b6c847d19e20
+- 'generic "الإدارة: BROWSER-b6c847d19e20 - Bb6c84"': BROWSER-b6c847d19e20 - Bb6c84
+- 'generic "مقدم الطلب: browser-b6c847d19e20-requester@example.invalid"': browser-b6c847d19e20-requester@example.invalid
+- 'generic "هوية شخصية: eqc1vn7t88"': eqc1vn7t88
+- generic: 5 م
+- generic: "0"
+- generic: ·
+- checkbox
+- link "BROWSER-b6c847d19e20 correction":
+  - /url: /desk/kandil-hiring-request/eqcvjcku2f
+- generic "المستند في حالة مسودة":
+  - generic: معتمد
+- 'generic "الشركة: Kandil BROWSER TEST b6c847d19e20"': Kandil BROWSER TEST b6c847d19e20
+- 'generic "الإدارة: BROWSER-b6c847d19e20 - Bb6c84"': BROWSER-b6c847d19e20 - Bb6c84
+- 'generic "مقدم الطلب: browser-b6c847d19e20-requester@example.invalid"': browser-b6c847d19e20-requester@example.invalid
+- 'generic "هوية شخصية: eqcvjcku2f"': eqcvjcku2f
+- generic: 6 م
+- generic: "0"
+- generic: ·
+- radiogroup "حجم الصفحة":
+  - radio "20" [checked]
+  - radio "100"
+  - radio "500"
+  - radio "2500"
+- contentinfo

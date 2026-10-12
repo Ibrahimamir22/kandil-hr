@@ -1,0 +1,10 @@
+{
+  "authenticated_requester": true,
+  "csrf_present": true,
+  "method": "frappe.client.insert",
+  "doctype": "Department",
+  "status": 403,
+  "exc_type": "PermissionError",
+  "expected": "403 PermissionError",
+  "passed": true
+}

@@ -1,0 +1,101 @@
+{
+  "suite": "organization-complete-matching-authority-units-void",
+  "site": "kandil-parity.localhost",
+  "site_timezone": "Africa/Cairo",
+  "evidence_recorded_at": "2026-10-12T04:13:39.393837+00:00",
+  "run_time_note": "Recorded after the completed bench run in this session; the runner did not emit an exact execution timestamp.",
+  "command": "bench --site kandil-parity.localhost execute kandil_hr.organization.integration_tests.run",
+  "exit_code": 0,
+  "native_checks": 47,
+  "prior_acceptance_groups": 11,
+  "new_groups": 4,
+  "rolled_back": true,
+  "source_unchanged": false,
+  "source_boundary": "Original source_hashes identify successful 47+15 run; post_run_followup identifies subsequent bounded changes awaiting final native suite.",
+  "source_hashes": {
+    "kandil_hr/organization/api.py": "744b5747b5d281a42cb08e43140df87e4a7cecba30513bf79df6c80f6e70f6f0",
+    "kandil_hr/organization/assignment_reconciliation.py": "8fd7b86ebac98aaa46f46eaa521579a4b8c267611fdc87f8941934c2f6610969",
+    "kandil_hr/organization/units.py": "4ae1ea58a7c1e401625a191a93991adb063fcd07ad958d0b74350a245db721b7",
+    "kandil_hr/organization/models.py": "ea72445900e80a2d29a7e7c703db180b6e1ea95cb3b0877d58f457bfaf52a3f2",
+    "kandil_hr/organization/current.py": "4780c79f175694822767779371c39d51535215e8e2d20496c2d1503477e77e7b",
+    "kandil_hr/organization/rules.py": "2feb2ba79dc92faff905d4f64d5a310622d0b224a4d20d58bdac3a030e0950cc",
+    "kandil_hr/organization/matching_authority_tests.py": "44b261e559f448ec2384239a467e05c8faf347080586f586e825888c677753c8",
+    "kandil_hr/organization/integration_tests.py": "38ed80110b3bb4603ca96ab9983706d68d7dc1c20cbbd5f924142786409221be",
+    "kandil_hr/organization/test_rules.py": "988f58d632608add8a39a16d929a072ab5249d15a6933e80941856296f3bf254",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.js": "252b93bc2023cc4a7a3a0b59c7284c79914263eb23aa9f98606e3272646bc1fb",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.json": "f88387666ffcab6618284c2f18d55da6ff0859e56da45b478b6b5c19756c6c67"
+  },
+  "pure_tests": {
+    "count": 38,
+    "result": "PASS"
+  },
+  "cases": [
+    {
+      "case_id": "AT-HC-002-02",
+      "status": "PASS",
+      "assertions": [
+        "All four unmatched references across three input rows returned together",
+        "Review denied with zero new allocations",
+        "Accepted command replay and a separate identical reviewed batch retain exactly one Primary allocation"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-009-01",
+      "status": "PASS",
+      "assertions": [
+        "Two legal entities share identical chief/worker title text but distinct Position IDs",
+        "Each exact company resolves its own CEO assignment and terminal HR",
+        "Company A actor cannot resolve Company B route"
+      ]
+    },
+    {
+      "case_id": "AT-ORG-007-01",
+      "status": "PARTIAL",
+      "assertions": [
+        "Native Sector authority with company manage grant creates and updates Department",
+        "Native client save denies ordinary Recruiter even with company manage scope",
+        "Mandatory reason and two immutable actor/before/after audit records",
+        "Native permission-query list returns owned Department"
+      ],
+      "remaining": "Actual browser creation/update and HTTP Requester denial queued to QA; this suite invokes the same native client method in-process."
+    },
+    {
+      "case_id": "ASSIGNMENT-VOID",
+      "status": "PASS",
+      "assertions": [
+        "Direct field mutation rejected",
+        "Internal transition preserves assignment row and identity/dates",
+        "Current reads, authority and occupancy omit voided history",
+        "Explicit history read retains record; further native saves denied"
+      ]
+    }
+  ],
+  "limitations": [
+    "Payroll file adapter remains separate; this closes existing Employee/Position assignment import reconciliation only.",
+    "All data synthetic and rollback-only; no main8100/pilot8101 changes.",
+    "Initial run failed allowed-unit permission hook returning None; corrected to True and complete rerun passed."
+  ],
+  "post_run_followup": {
+    "recorded_at": "2026-10-12T04:15:48.002199+00:00",
+    "status": "PENDING_FINAL_NATIVE_GATE",
+    "changes": [
+      "Branch-scoped Requester own-unit read/list support and native read/select permission; management remains companywide Sector",
+      "Fresh assignment for voided Employee rejected",
+      "Native tests expanded to actual Requester role/branch-scope read and voided Employee reallocation denial"
+    ],
+    "source_hashes": {
+      "kandil_hr/organization/api.py": "744b5747b5d281a42cb08e43140df87e4a7cecba30513bf79df6c80f6e70f6f0",
+      "kandil_hr/organization/assignment_reconciliation.py": "8fd7b86ebac98aaa46f46eaa521579a4b8c267611fdc87f8941934c2f6610969",
+      "kandil_hr/organization/units.py": "279b13e9f695f38e8289842e85adbcb72856e36b790055600ca27eb03d877659",
+      "kandil_hr/organization/models.py": "39aad2e183f0e95aaf862a9158fb49287171aca963152a78bf29b68b8c8fac89",
+      "kandil_hr/organization/current.py": "4780c79f175694822767779371c39d51535215e8e2d20496c2d1503477e77e7b",
+      "kandil_hr/organization/rules.py": "2feb2ba79dc92faff905d4f64d5a310622d0b224a4d20d58bdac3a030e0950cc",
+      "kandil_hr/organization/matching_authority_tests.py": "49dcdad28fe97ef6bf3c9131e614fa6d57dc699784e6689a1f24c6b8f641bd81",
+      "kandil_hr/organization/integration_tests.py": "38ed80110b3bb4603ca96ab9983706d68d7dc1c20cbbd5f924142786409221be",
+      "kandil_hr/organization/test_rules.py": "988f58d632608add8a39a16d929a072ab5249d15a6933e80941856296f3bf254",
+      "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.js": "252b93bc2023cc4a7a3a0b59c7284c79914263eb23aa9f98606e3272646bc1fb",
+      "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.json": "f88387666ffcab6618284c2f18d55da6ff0859e56da45b478b6b5c19756c6c67"
+    },
+    "note": "Original successful run hashes above remain intact; follow-up is source/pure-tested only pending root final serialized suite."
+  }
+}

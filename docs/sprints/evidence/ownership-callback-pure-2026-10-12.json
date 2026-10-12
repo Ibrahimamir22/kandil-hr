@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-12T04:21:21.268522+00:00",
+  "runner": "kandil_hr.recruitment.test_ownership_callbacks.run",
+  "discovered": 2,
+  "executed": 2,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "classification": "pure mocked transaction callback managers; no database connected",
+  "source_sha256": {
+    "kandil_hr/recruitment/ownership.py": "ece4339103ca859e4c09105ce4c7e25e8ae7e29bfe83bb3e74779c87d6b63f60",
+    "kandil_hr/recruitment/test_ownership_callbacks.py": "b5e3151a51bbf9d9b44c7a69533c9b5ed5d745a504b9db28491f72f41694e903"
+  },
+  "checks": [
+    "cleanup rollback preserves all outer callbacks",
+    "cleanup commit executes only local callbacks, preserving sibling session revocation"
+  ]
+}

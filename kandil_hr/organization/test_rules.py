@@ -9,6 +9,15 @@ class OrganizationRulesTests(unittest.TestCase):
 	def edge(self, position, parent=None, start="2026-01-01", end=None):
 		return dict(position=position, parent_position=parent, valid_from=start, valid_until=end)
 
+	def test_voided_assignments_never_occupy_or_overlap(self):
+		live = dict(valid_from="2026-01-01", allocation="Primary", is_voided="0")
+		void = {**live, "is_voided": 1}
+		self.assertTrue(rules.effective(live, "2026-10-12"))
+		self.assertFalse(rules.effective(void, "2026-10-12"))
+		self.assertFalse(rules.overlap(void, live))
+		self.assertFalse(rules.overlap(live, void))
+		self.assertEqual(rules.peak_occupancy([void, live]), 1)
+
 	def test_future_cycle_is_rejected(self):
 		with self.assertRaisesRegex(ValueError, "cycle"):
 			rules.validate_hierarchy([self.edge("A", "B"), self.edge("B", "A", "2027-01-01")])

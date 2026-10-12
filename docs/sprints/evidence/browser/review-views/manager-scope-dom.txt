@@ -1,0 +1,117 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: Search
+- generic: Notification
+- link "Kandil Position":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: Kandil Position
+- link "Kandil Hiring Request":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: Kandil Hiring Request
+- link "Kandil Capacity":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: Kandil Capacity
+- link "Kandil Structure Change":
+  - /url: /desk/kandil-hr/kandil-structure-change
+  - generic: Kandil Structure Change
+- link "Kandil Organization Code":
+  - /url: /desk/kandil-hr/kandil-organization-code
+  - generic: Kandil Organization Code
+- link "Kandil Recruitment Route":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: Kandil Recruitment Route
+- link "Kandil Structure Snapshot":
+  - /url: /desk/kandil-hr/kandil-structure-snapshot
+  - generic: Kandil Structure Snapshot
+- link "Kandil Position Hierarchy":
+  - /url: /desk/kandil-hr/kandil-position-hierarchy
+  - generic: Kandil Position Hierarchy
+- generic "User Menu":
+  - generic "BROWSER-b6c847d19e20":
+    - generic "BROWSER-b6c847d19e20": B
+  - generic: BROWSER-b6c847d19e20
+  - generic: browser-b6c847d19e20-manager@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - generic "Kandil Hiring Request":
+      - generic: Kandil Hiring Request
+- button "My Requests":
+  - generic: My Requests
+- button "Requests in My Scope" [active]:
+  - generic: Requests in My Scope
+- button "HR workspace":
+  - generic: HR workspace
+- button "List View":
+  - generic: List View
+- button:
+- button "Menu":
+- button "Add Kandil Hiring Request":
+  - generic: Add Kandil Hiring Request
+- textbox "ID"
+- button:
+- generic: name
+- textbox "Title"
+- button:
+- generic: title
+- button "Filter":
+  - generic: Filter
+- button "Clear all filters":
+- button "descending":
+- button "Created On":
+  - text: Created On
+- button:
+- banner:
+  - checkbox "Select All"
+  - generic "Click to sort by Title": Title
+  - generic: Status
+  - generic: Company
+  - generic: Department
+  - generic: Requested By
+  - generic: ID
+  - generic: 3 of 3
+  - generic "Liked by me":
+- checkbox
+- link "BROWSER-b6c847d19e20 manager own request":
+  - /url: /desk/kandil-hiring-request/eqga7hfnlg
+- generic "Document is in draft state":
+  - generic: Draft
+- 'generic "Company: Kandil BROWSER TEST b6c847d19e20"': Kandil BROWSER TEST b6c847d19e20
+- 'generic "Department: BROWSER-b6c847d19e20 - Bb6c84"': BROWSER-b6c847d19e20 - Bb6c84
+- 'generic "Requested By: browser-b6c847d19e20-manager@example.invalid"': browser-b6c847d19e20-manager@example.invalid
+- 'generic "ID: eqga7hfnlg"': eqga7hfnlg
+- generic: 3 m
+- generic: "0"
+- generic: ·
+- checkbox
+- link "BROWSER-b6c847d19e20 delegated timeline":
+  - /url: /desk/kandil-hiring-request/eqc1vn7t88
+- generic "Document is in draft state":
+  - generic: Pending
+- 'generic "Company: Kandil BROWSER TEST b6c847d19e20"': Kandil BROWSER TEST b6c847d19e20
+- 'generic "Department: BROWSER-b6c847d19e20 - Bb6c84"': BROWSER-b6c847d19e20 - Bb6c84
+- 'generic "Requested By: browser-b6c847d19e20-requester@example.invalid"': browser-b6c847d19e20-requester@example.invalid
+- 'generic "ID: eqc1vn7t88"': eqc1vn7t88
+- generic: 2 m
+- generic: "0"
+- generic: ·
+- checkbox
+- link "BROWSER-b6c847d19e20 correction":
+  - /url: /desk/kandil-hiring-request/eqcvjcku2f
+- generic "Document is in draft state":
+  - generic: Approved
+- 'generic "Company: Kandil BROWSER TEST b6c847d19e20"': Kandil BROWSER TEST b6c847d19e20
+- 'generic "Department: BROWSER-b6c847d19e20 - Bb6c84"': BROWSER-b6c847d19e20 - Bb6c84
+- 'generic "Requested By: browser-b6c847d19e20-requester@example.invalid"': browser-b6c847d19e20-requester@example.invalid
+- 'generic "ID: eqcvjcku2f"': eqcvjcku2f
+- generic: 3 m
+- generic: "0"
+- generic: ·
+- radiogroup "Page Size":
+  - radio "20" [checked]
+  - radio "100"
+  - radio "500"
+  - radio "2500"
+- contentinfo

@@ -1,0 +1,144 @@
+- navigation "Apps":
+  - link "All apps":
+    - /url: /desk
+    - img "ERPNext"
+  - button "Setup":
+  - button "Accounts":
+  - button "Selling":
+  - button "Buying":
+  - button "Stock":
+  - button "Manufacturing":
+  - button "Projects":
+  - button "Assets":
+  - button "Quality":
+  - button "User Menu":
+    - generic: Bs
+- generic: Setup
+- button "Sidebar Menu":
+- generic: Search
+- generic: Notification
+- link "Home":
+  - /url: /desk/setup/home
+  - generic: Home
+- link "Users":
+  - /url: /desk/setup/user
+  - generic: Users
+- generic: Organization
+- button:
+- link "Department":
+  - /url: /desk/setup/department
+  - generic: Department
+- generic: Printing
+- button:
+- generic: Email
+- button:
+- generic: Integrations
+- button:
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "Department":
+      - /url: /desk/department/view/Tree
+      - generic: Department
+    - generic "BROWSER-b6c847d19e20-UNIT - Bb6c84":
+      - generic: BROWSER-b6c847d19e20-UNIT - Bb6c84
+- generic: Enabled
+- button:
+- button:
+- button "Menu":
+- button "Save":
+  - generic: Save
+- generic: Department *
+- textbox: BROWSER-b6c847d19e20-UNIT
+- generic: department_name
+- generic: Parent Department
+- combobox: All Departments
+- status: Begin typing for results.
+- generic: parent_department
+- generic: Company *
+- combobox: Kandil BROWSER TEST b6c847d19e20
+- generic: company
+- checkbox "Is Group"
+- generic: Is Group
+- paragraph
+- generic: is_group
+- checkbox "Disabled"
+- generic: Disabled
+- paragraph
+- generic: disabled
+- generic: Unit Change Reason
+- textbox: Synthetic browser review keeps this unit as a leaf
+- button "Rewrite with Grammarly"
+- button "Open Grammarly."
+- generic: Reason for the current unit creation or update.
+- generic: custom_kandil_change_reason
+- generic: Payroll Cost Center
+- combobox
+- status: Begin typing for results.
+- generic: payroll_cost_center
+- generic: Leave Block List
+- combobox
+- status: Begin typing for results.
+- generic: Days for which Holidays are blocked for this department.
+- generic: leave_block_list
+- generic: Approvers
+- generic: The first Approver in the list will be set as the default Approver.
+- generic: shift_request_approver
+- generic: Shift Request Approver
+- checkbox
+- generic: No.
+- generic "Approver":
+  - generic: Approver *
+- generic: No rows
+- button "Add row":
+  - generic: Add row
+- generic: leave_approvers
+- generic: Leave Approver
+- checkbox
+- generic: No.
+- generic "Approver":
+  - generic: Approver *
+- generic: No rows
+- button "Add row":
+  - generic: Add row
+- generic: expense_approvers
+- generic: Expense Approver
+- checkbox
+- generic: No.
+- generic "Approver":
+  - generic: Approver *
+- generic: No rows
+- button "Add row":
+  - generic: Add row
+- generic: Comments
+- generic "BROWSER-b6c847d19e20 sector":
+  - generic "BROWSER-b6c847d19e20 sector": Bs
+- generic: comment
+- text: Type a reply / comment
+- paragraph
+- text: ×
+- heading "Activity" [level=4]
+- text: You last edited this
+- generic: · just now
+- text: You created this
+- generic: · just now
+- generic: BROWSER-b6c847d19e20-UNIT - Bb6c84
+- button:
+- generic: Assign
+- button "Assign":
+- text: Attachments
+- button "Add attachment":
+- generic: Tags
+- button "Add Tags":
+- generic: Share
+- button "Share":
+- list:
+  - text: Last Edited By You
+  - generic "12-10-2026 07:24:19": just now
+  - text: Created By You
+  - generic "12-10-2026 07:23:40": just now
+- contentinfo
+- status:
+  - generic: Saved
+  - button "Close":

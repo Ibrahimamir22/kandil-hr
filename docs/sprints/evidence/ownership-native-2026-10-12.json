@@ -1,0 +1,50 @@
+{
+  "checked_at": "2026-10-12T04:26:16.278538+00:00",
+  "site": "kandil-parity.localhost",
+  "runner": "kandil_hr.recruitment.test_ownership.run",
+  "discovered": 10,
+  "executed": 10,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "classification": "native ORM synthetic tests, per-test rollback",
+  "source_sha256": {
+    "kandil_hr/recruitment/ownership.py": "ece4339103ca859e4c09105ce4c7e25e8ae7e29bfe83bb3e74779c87d6b63f60",
+    "kandil_hr/recruitment/test_ownership.py": "e2375658a0e1a4d915616246aae9d6a80412fdc9331e9bdf111738b357e274ff",
+    "kandil_hr/recruitment/vacancies.py": "ffd0e0e9f485344dbcddad5111c867c79faf009e51d85266449bca1e593f9031",
+    "kandil_hr/public/js/job_applicant.js": "2ebe4ce29fb42f0ee358ec116edecda79a98d21ba92027f69c686071488a3f77",
+    "kandil_hr/hooks.py": "64ea4fc2338ce21cfeafac9b2d0d7dee1384212182244a56cd986a4b898bab4d",
+    "kandil_hr/foundation/mutation_access.py": "854df434b5880834abeceae4c898d8d93c33e859a74cf6e09ee42c442847ea84"
+  },
+  "cases": [
+    "default accountable team owner and native protected field forgery denial",
+    "explicit owner handoff, command replay and nonmember target denial",
+    "read-only scope cannot change owner",
+    "next-action owner and explicit team replacement with history",
+    "disabled recruiter removes owner and next-action owner to explicit unassigned queue without guessed replacement",
+    "disabled lead cleared and original initiating actor retained in vacancy audit",
+    "rolled-back disabled state causes no cleanup",
+    "approved-only queues and requester candidate denial",
+    "mixed-scope bulk denial without effects and successful itemized ownership handoff",
+    "all five allowed vacancy states versus Filled/Closed/Cancelled; terminal applicant ownership history retained"
+  ],
+  "limitations": [
+    "Generic native ToDo is outside application next-action task scope.",
+    "Native Applicant UI source syntax checked but real browser interaction remains unverified.",
+    "No sustained production load or external email integration."
+  ],
+  "prior_attempt": {
+    "executed": 8,
+    "passed": 7,
+    "errors": 1,
+    "cause": "Test expected empty requester queue; native permission correctly raised PermissionError. Assertion corrected, no relaxation."
+  },
+  "related_evidence": {
+    "committed_two_user_native_User_hook": "ownership-committed-2026-10-12.json",
+    "pure_callback_isolation": "ownership-callback-pure-2026-10-12.json"
+  },
+  "supersedes": {
+    "earlier_native_pass": 9,
+    "reason": "Callback queue isolation product fix plus explicit all-state/terminal-history case; full suite rerun"
+  }
+}

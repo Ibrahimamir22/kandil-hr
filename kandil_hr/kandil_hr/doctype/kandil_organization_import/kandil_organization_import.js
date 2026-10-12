@@ -39,6 +39,12 @@ frappe.ui.form.on('Kandil Organization Import', {
     });
     if(frm.doc.status==='Applied'&&['Units','Jobs','Positions'].includes(kind)) frm.add_custom_button(__('View Imported Codes'),()=>frappe.set_route('List','Kandil Organization Code',{import_batch:frm.doc.name}));
     if(frm.is_new()) return;
+    const reconciliationHTML = report => '<p>'+__('Unmatched references: {0}',[report.unmatched_count])+'</p><div style="max-height:420px;overflow:auto"><table class="table table-bordered"><thead><tr><th>'+__('Row')+'</th><th>'+__('Employee')+'</th><th>'+__('Position')+'</th><th>'+__('Unmatched')+'</th></tr></thead><tbody>'+report.issues.map(row=>'<tr><td>'+row.row+'</td><td>'+escape(String(row.employee??''))+'</td><td>'+escape(String(row.position??''))+'</td><td>'+escape(row.unmatched.map(field=>__(field==='employee'?'Employee':'Position')).join(', '))+'</td></tr>').join('')+'</tbody></table></div>';
+    if(kind==='Assignments') frm.add_custom_button(__('Reconcile Assignments'),async()=>{
+      if(frm.is_dirty()) return frappe.msgprint(__('Save the import draft before reconciling assignments.'));
+      const response=await frappe.call({method:'kandil_hr.organization.api.preview_assignment_reconciliation',args:{name:frm.doc.name}});
+      frappe.msgprint({title:__('Assignment Reconciliation'),message:response.message.valid?__('Every Employee and Position reference matches this company.'):reconciliationHTML(response.message),wide:true});
+    });
     if(frm.doc.status==='Draft'&&frm.doc.owner===frappe.session.user) frm.add_custom_button(__('Load CSV'),()=>{
       if(frm.is_dirty()) return frappe.msgprint(__('Save the import draft before loading CSV.'));
       const headers=fields.map(f=>f.fieldname).join(',');
@@ -60,6 +66,10 @@ frappe.ui.form.on('Kandil Organization Import', {
         if(!source)return;
         const response=await frappe.call({method:'kandil_hr.organization.api.preview_csv_import',args:{name:frm.doc.name,csv_text:source,expected_version:frm.doc.modified}});
         const result=response.message;
+        if(result.reconciliation&&!result.reconciliation.valid){
+          dialog.fields_dict.validation_preview.$wrapper.html(reconciliationHTML(result.reconciliation));
+          dialog.set_primary_action(__('Validate CSV'),validateCSV);return;
+        }
         const columns=fields.map(f=>f.fieldname);
         const table='<table class="table table-bordered"><thead><tr>'+fields.map(f=>'<th>'+escape(f.label)+'</th>').join('')+'<th>'+__('Status')+'</th></tr></thead><tbody>'+result.rows.slice(0,50).map((row,i)=>'<tr>'+columns.map(k=>'<td>'+escape(String(row[k]??''))+'</td>').join('')+'<td>'+escape(__(result.preview[i].action))+'</td></tr>').join('')+'</tbody></table>';
         dialog.fields_dict.validation_preview.$wrapper.html('<p>'+__('Validated {0} rows. Preview shows up to 50 rows; loading replaces the draft rows only.',[result.row_count])+'</p><div style="overflow:auto">'+table+'</div>');

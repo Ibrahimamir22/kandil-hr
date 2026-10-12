@@ -1,0 +1,267 @@
+- img "Kandil workspace"
+- generic: Kandil HR
+- button "Sidebar Menu":
+- generic: البحث
+- generic: إعلام
+- link "المنصب التنظيمي لقنديل":
+  - /url: /desk/kandil-hr/kandil-position
+  - generic: المنصب التنظيمي لقنديل
+- link "طلب توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-hiring-request
+  - generic: طلب توظيف قنديل
+- link "السعة الوظيفية لقنديل":
+  - /url: /desk/kandil-hr/kandil-capacity
+  - generic: السعة الوظيفية لقنديل
+- link "مسار توظيف قنديل":
+  - /url: /desk/kandil-hr/kandil-recruitment-route
+  - generic: مسار توظيف قنديل
+- generic "قائمة المستخدم":
+  - generic "BROWSER-b6c847d19e20 requester":
+    - generic "BROWSER-b6c847d19e20 requester": Br
+  - generic: BROWSER-b6c847d19e20 requester
+  - generic: browser-b6c847d19e20-requester@example.invalid
+- button "Collapse sidebar":
+- banner
+- navigation "Breadcrumb":
+  - list:
+    - link "طلب توظيف قنديل":
+      - /url: /desk/kandil-hiring-request
+      - generic: طلب توظيف قنديل
+    - generic "BROWSER-b6c847d19e20 delegated timeline":
+      - generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: قيد الانتظار
+- button "مساحة الموارد البشرية":
+  - generic: مساحة الموارد البشرية
+- button "السجل الزمني للقرارات":
+  - generic: السجل الزمني للقرارات
+- button "إلغاء التوظيف":
+  - generic: إلغاء التوظيف
+- button:
+- button:
+- button "الخيارات":
+- generic: "الاعتماد التالي: اعتماد الموارد البشرية"
+- strong: إرشادات العدد الوظيفي
+- paragraph: "السياسة الحالية: تحذير. السياسة عند التقديم: تحذير."
+- list:
+  - listitem: "BROWSER-b6c847d19e20: المطلوب 1؛ الطلب الإضافي 1؛ المتاح مع استبعاد حجز الطلب نفسه 1؛ العجز 0."
+- paragraph: تُعرض القيم المحفوظة فقط. لا تحجز المعاينة أي عدد وظيفي؛ ويتحقق التقديم من الطاقة الاستيعابية الحالية.
+- generic: الشركة *
+- generic: Kandil BROWSER TEST b6c847d19e20
+- generic: company
+- generic: الإدارة *
+- link "BROWSER-b6c847d19e20 - Bb6c84":
+  - /url: /desk/department/BROWSER-b6c847d19e20%20-%20Bb6c84
+- generic: department
+- generic: العنوان *
+- generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: title
+- generic: مقدم الطلب
+- link "browser-b6c847d19e20-requester@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-requester%40example.invalid
+- generic: requested_by
+- generic: الحالة
+- generic: قيد الانتظار
+- generic: status
+- checkbox "يتطلب استثناءً" [disabled]
+- generic: يتطلب استثناءً
+- paragraph
+- generic: needs_exception
+- generic: lines
+- generic: البنود
+- checkbox [disabled]
+- generic: لا.
+- generic "السعة الوظيفية":
+  - generic: السعة الوظيفية *
+- generic "العدد المطلوب":
+  - generic: العدد المطلوب *
+- generic "العدد المعتمد":
+  - generic: العدد المعتمد
+- generic "عدد المباشرين":
+  - generic: عدد المباشرين
+- generic "الشاغر الوظيفي":
+  - generic: الشاغر الوظيفي
+- checkbox [disabled]
+- generic: "1"
+- link "BROWSER-b6c847d19e20":
+  - /url: /desk/kandil-capacity/KCAP-aaf7e929f1ef82cb6fb35ffb
+- generic: "1"
+- generic: "0"
+- generic: "0"
+- generic: approval_steps
+- generic: خطوات الاعتماد
+- checkbox [disabled]
+- generic: لا.
+- generic "صاحب الصلاحية الأصلي":
+  - generic: صاحب الصلاحية الأصلي *
+- generic "صلاحية الاعتماد":
+  - generic: صلاحية الاعتماد
+- generic "القرار":
+  - generic: القرار
+- checkbox [disabled]
+- generic: "1"
+- link "browser-b6c847d19e20-manager@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-manager%40example.invalid
+- generic: Department Approval
+- generic: معتمد
+- checkbox [disabled]
+- generic: "2"
+- link "browser-b6c847d19e20-hr@example.invalid":
+  - /url: /desk/user/browser-b6c847d19e20-hr%40example.invalid
+- generic: HR Approval
+- generic: قيد الانتظار
+- generic: ملاحظة القرار
+- generic: <img src="x"> synthetic delegated decision
+- generic: decision_note
+- generic: المنصب المطلوب
+- link "BROWSER-b6c847d19e20":
+  - /url: /desk/kandil-position/BROWSER-b6c847d19e20
+- generic: requested_position
+- generic: نوع الطلب
+- generic: توظيف جديد
+- generic: request_kind
+- generic: المراجعة
+- generic: "1"
+- generic: revision
+- generic: سبب الاحتياج
+- generic: توسع
+- generic: need_reason
+- generic: المؤهلات
+- generic: Original synthetic qualification
+- generic: qualifications
+- generic: الأولوية المطلوبة
+- generic: عادي
+- generic: requested_priority
+- generic: أولوية الموارد البشرية
+- generic: عادي
+- generic: hr_priority
+- generic: تعليقات
+- generic "BROWSER-b6c847d19e20 requester":
+  - generic "BROWSER-b6c847d19e20 requester": Br
+- generic: comment
+- text: اكتب رداً / تعليقاً
+- paragraph
+- text: ×
+- heading "نشاط" [level=4]
+- link "BROWSER-b6c847d19e20 delegate":
+  - /url: /desk/user/browser-b6c847d19e20-delegate%40example.invalid
+- link "غيّر قيمة ملاحظة القرار من \"\" إلى synthetic delegated decision":
+  - /url: /desk/version/f82a5arvep
+- generic: · الآن فقط
+- link "BROWSER-b6c847d19e20 delegate":
+  - /url: /desk/user/browser-b6c847d19e20-delegate%40example.invalid
+- 'link "غيّر القيم لـ القرار من Pending إلى Approved في الصف #1, منفذ الإجراء من \"\" إلى browser-b6c847d19e20-delegate@example.in... في الصف #1, تاريخ القرار من null إلى 12-10-2026 07:18:59 في الصف #1"':
+  - /url: /desk/version/f82a5arvep
+- generic: · الآن فقط
+- link "BROWSER-b6c847d19e20 delegate":
+  - /url: /desk/user/browser-b6c847d19e20-delegate%40example.invalid
+- text: آخر تعديل لهذا
+- generic: · الآن فقط
+- link "لقد قمت بتغيير قيمة الحالة من Draft إلى Pending, ملاحظة القرار من null إلى \"\"":
+  - /url: /desk/version/eqg0052d4o
+- generic: · منذ 1 دقيقة
+- 'link "لقد قمت بتغيير القيم لـ العدد المقترح من 0 إلى 1 في الصف #1, العدد المحجوز من 0 إلى 1 في الصف #1"':
+  - /url: /desk/version/eqg0052d4o
+- generic: · منذ 1 دقيقة
+- link "أضفت 2 صفوفًا إلى خطوات الاعتماد":
+  - /url: /desk/version/eqg0052d4o
+- generic: · منذ 1 دقيقة
+- link "لقد قمت بتغيير قيمة العنوان من BROWSER-b6c847d19e20 shortage إلى BROWSER-b6c847d19e20 delegated timeline":
+  - /url: /desk/version/eqg90q4avs
+- generic: · منذ 1 دقيقة
+- 'link "لقد قمت بتغيير القيم لـ العدد المطلوب من 3 إلى 1 في الصف #1"':
+  - /url: /desk/version/eqg90q4avs
+- generic: · منذ 1 دقيقة
+- text: أنت أنشأت هذا المستند
+- generic: · منذ 1 دقيقة
+- generic: BROWSER-b6c847d19e20 delegated timeline
+- generic: eqc1vn7t88
+- button:
+- button:
+- generic: عين
+- button "عين":
+- text: المرفقات
+- button "Add attachment":
+- generic: بطاقات
+- button "إضافة وسوم":
+- generic: مشاركة
+- button "مشاركة":
+- list:
+  - text: Last Edited By
+  - link "BROWSER-b6c847d19e20 delegate":
+    - /url: /desk/user/browser-b6c847d19e20-delegate%40example.invalid
+  - generic "12-10-2026 07:18:59": الآن فقط
+  - text: من صنعك
+  - generic "12-10-2026 07:18:15": منذ 1 دقيقة
+- contentinfo
+- navigation:
+  - text: اكتوبر,
+  - generic: "2026"
+- generic: الأحد
+- generic: الأثنين
+- generic: الثلاثاء
+- generic: الأربعاء
+- generic: الخميس
+- generic: الجمعه
+- generic: السبت
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "1"
+- generic: "2"
+- generic: "3"
+- generic: "4"
+- generic: "5"
+- generic: "6"
+- generic: "7"
+- generic: "8"
+- generic: "9"
+- generic: "10"
+- generic: "11"
+- generic: "12"
+- generic: "13"
+- generic: "14"
+- generic: "15"
+- generic: "16"
+- generic: "17"
+- generic: "18"
+- generic: "19"
+- generic: "20"
+- generic: "21"
+- generic: "22"
+- generic: "23"
+- generic: "24"
+- generic: "25"
+- generic: "26"
+- generic: "27"
+- generic: "28"
+- generic: "29"
+- generic: "30"
+- generic: "31"
+- generic: اليوم
+- dialog [active]:
+  - heading "السجل الزمني للقرارات" [level=4]
+  - button "إغلاق":
+  - paragraph: تُعرض أوقات الأحداث حسب المنطقة الزمنية Africa/Cairo.
+  - paragraph: لا يُستنتج صاحب الصلاحية للأحداث السابقة من مسار الاعتماد الحالي إذا لم يكن مسجلاً.
+  - table:
+    - rowgroup:
+      - row "الإجراء منفذ الإجراء صاحب الصلاحية الأصلي الوقت ملاحظة":
+        - columnheader "الإجراء"
+        - columnheader "منفذ الإجراء"
+        - columnheader "صاحب الصلاحية الأصلي"
+        - columnheader "الوقت"
+        - columnheader "ملاحظة"
+    - rowgroup:
+      - row "تم الإرسال browser-b6c847d19e20-requester@example.invalid غير مسجل 2026-10-12 07:18:16.045778":
+        - cell "تم الإرسال"
+        - cell "browser-b6c847d19e20-requester@example.invalid"
+        - cell "غير مسجل"
+        - cell "2026-10-12 07:18:16.045778"
+        - cell
+      - row "اعتماد browser-b6c847d19e20-delegate@example.invalid browser-b6c847d19e20-manager@example.invalid 2026-10-12 07:18:59.452622 <img src=\"x\"> synthetic delegated decision":
+        - cell "اعتماد"
+        - cell "browser-b6c847d19e20-delegate@example.invalid"
+        - cell "browser-b6c847d19e20-manager@example.invalid"
+        - cell "2026-10-12 07:18:59.452622"
+        - cell "<img src=\"x\"> synthetic delegated decision"

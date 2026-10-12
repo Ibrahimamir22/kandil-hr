@@ -1,0 +1,13 @@
+{
+  "run_id": "b6c847d19e20",
+  "cleaned": true,
+  "disabled_users": 5,
+  "ledger": {
+    "structural": 5,
+    "occupied": 0,
+    "reserved": 0,
+    "open_slots": 0,
+    "available": 5
+  },
+  "audit_retained": true
+}

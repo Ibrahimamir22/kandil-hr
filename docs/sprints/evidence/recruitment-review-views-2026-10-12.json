@@ -1,0 +1,59 @@
+{
+  "suite": "recruitment-review-views",
+  "checked_at": "2026-10-12T04:12:08.564369+00:00",
+  "total": 5,
+  "passed": 5,
+  "failed": 0,
+  "skipped": 0,
+  "exit_code": 0,
+  "fixtures_rolled_back": true,
+  "checks": [
+    {
+      "test": "test_delegate_cannot_act_outside_effective_unit_or_interval",
+      "status": "PASS"
+    },
+    {
+      "test": "test_delegated_timeline_preserves_original_events_and_exact_actor_principal_time",
+      "status": "PASS"
+    },
+    {
+      "test": "test_manager_a1_position_payload_b1_denied_server_side",
+      "status": "PASS"
+    },
+    {
+      "test": "test_my_requests_is_own_only_while_native_lists_enforce_scope",
+      "status": "PASS"
+    },
+    {
+      "test": "test_selected_position_scope_rechecked_on_submit_and_review",
+      "status": "PASS"
+    }
+  ],
+  "source_hashes_at_completion": {
+    "kandil_hr/recruitment/review_views.py": "afbe44adecb85afd9dda59554f4a01cfbbc242602d626960025770eecea808d7",
+    "kandil_hr/recruitment/test_review_views.py": "02c49087f4dc2a51438830c299997a8dfd604eb30c37840459ffa7d88dceaf3c",
+    "kandil_hr/recruitment/api.py": "7caebbd2a110a947c308caa43d2810e63c50a5dbe86b6a054a8712b712fa074d",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/foundation/mutation_access.py": "854df434b5880834abeceae4c898d8d93c33e859a74cf6e09ee42c442847ea84",
+    "kandil_hr/public/js/hiring_request_list.js": "4fbfb6ea23a23015f7352670463fa66b9227c355b0d23e1a5af30363e2e9fbcb",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "a8e4af666b88a8fcd1b1b99893f09c0fc7e507f3d5661bcb5b456086f1dd4001"
+  },
+  "limitations": [
+    "Other agents developing source in parallel; final integrated frozen-source regression required.",
+    "AR/EN native browser rendering and HTML escaping proof pending.",
+    "Delegation unit and effective dates tested; process discriminator is not implemented.",
+    "Historical unknown principals remain null, never reconstructed."
+  ],
+  "initial_run": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1,
+    "cause": "Test expected unsanitized img onerror markup; native Frappe correctly sanitized note before storage. Test expectation corrected, no product weakening."
+  },
+  "proposed_cases": {
+    "AT-REQ-001-01": "proposed_pass",
+    "AT-REQ-001-02": "partial: unit and dates pass; process discriminator absent",
+    "AT-REQ-010-01": "native proved; browser pending",
+    "AT-REQ-010-02": "native proved; browser pending"
+  }
+}

@@ -81,6 +81,18 @@ def assert_current_request_scope(doc, *, user=None, capability="manage", require
 	if not enabled():
 		return set()
 	branches = []
+	if frappe.conf.get("kandil_parity_enabled") and doc.get("requested_position"):
+		position = frappe.db.sql(
+			"SELECT company,department,branch FROM `tabKandil Position` WHERE name=%s FOR UPDATE",
+			(doc.requested_position,),
+			as_dict=True,
+		)
+		if not position or position[0].company != doc.company or position[0].department != doc.department:
+			frappe.throw(
+				_("The requested position no longer matches its company and department."),
+				frappe.PermissionError,
+			)
+		branches.append(position[0].branch)
 	for name in sorted({line.capacity for line in doc.get("lines") or []}):
 		rows = frappe.db.sql(
 			"SELECT company,department,branch FROM `tabKandil Capacity` WHERE name=%s FOR UPDATE",

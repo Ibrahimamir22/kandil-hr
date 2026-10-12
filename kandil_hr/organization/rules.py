@@ -8,12 +8,20 @@ def day(value):
 	return value if isinstance(value, date) else date.fromisoformat(str(value)[:10])
 
 
+def voided(row):
+	return row.get("is_voided") in (1, True, "1")
+
+
 def effective(row, at):
+	if voided(row):
+		return False
 	at = day(at)
 	return day(row["valid_from"]) <= at and (not row.get("valid_until") or at <= day(row["valid_until"]))
 
 
 def overlap(a, b):
+	if voided(a) or voided(b):
+		return False
 	return day(a["valid_from"]) <= day(b.get("valid_until") or "9999-12-31") and day(b["valid_from"]) <= day(
 		a.get("valid_until") or "9999-12-31"
 	)

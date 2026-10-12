@@ -1,0 +1,350 @@
+{
+  "run_id": "b6c847d19e20",
+  "requests": {
+    "correction": {
+      "name": "eqcvjcku2f",
+      "status": "Approved",
+      "qualifications": "Original synthetic qualification",
+      "modified": "2026-10-12 07:18:15.813658",
+      "requested": [
+        4
+      ],
+      "approved": [
+        4
+      ],
+      "receipts": 3,
+      "revisions": [
+        {
+          "name": "eqds80hsk1",
+          "action": "Submitted",
+          "actor": "browser-b6c847d19e20-requester@example.invalid",
+          "snapshot_json": "{\"amends\": null, \"approval_steps\": [{\"actor\": null, \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-b6c847d19e20-HEAD\", \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 1, \"name\": \"eqdjsj378p\", \"principal\": \"browser-b6c847d19e20-manager@example.invalid\", \"step_key\": \"8b714d4645bf4e9abd7826e4c57efd21\", \"waiting_since\": \"2026-10-12 07:18:15.723976\"}, {\"actor\": null, \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 2, \"name\": \"eqd0hcr3l7\", \"principal\": \"browser-b6c847d19e20-hr@example.invalid\", \"step_key\": \"de12c3f0e2dc448394e3eb53d049f0ad\", \"waiting_since\": null}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"creation\": \"2026-10-12 07:18:15.659961\", \"decision_note\": \"\", \"department\": \"BROWSER-b6c847d19e20 - Bb6c84\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 0, \"capacity\": \"KCAP-aaf7e929f1ef82cb6fb35ffb\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": null, \"joined_qty\": 0, \"name\": \"eqcc0afo5b\", \"proposed_qty\": 4, \"requested_qty\": 4, \"reserved_qty\": 4}], \"modified\": \"2026-10-12 07:18:15.726173\", \"modified_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"name\": \"eqcvjcku2f\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-b6c847d19e20-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"requested_position\": \"BROWSER-b6c847d19e20\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"config_modified\\\": \\\"2026-10-12 07:18:15.338992\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"eqc1selqss\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20-HEAD\\\", \\\"principal\\\": \\\"browser-b6c847d19e20-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"2dbdcda3546dcafab95d269b83322481f7697fd08935abbd5103875c8fd69cb5\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-aaf7e929f1ef82cb6fb35ffb\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 0, \\\"additional\\\": 4, \\\"cohort\\\": {}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Pending\", \"title\": \"BROWSER-b6c847d19e20 correction\", \"working_conditions\": null}"
+        },
+        {
+          "name": "eqdee53e9d",
+          "action": "Approve",
+          "actor": "browser-b6c847d19e20-manager@example.invalid",
+          "snapshot_json": "{\"amends\": null, \"approval_steps\": [{\"actor\": \"browser-b6c847d19e20-manager@example.invalid\", \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-b6c847d19e20-HEAD\", \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 07:18:15.773342\", \"decision\": \"Approved\", \"idx\": 1, \"name\": \"eqdjsj378p\", \"principal\": \"browser-b6c847d19e20-manager@example.invalid\", \"step_key\": \"8b714d4645bf4e9abd7826e4c57efd21\", \"waiting_since\": \"2026-10-12 07:18:15.723976\"}, {\"actor\": null, \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 2, \"name\": \"eqd0hcr3l7\", \"principal\": \"browser-b6c847d19e20-hr@example.invalid\", \"step_key\": \"de12c3f0e2dc448394e3eb53d049f0ad\", \"waiting_since\": \"2026-10-12 07:18:15.773346\"}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"creation\": \"2026-10-12 07:18:15.659961\", \"decision_note\": \"Synthetic browser fixture approval\", \"department\": \"BROWSER-b6c847d19e20 - Bb6c84\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 0, \"capacity\": \"KCAP-aaf7e929f1ef82cb6fb35ffb\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": null, \"joined_qty\": 0, \"name\": \"eqcc0afo5b\", \"proposed_qty\": 4, \"requested_qty\": 4, \"reserved_qty\": 4}], \"modified\": \"2026-10-12 07:18:15.774311\", \"modified_by\": \"browser-b6c847d19e20-manager@example.invalid\", \"name\": \"eqcvjcku2f\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-b6c847d19e20-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"requested_position\": \"BROWSER-b6c847d19e20\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"config_modified\\\": \\\"2026-10-12 07:18:15.338992\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"eqc1selqss\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20-HEAD\\\", \\\"principal\\\": \\\"browser-b6c847d19e20-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"2dbdcda3546dcafab95d269b83322481f7697fd08935abbd5103875c8fd69cb5\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-aaf7e929f1ef82cb6fb35ffb\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 0, \\\"additional\\\": 4, \\\"cohort\\\": {}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Pending\", \"title\": \"BROWSER-b6c847d19e20 correction\", \"working_conditions\": null}"
+        },
+        {
+          "name": "eqe9611vhq",
+          "action": "Approve",
+          "actor": "browser-b6c847d19e20-hr@example.invalid",
+          "snapshot_json": "{\"amends\": null, \"approval_steps\": [{\"actor\": \"browser-b6c847d19e20-manager@example.invalid\", \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-b6c847d19e20-HEAD\", \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 07:18:15.773342\", \"decision\": \"Approved\", \"idx\": 1, \"name\": \"eqdjsj378p\", \"principal\": \"browser-b6c847d19e20-manager@example.invalid\", \"step_key\": \"8b714d4645bf4e9abd7826e4c57efd21\", \"waiting_since\": \"2026-10-12 07:18:15.723976\"}, {\"actor\": \"browser-b6c847d19e20-hr@example.invalid\", \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": \"Synthetic browser fixture approval\", \"decided_at\": \"2026-10-12 07:18:15.791347\", \"decision\": \"Approved\", \"idx\": 2, \"name\": \"eqd0hcr3l7\", \"principal\": \"browser-b6c847d19e20-hr@example.invalid\", \"step_key\": \"de12c3f0e2dc448394e3eb53d049f0ad\", \"waiting_since\": \"2026-10-12 07:18:15.773346\"}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"creation\": \"2026-10-12 07:18:15.659961\", \"decision_note\": \"Synthetic browser fixture approval\", \"department\": \"BROWSER-b6c847d19e20 - Bb6c84\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 4, \"capacity\": \"KCAP-aaf7e929f1ef82cb6fb35ffb\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": \"HR-OPN-2026-0010\", \"joined_qty\": 0, \"name\": \"eqcc0afo5b\", \"proposed_qty\": 4, \"requested_qty\": 4, \"reserved_qty\": 0}], \"modified\": \"2026-10-12 07:18:15.813658\", \"modified_by\": \"browser-b6c847d19e20-hr@example.invalid\", \"name\": \"eqcvjcku2f\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-b6c847d19e20-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"requested_position\": \"BROWSER-b6c847d19e20\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"config_modified\\\": \\\"2026-10-12 07:18:15.338992\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"eqc1selqss\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20-HEAD\\\", \\\"principal\\\": \\\"browser-b6c847d19e20-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"2dbdcda3546dcafab95d269b83322481f7697fd08935abbd5103875c8fd69cb5\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-aaf7e929f1ef82cb6fb35ffb\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 0, \\\"additional\\\": 4, \\\"cohort\\\": {}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Approved\", \"title\": \"BROWSER-b6c847d19e20 correction\", \"working_conditions\": null}"
+        }
+      ]
+    },
+    "shortage": {
+      "name": "eqc1vn7t88",
+      "status": "Pending",
+      "qualifications": "Original synthetic qualification",
+      "modified": "2026-10-12 07:18:59.426519",
+      "requested": [
+        1
+      ],
+      "approved": [
+        0
+      ],
+      "receipts": 2,
+      "revisions": [
+        {
+          "name": "eqgbuvppls",
+          "action": "Submitted",
+          "actor": "browser-b6c847d19e20-requester@example.invalid",
+          "snapshot_json": "{\"amends\": null, \"approval_steps\": [{\"actor\": null, \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-b6c847d19e20-HEAD\", \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 1, \"name\": \"eqgrbv3ubc\", \"principal\": \"browser-b6c847d19e20-manager@example.invalid\", \"step_key\": \"528319bf36ec4b93ab38718050b78ced\", \"waiting_since\": \"2026-10-12 07:18:16.027066\"}, {\"actor\": null, \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 2, \"name\": \"eqg3tf0anh\", \"principal\": \"browser-b6c847d19e20-hr@example.invalid\", \"step_key\": \"99702b4c237c4f8c9a910a61cdcdb238\", \"waiting_since\": null}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"creation\": \"2026-10-12 07:18:15.679053\", \"decision_note\": \"\", \"department\": \"BROWSER-b6c847d19e20 - Bb6c84\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 0, \"capacity\": \"KCAP-aaf7e929f1ef82cb6fb35ffb\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": null, \"joined_qty\": 0, \"name\": \"eqckbjsluh\", \"proposed_qty\": 1, \"requested_qty\": 1, \"reserved_qty\": 1}], \"modified\": \"2026-10-12 07:18:16.032722\", \"modified_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"name\": \"eqc1vn7t88\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-b6c847d19e20-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"requested_position\": \"BROWSER-b6c847d19e20\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"config_modified\\\": \\\"2026-10-12 07:18:15.338992\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"eqc1selqss\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20-HEAD\\\", \\\"principal\\\": \\\"browser-b6c847d19e20-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"2dbdcda3546dcafab95d269b83322481f7697fd08935abbd5103875c8fd69cb5\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-aaf7e929f1ef82cb6fb35ffb\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 4, \\\"additional\\\": 1, \\\"cohort\\\": {\\\"eqcc0afo5b\\\": {\\\"committed\\\": 4, \\\"joined\\\": 0, \\\"closed\\\": 0}}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Pending\", \"title\": \"BROWSER-b6c847d19e20 delegated timeline\", \"working_conditions\": null}"
+        },
+        {
+          "name": "f82vvs6mep",
+          "action": "Approve",
+          "actor": "browser-b6c847d19e20-delegate@example.invalid",
+          "snapshot_json": "{\"amends\": null, \"approval_steps\": [{\"actor\": \"browser-b6c847d19e20-delegate@example.invalid\", \"authority\": \"Department Approval\", \"authority_position\": \"BROWSER-b6c847d19e20-HEAD\", \"board_evidence\": null, \"comment\": \"<img src=\\\"x\\\"> synthetic delegated decision\", \"decided_at\": \"2026-10-12 07:18:59.425461\", \"decision\": \"Approved\", \"idx\": 1, \"name\": \"eqgrbv3ubc\", \"principal\": \"browser-b6c847d19e20-manager@example.invalid\", \"step_key\": \"528319bf36ec4b93ab38718050b78ced\", \"waiting_since\": \"2026-10-12 07:18:16.027066\"}, {\"actor\": null, \"authority\": \"HR Approval\", \"authority_position\": null, \"board_evidence\": null, \"comment\": null, \"decided_at\": null, \"decision\": \"Pending\", \"idx\": 2, \"name\": \"eqg3tf0anh\", \"principal\": \"browser-b6c847d19e20-hr@example.invalid\", \"step_key\": \"99702b4c237c4f8c9a910a61cdcdb238\", \"waiting_since\": \"2026-10-12 07:18:59.425480\"}], \"baseline_modified\": null, \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"creation\": \"2026-10-12 07:18:15.679053\", \"decision_note\": \"<img src=\\\"x\\\"> synthetic delegated decision\", \"department\": \"BROWSER-b6c847d19e20 - Bb6c84\", \"docstatus\": 0, \"doctype\": \"Kandil Hiring Request\", \"employment_type\": null, \"exception_reason\": null, \"experience_required\": null, \"hr_priority\": \"Normal\", \"lines\": [{\"approved_qty\": 0, \"capacity\": \"KCAP-aaf7e929f1ef82cb6fb35ffb\", \"closed_qty\": 0, \"idx\": 1, \"job_opening\": null, \"joined_qty\": 0, \"name\": \"eqckbjsluh\", \"proposed_qty\": 1, \"requested_qty\": 1, \"reserved_qty\": 1}], \"modified\": \"2026-10-12 07:18:59.426519\", \"modified_by\": \"browser-b6c847d19e20-delegate@example.invalid\", \"name\": \"eqc1vn7t88\", \"need_reason\": \"Expansion\", \"needs_exception\": 0, \"owner\": \"browser-b6c847d19e20-requester@example.invalid\", \"qualifications\": \"Original synthetic qualification\", \"replacement_employee\": null, \"request_kind\": \"New Recruitment\", \"requested_by\": \"browser-b6c847d19e20-requester@example.invalid\", \"requested_position\": \"BROWSER-b6c847d19e20\", \"requested_priority\": \"Normal\", \"required_by\": null, \"revision\": 1, \"route_snapshot\": \"{\\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"policy\\\": {\\\"authority_rules\\\": [], \\\"board_after_ceo\\\": 0, \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"ceo_for_critical\\\": 0, \\\"config\\\": \\\"KROUTE-ac3aad85768343c3fcb50548\\\", \\\"config_modified\\\": \\\"2026-10-12 07:18:15.338992\\\", \\\"evaluated_on\\\": \\\"2026-10-12\\\", \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"headcount_mode\\\": \\\"Warn\\\", \\\"hr_approver\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}, \\\"resolved\\\": {\\\"as_of\\\": \\\"2026-10-12\\\", \\\"board_approver\\\": null, \\\"ceo_approver\\\": null, \\\"exception_approver\\\": \\\"browser-b6c847d19e20-sector@example.invalid\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20\\\", \\\"skipped\\\": [], \\\"steps\\\": [{\\\"assignment\\\": \\\"eqc1selqss\\\", \\\"authority\\\": \\\"Department Approval\\\", \\\"position\\\": \\\"BROWSER-b6c847d19e20-HEAD\\\", \\\"principal\\\": \\\"browser-b6c847d19e20-manager@example.invalid\\\"}, {\\\"assignment\\\": null, \\\"authority\\\": \\\"HR Approval\\\", \\\"position\\\": null, \\\"principal\\\": \\\"browser-b6c847d19e20-hr@example.invalid\\\"}], \\\"structure_revision\\\": \\\"2dbdcda3546dcafab95d269b83322481f7697fd08935abbd5103875c8fd69cb5\\\"}, \\\"skipped\\\": [], \\\"headcount_basis\\\": {\\\"KCAP-aaf7e929f1ef82cb6fb35ffb\\\": {\\\"occupied\\\": 0, \\\"structural\\\": 5, \\\"other_commitments\\\": 4, \\\"additional\\\": 1, \\\"cohort\\\": {\\\"eqcc0afo5b\\\": {\\\"committed\\\": 4, \\\"joined\\\": 0, \\\"closed\\\": 0}}, \\\"unmatched_commitments\\\": 0}}}\", \"skills_required\": null, \"status\": \"Pending\", \"title\": \"BROWSER-b6c847d19e20 delegated timeline\", \"working_conditions\": null}"
+        }
+      ]
+    },
+    "manager_own": {
+      "name": "eqga7hfnlg",
+      "status": "Draft",
+      "qualifications": null,
+      "modified": "2026-10-12 07:18:16.066393",
+      "requested": [
+        1
+      ],
+      "approved": [
+        0
+      ],
+      "receipts": 0,
+      "revisions": []
+    }
+  },
+  "ledger": {
+    "structural": 5,
+    "occupied": 0,
+    "reserved": 1,
+    "open_slots": 4,
+    "available": 0
+  },
+  "units": [
+    {
+      "name": "Accounts - Bb6c84",
+      "department_name": "Accounts",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Marketing - Bb6c84",
+      "department_name": "Marketing",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Sales - Bb6c84",
+      "department_name": "Sales",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Purchase - Bb6c84",
+      "department_name": "Purchase",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Operations - Bb6c84",
+      "department_name": "Operations",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Production - Bb6c84",
+      "department_name": "Production",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Dispatch - Bb6c84",
+      "department_name": "Dispatch",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Customer Service - Bb6c84",
+      "department_name": "Customer Service",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Human Resources - Bb6c84",
+      "department_name": "Human Resources",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Management - Bb6c84",
+      "department_name": "Management",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Quality Management - Bb6c84",
+      "department_name": "Quality Management",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Research & Development - Bb6c84",
+      "department_name": "Research & Development",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "Legal - Bb6c84",
+      "department_name": "Legal",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "BROWSER-b6c847d19e20 - Bb6c84",
+      "department_name": "BROWSER-b6c847d19e20",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": null,
+      "is_group": 0
+    },
+    {
+      "name": "BROWSER-b6c847d19e20-UNIT - Bb6c84",
+      "department_name": "BROWSER-b6c847d19e20-UNIT",
+      "company": "Kandil BROWSER TEST b6c847d19e20",
+      "disabled": 0,
+      "custom_kandil_change_reason": "Synthetic browser review keeps this unit as a leaf",
+      "is_group": 0
+    }
+  ],
+  "unit_audit": [
+    {
+      "name": "ibvdfrqbk1",
+      "action": "Organization unit maintained",
+      "actor": "browser-b6c847d19e20-sector@example.invalid",
+      "creation": "2026-10-12 07:24:19.141739",
+      "changed_fields": "{\"actor\": \"browser-b6c847d19e20-sector@example.invalid\", \"before\": {\"department_name\": \"BROWSER-b6c847d19e20-UNIT\", \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"parent_department\": \"All Departments\", \"is_group\": 1, \"disabled\": 0}, \"after\": {\"department_name\": \"BROWSER-b6c847d19e20-UNIT\", \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"parent_department\": \"All Departments\", \"is_group\": 0, \"disabled\": 0}, \"reason\": \"Synthetic browser review keeps this unit as a leaf\"}",
+      "reference": "BROWSER-b6c847d19e20-UNIT - Bb6c84"
+    },
+    {
+      "name": "i3m6eu5733",
+      "action": "Organization unit maintained",
+      "actor": "browser-b6c847d19e20-sector@example.invalid",
+      "creation": "2026-10-12 07:23:52.651332",
+      "changed_fields": "{\"actor\": \"browser-b6c847d19e20-sector@example.invalid\", \"before\": {\"department_name\": \"BROWSER-b6c847d19e20-UNIT\", \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"parent_department\": \"All Departments\", \"is_group\": 0, \"disabled\": 0}, \"after\": {\"department_name\": \"BROWSER-b6c847d19e20-UNIT\", \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"parent_department\": \"All Departments\", \"is_group\": 1, \"disabled\": 0}, \"reason\": \"Synthetic browser unit creation proof\"}",
+      "reference": "BROWSER-b6c847d19e20-UNIT - Bb6c84"
+    },
+    {
+      "name": "i01rblcbkk",
+      "action": "Organization unit maintained",
+      "actor": "browser-b6c847d19e20-sector@example.invalid",
+      "creation": "2026-10-12 07:23:40.911326",
+      "changed_fields": "{\"actor\": \"browser-b6c847d19e20-sector@example.invalid\", \"before\": null, \"after\": {\"department_name\": \"BROWSER-b6c847d19e20-UNIT\", \"company\": \"Kandil BROWSER TEST b6c847d19e20\", \"parent_department\": \"All Departments\", \"is_group\": 0, \"disabled\": 0}, \"reason\": \"Synthetic browser unit creation proof\"}",
+      "reference": "BROWSER-b6c847d19e20-UNIT - Bb6c84"
+    }
+  ],
+  "denied_unit_exists": false,
+  "views": {
+    "requester": {
+      "own": [
+        {
+          "name": "eqc1vn7t88",
+          "title": "BROWSER-b6c847d19e20 delegated timeline",
+          "status": "Pending",
+          "company": "Kandil BROWSER TEST b6c847d19e20",
+          "department": "BROWSER-b6c847d19e20 - Bb6c84",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid",
+          "modified": "2026-10-12 07:18:59.426519"
+        },
+        {
+          "name": "eqcvjcku2f",
+          "title": "BROWSER-b6c847d19e20 correction",
+          "status": "Approved",
+          "company": "Kandil BROWSER TEST b6c847d19e20",
+          "department": "BROWSER-b6c847d19e20 - Bb6c84",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid",
+          "modified": "2026-10-12 07:18:15.813658"
+        }
+      ],
+      "scoped": [
+        {
+          "name": "eqc1vn7t88",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqcvjcku2f",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        }
+      ]
+    },
+    "manager": {
+      "own": [
+        {
+          "name": "eqga7hfnlg",
+          "title": "BROWSER-b6c847d19e20 manager own request",
+          "status": "Draft",
+          "company": "Kandil BROWSER TEST b6c847d19e20",
+          "department": "BROWSER-b6c847d19e20 - Bb6c84",
+          "requested_by": "browser-b6c847d19e20-manager@example.invalid",
+          "modified": "2026-10-12 07:18:16.066393"
+        }
+      ],
+      "scoped": [
+        {
+          "name": "eqc1vn7t88",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqcvjcku2f",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqga7hfnlg",
+          "requested_by": "browser-b6c847d19e20-manager@example.invalid"
+        }
+      ]
+    },
+    "hr": {
+      "own": [],
+      "scoped": [
+        {
+          "name": "eqc1vn7t88",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqcvjcku2f",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqga7hfnlg",
+          "requested_by": "browser-b6c847d19e20-manager@example.invalid"
+        }
+      ]
+    },
+    "delegate": {
+      "own": [],
+      "scoped": [
+        {
+          "name": "eqc1vn7t88",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        },
+        {
+          "name": "eqcvjcku2f",
+          "requested_by": "browser-b6c847d19e20-requester@example.invalid"
+        }
+      ]
+    }
+  },
+  "timeline": {
+    "name": "eqc1vn7t88",
+    "events": [
+      {
+        "name": "eqgml9nuve",
+        "action": "Submitted",
+        "actor": "browser-b6c847d19e20-requester@example.invalid",
+        "principal": null,
+        "creation": "2026-10-12 07:18:16.045778",
+        "note": ""
+      },
+      {
+        "name": "f82pk3rr3o",
+        "action": "Approve",
+        "actor": "browser-b6c847d19e20-delegate@example.invalid",
+        "principal": "browser-b6c847d19e20-manager@example.invalid",
+        "creation": "2026-10-12 07:18:59.452622",
+        "note": "<img src=\"x\"> synthetic delegated decision"
+      }
+    ],
+    "has_more": false,
+    "next_start": 100,
+    "timezone": "Africa/Cairo"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "checked_at": "2026-10-12T04:30:22.033675+00:00",
+  "classification": "Local synthetic development checkpoint; not HR acceptance or release",
+  "native_regression": "docs/sprints/evidence/ownership-joining-final-2026-10-12.json",
+  "suites_passed": 13,
+  "source_hashes_match_current": true,
+  "http_concurrency": "docs/sprints/evidence/ownership-joining-http-2026-10-12.json",
+  "browser": "docs/sprints/evidence/browser/review-views/results.json",
+  "same_record_rest_denial": "docs/sprints/evidence/browser/review-views/department-requester-update-rest.json",
+  "committed_callbacks": "docs/sprints/evidence/ownership-committed-2026-10-12.json",
+  "syntax": {
+    "python": 171,
+    "json": 32,
+    "javascript": 16,
+    "status": "PASS"
+  },
+  "ruff": "PASS",
+  "baseline": {
+    "requirements": 98,
+    "selected": 40,
+    "cases": 80,
+    "reference_hashes": "PASS",
+    "translations": 1029,
+    "extracted_keys": 944,
+    "missing": 0
+  },
+  "limits": [
+    "Applicant ownership and Void Incorrect Joining native controls are not browser-tested.",
+    "Source task ownership means application next action; generic ToDo is outside this fixture.",
+    "Joining reversal supports unused erroneous external hires only, not payroll reversal or transfer correction.",
+    "Identity/provider, external audit seal, Board/personal-interest policy and HR acceptance remain unresolved."
+  ]
+}

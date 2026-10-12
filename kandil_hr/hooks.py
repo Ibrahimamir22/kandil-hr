@@ -390,6 +390,7 @@ doc_events.setdefault("User", {}).update(
 )
 
 doctype_js["Job Opening"] = "public/js/job_opening.js"
+doctype_js["Job Applicant"] = "public/js/job_applicant.js"
 
 has_permission["Kandil Authority Rule"] = "kandil_hr.foundation.security.scoped_permission"
 permission_query_conditions["Kandil Authority Rule"] = "kandil_hr.recruitment.models.authority_query"
@@ -427,3 +428,42 @@ _old = _events.get("validate")
 _events["validate"] = ([_old] if isinstance(_old, str) else list(_old or [])) + [
 	"kandil_hr.organization.codes.protect_target_scope"
 ]
+
+doc_events["Employee Onboarding"]["validate"] = [
+	"kandil_hr.foundation.security.validate_hr_document",
+	"kandil_hr.recruitment.joining_corrections.validate_onboarding",
+]
+doc_events["Employee Onboarding"]["before_update_after_submit"] = (
+	"kandil_hr.recruitment.joining_corrections.validate_onboarding"
+)
+doc_events["Employee Onboarding"]["on_trash"] = (
+	"kandil_hr.recruitment.joining_corrections.protect_onboarding_delete"
+)
+doc_events["Payroll Entry"] = {
+	"validate": "kandil_hr.recruitment.joining_corrections.validate_payroll_entry",
+	"before_update_after_submit": "kandil_hr.recruitment.joining_corrections.validate_payroll_entry",
+}
+from kandil_hr.recruitment.employee_links import EMPLOYEE_LINKS as _employee_links
+
+for _dt in _employee_links:
+	for _event in ("validate", "before_update_after_submit"):
+		_events = doc_events.setdefault(_dt, {})
+		_old = _events.get(_event)
+		_events[_event] = ([_old] if isinstance(_old, str) else list(_old or [])) + [
+			"kandil_hr.recruitment.joining_corrections.validate_employee_use"
+		]
+
+# Native organization units require company authority and record the change reason.
+for _event in ("validate", "before_save", "on_update"):
+	_events = doc_events.setdefault("Department", {})
+	_old = _events.get(_event)
+	_events[_event] = ([_old] if isinstance(_old, str) else list(_old or [])) + [
+		"kandil_hr.organization.units." + _event
+	]
+has_permission["Department"] = "kandil_hr.organization.units.permission"
+permission_query_conditions["Department"] = "kandil_hr.organization.units.query"
+
+# Application ownership is distinct from generic native task allocation.
+doc_events["Job Applicant"]["validate"].append("kandil_hr.recruitment.ownership.validate_applicant")
+doc_events["User"]["on_update"].append("kandil_hr.recruitment.ownership.schedule_disabled_handoff")
+scheduler_events.setdefault("hourly", []).append("kandil_hr.recruitment.ownership.process_disabled_handoffs")

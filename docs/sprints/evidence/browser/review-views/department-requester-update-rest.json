@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-10-12T04:29:26.072186+00:00",
+  "case_id": "AT-ORG-007-01",
+  "run_id": "b6c847d19e20",
+  "authenticated_requester": true,
+  "csrf_present": true,
+  "same_unit": "BROWSER-b6c847d19e20-UNIT - Bb6c84",
+  "read_status": 200,
+  "update_method": "frappe.client.save",
+  "update_status": 403,
+  "exc_type": "PermissionError",
+  "state": {
+    "unit": "BROWSER-b6c847d19e20-UNIT - Bb6c84",
+    "before_sha256": "ab08179d411981e8654acb7590bf5a4624c1aea23f07a3632ba4344c0032be0a",
+    "after_sha256": "ab08179d411981e8654acb7590bf5a4624c1aea23f07a3632ba4344c0032be0a",
+    "record_unchanged": true
+  },
+  "passed": true,
+  "cleanup": {
+    "cleaned": true,
+    "requester_disabled": true,
+    "grant_revoked": true,
+    "record_unchanged": true,
+    "audit_retained": true
+  }
+}

@@ -208,6 +208,24 @@ def offer_actions(name):
 	result["managed"] = True
 	request = frappe.get_doc("Kandil Hiring Request", opening.custom_kandil_request)
 	request.check_permission("read")
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.foundation.security import request_scope
+
+		result.update(
+			request=request.name,
+			expected_version=str(request.modified),
+			joining_voided=bool(offer.get("custom_kandil_joining_voided")),
+			void_joining=(
+				"Kandil Recruiter" in frappe.get_roles()
+				and frappe.db.get_value("Kandil Organization Settings", request.company, "hr_approver")
+				== frappe.session.user
+				and request_scope(request, frappe.session.user, "manage")
+				and result["outcome"] == "Joined"
+				and not offer.get("custom_kandil_joining_voided")
+				and request.status in ("Approved", "Closed")
+				and opening.custom_kandil_vacancy_state not in ("Closed", "Cancelled")
+			),
+		)
 	result["record_outcome"] = (
 		"Kandil Recruiter" in frappe.get_roles()
 		and offer.docstatus == 1

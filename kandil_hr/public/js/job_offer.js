@@ -11,6 +11,17 @@ frappe.ui.form.on('Job Offer', {
         frm.remove_custom_button(__('Create Employee'));
         frm.add_custom_button(__('HR workspace'), () => window.location.assign('/kandil-pilot'));
         frm.set_intro(actions.outcome === 'Pending' ? __('Accepted offers do not create employees. Confirm actual joining using Record Joining Outcome.') : __('Joining outcome: {0}', [frappe.utils.escape_html(__(actions.outcome))]), 'blue');
+        if (actions.joining_voided) frm.set_intro(__('This joining was voided. Its original records are retained for audit.'), 'orange');
+        if (actions.void_joining) frm.add_custom_button(__('Void Incorrect Joining'), () => {
+          frappe.prompt([{ fieldname: 'reason', fieldtype: 'Small Text', label: __('Reason'), reqd: 1 }], values => {
+            frappe.confirm(__('Void this incorrect joining, deactivate its unused employee record and reopen one vacancy? Original records will be retained.'), () => {
+              frappe.call({ method: 'kandil_hr.recruitment.joining_corrections.void_joining',
+                args: { name: actions.request, offer_name: name, expected_version: actions.expected_version, command_id: crypto.randomUUID(), reason: values.reason }, freeze: true,
+                callback: () => { frappe.msgprint(__('Incorrect joining voided and vacancy reconciled.')); frm.reload_doc(); }
+              });
+            });
+          });
+        });
         if (!actions.record_outcome) return;
         frm.add_custom_button(__('Record Joining Outcome'), () => {
           frappe.prompt([

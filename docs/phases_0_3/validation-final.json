@@ -5,8 +5,8 @@
   "batch_cases": 80,
   "source_hashes_checked": true,
   "translation_csv": "PASS",
-  "translation_rows": 937,
-  "extracted_keys": 863,
+  "translation_rows": 1029,
+  "extracted_keys": 944,
   "missing_translation_keys": [],
   "raw_throw_or_deny_calls_to_review": [
     {
@@ -146,17 +146,12 @@
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 150,
+      "line": 157,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 167,
-      "call": "deny"
-    },
-    {
-      "file": "kandil_hr/pilot/extensions.py",
-      "line": 185,
+      "line": 174,
       "call": "deny"
     },
     {
@@ -166,47 +161,52 @@
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 198,
+      "line": 201,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 63,
+      "line": 206,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 103,
+      "line": 66,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 188,
+      "line": 106,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 73,
+      "line": 196,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 114,
+      "line": 76,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 207,
+      "line": 121,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 75,
+      "line": 215,
       "call": "deny"
     },
     {
       "file": "kandil_hr/pilot/extensions.py",
-      "line": 140,
+      "line": 78,
+      "call": "deny"
+    },
+    {
+      "file": "kandil_hr/pilot/extensions.py",
+      "line": 147,
       "call": "deny"
     }
   ],

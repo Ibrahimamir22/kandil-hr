@@ -1,8 +1,7 @@
 """Parity joining keeps the position, capacity, vacancy and request in one transaction.
 
-Existing pilot behavior is unchanged. This module deliberately has no correction
-or fill-void operation: dated assignments and native Employee history do not yet
-have an approved reversal contract.
+Existing pilot behavior is unchanged. Incorrect external-hire joins can be voided
+through joining_corrections after checking their complete retained lineage.
 """
 
 import frappe
@@ -53,6 +52,10 @@ def offer_context(offer_name):
 		frappe.db.sql(
 			"SELECT name FROM `tabKandil Position Assignment` WHERE position=%s ORDER BY name FOR UPDATE",
 			(cap.position,),
+		)
+	if doc.requested_position:
+		frappe.db.sql(
+			"SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (doc.requested_position,)
 		)
 	# Save notifies the requester. Lock all eventual User rows in one order before
 	# current identity/grant checks to avoid opposing actor/recipient lock order.
@@ -114,6 +117,8 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 	if outcome not in ("Joined", "No Show", "Withdrawn"):
 		frappe.throw(_("Choose Joined, No Show or Withdrawn."))
 	doc, cap, line, offer, applicant, opening = offer_context(offer_name)
+	if offer.get("custom_kandil_joining_voided"):
+		frappe.throw(_("This joining was voided. Create a new application for a later hire."))
 	previous = offer.custom_kandil_outcome or "Pending"
 	# Replay remains possible after the final fill closes the vacancy and parent.
 	# Current authentication/scope is checked before returning any recorded result.
@@ -161,7 +166,7 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 			# This prevents a second joining that waited on Company from overlooking
 			# a just-committed dated assignment.
 			allocations = frappe.db.sql(
-				"SELECT valid_from,valid_until,allocation FROM `tabKandil Position Assignment` WHERE position=%s FOR UPDATE",
+				"SELECT valid_from,valid_until,allocation FROM `tabKandil Position Assignment` WHERE position=%s AND is_voided=0 FOR UPDATE",
 				(position.name,),
 				as_dict=True,
 			)

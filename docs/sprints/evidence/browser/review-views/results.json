@@ -1,0 +1,108 @@
+{
+  "suite": "native-review-views-browser",
+  "run_id": "b6c847d19e20",
+  "checked_at": "2026-10-12T04:26:00.272966+00:00",
+  "checks": [
+    {
+      "group": "delegated_decision_english_timeline",
+      "status": "PASS",
+      "actual": "Native Approve through delegated account produced exactly one event with delegate actor, original manager principal and stored creation time; submitted then decision order matches backend."
+    },
+    {
+      "group": "arabic_rtl_timeline_escaping",
+      "status": "PASS",
+      "actual": "Saved requester locale ar, document dir rtl; translated headers/explanation; literal sanitized img note, zero img/script/iframe elements inside dialog."
+    },
+    {
+      "group": "manager_own_and_scoped_views",
+      "status": "PASS",
+      "actual": "My Requests shows one manager-owned draft; Requests in My Scope shows that plus two related authorized requests; native backend matches."
+    },
+    {
+      "group": "arabic_requester_my_requests",
+      "status": "PASS",
+      "actual": "Corrected own filter has الفلاتر 1 and exactly two requester records; manager-owned request absent."
+    },
+    {
+      "group": "department_authorized_native_ui",
+      "status": "PASS",
+      "actual": "Companywide granted Sector Approver created Department and updated group/leaf state through native form; three immutable audit events with actor, before/after and reason."
+    },
+    {
+      "group": "department_requester_actual_rest",
+      "status": "PASS",
+      "actual": "Ordinary Requester password-authenticated with valid CSRF; frappe.client.insert returns403 PermissionError and denied Department absent. Native list/read permission does not grant creation."
+    }
+  ],
+  "passed_groups": 6,
+  "cleanup": {
+    "run_id": "b6c847d19e20",
+    "cleaned": true,
+    "disabled_users": 5,
+    "ledger": {
+      "structural": 5,
+      "occupied": 0,
+      "reserved": 0,
+      "open_slots": 0,
+      "available": 5
+    },
+    "audit_retained": true
+  },
+  "source_hashes_at_completion": {
+    "kandil_hr/recruitment/review_views.py": "afbe44adecb85afd9dda59554f4a01cfbbc242602d626960025770eecea808d7",
+    "kandil_hr/recruitment/api.py": "7caebbd2a110a947c308caa43d2810e63c50a5dbe86b6a054a8712b712fa074d",
+    "kandil_hr/recruitment/review_browser_fixture.py": "78410bba4b7c086005fc2abba9cbf3e53834c4e4ab13579313f91344cf68cb8c",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/foundation/mutation_access.py": "854df434b5880834abeceae4c898d8d93c33e859a74cf6e09ee42c442847ea84",
+    "kandil_hr/organization/units.py": "6e4382a134a461047cb7580f9e24cd48f27dfbc18124744173a0a18b14e682aa",
+    "kandil_hr/public/js/hiring_request_list.js": "f06b3fa86b08c4288b716d3c3ba2506f4013a4be0689ac939537d1fb8f944bdd",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "a8e4af666b88a8fcd1b1b99893f09c0fc7e507f3d5661bcb5b456086f1dd4001",
+    "kandil_hr/translations/ar.csv": "fcd0d57c5e8fbd398bdb89a40e3fbbd892751c3da0080bdc30c9c895e743ea88"
+  },
+  "proposed_acceptance": {
+    "AT-REQ-010-01": "proposed_pass with native5 + this UI proof",
+    "AT-REQ-010-02": "proposed_pass with native5 + exact delegated AR/EN event proof",
+    "AT-ORG-007-01": "proposed_pass with native UI create/update plus successful requester same-unit read and actualHTTP same-unit save denial, fullstoredrecord unchanged",
+    "AT-REQ-001-01": "native proposed_pass; no UI tamper claim",
+    "AT-REQ-001-02": "partial: no process discriminator contract implemented"
+  },
+  "issues_found_and_resolved": [
+    {
+      "issue": "My Requests passed a single tuple to FilterArea.add; silently left manager scoped3 visible.",
+      "fix": "Pass nested filter tuples; browser rerun proved own1 and scope3."
+    },
+    {
+      "issue": "Initial Department entry attempted save before Company Link option resolved and Tab focused unauthorized Payroll Cost Center.",
+      "resolution": "Selected exact authorized Company option, then saved/updated successfully. No finance permission expanded. Initial screenshot retained as diagnostic history."
+    }
+  ],
+  "limits": [
+    "Other agents changed unrelated source in parallel; hashes are completion checkpoint only, not unchanged-before/after proof.",
+    "Historical missing principal stays null; no reconstruction.",
+    "Native Department payroll autocomplete correctly denies Cost Center to this role; console is not claimed clean.",
+    "No Applicant ownership browser proof in this suite.",
+    "Synthetic local parity evidence, not production or HR signoff."
+  ],
+  "artifacts": [
+    "backend.json",
+    "cleanup.json",
+    "department-created-dom.txt",
+    "department-created.jpg",
+    "department-initial-ui-block-dom.txt",
+    "department-initial-ui-block.jpg",
+    "department-requester-rest.json",
+    "department-updated-dom.txt",
+    "department-updated.jpg",
+    "manager-own-dom.txt",
+    "manager-own.jpg",
+    "manager-scope-dom.txt",
+    "manager-scope.jpg",
+    "my-requests-ar-dom.txt",
+    "my-requests-ar.jpg",
+    "timeline-ar-dom.txt",
+    "timeline-ar.jpg",
+    "timeline-en-dom.txt",
+    "timeline-en.jpg"
+  ],
+  "supplemental_same_unit_http": "department-requester-update-rest.json"
+}

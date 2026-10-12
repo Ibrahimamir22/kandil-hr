@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-12T04:25:42.143018+00:00",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    "UUID fixture committed with accountable owner and next-action owner",
+    "Native disable rolled back to savepoint then commit leaves ownership intact",
+    "Committed native disable invokes cleanup once, preserves task and immutable original-actor history",
+    "Two accounts disabled in one native commit both receive their cleanup callbacks",
+    "Repeated cleanup is idempotent",
+    "All captured UUID fixture documents and child records cleaned; original settings restored"
+  ],
+  "passed": 6,
+  "cleaned_documents": 111,
+  "source_sha256": {
+    "kandil_hr/recruitment/ownership.py": "ece4339103ca859e4c09105ce4c7e25e8ae7e29bfe83bb3e74779c87d6b63f60",
+    "kandil_hr/recruitment/ownership_commit_runner.py": "52964a5bc5fea89c805de676a09dbcb1a13b2c8a9216153f8b6929a0ba749362",
+    "kandil_hr/recruitment/vacancies.py": "ffd0e0e9f485344dbcddad5111c867c79faf009e51d85266449bca1e593f9031",
+    "kandil_hr/hooks.py": "64ea4fc2338ce21cfeafac9b2d0d7dee1384212182244a56cd986a4b898bab4d"
+  },
+  "limits": [
+    "Synthetic local committed callback proof; no browser User disable or generic ToDo coverage.",
+    "No external email; no production traffic."
+  ]
+}

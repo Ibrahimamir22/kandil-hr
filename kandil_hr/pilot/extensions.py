@@ -15,6 +15,9 @@ def pilot_opening(name, lock=False):
 	if not opening.get("custom_kandil_request"):
 		return None
 	parity = frappe.conf.get("kandil_parity_enabled")
+	if parity:
+		company = frappe.db.get_value("Kandil Hiring Request", opening.custom_kandil_request, "company")
+		frappe.db.sql("SELECT name FROM `tabCompany` WHERE name=%s FOR UPDATE", (company,))
 	request = frappe.get_doc(
 		"Kandil Hiring Request", opening.custom_kandil_request, for_update=bool(lock or parity)
 	)
@@ -105,6 +108,10 @@ class OfferMixin:
 			"custom_kandil_outcome",
 			"custom_kandil_outcome_reason",
 			"custom_kandil_assignment",
+			"custom_kandil_joining_voided",
+			"custom_kandil_void_reason",
+			"custom_kandil_voided_by",
+			"custom_kandil_voided_on",
 		]:
 			if not internal() and (
 				self.get(field) or ("Pending" if field == "custom_kandil_outcome" else "")
@@ -169,6 +176,7 @@ def validate_employee(doc, method=None):
 	if (
 		old
 		and old.get("custom_kandil_offer")
+		and not frappe.flags.get("kandil_joining_void")
 		and any(
 			doc.get(k) != old.get(k)
 			for k in [
@@ -183,7 +191,7 @@ def validate_employee(doc, method=None):
 		)
 	):
 		deny("Pilot joining assignment is immutable; transfers and exits require a separate workflow.")
-	for field in ["custom_kandil_offer", "custom_kandil_applicant"]:
+	for field in ["custom_kandil_offer", "custom_kandil_applicant", "custom_kandil_joining_voided"]:
 		if not internal() and (doc.get(field) or "") != ((old.get(field) if old else None) or ""):
 			deny("Joining links are server managed.")
 

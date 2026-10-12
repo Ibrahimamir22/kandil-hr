@@ -19,6 +19,24 @@ frappe.ui.form.on('Kandil Hiring Request', {
       callback: ({ message: actions }) => {
         if (!actions || frm.doc.name !== name || frm.kandil_action_generation !== generation) return;
         extended = actions.extended; version = actions.expected_version; step = actions.step_id;
+        if (extended) frm.add_custom_button(__('Decision Timeline'), () => {
+          const dialog = new frappe.ui.Dialog({title: __('Decision Timeline'), size: 'extra-large', fields: [{fieldname:'events',fieldtype:'HTML'}]});
+          const escape = value => frappe.utils.escape_html(String(value ?? ''));
+          let entries = [];
+          const load = start => frappe.call({
+            method: 'kandil_hr.recruitment.review_views.timeline', type: 'GET', args: {name, start},
+            callback: ({message: data}) => {
+              if (!data || data.name !== name) return;
+              entries = entries.concat(data.events);
+              const headings = ['Action', 'Actor', 'Principal', 'Time', 'Note'].map(label => '<th>'+escape(__(label))+'</th>').join('');
+              const rows = entries.map(row => '<tr>'+[__(row.action), row.actor, row.principal || __('Not recorded'), row.creation, row.note].map(value => '<td style="white-space:pre-wrap">'+escape(value)+'</td>').join('')+'</tr>').join('');
+              dialog.fields_dict.events.$wrapper.html('<p>'+escape(__('Event times use {0}.', [data.timezone]))+'</p><p>'+escape(__('Missing historical principals are not inferred from the current route.'))+'</p><div class="table-responsive"><table class="table table-bordered"><thead><tr>'+headings+'</tr></thead><tbody>'+rows+'</tbody></table></div>');
+              if (data.has_more) dialog.set_primary_action(__('Load More'), () => load(data.next_start));
+              else dialog.hide_primary_action();
+            }
+          });
+          dialog.show(); load(0);
+        });
         if (extended) frappe.call({
           method: 'kandil_hr.recruitment.preview.headcount', type: 'GET', args: {name},
           callback: ({message: guidance}) => {

@@ -1079,6 +1079,10 @@ def import_preview(doc):
 
 		return master_preview(doc)
 	if kind in ["Hierarchy", "Assignments"]:
+		if kind == "Assignments":
+			from kandil_hr.organization.assignment_reconciliation import require_matches
+
+			require_matches(doc)
 		return dated_import_preview(doc, kind)
 	fail("Select a supported organization import kind.")
 
@@ -1185,11 +1189,31 @@ def preview_csv_import(name, csv_text, expected_version):
 			"baseline_reference": doc.get("baseline_reference"),
 		}
 	)
-	preview = import_preview(proposed)
+	reconciliation = None
+	if proposed.import_kind == "Assignments":
+		from kandil_hr.organization.assignment_reconciliation import preview as match_preview
+
+		reconciliation = match_preview(proposed)
+	preview = (
+		import_preview(proposed)
+		if not reconciliation or reconciliation["valid"]
+		else [{"action": "Unmatched" if r["unmatched"] else "Matched"} for r in reconciliation["rows"]]
+	)
 	return {
+		"reconciliation": reconciliation,
 		"rows": rows,
 		"preview": preview,
 		"row_count": len(rows),
 		"digest": import_digest(proposed),
 		"expected_version": str(doc.modified),
 	}
+
+
+@frappe.whitelist()
+def preview_assignment_reconciliation(name):
+	doc = get_locked("Kandil Organization Import", name)
+	if doc.import_kind != "Assignments":
+		fail("Select an Assignments import before reconciling employee references.")
+	from kandil_hr.organization.assignment_reconciliation import preview
+
+	return preview(doc)

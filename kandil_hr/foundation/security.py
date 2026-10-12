@@ -56,6 +56,13 @@ def request_scope(doc, user=None, capability="read"):
 	if not enabled():
 		return True
 	branches = []
+	if frappe.conf.get("kandil_parity_enabled") and doc.get("requested_position"):
+		position = frappe.db.get_value(
+			"Kandil Position", doc.requested_position, ["company", "department", "branch"], as_dict=True
+		)
+		if not position or position.company != doc.company or position.department != doc.department:
+			return False
+		branches.append(position.branch)
 	for line in doc.get("lines") or []:
 		branch = frappe.db.get_value("Kandil Capacity", line.capacity, "branch")
 		if not branch:
@@ -102,8 +109,15 @@ def scope_query(doctype, user=None, capability="read"):
 		return "1=0"
 	base = f"g.user={u} AND g.company={table}.company AND g.revoked=0 AND g.valid_from<={day} AND (g.valid_until IS NULL OR g.valid_until>={day}) AND {department}{extra}"
 	if doctype == "Kandil Hiring Request":
-		# A document exposes ALL its lines. One permitted branch cannot reveal another.
-		return f"""EXISTS (SELECT 1 FROM `tabKandil Access Grant` g WHERE {base})
+		position_scope = ""
+		if frappe.conf.get("kandil_parity_enabled"):
+			position_scope = f"""AND (IFNULL({table}.requested_position,'')='' OR EXISTS (
+			SELECT 1 FROM `tabKandil Position` p WHERE p.name={table}.requested_position
+			AND p.company={table}.company AND p.department={table}.department
+			AND EXISTS (SELECT 1 FROM `tabKandil Access Grant` g WHERE {base}
+			AND (IFNULL(g.branch,'')='' OR g.branch=p.branch))))"""
+		# A document exposes ALL its lines and its selected position.
+		return f"""EXISTS (SELECT 1 FROM `tabKandil Access Grant` g WHERE {base}) {position_scope}
 		AND (EXISTS (SELECT 1 FROM `tabKandil Request Line` present_line WHERE present_line.parent={table}.name AND present_line.parenttype='Kandil Hiring Request')
 		OR EXISTS (SELECT 1 FROM `tabKandil Access Grant` g WHERE {base} AND IFNULL(g.branch,'')=''))
 		AND NOT EXISTS (SELECT 1 FROM `tabKandil Request Line` l

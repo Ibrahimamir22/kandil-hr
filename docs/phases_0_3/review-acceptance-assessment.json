@@ -1,0 +1,50 @@
+[
+  {
+    "case_id": "AT-REQ-001-01",
+    "status": "proposed_pass",
+    "actual": "A1-scoped manager creates A1 draft; native frappe.client.save changing requested_position to B1 or line capacity to B1 is denied and original request unchanged. Submit/review independently revalidate selected-position scope.",
+    "evidence": [
+      "docs/sprints/evidence/recruitment-review-views-2026-10-12.json"
+    ],
+    "gap": "Final integrated source regression still required; no browser payload-tamper claim."
+  },
+  {
+    "case_id": "AT-REQ-001-02",
+    "status": "partial",
+    "actual": "Dated delegate wrong unit, expired and future intervals denied without ledger/event mutations; inclusive current-day delegation acts successfully.",
+    "evidence": [
+      "docs/sprints/evidence/recruitment-review-views-2026-10-12.json"
+    ],
+    "gap": "No process discriminator is modeled; do not claim the entire unit/process/interval clause."
+  },
+  {
+    "case_id": "AT-REQ-010-01",
+    "status": "proposed_pass",
+    "actual": "Native own-only API and list filter checked: requester2 own, manager1 own versus3 authorized, HR3 authorized; revoked scope returns no native list records and denies timeline. Native AR own-filter and EN manager own/scope buttons rendered and verified after fixing FilterArea tuple shape.",
+    "evidence": [
+      "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+      "docs/sprints/evidence/browser/review-views/results.json"
+    ],
+    "gap": "Final integrated source checkpoint pending; not HR acceptance."
+  },
+  {
+    "case_id": "AT-REQ-010-02",
+    "status": "proposed_pass",
+    "actual": "Read-only timeline projects original immutable event creation order, actor and principal exactly, including real browser delegated action. Prior events unchanged, pagination matches full sequence, mutation denied. AR/EN rendered; escaped note markup creates no elements. Missing historical principal remains absent.",
+    "evidence": [
+      "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
+      "docs/sprints/evidence/browser/review-views/results.json"
+    ],
+    "gap": "Final integrated source checkpoint pending; no historical principal reconstruction."
+  },
+  {
+    "case_id": "AT-ORG-007-01",
+    "status": "proposed_pass",
+    "actual": "Company-scoped Sector Approver creates and edits native Department with audited reasons; ordinary Requester successfully reads the SAME existing unit over HTTP, then modified native frappe.client.save returns403 PermissionError with validCSRF. Complete stored-record SHA unchanged. Separate new-record INSERT also denied. Temporary exact-unit read grant revoked and requester disabled afterward.",
+    "evidence": [
+      "docs/sprints/evidence/browser/review-views/results.json",
+      "docs/sprints/evidence/browser/review-views/department-requester-update-rest.json"
+    ],
+    "gap": "Combine with final frozen-source organization native gate; this is local synthetic evidence, not HR signoff."
+  }
+]

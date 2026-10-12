@@ -108,3 +108,14 @@ def install():
 			],
 		}
 	)
+	from kandil_hr.recruitment.joining_corrections import install_fields
+
+	install_fields()
+
+	from kandil_hr.organization.units import install as install_units
+
+	install_units()
+
+	from kandil_hr.recruitment.ownership import install_ownership_fields
+
+	install_ownership_fields()
