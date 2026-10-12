@@ -4,7 +4,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 **Current status: P0–P3 implementation and verification in progress.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/sprints/SPRINT_PLAN.md), [task tracker](docs/sprints/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
 
-The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **68 passed, 8 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
+The [current checkpoint and review instructions](docs/sprints/CHECKPOINT.md) record **69 passed, 7 partial and 4 blocked** baseline cases, with the tested source identity and remaining gates.
 
 ## Running locally
 

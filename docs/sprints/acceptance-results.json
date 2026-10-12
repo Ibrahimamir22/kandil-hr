@@ -304,14 +304,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/authority-final-2026-10-12.json",
-    "commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
-    "checked_at": "2026-10-12T05:17:19.402199+00:00",
+    "evidence": "docs/sprints/evidence/revision-mail-final-2026-10-12.json; docs/sprints/evidence/browser/mail-capture/a173fb4920ce/results.json; docs/sprints/REVISION_MAIL_REVIEW.md",
+    "commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9",
+    "checked_at": "2026-10-12T06:05:01.415448+00:00",
     "owner": "Organization",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "APPROVALS/TEAM capability isolation, transfer-create denial, revocation before the next decision and preserved prior decisions pass. The later probation workflow has no explicit authorization gate/test in this P0-P3 implementation, so that clause remains unproved.",
-    "defect": "APPROVALS/TEAM capability isolation, transfer-create denial, revocation before the next decision and preserved prior decisions pass. The later probation workflow has no explicit authorization gate/test in this P0-P3 implementation, so that clause remains unproved.",
+    "actual": "APPROVALS/TEAM isolation, revocation and retained decisions pass. Two additional native endpoint tests deny Employee.final_confirmation_date and Employee Transfer create/save/set_value/submit/delete while records, roles and grants stay unchanged and authorized hiring approval succeeds. The complete P8 probation lifecycle remains absent; this proves installed native surfaces only.",
+    "defect": "APPROVALS/TEAM isolation, revocation and retained decisions pass. Two additional native endpoint tests deny Employee.final_confirmation_date and Employee Transfer create/save/set_value/submit/delete while records, roles and grants stay unchanged and authorized hiring approval succeeds. The complete P8 probation lifecycle remains absent; this proves installed native surfaces only.",
     "hr_acceptance": "pending"
   },
   {
@@ -1101,15 +1101,15 @@
       "status": "not_run",
       "evidence": null
     },
-    "status": "partial",
-    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
-    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
-    "checked_at": "2026-10-12T05:48:51.938493+00:00",
+    "status": "passed",
+    "evidence": "docs/sprints/evidence/revision-mail-final-2026-10-12.json; docs/sprints/evidence/browser/mail-capture/a173fb4920ce/results.json; docs/sprints/REVISION_MAIL_REVIEW.md",
+    "commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9",
+    "checked_at": "2026-10-12T06:05:01.415448+00:00",
     "owner": "QA",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Existing notification identity/retry checks pass. New JD document capture composes private MIME/PDF and labels it Captured locally, never externally sent. The Hiring Request notification mail-sink adapter remains missing; JD capture does not close that boundary.",
-    "defect": "Existing notification identity/retry checks pass. New JD document capture composes private MIME/PDF and labels it Captured locally, never externally sent. The Hiring Request notification mail-sink adapter remains missing; JD capture does not close that boundary.",
+    "actual": "Hiring-request notifications now create a private MIME capture labeled Captured locally and one local Notification Log in the same transaction. Exact retry retains outbox/capture/log identities. Thirteen native tests and six EN/AR browser groups verify content, private access, revocation, rollback and actual EML downloads; no external transport. Four Board recipient checks and a two-connection disabled-principal race pass.",
+    "defect": null,
     "hr_acceptance": "pending"
   },
   {
@@ -1564,14 +1564,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/audit-document-final-2026-10-12.json; docs/sprints/evidence/audit-document-http-2026-10-12.json; docs/sprints/evidence/browser/document-delivery/dd8be062a154/results.json; docs/sprints/AUDIT_DOCUMENT_REVIEW.md",
-    "commit": "428f5c38579065beb65cb5635b730face3251fb5",
-    "checked_at": "2026-10-12T05:48:51.938493+00:00",
+    "evidence": "docs/sprints/evidence/revision-mail-final-2026-10-12.json; docs/sprints/evidence/browser/mail-capture/a173fb4920ce/results.json; docs/sprints/REVISION_MAIL_REVIEW.md",
+    "commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9",
+    "checked_at": "2026-10-12T06:05:01.415448+00:00",
     "owner": "Security",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Recruitment and structural command envelopes retain exact reviewed payload/version, actor/principal/Board identity, primary and related before/after state, result and Cairo timestamp. Native privacy, rollback and HTTP replay prove selected boundaries. Original joining, JD/grade approval, imports, delegation/native/system mutations still need adapters; full decision coverage remains incomplete.",
-    "defect": "Recruitment and structural command envelopes retain exact reviewed payload/version, actor/principal/Board identity, primary and related before/after state, result and Cairo timestamp. Native privacy, rollback and HTTP replay prove selected boundaries. Original joining, JD/grade approval, imports, delegation/native/system mutations still need adapters; full decision coverage remains incomplete.",
+    "actual": "Exact transactional envelopes cover recruitment/structure commands plus JD/Grade approval and review/apply for all five import kinds. Full JD children, reviewed rows/digest, actual related records and snapshots, explicit server invocation identity, replay and rollback pass. Original joining, delegation and selected native/system operations remain outside this envelope inventory.",
+    "defect": "Exact transactional envelopes cover recruitment/structure commands plus JD/Grade approval and review/apply for all five import kinds. Full JD children, reviewed rows/digest, actual related records and snapshots, explicit server invocation identity, replay and rollback pass. Original joining, delegation and selected native/system operations remain outside this envelope inventory.",
     "hr_acceptance": "pending"
   },
   {
@@ -1648,14 +1648,14 @@
       "evidence": null
     },
     "status": "partial",
-    "evidence": "docs/sprints/evidence/payroll-boundary-native-2026-10-12.json; docs/sprints/evidence/checkpoint-summary-2026-10-12.json",
-    "commit": "d3e2c66100926cfa8ad8f886e6a3debf5a4c0865",
-    "checked_at": "2026-10-12T03:36:04.163198+00:00",
+    "evidence": "docs/sprints/evidence/revision-mail-final-2026-10-12.json; docs/sprints/evidence/browser/mail-capture/a173fb4920ce/results.json; docs/sprints/REVISION_MAIL_REVIEW.md",
+    "commit": "9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9",
+    "checked_at": "2026-10-12T06:05:01.415448+00:00",
     "owner": "QA",
     "site": "kandil-parity.localhost (synthetic; see evidence for pure/mocked checks)",
     "role": null,
-    "actual": "Implemented SLA/outbox jobs preserve hashes of 15 payroll/ledger tables with real payroll fixture records present. Future overdue-document automation is not implemented, so that clause remains unproved.",
-    "defect": "Implemented SLA/outbox jobs preserve hashes of 15 payroll/ledger tables with real payroll fixture records present. Future overdue-document automation is not implemented, so that clause remains unproved.",
+    "actual": "Implemented recruitment SLA/outbox jobs preserve hashes of 15 payroll/ledger tables with real payroll fixture records. Frozen DOC-002 overdue-document automation belongs to P7 and is absent; the exact P1 clause requiring that worker remains unproved. No no-op substitute or baseline wording change.",
+    "defect": "Implemented recruitment SLA/outbox jobs preserve hashes of 15 payroll/ledger tables with real payroll fixture records. Frozen DOC-002 overdue-document automation belongs to P7 and is absent; the exact P1 clause requiring that worker remains unproved. No no-op substitute or baseline wording change.",
     "hr_acceptance": "pending"
   },
   {

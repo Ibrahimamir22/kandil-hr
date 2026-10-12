@@ -1,19 +1,11 @@
 # قنديل — HR implementation checkpoint
 
-12 October 2026. Tested source: `428f5c38579065beb65cb5635b730face3251fb5`.
-The implementation goal remains active. This is a local development checkpoint;
-P0–P3, HR acceptance and production release are not complete.
+12 October 2026. Tested source: `9066ce0fbd42d13fc4a74f42d4a923c6e23c7ce9`.
+The goal remains active. This is a local development checkpoint; P0–P3, HR acceptance and production release are not complete.
 
 ## Repository and scope
 
-The private custom repository is [Ibrahimamir22/kandil-hr](https://github.com/Ibrahimamir22/kandil-hr).
-It contains Kandil code, native Frappe forms, Arabic translations, tests, evidence
-and the pinned installer. Official Frappe, ERPNext and HRMS clones remain separate,
-clean and unchanged. Odoo, other departments and production remain outside this goal.
-
-The plan has five sprints and 31 tracked tasks across four parallel lanes. Source
-work runs in parallel; migrations, shared-site fixtures and integration tests run
-serially. The tracker is updated at evidence checkpoints, not continuously.
+Private custom source: [Ibrahimamir22/kandil-hr](https://github.com/Ibrahimamir22/kandil-hr). Official Frappe, ERPNext and HRMS clones remain separate, clean and pinned. Odoo, other departments and production are outside this goal. Five sprints and 31 tasks use four parallel source lanes; shared database work runs serially. The tracker updates at verified checkpoints, not continuously.
 
 ## Review it locally
 
@@ -42,93 +34,31 @@ For Arabic, set the account's language to Arabic and reload. Native request/queu
 
 ## Current acceptance
 
-**68 passed / 8 partial / 4 blocked**, up from 67 / 9 / 4. All 80 baseline
-case definitions remain unchanged. These are technical outcomes, not an effort
-percentage or HR approval. Only the approved-document output/distribution case
-has gained complete acceptance evidence in this checkpoint.
+**69 passed / 7 partial / 4 blocked**, up from 68 / 8 / 4. The 80 frozen case definitions are unchanged; these are technical results, not HR acceptance or effort percentages. This checkpoint closes the hiring-request mail-sink case.
 
-Implemented and verified in this checkpoint:
+- **Private hiring notifications:** successful local outbox delivery now creates one immutable MIME capture and one local notice atomically. Retries preserve both identities. Recipient access is checked against current request scope; disabled or revoked recipients receive neither. Status is **Captured locally**. No email provider is called.
+- **Current authority:** exact frozen Board Vice recipients are supported. A queued delegate notice rechecks APPROVALS process, status, principal availability and CEO/Board rules under ordered locks. An independent-connection race confirms principal disablement after an older authorized snapshot suppresses capture and notification.
+- **Revision/import audit:** JD/Grade approvals and all five import kinds retain explicit before/after projections, full JD child/content fields, reviewed raw rows/digest, exact affected records and resulting snapshots. Deterministic server invocation IDs are labeled separately from client command IDs. Audit failure rolls back business effects; replay produces one envelope. Older records are not backfilled.
+- **Delegation isolation:** native Employee confirmation and Employee Transfer endpoints reject an APPROVALS-only delegate. Records, roles and grants remain unchanged, while the intended hiring approval still works. This is not the full P8 probation workflow.
 
-- **Command audits:** recruitment and structural commands retain the exact reviewed
-  payload/version, actor, acting principal, Board member/evidence when applicable,
-  before/after state, related capacity/ownership effects, result and Cairo timestamp.
-  Relocation includes capacity released at the old location. Failed audit insertion
-  rolls back the effect and receipt. Replayed commands do not create extra audits.
-- **Private audit access:** native forgery/edit/delete/rename, ordinary read/list/share,
-  actual private file/download/ZIP, report and export checks pass. Stale shares are
-  handled by the existing purge/strict attachment controls; database-operator tampering
-  remains outside this ordinary-API guarantee.
-- **Document capture:** approved JD HTML/PDF can be composed for 1–10 distinct eligible
-  portal users and downloaded as private EML. External candidates, invalid addresses,
-  extra recipients and out-of-scope users are rejected. Content is limited to scopes
-  visible to both sender and recipient. Losing an included scope or JD print permission
-  blocks subsequent access/replay/queued delivery. Old captures without valid scope
-  metadata fail closed. Status is **Captured locally**; no email is sent externally.
-- **Delegation:** native revocation requires a fresh reason and preserves original
-  reasons and approval metadata. Date normalization fixes native JSON form saves.
-  Existing CEO approval, process scopes and immutable version rules still pass.
-- **Headcount:** BLOCK rejects shortage before justification handling; WARN requires
-  at least ten trimmed characters and independent exception authority. The existing
-  Return/revise/resubmit lifecycle proves reservation 2→0→3, without double counting.
-
-The local capture command is under **Documents → Capture document delivery locally**
-on an approved JD revision. Its sender needs current native JD read/print and manage
-scope. A recipient opens the saved capture and chooses **Download captured mail**.
-These actions are local review tools; no mail provider is configured. For delegation,
-use **Delegation actions → Revoke delegation** and enter the new reason.
+A recipient can open **Kandil Mail Capture** from Desk search, open their captured request notice, and select **Download captured mail**. Other HR users cannot open that recipient's capture merely because they share the company. The browser fixture accounts have been disabled after testing. Existing private review accounts remain available through the manifest above. Earlier approved-JD document capture remains under its Documents menu.
 
 ## Verification
 
-- **23 suites** pass in one uninterrupted serial run on unchanged application source.
-  Organization has 51 checks plus 15 grouped acceptance scenarios; foundation audit
-  has 13 checks (5 pure and 8 native); recruitment audit has 8; delegation 10; authority
-  12; document capture 13; exact headcount 4. The suite report distinguishes native,
-  pure and mocked checks. These totals are separate from the 80 baseline cases.
-- **7 browser groups** pass for actual English/Arabic capture, recipient EML/PDF download,
-  outsider HTTP403, required revocation reason and persisted revocation. No client
-  runtime errors; source hashes stayed unchanged. The two downloaded PDF attachments
-  were rendered and visually checked: Arabic/English text is readable with no clipping
-  in these synthetic samples. This does not certify every possible long document.
-- **3 batches of 20 simultaneous HTTP calls** pass. Five seats admit five requests;
-  Manager and final HR replay each produce one transition, receipt and audit. Cleanup
-  restores structural5 / occupied0 / reserved0 / open0 / available5 and disables fixture
-  accounts. This is a short local race test, not production load certification.
-- Syntax checks cover 193 Python, 34 JSON and 18 JavaScript files. Ruff and the strict
-  frozen-baseline/reference validator pass. The Arabic catalogue has 1,204 rows with
-  zero missing statically extracted keys; HR terminology approval remains separate.
-- Independent review found and corrected document scope/print disclosure paths.
-  Follow-up review found no further actionable issue in those reviewed boundaries.
-  Prior failures remain preserved, including selector, fixture and actual UI findings.
-- New schema work targeted only synthetic port8102. Previous8100/8101 were not seeded
-  or migrated. Browser test users were disabled; immutable synthetic history is retained.
-  Queue inventory before the full run required no cleanup.
+- **28 suites PASS** across two serial segments. The first 19 passed before a test-runner discovery-count guard stopped execution; the remaining 9 passed after updating that count for the added test. Only that test file changed between segments; product source stayed identical. Each segment has unchanged before/after hashes. New focused coverage: mail 13, Board 4, independent authority race 1, revision/import 11, native delegation isolation 2; central command-origin coverage is added. These counts are distinct from 80 baseline cases.
+- **Six actual browser groups PASS**: native EN/AR forms and EML downloads, exact replay counts, same-company HR outsider 403, no client runtime errors and unchanged source hashes. Temporary downloaded MIME was checked then removed; no credentials or raw MIME payloads are included in evidence. Cleanup disabled this run's accounts and retained immutable synthetic history.
+- Static checks: 204 Python, 35 JSON and 19 JavaScript files; Ruff, strict baseline/reference hashes and Arabic catalogue pass. There are 1,224 translation rows and zero missing extracted keys. HR terminology approval remains separate.
+- Independent review found and fixed non-parity audit compatibility and Board/delegation delivery issues. Initial focused content/timestamp failures and the test discovery-count failure are retained with their corrections. A local Python 3.12 AST attempt was incompatible with this pinned Python 3.14 source; checks were rerun with Python 3.14.6.
+- Only 8102 received schema changes. Earlier 8100/8101 were not migrated or seeded. Upstream source is unchanged. No production deployment or external transport is claimed.
 
-Evidence: [serial regression](evidence/audit-document-final-2026-10-12.json),
-[HTTP concurrency](evidence/audit-document-http-2026-10-12.json),
-[browser7](evidence/browser/document-delivery/dd8be062a154/results.json),
-[PDF review](evidence/browser/document-delivery/dd8be062a154/pdf-visual-review.json),
-[cleanup](evidence/browser/document-delivery/dd8be062a154/cleanup.json),
-[review findings](AUDIT_DOCUMENT_REVIEW.md),
-[case mapping](../phases_0_3/ACCEPTANCE_EVIDENCE_MAPPING.md).
-Earlier ownership, session, authority and mobile proof keeps its own tested commit/time.
+Evidence: [serial 28](evidence/revision-mail-final-2026-10-12.json), [browser 6](evidence/browser/mail-capture/a173fb4920ce/results.json), [cleanup](evidence/browser/mail-capture/a173fb4920ce/cleanup.json), [static](evidence/revision-mail-static-2026-10-12.json), [review findings](REVISION_MAIL_REVIEW.md), [case mapping](../phases_0_3/ACCEPTANCE_EVIDENCE_MAPPING.md).
+
+Prior checkpoint `428f5c38579065beb65cb5635b730face3251fb5` retains [three 20-call HTTP races](evidence/audit-document-http-2026-10-12.json), [JD/browser 7](evidence/browser/document-delivery/dd8be062a154/results.json) and [PDF visual review](evidence/browser/document-delivery/dd8be062a154/pdf-visual-review.json). Those observations keep their original source/time; they are not relabeled as fresh runs of this commit.
 
 ## Remaining work
 
-The command-audit envelope still needs adapters for original joining outcomes,
-JD/grade approval, imports, delegation and selected native/system operations.
-See [coverage and limits](../phases_0_3/COMMAND_AUDIT_DESIGN.md).
-The exact pending2→3 case, durable shortage-denial history, hiring-request mail capture,
-probation isolation, overdue-document job and full override/operator governance remain
-partial. JD capture does not establish hiring-request mail-sink completion.
+Seven cases remain partial: complete audit adapter inventory, override/operator governance, exact pending reservation 2→3, durable shortage-denial history, full probation isolation and the overdue-document payroll-isolation clause. Original joining/delegation/native/system audit adapters remain. Frozen DOC-002 overdue-document automation belongs to P7 and is absent; the exact P1 case is retained as a dependency, not replaced by a no-op.
 
-Four blocked cases concern MFA/new-device/idle proof, external identity mapping/provider
-failure and externally protected audit seals. HR/IT must choose identity and recovery
-policy and audit-anchor custody. HR must review authority/headcount policy, terminology
-and real employee mapping. No provider, Odoo, BioTime, Sheets, payroll or AI integration
-is claimed complete.
+Four blocked cases require actual MFA/new-device/idle proof, external identity mapping/provider failure, and protected external audit anchors. HR/IT must choose identity/recovery policy and audit custody. HR must review authority/headcount policies, terminology and real employee mapping. No Odoo, BioTime, Sheets, payroll or AI integration is claimed complete.
 
-A fresh restore rehearsal of the eventual release, final independent review, release
-tag and human HR UAT remain. Historical restore proof covers an earlier checkpoint.
-The bilingual [test runbook](../phases_0_3/TEST_RUNBOOK_AR_EN.md),
-[ownership/joining guide](../phases_0_3/OWNERSHIP_AND_JOINING_REVIEW.md) and tracker support
-local review. P4–P10 and the broader company platform are separate milestones.
+A fresh restore of the eventual release, final review, release tag and human HR UAT remain. Previous restore evidence covers an earlier source checkpoint. Use the [bilingual runbook](../phases_0_3/TEST_RUNBOOK_AR_EN.md) and tracker for local review.
