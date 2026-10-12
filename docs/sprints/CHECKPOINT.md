@@ -1,6 +1,6 @@
 # قنديل — HR implementation checkpoint
 
-12 October 2026. Tested source: `11936e50f9faa51b16f5d884ab9ed3616c67993b`.
+12 October 2026. Tested source: `df95160b35002edd7fd62ff730b9bd611e5e7317`.
 The implementation goal remains active. This is a local development checkpoint;
 P0–P3, HR acceptance and a production release are not complete.
 
@@ -38,94 +38,105 @@ For Arabic, set the account's language to Arabic and reload. Native request/queu
 
 ## Current acceptance
 
-**58 passed / 15 partial / 7 blocked**, up from 45 / 27 / 8. The 80 original case
-definitions are unchanged; 13 cases gained sufficient technical proof. These are
-case results, not effort percentages or human HR acceptance.
+**67 passed / 9 partial / 4 blocked**, up from 58 / 15 / 7.
+Nine original cases gained sufficient technical proof. All 80 definitions remain
+unchanged. These are technical case results, not effort percentages or HR approval.
 
 Newly implemented and verified:
 
-- **Recruitment ownership:** one explicit responsible owner and next-action owner
-  per live application, reasoned reassignment, visible HR fallback and no guessed
-  replacement. Committed account disable moves affected live ownership to unassigned,
-  preserves history/task text and survives two users disabled in one transaction.
-  A rolled-back disable leaves ownership intact. Source tasks mean application
-  next actions; generic Frappe ToDo is outside this proof.
-- **Joining correction:** configured scoped HR can void an unused erroneous external
-  hire. Original offer/Employee/assignment/onboarding history stays stored, the
-  Employee becomes inactive, occupancy drops and the open vacancy returns. Full
-  parents reopen; held/frozen state remains. Replay, failure rollback, forged
-  markers and downstream-use denials pass. Payroll Entry child references are
-  checked; no payroll reversal or transfer correction is implemented by this action.
-- **Organization:** preview reports every unmatched Employee/Position reference.
-  Repeated reviewed imports do not double occupancy. Identical titles in two legal
-  entities resolve separate authority. Scoped structure owners maintain native
-  Departments with reasons and immutable audit; ordinary requester edits to the
-  same record fail through authenticated REST. Payroll cost center edits are excluded.
-- **Native review UI:** own-only requests versus organizational scope, read-only
-  event timelines with exact actor/principal/time, delegated decisions and escaped
-  notes, verified in English and saved Arabic/RTL accounts.
+- **Delegation:** APPROVALS, TEAM and ALL are explicit capabilities. CEO delegation
+  remains Pending CEO until the configured CEO approves it. Scope changes create a
+  new version and revoke the former grant without rewriting its history. Disabled
+  principals, revoked grants and revoked scopes fail the next decision. Legacy
+  records missing approval metadata remain inactive until explicitly reviewed or
+  replaced with a new version; they can still be revoked.
+- **Migration safety:** the approval field has no automatic Active default. Five real
+  schema checks prove that an older row remains NULL when the column is added. One
+  already-disabled synthetic legacy grant from the intermediate local schema was
+  individually revoked with its audit retained; no blanket grant update occurred.
+- **Independent authority:** creator, requester, beneficiary and own-position
+  interests are frozen. An interested delegate cannot act for an independent
+  principal. Interested HR/Sector routes require an independent CEO. Vacant manager
+  levels retain a reason and notify HR once.
+- **Board:** CEO decisions precede Board decisions. The frozen Chairman or Vice may
+  decide directly. A frozen Sector recorder must identify the deciding member,
+  method, explanatory note and private request-specific evidence for an external
+  Board decision. Actor, original principal and actual member remain distinct.
+- **Completion:** the last filled, closed or cancelled vacancy closes its parent
+  and queues one completion notice. Partial fill and replay preserve the correct
+  remainder, ledger and notice count.
+- **Applicant/joining UI:** English and Arabic owner assignment, next actions and
+  incorrect-joining reversal have browser proof plus authenticated HTTP denial and
+  replay checks. The earlier User autocomplete finding led to a bounded eligible
+  team-member Select; its later browser evidence is separate.
 
-Earlier approved-request corrections, structural Return, reviewed external-code
-imports, private-note boundaries, session revocation and company/branch access
-remain in the case mapping with their original evidence commits.
+Earlier ownership/disable callbacks, safe joining correction, structural approvals,
+imports, scope/session security, reviewed documents and request timeline evidence
+remain linked to their prior source commits. Generic task ownership and downstream
+transfer/payroll reversal are excluded from the implemented correction flow.
 
-Use the bilingual [ownership and joining review guide](../phases_0_3/OWNERSHIP_AND_JOINING_REVIEW.md)
-alongside the [test runbook](../phases_0_3/TEST_RUNBOOK_AR_EN.md). The Applicant
-ownership and Void Incorrect Joining controls have native/API tests but their
-browser interactions are **not yet verified**. Existing review fixtures are synthetic;
-joining/ownership regression fixtures were rolled back or specifically cleaned.
-Do not expect them to remain as browser demonstration records.
+Use the bilingual [ownership and joining guide](../phases_0_3/OWNERSHIP_AND_JOINING_REVIEW.md),
+[authority browser runbook](../phases_0_3/AUTHORITY_BROWSER_RUNBOOK.md), and
+[test runbook](../phases_0_3/TEST_RUNBOOK_AR_EN.md). Automated authority and ownership
+fixtures were cleaned or rolled back, with audit retained where specified. Their
+IDs are evidence examples rather than persistent demo records.
 
 ## Verification at this checkpoint
 
-- **13 serial suites passed with unchanged source:** organization 47 native checks
-  plus 15 acceptance groups; occupancy 9; recruitment 26; contracts 9; approved
-  corrections 6; joining 11; joining corrections 11; ownership 10; callback queues 2
-  (pure mocked); request review 5; SLA 9; privacy 8; payroll boundary 3.
-- **Committed callback proof:** six checkpoints, including two disabled accounts in
-  one commit, savepoint rollback followed by commit, repeat cleanup and restoration
-  of original settings. 111 captured synthetic documents/children cleaned.
-- **Browser/API:** six grouped native UI checks plus authenticated same-record
-  requester REST denial. The requester could GET the unit (200), modified save
-  returned 403 and the complete stored-record hash stayed identical. Temporary
-  read grant revoked and requester disabled again.
-- **HTTP concurrency:** three batches of 20 overlapping calls. Five seats admitted
-  five submissions; repeated manager and final HR approvals each advanced once.
-  Synthetic cleanup restored the capacity ledger; no external email.
-- **Static:** 171 Python, 32 JSON and 16 application JS files passed syntax checks;
-  Ruff and staged known-credential/private-key scanner passed. 98 baseline IDs,
-  40 selected requirements and 80 cases preserved, six reference hashes verified.
-  All 944 extracted keys exist in the 1,029-row Arabic catalogue. Translation
-  coverage does not substitute for HR terminology review.
-- Official Frappe, ERPNext and HRMS trees remain separate and unchanged. Current
-  parity service is loopback 8102. Earlier 8100/8101 sites were not migrated or seeded.
+- The frozen-source serial regression gate contains **19 suites**. It combines native
+  database tests with explicitly labeled pure/mocked checks; suite totals are not
+  the 80 acceptance cases. Foundation 52 includes 25 native and 27 pure/mocked checks.
+  Delegation 8, authority 12, completion 3 and schema 5 execute separately.
+  The final run resumed after a background queue limit interrupted suite 17 fixture
+  setup: 16 passed results were retained only after exact application-file hash
+  equality was verified; the remaining 3 passed after bounded cleanup of 141 stale
+  queued contact jobs for absent synthetic parity users. Other sites/live users
+  were preserved. Original failure and maintenance evidence remain available.
+- Ownership browser evidence covers 7 grouped AR/EN checks and 7 authenticated HTTP
+  checks, including denied requester mutation, reason validation, exact replay,
+  immutable retained joining links and restored capacity after cleanup.
+- Authority/delegation browser and private-proof HTTP evidence are recorded separately
+  from native authority assertions. Source fingerprints and cleanup status are in
+  each evidence file; no screenshot alone establishes authorization correctness.
+- Independent HTTP concurrency passed three batches of 20 simultaneous calls:
+  five seats admitted five submissions; Manager and final HR replay each advanced
+  once. Cleanup restored structural 5 / occupied 0 / reserved 0 / open 0 / available 5 and
+  disabled fixture accounts. This is local concurrency proof, not a production
+  load certification. All mutations target synthetic 8102 fixtures; no external email.
+- Static syntax, Ruff, strict baseline/reference validation, translations and the
+  staged known-credential/private-key scan passed before the source commit.
+  Translation coverage does not substitute for Arabic terminology approval.
+- Independent source review found no additional actionable defect in the reviewed
+  authority/delegation and owner-picker changes. This was not a full production
+  security review, and it does not establish deadlock-free operation.
+- Official Frappe, ERPNext and HRMS clones stay separate and unchanged. The parity
+  service remains on loopback port 8102; previous 8100/8101 sites were not migrated or seeded.
 
-[Combined evidence](evidence/ownership-joining-summary-2026-10-12.json),
-[serial regression](evidence/ownership-joining-final-2026-10-12.json),
-[HTTP concurrency](evidence/ownership-joining-http-2026-10-12.json) and
-[case mapping](../phases_0_3/ACCEPTANCE_EVIDENCE_MAPPING.md) distinguish current,
-historical and remaining proof. Initial failures and corrected findings remain
-in the history.
+Current source evidence: [serial regression](evidence/authority-final-2026-10-12.json),
+[HTTP concurrency](evidence/authority-http-2026-10-12.json),
+[ownership browser/API](evidence/browser/ownership-joining/results.json),
+[authority browser](evidence/browser/authority-delegation/results.json),
+[queue maintenance](evidence/authority-queue-maintenance-2026-10-12.json),
+[case mapping](../phases_0_3/ACCEPTANCE_EVIDENCE_MAPPING.md).
+Earlier failures and resolved fixture/UI findings remain in the evidence history.
 
 ## Next work and limits
 
-Next source/test work covers the remaining independent-authority and delegation
-clauses, Board proof and actor audit, completion notices, document delivery and
-native Applicant/joining-correction browser acceptance. Unresolved policy/provider
-choices must remain explicit; this checkpoint does not invent HR approval.
+The next implementation work is the [command audit envelope](../phases_0_3/COMMAND_AUDIT_DESIGN.md),
+remaining document recipient/delivery guards and the [exact headcount cases](../phases_0_3/HEADCOUNT_REMAINING.md).
+Delegation process isolation is tested, but the later probation workflow has no
+explicit authorization gate in this milestone, so ORG-005-02 remains partial.
+Mail-sink capture and future overdue-document jobs are not represented as complete.
 
-HR/IT decisions remain for identity/MFA/recovery, personal-interest and CEO/Board
-routes, headcount exceptions, real employee mapping, Arabic terminology and external
-audit-seal custody. Their owners and impacted cases are in POLICY_DECISIONS.md.
+HR/IT decisions remain for native MFA/new-device/recovery and external identity,
+personal-interest and CEO/Board policy, headcount exceptions, real employee mapping,
+Arabic terminology and external audit-seal custody. Explicit actor/principal
+records and immutable local events do not replace complete command envelopes or
+an externally protected tamper-evidence anchor. Privileged operational access still
+needs a reviewable logging policy.
 
-A fresh install/restore rehearsal of the eventual release, independent final review,
-release tag and HR UAT remain. Historical restore proof covered an earlier checkpoint.
-No production migration, provider/email, Odoo, BioTime, Sheets or AI integration is
-represented as complete. P4–P10 and the broader company platform remain separate.
-
-Specific limits: unused external-hire void supports the pinned native HR/payroll
-reference set, not arbitrary future custom integrations. Generic task ownership
-is not covered. Parent units must precede children; existing shared titles require
-reviewed mapping. Registry contention can require a transaction retry. Historical
-snapshots are not rewritten, and old pending requests without a headcount basis
-must be returned and freshly reviewed.
+A fresh install/restore rehearsal of the eventual release, final independent review,
+release tag and human HR UAT remain. Historical restore proof covers an earlier
+checkpoint. This is a published development checkpoint, not production go-live.
+No provider/email, Odoo, BioTime, Sheets or AI integration is claimed complete.
+P4–P10 and the broader company platform remain separate.

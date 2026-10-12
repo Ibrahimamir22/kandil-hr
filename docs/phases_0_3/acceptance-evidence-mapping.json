@@ -1,11 +1,11 @@
 {
   "assessment": "Integration-owner technical assessment; HR acceptance pending",
-  "checked_at": "2026-10-12T04:31:11.419111+00:00",
-  "tested_source_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
+  "checked_at": "2026-10-12T05:17:19.402199+00:00",
+  "tested_source_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
   "counts": {
-    "passed": 58,
-    "blocked": 7,
-    "partial": 15
+    "passed": 67,
+    "blocked": 4,
+    "partial": 9
   },
   "cases": [
     {
@@ -65,16 +65,14 @@
     },
     {
       "case_id": "AT-ACC-003-02",
-      "status": "partial",
-      "actual": "Requester takeover, role loss, self-approval and executive delegation denial pass. Full beneficiary/acting-principal and immediately revoked delegated-decision matrix remains.",
+      "status": "passed",
+      "actual": "Requester, historical distinct creator, explicit beneficiary and current/frozen own-position interests cannot approve directly or via an acting principal. Disabled principal, revoked delegation and revoked delegate scope block the next decision; prior decisions remain unchanged.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Requester takeover, role loss, self-approval and executive delegation denial pass. Full beneficiary/acting-principal and immediately revoked delegated-decision matrix remains.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-ORG-001-01",
@@ -172,25 +170,25 @@
     {
       "case_id": "AT-ORG-005-02",
       "status": "partial",
-      "actual": "Scope revocation and immutable decisions have partial evidence. Delegation process isolation, delegated action revocation and preserved old decisions require one complete test.",
+      "actual": "APPROVALS/TEAM capability isolation, transfer-create denial, revocation before the next decision and preserved prior decisions pass. The later probation workflow has no explicit authorization gate/test in this P0-P3 implementation, so that clause remains unproved.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Scope revocation and immutable decisions have partial evidence. Delegation process isolation, delegated action revocation and preserved old decisions require one complete test.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": "APPROVALS/TEAM capability isolation, transfer-create denial, revocation before the next decision and preserved prior decisions pass. The later probation workflow has no explicit authorization gate/test in this P0-P3 implementation, so that clause remains unproved.",
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-ORG-005-03",
-      "status": "partial",
-      "actual": "Unapproved executive delegation is rejected. Positive separately approved CEO delegation/version workflow is absent; fail-closed is not feature completion.",
+      "status": "passed",
+      "actual": "CEO delegation starts Pending CEO; only the configured independent CEO can activate it. Changing scope creates a new pending version and revokes the prior grant while retaining original approval metadata. Rejection, forgery, disabled CEO and legacy missing-metadata grants are tested.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json",
+        "docs/sprints/evidence/browser/authority-delegation/results.json"
       ],
-      "gap": "Unapproved executive delegation is rejected. Positive separately approved CEO delegation/version workflow is absent; fail-closed is not feature completion.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-ORG-006-01",
@@ -371,14 +369,14 @@
     },
     {
       "case_id": "AT-HC-004-02",
-      "status": "blocked",
-      "actual": "Independent CEO exception path exists in source but personal Sector-interest routing is not exercised; business beneficiary rules remain unresolved.",
+      "status": "passed",
+      "actual": "A personally interested Sector authority with shortage2 is skipped and frozen in the route; independent CEO handles the exception. The final WARN ledger retains occupied1/open6/available-2 under explicit justified authority. Deployment policy approval remains pending.",
       "evidence": [
-        "docs/phases_0_3/POLICY_DECISIONS.md#PD-02"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Independent CEO exception path exists in source but personal Sector-interest routing is not exercised; business beneficiary rules remain unresolved.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-HC-005-01",
@@ -471,15 +469,14 @@
     },
     {
       "case_id": "AT-REQ-001-02",
-      "status": "partial",
-      "actual": "Dated delegate wrong unit, expired and future intervals denied without ledger/event mutations; inclusive current-day delegation acts successfully. No process discriminator is modeled; do not claim the entire unit/process/interval clause.",
+      "status": "passed",
+      "actual": "Process discriminator combines with prior wrong-unit, expired, future and inclusive-current-day tests: only an active APPROVALS/ALL grant in the matching unit and effective dates can exercise approval. TEAM-only, disabled principal and revoked grants cannot.",
       "evidence": [
-        "docs/sprints/evidence/recruitment-review-views-2026-10-12.json",
-        "docs/sprints/evidence/ownership-joining-final-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "No process discriminator is modeled; do not claim the entire unit/process/interval clause.",
-      "tested_commit": "11936e50f9faa51b16f5d884ab9ed3616c67993b",
-      "checked_at": "2026-10-12T04:31:11.419111+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-REQ-002-01",
@@ -529,26 +526,25 @@
     },
     {
       "case_id": "AT-REQ-004-01",
-      "status": "partial",
-      "actual": "Dated hierarchy traversal, vacant-level recorded skip and cycle rejection pass. Required HR notice for a skipped vacant level is not proven.",
+      "status": "passed",
+      "actual": "Dated hierarchy traversal and cycle rejection retain prior proof. A vacant manager is recorded in the frozen resolution and queues one HR notice; replay preserves the same notice and reservation counts.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Dated hierarchy traversal, vacant-level recorded skip and cycle rejection pass. Required HR notice for a skipped vacant level is not proven.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-REQ-004-02",
-      "status": "partial",
-      "actual": "Frozen step identity/revision and requester self-independence pass. Creator versus beneficiary policy requires HR decision and explicit coverage.",
+      "status": "passed",
+      "actual": "Request creator/requester, explicit beneficiary and own-position account are frozen as interested users. Interested manager is skipped; interested HR/Sector requires independent CEO; CEO/Board self-interest rejection is source-reviewed; separate executed negative cases are not claimed. Historical distinct creator is explicitly seeded as an import-history fixture; ordinary creation keeps creator=requester.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Frozen step identity/revision and requester self-independence pass. Creator versus beneficiary policy requires HR decision and explicit coverage.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-REQ-005-01",
@@ -739,26 +735,28 @@
     },
     {
       "case_id": "AT-BRD-001-01",
-      "status": "blocked",
-      "actual": "No executed Board-after-CEO ordering or Chairman/Vice identity fixture in current suite.",
+      "status": "passed",
+      "actual": "Required CEO decisions precede Board, including dated Board-only rules. Frozen Chairman and authorized Vice both complete separate tested decisions; actor, frozen principal and actual deciding member are distinct and retained. Early Board is denied; exact replay returns the prior result without new effects.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json",
+        "docs/sprints/evidence/browser/authority-delegation/results.json"
       ],
-      "gap": "No executed Board-after-CEO ordering or Chairman/Vice identity fixture in current suite.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-BRD-001-02",
-      "status": "blocked",
-      "actual": "Private-file access checks pass generally. Board on-behalf missing-proof denial and unrelated-user proof access are not specifically exercised.",
+      "status": "passed",
+      "actual": "External Board decisions require frozen Sector recorder, selected frozen Chairman/Vice, method, explanatory note and private File attached to this exact request. Missing/public proof is rejected; the picker excludes unrelated proof, and actual outsider HTTP access is denied. Ordinary Board delegation does not substitute.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json",
+        "docs/sprints/evidence/browser/authority-delegation/private-proof-http.json",
+        "docs/sprints/evidence/browser/authority-delegation/results.json"
       ],
-      "gap": "Private-file access checks pass generally. Board on-behalf missing-proof denial and unrelated-user proof access are not specifically exercised.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-VAC-001-01",
@@ -774,15 +772,14 @@
     },
     {
       "case_id": "AT-VAC-002-01",
-      "status": "partial",
-      "actual": "Actual partial joining, full and mixed Filled/Closed completion, sequential replay counts and cancellation double-release pass. Exact parent completion notice count and per-location Cancelled variant remain unverified.",
+      "status": "passed",
+      "actual": "Partial fill preserves remaining capacity. Full fill, Filled plus Cancelled, and Closed plus Cancelled all close the parent at the last terminal location and queue exactly one completion notice. Replaying commands preserves counts and the terminal immutable snapshot.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Actual partial joining, full and mixed Filled/Closed completion, sequential replay counts and cancellation double-release pass. Exact parent completion notice count and per-location Cancelled variant remain unverified.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": null,
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-VAC-002-02",
@@ -867,15 +864,13 @@
     {
       "case_id": "AT-AUD-001-01",
       "status": "partial",
-      "actual": "Immutable snapshots/security events and replay counts pass; exact actor/principal/command/before-after coverage plus edit/delete attacks on each business audit type remain.",
+      "actual": "Immutable snapshots and receipts retain actor/principal, Board member, decision time and revision. Exact readable command payload with explicit before/after across every mutation adapter is not implemented; see COMMAND_AUDIT_DESIGN.md. Ordinary request-audit save/delete attacks pass.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Immutable snapshots/security events and replay counts pass; exact actor/principal/command/before-after coverage plus edit/delete attacks on each business audit type remain.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": "Immutable snapshots and receipts retain actor/principal, Board member, decision time and revision. Exact readable command payload with explicit before/after across every mutation adapter is not implemented; see COMMAND_AUDIT_DESIGN.md. Ordinary request-audit save/delete attacks pass.",
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-AUD-001-02",
@@ -891,27 +886,24 @@
     {
       "case_id": "AT-AUD-002-01",
       "status": "partial",
-      "actual": "Reason and authority guards exist for exercised actions. Every override/evidence-required route, including Board proof, is not exercised.",
+      "actual": "Tested overrides require authority and reasons; external Board recording now additionally requires method, note and private request proof. A complete enumerated override catalogue and all per-route evidence tests remain open.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "Reason and authority guards exist for exercised actions. Every override/evidence-required route, including Board proof, is not exercised.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": "Tested overrides require authority and reasons; external Board recording now additionally requires method, note and private request proof. A complete enumerated override catalogue and all per-route evidence tests remain open.",
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-AUD-002-02",
       "status": "partial",
-      "actual": "User privilege changes and direct child/decision writes are blocked. Explicit ordinary System Manager decision attempts and reviewed Administrator operations remain incomplete.",
+      "actual": "Ordinary System Manager and Administrator client.save cannot forge completed request decisions. Administrator operational access logging and independent review remain incomplete.",
       "evidence": [
-        "docs/phases_0_3/../sprints/evidence/foundation-native-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
-        "docs/phases_0_3/../sprints/evidence/organization-native-2026-10-12.json"
+        "docs/sprints/evidence/authority-final-2026-10-12.json"
       ],
-      "gap": "User privilege changes and direct child/decision writes are blocked. Explicit ordinary System Manager decision attempts and reviewed Administrator operations remain incomplete.",
-      "tested_commit": "daf3685df4418bd8ce21129e64e61a4d5e95b3bd",
-      "checked_at": "2026-10-12T03:03:33.877378+00:00"
+      "gap": "Ordinary System Manager and Administrator client.save cannot forge completed request decisions. Administrator operational access logging and independent review remain incomplete.",
+      "tested_commit": "df95160b35002edd7fd62ff730b9bd611e5e7317",
+      "checked_at": "2026-10-12T05:17:19.402199+00:00"
     },
     {
       "case_id": "AT-WAG-001-01",
