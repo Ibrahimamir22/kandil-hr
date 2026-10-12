@@ -1,0 +1,233 @@
+{
+  "suite": "recruitment-native",
+  "tests_run": 26,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "successful": true,
+  "site": "kandil-parity.localhost",
+  "fixtures_rolled_back": true,
+  "failed_tests": [],
+  "checked_at": "2026-10-12T02:24:56.507067+00:00",
+  "source_fingerprint_before": "e61d9b99d9ef62ed55805763f2f381b90e48142fb0d01ef5daa084da99a2d8e2",
+  "source_fingerprint_after": "e61d9b99d9ef62ed55805763f2f381b90e48142fb0d01ef5daa084da99a2d8e2",
+  "source_unchanged_during_run": true,
+  "checks": [
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_all_closed_vacancies_close_parent_and_unresolved_candidate_blocks",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_amendment_increase_tops_up_existing_openings_once",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_closed_second_vacancy_rolls_back_first_parent",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_same_request_locations_replay_once",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_second_parent_stale_rolls_back_first_parent",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_guard_does_not_change_nonparity_behavior",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_save_cannot_forge_approval_or_capacity_outcomes",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_closing_one_vacancy_then_parent_cancel_releases_each_slot_once",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_command_collision_stale_version_and_wrong_step_fail_without_effects",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_hr_reduction_releases_only_delta_and_preserves_requested_quantities",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_linked_opening_rejects_direct_mutation_even_with_ignore_permissions",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_other_recruiter_cannot_take_over_draft_requester",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_parent_cancel_cannot_bypass_candidate_disposition_guard",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_pending_cancellation_replay_releases_reservations_once",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_priority_pin_and_unassigned_queue_observe_live_vacancy_state",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_quantity_amendment_preserves_hold_and_freeze_state",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_read_only_or_revoked_grant_cannot_mutate_or_replay",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_replay_cannot_advance_consecutive_steps_for_same_principal",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_requester_json_draft_edit_preserves_datetime_authorship",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_return_revision_preserves_history_and_releases_old_reservation",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_revoked_hr_role_cannot_review_pending_quantities",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_sector_cannot_self_grant_ceo_delegation",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_submit_replay_does_not_duplicate_effects",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_two_locations_reserve_approve_and_cancel_exact_balances",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_pause_freeze_resume_preserves_capacity",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_team_is_deduplicated_scoped_and_command_replay_safe",
+      "status": "PASS"
+    }
+  ],
+  "previous_execution": {
+    "suite": "recruitment-native",
+    "tests_run": 16,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "successful": true,
+    "site": "kandil-parity.localhost",
+    "fixtures_rolled_back": true,
+    "failed_tests": [],
+    "checked_at": "2026-10-12T02:17:06.450999+00:00",
+    "source_fingerprint_before": "dfc12cd89b76f4520b9eb40be715eda1870b0b4c886036beda96b4a2467154f8",
+    "source_fingerprint_after": "dfc12cd89b76f4520b9eb40be715eda1870b0b4c886036beda96b4a2467154f8",
+    "source_unchanged_during_run": true,
+    "checks": [
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_all_closed_vacancies_close_parent_and_unresolved_candidate_blocks",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_amendment_increase_tops_up_existing_openings_once",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_closing_one_vacancy_then_parent_cancel_releases_each_slot_once",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_command_collision_stale_version_and_wrong_step_fail_without_effects",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_hr_reduction_releases_only_delta_and_preserves_requested_quantities",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_linked_opening_rejects_direct_mutation_even_with_ignore_permissions",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_pending_cancellation_replay_releases_reservations_once",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_priority_pin_and_unassigned_queue_observe_live_vacancy_state",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_quantity_amendment_preserves_hold_and_freeze_state",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_read_only_or_revoked_grant_cannot_mutate_or_replay",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_replay_cannot_advance_consecutive_steps_for_same_principal",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_return_revision_preserves_history_and_releases_old_reservation",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_submit_replay_does_not_duplicate_effects",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_two_locations_reserve_approve_and_cancel_exact_balances",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_pause_freeze_resume_preserves_capacity",
+        "status": "PASS"
+      },
+      {
+        "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_team_is_deduplicated_scoped_and_command_replay_safe",
+        "status": "PASS"
+      }
+    ],
+    "prior_runs": [
+      {
+        "tests_run": 15,
+        "passed": 6,
+        "errors": 9,
+        "finding": "Custom recruiter could not complete Job Opening staffing-plan validation; resolved by scoped OpeningMixin using position ledger."
+      },
+      {
+        "tests_run": 15,
+        "passed": 13,
+        "errors": 2,
+        "finding": "Custom recruiter lacked native Job Applicant create and Job Opening read; resolved by narrow native role permissions plus existing scopes."
+      }
+    ],
+    "pure_priority_tests": {
+      "tests_run": 6,
+      "successful": true,
+      "module": "kandil_hr.recruitment.test_priority",
+      "limitations": "Pure deterministic rules only; not provider, HTTP, browser or load evidence."
+    },
+    "limitations": [
+      "Serial native ORM suite, not independent-connection contention proof.",
+      "Does not prove browser authentication, full list/export/attachment privacy or full bilingual rendering.",
+      "First run-tests CLI discovery executed zero cases; explicit execute runner used for evidence.",
+      "Sixteen tests support parts of baseline cases; do not mark all40requirements or80cases complete."
+    ]
+  },
+  "limits": [
+    "Native ORM/whitelisted Python calls; not HTTP authentication or browser proof",
+    "Single database connection; separate-connection concurrency requires its own gate",
+    "Synthetic transaction rollback, no production data or external delivery"
+  ]
+}

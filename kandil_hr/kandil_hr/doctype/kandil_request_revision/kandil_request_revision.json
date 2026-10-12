@@ -1,0 +1,77 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Request Revision",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "request",
+    "company",
+    "department",
+    "revision",
+    "action",
+    "actor",
+    "snapshot_json"
+  ],
+  "fields": [
+    {
+      "fieldname": "request",
+      "label": "Request",
+      "fieldtype": "Link",
+      "options": "Kandil Hiring Request"
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company"
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department"
+    },
+    {
+      "fieldname": "revision",
+      "label": "Revision",
+      "fieldtype": "Int"
+    },
+    {
+      "fieldname": "action",
+      "label": "Action",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "snapshot_json",
+      "label": "Snapshot JSON",
+      "fieldtype": "Code"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Requester",
+      "read": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1
+    },
+    {
+      "role": "Kandil Recruiter",
+      "read": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1
+    }
+  ],
+  "track_changes": 0
+}

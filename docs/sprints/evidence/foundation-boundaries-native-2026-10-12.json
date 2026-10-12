@@ -1,0 +1,50 @@
+{
+  "recorded_at_utc": "2026-10-12T02:29:21.450029+00:00",
+  "site": "kandil-parity.localhost",
+  "result": "PASS",
+  "discovered": 6,
+  "total": 6,
+  "tests": [
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_assigned_readonly_recruiter_can_read_but_not_write",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_hr_authority_override_and_disabled_lead_are_explicit",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_nonteam_scoped_recruiter_cannot_read_list_or_mutate_candidates",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_private_file_and_child_cannot_be_shared",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_revoked_uploader_cannot_download_zip_or_alias_protected_file",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.foundation.test_boundaries.TestNativeBoundaries.test_stale_docshare_bypass_is_removed_and_new_shares_denied",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "limits": [
+    "Native function execution, not HTTP authentication proof",
+    "Legacy direct shares require migration cleanup",
+    "Team policy is a conservative deployment default pending HR acceptance",
+    "Script and Query Reports still under audit"
+  ],
+  "source_sha256": {
+    "kandil_hr/foundation/files.py": "b7d07a0e0a3389d635041a3386db342fa25357942ec737ba3d9eee97c1a427e5",
+    "kandil_hr/foundation/teams.py": "7381961d51f3df7d6f5089ddfd059ba2e83b1ebd013d72b09b01d290f9a8942c",
+    "kandil_hr/foundation/security.py": "327bf3eb28bd7e07bf36ed5b62afbf2de292e76886b9de160f04809d74c21106",
+    "kandil_hr/foundation/test_boundaries.py": "a80c93a5483ff619a7b01faa7e9c1e53e983ed08baf2e8eb4189fbe9a71a7298",
+    "kandil_hr/hooks.py": "b630eb151b4a62cf63f17b66e276f7c2684605a7f4e85229911e0b12dae9af9f",
+    "kandil_hr/recruitment/vacancies.py": "730ad60ae69c2ba1a622583e2ef8de99098c8ec30c484deee4d33e7f3500837b"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Authority Rule",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "position",
+    "from_date",
+    "to_date",
+    "enabled",
+    "authority",
+    "principal",
+    "reason"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department"
+    },
+    {
+      "fieldname": "position",
+      "label": "Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position"
+    },
+    {
+      "fieldname": "from_date",
+      "label": "From Date",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "to_date",
+      "label": "To Date",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "enabled",
+      "label": "Enabled",
+      "fieldtype": "Check",
+      "default": 1
+    },
+    {
+      "fieldname": "authority",
+      "label": "Authority",
+      "fieldtype": "Select",
+      "options": "CEO Approval\nBoard Approval",
+      "reqd": 1
+    },
+    {
+      "fieldname": "principal",
+      "label": "Principal",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1
+    }
+  ],
+  "track_changes": 0
+}

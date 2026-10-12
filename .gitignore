@@ -16,3 +16,8 @@ test-credentials.json
 *.sql.gz
 *.backup
 *.log
+
+deployment/.local/
+parity-credentials.json
+
+docs/sprints/_generated/

@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-12T02:42:41.344Z",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    {
+      "name": "Scoped reviewer opens native approved JD and Documents actions",
+      "status": "PASS"
+    },
+    {
+      "name": "Native document action opens readable Arabic worker card",
+      "status": "PASS"
+    },
+    {
+      "name": "All four authenticated document downloads return actual PDF bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Unscoped recruiter cannot retrieve JD HTML or PDF by ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Document UI has no client runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Synthetic approved revision; HR content/receipt review remains pending",
+    "Read/print/download flow only; outbound email is muted"
+  ]
+}

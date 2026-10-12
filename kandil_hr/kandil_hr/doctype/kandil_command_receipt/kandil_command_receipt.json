@@ -1,0 +1,49 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Command Receipt",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "field_order": [
+    "dedupe_key",
+    "request",
+    "actor",
+    "payload_hash",
+    "result_json"
+  ],
+  "fields": [
+    {
+      "fieldname": "dedupe_key",
+      "label": "Dedupe Key",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "request",
+      "label": "Request",
+      "fieldtype": "Link",
+      "options": "Kandil Hiring Request"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "options": "User"
+    },
+    {
+      "fieldname": "payload_hash",
+      "label": "Payload Hash",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "result_json",
+      "label": "Result JSON",
+      "fieldtype": "Code"
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

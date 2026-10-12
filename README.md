@@ -1,111 +1,57 @@
-# Kandil HR recruitment pilot
+# قنديل · Kandil HR
 
-An opt-in extension of Frappe HRMS 16. It is not the backend for the wider company
-platform and does not replace Odoo. The runtime flag `kandil_pilot_enabled` is
-currently enabled only on the synthetic local site `kandil-test.localhost`.
+Custom Frappe HR extension for Kandil's HR department. Odoo and the broader company platform remain separate. This repository contains Kandil's application source, schemas, native Frappe screens, tests and deployment package. The official Frappe, ERPNext and HRMS sources are installed as separate pinned dependencies, without modifying their core code.
 
-## Implemented pilot boundary
+**Current status: P0–P3 implementation and verification in progress.** The local parity site is a synthetic development environment, not a production release or HR acceptance. See [sprint plan](docs/sprints/SPRINT_PLAN.md), [task tracker](docs/sprints/tracker.json) and [acceptance cases](docs/sprints/acceptance-results.json). Focused passing suites do not imply all 80 acceptance cases passed.
 
-- Department-scoped request with multiple capacity/location lines.
-- Configurable department approval route, independent exception authority,
-  prevention of direct and delegated self-approval, dated/revocable delegation.
-- Submitted requests reserve headcount; approval moves reserved to open slots.
-  Rejection/cancellation releases the remaining commitment. Actual joining moves
-  one open slot to occupied. No-show keeps the vacancy open for another candidate.
-- One standard Job Opening per approved line; opening bypass prevention.
-- Standard Job Applicant accepts phone-only candidates with generated internal IDs,
-  no fabricated email address, and a unique application key per opening/contact.
-- Standard Interview/Feedback and Job Offer; explicit joining creates Employee
-  and Employee Onboarding with a task. Repeat joining is idempotent.
-- Immutable recruitment events and protected joining links.
-- Native Frappe forms/actions and a bilingual navigation page at `/kandil-pilot`.
+## Running locally
 
-## Deliberate pilot simplifications
+Follow [deployment instructions](deployment/README.md). The included ARM64 Docker package installs the exact upstream commits and image digests in [versions.lock.json](deployment/versions.lock.json). A fresh sandbox was booted and its login checked at port 8110; a synthetic restore rehearsal also passed (database IDs, private files and an encrypted field). A final tagged release and production recovery plan remain separate gates.
 
-The reference portal is the requirements source, not a feature parity claim.
-The pilot route is a configured department manager + HR chain, with an optional
-exception gate. It does not yet resolve the complete effective-dated organization
-hierarchy, CEO rules or compensation authority matrix. Requested quantity equals
-approved quantity; approval reductions and return-for-amendment versioning are not
-implemented. Application contact uniqueness needs HR agreement for shared phones.
-Final joining/no-show outcomes cannot be reversed in this pilot. Transfers, exits,
-rehiring and corrections need their own audited workflows before production use.
+Existing development workspace:
 
-Recruiter and Sector roles see all pilot records on the enabled site. This is
-intentional for the single-company synthetic review, not production multi-company
-segregation. Requesters are restricted to their own active employee department.
-Requests and audit events have record-level read filtering. Full privacy/field-level
-security assessment is still required.
+| Address | Purpose |
+|---|---|
+| localhost:8100 | Existing main site; not migrated by this phase |
+| localhost:8101 | Preserved earlier synthetic recruitment pilot |
+| localhost:8102 | New P0–P3 synthetic parity review site |
+| localhost:8110 | Separate fresh-install sandbox |
 
-## Transaction design
+These addresses are local to the development machine. No cloud deployment, public tunnel, outbound email or external integration is configured. Secrets, site configuration, uploads and databases are excluded from Git.
 
-`pilot/api.py` is the only business transition surface. It checks the actor and
-state, locks the request and sorted capacity records, updates all affected records,
-and writes an event in one database transaction. Failed requests roll back. Existing
-joined employees have unique links to their applicant and offer.
+The parity site opts in with `kandil_pilot_enabled`, `kandil_foundation_enabled` and `kandil_parity_enabled`. Other sites do not acquire the new business rules merely because the custom app source is shared. Disabling flags is not a database/schema rollback.
 
-The local MariaDB 11.8.9 default `innodb_snapshot_isolation=ON` caused standard
-Frappe numbering conflicts. This Compose project explicitly uses OFF, retaining
-REPEATABLE-READ and InnoDB locking; 100 standard writes at concurrency 10 then passed
-without retries. This changes the local project's shared server setting, not data
-on the main site. See MariaDB's official system-variable documentation.
+## Implemented development modules
 
-Custom actions avoid locking empty draft approval ranges and retry only a complete
-rolled-back `QueryDeadlockError` transaction, at most three retries, with jitter.
-They do not retry authorization or business-validation failures. The response's
-`kandil_transaction_retries` metadata exposes successful-action retry counts.
-No external emails or APIs occur inside these actions. If external effects are
-added, use a transactional outbox; do not add them directly to this retry boundary.
+- **Foundation:** dated company/department/branch grants, sensitive-data gates, immutable security events, local transactional notifications, Cairo business calendar, protected HR files and candidate-team boundaries.
+- **Organization:** stable positions, effective-dated hierarchy and assignments, reviewed imports, independent structural approval, capacity checks, immutable JD revisions and Arabic/English JD/worker-card outputs.
+- **Recruitment:** multi-location requests, versioned approvals, returns and revisions, quantity amendments, capacity reservations, vacancy lifecycle, recruiter teams, scored queue and atomic bulk assignment.
+- **Reliability:** command receipts, current locking reads for concurrent replay, transactional rollback and bounded whole-transaction deadlock retries. No external side effects occur inside those transactions.
+- **Native UI:** Frappe forms, lists, documents and custom Vacancy Queue page; Arabic translations and RTL rendering. Business commands authorize on the server regardless of visible buttons.
 
-## Source layout
+## Verification
 
-- `kandil_hr/pilot/models.py`: document invariants and immutability.
-- `kandil_hr/pilot/api.py`: submission, decisions, cancellation and joining.
-- `kandil_hr/pilot/extensions.py`: opt-in standard HRMS adaptations.
-- `kandil_hr/pilot/permissions.py`: request/event read restrictions.
-- `kandil_hr/pilot/setup.py`: custom fields and optional-email property setters.
-- `kandil_hr/kandil_hr/doctype`: versioned DocType schema and native request actions.
-- `kandil_hr/www/kandil-pilot.*`: review entry page.
+Evidence is stored in [docs/sprints/evidence](docs/sprints/evidence), with source fingerprints, exact scope and known limitations. Tests use ordinary synthetic role accounts; database suites sharing a site run serially. HTTP concurrency uses a separate synthetic company and keeps cancelled audit history after cleanup.
 
-Upstream frappe, erpnext and hrms source remains unmodified. After migration the
-optional-email metadata applies across the enabled test site, including standard
-applicants. Clearing the runtime flag alone is not a schema rollback. Keep this
-pilot isolated; plan migration/rollback and backups before another installation.
+Inside the configured Bench container, examples include:
 
-## Verification and review
+```sh
+bench --site kandil-parity.localhost execute kandil_hr.foundation.tests_runner.run
+bench --site kandil-parity.localhost execute kandil_hr.recruitment.test_commands.run
+bench --site kandil-parity.localhost execute kandil_hr.organization.integration_tests.run
+```
 
-From the parent development workspace, inspect `development/testing` and the
-report under `05_Deliverables/Frappe_HR_Pilot_2026-10-11`. The scripts use synthetic
-role accounts and real HTTP calls, and retain failure evidence as well as results.
-They mutate fixtures: use a fresh test database for a clean full replay. Load tests
-are short local batches, not production throughput guarantees or payroll tests.
+Plain unittest classes were omitted by the standard Frappe test discovery in this environment. Use the explicit runners and verify nonzero test counts. Host browser and concurrency scripts are under `docs/sprints`; they require local Chrome/Playwright or Python respectively and private synthetic fixture files. Never run fixture scripts on a business site.
 
-No real employee data imported, external integrations configured, code pushed, or
-production deployment performed. HR's hands-on acceptance remains pending.
+## Remaining release gates
 
-Final static validation: Ruff lint and formatting, Python compilation, JavaScript
-syntax and Git whitespace checks passed on 11 October 2026.
+- Complete the 40-requirement/80-case evidence mapping and remaining implementation gaps.
+- Identity/MFA/provider and privileged-change policy; approved CEO/Board delegation workflow.
+- HR decisions on exception rules, working calendars, expiry, real employee-position mapping and Arabic terminology.
+- External audit anchor/key custody; application immutability alone is not cryptographic tamper proof.
+- Full JD review/distribution, selected amendment/joining-correction and ownership lifecycle gaps listed in the tracker.
+- Final source review, affected regression checks, tagged checkpoint and HR walkthrough. Read-only legacy-site smoke and a synthetic restore rehearsal have passed.
 
-## Native workspace and company hub
+Automatic rejection stays disabled. CEO/Board delegation is blocked until its separate authority workflow is implemented and approved. Unaudited native HR Script/Query/prepared reports are restricted on the parity site because raw SQL/get_all can bypass row-scope hooks; scoped native lists remain available.
 
-On the enabled synthetic site, open `/kandil` for the company hub and
-`/kandil-pilot` for the HR workspace. Both require an authenticated assigned role.
-The HR navigation checks each DocType's existing read permission. Native list and
-form permissions continue to enforce record scope; the hub does not grant access.
-Delivery, estimator and Odoo cards intentionally have no live destination until
-those systems and their access rules are confirmed. Hosting this navigation page
-in the HR app does not make Frappe the broader company backend.
-
-`pilot/navigation.py` provides read-only action hints. Request forms show submit,
-approve/reject and cancellation only when the current actor can perform that step.
-The transactional APIs still recheck authority and current state when clicked.
-Pilot-linked offers replace the generic Create Employee shortcut with explicit
-joining, suppress completed outcomes, and require a reason for no-show/withdrawal.
-Standard offers unrelated to pilot openings retain their original workflow.
-
-Page controllers use Frappe's underscore naming (`www/kandil_pilot.py`) even though
-the public route is `/kandil-pilot`. This is required for the context/auth guard to
-run. No global homepage, core app source, or main-site business data is changed.
-The custom app has an opt-in entry on Frappe's apps screen and a small Arabic
-translation catalogue for its action labels. This is not a claim of complete
-Arabic translation across the upstream HR suite.
+No payroll, Odoo, BioTime, Google Sheets or AI provider integration is claimed by this work. The [historical pilot description](docs/PILOT_HISTORY_2026-10-11.md) explains the earlier site's deliberately narrower behavior.

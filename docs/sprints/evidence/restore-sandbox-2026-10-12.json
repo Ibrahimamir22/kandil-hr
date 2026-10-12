@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-10-12T02:38:05.795063+00:00",
+  "status": "passed",
+  "source_site": "kandil-sandbox.localhost",
+  "restore_site": "kandil-restore.localhost",
+  "checks": [
+    "Database counts and original record IDs retained",
+    "Private file bytes restored",
+    "Encrypted password decrypts with securely restored encryption key",
+    "Restored site migrates with current source",
+    "Email muted and scheduler disabled"
+  ],
+  "counts": {
+    "User": 3,
+    "ToDo": 1,
+    "File": 3,
+    "Company": 0
+  },
+  "apps": [
+    "frappe",
+    "erpnext",
+    "hrms",
+    "kandil_hr"
+  ],
+  "limitations": [
+    "Synthetic blank-company sandbox only",
+    "Current dirty custom checkout; final release restore must reference tested commit",
+    "No production disaster-recovery timing or offsite storage proof"
+  ]
+}

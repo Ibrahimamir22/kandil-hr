@@ -1,0 +1,659 @@
+{
+  "run_id": "42fa40c6b135",
+  "site": "kandil-parity.localhost",
+  "checked_at": "2026-10-12T03:06:08.721996+00:00",
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "20 submissions contend for five BLOCK seats",
+      "status": "PASS",
+      "requests": 20,
+      "peak_inflight_http": 20,
+      "statuses": {
+        "200": 5,
+        "417": 15
+      },
+      "maximum_seconds": 0.471,
+      "server_retries": [
+        0,
+        null,
+        null,
+        null,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null
+      ],
+      "ledger": {
+        "structural": 5,
+        "occupied": 0,
+        "reserved": 5,
+        "open_slots": 0,
+        "available": 0
+      }
+    },
+    {
+      "name": "20 identical concurrent manager approvals advance once",
+      "status": "PASS",
+      "requests": 20,
+      "peak_inflight_http": 20,
+      "statuses": {
+        "200": 20
+      },
+      "maximum_seconds": 0.107,
+      "server_retries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "effect_delta": {
+        "Kandil Command Receipt": 1,
+        "Kandil Request Revision": 1,
+        "Kandil Recruitment Event": 1,
+        "Kandil Notification Outbox": 2,
+        "Job Opening": 0
+      },
+      "ledger": {
+        "structural": 5,
+        "occupied": 0,
+        "reserved": 5,
+        "open_slots": 0,
+        "available": 0
+      }
+    },
+    {
+      "name": "20 identical concurrent hr approvals advance once",
+      "status": "PASS",
+      "requests": 20,
+      "peak_inflight_http": 20,
+      "statuses": {
+        "200": 20
+      },
+      "maximum_seconds": 0.123,
+      "server_retries": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "effect_delta": {
+        "Kandil Command Receipt": 1,
+        "Kandil Request Revision": 1,
+        "Kandil Recruitment Event": 1,
+        "Kandil Notification Outbox": 1,
+        "Job Opening": 1
+      },
+      "ledger": {
+        "structural": 5,
+        "occupied": 0,
+        "reserved": 4,
+        "open_slots": 1,
+        "available": 0
+      }
+    }
+  ],
+  "source_hashes_before": {
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/models.py": "114fda83fd43b42376b5140c25fb4d02e9a4e65cda8502746d58b183766b93b4",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/api.py": "7f526860f58585f4aaa72a626ccc22bd3150abd2c574f3742e89b07cec145f40",
+    "kandil_hr/pilot/extensions.py": "12a5fec0840d120151a2d149c71b332e62f8796eaa3caba0e2ffb5e56eb38f59",
+    "kandil_hr/pilot/models.py": "51b0f3a9047f46bd329676527c0bb9faf7d21226ab8509603fb6685ff2d95b62",
+    "kandil_hr/pilot/navigation.py": "81623229a1557de47881b1fc6d1de22b3e049b27587051af888966430ccd17d8",
+    "kandil_hr/pilot/permissions.py": "0b1be126ce4ed55edf7dc0697714b6853734087dd23777a1bdc7027b7ce60237",
+    "kandil_hr/pilot/setup.py": "4318899ab4c4d4ff2cbb497555b93aded386f7b9fb03107c86eea42ce367b465",
+    "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "kandil_hr/recruitment/api.py": "0b5d0b2b05d9195b8640aa6c32d1ff8830d2c844c72eac0ebd54dd585872e57e",
+    "kandil_hr/recruitment/concurrency_fixture.py": "3cf254638777bcde82fa0edf3e150f8d0c7b36c607042c1913feb3d7d94ff7f3",
+    "kandil_hr/recruitment/guards.py": "43785b577080328af694d21262a32b56a0629c8fdc0712e4206f0628deaa3bb1",
+    "kandil_hr/recruitment/joining.py": "c8ec5ef32d46c6fbd01d5a6a73243234ab59ca5d34f1f5bd3bbad92067a95123",
+    "kandil_hr/recruitment/models.py": "65a5d01c841af97d8c3fa6ec8ac8dd856fda16894d81b9bab2198786f664e35c",
+    "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
+    "kandil_hr/recruitment/setup.py": "413c590e76ec3886ec53b171ed4d44b69aa6a8eac6758ff38ced0d0ae34f6fc6",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/vacancies.py": "c8a6da90069e8e344ed56f0c502ef52a6b760270ffade7893483d1cd84d30a27"
+  },
+  "limits": [
+    "Local short HTTP batch, not production load certification",
+    "Ordinary password login and CSRF session requests; no API-key bypass",
+    "Synthetic isolated company; immutable cancelled audit retained"
+  ],
+  "cleanup": {
+    "ledger": {
+      "structural": 5,
+      "occupied": 0,
+      "reserved": 0,
+      "open_slots": 0,
+      "available": 5
+    },
+    "audit_retained": true,
+    "accounts_disabled": true
+  },
+  "finished_at": "2026-10-12T03:06:22.672418+00:00",
+  "source_hashes_after": {
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/models.py": "114fda83fd43b42376b5140c25fb4d02e9a4e65cda8502746d58b183766b93b4",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/api.py": "7f526860f58585f4aaa72a626ccc22bd3150abd2c574f3742e89b07cec145f40",
+    "kandil_hr/pilot/extensions.py": "12a5fec0840d120151a2d149c71b332e62f8796eaa3caba0e2ffb5e56eb38f59",
+    "kandil_hr/pilot/models.py": "51b0f3a9047f46bd329676527c0bb9faf7d21226ab8509603fb6685ff2d95b62",
+    "kandil_hr/pilot/navigation.py": "81623229a1557de47881b1fc6d1de22b3e049b27587051af888966430ccd17d8",
+    "kandil_hr/pilot/permissions.py": "0b1be126ce4ed55edf7dc0697714b6853734087dd23777a1bdc7027b7ce60237",
+    "kandil_hr/pilot/setup.py": "4318899ab4c4d4ff2cbb497555b93aded386f7b9fb03107c86eea42ce367b465",
+    "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "kandil_hr/recruitment/api.py": "0b5d0b2b05d9195b8640aa6c32d1ff8830d2c844c72eac0ebd54dd585872e57e",
+    "kandil_hr/recruitment/concurrency_fixture.py": "3cf254638777bcde82fa0edf3e150f8d0c7b36c607042c1913feb3d7d94ff7f3",
+    "kandil_hr/recruitment/guards.py": "43785b577080328af694d21262a32b56a0629c8fdc0712e4206f0628deaa3bb1",
+    "kandil_hr/recruitment/joining.py": "c8ec5ef32d46c6fbd01d5a6a73243234ab59ca5d34f1f5bd3bbad92067a95123",
+    "kandil_hr/recruitment/models.py": "65a5d01c841af97d8c3fa6ec8ac8dd856fda16894d81b9bab2198786f664e35c",
+    "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
+    "kandil_hr/recruitment/setup.py": "413c590e76ec3886ec53b171ed4d44b69aa6a8eac6758ff38ced0d0ae34f6fc6",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/vacancies.py": "c8a6da90069e8e344ed56f0c502ef52a6b760270ffade7893483d1cd84d30a27"
+  },
+  "source_unchanged_during_run": true,
+  "previous_execution": {
+    "run_id": "994775fe50e0",
+    "site": "kandil-parity.localhost",
+    "checked_at": "2026-10-12T02:33:08.060332+00:00",
+    "status": "PASS",
+    "checks": [
+      {
+        "name": "20 submissions contend for five BLOCK seats",
+        "status": "PASS",
+        "requests": 20,
+        "peak_inflight_http": 20,
+        "statuses": {
+          "200": 5,
+          "417": 15
+        },
+        "maximum_seconds": 0.476,
+        "server_retries": [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          0,
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        "ledger": {
+          "structural": 5,
+          "occupied": 0,
+          "reserved": 5,
+          "open_slots": 0,
+          "available": 0
+        }
+      },
+      {
+        "name": "20 identical concurrent manager approvals advance once",
+        "status": "PASS",
+        "requests": 20,
+        "peak_inflight_http": 20,
+        "statuses": {
+          "200": 20
+        },
+        "maximum_seconds": 0.11,
+        "server_retries": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "effect_delta": {
+          "Kandil Command Receipt": 1,
+          "Kandil Request Revision": 1,
+          "Kandil Recruitment Event": 1,
+          "Kandil Notification Outbox": 2,
+          "Job Opening": 0
+        },
+        "ledger": {
+          "structural": 5,
+          "occupied": 0,
+          "reserved": 5,
+          "open_slots": 0,
+          "available": 0
+        }
+      },
+      {
+        "name": "20 identical concurrent hr approvals advance once",
+        "status": "PASS",
+        "requests": 20,
+        "peak_inflight_http": 20,
+        "statuses": {
+          "200": 20
+        },
+        "maximum_seconds": 0.148,
+        "server_retries": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "effect_delta": {
+          "Kandil Command Receipt": 1,
+          "Kandil Request Revision": 1,
+          "Kandil Recruitment Event": 1,
+          "Kandil Notification Outbox": 1,
+          "Job Opening": 1
+        },
+        "ledger": {
+          "structural": 5,
+          "occupied": 0,
+          "reserved": 4,
+          "open_slots": 1,
+          "available": 0
+        }
+      }
+    ],
+    "source_hashes_before": {
+      "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+      "kandil_hr/foundation/business_calendar.py": "1578130040e8fb43915272dc473c2e91de78cebfb05737c637e680f5bcc29f17",
+      "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+      "kandil_hr/foundation/clock.py": "a74e1eb10e0941e6552cb3c2ee988fd52c636a2a51fc899653138a7fafbce1e5",
+      "kandil_hr/foundation/files.py": "964f66db8998ca3c73bf87466f784125bb347232b812a9f575bdd5e1bd67f3f0",
+      "kandil_hr/foundation/models.py": "f8875d6d9226697b6e613b6d44b388ef958e409d5c292364d2c9ba1be6a95ef7",
+      "kandil_hr/foundation/outbox.py": "6c2b20c3339d88877376d18b605bcaed288aee5a22b44975e370a86427458ed8",
+      "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+      "kandil_hr/foundation/reports.py": "fc90ef7d88d4deac9057123545e8693e54d8cf55029f14cad7c333b5215257ca",
+      "kandil_hr/foundation/security.py": "0eb24c4f7760bf2b3b7fa3d3ed086cd57e47d658279fe3028e6cdc682b8fdffa",
+      "kandil_hr/foundation/teams.py": "7381961d51f3df7d6f5089ddfd059ba2e83b1ebd013d72b09b01d290f9a8942c",
+      "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kandil_hr/organization/api.py": "1abb57e06f96cff2e81fdb121ec081997361355498ffb814e9c2e42530071868",
+      "kandil_hr/organization/capacity.py": "6920a6d3862cbb3a477962191403478df417e61449d7217356c5b0591bff9db3",
+      "kandil_hr/organization/contracts.py": "a396f7373684ff54baa431dbc6d9f4e513ad007d7feedda4ea00c31641ebb03b",
+      "kandil_hr/organization/documents.py": "3e8e05f1c538e004f2fd0085e044993224d0b5a7de665b21007ea4b2b3e24971",
+      "kandil_hr/organization/jd_rules.py": "28e4447ccb3ea9be8c8746fdb250a7b1cba3babc86b745b01b6bd25277f4a7bc",
+      "kandil_hr/organization/models.py": "60c0776fdb5fd2aa8fa4a1a67d8ef2aa43951fb012e5633514415ae45fd3ab92",
+      "kandil_hr/organization/permissions.py": "bcf11d697742a590cb6f08ac72c2eaefdd2bdcd7e9fa72c9edaed3270f9a9a9e",
+      "kandil_hr/organization/review_fixture.py": "9cfa00b41a0753c7a8a87426a1195732544df966c9de109c717d9d97392a3ca5",
+      "kandil_hr/organization/rules.py": "3c49480d206d321349e2de601c44244ed38a4c3e988e2f17a44ba29ac29ed71c",
+      "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kandil_hr/pilot/api.py": "a02a933457f3e50a7f9cdf9a07c5cd669d245d7a7f58630ab07e8fe73c58387d",
+      "kandil_hr/pilot/extensions.py": "669e7584adb3a753bc8e9bd15235666b4a3fd69b70433646794c0a992f417a00",
+      "kandil_hr/pilot/models.py": "57de8cd73a8a39e87a9bcb5f0c2ea30aeb96313f54ccf09bde4b879d9b253129",
+      "kandil_hr/pilot/navigation.py": "26059b093faef37a3ae0c1b4801337806437f7219d8e5e23dfc749a16807ec9a",
+      "kandil_hr/pilot/permissions.py": "d5bc598b7c6b8254866e36eb69a4f410970f2aade4e8be3924aa15ce2542484f",
+      "kandil_hr/pilot/setup.py": "2fdd0ff456fddc1cedcfef89165f1120e668bd5caf0f01a6090f71c204a3fbe9",
+      "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "kandil_hr/recruitment/api.py": "2523a6cf0e17b6944216740f74a832a714ba94d84b101e0e01e8c20578916685",
+      "kandil_hr/recruitment/concurrency_fixture.py": "2577cba7bbd834c09438b3f8b228d6fd3f09a30014dfb6b91b1a7475646681a4",
+      "kandil_hr/recruitment/guards.py": "180e12e310d6f3156549d4836399447b921544e6dbd56218d527a27ca8652bc5",
+      "kandil_hr/recruitment/models.py": "d40ecc32f075c61f2d62e07e8696a063d0da1c00edf5d0822b26534d6d871d19",
+      "kandil_hr/recruitment/priority.py": "87292b4dcf0392d30b2847f2e297c4d1d99e8410040a7b874d90fe2a57e1c100",
+      "kandil_hr/recruitment/setup.py": "a13064e4e205a7281ab75938ccd9ce1647ced4d7a4854f5bb7f8941910dfed55",
+      "kandil_hr/recruitment/sla.py": "1172f4981fa0648a1e4def4a234c6b716472413502c6ff30b4a341eda95f834e",
+      "kandil_hr/recruitment/vacancies.py": "730ad60ae69c2ba1a622583e2ef8de99098c8ec30c484deee4d33e7f3500837b"
+    },
+    "limits": [
+      "Local short HTTP batch, not production load certification",
+      "Ordinary password login and CSRF session requests; no API-key bypass",
+      "Synthetic isolated company; immutable cancelled audit retained"
+    ],
+    "cleanup": {
+      "ledger": {
+        "structural": 5,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0,
+        "available": 5
+      },
+      "audit_retained": true,
+      "accounts_disabled": true
+    },
+    "finished_at": "2026-10-12T02:33:25.864227+00:00",
+    "source_hashes_after": {
+      "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+      "kandil_hr/foundation/business_calendar.py": "1578130040e8fb43915272dc473c2e91de78cebfb05737c637e680f5bcc29f17",
+      "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+      "kandil_hr/foundation/clock.py": "a74e1eb10e0941e6552cb3c2ee988fd52c636a2a51fc899653138a7fafbce1e5",
+      "kandil_hr/foundation/files.py": "964f66db8998ca3c73bf87466f784125bb347232b812a9f575bdd5e1bd67f3f0",
+      "kandil_hr/foundation/models.py": "f8875d6d9226697b6e613b6d44b388ef958e409d5c292364d2c9ba1be6a95ef7",
+      "kandil_hr/foundation/outbox.py": "6c2b20c3339d88877376d18b605bcaed288aee5a22b44975e370a86427458ed8",
+      "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+      "kandil_hr/foundation/reports.py": "fc90ef7d88d4deac9057123545e8693e54d8cf55029f14cad7c333b5215257ca",
+      "kandil_hr/foundation/security.py": "0eb24c4f7760bf2b3b7fa3d3ed086cd57e47d658279fe3028e6cdc682b8fdffa",
+      "kandil_hr/foundation/teams.py": "7381961d51f3df7d6f5089ddfd059ba2e83b1ebd013d72b09b01d290f9a8942c",
+      "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kandil_hr/organization/api.py": "1abb57e06f96cff2e81fdb121ec081997361355498ffb814e9c2e42530071868",
+      "kandil_hr/organization/capacity.py": "6920a6d3862cbb3a477962191403478df417e61449d7217356c5b0591bff9db3",
+      "kandil_hr/organization/contracts.py": "a396f7373684ff54baa431dbc6d9f4e513ad007d7feedda4ea00c31641ebb03b",
+      "kandil_hr/organization/documents.py": "3e8e05f1c538e004f2fd0085e044993224d0b5a7de665b21007ea4b2b3e24971",
+      "kandil_hr/organization/jd_rules.py": "28e4447ccb3ea9be8c8746fdb250a7b1cba3babc86b745b01b6bd25277f4a7bc",
+      "kandil_hr/organization/models.py": "60c0776fdb5fd2aa8fa4a1a67d8ef2aa43951fb012e5633514415ae45fd3ab92",
+      "kandil_hr/organization/permissions.py": "bcf11d697742a590cb6f08ac72c2eaefdd2bdcd7e9fa72c9edaed3270f9a9a9e",
+      "kandil_hr/organization/review_fixture.py": "9cfa00b41a0753c7a8a87426a1195732544df966c9de109c717d9d97392a3ca5",
+      "kandil_hr/organization/rules.py": "3c49480d206d321349e2de601c44244ed38a4c3e988e2f17a44ba29ac29ed71c",
+      "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kandil_hr/pilot/api.py": "a02a933457f3e50a7f9cdf9a07c5cd669d245d7a7f58630ab07e8fe73c58387d",
+      "kandil_hr/pilot/extensions.py": "669e7584adb3a753bc8e9bd15235666b4a3fd69b70433646794c0a992f417a00",
+      "kandil_hr/pilot/models.py": "57de8cd73a8a39e87a9bcb5f0c2ea30aeb96313f54ccf09bde4b879d9b253129",
+      "kandil_hr/pilot/navigation.py": "26059b093faef37a3ae0c1b4801337806437f7219d8e5e23dfc749a16807ec9a",
+      "kandil_hr/pilot/permissions.py": "d5bc598b7c6b8254866e36eb69a4f410970f2aade4e8be3924aa15ce2542484f",
+      "kandil_hr/pilot/setup.py": "2fdd0ff456fddc1cedcfef89165f1120e668bd5caf0f01a6090f71c204a3fbe9",
+      "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+      "kandil_hr/recruitment/api.py": "2523a6cf0e17b6944216740f74a832a714ba94d84b101e0e01e8c20578916685",
+      "kandil_hr/recruitment/concurrency_fixture.py": "2577cba7bbd834c09438b3f8b228d6fd3f09a30014dfb6b91b1a7475646681a4",
+      "kandil_hr/recruitment/guards.py": "180e12e310d6f3156549d4836399447b921544e6dbd56218d527a27ca8652bc5",
+      "kandil_hr/recruitment/models.py": "d40ecc32f075c61f2d62e07e8696a063d0da1c00edf5d0822b26534d6d871d19",
+      "kandil_hr/recruitment/priority.py": "87292b4dcf0392d30b2847f2e297c4d1d99e8410040a7b874d90fe2a57e1c100",
+      "kandil_hr/recruitment/setup.py": "a13064e4e205a7281ab75938ccd9ce1647ced4d7a4854f5bb7f8941910dfed55",
+      "kandil_hr/recruitment/sla.py": "1172f4981fa0648a1e4def4a234c6b716472413502c6ff30b4a341eda95f834e",
+      "kandil_hr/recruitment/vacancies.py": "730ad60ae69c2ba1a622583e2ef8de99098c8ec30c484deee4d33e7f3500837b"
+    },
+    "source_unchanged_during_run": true,
+    "previous_execution": {
+      "run_id": "926a6fefd922",
+      "site": "kandil-parity.localhost",
+      "checked_at": "2026-10-12T02:31:52.618952+00:00",
+      "status": "FAIL",
+      "checks": [
+        {
+          "name": "20 submissions contend for five BLOCK seats",
+          "status": "PASS",
+          "requests": 20,
+          "peak_inflight_http": 20,
+          "statuses": {
+            "200": 5,
+            "417": 15
+          },
+          "maximum_seconds": 0.59,
+          "server_retries": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0,
+            0,
+            0,
+            null,
+            null,
+            0
+          ],
+          "ledger": {
+            "structural": 5,
+            "occupied": 0,
+            "reserved": 5,
+            "open_slots": 0,
+            "available": 0
+          }
+        },
+        {
+          "name": "Concurrent manager approval diagnostics",
+          "status": "FAIL",
+          "requests": 20,
+          "peak_inflight_http": 20,
+          "statuses": {
+            "200": 1,
+            "417": 19
+          },
+          "maximum_seconds": 0.189,
+          "server_retries": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            0
+          ],
+          "error_types": [
+            "TimestampMismatchError"
+          ],
+          "errors": [
+            "frappe.exceptions.TimestampMismatchError: This record changed. Reload it before deciding."
+          ]
+        }
+      ],
+      "limits": [
+        "Local short HTTP batch, not production load certification",
+        "Ordinary password login and CSRF session requests; no API-key bypass",
+        "Synthetic isolated company; immutable cancelled audit retained"
+      ],
+      "failure_type": "AssertionError",
+      "failure": "Concurrent approval replay returned an HTTP error",
+      "cleanup": {
+        "ledger": {
+          "structural": 5,
+          "occupied": 0,
+          "reserved": 0,
+          "open_slots": 0,
+          "available": 5
+        },
+        "audit_retained": true,
+        "accounts_disabled": true
+      },
+      "finished_at": "2026-10-12T02:32:05.967127+00:00",
+      "previous_execution": {
+        "run_id": "5ea735eff160",
+        "site": "kandil-parity.localhost",
+        "checked_at": "2026-10-12T02:31:24.452507+00:00",
+        "status": "FAIL",
+        "checks": [
+          {
+            "name": "20 submissions contend for five BLOCK seats",
+            "status": "PASS",
+            "requests": 20,
+            "peak_inflight_http": 20,
+            "statuses": {
+              "200": 5,
+              "417": 15
+            },
+            "maximum_seconds": 0.384,
+            "server_retries": [
+              null,
+              null,
+              null,
+              null,
+              0,
+              null,
+              null,
+              0,
+              null,
+              null,
+              0,
+              null,
+              0,
+              0,
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+            ],
+            "ledger": {
+              "structural": 5,
+              "occupied": 0,
+              "reserved": 5,
+              "open_slots": 0,
+              "available": 0
+            }
+          }
+        ],
+        "limits": [
+          "Local short HTTP batch, not production load certification",
+          "Ordinary password login and CSRF session requests; no API-key bypass",
+          "Synthetic isolated company; immutable cancelled audit retained"
+        ],
+        "failure_type": "AssertionError",
+        "failure": "Concurrent approval replay returned an HTTP error",
+        "cleanup": {
+          "ledger": {
+            "structural": 5,
+            "occupied": 0,
+            "reserved": 0,
+            "open_slots": 0,
+            "available": 5
+          },
+          "audit_retained": true,
+          "accounts_disabled": true
+        },
+        "finished_at": "2026-10-12T02:31:37.357272+00:00"
+      }
+    }
+  }
+}

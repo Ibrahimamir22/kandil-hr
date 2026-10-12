@@ -1,0 +1,773 @@
+{
+  "assessment": "Proposed technical execution status, not HR acceptance",
+  "checked_at": "2026-10-12T03:03:33.877378+00:00",
+  "source_checkpoint": "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+  "source_hashes_sha256": "182b4a199a3b2bddf8caec92e4b08740d50fcd8e1c4b514fce7ac9bf11637a88",
+  "counts": {
+    "proposed_pass": 10,
+    "partial": 53,
+    "blocked": 17
+  },
+  "cases": [
+    {
+      "case_id": "AT-ACC-001-01",
+      "status": "partial",
+      "actual": "Password login and authenticated ordinary users pass; disabled-account scope checks pass. Expired-session plus disabled-login UI/API matrix is not executed.",
+      "evidence": [
+        "../sprints/evidence/concurrency-http-2026-10-12.json",
+        "../sprints/evidence/browser/results.json",
+        "../sprints/evidence/foundation-native-2026-10-12.json"
+      ],
+      "gap": "Password login and authenticated ordinary users pass; disabled-account scope checks pass. Expired-session plus disabled-login UI/API matrix is not executed."
+    },
+    {
+      "case_id": "AT-ACC-001-02",
+      "status": "blocked",
+      "actual": "New-device alert deduplication, idle expiry and enrolled MFA have no acceptance evidence; native login does not substitute.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-08"
+      ],
+      "gap": "New-device alert deduplication, idle expiry and enrolled MFA have no acceptance evidence; native login does not substitute."
+    },
+    {
+      "case_id": "AT-ACC-002-01",
+      "status": "blocked",
+      "actual": "External identity adapter and conflicting-subject mapping are not implemented/verified.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-08"
+      ],
+      "gap": "External identity adapter and conflicting-subject mapping are not implemented/verified."
+    },
+    {
+      "case_id": "AT-ACC-002-02",
+      "status": "blocked",
+      "actual": "No provider-failure exercise exists; provider integration is absent.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-08"
+      ],
+      "gap": "No provider-failure exercise exists; provider integration is absent."
+    },
+    {
+      "case_id": "AT-ACC-003-01",
+      "status": "partial",
+      "actual": "Company/branch native list/detail, file/share and team denials pass. Equal-looking A/B records across every link/export/print/attachment channel remain untested as one complete matrix.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Company/branch native list/detail, file/share and team denials pass. Equal-looking A/B records across every link/export/print/attachment channel remain untested as one complete matrix."
+    },
+    {
+      "case_id": "AT-ACC-003-02",
+      "status": "partial",
+      "actual": "Requester takeover, role loss, self-approval and executive delegation denial pass. Full beneficiary/acting-principal and immediately revoked delegated-decision matrix remains.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Requester takeover, role loss, self-approval and executive delegation denial pass. Full beneficiary/acting-principal and immediately revoked delegated-decision matrix remains."
+    },
+    {
+      "case_id": "AT-AUD-001-01",
+      "status": "partial",
+      "actual": "Immutable snapshots/security events and replay counts pass; exact actor/principal/command/before-after coverage plus edit/delete attacks on each business audit type remain.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json",
+        "../sprints/evidence/foundation-native-2026-10-12.json"
+      ],
+      "gap": "Immutable snapshots/security events and replay counts pass; exact actor/principal/command/before-after coverage plus edit/delete attacks on each business audit type remain."
+    },
+    {
+      "case_id": "AT-AUD-001-02",
+      "status": "blocked",
+      "actual": "No HMAC chain or protected external latest-seal anchor; altered/reordered/truncated audit attacks cannot pass.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-09"
+      ],
+      "gap": "No HMAC chain or protected external latest-seal anchor; altered/reordered/truncated audit attacks cannot pass."
+    },
+    {
+      "case_id": "AT-AUD-002-01",
+      "status": "partial",
+      "actual": "Reason and authority guards exist for exercised actions. Every override/evidence-required route, including Board proof, is not exercised.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Reason and authority guards exist for exercised actions. Every override/evidence-required route, including Board proof, is not exercised."
+    },
+    {
+      "case_id": "AT-AUD-002-02",
+      "status": "partial",
+      "actual": "User privilege changes and direct child/decision writes are blocked. Explicit ordinary System Manager decision attempts and reviewed Administrator operations remain incomplete.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "User privilege changes and direct child/decision writes are blocked. Explicit ordinary System Manager decision attempts and reviewed Administrator operations remain incomplete."
+    },
+    {
+      "case_id": "AT-WAG-001-01",
+      "status": "blocked",
+      "actual": "No executed payroll-present fixture checks all Salary Slip/Payroll Entry/deduction/payment records before and after jobs.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-10"
+      ],
+      "gap": "No executed payroll-present fixture checks all Salary Slip/Payroll Entry/deduction/payment records before and after jobs."
+    },
+    {
+      "case_id": "AT-WAG-001-02",
+      "status": "blocked",
+      "actual": "Recruiter wage-mutation endpoint matrix has not been executed; narrow granted roles alone are not runtime proof.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-10"
+      ],
+      "gap": "Recruiter wage-mutation endpoint matrix has not been executed; narrow granted roles alone are not runtime proof."
+    },
+    {
+      "case_id": "AT-ORG-001-01",
+      "status": "proposed_pass",
+      "actual": "Reviewed baseline creates Worker/Vacant/Manager Position IDs sharing one Designation; separate native identities and scope fields persist. Capacity is position-linked, not title-counted.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-ORG-001-02",
+      "status": "partial",
+      "actual": "Explicit dated assignments and overlap rejection pass; changing a Designation/title and proving unchanged occupancy is not exercised.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Explicit dated assignments and overlap rejection pass; changing a Designation/title and proving unchanged occupancy is not exercised."
+    },
+    {
+      "case_id": "AT-ORG-002-01",
+      "status": "partial",
+      "actual": "Immutable structure snapshots and dated edges pass; independently rendering R1 and R2 original relationships remains untested.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Immutable structure snapshots and dated edges pass; independently rendering R1 and R2 original relationships remains untested."
+    },
+    {
+      "case_id": "AT-ORG-002-02",
+      "status": "partial",
+      "actual": "History protection exists; native close-position, new-allocation denial and referenced-record deletion need a complete executed case.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "History protection exists; native close-position, new-allocation denial and referenced-record deletion need a complete executed case."
+    },
+    {
+      "case_id": "AT-ORG-003-01",
+      "status": "partial",
+      "actual": "Approved JD overwrite and child save/delete are denied. Top-level approved JD delete through API is not explicitly exercised.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Approved JD overwrite and child save/delete are denied. Top-level approved JD delete through API is not explicitly exercised."
+    },
+    {
+      "case_id": "AT-ORG-003-02",
+      "status": "proposed_pass",
+      "actual": "Native and pure JD tests prove60+40, reject60+30, zero-weight monitoring, and out-of-band written reason; KPI rules are separate from competency weights.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-ORG-003-03",
+      "status": "partial",
+      "actual": "Four native PDFs visually reviewed, readable AR/EN with no clipping in samples. External-recipient and greater-than10 recipient mail denial/audit is not implemented/verified.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Four native PDFs visually reviewed, readable AR/EN with no clipping in samples. External-recipient and greater-than10 recipient mail denial/audit is not implemented/verified."
+    },
+    {
+      "case_id": "AT-ORG-007-01",
+      "status": "partial",
+      "actual": "Authorized native organization commands and draft ownership checks pass; actual UI unit create/update plus requester REST denial is not recorded.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Authorized native organization commands and draft ownership checks pass; actual UI unit create/update plus requester REST denial is not recorded."
+    },
+    {
+      "case_id": "AT-ORG-007-02",
+      "status": "partial",
+      "actual": "Future hierarchy cycle is rejected. A cross-company parent assignment attack needs its explicit executed fixture.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Future hierarchy cycle is rejected. A cross-company parent assignment attack needs its explicit executed fixture."
+    },
+    {
+      "case_id": "AT-ORG-008-01",
+      "status": "partial",
+      "actual": "Position/hierarchy/assignment repeated reviewed imports do not duplicate. Unit/job import and full external-code adapter coverage are not implemented/verified.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Position/hierarchy/assignment repeated reviewed imports do not duplicate. Unit/job import and full external-code adapter coverage are not implemented/verified."
+    },
+    {
+      "case_id": "AT-ORG-008-02",
+      "status": "partial",
+      "actual": "Conflicting allocation and occupied-baseline mismatch are reported. External-ID collision, search and export retention need dedicated tests.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Conflicting allocation and occupied-baseline mismatch are reported. External-ID collision, search and export retention need dedicated tests."
+    },
+    {
+      "case_id": "AT-ORG-009-01",
+      "status": "partial",
+      "actual": "Company-keyed authority settings exist; simultaneous legal entities with equal titles and independently resolved chiefs are not exercised.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Company-keyed authority settings exist; simultaneous legal entities with equal titles and independently resolved chiefs are not exercised."
+    },
+    {
+      "case_id": "AT-ORG-009-02",
+      "status": "partial",
+      "actual": "Native cross-company scope and browser out-of-scope detail/queue denial pass. Complete report/link/attachment URL matrix for company A versus B remains.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Native cross-company scope and browser out-of-scope detail/queue denial pass. Complete report/link/attachment URL matrix for company A versus B remains."
+    },
+    {
+      "case_id": "AT-HC-001-01",
+      "status": "partial",
+      "actual": "One-seat baseline and approved resize to2 pass; explicit default-without-input plus configured3 boundary is not recorded.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "One-seat baseline and approved resize to2 pass; explicit default-without-input plus configured3 boundary is not recorded."
+    },
+    {
+      "case_id": "AT-HC-001-02",
+      "status": "partial",
+      "actual": "Position-linked ledgers persist and direct resize is denied. Dedicated same-Designation headcount substitution attempt is not executed.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Position-linked ledgers persist and direct resize is denied. Dedicated same-Designation headcount substitution attempt is not executed."
+    },
+    {
+      "case_id": "AT-HC-002-01",
+      "status": "partial",
+      "actual": "Dated occupancy/overlap pure rules and allocation imports pass. Actual two-active-assignment occupied=2 then closing at date boundary is not an executed end-to-end case.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Dated occupancy/overlap pure rules and allocation imports pass. Actual two-active-assignment occupied=2 then closing at date boundary is not an executed end-to-end case."
+    },
+    {
+      "case_id": "AT-HC-002-02",
+      "status": "partial",
+      "actual": "Repeat assignment import and explicit occupied mismatch pass; exhaustive unmatched Employee/Position preview and payroll-file adapter remain.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Repeat assignment import and explicit occupied mismatch pass; exhaustive unmatched Employee/Position preview and payroll-file adapter remain."
+    },
+    {
+      "case_id": "AT-ORG-005-01",
+      "status": "blocked",
+      "actual": "90-day and91-day boundaries plus self-delegation have code guards but no current recorded native boundary test.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-04"
+      ],
+      "gap": "90-day and91-day boundaries plus self-delegation have code guards but no current recorded native boundary test."
+    },
+    {
+      "case_id": "AT-ORG-005-02",
+      "status": "partial",
+      "actual": "Scope revocation and immutable decisions have partial evidence. Delegation process isolation, delegated action revocation and preserved old decisions require one complete test.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-native-2026-10-12.json"
+      ],
+      "gap": "Scope revocation and immutable decisions have partial evidence. Delegation process isolation, delegated action revocation and preserved old decisions require one complete test."
+    },
+    {
+      "case_id": "AT-ORG-005-03",
+      "status": "partial",
+      "actual": "Unapproved executive delegation is rejected. Positive separately approved CEO delegation/version workflow is absent; fail-closed is not feature completion.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Unapproved executive delegation is rejected. Positive separately approved CEO delegation/version workflow is absent; fail-closed is not feature completion."
+    },
+    {
+      "case_id": "AT-ORG-006-01",
+      "status": "proposed_pass",
+      "actual": "No Position exists at draft/submission; independent hierarchy/HR/CEO completion creates one stable KPOS identity with one capacity.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-ORG-006-02",
+      "status": "partial",
+      "actual": "Structural approval replay is stable. Reject/return reason and final Create replay together have not been exercised; structural Return is not delivered.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Structural approval replay is stable. Reject/return reason and final Create replay together have not been exercised; structural Return is not delivered."
+    },
+    {
+      "case_id": "AT-HC-003-01",
+      "status": "partial",
+      "actual": "BLOCK denial and normal reservations pass. Exact3-request/1-available displayed shortage2 plus justified exception request need verification.",
+      "evidence": [
+        "../sprints/evidence/concurrency-http-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "BLOCK denial and normal reservations pass. Exact3-request/1-available displayed shortage2 plus justified exception request need verification."
+    },
+    {
+      "case_id": "AT-HC-003-02",
+      "status": "blocked",
+      "actual": "No current recorded three-way negative/fractional/zero native request test with unchanged ledger.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "No current recorded three-way negative/fractional/zero native request test with unchanged ledger."
+    },
+    {
+      "case_id": "AT-HC-004-01",
+      "status": "blocked",
+      "actual": "Positive Sector exception with exact shortage snapshot and ordinary-HR denial is not in the current executed suite.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-03"
+      ],
+      "gap": "Positive Sector exception with exact shortage snapshot and ordinary-HR denial is not in the current executed suite."
+    },
+    {
+      "case_id": "AT-HC-004-02",
+      "status": "blocked",
+      "actual": "Independent CEO exception path exists in source but personal Sector-interest routing is not exercised; business beneficiary rules remain unresolved.",
+      "evidence": [
+        "POLICY_DECISIONS.md#PD-02"
+      ],
+      "gap": "Independent CEO exception path exists in source but personal Sector-interest routing is not exercised; business beneficiary rules remain unresolved."
+    },
+    {
+      "case_id": "AT-HC-005-01",
+      "status": "partial",
+      "actual": "Multiple exact ledger conservation cases pass. Literal mixed occupied3/open2/reserved1 fixture and reserve2 arithmetic are not executed.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/concurrency-http-2026-10-12.json"
+      ],
+      "gap": "Multiple exact ledger conservation cases pass. Literal mixed occupied3/open2/reserved1 fixture and reserve2 arithmetic are not executed."
+    },
+    {
+      "case_id": "AT-HC-005-02",
+      "status": "proposed_pass",
+      "actual": "20 concurrent HTTP quantity1 submissions against5 BLOCK seats produce5 reservations and15 controlled denials; no excess/negative capacity, cleanup reconciles.",
+      "evidence": [
+        "../sprints/evidence/concurrency-http-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-HC-005-03",
+      "status": "partial",
+      "actual": "Approved-parent amendment1to3 reserves onlydelta2. Pending-own-reservation2to3 delta1 wording is not the tested scenario.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Approved-parent amendment1to3 reserves onlydelta2. Pending-own-reservation2to3 delta1 wording is not the tested scenario."
+    },
+    {
+      "case_id": "AT-HC-006-01",
+      "status": "partial",
+      "actual": "BLOCK contention passes. Same shortage under WARN plus recorded exception authority still needs direct comparison and HR acceptance.",
+      "evidence": [
+        "../sprints/evidence/concurrency-http-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "BLOCK contention passes. Same shortage under WARN plus recorded exception authority still needs direct comparison and HR acceptance."
+    },
+    {
+      "case_id": "AT-HC-006-02",
+      "status": "partial",
+      "actual": "Frozen step/revision snapshots are exercised. Changing WARN/BLOCK or authority configuration while requests exist needs explicit tests.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Frozen step/revision snapshots are exercised. Changing WARN/BLOCK or authority configuration while requests exist needs explicit tests."
+    },
+    {
+      "case_id": "AT-HC-007-01",
+      "status": "proposed_pass",
+      "actual": "Three accepted offers leave occupancy unchanged; each actual join transfers one open seat to occupied with matching dated assignment. Replays preserve original links and counts after parent completion. This is native sequential proof; new parity concurrent joining remains an additional unexecuted gate.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-HC-007-02",
+      "status": "partial",
+      "actual": "No Show/Withdrawn preserve vacancies and replay once with reason checks. Authorized joining correction, assignment reversal and history reconciliation remain unsupported; no fill void is claimed.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "No Show/Withdrawn preserve vacancies and replay once with reason checks. Authorized joining correction, assignment reversal and history reconciliation remain unsupported; no fill void is claimed."
+    },
+    {
+      "case_id": "AT-REQ-001-01",
+      "status": "partial",
+      "actual": "Ordinary requester creation/read succeeds and out-of-scope access fails. Exact managerA1 create followed by B1 payload substitution is not executed.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Ordinary requester creation/read succeeds and out-of-scope access fails. Exact managerA1 create followed by B1 payload substitution is not executed."
+    },
+    {
+      "case_id": "AT-REQ-001-02",
+      "status": "partial",
+      "actual": "Manage-scope and revoked/read-only grants pass. Positive dated delegate and process/unit/interval boundaries remain.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Manage-scope and revoked/read-only grants pass. Positive dated delegate and process/unit/interval boundaries remain."
+    },
+    {
+      "case_id": "AT-REQ-002-01",
+      "status": "partial",
+      "actual": "Native request values persist and form renders. Every HR-REC-F02 field round-trip plus matching printed values is not exercised.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Native request values persist and form renders. Every HR-REC-F02 field round-trip plus matching printed values is not exercised."
+    },
+    {
+      "case_id": "AT-REQ-002-02",
+      "status": "blocked",
+      "actual": "HR internal-note visibility is not proven across requester response/notification/timeline/print. Existing scope protection does not substitute for field-level privacy.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json"
+      ],
+      "gap": "HR internal-note visibility is not proven across requester response/notification/timeline/print. Existing scope protection does not substitute for field-level privacy."
+    },
+    {
+      "case_id": "AT-REQ-003-01",
+      "status": "proposed_pass",
+      "actual": "Two-location approved fixtures preserve2/1 quantities and linked native openings; additional3/2 fixture checks two distinct openings and per-line vacancies.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-REQ-003-02",
+      "status": "blocked",
+      "actual": "Duplicate-line guard exists but no current native duplicate-location/position acceptance execution is recorded.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Duplicate-line guard exists but no current native duplicate-location/position acceptance execution is recorded."
+    },
+    {
+      "case_id": "AT-REQ-004-01",
+      "status": "partial",
+      "actual": "Dated hierarchy traversal, vacant-level recorded skip and cycle rejection pass. Required HR notice for a skipped vacant level is not proven.",
+      "evidence": [
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Dated hierarchy traversal, vacant-level recorded skip and cycle rejection pass. Required HR notice for a skipped vacant level is not proven."
+    },
+    {
+      "case_id": "AT-REQ-004-02",
+      "status": "partial",
+      "actual": "Frozen step identity/revision and requester self-independence pass. Creator versus beneficiary policy requires HR decision and explicit coverage.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Frozen step identity/revision and requester self-independence pass. Creator versus beneficiary policy requires HR decision and explicit coverage."
+    },
+    {
+      "case_id": "AT-REQ-005-01",
+      "status": "partial",
+      "actual": "Cairo date clock and dated hierarchy helpers pass. Authority-rule tomorrow/today resolution on either side of Cairo midnight is untested.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Cairo date clock and dated hierarchy helpers pass. Authority-rule tomorrow/today resolution on either side of Cairo midnight is untested."
+    },
+    {
+      "case_id": "AT-REQ-005-02",
+      "status": "partial",
+      "actual": "Pending steps are stored and protected. Positive HR route-to-CEO and subsequent hierarchy change preserving principal require explicit execution.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/organization-native-2026-10-12.json"
+      ],
+      "gap": "Pending steps are stored and protected. Positive HR route-to-CEO and subsequent hierarchy change preserving principal require explicit execution."
+    },
+    {
+      "case_id": "AT-REQ-006-01",
+      "status": "partial",
+      "actual": "Approval, return, reduction and revoked-HR denial pass. HR rejection and positive CEO-request action at allowed/forbidden stages remain untested.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Approval, return, reduction and revoked-HR denial pass. HR rejection and positive CEO-request action at allowed/forbidden stages remain untested."
+    },
+    {
+      "case_id": "AT-REQ-006-02",
+      "status": "proposed_pass",
+      "actual": "Native altered payload/stale step/version denial plus20 simultaneous same-command manager and final-HR calls return identical outcomes and advance once.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/concurrency-http-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-REQ-007-01",
+      "status": "partial",
+      "actual": "Submission/decision/replay notification counts and SLA dedupe pass; every edit/cancel intended-recipient matrix is not explicitly asserted.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/concurrency-http-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Submission/decision/replay notification counts and SLA dedupe pass; every edit/cancel intended-recipient matrix is not explicitly asserted."
+    },
+    {
+      "case_id": "AT-REQ-007-02",
+      "status": "partial",
+      "actual": "Local outbox identity/retry/failure/suppression pass and no external email occurs. A mail-sink adapter/result classification is not exercised.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Local outbox identity/retry/failure/suppression pass and no external email occurs. A mail-sink adapter/result classification is not exercised."
+    },
+    {
+      "case_id": "AT-REQ-008-01",
+      "status": "partial",
+      "actual": "Returned revision1 becomes edited/resubmitted revision2; previous JSON stays unchanged and old step fails. Explicit revision-reader access and direct immutable-revision mutation tests remain.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Returned revision1 becomes edited/resubmitted revision2; previous JSON stays unchanged and old step fails. Explicit revision-reader access and direct immutable-revision mutation tests remain."
+    },
+    {
+      "case_id": "AT-REQ-008-02",
+      "status": "proposed_pass",
+      "actual": "Return releases reservations to zero; requester revision resubmission reapplies exact new quantities and ledger reconciles at both points.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-REQ-009-01",
+      "status": "partial",
+      "actual": "Revision snapshots remain unchanged through return/edit and step identities persist. Assertions for exact policy/authority/all reviewed fields need full snapshot contract test.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Revision snapshots remain unchanged through return/edit and step identities persist. Assertions for exact policy/authority/all reviewed fields need full snapshot contract test."
+    },
+    {
+      "case_id": "AT-REQ-009-02",
+      "status": "blocked",
+      "actual": "Snapshot field-level redaction and unauthorized export privacy are not proven; record scope alone is insufficient.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json"
+      ],
+      "gap": "Snapshot field-level redaction and unauthorized export privacy are not proven; record scope alone is insufficient."
+    },
+    {
+      "case_id": "AT-REQ-010-01",
+      "status": "partial",
+      "actual": "Scoped native list and browser request/queue access pass; requester My Requests own-only versus manager/HR organizational lists need explicit comparison.",
+      "evidence": [
+        "../sprints/evidence/foundation-native-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Scoped native list and browser request/queue access pass; requester My Requests own-only versus manager/HR organizational lists need explicit comparison."
+    },
+    {
+      "case_id": "AT-REQ-010-02",
+      "status": "partial",
+      "actual": "Immutable event counts exist. Rendered timeline ordering, principal/time and delegated-action correspondence are not asserted.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Immutable event counts exist. Rendered timeline ordering, principal/time and delegated-action correspondence are not asserted."
+    },
+    {
+      "case_id": "AT-REQ-011-01",
+      "status": "partial",
+      "actual": "Linked approved1to3 top-up preserves openings and addsdelta2. Exact approved2to3 adds1 fixture and final-action replay need explicit execution.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Linked approved1to3 top-up preserves openings and addsdelta2. Exact approved2to3 adds1 fixture and final-action replay need explicit execution."
+    },
+    {
+      "case_id": "AT-REQ-011-02",
+      "status": "blocked",
+      "actual": "Pending reduction is tested, not approved joined-floor3to2/1. Full HR-reason branch/type/date/spec amendment path remains incomplete.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Pending reduction is tested, not approved joined-floor3to2/1. Full HR-reason branch/type/date/spec amendment path remains incomplete."
+    },
+    {
+      "case_id": "AT-PRI-001-01",
+      "status": "partial",
+      "actual": "Hand-calculated classification/age/due/pin boundaries pass. Explicit repeated same-input recalculation assertion and full configured weight fixture remain.",
+      "evidence": [
+        "COMMAND_TEST_MAPPING.md#PR"
+      ],
+      "gap": "Hand-calculated classification/age/due/pin boundaries pass. Explicit repeated same-input recalculation assertion and full configured weight fixture remain."
+    },
+    {
+      "case_id": "AT-PRI-001-02",
+      "status": "partial",
+      "actual": "Native pin changes queue score; expiry/inactive score rules pass. Forbidden role pin attempt and original requested priority/score history preservation need dedicated assertions.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "COMMAND_TEST_MAPPING.md#PR"
+      ],
+      "gap": "Native pin changes queue score; expiry/inactive score rules pass. Forbidden role pin attempt and original requested priority/score history preservation need dedicated assertions."
+    },
+    {
+      "case_id": "AT-BRD-001-01",
+      "status": "blocked",
+      "actual": "No executed Board-after-CEO ordering or Chairman/Vice identity fixture in current suite.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "No executed Board-after-CEO ordering or Chairman/Vice identity fixture in current suite."
+    },
+    {
+      "case_id": "AT-BRD-001-02",
+      "status": "blocked",
+      "actual": "Private-file access checks pass generally. Board on-behalf missing-proof denial and unrelated-user proof access are not specifically exercised.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+      ],
+      "gap": "Private-file access checks pass generally. Board on-behalf missing-proof denial and unrelated-user proof access are not specifically exercised."
+    },
+    {
+      "case_id": "AT-VAC-001-01",
+      "status": "proposed_pass",
+      "actual": "Native two-line opening allocation plus20 concurrent final-HR same-command calls yield exactly one opening per approved line with no duplicate effects.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/concurrency-http-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-VAC-002-01",
+      "status": "partial",
+      "actual": "Actual partial joining, full and mixed Filled/Closed completion, sequential replay counts and cancellation double-release pass. Exact parent completion notice count and per-location Cancelled variant remain unverified.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "Actual partial joining, full and mixed Filled/Closed completion, sequential replay counts and cancellation double-release pass. Exact parent completion notice count and per-location Cancelled variant remain unverified."
+    },
+    {
+      "case_id": "AT-VAC-002-02",
+      "status": "blocked",
+      "actual": "No executed authorized fill-void/reopen workflow and full ledger reconciliation on current code.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json"
+      ],
+      "gap": "No executed authorized fill-void/reopen workflow and full ledger reconciliation on current code."
+    },
+    {
+      "case_id": "AT-VAC-003-01",
+      "status": "partial",
+      "actual": "One lead and two unique recruiters, scoped team and bulk assignment pass. Exactly one current responsible owner on every application is not proven.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+      ],
+      "gap": "One lead and two unique recruiters, scoped team and bulk assignment pass. Exactly one current responsible owner on every application is not proven."
+    },
+    {
+      "case_id": "AT-VAC-003-02",
+      "status": "proposed_pass",
+      "actual": "Scoped non-team recruiter is denied known candidate detail/list and mutation; read-only assigned recruiter cannot write. Applies to native boundary tested at recorded hash.",
+      "evidence": [
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+      ],
+      "gap": ""
+    },
+    {
+      "case_id": "AT-VAC-004-01",
+      "status": "partial",
+      "actual": "Missing/disabled lead yields explicit HR-assignment fallback and intake denial; queue visibility exists. Automatic routing/task ownership no-orphan behavior remains.",
+      "evidence": [
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Missing/disabled lead yields explicit HR-assignment fallback and intake denial; queue visibility exists. Automatic routing/task ownership no-orphan behavior remains."
+    },
+    {
+      "case_id": "AT-VAC-005-01",
+      "status": "partial",
+      "actual": "Disabled lead is detected and cannot intake; explicit fallback tested. Automatic moving of vacancy/tasks/applications to unassigned with history is not implemented/proven.",
+      "evidence": [
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+      ],
+      "gap": "Disabled lead is detected and cannot intake; explicit fallback tested. Automatic moving of vacancy/tasks/applications to unassigned with history is not implemented/proven."
+    },
+    {
+      "case_id": "AT-VAC-005-02",
+      "status": "partial",
+      "actual": "Bulk two-location success, replay, stale/closed second-parent atomic rollback pass. Out-of-scope IDs in a mixed bulk request and disabled-owner reassignment need explicit execution.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/foundation-boundaries-native-2026-10-12.json"
+      ],
+      "gap": "Bulk two-location success, replay, stale/closed second-parent atomic rollback pass. Out-of-scope IDs in a mixed bulk request and disabled-owner reassignment need explicit execution."
+    },
+    {
+      "case_id": "AT-VAC-006-01",
+      "status": "partial",
+      "actual": "Native queue states and browser scoped approved openings pass; complete approved/pending/excluded-state/site-company list fixture still needed.",
+      "evidence": [
+        "../sprints/evidence/joining-recruitment-checkpoint-2026-10-12.json",
+        "../sprints/evidence/browser/results.json"
+      ],
+      "gap": "Native queue states and browser scoped approved openings pass; complete approved/pending/excluded-state/site-company list fixture still needed."
+    }
+  ]
+}

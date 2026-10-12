@@ -16,7 +16,23 @@
     "lines",
     "approval_steps",
     "submitted_snapshot",
-    "decision_note"
+    "decision_note",
+    "requested_position",
+    "request_kind",
+    "amends",
+    "baseline_modified",
+    "revision",
+    "need_reason",
+    "replacement_employee",
+    "employment_type",
+    "required_by",
+    "qualifications",
+    "skills_required",
+    "experience_required",
+    "working_conditions",
+    "requested_priority",
+    "hr_priority",
+    "route_snapshot"
   ],
   "fields": [
     {
@@ -57,7 +73,7 @@
       "default": "Draft",
       "read_only": 1,
       "in_list_view": 1,
-      "options": "Draft\nPending\nApproved\nRejected\nCancelled\nFilled"
+      "options": "Draft\nPending\nReturned\nApproved\nRejected\nCancelled\nFilled\nApplied\nClosed"
     },
     {
       "fieldname": "exception_reason",
@@ -95,6 +111,106 @@
       "fieldname": "decision_note",
       "label": "Decision Note",
       "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
+      "fieldname": "requested_position",
+      "label": "Requested Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position"
+    },
+    {
+      "fieldname": "request_kind",
+      "label": "Request Kind",
+      "fieldtype": "Select",
+      "options": "New Recruitment\nAmendment",
+      "default": "New Recruitment",
+      "read_only": 1
+    },
+    {
+      "fieldname": "amends",
+      "label": "Amends",
+      "fieldtype": "Link",
+      "options": "Kandil Hiring Request",
+      "read_only": 1
+    },
+    {
+      "fieldname": "baseline_modified",
+      "label": "Baseline Modified",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "revision",
+      "label": "Revision",
+      "fieldtype": "Int",
+      "default": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "need_reason",
+      "label": "Need Reason",
+      "fieldtype": "Select",
+      "options": "New Position\nReplacement\nTemporary Cover\nExpansion",
+      "default": "Expansion"
+    },
+    {
+      "fieldname": "replacement_employee",
+      "label": "Replacement Employee",
+      "fieldtype": "Link",
+      "options": "Employee"
+    },
+    {
+      "fieldname": "employment_type",
+      "label": "Employment Type",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "required_by",
+      "label": "Required By",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "qualifications",
+      "label": "Qualifications",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "skills_required",
+      "label": "Skills Required",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "experience_required",
+      "label": "Experience Required",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "working_conditions",
+      "label": "Working Conditions",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "requested_priority",
+      "label": "Requested Priority",
+      "fieldtype": "Select",
+      "options": "Normal\nImportant\nCritical",
+      "default": "Normal"
+    },
+    {
+      "fieldname": "hr_priority",
+      "label": "HR Priority",
+      "fieldtype": "Select",
+      "options": "Normal\nImportant\nCritical",
+      "default": "Normal",
+      "read_only": 1
+    },
+    {
+      "fieldname": "route_snapshot",
+      "label": "Route Snapshot",
+      "fieldtype": "Code",
+      "hidden": 1,
       "read_only": 1
     }
   ],

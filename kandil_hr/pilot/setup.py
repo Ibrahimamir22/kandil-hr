@@ -49,4 +49,10 @@ def install():
 	make_property_setter("Job Applicant", "email_id", "reqd", 0, "Check")
 	# HRMS's fetched offer email also assumes that every candidate has an email.
 	make_property_setter("Job Offer", "applicant_email", "reqd", 0, "Check")
+	from kandil_hr.recruitment.setup import install as install_recruitment
+
+	install_recruitment()
+	from kandil_hr.foundation.files import purge_protected_shares
+
+	purge_protected_shares()
 	frappe.clear_cache()

@@ -1,0 +1,253 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil JD Revision",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "branch",
+    "position",
+    "revision",
+    "supersedes",
+    "grade_band",
+    "valid_from",
+    "purpose",
+    "purpose_ar",
+    "responsibilities",
+    "responsibilities_ar",
+    "qualifications",
+    "competencies",
+    "status",
+    "approved_by",
+    "approved_at",
+    "designation",
+    "job_level",
+    "responsibility_rows",
+    "responsibility_reason",
+    "kpis",
+    "authorities",
+    "qualifications_ar",
+    "experience",
+    "experience_ar",
+    "technical_skills",
+    "technical_skills_ar",
+    "working_conditions",
+    "working_conditions_ar",
+    "certifications",
+    "certifications_ar"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "branch",
+      "label": "Branch",
+      "fieldtype": "Link",
+      "options": "Branch"
+    },
+    {
+      "fieldname": "position",
+      "label": "Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position",
+      "reqd": 1
+    },
+    {
+      "fieldname": "revision",
+      "label": "Revision",
+      "fieldtype": "Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "supersedes",
+      "label": "Supersedes",
+      "fieldtype": "Link",
+      "options": "Kandil JD Revision"
+    },
+    {
+      "fieldname": "grade_band",
+      "label": "Grade Band",
+      "fieldtype": "Link",
+      "options": "Kandil Grade Band",
+      "print_hide": 1
+    },
+    {
+      "fieldname": "valid_from",
+      "label": "Valid From",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "purpose",
+      "label": "Purpose",
+      "fieldtype": "Text Editor",
+      "reqd": 1
+    },
+    {
+      "fieldname": "purpose_ar",
+      "label": "Arabic Purpose",
+      "fieldtype": "Text Editor"
+    },
+    {
+      "fieldname": "responsibilities",
+      "label": "Legacy Responsibilities",
+      "fieldtype": "Text Editor",
+      "reqd": 0
+    },
+    {
+      "fieldname": "responsibilities_ar",
+      "label": "Legacy Arabic Responsibilities",
+      "fieldtype": "Text Editor"
+    },
+    {
+      "fieldname": "qualifications",
+      "label": "Qualifications",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "competencies",
+      "label": "Competencies",
+      "fieldtype": "Table",
+      "options": "Kandil JD Competency",
+      "reqd": 0
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nApproved\nRejected",
+      "default": "Draft",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_at",
+      "label": "Approved At",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "designation",
+      "label": "Job / Designation",
+      "fieldtype": "Link",
+      "options": "Designation",
+      "read_only": 1
+    },
+    {
+      "fieldname": "job_level",
+      "label": "Job Level",
+      "fieldtype": "Select",
+      "options": "\nJL1\nJL2\nJL3\nJL4\nJL5\nJL6\nJL7"
+    },
+    {
+      "fieldname": "responsibility_rows",
+      "label": "Structured Responsibilities",
+      "fieldtype": "Table",
+      "options": "Kandil JD Responsibility"
+    },
+    {
+      "fieldname": "responsibility_reason",
+      "label": "Responsibility Band Exception Reason",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "kpis",
+      "label": "Performance Indicators",
+      "fieldtype": "Table",
+      "options": "Kandil JD KPI"
+    },
+    {
+      "fieldname": "authorities",
+      "label": "Decision Authorities",
+      "fieldtype": "Table",
+      "options": "Kandil JD Authority"
+    },
+    {
+      "fieldname": "qualifications_ar",
+      "label": "Arabic Qualifications",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "experience",
+      "label": "Experience",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "experience_ar",
+      "label": "Arabic Experience",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "technical_skills",
+      "label": "Technical Skills",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "technical_skills_ar",
+      "label": "Arabic Technical Skills",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "working_conditions",
+      "label": "Working Conditions and Hazards",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "working_conditions_ar",
+      "label": "Arabic Working Conditions and Hazards",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "certifications",
+      "label": "Required Certificates and Licences",
+      "fieldtype": "Text"
+    },
+    {
+      "fieldname": "certifications_ar",
+      "label": "Arabic Certificates and Licences",
+      "fieldtype": "Text"
+    }
+  ],
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    }
+  ]
+}

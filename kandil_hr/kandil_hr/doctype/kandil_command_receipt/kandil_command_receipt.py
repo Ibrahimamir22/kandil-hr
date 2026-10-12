@@ -1,0 +1,1 @@
+from kandil_hr.recruitment.models import KandilCommandReceipt

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-12",
+  "fixes": [
+    {
+      "issue": "Queue used POST against GET-only endpoint",
+      "resolution": "Explicit GET in queue/actions calls; final read-only smoke passed"
+    },
+    {
+      "issue": "_lang query produced RTL with English boot catalogue",
+      "resolution": "Test actual saved per-user language preference; Arabic desktop/mobile rendering passed"
+    },
+    {
+      "issue": "Document action matched both hidden and visible native entries",
+      "resolution": "Use the visible semantic menuitem in the browser harness; native document and PDF checks passed."
+    },
+    {
+      "issue": "Browser workflow harness used the old dialog primary-button class",
+      "resolution": "Use Frappe v16 btn-modal-primary; manager approval, HR approval, bulk assignment and opening passed."
+    },
+    {
+      "issue": "Legacy smoke expected a new field from a preserved older running server",
+      "resolution": "Verify legacy mode is not enabled, plus the original status/submit contract; do not claim the unchanged old process ran current parity source."
+    }
+  ],
+  "current_result": "results.json"
+}

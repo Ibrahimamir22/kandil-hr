@@ -1,0 +1,328 @@
+{
+  "suite": "organization-native",
+  "results": [
+    {
+      "check": "CSV preview normalizes rows without modifying draft or creating positions",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview rejects stale draft version",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview rejects malformed schema",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV preview applies existing department validation",
+      "status": "PASS"
+    },
+    {
+      "check": "HR role without company scope cannot preview CSV",
+      "status": "PASS"
+    },
+    {
+      "check": "Independent reviewer cannot load CSV into another author draft",
+      "status": "PASS"
+    },
+    {
+      "check": "CSV cannot replace an independently reviewed import",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed baseline position identity distinct from designation; default one seat",
+      "status": "PASS"
+    },
+    {
+      "check": "Native Position creation cannot bypass structure approval",
+      "status": "PASS"
+    },
+    {
+      "check": "Unreviewed excess structural seats blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Structure author cannot be rewritten to bypass independence",
+      "status": "PASS"
+    },
+    {
+      "check": "Future approver cannot edit another author draft",
+      "status": "PASS"
+    },
+    {
+      "check": "Structure author cannot self approve",
+      "status": "PASS"
+    },
+    {
+      "check": "CEO cannot bypass pending HR approval",
+      "status": "PASS"
+    },
+    {
+      "check": "HR approval retry returns the receipt without advancing CEO step",
+      "status": "PASS"
+    },
+    {
+      "check": "Reused structural command ID with changed decision rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "Fresh command on stale structural version rejected",
+      "status": "PASS"
+    },
+    {
+      "check": "Independent HR then CEO creates immutable snapshot; retry is stable",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct approval child save cannot rewrite structural decision",
+      "status": "PASS"
+    },
+    {
+      "check": "Vacant manager escalates to enabled authority then terminal HR",
+      "status": "PASS"
+    },
+    {
+      "check": "Overlapping employee primary assignment blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Future hierarchy cycle blocked at preview",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD rejects weighted KPI total 90",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD rejects monitoring KPI weight",
+      "status": "PASS"
+    },
+    {
+      "check": "Native JD responsibility band requires exception reason",
+      "status": "PASS"
+    },
+    {
+      "check": "Approved JD cannot be overwritten",
+      "status": "PASS"
+    },
+    {
+      "check": "Structured JD with independent KPIs and competency profile approved",
+      "status": "PASS"
+    },
+    {
+      "check": "Scoped AR/EN JD and worker-card rendering excludes internal grade and KPI weights on card",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct child save cannot rewrite approved JD competency",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct child delete cannot remove approved JD competency",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct Kandil JD Responsibility save is blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct Kandil JD KPI save is blocked",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed import and repeated batches do not duplicate positions",
+      "status": "PASS"
+    },
+    {
+      "check": "Occupied baseline mismatch explicitly reported, never silently reset",
+      "status": "PASS"
+    },
+    {
+      "check": "Direct capacity resize cannot bypass approved Position",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy-HR-CEO resize updates position and capacity atomically",
+      "status": "PASS"
+    },
+    {
+      "check": "New Position ID is not issued on draft or submission",
+      "status": "PASS"
+    },
+    {
+      "check": "Final hierarchy-HR-CEO approval creates one Position ID and one capacity",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy re-import preserves dated edges without duplicates",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed assignment re-import preserves one explicit allocation",
+      "status": "PASS"
+    },
+    {
+      "check": "Import cannot double-allocate an employee",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed hierarchy import creates one native edge and snapshot; replay stable",
+      "status": "PASS"
+    },
+    {
+      "check": "Reviewed historical allocation import creates native history without double counting",
+      "status": "PASS"
+    },
+    {
+      "check": "HR role without company scope cannot print JD",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot preview organization CSV",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot query organization reconciliation",
+      "status": "PASS"
+    },
+    {
+      "check": "Guest cannot view or download JD documents",
+      "status": "PASS"
+    }
+  ],
+  "passed": 47,
+  "rolled_back": true,
+  "executed_at_utc": "2026-10-12T03:04:56.795302+00:00",
+  "site": "kandil-parity.localhost",
+  "command": "bench --site kandil-parity.localhost execute kandil_hr.organization.integration_tests.run",
+  "exit_code": 0,
+  "pure_rule_tests": 35,
+  "pdf_visual_review": {
+    "status": "PASS",
+    "pages_reviewed": 4,
+    "checks": [
+      "Arabic text joins and RTL layout readable",
+      "English layout readable",
+      "No clipped content or overlapping sections in synthetic samples",
+      "Each sample is one A4 page"
+    ]
+  },
+  "browser_check": {
+    "status": "PENDING",
+    "reason": "Browser URL policy rejected local file protocol. Authenticated HTTP native Documents UI not yet tested."
+  },
+  "limits": [
+    "Synthetic local parity only; not production rollout or sustained load.",
+    "Two-connection RR proof covers specified organization invariants and native assignment current grant revalidation; not generic native HR writes.",
+    "Native row-before-Company locks and cross-company shared-user contention may require transactional retry; no general retry/load proof.",
+    "Future structure scheduling, XLSX parsing and full shared-JD reader access remain pending."
+  ],
+  "source_hashes": {
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/kandil_access_grant.json": "ce900cee45fbaf25346a85c0adbf5893d02f6fa31f2a354f1cf7fde08828a5a6",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.json": "afb3360b6119891bafe2b49a0209566c5f519504ddadf3235d616cd2589aeb7f",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/kandil_authority_rule.json": "9f157fa72d3efdb3dbc69dc4e1ac21f6341c10de265a5ce75e11c043bfdd6d71",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/kandil_business_calendar.json": "c5116196c6c41cccc6f5247c58959741577befebe91fcae537b34e83b03fd1c3",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.json": "37d49d4611c193b3baf2ef481ee8427ce7af26110872c4d042c7a8f5bee8b1b4",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/kandil_command_receipt.json": "023ff76640275ef6234b8471e96749acacec13addfd1f0fed69eaa51e3c4e047",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.json": "39bdce2fb2656b804a4045002d3670d3ad3c813c71819c17988d0d7b36eee981",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.js": "b4748f813b6776d796cf68aaaa1afac6310e3c65190d5eb6e6673d49eb279f17",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.json": "63f7547d199d4bd73f75ceb9e2b898d83626a96acbbc9350fd8bfaaf5ea8cb9d",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "d3d88587c3f7e040b1b646ce77f5522b9219d90d8606c3c634ba56e20e687726",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json": "05d274dde649f5901faba19f057404f1bd3f44ea53fb409a98821e7945e50091",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/kandil_jd_authority.json": "77c53e90fe39836690e4dd475e6ba77428b9a4016e7800749bc858e3ad8901e0",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/kandil_jd_competency.json": "f4707960bb94ea83acf4c42d01ffbe41f5b7d19f84a2e90ad014e58efe52b4e6",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/kandil_jd_kpi.json": "7c24a31b45aee96295d33fff11902eee772f4e9738dd5950d09110496fab323c",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/kandil_jd_responsibility.json": "50e752ffeb33e97450c15721460a6f8c274505ea6aa9bdb1e4fd574b14b3f7ae",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.js": "220fb319fd33693c97baf2aa6ec4144120446bd3a0bec10eec21453abf9ab8e7",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.json": "87f9646f80579826e78a0e1efef592328a0879eb7238085d9eb21d543f412b78",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.js": "6b1582eb8eac1b6f816fdac2239733dc5d8eaf2f01947dc9e3e1ee0885b0e2bd",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.json": "05fe535293a9acbd83bd1aee0809593662a280dbceef43f3925f9df5fc0a5375",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.js": "6b7d886747c9d7933378a0407a5f196239c8e8d0547a522a4a5209fd10b5a4ba",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.json": "d868a09f05ae0c5eeca9ae596454101df71aab714107052e161cd31c627bbd3a",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/kandil_organization_settings.json": "7d49a55b6945553a63c028462caaf5ece9ab079782f2567663ed2c65c16f08d9",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.js": "e32ddf43148e1fa72d2eeae8bd1fe6058c641d548e2207617ea9a062dfc2d351",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.json": "0ed0341a77d368364e9a64075ace9f361d6017c4e1bef2cdf4fb7e6dae9b93aa",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.js": "7fca26cb05b0768123626d593bb1c47cca52194b203348362d98a2877c00642b",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.json": "8b627a56dc4264f2ba06ff7bb01c15d8775024b126d4476d32eee0b575797854",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/kandil_position_hierarchy.json": "6855b98a803aaf92a882bdf64215c203494778a794f017c580cca5413fa285af",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/kandil_recruiter_member.json": "fa2a4dbf7c936b1f4a7fe94af9582c73b9e668f8032cc27be3985f24466af21b",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.json": "485eb42f1c027837d85ac75e3ea79ca7152c8dc749daaa3d434766b33c21f33a",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/kandil_recruitment_route.json": "ac3a18e9ed110876a0c0fc8aa11e8a412a57f6589a5b088e52f71eb0a98d388f",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/kandil_request_line.json": "8b663a6e46a7dd9cf548df9bb3653e740ef6cff37ebec1932189c5e62bb04b73",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/kandil_request_revision.json": "83c04868c650c5423cafa7ce8d44ae66e50a9520f285d833f2421556653422ce",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/kandil_security_event.json": "4de527d0165ea45299fbbbe7eac76c77de824135664603c466f6e5cd8a0b8510",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/kandil_security_policy.json": "2cabcfa0bbbecf541b70fcd5d8364d62618bef051007c7f8df6a93d89f374b19",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.js": "b85b6608fe871f12eab597ab4e65c4370bb6c627e8f45c8be77d40a107cb869d",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.json": "dbfb80653ea6e0675f6e538e86f95447a6f6a0a734d5abb785835c456ee45ec0",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/kandil_structure_snapshot.json": "7b930731bce068e3b4f0e41e134bc746ed24e1c16e0e025a15668c2bec821c12",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/integration_tests.py": "3ed5669237f0114f9e4c4f7c5d47a9b6573e14f30d14d75fcf50a7c725697605",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/organization/test_csv_import.py": "970ddada5b43da1295c3dec0270fbb72de00ba341525a2478374f815a2bac068",
+    "kandil_hr/organization/test_jd_rules.py": "861812b85456afc1da77563757d6946869f0db5bfddddf14e73fd4923baad9a0",
+    "kandil_hr/organization/test_rules.py": "aa9cd1c134af52ad73143d6e24e2b82dc636da34adb8255f5092bfb3bfc49672"
+  },
+  "artifacts": {
+    "docs/organization-evidence/jd-ar-1.png": "e1c90a81c41553fb1a566964b4214e36917a8097300f5f5e200e9b38587e18e1",
+    "docs/organization-evidence/jd-ar.html": "519af71af93dea9e7a0a3b60eebcc3768b6760a6cf0b012a8444b381148b47ee",
+    "docs/organization-evidence/jd-ar.pdf": "67e7a601d9cdb42bb7b350975e6352ddc3cc53282ae129ae76b75ab99b8075cf",
+    "docs/organization-evidence/jd-en-1.png": "02757d5e480f092e0bf34b982cfd8d98a16c580f66bba1de2221c1f6847f4fda",
+    "docs/organization-evidence/jd-en.html": "fea0bdf71efdba9733073029e62af342181fede85150181093a5bca4bb34b235",
+    "docs/organization-evidence/jd-en.pdf": "3108586b5e5fcd578e7adb00d62bc9b93e233080b10270b8cdf0f8492fe1a70f",
+    "docs/organization-evidence/worker-ar-1.png": "5ead87607b7b0ae7434f010d4237fd0624aebda51845514d88e4429301a00825",
+    "docs/organization-evidence/worker-ar.html": "e8fce133470ec703296f7e8b2244d060b101fb28c4b9f3a4fda07854f420c655",
+    "docs/organization-evidence/worker-ar.pdf": "6eb67109e40c42207c50206d8edbec842a0152cf1398197e5a2088536982ae84",
+    "docs/organization-evidence/worker-en-1.png": "f0f8b2aba516cb904b619f5cbc089d9dccb0db09e373923369e46f8f845250ef",
+    "docs/organization-evidence/worker-en.html": "10433df4bff1e0546292240e285bcc780a57ffd4fbb65b67c4521a0a5651dbf4",
+    "docs/organization-evidence/worker-en.pdf": "e783c231ebcfb7bcc13ca1300041925156addebcd49d98037821dfa2be294178"
+  },
+  "previous_pdf_export_run": {
+    "executed_at_utc": "2026-10-12T02:27:58.361Z",
+    "command": "bench --site kandil-parity.localhost execute kandil_hr.organization.integration_tests.run --kwargs '{\"export_documents\":1}'",
+    "passed": 40,
+    "pdf_visual_review": {
+      "status": "PASS",
+      "pages_reviewed": 4,
+      "checks": [
+        "Arabic text joins and RTL layout readable",
+        "English layout readable",
+        "No clipped content or overlapping sections in synthetic samples",
+        "Each sample is one A4 page"
+      ]
+    },
+    "artifacts": {
+      "docs/organization-evidence/jd-ar-1.png": "e1c90a81c41553fb1a566964b4214e36917a8097300f5f5e200e9b38587e18e1",
+      "docs/organization-evidence/jd-ar.html": "519af71af93dea9e7a0a3b60eebcc3768b6760a6cf0b012a8444b381148b47ee",
+      "docs/organization-evidence/jd-ar.pdf": "67e7a601d9cdb42bb7b350975e6352ddc3cc53282ae129ae76b75ab99b8075cf",
+      "docs/organization-evidence/jd-en-1.png": "02757d5e480f092e0bf34b982cfd8d98a16c580f66bba1de2221c1f6847f4fda",
+      "docs/organization-evidence/jd-en.html": "fea0bdf71efdba9733073029e62af342181fede85150181093a5bca4bb34b235",
+      "docs/organization-evidence/jd-en.pdf": "3108586b5e5fcd578e7adb00d62bc9b93e233080b10270b8cdf0f8492fe1a70f",
+      "docs/organization-evidence/worker-ar-1.png": "5ead87607b7b0ae7434f010d4237fd0624aebda51845514d88e4429301a00825",
+      "docs/organization-evidence/worker-ar.html": "e8fce133470ec703296f7e8b2244d060b101fb28c4b9f3a4fda07854f420c655",
+      "docs/organization-evidence/worker-ar.pdf": "6eb67109e40c42207c50206d8edbec842a0152cf1398197e5a2088536982ae84",
+      "docs/organization-evidence/worker-en-1.png": "f0f8b2aba516cb904b619f5cbc089d9dccb0db09e373923369e46f8f845250ef",
+      "docs/organization-evidence/worker-en.html": "10433df4bff1e0546292240e285bcc780a57ffd4fbb65b67c4521a0a5651dbf4",
+      "docs/organization-evidence/worker-en.pdf": "e783c231ebcfb7bcc13ca1300041925156addebcd49d98037821dfa2be294178"
+    }
+  },
+  "pdf_export_note": "Current 47-check run did not regenerate PDF artifacts; prior 40-check export and visual review retained separately.",
+  "current_read_concurrency_evidence": "docs/organization-evidence/organization-concurrency.json",
+  "authenticated_document_browser_evidence": "docs/sprints/evidence/browser/jd-results.json",
+  "pure_tests": {
+    "passed": 35,
+    "command": "python3 -m unittest kandil_hr.organization.test_rules kandil_hr.organization.test_jd_rules kandil_hr.organization.test_csv_import"
+  },
+  "authenticated_csv_browser_evidence": "docs/sprints/evidence/browser/csv-results.json",
+  "source_checkpoint": "Final formatted app source; no organization changes during rerun."
+}

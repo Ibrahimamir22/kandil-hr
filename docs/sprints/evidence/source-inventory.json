@@ -1,0 +1,54 @@
+{
+  "checked_at": "2026-10-11T23:54:51.701447+00:00",
+  "kind": "local-source-only",
+  "repositories": [
+    {
+      "name": "frappe",
+      "commit": "2871914b69b6e14a4b023d9b7cc52dc3e269cc1b",
+      "branch": "version-16",
+      "remotes": [
+        "upstream\thttps://github.com/frappe/frappe.git (fetch)",
+        "upstream\thttps://github.com/frappe/frappe.git (push)"
+      ],
+      "dirty_entries": 0
+    },
+    {
+      "name": "erpnext",
+      "commit": "7474d9e786277383de1242ab882f16856d17a9c9",
+      "branch": "version-16",
+      "remotes": [
+        "upstream\thttps://github.com/frappe/erpnext.git (fetch)",
+        "upstream\thttps://github.com/frappe/erpnext.git (push)"
+      ],
+      "dirty_entries": 0
+    },
+    {
+      "name": "hrms",
+      "commit": "7c037698ce57d1492f05a8b4a586a7578f722879",
+      "branch": "version-16",
+      "remotes": [
+        "upstream\thttps://github.com/frappe/hrms.git (fetch)",
+        "upstream\thttps://github.com/frappe/hrms.git (push)"
+      ],
+      "dirty_entries": 0
+    },
+    {
+      "name": "kandil_hr",
+      "commit": "890667dd0f8604132094e10776c2ef5ccb5c068d",
+      "branch": "main",
+      "remotes": [
+        "origin\thttps://github.com/Ibrahimamir22/kandil-hr.git (fetch)",
+        "origin\thttps://github.com/Ibrahimamir22/kandil-hr.git (push)"
+      ],
+      "dirty_entries": 36
+    }
+  ],
+  "remote_verification": {
+    "checked_at": "2026-10-12",
+    "url": "https://github.com/Ibrahimamir22/kandil-hr",
+    "visibility": "PRIVATE",
+    "default_branch": "main",
+    "method": "gh repo view",
+    "note": "Checkpoint push is recorded separately; this verifies repository metadata only."
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Position Hierarchy",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "branch",
+    "position",
+    "parent_position",
+    "authority",
+    "valid_from",
+    "valid_until",
+    "structure_change"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "branch",
+      "label": "Branch",
+      "fieldtype": "Link",
+      "options": "Branch"
+    },
+    {
+      "fieldname": "position",
+      "label": "Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position",
+      "reqd": 1
+    },
+    {
+      "fieldname": "parent_position",
+      "label": "Parent Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position"
+    },
+    {
+      "fieldname": "authority",
+      "label": "Approval Authority",
+      "fieldtype": "Select",
+      "options": "Department Approval\nSector Approval\nHR Approval\nCEO Approval\nBoard Approval",
+      "reqd": 1
+    },
+    {
+      "fieldname": "valid_from",
+      "label": "Valid From",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "valid_until",
+      "label": "Valid Until",
+      "fieldtype": "Date"
+    },
+    {
+      "fieldname": "structure_change",
+      "label": "Structure Change",
+      "fieldtype": "Link",
+      "options": "Kandil Structure Change",
+      "read_only": 1
+    }
+  ],
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil CEO Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Board Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    }
+  ]
+}

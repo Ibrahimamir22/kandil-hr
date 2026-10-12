@@ -1,0 +1,36 @@
+{
+  "checked_at": "2026-10-12T03:06:38.253Z",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    {
+      "name": "Guest cannot read a private hiring request",
+      "status": "PASS"
+    },
+    {
+      "name": "Scoped requester sees native request form and live values",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-scope recruiter denied detail and sees empty queue",
+      "status": "PASS"
+    },
+    {
+      "name": "Native vacancy queue shows approved openings and controls",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic request and queue render RTL on desktop and mobile",
+      "status": "PASS"
+    },
+    {
+      "name": "No client runtime errors or server 5xx",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "serverErrors": [],
+  "limitations": [
+    "Native EN/AR rendering and saved user language tested; business mutations tested separately",
+    "Persistent synthetic review fixtures only"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Security Event",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "action",
+    "target_user",
+    "actor",
+    "changed_fields",
+    "reference"
+  ],
+  "fields": [
+    {
+      "fieldname": "action",
+      "fieldtype": "Data",
+      "label": "Action",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "target_user",
+      "fieldtype": "Link",
+      "label": "Target User",
+      "options": "User",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "actor",
+      "fieldtype": "Link",
+      "label": "Actor",
+      "options": "User",
+      "reqd": 1
+    },
+    {
+      "fieldname": "changed_fields",
+      "fieldtype": "Small Text",
+      "label": "Changed Fields"
+    },
+    {
+      "fieldname": "reference",
+      "fieldtype": "Data",
+      "label": "Reference"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "delete": 0
+    }
+  ],
+  "track_changes": 1
+}

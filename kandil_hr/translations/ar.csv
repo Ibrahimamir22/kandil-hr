@@ -1,16 +1,824 @@
-HR workspace,مساحة الموارد البشرية
-Company hub,بوابة الشركة
-Kandil workspace,مساحة قنديل
-Submit for Approval,إرسال للاعتماد
-Cancel Recruitment,إلغاء التوظيف
-Record Joining Outcome,تسجيل نتيجة المباشرة
-Actual Joining Date,تاريخ المباشرة الفعلية
-Next approval: {0},الاعتماد التالي: {0}
-Recruitment status: {0},حالة التوظيف: {0}
-Joining outcome: {0},نتيجة المباشرة: {0}
-Recorded: {0},تم التسجيل: {0}
-Department Approval,اعتماد الإدارة
-HR Approval,اعتماد الموارد البشرية
-Headcount Exception,استثناء العدد
-Reserve the requested headcount and start approvals?,هل تريد حجز العدد المطلوب وبدء الاعتمادات؟
+"0=Monday, 6=Sunday. Confirm the organization workweek.",0=الاثنين، 6=الأحد. أكد أيام العمل الأسبوعية للمؤسسة.
+1,1
+2,2
+3,3
+4,4
+A CEO approval is already pending.,يوجد اعتماد منتظر من الرئيس التنفيذي بالفعل.
+A CSV cell exceeds the 8192-character limit.,تتجاوز إحدى خلايا CSV الحد الأقصى البالغ 8192 حرفًا.
+A CSV row is missing required values.,تنقص أحد صفوف CSV قيم مطلوبة.
+A closed position cannot retain or receive headcount commitments.,لا يمكن للمنصب المغلق الاحتفاظ بالتزامات أعداد أو استقبالها.
+A command ID and reviewed record version are required.,يلزم رقم الأمر ونسخة السجل التي تمت مراجعتها.
+A command ID is required.,معرّف الأمر مطلوب.
+A company is required for business-calendar calculations.,يجب تحديد الشركة لحساب أيام العمل.
+A job description needs between 3 and 16 responsibilities.,يجب أن يتضمن الوصف الوظيفي ما بين 3 و16 مسؤولية.
+A joined offer cannot be cancelled; record any later exit separately.,لا يمكن إلغاء عرض تمت المباشرة عليه؛ سجّل إنهاء الخدمة اللاحق بشكل منفصل.
+A joined pilot employee cannot be deleted; a separate exit workflow is required.,لا يمكن حذف موظف باشر العمل في التجربة؛ يلزم مسار منفصل لإنهاء الخدمة.
+A lead and a reason are required.,يلزم تحديد قائد فريق وذكر السبب.
+A matching reviewed import is required.,يلزم استيراد مطابق تمت مراجعته.
+"A notification requires a stable key, recipient and subject.",يتطلب الإشعار مفتاحاً ثابتاً ومستلمًا وموضوعاً.
+A pin requires a reason and a current or future expiry date.,يتطلب تثبيت الأولوية سبباً وتاريخ انتهاء اليوم أو في المستقبل.
+A position can have only one capacity ledger.,يمكن أن يكون للمنصب سجل سعة واحد فقط.
+A position cannot have overlapping acting authorities.,لا يمكن أن تكون للمنصب صلاحيات قائم بالأعمال متداخلة زمنياً.
+A position must map to at most one capacity ledger.,يجب ألا يرتبط المنصب بأكثر من سجل سعة واحد.
+A reason is required.,يلزم ذكر السبب.
+A revision must supersede an approved description for the same position on a later date.,يجب أن تحل المراجعة محل وصف معتمد للمنصب نفسه بتاريخ لاحق.
+A revoked delegation cannot be reactivated.,لا يمكن إعادة تفعيل تفويض ملغى.
+A structural authority must approve this action.,يجب أن يعتمد هذا الإجراء صاحب صلاحية الهيكل التنظيمي.
+A structure change cannot repeat an action on the same position.,لا يمكن أن يكرر تغيير الهيكل الإجراء نفسه على المنصب ذاته.
+"A submitted, accepted offer is required.",يلزم عرض مقبول ومقدَّم رسمياً.
+A temporary draft key is required for a new position.,يلزم مفتاح مسودة مؤقت لمنصب جديد.
 Accepted offers do not create employees. Confirm actual joining using Record Joining Outcome.,قبول العرض لا ينشئ موظفاً. أكد المباشرة الفعلية باستخدام تسجيل نتيجة المباشرة.
+Access expiry cannot precede its start date.,لا يمكن أن يسبق انتهاء الوصول تاريخ بدايته.
+Access grants are immutable. Revoke this grant and create a new one.,لا يمكن تعديل منح الوصول. ألغِ هذا المنح وأنشئ منحاً جديداً.
+Account merging requires a separately reviewed identity migration.,يتطلب دمج الحسابات ترحيلاً للهوية تمت مراجعته بشكل مستقل.
+Acting,قائم بالأعمال
+Action,الإجراء
+Active,نشط
+Actor,منفذ الإجراء
+Actual Joining Date,تاريخ المباشرة الفعلية
+Actual joining cannot be in the future.,لا يمكن أن يكون تاريخ المباشرة الفعلية في المستقبل.
+Add,إضافة
+Add Structure Change,إضافة تغيير هيكل
+Add at least one location line.,أضف بند موقع واحداً على الأقل.
+Additional recruiters,مسؤولو توظيف إضافيون
+Africa/Cairo,Africa/Cairo
+Allocation,نوع الإسناد
+Amendment,تعديل
+Amendment applied,تم تطبيق التعديل
+Amendment created,تم إنشاء التعديل
+Amendment locations must match the original request.,يجب أن تتطابق مواقع التعديل مع الطلب الأصلي.
+Amendment: {0},تعديل: {0}
+Amends,يعدّل
+An HR attachment cannot be made public or moved to another record.,لا يمكن جعل مرفق الموارد البشرية عاماً أو نقله إلى سجل آخر.
+An active amendment already exists.,يوجد تعديل نشط بالفعل.
+An active offer already exists for this applicant.,يوجد عرض نشط لهذا المتقدم بالفعل.
+An assigned authority does not have the required approval role.,أحد أصحاب الصلاحيات المعيّنين لا يمتلك دور الاعتماد المطلوب.
+An assignment cannot overlap a position closure.,لا يمكن أن يتداخل الإسناد زمنياً مع إغلاق المنصب.
+An authority position has no approved hierarchy for the requested date.,لا يوجد تسلسل هيكلي معتمد لمنصب صاحب الصلاحية في التاريخ المطلوب.
+An authority position is closed or outside this company.,منصب صاحب الصلاحية مغلق أو خارج هذه الشركة.
+An aware datetime is required,يلزم تاريخ ووقت محددان بمنطقة زمنية
+An employee cannot have overlapping primary position assignments.,لا يمكن أن تكون للموظف إسنادات أساسية متداخلة زمنياً.
+An imported baseline cannot overlap a position closure.,لا يجوز أن تتداخل البيانات الأساسية المستوردة مع إغلاق وظيفة.
+An offer with a final joining outcome cannot change status.,لا يمكن تغيير حالة عرض عمل سُجّلت له نتيجة التحاق نهائية.
+Application identity is server managed.,تُدار هوية طلب التقدم بواسطة الخادم.
+Applied,مطبّق
+Apply Reviewed Import,تطبيق الاستيراد المُراجع
+Apply Rows,تطبيق الصفوف
+Apply the reviewed baseline rows? Existing matching records will be preserved.,هل تريد تطبيق صفوف البيانات الأساسية التي تمت مراجعتها؟ سيتم الاحتفاظ بالسجلات الحالية المطابقة.
+Apply this decision to the reviewed structure change?,هل تريد تطبيق هذا القرار على تغيير الهيكل الذي تمت مراجعته؟
+Approval Authority,صاحب صلاحية الاعتماد
+Approval SLA processing is restricted to the internal scheduler.,تقتصر معالجة المدد المحددة للاعتماد على المجدول الداخلي.
+Approval Step,خطوة الاعتماد
+Approval Steps,خطوات الاعتماد
+"Approval authority is missing, disabled or has the wrong role.",صاحب صلاحية الاعتماد غير محدد أو حسابه معطّل أو دوره غير مناسب.
+Approval deadline reached,انتهت المهلة المحددة للاعتماد
+Approval escalation,تصعيد طلب الاعتماد
+Approval expiry warning,تنبيه باقتراب انتهاء مهلة الاعتماد
+Approval reminder,تذكير بطلب الاعتماد
+Approval state is server managed.,تُدار حالة الاعتماد بواسطة الخادم.
+Approval steps are managed by the server.,تُدار خطوات الاعتماد بواسطة الخادم.
+Approve,اعتماد
+Approve Revision,اعتماد المراجعة
+Approve this version? Approved versions are immutable.,هل تريد اعتماد هذه النسخة؟ لا يمكن تعديل النسخ المعتمدة.
+Approved,معتمد
+Approved At,تاريخ الاعتماد
+Approved By,اعتمده
+Approved Qty,العدد المعتمد
+Approved grade versions are immutable.,لا يمكن تعديل نسخ الدرجات المعتمدة.
+Approved grade versions cannot overlap.,لا يمكن أن تتداخل نسخ الدرجات المعتمدة زمنياً.
+Approved job descriptions are immutable. Create a new revision.,لا يمكن تعديل الأوصاف الوظيفية المعتمدة. أنشئ مراجعة جديدة.
+Arabic Certificates and Licences,الشهادات والتراخيص بالعربية
+Arabic Competency,الكفاءة بالعربية
+Arabic Decision,القرار بالعربية
+Arabic Expected Behavior,السلوك المتوقع بالعربية
+Arabic Experience,الخبرة بالعربية
+Arabic Formula or Purpose,المعادلة أو الغرض بالعربية
+Arabic KPI,مؤشر الأداء بالعربية
+Arabic Measure,معيار القياس بالعربية
+Arabic Purpose,الغرض بالعربية
+Arabic Qualifications,المؤهلات بالعربية
+Arabic Responsibilities,المسؤوليات بالعربية
+Arabic Responsibility,المسؤولية بالعربية
+Arabic Technical Skills,المهارات الفنية بالعربية
+Arabic Title,العنوان بالعربية
+Arabic Working Conditions and Hazards,ظروف العمل والمخاطر بالعربية
+As Of,كما في تاريخ
+Assign a lead before opening an approved vacancy.,عيّن قائد فريق قبل فتح شاغر معتمد.
+Assign an active authorized lead before accepting applications.,عيّن مسؤولًا رئيسيًا نشطًا ومخوّلًا قبل استقبال طلبات التقديم.
+Assign an owner to the authentication policy.,حدد مسؤولاً لسياسة المصادقة.
+Assign recruiter team,تعيين فريق التوظيف
+Assign selected,إسناد العناصر المحددة
+Assignment end dates cannot be removed or backdated.,لا يمكن حذف تاريخ انتهاء الإسناد أو تقديمه بأثر رجعي.
+Assignment identity is immutable. End the assignment and create a new record.,لا يمكن تغيير هوية الإسناد. أنهِ الإسناد وأنشئ سجلاً جديداً.
+Assignment imports require an employee and Primary or Acting allocation.,يتطلب استيراد التكليفات تحديد الموظف ونوع التكليف: أساسي أو بالإنابة.
+Assignment user must be the enabled user linked to the employee.,يجب أن يكون مستخدم الإسناد هو المستخدم المفعّل المرتبط بالموظف.
+Assignments,الإسنادات
+At least one independent approval is required.,يلزم اعتماد مستقل واحد على الأقل.
+At least one independent approver is required.,يلزم معتمد مستقل واحد على الأقل.
+Attempts,المحاولات
+Audit events are generated only by recruitment actions.,لا تُنشأ أحداث التدقيق إلا من خلال إجراءات التوظيف.
+Audit events are immutable.,لا يمكن تعديل أحداث التدقيق.
+Audit events cannot be deleted.,لا يمكن حذف أحداث التدقيق.
+Authority,صلاحية الاعتماد
+Authority Position,منصب صاحب الصلاحية
+Authority Snapshot,نسخة مرجعية للصلاحيات
+Authority dates are invalid.,تواريخ الصلاحية غير صحيحة.
+Authority requires an enabled user with the appropriate role.,تتطلب الصلاحية مستخدماً مفعّلاً بالدور المناسب.
+Automatic rejection is disabled; an authorized decision is still required.,الرفض التلقائي معطّل؛ ولا يزال الطلب يحتاج إلى قرار من صاحب الصلاحية.
+Available,المتاح
+Baseline Hash,بصمة النسخة الأساسية
+Baseline Modified,آخر تعديل للنسخة الأساسية
+Baseline Reference,مرجع النسخة الأساسية
+Baseline imports cannot schedule future structural or employee changes.,لا يمكن استخدام استيراد البيانات الأساسية لجدولة تغييرات مستقبلية في الهيكل أو الموظفين.
+Before Freeze,الحالة قبل التجميد
+Before Pause,الحالة قبل التعليق
+Block,منع
+Board After CEO,مجلس الإدارة بعد الرئيس التنفيذي
+Board Approval,اعتماد مجلس الإدارة
+Board Approver,معتمد مجلس الإدارة
+Board Evidence,مستند إثبات مجلس الإدارة
+Board decisions on behalf require private evidence attached to this request.,تتطلب قرارات مجلس الإدارة المسجّلة بالنيابة عنه مستند إثبات خاصاً مرفقاً بهذا الطلب.
+Body,المحتوى
+Both notification reference fields are required together.,يلزم إدخال حقلي مرجع الإشعار معاً.
+Branch,الفرع
+Business-calendar end cannot precede its start,لا يجوز أن يسبق تاريخ انتهاء تقويم العمل تاريخ بدايته
+CEO Approval,اعتماد الرئيس التنفيذي
+CEO Approver,معتمد الرئيس التنفيذي
+CEO and Board delegation requires a separately approved authority workflow.,يتطلب تفويض صلاحيات الرئيس التنفيذي ومجلس الإدارة سير عمل مستقلًا لاعتماد التفويض.
+CEO for Critical Requests,الرئيس التنفيذي للطلبات الحرجة
+CSV Content,محتوى CSV
+CSV allocation must be Primary or Acting.,يجب أن يكون نوع التكليف في CSV هو Primary أو Acting.
+CSV authority must match a supported approval authority.,يجب أن تتطابق صلاحية CSV مع إحدى صلاحيات الاعتماد المدعومة.
+CSV column headers cannot be repeated.,لا يجوز تكرار أسماء أعمدة CSV.
+CSV contains an invalid calendar date.,يحتوي CSV على تاريخ غير صالح.
+CSV contains unsupported column headers. Use the selected import template.,يحتوي CSV على أسماء أعمدة غير مدعومة. استخدم قالب الاستيراد المحدد.
+CSV content changed. Validate it again before loading.,تغير محتوى CSV. تحقّق منه مرة أخرى قبل تحميله.
+CSV content contains unsupported control characters.,يحتوي CSV على أحرف تحكم غير مدعومة.
+CSV content exceeds the 1 MiB limit.,يتجاوز حجم CSV الحد الأقصى البالغ 1 ميبيبايت.
+CSV content is empty.,محتوى CSV فارغ.
+CSV content must be UTF-8 text.,يجب أن يكون محتوى CSV نصًا بترميز UTF-8.
+CSV content must be valid UTF-8 text.,يجب أن يكون محتوى CSV نصًا صالحًا بترميز UTF-8.
+CSV dates must use YYYY-MM-DD.,يجب كتابة تواريخ CSV بصيغة YYYY-MM-DD.
+CSV imports are limited to 1000 data rows.,الحد الأقصى لاستيراد CSV هو 1000 صف بيانات.
+CSV is missing required column headers. Use the selected import template.,تنقص CSV أسماء أعمدة مطلوبة. استخدم قالب الاستيراد المحدد.
+CSV must contain at least one data row.,يجب أن يحتوي CSV على صف بيانات واحد على الأقل.
+CSV structural seats must be positive whole numbers within the supported integer range.,يجب أن تكون أعداد المقاعد التنظيمية في CSV أعدادًا صحيحة موجبة ضمن النطاق المدعوم.
+CSV syntax is invalid. Use a comma-separated UTF-8 file with quoted multiline values.,تنسيق CSV غير صالح. استخدم ملف UTF-8 مفصولًا بفواصل، وضع القيم متعددة الأسطر بين علامتي اقتباس.
+Calendar Title,عنوان التقويم
+Calendar must contain a working weekday,يجب أن يحتوي التقويم على يوم عمل أسبوعي
+Can Manage Recruitment,يمكنه إدارة التوظيف
+Can View Sensitive,يمكنه عرض البيانات الحساسة
+Cancel,إلغاء
+Cancel Recruitment,إلغاء التوظيف
+Cancellation requires a reason.,يلزم ذكر سبب الإلغاء.
+Cancelled,ملغى
+Cannot assign a closed vacancy.,لا يمكن إسناد شاغر مغلق.
+Capacity,السعة الوظيفية
+Capacity dimensions must match the position.,يجب أن تتطابق أبعاد السعة مع المنصب.
+Capacity history cannot be deleted through the pilot.,لا يمكن حذف تاريخ السعة الوظيفية من خلال التجربة.
+Capacity identity cannot change. Create a new capacity record.,لا يمكن تغيير هوية السعة الوظيفية. أنشئ سجلاً جديداً.
+Capacity invariant violated; transaction rolled back.,حدث تعارض في رصيد الأعداد؛ تم التراجع عن العملية.
+"Capacity must match the job, company and department and have a position.",يجب أن تتطابق السعة مع الوظيفة والشركة والإدارة وأن ترتبط بمنصب.
+"Capacity must match the selected position, company and department.",يجب أن تتطابق السعة مع المنصب والشركة والإدارة المحددة.
+Capacity position cannot change.,لا يمكن تغيير المنصب المرتبط بالسعة.
+Capacity structural seats must match the approved position.,يجب أن يتطابق العدد الهيكلي للسعة مع المنصب المعتمد.
+Changed Fields,الحقول المتغيرة
+Choose Approve or Reject.,اختر الاعتماد أو الرفض.
+"Choose Approve, Reject or Return.",اختر الاعتماد أو الرفض أو الإرجاع.
+Choose Approved or Rejected.,اختر معتمداً أو مرفوضاً.
+Choose CSV File,اختيار ملف CSV
+"Choose Joined, No Show or Withdrawn.",اختر باشر العمل أو لم يحضر أو انسحب.
+Classification,التصنيف
+Close,إغلاق
+Closed,مغلق
+Closed On,تاريخ الإغلاق
+Closed Quantity,العدد المغلق
+Closed locations require a new recruitment request.,تتطلب المواقع المغلقة طلب توظيف جديداً.
+Closed positions cannot be modified.,لا يمكن تعديل المناصب المغلقة.
+Closed positions cannot receive assignments.,لا يمكن إسناد موظفين إلى مناصب مغلقة.
+Command History,تاريخ الأوامر
+Command ID,رقم الأمر
+Command ID was already used with different data.,استُخدم رقم الأمر بالفعل مع بيانات مختلفة.
+Command receipts are server managed.,تُدار إيصالات الأوامر بواسطة الخادم.
+Command receipts cannot be deleted.,لا يمكن حذف إيصالات الأوامر.
+Comment,التعليق
+Company,الشركة
+Company hub,بوابة الشركة
+Competencies,الكفاءات
+Competency,الكفاءة
+Competency Group,مجموعة الكفاءات
+Competency weights must be positive,يجب أن تكون أوزان الكفاءات أكبر من صفر
+Competency weights must total 100 percent,يجب أن يكون مجموع أوزان الكفاءات 100 بالمائة
+Configure an enabled terminal HR authority before submitting a request.,اضبط صاحب صلاحية نهائيًا ومفعّلًا للموارد البشرية قبل إرسال الطلب.
+Configure an independent CEO authority.,اضبط صاحب صلاحية مستقلًا للرئيس التنفيذي.
+Configure an independent authority for this personal request.,اضبط صاحب صلاحية مستقلًا لهذا الطلب الشخصي.
+Configure company HR and sector contacts before processing approval escalation.,حدد مسؤولي الموارد البشرية والقطاع للشركة قبل معالجة تصعيد طلبات الاعتماد.
+Configure exactly one company business calendar or select an explicit calendar belonging to that company.,اضبط تقويم عمل واحدًا فقط للشركة، أو حدد صراحةً تقويمًا تابعًا لها.
+Configure independent enabled HR and CEO authorities before submitting a structure change.,اضبط صلاحيات مستقلة ومفعّلة للموارد البشرية والرئيس التنفيذي قبل إرسال تغيير الهيكل.
+Configure one enabled department approval route first.,اضبط مسار اعتماد نشطاً واحداً للإدارة أولاً.
+Configure one enabled recruitment route for this department.,اضبط مسار توظيف نشطاً واحداً لهذه الإدارة.
+Configured authorities must be enabled users with the appropriate approval role.,يجب أن يكون أصحاب الصلاحيات المحددون مستخدمين مفعّلين بدور الاعتماد المناسب.
+Confirm actual joining using the pilot action; direct conversion is blocked.,أكد المباشرة الفعلية باستخدام الإجراء التجريبي؛ التحويل المباشر غير مسموح.
+Consult,استشارة
+Convert spreadsheet formulas to literal values before importing CSV.,حوّل صيغ جدول البيانات إلى قيم فعلية قبل استيراد CSV.
+Create Employee,إنشاء موظف
+Create Revision,إنشاء مراجعة
+Create amendments through the amendment action.,أنشئ التعديلات من خلال إجراء التعديل.
+Create the reviewed positions? Existing matching records will be preserved.,هل تريد إنشاء المناصب التي تمت مراجعتها؟ سيتم الاحتفاظ بالسجلات المطابقة الموجودة.
+Created Positions,المناصب المُنشأة
+Critical,حرج
+Currency,العملة
+Current assignment imports require an enabled linked user.,يتطلب استيراد التكليفات الحالية مستخدمًا مرتبطًا ومفعّلًا.
+Date of Birth,تاريخ الميلاد
+Date of birth must precede joining.,يجب أن يسبق تاريخ الميلاد تاريخ المباشرة.
+Dated imports require a position and valid-from date with supported fields only.,تتطلب السجلات المؤرخة المستوردة تحديد الوظيفة وتاريخ بدء السريان، مع استخدام الحقول المدعومة فقط.
+Decide,اتخاذ القرار
+Decided At,تاريخ القرار
+Decided structure changes are immutable.,لا يمكن تعديل تغييرات الهيكل التي تم حسمها.
+Decision,القرار
+Decision Authorities,صلاحيات اتخاذ القرار
+Decision Authority,صلاحية اتخاذ القرار
+Decision Note,ملاحظة القرار
+Dedupe Key,مفتاح منع التكرار
+Deduplication Identity,هوية منع التكرار
+Delegate needs the Kandil Approver role.,يحتاج المفوَّض إليه إلى دور معتمد قنديل.
+Delegation is immutable; revoke it and create a new record.,لا يمكن تعديل التفويض؛ ألغِه وأنشئ سجلاً جديداً.
+Delegation must cover 1 to 90 calendar days.,يجب أن تكون مدة التفويض من يوم إلى 90 يوماً تقويمياً.
+Delegation requires enabled users.,يجب أن تكون حسابات أطراف التفويض مفعّلة.
+Delivered At,تاريخ التسليم
+Delivered locally,تم التسليم محلياً
+Department,الإدارة
+Department Approval,اعتماد الإدارة
+Department must belong to the selected company.,يجب أن تتبع الإدارة الشركة المحددة.
+Department route authorities conflict with Organization Settings. Reconcile the configuration before submitting.,تتعارض صلاحيات مسار الإدارة مع إعدادات الهيكل. صحح الإعدادات قبل الإرسال.
+Designation,المسمى الوظيفي
+Details,التفاصيل
+Digest,الملخص الدوري
+Documents,المستندات
+Download PDF,تنزيل PDF
+Draft,مسودة
+Duplicate dated row in import batch.,يوجد صف مؤرخ مكرر في دفعة الاستيراد.
+Duplicate draft position key in structure request.,يوجد مفتاح مسودة منصب مكرر في طلب الهيكل.
+Duplicate position code in import batch.,يوجد رمز منصب مكرر في دفعة الاستيراد.
+Each KPI needs a Weighted or Monitoring type.,يجب تحديد نوع كل مؤشر أداء: ذو وزن نسبي أو للمتابعة.
+Edit Import Rows,تعديل صفوف الاستيراد
+Edit Position Rows,تعديل صفوف المناصب
+Edit child rows through their parent workflow.,عدّل الصفوف الفرعية من خلال سير عمل السجل الرئيسي.
+Effective From,ساري من
+Effective On,تاريخ السريان
+Effective To,ساري حتى
+Employee,الموظف
+Employee must belong to the selected company.,يجب أن يتبع الموظف الشركة المحددة.
+Employment Type,نوع التوظيف
+Enabled,مفعّل
+"End assignments, commitments and subordinate hierarchy links before closing a position.",أنه الإسنادات والالتزامات وروابط المناصب التابعة قبل إغلاق المنصب.
+Enter a valid contact phone number.,أدخل رقم هاتف صحيحاً للتواصل.
+"Enter company, department, designation and title first.",أدخل الشركة والإدارة والمسمى الوظيفي والعنوان أولًا.
+"Enter title, department and designation.",أدخل العنوان والإدارة والمسمى الوظيفي.
+Every CSV column needs a header.,يجب تسمية كل عمود في CSV.
+Every CSV row must have the same number of columns as the header.,يجب أن يطابق عدد أعمدة كل صف في CSV عدد أعمدة العناوين.
+Every capacity must match the request company and department.,يجب أن تتطابق كل سعة وظيفية مع شركة الطلب وإدارته.
+Every changed position must belong to this company.,يجب أن يتبع كل منصب يتم تغييره هذه الشركة.
+"Every import row needs a position code, title, department and designation; unsupported fields are rejected.",يتطلب كل صف استيراد رمز منصب وعنواناً وإدارة ومسمى وظيفياً؛ تُرفض الحقول غير المدعومة.
+Every imported parent requires an effective hierarchy row on the child start date.,يجب أن يتوفر لكل وظيفة رئيسية مستوردة سجل تسلسل وظيفي سارٍ في تاريخ بدء الوظيفة التابعة.
+Every imported position must belong to this company.,يجب أن تتبع جميع الوظائف المستوردة هذه الشركة.
+Every parity capacity ledger must reference a position.,يجب أن يرتبط كل سجل سعة في النظام الموسّع بمنصب.
+Every recruiter must have an enabled account and management access to every location in this request.,يجب أن يمتلك كل مسؤول توظيف حساباً مفعّلاً وصلاحية إدارة جميع مواقع هذا الطلب.
+Every recruiter must have an enabled account and management access to this location.,يجب أن يمتلك كل مسؤول توظيف حساباً مفعّلاً وصلاحية إدارة هذا الموقع.
+Every recruitment location must have an active position.,يجب أن يكون لكل موقع توظيف منصب نشط.
+Every responsibility needs an English or Arabic description.,يجب أن تتضمن كل مسؤولية وصفًا بالإنجليزية أو بالعربية.
+Every selected vacancy needs its request and reviewed version.,يجب أن يتضمن كل شاغر محدد الطلب المرتبط به والإصدار الذي تمت مراجعته.
+Every weighted KPI needs a positive weight.,يجب أن يكون الوزن النسبي لكل مؤشر أداء موزون أكبر من صفر.
+Exception Approver,معتمد الاستثناء
+Exception Reason,سبب الاستثناء
+Existing position differs from the import. Use a reviewed structure change or edit descriptive fields first.,يختلف المنصب الموجود عن الاستيراد. استخدم تغيير هيكل تمت مراجعته أو عدّل الحقول الوصفية أولاً.
+Expansion,توسع
+Expected Behavior,السلوك المتوقع
+Expected Version,النسخة المتوقعة
+Experience,الخبرة
+Experience Required,الخبرة المطلوبة
+Extended recruitment is not enabled on this site.,التوظيف الموسّع غير مفعّل على هذا الموقع.
+External ID,الرقم الخارجي
+External identity - pending,هوية خارجية - قيد الانتظار
+Failed,فشل
+Filled,مكتمل التعيين
+Formula or Monitoring Purpose,المعادلة أو غرض المتابعة
+Frappe native - not verified,مصادقة Frappe القياسية - غير متحقق منها
+Frappe native - verified,مصادقة Frappe القياسية - متحقق منها
+Freeze,تجميد
+Frequency,التكرار
+From Date,من تاريخ
+From User,المفوِّض
+Frozen,مجمّد
+Gender,النوع
+Grade Band,نطاق الدرجة الوظيفية
+Grade Code,رمز الدرجة
+Grade range must have a non-negative minimum and a valid maximum.,يجب أن يكون الحد الأدنى لنطاق الدرجة غير سالب وحده الأقصى صحيحاً.
+HR Approval,اعتماد الموارد البشرية
+HR Approver,معتمد الموارد البشرية
+HR Priority,أولوية الموارد البشرية
+HR and CEO structure approvals must be performed by different people.,يجب أن ينفّذ اعتمادات الهيكل للموارد البشرية والرئيس التنفيذي أشخاص مختلفون.
+HR review,مراجعة الموارد البشرية
+HR workspace,مساحة الموارد البشرية
+Headcount Exception,استثناء العدد
+Headcount Mode,وضع ضبط الأعداد
+Headcount blocking is enabled. Adjust capacity or requested quantity.,منع تجاوز العدد مفعّل. عدّل السعة أو العدد المطلوب.
+Headcount exception requires a justification.,يتطلب استثناء العدد مبرراً.
+Headcount exception requires a justification; no capacity was reserved.,يتطلب استثناء العدد مبرراً؛ لم يتم حجز أي عدد.
+Hierarchy,التسلسل الهيكلي
+Hierarchy revision already exists on or after this effective date.,توجد مراجعة للهيكل في تاريخ السريان هذا أو بعده بالفعل.
+Hierarchy revisions must be created by an approved structure change.,يجب إنشاء مراجعات تسلسل المناصب من خلال تغيير هيكل معتمد.
+Hold,تعليق
+Holiday List,قائمة العطلات
+Hr Approver,معتمد الموارد البشرية
+Identity Design,تصميم الهوية
+Import Kind,نوع الاستيراد
+Import must contain between 1 and 1000 position rows.,يجب أن يحتوي الاستيراد على عدد من صف إلى 1000 صف منصب.
+Import must contain between 1 and 1000 valid rows.,يجب أن تحتوي دفعة الاستيراد على عدد من الصفوف الصحيحة بين 1 و1000.
+Important,مهم
+Imported department must belong to this company.,يجب أن تتبع الإدارة المستوردة هذه الشركة.
+Imported designation and branch must already exist.,يجب أن يكون المسمى الوظيفي والفرع المستوردان موجودين بالفعل.
+Imported effective dates are invalid.,تواريخ السريان المستوردة غير صحيحة.
+Imported structural seats must be positive whole numbers.,يجب أن تكون الأعداد الهيكلية المستوردة أعداداً صحيحة أكبر من صفر.
+Inactive,غير نشط
+Increases require a returned revision.,تتطلب الزيادات مراجعة مُعادة للتعديل.
+Inform,إبلاغ
+Invalid DocType,نوع السجل غير صحيح
+Invalid command receipt identity.,هوية إيصال الأمر غير صحيحة.
+Invalid effective date range,فترة السريان غير صحيحة
+JL1,JL1
+JL2,JL2
+JL3,JL3
+JL4,JL4
+JL5,JL5
+JL6,JL6
+JL7,JL7
+Job / Designation,الوظيفة / المسمى الوظيفي
+Job Description,الوصف الوظيفي
+Job Family,العائلة الوظيفية
+Job Level,المستوى الوظيفي
+Job Opening,الشاغر الوظيفي
+Job description competencies must be saved through their parent revision.,يجب حفظ كفاءات الوصف الوظيفي من خلال إصدار الوصف الرئيسي.
+Joined,باشر العمل
+Joined Qty,عدد المباشرين
+Joining Outcome,نتيجة المباشرة
+Joining Outcome Reason,سبب نتيجة المباشرة
+Joining Position Assignment,تكليف الوظيفة عند الالتحاق
+"Joining date, date of birth and gender are required for the Employee record.",تاريخ المباشرة وتاريخ الميلاد والنوع مطلوبة لإنشاء سجل الموظف.
+Joining links are server managed.,تُدار روابط المباشرة بواسطة الخادم.
+Joining outcome: {0},نتيجة المباشرة: {0}
+Joining requires an active position matching the request location.,يتطلب تسجيل الالتحاق وظيفة تنظيمية نشطة تطابق موقع الطلب.
+KPI,مؤشر الأداء
+KPI Type,نوع مؤشر الأداء
+KPI weights must be valid numbers.,يجب أن تكون أوزان مؤشرات الأداء أرقامًا صحيحة الصيغة.
+Kandil Access Grant,منح الوصول لقنديل
+Kandil Application Key,مفتاح طلب التقدم لقنديل
+Kandil Approval Step,خطوة اعتماد قنديل
+Kandil Authority Rule,قاعدة صلاحية قنديل
+Kandil Business Calendar,تقويم عمل قنديل
+Kandil Capacity,السعة الوظيفية لقنديل
+Kandil Command Receipt,إيصال أمر قنديل
+Kandil Delegation,تفويض قنديل
+Kandil Grade Band,نطاق الدرجة الوظيفية لقنديل
+Kandil HR attachments must be private.,يجب أن تكون مرفقات الموارد البشرية لقنديل خاصة.
+Kandil HR foundation is not enabled on this site.,أساس الموارد البشرية لقنديل غير مفعّل على هذا الموقع.
+Kandil Hiring Request,طلب توظيف قنديل
+Kandil JD Authority,صلاحية الوصف الوظيفي - قنديل
+Kandil JD Competency,كفاءة الوصف الوظيفي لقنديل
+Kandil JD KPI,مؤشر أداء الوصف الوظيفي - قنديل
+Kandil JD Responsibility,مسؤولية الوصف الوظيفي - قنديل
+Kandil JD Revision,مراجعة الوصف الوظيفي لقنديل
+Kandil Joining Applicant,المتقدم المباشر لقنديل
+Kandil Joining Offer,عرض المباشرة لقنديل
+Kandil Notification Outbox,صندوق إشعارات قنديل الصادرة
+Kandil Organization Import,استيراد هيكل قنديل
+Kandil Organization Revision,مراجعة هيكل قنديل
+Kandil Organization Settings,إعدادات هيكل قنديل
+Kandil Position,المنصب التنظيمي لقنديل
+Kandil Position Assignment,إسناد المنصب التنظيمي لقنديل
+Kandil Position Hierarchy,تسلسل مناصب قنديل
+Kandil Recruiter Member,عضو فريق التوظيف لقنديل
+Kandil Recruitment Event,حدث توظيف قنديل
+Kandil Recruitment Route,مسار توظيف قنديل
+Kandil Request,طلب قنديل
+Kandil Request Line,بند طلب قنديل
+Kandil Request Revision,مراجعة طلب قنديل
+Kandil Security Event,حدث أمني لقنديل
+Kandil Security Policy,سياسة أمن قنديل
+Kandil Structure Change,تغيير هيكل قنديل
+Kandil Structure Snapshot,نسخة مرجعية لهيكل قنديل
+Kandil recruitment pilot is not enabled on this site.,تجربة التوظيف لقنديل غير مفعّلة على هذا الموقع.
+Kandil request must be approved and open.,يجب أن يكون طلب قنديل معتمداً ومفتوحاً.
+Kandil vacancies cannot also use a native staffing plan or requisition.,لا يمكن أن تستخدم شواغر قنديل خطة قوى عاملة أو طلب توظيف قياسياً في الوقت نفسه.
+Kandil workspace,مساحة قنديل
+Last Error,آخر خطأ
+Lead Recruiter,قائد فريق التوظيف
+Leave empty to assign a permanent position code automatically.,اتركه فارغاً لتعيين رمز منصب دائم تلقائياً.
+Legacy Arabic Responsibilities,المسؤوليات بالعربية - الحقل السابق
+Legacy Competency Weight,وزن الكفاءة - الحقل السابق
+Legacy Responsibilities,المسؤوليات - الحقل السابق
+Line outcomes are server managed.,تُدار نتائج البنود بواسطة الخادم.
+Lines,البنود
+Load CSV,تحميل CSV
+Load Rows into Draft,تحميل الصفوف إلى المسودة
+Loading vacancies…,جارٍ تحميل الشواغر…
+Login is required.,يجب تسجيل الدخول.
+Management access is required for joining actions.,تتطلب إجراءات المباشرة صلاحية الإدارة.
+Manager Approver,معتمد الإدارة
+Manual Retries,إعادات المحاولة اليدوية
+Map this capacity to an approved position before recording joining.,اربط هذه السعة بوظيفة تنظيمية معتمدة قبل تسجيل الالتحاق.
+Maximum,الحد الأقصى
+Measure,المقياس
+Mfa Requirement,متطلب المصادقة متعددة العوامل
+Minimum,الحد الأدنى
+Monitoring,للمتابعة
+Monitoring KPIs cannot carry a weight.,لا يجوز إسناد وزن نسبي لمؤشرات المتابعة.
+Need Reason,سبب الاحتياج
+Needs Exception,يتطلب استثناءً
+New Position,منصب جديد
+New Recruitment,توظيف جديد
+New position,وظيفة جديدة
+New position creation must take effect today until scheduled creation is enabled.,يجب أن يسري إنشاء المنصب الجديد اليوم إلى أن يتم تفعيل الإنشاء المجدول.
+New positions are created after a structure request receives HR and CEO approval.,تُنشأ الوظائف الجديدة بعد اعتماد طلب الهيكل من الموارد البشرية والرئيس التنفيذي.
+New positions default to one seat. Additional seats require a reviewed import or structure change.,يبدأ المنصب الجديد بعدد واحد افتراضياً. تتطلب الزيادة استيراداً أو تغيير هيكل تمت مراجعته.
+New positions must be active.,يجب أن تكون المناصب الجديدة نشطة.
+"New positions require a title, department, designation and approval authority.",تتطلب المناصب الجديدة عنواناً وإدارة ومسمى وظيفياً وصلاحية اعتماد.
+Next,التالي
+Next Attempt,المحاولة التالية
+Next approval: {0},الاعتماد التالي: {0}
+No Show,لم يحضر
+No active authorized lead; HR assignment required.,لا يوجد مسؤول رئيسي نشط ومخوّل؛ يجب على الموارد البشرية إسناد المسؤولية.
+No vacancies match this view.,لا توجد شواغر تطابق عوامل التصفية الحالية.
+No-show or withdrawal requires a reason.,يلزم ذكر سبب عدم الحضور أو الانسحاب.
+Normal,عادي
+Not reviewed,لم تتم مراجعته
+Note,ملاحظة
+Notification Log,سجل الإشعارات
+Notification history cannot be deleted through the application.,لا يمكن حذف تاريخ الإشعارات من خلال التطبيق.
+Notification key was already used with different content.,استُخدم مفتاح الإشعار بالفعل مع محتوى مختلف.
+Notification outbox records are managed by the server.,تُدار سجلات صندوق الإشعارات الصادرة بواسطة الخادم.
+Notification recipient must be enabled.,يجب أن يكون حساب مستلم الإشعار مفعّلاً.
+Notification recipient must exist.,يجب أن يكون مستلم الإشعار موجوداً.
+Occupancy Reconciliation,مطابقة الإشغال
+Occupied,المشغول
+Occupied count is a baseline on creation; joining changes it through the pilot.,يُحدد العدد المشغول الأساسي عند الإنشاء؛ وتعدله إجراءات المباشرة في التجربة.
+On Hold,معلّق
+Only System Managers may administer access grants.,يمكن لمديري النظام فقط إدارة منح الوصول.
+Only System Managers may create system accounts.,يمكن لمديري النظام فقط إنشاء حسابات النظام.
+Only a draft can be submitted.,لا يمكن إرسال سوى المسودة.
+Only a failed notification can be retried manually.,لا يمكن إعادة المحاولة يدوياً إلا لإشعار فشل تسليمه.
+Only a frozen vacancy can be unfrozen.,لا يمكن إلغاء التجميد إلا لشاغر مجمّد.
+Only a held vacancy can resume.,لا يمكن استئناف سوى شاغر معلّق.
+Only an approved original request can be amended.,لا يمكن تعديل سوى طلب أصلي معتمد.
+Only authorized HR recruiters may manage vacancies.,يمكن لمسؤولي التوظيف المخوّلين فقط إدارة الشواغر.
+Only draft imports can be reviewed.,لا يمكن مراجعة سوى مسودات الاستيراد.
+Only draft revisions can be approved.,لا يمكن اعتماد سوى مسودات المراجعات.
+Only draft structure changes can be previewed.,لا يمكن معاينة سوى مسودات تغييرات الهيكل.
+Only the active HR authority can route to the CEO.,يمكن لصاحب صلاحية الموارد البشرية الحالي فقط الإحالة إلى الرئيس التنفيذي.
+Only the active HR authority may review quantities.,يمكن لصاحب صلاحية الموارد البشرية الحالي فقط مراجعة الأعداد.
+Only the active structural authority may decide this step.,يمكن لصاحب صلاحية الهيكل الحالي فقط حسم هذه الخطوة.
+Only the author can edit draft organization content.,يمكن للمنشئ فقط تعديل محتوى مسودة الهيكل.
+Only the author can load CSV into this draft import.,يمكن لمنشئ مسودة الاستيراد فقط تحميل CSV إليها.
+Only the author can submit this draft structure change.,يمكن لمنشئ تغيير الهيكل فقط إرسال هذه المسودة.
+Only the configured HR or sector authority may assign recruiter teams.,يُسمح فقط لمسؤول الموارد البشرية أو القطاع المحدد في الإعدادات بإسناد فرق التوظيف.
+Only the requester can edit their draft.,مقدم الطلب وحده يمكنه تعديل مسودته.
+Only the requester can edit this draft.,يمكن لمقدم الطلب فقط تعديل هذه المسودة.
+Only the requester can revise a returned request.,يمكن لمقدم الطلب فقط تعديل طلب مُعاد.
+Only the requester can submit this draft.,مقدم الطلب وحده يمكنه إرسال هذه المسودة.
+Only the requester or HR may cancel.,يمكن لمقدم الطلب أو الموارد البشرية فقط الإلغاء.
+Only the requester or HR may propose an amendment.,يمكن لمقدم الطلب أو الموارد البشرية فقط اقتراح تعديل.
+Only the requester or recruitment authority can cancel.,يمكن لمقدم الطلب أو مسؤول التوظيف المخوَّل فقط الإلغاء.
+Open Slots,الشواغر المفتوحة
+Opening is not linked to a request line.,الشاغر غير مرتبط ببند طلب.
+Organization Baseline Import,استيراد البيانات الأساسية للهيكل التنظيمي
+Organization access is restricted to authorized HR roles.,الوصول إلى الهيكل مقصور على أدوار الموارد البشرية المخوّلة.
+Organization history cannot be deleted. Close or supersede the record.,لا يمكن حذف تاريخ الهيكل. أغلق السجل أو أنشئ بديلاً له.
+Organization record authorship and creation time are immutable.,لا يمكن تغيير منشئ سجل الهيكل أو وقت إنشائه.
+Organization record company cannot change.,لا يمكن تغيير شركة سجل الهيكل.
+Organization settings company cannot change.,لا يمكن تغيير الشركة في إعدادات الهيكل.
+Organization structure updated,تم تحديث الهيكل التنظيمي
+Outcome,النتيجة
+Overlapping hierarchy revisions,مراجعات الهيكل متداخلة زمنياً
+Parent Position,المنصب التنظيمي الأعلى
+Parent position must belong to the same company.,يجب أن يتبع المنصب الأعلى الشركة نفسها.
+Partially Filled,مشغول جزئياً
+Paused,معلق
+Payload Hash,بصمة بيانات الأمر
+Pending,قيد الانتظار
+Pending structure change contents cannot change.,لا يمكن تعديل محتوى تغيير هيكل قيد الانتظار.
+Pending structure changes must use authorized approval actions.,يجب استخدام إجراءات الاعتماد المخوّلة لتغييرات الهيكل قيد الانتظار.
+Performance Indicators,مؤشرات الأداء
+Personal headcount exceptions require an independent CEO authority.,تتطلب استثناءات العدد الشخصية صلاحية مستقلة للرئيس التنفيذي.
+Pilot application identity is immutable; create a new application for a different opening.,لا يمكن تغيير هوية طلب التقدم التجريبي؛ أنشئ طلب تقدم جديداً لشاغر مختلف.
+Pilot joining assignment is immutable; transfers and exits require a separate workflow.,لا يمكن تعديل إسناد المباشرة التجريبي؛ النقل وإنهاء الخدمة يتطلبان مساراً منفصلاً.
+Pilot offer applicant cannot be changed.,لا يمكن تغيير المتقدم المرتبط بالعرض التجريبي.
+Pilot openings are generated and managed by approved recruitment actions.,تُنشأ الشواغر التجريبية وتُدار من خلال إجراءات التوظيف المعتمدة.
+"Pilot request lifecycle uses action states, not native submit/cancel.",تستخدم دورة الطلب التجريبية حالات الإجراءات بدلاً من الإرسال والإلغاء القياسيين.
+Policy Owner,مسؤول السياسة
+Position,المنصب التنظيمي
+Position Code,رمز المنصب
+Position Import,استيراد المناصب
+Position Rows,صفوف المناصب
+Position assignments exceed structural seats.,تجاوزت إسنادات المنصب العدد الهيكلي.
+Position closure must take effect today until scheduled structural changes are enabled.,يجب أن يسري إغلاق المنصب اليوم إلى أن يتم تفعيل تغييرات الهيكل المجدولة.
+Position has multiple occupants and no unique acting authority. Configure a dedicated head position.,للمنصب عدة شاغلين ولا يوجد قائم بالأعمال محدد. اضبط منصب رئيس مخصصاً.
+Position has no approved hierarchy for the requested date.,لا يوجد تسلسل هيكلي معتمد للمنصب في التاريخ المطلوب.
+Position hierarchy cannot contain a cycle,لا يمكن أن يحتوي تسلسل المناصب على علاقة دائرية
+Position hierarchy cannot contain a cycle.,لا يمكن أن يحتوي تسلسل المناصب على علاقة دائرية.
+Position identity is immutable. Create a new position for another scope or job.,لا يمكن تغيير هوية المنصب. أنشئ منصباً جديداً لنطاق أو وظيفة مختلفة.
+Position must match the request company and department.,يجب أن يتطابق المنصب مع شركة الطلب وإدارته.
+"Position scope must match company, department and branch.",يجب أن يتطابق نطاق المنصب مع الشركة والإدارة والفرع.
+Position text fields cannot exceed 140 characters.,لا يمكن أن تتجاوز الحقول النصية للمنصب 140 حرفاً.
+Positions,المناصب التنظيمية
+Preview,معاينة
+Preview Changes,معاينة التغييرات
+Preview Hash,بصمة المعاينة
+Preview saved. Review the proposed changes before submission.,تم حفظ المعاينة. راجع التغييرات المقترحة قبل الإرسال.
+Previous,السابق
+Primary,أساسي
+Principal,صاحب الصلاحية الأصلي
+Priority,الأولوية
+Priority Age,أولوية مدة الانتظار
+Priority Base,أساس الأولوية
+Priority Due,أولوية الموعد المطلوب
+Priority Pin,تثبيت الأولوية
+Priority Pin Reason,سبب تثبيت الأولوية
+Priority Pin Until,تثبيت الأولوية حتى
+Priority Score,درجة الأولوية
+Propose Amendment,اقتراح تعديل
+Proposed Changes,التغييرات المقترحة
+Proposed Qty,العدد المقترح
+Proposed changes must be a non-empty JSON list with at most 200 operations.,يجب أن تكون التغييرات المقترحة قائمة JSON غير فارغة لا تتجاوز 200 عملية.
+Protected HR file content cannot be aliased to another record or an unattached file.,لا يجوز إعادة ربط محتوى ملف موارد بشرية محمي بسجل آخر أو بملف غير مرتبط.
+Protected HR records use scoped access and cannot be shared directly.,تخضع سجلات الموارد البشرية المحمية لصلاحيات محددة النطاق، ولا يمكن مشاركتها مباشرة.
+Provide a phone number or an email address.,أدخل رقم هاتف أو عنوان بريد إلكتروني.
+Provide a retry reason of no more than 500 characters.,أدخل سبب إعادة المحاولة بما لا يتجاوز 500 حرف.
+Purpose,الغرض
+Qualifications,المؤهلات
+Quantities must be non-negative whole numbers.,يجب أن تكون الأعداد صحيحة وغير سالبة.
+Quantity,العدد
+Quantity cannot be lower than actual joiners.,لا يمكن أن يقل العدد عن عدد المباشرين فعلياً.
+Reason,السبب
+Recipient,المستلم
+Recommend,توصية
+Reconcile Occupancy,مطابقة الإشغال
+Record Joining Outcome,تسجيل نتيجة المباشرة
+Record evidence; this policy does not configure or enforce MFA.,سجّل الأدلة؛ هذه السياسة لا تضبط المصادقة متعددة العوامل ولا تفرضها.
+Record not found.,السجل غير موجود.
+Recorded joining details cannot change on replay.,لا يمكن تغيير بيانات الالتحاق المسجلة عند إعادة الطلب.
+Recorded joining is inconsistent. Request an authorized reconciliation.,توجد بيانات غير متسقة في الالتحاق المسجل. اطلب مطابقة من مسؤول مخوّل.
+Recorded outcome reason cannot change on replay.,لا يمكن تغيير سبب النتيجة المسجل عند إعادة الطلب.
+Recorded: {0},تم التسجيل: {0}
+Recruiter Team,فريق التوظيف
+Recruiter assignments saved.,تم حفظ تكليفات مسؤولي التوظيف.
+Recruiter members must be a list of users.,يجب أن يكون أعضاء فريق التوظيف قائمة مستخدمين.
+Recruiter team changed,تم تغيير فريق التوظيف
+Recruitment authorities must match the company organization settings.,يجب أن تتطابق صلاحيات التوظيف مع إعدادات هيكل الشركة.
+Recruitment is paused or has not started for this vacancy.,التوظيف معلّق أو لم يبدأ بعد لهذا الشاغر.
+Recruitment request updated,تم تحديث طلب التوظيف
+Recruitment requires an active position.,يتطلب التوظيف منصباً نشطاً.
+Recruitment status: {0},حالة التوظيف: {0}
+Reference,المرجع
+Reference Doctype,نوع السجل المرجعي
+Reference Name,اسم السجل المرجعي
+Refresh,تحديث
+Refuse,رفض
+Reject,رفض
+Reject the request instead of approving zero positions.,ارفض الطلب بدلاً من اعتماد صفر منصب.
+Rejected,مرفوض
+Rejection requires a reason.,يلزم ذكر سبب الرفض.
+Reload the saved import before reviewing.,أعد تحميل دفعة الاستيراد المحفوظة قبل مراجعتها.
+Reload the saved revision before approving.,أعد تحميل الإصدار المحفوظ قبل اعتماده.
+Remarks,ملاحظات
+Remove Last Change,إزالة آخر تغيير
+Replacement,إحلال
+Replacement Employee,الموظف المستبدَل
+Replacement employee must be within this department.,يجب أن يكون الموظف المستبدَل من هذه الإدارة.
+Request,الطلب
+Request Kind,نوع الطلب
+Request New Position,طلب وظيفة جديدة
+Request is no longer pending.,لم يعد الطلب قيد الانتظار.
+Request revisions are immutable.,لا يمكن تعديل مراجعات الطلب.
+Request revisions cannot be deleted.,لا يمكن حذف مراجعات الطلب.
+Request {0}: approval step {1} requires attention.,الطلب {0}: خطوة الاعتماد {1} تحتاج إلى متابعة.
+Requested By,مقدم الطلب
+Requested Position,المنصب المطلوب
+Requested Priority,الأولوية المطلوبة
+Requested Qty,العدد المطلوب
+Requested position does not match the active company and department.,لا يتطابق المنصب المطلوب مع الشركة والإدارة الحاليتين.
+Requested quantity must be positive.,يجب أن يكون العدد المطلوب أكبر من صفر.
+Requester self-approval,اعتماد مقدم الطلب لنفسه
+Requesters may request only for their assigned company and department.,يمكن لمقدمي الطلبات الطلب لشركتهم وإدارتهم المعيّنتين فقط.
+Required By,مطلوب بحلول
+Required Certificates and Licences,الشهادات والتراخيص المطلوبة
+Required Proficiency,مستوى الإتقان المطلوب
+Required authority is no longer assigned to the principal.,لم تعد الصلاحية المطلوبة مسندة إلى صاحبها الأصلي.
+Required date,التاريخ المطلوب
+Required for all HR users,مطلوبة لجميع مستخدمي الموارد البشرية
+Required for privileged users,مطلوبة للمستخدمين ذوي الصلاحيات المميزة
+Reservation counters are server managed.,تُدار أرصدة الحجز بواسطة الخادم.
+Reserve the requested headcount and start approvals?,هل تريد حجز العدد المطلوب وبدء الاعتمادات؟
+Reserved,المحجوز
+Reserved Qty,العدد المحجوز
+Resolve candidate dispositions before closing this vacancy.,احسم مصير المرشحين قبل إغلاق هذا الشاغر.
+Resolve the active amendment before cancelling.,احسم التعديل النشط قبل الإلغاء.
+Responsibilities,المسؤوليات
+Responsibilities above the job-level band require a written reason.,تتطلب المسؤوليات التي تتجاوز نطاق المستوى الوظيفي سببًا مكتوبًا.
+Responsibility,المسؤولية
+Responsibility Area,مجال المسؤولية
+Responsibility Band Exception Reason,سبب استثناء نطاق المسؤوليات
+Result,النتيجة
+Result JSON,النتيجة بصيغة JSON
+Resume,استئناف
+Retry,إعادة المحاولة
+Retry Local Notification,إعادة محاولة الإشعار المحلي
+Retry Reason,سبب إعادة المحاولة
+Return for Revision,إرجاع للتعديل
+Returned,مُعاد للتعديل
+Review Date,تاريخ المراجعة
+Review Import,مراجعة الاستيراد
+Review Quantities,مراجعة الأعداد
+Reviewed,تمت مراجعته
+Reviewed By,راجعه
+Reviewed Snapshot,النسخة المرجعية المُراجعة
+Reviewed imports are frozen. Create a new import batch for changes.,الاستيرادات المُراجعة ثابتة. أنشئ دفعة استيراد جديدة لإجراء تغييرات.
+Revised,تمت المراجعة
+Revision,المراجعة
+Revision Number,رقم المراجعة
+Revision and routing fields are server managed.,تُدار حقول المراجعة والتوجيه بواسطة الخادم.
+Revision source,مصدر المراجعة
+Revoke access grants instead of deleting their history.,ألغِ منح الوصول بدلاً من حذف تاريخه.
+Revoke delegations instead of deleting their history.,ألغِ التفويض بدلاً من حذف تاريخه.
+Revoked,ملغى التفويض
+Route Snapshot,نسخة مرجعية للمسار
+Routed to CEO,تمت الإحالة إلى الرئيس التنفيذي
+Rows,الصفوف
+"Rows loaded into the draft. Save it, then request independent review.",تم تحميل الصفوف إلى المسودة. احفظها ثم اطلب مراجعة مستقلة.
+Save the import draft before loading CSV.,احفظ مسودة الاستيراد قبل تحميل CSV.
+Save your changes first.,احفظ التغييرات أولاً.
+Score details,تفاصيل النقاط
+Seat resizing and position closure must take effect today until scheduled structural changes are enabled.,يجب أن يسري تعديل عدد الوظائف المعتمدة وإغلاق الوظائف من اليوم، إلى أن يتم تفعيل جدولة التغييرات الهيكلية.
+Seat resizing must take effect today until scheduled structural changes are enabled.,يجب أن يسري تغيير العدد اليوم إلى أن يتم تفعيل تغييرات الهيكل المجدولة.
+Sector Approval,اعتماد القطاع
+Sector Approver,معتمد القطاع
+Security events are server-generated and cannot be edited.,تُنشأ الأحداث الأمنية بواسطة الخادم ولا يمكن تعديلها.
+Security events cannot be deleted through the application.,لا يمكن حذف الأحداث الأمنية من خلال التطبيق.
+Security-sensitive account changes require a System Manager.,تتطلب تغييرات الحساب الحساسة أمنياً مدير نظام.
+Select a position and at least one location.,اختر منصباً وموقعاً واحداً على الأقل.
+Select a position.,حدد وظيفة.
+Select a supported MFA policy.,اختر سياسة مصادقة متعددة العوامل مدعومة.
+Select a supported approval authority.,اختر صلاحية اعتماد مدعومة.
+Select a supported job level.,حدد مستوى وظيفيًا مدعومًا.
+Select a supported organization import kind.,حدد نوعًا مدعومًا لاستيراد بيانات الهيكل التنظيمي.
+Select a valid priority and enter a reason.,اختر أولوية صحيحة وأدخل السبب.
+Select an active parent position in this company.,اختر منصباً أعلى نشطاً في هذه الشركة.
+Select an approval authority.,اختر صاحب صلاحية الاعتماد.
+Select an approved grade version valid on the job description date.,اختر نسخة درجة معتمدة وسارية في تاريخ الوصف الوظيفي.
+Select an enabled ordinary user for the access grant.,اختر مستخدماً عادياً مفعّلاً لمنح الوصول.
+Select at least one vacancy.,حدد شاغرًا واحدًا على الأقل.
+Select between one and fifty vacancies.,حدد من شاغر واحد إلى خمسين شاغرًا.
+Select each vacancy only once.,حدد كل شاغر مرة واحدة فقط.
+Select the employee being replaced.,اختر الموظف الذي سيتم إحلاله.
+Select up to 50 vacancies. The reviewed versions are checked again when you assign them.,حدد ما يصل إلى 50 شاغرًا. سيُعاد التحقق من الإصدارات التي راجعتها عند الإسناد.
+Select {0},تحديد {0}
+Selected vacancies from one request must use the same reviewed version.,يجب أن تستخدم الشواغر المحددة من الطلب نفسه الإصدار ذاته الذي تمت مراجعته.
+Self delegation is not allowed.,لا يُسمح بتفويض النفس.
+Send to CEO,إرسال إلى الرئيس التنفيذي
+Set priority pin,ضبط تثبيت الأولوية
+Skills Required,المهارات المطلوبة
+Snapshot,نسخة مرجعية
+Snapshot JSON,النسخة المرجعية بصيغة JSON
+Started On,تاريخ البدء
+State,الحالة
+Status,الحالة
+Step Key,مفتاح الخطوة
+Stop,إيقاف
+Structural,العدد الهيكلي
+Structural Seats,عدد المناصب الهيكلي
+Structural headcount cannot be below the occupied baseline.,لا يمكن أن يقل العدد الهيكلي عن العدد المشغول الأساسي.
+Structural seats cannot be below allocated or committed headcount.,لا يمكن أن يقل العدد الهيكلي عن العدد المسند أو الملتزم به.
+Structural seats must be a positive whole number.,يجب أن يكون عدد المناصب الهيكلي عدداً صحيحاً أكبر من صفر.
+Structure,الهيكل
+Structure Change,تغيير الهيكل
+Structure Decision,قرار الهيكل
+Structure Preview,معاينة الهيكل
+Structure change has already been decided.,تم حسم تغيير الهيكل بالفعل.
+Structure changed after preview. Preview and review the changes again.,تغيّر الهيكل بعد المعاينة. أعد معاينة التغييرات ومراجعتها.
+Structure changed after preview. Reject this change and create a new reviewed request.,تغيّر الهيكل بعد المعاينة. ارفض هذا التغيير وأنشئ طلباً جديداً تمت مراجعته.
+Structure changes cannot be backdated.,لا يمكن تسجيل تغييرات الهيكل بأثر رجعي.
+"Structure changes support Create, Reparent, Resize and Close operations.",تدعم تغييرات الهيكل الإنشاء وإعادة الربط وتعديل العدد والإغلاق.
+"Structure changes support Reparent, Resize and Close operations.",تدعم تغييرات الهيكل إعادة الربط وتعديل العدد والإغلاق.
+Structure snapshots are immutable and created by server actions.,النسخ المرجعية للهيكل غير قابلة للتعديل وتُنشأ بواسطة إجراءات الخادم.
+Structured Responsibilities,المسؤوليات التفصيلية
+Subject,الموضوع
+Submit,إرسال
+Submit for Approval,إرسال للاعتماد
+Submitted,تم الإرسال
+Submitted Snapshot,النسخة المرجعية عند الإرسال
+Supersedes,يحل محل
+Suppressed,محجوب
+Target,المستهدف
+Target User,المستخدم المستهدف
+Technical Skills,المهارات الفنية
+Temporary Cover,تغطية مؤقتة
+Temporary priority,أولوية مؤقتة
+The active approval step is missing its frozen identity or waiting date.,تفتقد خطوة الاعتماد الحالية معرّفها المثبّت أو تاريخ بدء الانتظار.
+The approved line has no remaining vacancy.,لا توجد شواغر متبقية في البند المعتمد.
+The author cannot approve their own organization change.,لا يمكن لمنشئ تغيير الهيكل اعتماد تغييره بنفسه.
+The business clock requires a timezone-aware datetime,تتطلب ساعة العمل تاريخًا ووقتًا يتضمنان المنطقة الزمنية
+The company business calendar must use Africa/Cairo.,يجب أن يستخدم تقويم عمل الشركة المنطقة الزمنية Africa/Cairo.
+The department must belong to the selected company.,يجب أن تتبع الإدارة الشركة المحددة.
+The description must supersede the latest approved revision with a later effective date.,يجب أن يحل الوصف محل أحدث مراجعة معتمدة بتاريخ سريان لاحق.
+The draft changed. Reload and validate the CSV again.,تغيرت المسودة. أعد تحميلها وتحقّق من CSV مجددًا.
+The exception authority cannot approve their own request; configure an independent route.,لا يمكن لصاحب صلاحية الاستثناء اعتماد طلبه؛ اضبط مساراً مستقلاً.
+The holiday list does not cover the requested business-calendar period.,لا تغطي قائمة العطلات فترة تقويم العمل المطلوبة.
+The offer or application changed. Reload before recording an outcome.,تغير عرض العمل أو طلب التوظيف. أعد التحميل قبل تسجيل النتيجة.
+The original request changed. Return and refresh this amendment.,تغيّر الطلب الأصلي. أعد هذا التعديل وحدّثه.
+The original request must be approved.,يجب أن يكون الطلب الأصلي معتمداً.
+The request capacity no longer matches its company and location.,لم تعد سعة الطلب تطابق شركته وموقعه.
+The request is not open for recruitment.,الطلب غير مفتوح للتوظيف.
+The request is outside your assigned scope.,الطلب خارج النطاق المسند إليك.
+The requisition must be approved before creating an opening.,يجب اعتماد طلب التوظيف قبل إنشاء شاغر.
+The reviewed structure preview does not match this request.,معاينة الهيكل التي تمت مراجعتها لا تتطابق مع هذا الطلب.
+The selected holiday list must define its coverage dates.,يجب تحديد تواريخ التغطية في قائمة العطلات المختارة.
+This HR report is unavailable until its scoped data access has been verified.,هذا التقرير غير متاح حتى يتم التحقق من التزامه بنطاق صلاحيات الوصول إلى البيانات.
+This account is no longer enabled for this action.,لم يعد هذا الحساب مفعّلًا لتنفيذ هذا الإجراء.
+This field is managed by an authorized server action.,يُدار هذا الحقل بواسطة إجراء خادم مخوّل.
+This is no longer the active approval step.,لم تعد هذه خطوة الاعتماد الحالية.
+This location has no unfilled approved vacancy.,لا توجد شواغر معتمدة غير مشغولة في هذا الموقع.
+This offer already has a final joining outcome.,تم تسجيل نتيجة نهائية للمباشرة لهذا العرض بالفعل.
+This offer is not part of the Kandil pilot.,هذا العرض ليس ضمن تجربة قنديل.
+This record changed. Reload it before deciding.,تغيّر هذا السجل. أعد تحميله قبل اتخاذ القرار.
+This request cannot be cancelled.,لا يمكن إلغاء هذا الطلب.
+This vacancy cannot be frozen.,لا يمكن تجميد هذا الشاغر.
+This vacancy cannot be put on hold.,لا يمكن تعليق هذا الشاغر.
+This vacancy is already closed.,هذا الشاغر مغلق بالفعل.
+This vacancy is not part of an open approved request.,هذا الشاغر ليس جزءاً من طلب معتمد ومفتوح.
+This workspace is not assigned to your role.,مساحة العمل هذه غير متاحة لدورك.
+Timezone,المنطقة الزمنية
+Title,العنوان
+To Date,إلى تاريخ
+To User,المفوَّض إليه
+"UTF-8 CSV, at most 1 MiB and 1000 rows. Column headers:",ملف CSV بترميز UTF-8، بحجم أقصاه 1 ميبيبايت و1000 صف. أسماء الأعمدة:
+Unable to load vacancies. Check your access and refresh.,تعذر تحميل الشواغر. تحقق من صلاحياتك وأعد التحديث.
+Unassigned,غير مسند
+Unassigned only,غير المسندة فقط
+Unfreeze,إلغاء التجميد
+Unknown vacancy action.,إجراء الشاغر غير معروف.
+Unsupported document output.,نوع إخراج المستند غير مدعوم.
+Unsupported revision type.,نوع المراجعة غير مدعوم.
+Use Cancel; recruitment history is retained.,استخدم الإلغاء؛ يتم الاحتفاظ بتاريخ التوظيف.
+Use Record Joining Outcome to change the outcome.,استخدم تسجيل نتيجة المباشرة لتغيير النتيجة.
+Use a structure-change request or reviewed baseline import to create approved positions.,استخدم طلب تغيير هيكل أو استيراداً أساسياً تمت مراجعته لإنشاء مناصب معتمدة.
+Use an approved structure change to resize or close a position.,استخدم تغيير هيكل معتمداً لتعديل عدد المنصب أو إغلاقه.
+Use one line per capacity.,استخدم بنداً واحداً لكل سعة وظيفية.
+Use one line per capacity/location.,استخدم بنداً واحداً لكل سعة وظيفية وموقع.
+Use recruitment actions to change a submitted request.,استخدم إجراءات التوظيف لتغيير طلب مُرسل.
+Use the authorized Kandil vacancy actions.,استخدم إجراءات شواغر قنديل المخوّلة.
+Use the recruitment action buttons to change a submitted request.,استخدم أزرار إجراءات التوظيف لتغيير طلب مُرسل.
+Use the recruitment action workflow.,استخدم مسار إجراءات التوظيف.
+User,المستخدم
+Vacancy,الشاغر
+Vacancy Cancel,إلغاء الشاغر
+Vacancy Close,إغلاق الشاغر
+Vacancy Freeze,تجميد الشاغر
+Vacancy Hold,تعليق الشاغر
+Vacancy Open,فتح الشاغر
+Vacancy Queue,قائمة الشواغر
+Vacancy Resume,استئناف الشاغر
+Vacancy State,حالة الشاغر
+Vacancy Unfreeze,إلغاء تجميد الشاغر
+Vacancy actions,إجراءات الشاغر
+Vacancy age,مدة بقاء الشاغر
+Vacancy assigned,تم إسناد الشاغر
+Vacancy priority changed,تم تغيير أولوية الشاغر
+Vacant or no enabled linked user,المنصب شاغر أو لا يوجد مستخدم مرتبط مفعّل
+Valid From,ساري من
+Valid Until,ساري حتى
+Valid Until cannot be before Valid From.,لا يمكن أن يسبق تاريخ نهاية السريان تاريخ بدايته.
+Validate CSV,التحقق من CSV
+Validate CSV Import,التحقق من استيراد CSV
+Validated {0} rows. Preview shows up to 50 rows; loading replaces the draft rows only.,تم التحقق من {0} صف. تعرض المعاينة حتى 50 صفًا؛ يستبدل التحميل صفوف المسودة فقط.
+Verification Notes,ملاحظات التحقق
+View / Print,عرض / طباعة
+Waiting Since,قيد الانتظار منذ
+Warn,تحذير
+Weekend Days,أيام الراحة الأسبوعية
+"Weekend days must be comma-separated numbers from 0 (Monday) to 6 (Sunday), with a working day remaining.",يجب أن تكون أيام الراحة أرقاماً مفصولة بفواصل من 0 (الاثنين) إلى 6 (الأحد)، مع بقاء يوم عمل واحد على الأقل.
+Weight (%),الوزن (%)
+Weighted,ذو وزن نسبي
+Weighted KPI weights must total 100 percent.,يجب أن يبلغ مجموع أوزان مؤشرات الأداء الموزونة 100 بالمائة.
+Withdrawn,انسحب
+Worker Card,بطاقة العامل
+Working Conditions,ظروف العمل
+Working Conditions and Hazards,ظروف العمل والمخاطر
+Working days must be a non-negative integer,يجب أن يكون عدد أيام العمل عدداً صحيحاً غير سالب
+You are not the active independent approver or an effective delegate.,لست المعتمد المستقل الحالي أو مفوَّضاً إليه بتفويض ساري.
+You are not the active independent authority.,لست صاحب الصلاحية المستقل الحالي.
+"Your access grant does not cover this company, department and location.",منح الوصول الخاص بك لا يشمل هذه الشركة والإدارة والموقع.
+Your access grant does not permit changes to the original HR record.,منح الوصول الخاص بك لا يسمح بتغيير سجل الموارد البشرية الأصلي.
+Your access grant does not permit changes to this HR record.,منح الوصول الخاص بك لا يسمح بتغيير سجل الموارد البشرية هذا.
+Your current access grant does not permit this action.,صلاحية الوصول الحالية لا تسمح لك بهذا الإجراء.
+Your current role no longer permits this action.,لم يعد دورك الحالي يسمح بهذا الإجراء.
+Your role cannot perform this recruitment action.,لا يسمح دورك بتنفيذ إجراء التوظيف هذا.
+{0} must be an enabled user with {1}.,يجب أن يكون {0} مستخدماً مفعّلاً بدور {1}.

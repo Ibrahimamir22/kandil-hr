@@ -1,0 +1,47 @@
+{
+  "result": "PASS",
+  "total": 4,
+  "tests": [
+    {
+      "test": "grant_revocation_after_snapshot_before_company_lock",
+      "status": "PASS",
+      "initial_authorized": true,
+      "revalidation_denied": true,
+      "connections": 2,
+      "isolation": "REPEATABLE-READ"
+    },
+    {
+      "test": "disabled_revocation_after_snapshot_before_company_lock",
+      "status": "PASS",
+      "initial_authorized": true,
+      "revalidation_denied": true,
+      "connections": 2,
+      "isolation": "REPEATABLE-READ"
+    },
+    {
+      "test": "role_revocation_after_snapshot_before_company_lock",
+      "status": "PASS",
+      "initial_authorized": true,
+      "revalidation_denied": true,
+      "connections": 2,
+      "isolation": "REPEATABLE-READ"
+    },
+    {
+      "test": "synthetic_authorization_fixtures_removed",
+      "status": "PASS"
+    }
+  ],
+  "source_sha256": {
+    "mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c"
+  },
+  "limits": [
+    "Internal mutation helper exercised, not every integrating endpoint",
+    "No external identity, MFA, HTTP login or session-expiry proof",
+    "Callers must hold domain locks and preserve global User lock order"
+  ],
+  "recorded_at_utc": "2026-10-12T03:04:19.136299+00:00",
+  "site": "kandil-parity.localhost",
+  "runner": "kandil_hr.foundation.mutation_access_runner.run"
+}

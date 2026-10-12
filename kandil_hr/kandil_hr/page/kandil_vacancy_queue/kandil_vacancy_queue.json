@@ -1,0 +1,16 @@
+{
+  "doctype": "Page",
+  "name": "kandil-vacancy-queue",
+  "page_name": "kandil-vacancy-queue",
+  "module": "Kandil HR",
+  "title": "Vacancy Queue",
+  "standard": "Yes",
+  "roles": [
+    {
+      "role": "Kandil Recruiter"
+    },
+    {
+      "role": "System Manager"
+    }
+  ]
+}

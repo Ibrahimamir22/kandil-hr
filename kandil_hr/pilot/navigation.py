@@ -17,6 +17,8 @@ def has_app_permission():
 			"Kandil Recruiter",
 			"Kandil Sector Approver",
 			"System Manager",
+			"Kandil CEO Approver",
+			"Kandil Board Approver",
 		}.intersection(frappe.get_roles())
 	)
 
@@ -27,7 +29,7 @@ def page_context(context, route):
 		raise frappe.Redirect
 	enabled_guard()
 	if not has_app_permission():
-		frappe.throw("This workspace is not assigned to your role.", frappe.PermissionError)
+		frappe.throw(frappe._("This workspace is not assigned to your role."), frappe.PermissionError)
 	context.no_cache = 1
 	context.display_user = get_fullname()
 	context.hr_links = [
@@ -114,6 +116,20 @@ def page_context(context, route):
 		if frappe.has_permission(doctype, "read")
 	]
 
+	if frappe.conf.get("kandil_parity_enabled") and {"Kandil Recruiter", "System Manager"}.intersection(
+		frappe.get_roles()
+	):
+		context.hr_links.insert(
+			0,
+			dict(
+				doctype="Job Opening",
+				title="Vacancy queue",
+				arabic="قائمة الشواغر",
+				route="/desk/kandil-vacancy-queue",
+				detail="Review priority, find unassigned vacancies and assign recruiters.",
+			),
+		)
+
 
 @frappe.whitelist(methods=["GET"])
 def request_actions(name):
@@ -126,6 +142,9 @@ def request_actions(name):
 			"Headcount Exception": "Kandil Sector Approver",
 			"Department Approval": "Kandil Approver",
 			"HR Approval": "Kandil Recruiter",
+			"Sector Approval": "Kandil Sector Approver",
+			"CEO Approval": "Kandil CEO Approver",
+			"Board Approval": "Kandil Board Approver",
 		}.get(step.authority)
 		if step
 		else None
@@ -137,6 +156,14 @@ def request_actions(name):
 		and role in frappe.get_roles(step.principal)
 	)
 	return dict(
+		extended=bool(frappe.conf.get("kandil_parity_enabled")),
+		step_id=step.step_key if step and frappe.conf.get("kandil_parity_enabled") else None,
+		expected_version=str(doc.modified),
+		revise=doc.status == "Returned" and doc.requested_by == frappe.session.user,
+		amend=doc.status in ["Approved", "Filled"]
+		and not doc.get("amends")
+		and (doc.requested_by == frappe.session.user or "Kandil Recruiter" in frappe.get_roles()),
+		review=bool(step and decide and step.authority == "HR Approval"),
 		status=doc.status,
 		submit=doc.status == "Draft" and doc.requested_by == frappe.session.user,
 		decide=decide,

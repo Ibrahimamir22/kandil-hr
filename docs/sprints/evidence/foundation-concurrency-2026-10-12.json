@@ -1,0 +1,39 @@
+{
+  "result": "PASS",
+  "workers": 8,
+  "tests": [
+    {
+      "test": "eight_snapshot_transactions_enqueue_one_identity",
+      "status": "PASS"
+    },
+    {
+      "test": "eight_workers_deliver_once",
+      "status": "PASS"
+    },
+    {
+      "test": "rollback_after_receipt_allows_one_competing_delivery",
+      "status": "PASS"
+    },
+    {
+      "test": "no_email_queue_side_effects",
+      "status": "PASS"
+    },
+    {
+      "test": "synthetic_fixtures_removed",
+      "status": "PASS"
+    }
+  ],
+  "total": 5,
+  "source_sha256": {
+    "concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0"
+  },
+  "limits": [
+    "Independent native transactions, not HTTP authentication",
+    "Local Notification Log delivery only; no external delivery adapter",
+    "Short deterministic contention probe, not sustained production capacity proof"
+  ],
+  "recorded_at_utc": "2026-10-12T03:04:19.238798+00:00",
+  "site": "kandil-parity.localhost",
+  "runner": "kandil_hr.foundation.concurrency_runner.run"
+}

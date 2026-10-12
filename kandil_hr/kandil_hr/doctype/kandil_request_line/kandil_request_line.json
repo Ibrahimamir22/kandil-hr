@@ -10,7 +10,10 @@
     "requested_qty",
     "approved_qty",
     "joined_qty",
-    "job_opening"
+    "job_opening",
+    "proposed_qty",
+    "reserved_qty",
+    "closed_qty"
   ],
   "fields": [
     {
@@ -49,6 +52,25 @@
       "read_only": 1,
       "in_list_view": 1,
       "options": "Job Opening"
+    },
+    {
+      "fieldname": "proposed_qty",
+      "label": "Proposed Qty",
+      "fieldtype": "Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "reserved_qty",
+      "label": "Reserved Qty",
+      "fieldtype": "Int",
+      "read_only": 1
+    },
+    {
+      "fieldname": "closed_qty",
+      "label": "Closed Quantity",
+      "fieldtype": "Int",
+      "default": "0",
+      "read_only": 1
     }
   ],
   "permissions": [],

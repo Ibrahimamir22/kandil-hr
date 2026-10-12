@@ -1,0 +1,113 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Organization Import",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "rows_preview",
+    "rows_json",
+    "preview_json",
+    "digest",
+    "status",
+    "reviewed_by",
+    "result_json",
+    "import_kind",
+    "baseline_reference"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "rows_json",
+      "label": "Rows",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "reqd": 1,
+      "hidden": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "preview_json",
+      "label": "Preview",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "digest",
+      "label": "Digest",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nReviewed\nApplied",
+      "default": "Draft",
+      "read_only": 1
+    },
+    {
+      "fieldname": "reviewed_by",
+      "label": "Reviewed By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "result_json",
+      "label": "Result",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "rows_preview",
+      "label": "Position Rows",
+      "fieldtype": "HTML"
+    },
+    {
+      "fieldname": "import_kind",
+      "label": "Import Kind",
+      "fieldtype": "Select",
+      "options": "Positions\nHierarchy\nAssignments",
+      "default": "Positions",
+      "reqd": 1
+    },
+    {
+      "fieldname": "baseline_reference",
+      "label": "Baseline Reference",
+      "fieldtype": "Data"
+    }
+  ],
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    }
+  ]
+}

@@ -14,7 +14,8 @@
     "occupied",
     "reserved",
     "open_slots",
-    "available"
+    "available",
+    "position"
   ],
   "fields": [
     {
@@ -85,6 +86,13 @@
       "fieldtype": "Int",
       "read_only": 1,
       "in_list_view": 1
+    },
+    {
+      "fieldname": "position",
+      "label": "Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position",
+      "unique": 1
     }
   ],
   "permissions": [

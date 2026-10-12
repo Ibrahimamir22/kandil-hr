@@ -1,0 +1,63 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil JD KPI",
+  "module": "Kandil HR",
+  "custom": 0,
+  "istable": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "indicator",
+    "indicator_ar",
+    "kind",
+    "weight",
+    "formula",
+    "formula_ar",
+    "frequency"
+  ],
+  "fields": [
+    {
+      "fieldname": "indicator",
+      "label": "KPI",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "indicator_ar",
+      "label": "Arabic KPI",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "kind",
+      "label": "KPI Type",
+      "fieldtype": "Select",
+      "options": "Weighted\nMonitoring",
+      "default": "Weighted",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "weight",
+      "label": "Weight (%)",
+      "fieldtype": "Percent",
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "formula",
+      "label": "Formula or Monitoring Purpose",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "formula_ar",
+      "label": "Arabic Formula or Purpose",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "frequency",
+      "label": "Frequency",
+      "fieldtype": "Data",
+      "reqd": 1
+    }
+  ]
+}

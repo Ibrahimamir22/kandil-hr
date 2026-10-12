@@ -1,0 +1,72 @@
+{
+  "recorded_at_utc": "2026-10-12T02:23:38.710012+00:00",
+  "site": "kandil-parity.localhost",
+  "result": "PASS",
+  "total": 9,
+  "discovered": 9,
+  "execution": "Exclusive serial native unittest; per-test fixtures rolled back; scheduler batch commit/rollback mocked only in batch-isolation test",
+  "tests": [
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_delayed_scheduler_catches_up_only_highest_milestone",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_frozen_step_changes_and_completed_request_is_ignored",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_internal_scheduler_guard_rejects_business_user_and_http",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_milestones_replay_and_expiry_preserves_pending_reservations",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_notification_insert_failure_can_rollback_every_recipient",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_parity_opt_out_performs_no_sla_processing",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_revoked_recipient_scope_is_suppressed_at_delivery",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_scheduler_continues_after_bad_calendar_and_records_local_error",
+      "status": "PASS"
+    },
+    {
+      "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_weekend_and_company_holiday_pause_notices",
+      "status": "PASS"
+    }
+  ],
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "limits": [
+    "No scheduler daemon or HTTP execution proof",
+    "No concurrent-worker stress test",
+    "Routing and catch-up are synthetic defaults, not HR-approved policy",
+    "Automatic rejection remains disabled",
+    "Local notifications only; no external delivery",
+    "Notification payloads use fixed English for stable replay hashing"
+  ],
+  "source_sha256": {
+    "kandil_hr/recruitment/sla.py": "1172f4981fa0648a1e4def4a234c6b716472413502c6ff30b4a341eda95f834e",
+    "kandil_hr/recruitment/test_sla.py": "f108f662571d90e3253ddc2e77ec400a7abda875bd62d1c6fceb662eaffd2707",
+    "kandil_hr/recruitment/api.py": "06a0bf73d049bee41ae549b749ec166886efb8830d011d4cfea38994e4dd8254",
+    "kandil_hr/foundation/clock.py": "a74e1eb10e0941e6552cb3c2ee988fd52c636a2a51fc899653138a7fafbce1e5",
+    "kandil_hr/foundation/business_calendar.py": "1578130040e8fb43915272dc473c2e91de78cebfb05737c637e680f5bcc29f17",
+    "kandil_hr/foundation/outbox.py": "205e0ab5d25bcfbe8e5f6f9e7a9948a08500a17b2e38ee6e08f8f6c855ac4558"
+  },
+  "first_run": {
+    "result": "FAIL",
+    "total": 9,
+    "failures": 0,
+    "errors": 1,
+    "correction": "Restrict pending-request test mock to Hiring Request only so Error Log metadata uses real ORM"
+  }
+}

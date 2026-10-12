@@ -1,0 +1,65 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Business Calendar",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "calendar_title",
+    "company",
+    "weekend_days",
+    "holiday_list",
+    "timezone"
+  ],
+  "fields": [
+    {
+      "fieldname": "calendar_title",
+      "fieldtype": "Data",
+      "label": "Calendar Title",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "company",
+      "fieldtype": "Link",
+      "label": "Company",
+      "options": "Company",
+      "reqd": 1
+    },
+    {
+      "fieldname": "weekend_days",
+      "fieldtype": "Data",
+      "label": "Weekend Days",
+      "default": "4,5",
+      "description": "0=Monday, 6=Sunday. Confirm the organization workweek."
+    },
+    {
+      "fieldname": "holiday_list",
+      "fieldtype": "Link",
+      "label": "Holiday List",
+      "options": "Holiday List"
+    },
+    {
+      "fieldname": "timezone",
+      "fieldtype": "Select",
+      "label": "Timezone",
+      "options": "Africa/Cairo",
+      "default": "Africa/Cairo",
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "export": 0,
+      "delete": 0
+    }
+  ],
+  "track_changes": 1,
+  "title_field": "calendar_title"
+}

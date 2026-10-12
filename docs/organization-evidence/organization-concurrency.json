@@ -1,0 +1,81 @@
+{
+  "suite": "organization-independent-connections",
+  "result": "PASS",
+  "total": 6,
+  "tests": [
+    {
+      "test": "two_old_snapshots_cannot_overfill_one_seat",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": [
+        "REPEATABLE-READ"
+      ]
+    },
+    {
+      "test": "two_old_snapshots_cannot_double_allocate_one_employee",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": [
+        "REPEATABLE-READ"
+      ]
+    },
+    {
+      "test": "two_old_snapshots_cannot_commit_hierarchy_cycle",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": [
+        "REPEATABLE-READ"
+      ]
+    },
+    {
+      "test": "old_snapshot_observes_committed_route_and_settings_after_company_wait",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": [
+        "REPEATABLE-READ"
+      ]
+    },
+    {
+      "test": "native_assignment_rejects_grant_revoked_while_waiting_for_company",
+      "status": "PASS",
+      "connections": 2,
+      "isolation": [
+        "REPEATABLE-READ"
+      ]
+    },
+    {
+      "test": "synthetic_fixture_cleanup",
+      "status": "PASS"
+    }
+  ],
+  "source_hashes": {
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/integration_tests.py": "3ed5669237f0114f9e4c4f7c5d47a9b6573e14f30d14d75fcf50a7c725697605",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/organization/test_csv_import.py": "970ddada5b43da1295c3dec0270fbb72de00ba341525a2478374f815a2bac068",
+    "kandil_hr/organization/test_jd_rules.py": "861812b85456afc1da77563757d6946869f0db5bfddddf14e73fd4923baad9a0",
+    "kandil_hr/organization/test_rules.py": "aa9cd1c134af52ad73143d6e24e2b82dc636da34adb8255f5092bfb3bfc49672",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "kandil_hr/recruitment/api.py": "0b5d0b2b05d9195b8640aa6c32d1ff8830d2c844c72eac0ebd54dd585872e57e"
+  },
+  "limits": [
+    "Two contenders with pre-established snapshots; not sustained production load.",
+    "Native ORM invariants, not HTTP/browser authentication.",
+    "Only UUID-owned synthetic fixture rows were committed and cleaned.",
+    "Two-connection RR proof covers specified organization invariants and native assignment current grant revalidation; not generic native HR writes.",
+    "Native row-before-Company locks and cross-company shared-user contention may require transactional retry; no general retry/load proof."
+  ],
+  "executed_at_utc": "2026-10-12T03:04:56.795302+00:00",
+  "source_checkpoint": "Final formatted app source; no organization changes during rerun."
+}

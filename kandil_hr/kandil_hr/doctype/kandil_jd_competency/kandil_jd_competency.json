@@ -1,0 +1,79 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil JD Competency",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "competency",
+    "competency_ar",
+    "weight",
+    "measure",
+    "target",
+    "competency_group",
+    "required_level",
+    "behavior",
+    "behavior_ar",
+    "measure_ar"
+  ],
+  "fields": [
+    {
+      "fieldname": "competency",
+      "label": "Competency",
+      "fieldtype": "Data",
+      "reqd": 1
+    },
+    {
+      "fieldname": "competency_ar",
+      "label": "Arabic Competency",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "weight",
+      "label": "Legacy Competency Weight",
+      "fieldtype": "Percent",
+      "reqd": 0,
+      "hidden": 1
+    },
+    {
+      "fieldname": "measure",
+      "label": "Measure",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "target",
+      "label": "Target",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "competency_group",
+      "label": "Competency Group",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "required_level",
+      "label": "Required Proficiency",
+      "fieldtype": "Select",
+      "options": "\n1\n2\n3\n4"
+    },
+    {
+      "fieldname": "behavior",
+      "label": "Expected Behavior",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "behavior_ar",
+      "label": "Arabic Expected Behavior",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "measure_ar",
+      "label": "Arabic Measure",
+      "fieldtype": "Small Text"
+    }
+  ],
+  "track_changes": 1,
+  "istable": 1
+}

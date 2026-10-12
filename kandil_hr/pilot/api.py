@@ -72,7 +72,7 @@ def change_capacity(cap, reserved=0, opened=0, occupied=0):
 	cap.open_slots = cint(cap.open_slots) + opened
 	cap.occupied = cint(cap.occupied) + occupied
 	if min(cap.reserved, cap.open_slots, cap.occupied) < 0:
-		frappe.throw("Capacity invariant violated; transaction rolled back.")
+		frappe.throw(frappe._("Capacity invariant violated; transaction rolled back."))
 	cap.save(ignore_permissions=True)
 
 
@@ -133,6 +133,12 @@ def can_act(doc, principal):
 		return False
 	if not frappe.db.get_value("User", principal, "enabled"):
 		return False
+	if (
+		frappe.conf.get("kandil_parity_enabled")
+		and user != principal
+		and {"Kandil CEO Approver", "Kandil Board Approver"}.intersection(frappe.get_roles(principal))
+	):
+		return False
 	return user == principal or (
 		"Kandil Approver" in frappe.get_roles(user) and bool(delegate_for(doc, principal))
 	)
@@ -140,14 +146,18 @@ def can_act(doc, principal):
 
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
-def submit_request(name):
+def submit_request(name, command_id=None, expected_version=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.api import submit_request as extended
+
+		return extended(name, command_id, expected_version)
 	doc = lock_request(name)
 	if doc.requested_by != frappe.session.user:
 		deny("Only the requester can submit this draft.")
 	if doc.status == "Pending":
 		return doc.as_dict()
 	if doc.status != "Draft":
-		frappe.throw("Only a draft can be submitted.")
+		frappe.throw(frappe._("Only a draft can be submitted."))
 	caps = lock_capacities(doc)
 	routes = frappe.get_all(
 		"Kandil Recruitment Route",
@@ -155,11 +165,11 @@ def submit_request(name):
 		pluck="name",
 	)
 	if len(routes) != 1:
-		frappe.throw("Configure one enabled department approval route first.")
+		frappe.throw(frappe._("Configure one enabled department approval route first."))
 	route = frappe.get_doc("Kandil Recruitment Route", routes[0])
 	excess = any(cint(line.requested_qty) > caps[line.capacity].available for line in doc.lines)
 	if excess and not (doc.exception_reason or "").strip():
-		frappe.throw("Headcount exception requires a justification; no capacity was reserved.")
+		frappe.throw(frappe._("Headcount exception requires a justification; no capacity was reserved."))
 	chain = []
 	if excess:
 		chain.append((route.exception_approver, "Headcount Exception"))
@@ -175,7 +185,7 @@ def submit_request(name):
 				continue
 			doc.append("approval_steps", dict(principal=principal, authority=authority, decision="Pending"))
 		if not doc.approval_steps:
-			frappe.throw("At least one independent approver is required.")
+			frappe.throw(frappe._("At least one independent approver is required."))
 		doc.needs_exception = int(excess)
 		doc.submitted_snapshot = json.dumps(
 			{
@@ -202,12 +212,18 @@ def submit_request(name):
 
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
-def decide(name, decision, comment=""):
+def decide(
+	name, decision, comment="", step_id=None, command_id=None, expected_version=None, board_evidence=None
+):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.api import decide as extended
+
+		return extended(name, decision, step_id, command_id, expected_version, comment, board_evidence)
 	doc = lock_request(name)
 	if decision not in ["Approve", "Reject"]:
-		frappe.throw("Choose Approve or Reject.")
+		frappe.throw(frappe._("Choose Approve or Reject."))
 	if doc.status != "Pending":
-		frappe.throw("Request is no longer pending.")
+		frappe.throw(frappe._("Request is no longer pending."))
 	step = next((x for x in doc.approval_steps if x.decision == "Pending"), None)
 	if not step or not can_act(doc, step.principal):
 		deny("You are not the active independent approver or an effective delegate.")
@@ -219,7 +235,7 @@ def decide(name, decision, comment=""):
 	if role not in frappe.get_roles(step.principal):
 		deny("Required authority is no longer assigned to the principal.")
 	if decision == "Reject" and not comment.strip():
-		frappe.throw("Rejection requires a reason.")
+		frappe.throw(frappe._("Rejection requires a reason."))
 	caps = lock_capacities(doc)
 	with transition():
 		step.decision = "Approved" if decision == "Approve" else "Rejected"
@@ -261,9 +277,13 @@ def decide(name, decision, comment=""):
 
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
-def cancel_request(name, reason):
+def cancel_request(name, reason, command_id=None, expected_version=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.api import cancel_request as extended
+
+		return extended(name, command_id, expected_version, reason)
 	if not reason.strip():
-		frappe.throw("Cancellation requires a reason.")
+		frappe.throw(frappe._("Cancellation requires a reason."))
 	doc = lock_request(name)
 	if doc.requested_by != frappe.session.user and not set(
 		["Kandil Recruiter", "Kandil Sector Approver"]
@@ -272,7 +292,7 @@ def cancel_request(name, reason):
 	if doc.status == "Cancelled":
 		return doc.as_dict()
 	if doc.status not in ["Draft", "Pending", "Approved"]:
-		frappe.throw("This request cannot be cancelled.")
+		frappe.throw(frappe._("This request cannot be cancelled."))
 	caps = lock_capacities(doc)
 	with transition():
 		for line in doc.lines:
@@ -290,6 +310,10 @@ def cancel_request(name, reason):
 
 
 def offer_context(offer_name):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.joining import offer_context as parity_context
+
+		return parity_context(offer_name)[:5]
 	require_role("Kandil Recruiter")
 	# Resolve identifiers first, then acquire locks in request -> capacities -> offer order everywhere.
 	offer = frappe.get_doc("Job Offer", offer_name)
@@ -297,21 +321,33 @@ def offer_context(offer_name):
 	applicant = frappe.get_doc("Job Applicant", offer.job_applicant)
 	opening = frappe.get_doc("Job Opening", applicant.job_title)
 	if not opening.get("custom_kandil_request"):
-		frappe.throw("This offer is not part of the Kandil pilot.")
+		frappe.throw(frappe._("This offer is not part of the Kandil pilot."))
 	doc = lock_request(opening.custom_kandil_request)
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.foundation.security import request_scope
+
+		if not request_scope(doc, frappe.session.user, "manage"):
+			deny("Management access is required for joining actions.")
+		state = frappe.db.get_value("Job Opening", opening.name, "custom_kandil_vacancy_state")
+		if state not in ("Open", "Partially Filled"):
+			frappe.throw(frappe._("Recruitment is paused or has not started for this vacancy."))
 	caps = lock_capacities(doc)
 	offer = frappe.get_doc("Job Offer", offer_name, for_update=True)
 	line = next((x for x in doc.lines if x.job_opening == opening.name), None)
 	if not line:
-		frappe.throw("Opening is not linked to a request line.")
+		frappe.throw(frappe._("Opening is not linked to a request line."))
 	return doc, caps[line.capacity], line, offer, applicant
 
 
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
 def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_birth=None, gender=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.joining import record_outcome as parity_outcome
+
+		return parity_outcome(offer_name, outcome, reason, joining_date, date_of_birth, gender)
 	if outcome not in ["Joined", "No Show", "Withdrawn"]:
-		frappe.throw("Choose Joined, No Show or Withdrawn.")
+		frappe.throw(frappe._("Choose Joined, No Show or Withdrawn."))
 	doc, cap, line, offer, applicant = offer_context(offer_name)
 	previous = offer.get("custom_kandil_outcome") or "Pending"
 	if previous == outcome:
@@ -323,25 +359,27 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 			"idempotent": True,
 		}
 	if previous != "Pending":
-		frappe.throw("This offer already has a final joining outcome.")
+		frappe.throw(frappe._("This offer already has a final joining outcome."))
 	if doc.status != "Approved":
-		frappe.throw("The request is not open for recruitment.")
+		frappe.throw(frappe._("The request is not open for recruitment."))
 	if offer.docstatus != 1 or offer.status != "Accepted":
-		frappe.throw("A submitted, accepted offer is required.")
+		frappe.throw(frappe._("A submitted, accepted offer is required."))
 	if outcome != "Joined" and not reason.strip():
-		frappe.throw("No-show or withdrawal requires a reason.")
+		frappe.throw(frappe._("No-show or withdrawal requires a reason."))
 	with transition():
 		employee = None
 		onboarding = None
 		if outcome == "Joined":
 			if not joining_date or not date_of_birth or not gender:
-				frappe.throw("Joining date, date of birth and gender are required for the Employee record.")
+				frappe.throw(
+					frappe._("Joining date, date of birth and gender are required for the Employee record.")
+				)
 			if getdate(joining_date) > getdate(today()):
-				frappe.throw("Actual joining cannot be in the future.")
+				frappe.throw(frappe._("Actual joining cannot be in the future."))
 			if getdate(date_of_birth) >= getdate(joining_date):
-				frappe.throw("Date of birth must precede joining.")
+				frappe.throw(frappe._("Date of birth must precede joining."))
 			if cint(line.joined_qty) >= cint(line.approved_qty) or cap.open_slots < 1:
-				frappe.throw("The approved line has no remaining vacancy.")
+				frappe.throw(frappe._("The approved line has no remaining vacancy."))
 			employee = frappe.get_doc(
 				dict(
 					doctype="Employee",

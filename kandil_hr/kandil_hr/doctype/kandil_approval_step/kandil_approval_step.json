@@ -11,7 +11,12 @@
     "decision",
     "actor",
     "decided_at",
-    "comment"
+    "comment",
+    "step_key",
+    "reviewed_snapshot",
+    "waiting_since",
+    "authority_position",
+    "board_evidence"
   ],
   "fields": [
     {
@@ -34,7 +39,7 @@
       "fieldtype": "Select",
       "default": "Pending",
       "in_list_view": 1,
-      "options": "Pending\nApproved\nRejected"
+      "options": "Pending\nApproved\nRejected\nReturned"
     },
     {
       "fieldname": "actor",
@@ -53,6 +58,39 @@
       "fieldname": "comment",
       "label": "Comment",
       "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
+      "fieldname": "step_key",
+      "label": "Step Key",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "reviewed_snapshot",
+      "label": "Reviewed Snapshot",
+      "fieldtype": "Code",
+      "hidden": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "waiting_since",
+      "label": "Waiting Since",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "authority_position",
+      "label": "Authority Position",
+      "fieldtype": "Link",
+      "options": "Kandil Position",
+      "read_only": 1
+    },
+    {
+      "fieldname": "board_evidence",
+      "label": "Board Evidence",
+      "fieldtype": "Link",
+      "options": "File",
       "read_only": 1
     }
   ],

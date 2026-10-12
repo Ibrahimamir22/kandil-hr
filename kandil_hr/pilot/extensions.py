@@ -14,12 +14,24 @@ def pilot_opening(name, lock=False):
 	opening = frappe.get_doc("Job Opening", name)
 	if not opening.get("custom_kandil_request"):
 		return None
-	request = frappe.get_doc("Kandil Hiring Request", opening.custom_kandil_request, for_update=lock)
+	parity = frappe.conf.get("kandil_parity_enabled")
+	request = frappe.get_doc(
+		"Kandil Hiring Request", opening.custom_kandil_request, for_update=bool(lock or parity)
+	)
+	if parity:
+		# Re-read after the parent lock: Hold/Freeze use that same lock.
+		opening = frappe.get_doc("Job Opening", name, for_update=True)
+		from kandil_hr.foundation.teams import effective_lead
+
+		if not effective_lead(opening):
+			frappe.throw(frappe._("Assign an active authorized lead before accepting applications."))
+		if opening.custom_kandil_vacancy_state not in ("Open", "Partially Filled"):
+			frappe.throw(frappe._("Recruitment is paused or has not started for this vacancy."))
 	if request.status != "Approved":
-		frappe.throw("Kandil request must be approved and open.")
+		frappe.throw(frappe._("Kandil request must be approved and open."))
 	line = next((x for x in request.lines if x.job_opening == name), None)
 	if not line or line.joined_qty >= line.approved_qty:
-		frappe.throw("This location has no unfilled approved vacancy.")
+		frappe.throw(frappe._("This location has no unfilled approved vacancy."))
 	return opening
 
 
@@ -40,7 +52,7 @@ class ApplicantMixin:
 		if not enabled():
 			return
 		if not self.email_id and not (self.phone_number or "").strip():
-			frappe.throw("Provide a phone number or an email address.")
+			frappe.throw(frappe._("Provide a phone number or an email address."))
 		opening = pilot_opening(self.job_title, lock=True) if self.is_new() else None
 		old = self.get_doc_before_save()
 		if (
@@ -52,7 +64,7 @@ class ApplicantMixin:
 		if opening:
 			phone = re.sub(r"[^0-9+]", "", self.phone_number or "")
 			if not self.email_id and len(re.sub(r"\D", "", phone)) < 7:
-				frappe.throw("Enter a valid contact phone number.")
+				frappe.throw(frappe._("Enter a valid contact phone number."))
 			contact = (
 				("email:" + (self.email_id or "").strip().lower()) if self.email_id else "phone:" + phone
 			)
@@ -76,21 +88,44 @@ class OfferMixin:
 				},
 			)
 			if duplicate:
-				frappe.throw("An active offer already exists for this applicant.")
+				frappe.throw(frappe._("An active offer already exists for this applicant."))
 		else:
 			super().validate_duplicate_job_offer()
 
+	def validate_recorded_outcome(self):
+		old = self.get_doc_before_save()
+		if (
+			frappe.conf.get("kandil_parity_enabled")
+			and old
+			and old.get("custom_kandil_outcome") in ("Joined", "No Show", "Withdrawn")
+			and self.status != old.status
+		):
+			deny("An offer with a final joining outcome cannot change status.")
+		for field in [
+			"custom_kandil_outcome",
+			"custom_kandil_outcome_reason",
+			"custom_kandil_assignment",
+		]:
+			if not internal() and (
+				self.get(field) or ("Pending" if field == "custom_kandil_outcome" else "")
+			) != (
+				(old.get(field) if old else None) or ("Pending" if field == "custom_kandil_outcome" else "")
+			):
+				deny("Use Record Joining Outcome to change the outcome.")
+
+	def before_update_after_submit(self):
+		# Frappe skips validate() on submitted-document updates. The parity
+		# protected outcome/reference contract must also cover that native path.
+		if enabled() and frappe.conf.get("kandil_parity_enabled"):
+			self.validate_recorded_outcome()
+		parent = getattr(super(), "before_update_after_submit", None)
+		if parent:
+			parent()
+
 	def validate(self):
 		if enabled():
+			self.validate_recorded_outcome()
 			old = self.get_doc_before_save()
-			for field in ["custom_kandil_outcome", "custom_kandil_outcome_reason"]:
-				if not internal() and (
-					self.get(field) or ("Pending" if field == "custom_kandil_outcome" else "")
-				) != (
-					(old.get(field) if old else None)
-					or ("Pending" if field == "custom_kandil_outcome" else "")
-				):
-					deny("Use Record Joining Outcome to change the outcome.")
 			if self.job_applicant:
 				app = frappe.get_doc("Job Applicant", self.job_applicant)
 				linked = (
@@ -117,7 +152,7 @@ def validate_opening(doc, method=None):
 		doc.job_requisition
 		and frappe.db.get_value("Job Requisition", doc.job_requisition, "status") != "Open & Approved"
 	):
-		frappe.throw("The requisition must be approved before creating an opening.")
+		frappe.throw(frappe._("The requisition must be approved before creating an opening."))
 
 
 def validate_employee(doc, method=None):
@@ -161,3 +196,21 @@ def protect_employee_delete(doc, method=None):
 def protect_offer_cancel(doc, method=None):
 	if enabled() and doc.get("custom_kandil_outcome") == "Joined":
 		deny("A joined offer cannot be cancelled; record any later exit separately.")
+
+
+class OpeningMixin:
+	def validate_current_vacancies(self):
+		if frappe.conf.get("kandil_parity_enabled") and self.get("custom_kandil_request"):
+			# Kandil owns position-based capacity and locks it in its command transaction.
+			# Native Staffing Plan counts by designation and is a different authority model.
+			if not internal():
+				deny("Use the authorized Kandil vacancy actions.")
+			if self.staffing_plan or self.job_requisition:
+				frappe.throw(
+					frappe._("Kandil vacancies cannot also use a native staffing plan or requisition.")
+				)
+			from kandil_hr.pilot.models import integer
+
+			self.vacancies = integer(self.vacancies)
+			return
+		return super().validate_current_vacancies()

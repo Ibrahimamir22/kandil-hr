@@ -309,3 +309,98 @@ add_to_apps_screen = [
 		"has_permission": "kandil_hr.pilot.navigation.has_app_permission",
 	}
 ]
+
+# Explicitly opted-in parity-site foundation. Every handler returns without changes
+# on the preserved main and review sites when kandil_foundation_enabled is false.
+_foundation = "kandil_hr.foundation."
+for _doctype, _query in {
+	"Kandil Capacity": "capacity",
+	"Kandil Recruitment Route": "route",
+	"Kandil Delegation": "delegation",
+}.items():
+	has_permission[_doctype] = _foundation + "security.scoped_permission"
+	permission_query_conditions[_doctype] = _foundation + "queries." + _query
+	_events = doc_events.setdefault(_doctype, {})
+	_existing = _events.get("validate")
+	_events["validate"] = ([_existing] if isinstance(_existing, str) else list(_existing or [])) + [
+		_foundation + "security.validate_scoped_document"
+	]
+
+for _doctype, _query in {
+	"Job Opening": "job_opening",
+	"Job Applicant": "job_applicant",
+	"Job Offer": "job_offer",
+	"Interview": "interview",
+	"Interview Feedback": "interview_feedback",
+	"Employee": "employee",
+}.items():
+	has_permission[_doctype] = _foundation + "security.hr_permission"
+	permission_query_conditions[_doctype] = _foundation + "queries." + _query
+	_events = doc_events.setdefault(_doctype, {})
+	_existing = _events.get("validate")
+	_events["validate"] = ([_existing] if isinstance(_existing, str) else list(_existing or [])) + [
+		_foundation + "security.validate_hr_document"
+	]
+
+doc_events.setdefault("User", {}).update(
+	{
+		"validate": _foundation + "security.validate_user_security",
+		"on_update": _foundation + "security.user_security_audit",
+	}
+)
+doc_events.setdefault("File", {})["validate"] = _foundation + "security.validate_private_file"
+has_permission["File"] = _foundation + "security.file_permission"
+extend_doctype_class["Notification Log"] = [_foundation + "outbox.LocalNotificationMixin"]
+scheduler_events = {"all": [_foundation + "outbox.process_pending"]}
+
+# Revision snapshots inherit the complete request scope; they are never independently writable.
+has_permission["Kandil Request Revision"] = "kandil_hr.recruitment.models.revision_permission"
+permission_query_conditions["Kandil Request Revision"] = "kandil_hr.recruitment.models.revision_query"
+
+# Native organization records share the same scope restrictions as commands.
+for _dt, _query in {
+	"Kandil Organization Settings": "settings",
+	"Kandil Position": "position",
+	"Kandil Position Hierarchy": "hierarchy",
+	"Kandil Position Assignment": "assignment",
+	"Kandil Grade Band": "grade",
+	"Kandil JD Revision": "jd",
+	"Kandil Structure Change": "change",
+	"Kandil Structure Snapshot": "snapshot",
+	"Kandil Organization Import": "import_batch",
+}.items():
+	has_permission[_dt] = "kandil_hr.organization.permissions.permission"
+	permission_query_conditions[_dt] = "kandil_hr.organization.permissions." + _query
+permission_query_conditions["File"] = "kandil_hr.foundation.security.file_query"
+has_permission["Employee Onboarding"] = "kandil_hr.foundation.security.hr_permission"
+permission_query_conditions["Employee Onboarding"] = "kandil_hr.foundation.queries.employee_onboarding"
+doc_events.setdefault("Employee Onboarding", {})["validate"] = (
+	"kandil_hr.foundation.security.validate_hr_document"
+)
+
+doc_events.setdefault("User", {}).update(
+	{
+		"before_rename": "kandil_hr.foundation.security.validate_user_rename",
+		"after_rename": "kandil_hr.foundation.security.audit_user_rename",
+	}
+)
+
+doctype_js["Job Opening"] = "public/js/job_opening.js"
+
+has_permission["Kandil Authority Rule"] = "kandil_hr.foundation.security.scoped_permission"
+permission_query_conditions["Kandil Authority Rule"] = "kandil_hr.recruitment.models.authority_query"
+doc_events.setdefault("Kandil Authority Rule", {})["validate"] = (
+	"kandil_hr.foundation.security.validate_scoped_document"
+)
+extend_doctype_class["Job Opening"] = ["kandil_hr.pilot.extensions.OpeningMixin"]
+
+scheduler_events["daily"] = ["kandil_hr.recruitment.sla.process_pending"]
+
+extend_doctype_class["File"] = ["kandil_hr.foundation.files.FileMixin"]
+doc_events.setdefault("DocShare", {})["validate"] = "kandil_hr.foundation.files.validate_share"
+override_whitelisted_methods = {"frappe.core.api.file.zip_files": "kandil_hr.foundation.files.zip_files"}
+
+extend_doctype_class["Report"] = ["kandil_hr.foundation.reports.ReportMixin"]
+extend_doctype_class["Prepared Report"] = ["kandil_hr.foundation.reports.PreparedReportMixin"]
+has_permission["Prepared Report"] = "kandil_hr.foundation.reports.prepared_permission"
+permission_query_conditions["Prepared Report"] = "kandil_hr.foundation.reports.prepared_query"

@@ -1,0 +1,611 @@
+{
+  "site": "kandil-parity.localhost",
+  "started_at_utc": "2026-10-12T03:02:02.422516+00:00",
+  "source_hashes_before": {
+    "kandil_hr/__init__.py": "b172e1ee0dca0b84021717191814e91b6b1c47b866981b0c8eae8ba91a6d9118",
+    "kandil_hr/config/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/models.py": "114fda83fd43b42376b5140c25fb4d02e9a4e65cda8502746d58b183766b93b4",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/test_boundaries.py": "a5c2b7459cac9246db4f763033f69dfbc07d6f208cb9e234402220edca55a20b",
+    "kandil_hr/foundation/test_calendar.py": "e4b80690fb22e1283c63f69a07f4a14a2ac72d08e15b7181bb34d622e844311f",
+    "kandil_hr/foundation/test_clock.py": "5a07436d78ceba49530122337c7d0577b9e5438c3c049c59cc9f9ce903420e4e",
+    "kandil_hr/foundation/test_foundation.py": "f5783ac44aba448fb27d1457a8c82a4351e5cde982b26c223221d3d936ef64ef",
+    "kandil_hr/foundation/test_mutation_access.py": "ac364de13cacf5eb8e18bf42dfb2199334e1f2f3327afc84e166fc152c77e1b3",
+    "kandil_hr/foundation/test_reports_accounts.py": "bbff700532df9f2859e5e27bcc13870ab17b34c016983f8e07c49c31ef4fcca0",
+    "kandil_hr/foundation/test_security.py": "f4b8fe087f35c77182c7fa06445194bf4ab0c1fa24a6519a401bc05093089083",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/hooks.py": "43f335e7581b7160919c2d8904f3471664566489636477989a69b636954da702",
+    "kandil_hr/kandil_hr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/kandil_access_grant.json": "ce900cee45fbaf25346a85c0adbf5893d02f6fa31f2a354f1cf7fde08828a5a6",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/kandil_access_grant.py": "f4b21602f2ea2f7fb15c7cba58998fddb1c98527386f3c41779d7e1e3ac3e3da",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.json": "afb3360b6119891bafe2b49a0209566c5f519504ddadf3235d616cd2589aeb7f",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.py": "42adf6eb808397816bbeb0305eb6466d33fb866e8d0b60ca3005a68fdd84901b",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/kandil_authority_rule.json": "9f157fa72d3efdb3dbc69dc4e1ac21f6341c10de265a5ce75e11c043bfdd6d71",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/kandil_authority_rule.py": "fef8c043fe9326d6cf0ea356397f6e40ae6e8d54b77696acfde83ac0ed54ef56",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/kandil_business_calendar.json": "c5116196c6c41cccc6f5247c58959741577befebe91fcae537b34e83b03fd1c3",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/kandil_business_calendar.py": "8bfd7275da71321b303191a6bd7d27439754f8aee5bd00f0ea31fa1ec6aae1a5",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.json": "37d49d4611c193b3baf2ef481ee8427ce7af26110872c4d042c7a8f5bee8b1b4",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.py": "e678898a15855333ca90f9a218861fa6743f7ea6ea3e18cf9810a7df4f66fc81",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/kandil_command_receipt.json": "023ff76640275ef6234b8471e96749acacec13addfd1f0fed69eaa51e3c4e047",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/kandil_command_receipt.py": "90089bbbb28159eeb216d758bd5b1d59a3806d1099db32aefa07272f4cf16c71",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.json": "39bdce2fb2656b804a4045002d3670d3ad3c813c71819c17988d0d7b36eee981",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.py": "08d92afed315e6f3cb759175bd789f47a13db033295b6154d9805113724b2c7e",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.js": "b4748f813b6776d796cf68aaaa1afac6310e3c65190d5eb6e6673d49eb279f17",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.json": "63f7547d199d4bd73f75ceb9e2b898d83626a96acbbc9350fd8bfaaf5ea8cb9d",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.py": "0c79533076ea2ea912ed3d8ed2f6ba5147258bb678b9bf5bf5bd2febe9321d5a",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "d3d88587c3f7e040b1b646ce77f5522b9219d90d8606c3c634ba56e20e687726",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json": "05d274dde649f5901faba19f057404f1bd3f44ea53fb409a98821e7945e50091",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.py": "60da64a0b81cac265439ff7559d4da09c676b98343d16edc01d4b477f80bc186",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/kandil_jd_authority.json": "77c53e90fe39836690e4dd475e6ba77428b9a4016e7800749bc858e3ad8901e0",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/kandil_jd_authority.py": "f7b4e29db965fa9bcd21538c23775b479819090b76c7f59374ae14e163229630",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/kandil_jd_competency.json": "f4707960bb94ea83acf4c42d01ffbe41f5b7d19f84a2e90ad014e58efe52b4e6",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/kandil_jd_competency.py": "44c9675f73351cb59c45416e23bc5d00382b1cb3734a4dbe1f455980a8e5405d",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/kandil_jd_kpi.json": "7c24a31b45aee96295d33fff11902eee772f4e9738dd5950d09110496fab323c",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/kandil_jd_kpi.py": "876e711dce485a4077a4eae2feaa5acea5779e1fc272e853ece046173cf1b46f",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/kandil_jd_responsibility.json": "50e752ffeb33e97450c15721460a6f8c274505ea6aa9bdb1e4fd574b14b3f7ae",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/kandil_jd_responsibility.py": "e2326703d6de823defcba290ae7548636abcd72a3dc254256c379a347b6dedfe",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.js": "220fb319fd33693c97baf2aa6ec4144120446bd3a0bec10eec21453abf9ab8e7",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.json": "87f9646f80579826e78a0e1efef592328a0879eb7238085d9eb21d543f412b78",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.py": "9a2e48c6b94be04aff47e19251da84054c980b111922a117e4a62a5b862b90e1",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.js": "6b1582eb8eac1b6f816fdac2239733dc5d8eaf2f01947dc9e3e1ee0885b0e2bd",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.json": "05fe535293a9acbd83bd1aee0809593662a280dbceef43f3925f9df5fc0a5375",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.py": "f9dfea2b4f9d1ec1ddeae4dca3d1fa8fd70ca41acab40f9a51aa93e5b1fda95c",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.js": "6b7d886747c9d7933378a0407a5f196239c8e8d0547a522a4a5209fd10b5a4ba",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.json": "d868a09f05ae0c5eeca9ae596454101df71aab714107052e161cd31c627bbd3a",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.py": "67b8532296982b1dcf8336629bb0e5f02bafac0f4a356d784b8d74908ea12402",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/kandil_organization_settings.json": "7d49a55b6945553a63c028462caaf5ece9ab079782f2567663ed2c65c16f08d9",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/kandil_organization_settings.py": "074fd948c65cf805113ce030d57f4d25610f6f78a48156169b33880aa7b673cc",
+    "kandil_hr/kandil_hr/doctype/kandil_position/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.js": "e32ddf43148e1fa72d2eeae8bd1fe6058c641d548e2207617ea9a062dfc2d351",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.json": "0ed0341a77d368364e9a64075ace9f361d6017c4e1bef2cdf4fb7e6dae9b93aa",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.py": "37f1620c9f511975870602b6d94cb801c9ce656e39a03b488b9fcbee131fdd40",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.js": "7fca26cb05b0768123626d593bb1c47cca52194b203348362d98a2877c00642b",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.json": "8b627a56dc4264f2ba06ff7bb01c15d8775024b126d4476d32eee0b575797854",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.py": "5c8a2bb8db6a20e24764eb13d837e0de4b25f9ba014efb46647fe2a66b907873",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/kandil_position_hierarchy.json": "6855b98a803aaf92a882bdf64215c203494778a794f017c580cca5413fa285af",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/kandil_position_hierarchy.py": "fa0c033ce3b1e20828c540ef04593e53031deef807b283d5950595e078dae7fe",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/kandil_recruiter_member.json": "fa2a4dbf7c936b1f4a7fe94af9582c73b9e668f8032cc27be3985f24466af21b",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/kandil_recruiter_member.py": "b78262758734d1520d5bba23a0c5595b627502fcd879db64de373f443a64386f",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.json": "485eb42f1c027837d85ac75e3ea79ca7152c8dc749daaa3d434766b33c21f33a",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.py": "2805bf4a425b7062206a5da8c43d8c9a694a439c68d52aa276c6c4075354f5ad",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/kandil_recruitment_route.json": "ac3a18e9ed110876a0c0fc8aa11e8a412a57f6589a5b088e52f71eb0a98d388f",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/kandil_recruitment_route.py": "50e1e189b9feaf9c5513972aa13610f7f0d69aa87722e15c0609175ae78268ab",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/kandil_request_line.json": "8b663a6e46a7dd9cf548df9bb3653e740ef6cff37ebec1932189c5e62bb04b73",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/kandil_request_line.py": "62de2a516a6ff8503d3388316eda92df1228aa01a23d79ed6ce2bffe5778ccdf",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/kandil_request_revision.json": "83c04868c650c5423cafa7ce8d44ae66e50a9520f285d833f2421556653422ce",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/kandil_request_revision.py": "12fb4737e2b0af2aa0559cc99fe51a025b1a8d79f86afdfd469af6c207240d60",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/kandil_security_event.json": "4de527d0165ea45299fbbbe7eac76c77de824135664603c466f6e5cd8a0b8510",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/kandil_security_event.py": "31f6eea28eb135c4f6e538ec720dc3006a5ac2d96a0646773cd0211b6ced0a97",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/kandil_security_policy.json": "2cabcfa0bbbecf541b70fcd5d8364d62618bef051007c7f8df6a93d89f374b19",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/kandil_security_policy.py": "a1cd914d8948bd4ed737be8e4d1d7c560d1bec40b28e00256d01516672d8e6a4",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.js": "b85b6608fe871f12eab597ab4e65c4370bb6c627e8f45c8be77d40a107cb869d",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.json": "dbfb80653ea6e0675f6e538e86f95447a6f6a0a734d5abb785835c456ee45ec0",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.py": "5c5360d177c4d7bda91aa02d54a0f8f07567378064a706d8422758ce6340544e",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/kandil_structure_snapshot.json": "7b930731bce068e3b4f0e41e134bc746ed24e1c16e0e025a15668c2bec821c12",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/kandil_structure_snapshot.py": "e9bbb38532af9e6e32eca0df05796579374c067cbebc60aff16a145d6c018d90",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/kandil_vacancy_queue.js": "423ee77184793d4544dc91741a45cc8896f2d2a98ce549c5670dd7eb4daa4354",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/kandil_vacancy_queue.json": "4967f0eb082407ca0ecdcdc45c967002f22d146b084afad1f09b79cfbe0dff08",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/integration_tests.py": "3ed5669237f0114f9e4c4f7c5d47a9b6573e14f30d14d75fcf50a7c725697605",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/organization/test_csv_import.py": "970ddada5b43da1295c3dec0270fbb72de00ba341525a2478374f815a2bac068",
+    "kandil_hr/organization/test_jd_rules.py": "861812b85456afc1da77563757d6946869f0db5bfddddf14e73fd4923baad9a0",
+    "kandil_hr/organization/test_rules.py": "aa9cd1c134af52ad73143d6e24e2b82dc636da34adb8255f5092bfb3bfc49672",
+    "kandil_hr/patches/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/api.py": "7f526860f58585f4aaa72a626ccc22bd3150abd2c574f3742e89b07cec145f40",
+    "kandil_hr/pilot/extensions.py": "12a5fec0840d120151a2d149c71b332e62f8796eaa3caba0e2ffb5e56eb38f59",
+    "kandil_hr/pilot/models.py": "51b0f3a9047f46bd329676527c0bb9faf7d21226ab8509603fb6685ff2d95b62",
+    "kandil_hr/pilot/navigation.py": "81623229a1557de47881b1fc6d1de22b3e049b27587051af888966430ccd17d8",
+    "kandil_hr/pilot/permissions.py": "0b1be126ce4ed55edf7dc0697714b6853734087dd23777a1bdc7027b7ce60237",
+    "kandil_hr/pilot/setup.py": "4318899ab4c4d4ff2cbb497555b93aded386f7b9fb03107c86eea42ce367b465",
+    "kandil_hr/public/css/workspace.css": "147ce0055b96b334062c004228474c86b344d586b587b22a9399524e7275aaba",
+    "kandil_hr/public/js/hiring_request_list.js": "1696439044c7d14c10f8dd5f4401ae129a4bec0f2a33f5bd58a16d5cd75dd818",
+    "kandil_hr/public/js/job_offer.js": "bbcb5a2800e5de5961d70f025dc74ab19beda0dc2bd3772a4eb59f2472656b98",
+    "kandil_hr/public/js/job_opening.js": "2849838ce9420034603820297f49fdf6b72f5cce3829dbd6c4c6168490684bf2",
+    "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "kandil_hr/recruitment/api.py": "0b5d0b2b05d9195b8640aa6c32d1ff8830d2c844c72eac0ebd54dd585872e57e",
+    "kandil_hr/recruitment/concurrency_fixture.py": "3cf254638777bcde82fa0edf3e150f8d0c7b36c607042c1913feb3d7d94ff7f3",
+    "kandil_hr/recruitment/guards.py": "43785b577080328af694d21262a32b56a0629c8fdc0712e4206f0628deaa3bb1",
+    "kandil_hr/recruitment/joining.py": "c8ec5ef32d46c6fbd01d5a6a73243234ab59ca5d34f1f5bd3bbad92067a95123",
+    "kandil_hr/recruitment/models.py": "65a5d01c841af97d8c3fa6ec8ac8dd856fda16894d81b9bab2198786f664e35c",
+    "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
+    "kandil_hr/recruitment/setup.py": "413c590e76ec3886ec53b171ed4d44b69aa6a8eac6758ff38ced0d0ae34f6fc6",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/test_commands.py": "4d916791bf89fc598313a1307f09652d389a36a2a6cab35844c2a1586f9e0522",
+    "kandil_hr/recruitment/test_joining.py": "f0adcbbb453067c96f9986487ef635b76616ef98b246eec5a950b9a429e74682",
+    "kandil_hr/recruitment/test_priority.py": "3e97a58535ee57b760e52edba1001a17af8275a51e0ce4474aec5cb26085046f",
+    "kandil_hr/recruitment/test_sla.py": "2382e1623819412fe794f94a3b0b3f74c626849c35ead1543a4bb987e2771995",
+    "kandil_hr/recruitment/vacancies.py": "c8a6da90069e8e344ed56f0c502ef52a6b760270ffade7893483d1cd84d30a27",
+    "kandil_hr/templates/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/templates/pages/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/translations/ar.csv": "ff862819ff8bb17ba9151ad1b45d487c494690b7bdd021754c69a02146a70f97",
+    "kandil_hr/www/kandil-pilot.html": "a4c590cc1b5544b6f99c7478bf5275365c1a1f243eff1566ae89b03b386cee3d",
+    "kandil_hr/www/kandil.html": "258e5a2a08e4fe40fe8d5e4ce6661a4b50089dd95873f0c5673f06630066d0ba",
+    "kandil_hr/www/kandil.py": "5081817d2d5b165636e7e3104b175c2b98f589ad8a26bf2b33de828bdf8f0bf9",
+    "kandil_hr/www/kandil_pilot.py": "b55547c5120901daf8c9c71c1d35d90761b1e90dfc9cc60f8d1894bbb791e1b1"
+  },
+  "suites": [
+    {
+      "name": "joining",
+      "exit_code": 0,
+      "seconds": 30.582,
+      "expected": 11,
+      "details": {
+        "suite": "recruitment-joining",
+        "tests_run": 11,
+        "successful": true,
+        "checks": [
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_changed_replay_payload_denied",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_failed_onboarding_request_rolls_back_all_joining_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_filled_and_closed_locations_complete_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_hold_and_freeze_block_joining_without_ledger_changes",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_joining_assignment_reference_cannot_be_forged",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_no_show_and_withdrawal_preserve_vacancies",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_overfill_denied_and_no_employee_created",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_partial_full_and_parent_completion_reconcile",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_replay_retains_original_assignment_after_later_assignment",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_revoked_management_grant_blocks_joining",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_joining.TestJoining.test_terminal_replay_has_identical_links_and_no_duplicate_effect",
+            "status": "PASS"
+          }
+        ],
+        "fixtures_rolled_back": true
+      },
+      "observed": 11,
+      "status": "PASS"
+    },
+    {
+      "name": "recruitment",
+      "exit_code": 0,
+      "seconds": 51.52,
+      "expected": 26,
+      "details": {
+        "suite": "recruitment-native",
+        "tests_run": 26,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "successful": true,
+        "site": "kandil-parity.localhost",
+        "fixtures_rolled_back": true,
+        "failed_tests": [],
+        "checked_at": "2026-10-12T03:03:23.378856+00:00",
+        "source_fingerprint_before": "aaaf8a33008eec81b983cc91abceb50405ccf599e27f6388caa18c98f7793aa4",
+        "source_fingerprint_after": "aaaf8a33008eec81b983cc91abceb50405ccf599e27f6388caa18c98f7793aa4",
+        "source_unchanged_during_run": true,
+        "checks": [
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_all_closed_vacancies_close_parent_and_unresolved_candidate_blocks",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_amendment_increase_tops_up_existing_openings_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_closed_second_vacancy_rolls_back_first_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_same_request_locations_replay_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_second_parent_stale_rolls_back_first_parent",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_guard_does_not_change_nonparity_behavior",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_child_save_cannot_forge_approval_or_capacity_outcomes",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_closing_one_vacancy_then_parent_cancel_releases_each_slot_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_command_collision_stale_version_and_wrong_step_fail_without_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_hr_reduction_releases_only_delta_and_preserves_requested_quantities",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_linked_opening_rejects_direct_mutation_even_with_ignore_permissions",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_other_recruiter_cannot_take_over_draft_requester",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_parent_cancel_cannot_bypass_candidate_disposition_guard",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_pending_cancellation_replay_releases_reservations_once",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_priority_pin_and_unassigned_queue_observe_live_vacancy_state",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_quantity_amendment_preserves_hold_and_freeze_state",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_read_only_or_revoked_grant_cannot_mutate_or_replay",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_replay_cannot_advance_consecutive_steps_for_same_principal",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_requester_json_draft_edit_preserves_datetime_authorship",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_return_revision_preserves_history_and_releases_old_reservation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_revoked_hr_role_cannot_review_pending_quantities",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_sector_cannot_self_grant_ceo_delegation",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_submit_replay_does_not_duplicate_effects",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_two_locations_reserve_approve_and_cancel_exact_balances",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_pause_freeze_resume_preserves_capacity",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_vacancy_team_is_deduplicated_scoped_and_command_replay_safe",
+            "status": "PASS"
+          }
+        ]
+      },
+      "observed": 26,
+      "status": "PASS"
+    },
+    {
+      "name": "sla",
+      "exit_code": 0,
+      "seconds": 9.262,
+      "expected": 9,
+      "details": {
+        "total": 9,
+        "errors": 0,
+        "failures": 0,
+        "skipped": 0,
+        "tests": [
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_delayed_scheduler_catches_up_only_highest_milestone",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_frozen_step_changes_and_completed_request_is_ignored",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_internal_scheduler_guard_rejects_business_user_and_http",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_milestones_replay_and_expiry_preserves_pending_reservations",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_notification_insert_failure_can_rollback_every_recipient",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_parity_opt_out_performs_no_sla_processing",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_revoked_recipient_scope_is_suppressed_at_delivery",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_scheduler_continues_after_bad_calendar_and_records_local_error",
+            "status": "PASS"
+          },
+          {
+            "test": "kandil_hr.recruitment.test_sla.TestApprovalSLA.test_weekend_and_company_holiday_pause_notices",
+            "status": "PASS"
+          }
+        ]
+      },
+      "observed": 9,
+      "status": "PASS"
+    }
+  ],
+  "limits": [
+    "Synthetic native ORM regression, no real data",
+    "Joining Hold/Freeze tests are sequential, not a concurrent joining race",
+    "Draft onboarding handoff only; no Project/Task orchestration or fill void",
+    "Earlier 146-check checkpoint remains separate"
+  ],
+  "source_hashes_after": {
+    "kandil_hr/__init__.py": "b172e1ee0dca0b84021717191814e91b6b1c47b866981b0c8eae8ba91a6d9118",
+    "kandil_hr/config/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
+    "kandil_hr/foundation/business_calendar.py": "b8d40fc902fc57f6203fd25206e85d9a6632716b5b6d3abd0a20aff6607e6256",
+    "kandil_hr/foundation/calendar.py": "ee3de3d21ebd429c6913a56356f441b48b00653e1b367b4abed624a56fb80521",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/foundation/concurrency_runner.py": "ef1241362ea8f5e378630e3f91c9ba7361f2eba6df5f72890ff7d9dc6a199267",
+    "kandil_hr/foundation/files.py": "58c01c237a30b9337374eba3151d327ba4e2580de1171bdfca1aefbe2af80ffe",
+    "kandil_hr/foundation/models.py": "114fda83fd43b42376b5140c25fb4d02e9a4e65cda8502746d58b183766b93b4",
+    "kandil_hr/foundation/mutation_access.py": "23166ff2fd6a633dc8316b12527228e6e07dec051e4821688045a84243a66f2d",
+    "kandil_hr/foundation/mutation_access_runner.py": "f15b367d5d3af6de7a61e5889efc736d59ecfc249d92784ad8da2d7112816323",
+    "kandil_hr/foundation/outbox.py": "3402731f756c216a4e24668c4289dd119605fa4f28a33b4637e46501b62070b0",
+    "kandil_hr/foundation/queries.py": "21eaa241547b16629a6d863fe1fb464de5c0844dd83732ee262f7dd70b8e36b1",
+    "kandil_hr/foundation/reports.py": "4848e48e664ae038c74268c523f3a5cdb6a5170fef904d0ae7af74621d5df427",
+    "kandil_hr/foundation/security.py": "5bb6136f1478ba0bfef217f0ffac665da3457f59bf092061420ab92c1fe5fb2c",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/test_boundaries.py": "a5c2b7459cac9246db4f763033f69dfbc07d6f208cb9e234402220edca55a20b",
+    "kandil_hr/foundation/test_calendar.py": "e4b80690fb22e1283c63f69a07f4a14a2ac72d08e15b7181bb34d622e844311f",
+    "kandil_hr/foundation/test_clock.py": "5a07436d78ceba49530122337c7d0577b9e5438c3c049c59cc9f9ce903420e4e",
+    "kandil_hr/foundation/test_foundation.py": "f5783ac44aba448fb27d1457a8c82a4351e5cde982b26c223221d3d936ef64ef",
+    "kandil_hr/foundation/test_mutation_access.py": "ac364de13cacf5eb8e18bf42dfb2199334e1f2f3327afc84e166fc152c77e1b3",
+    "kandil_hr/foundation/test_reports_accounts.py": "bbff700532df9f2859e5e27bcc13870ab17b34c016983f8e07c49c31ef4fcca0",
+    "kandil_hr/foundation/test_security.py": "f4b8fe087f35c77182c7fa06445194bf4ab0c1fa24a6519a401bc05093089083",
+    "kandil_hr/foundation/tests_runner.py": "8719a1368ea246526632f57d1c4fd27a1eb684de77bed71a11d994687774372b",
+    "kandil_hr/hooks.py": "43f335e7581b7160919c2d8904f3471664566489636477989a69b636954da702",
+    "kandil_hr/kandil_hr/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/kandil_access_grant.json": "ce900cee45fbaf25346a85c0adbf5893d02f6fa31f2a354f1cf7fde08828a5a6",
+    "kandil_hr/kandil_hr/doctype/kandil_access_grant/kandil_access_grant.py": "f4b21602f2ea2f7fb15c7cba58998fddb1c98527386f3c41779d7e1e3ac3e3da",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.json": "afb3360b6119891bafe2b49a0209566c5f519504ddadf3235d616cd2589aeb7f",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.py": "42adf6eb808397816bbeb0305eb6466d33fb866e8d0b60ca3005a68fdd84901b",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/kandil_authority_rule.json": "9f157fa72d3efdb3dbc69dc4e1ac21f6341c10de265a5ce75e11c043bfdd6d71",
+    "kandil_hr/kandil_hr/doctype/kandil_authority_rule/kandil_authority_rule.py": "fef8c043fe9326d6cf0ea356397f6e40ae6e8d54b77696acfde83ac0ed54ef56",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/kandil_business_calendar.json": "c5116196c6c41cccc6f5247c58959741577befebe91fcae537b34e83b03fd1c3",
+    "kandil_hr/kandil_hr/doctype/kandil_business_calendar/kandil_business_calendar.py": "8bfd7275da71321b303191a6bd7d27439754f8aee5bd00f0ea31fa1ec6aae1a5",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.json": "37d49d4611c193b3baf2ef481ee8427ce7af26110872c4d042c7a8f5bee8b1b4",
+    "kandil_hr/kandil_hr/doctype/kandil_capacity/kandil_capacity.py": "e678898a15855333ca90f9a218861fa6743f7ea6ea3e18cf9810a7df4f66fc81",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/kandil_command_receipt.json": "023ff76640275ef6234b8471e96749acacec13addfd1f0fed69eaa51e3c4e047",
+    "kandil_hr/kandil_hr/doctype/kandil_command_receipt/kandil_command_receipt.py": "90089bbbb28159eeb216d758bd5b1d59a3806d1099db32aefa07272f4cf16c71",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.json": "39bdce2fb2656b804a4045002d3670d3ad3c813c71819c17988d0d7b36eee981",
+    "kandil_hr/kandil_hr/doctype/kandil_delegation/kandil_delegation.py": "08d92afed315e6f3cb759175bd789f47a13db033295b6154d9805113724b2c7e",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.js": "b4748f813b6776d796cf68aaaa1afac6310e3c65190d5eb6e6673d49eb279f17",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.json": "63f7547d199d4bd73f75ceb9e2b898d83626a96acbbc9350fd8bfaaf5ea8cb9d",
+    "kandil_hr/kandil_hr/doctype/kandil_grade_band/kandil_grade_band.py": "0c79533076ea2ea912ed3d8ed2f6ba5147258bb678b9bf5bf5bd2febe9321d5a",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.js": "d3d88587c3f7e040b1b646ce77f5522b9219d90d8606c3c634ba56e20e687726",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json": "05d274dde649f5901faba19f057404f1bd3f44ea53fb409a98821e7945e50091",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.py": "60da64a0b81cac265439ff7559d4da09c676b98343d16edc01d4b477f80bc186",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/kandil_jd_authority.json": "77c53e90fe39836690e4dd475e6ba77428b9a4016e7800749bc858e3ad8901e0",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_authority/kandil_jd_authority.py": "f7b4e29db965fa9bcd21538c23775b479819090b76c7f59374ae14e163229630",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/kandil_jd_competency.json": "f4707960bb94ea83acf4c42d01ffbe41f5b7d19f84a2e90ad014e58efe52b4e6",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_competency/kandil_jd_competency.py": "44c9675f73351cb59c45416e23bc5d00382b1cb3734a4dbe1f455980a8e5405d",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/kandil_jd_kpi.json": "7c24a31b45aee96295d33fff11902eee772f4e9738dd5950d09110496fab323c",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_kpi/kandil_jd_kpi.py": "876e711dce485a4077a4eae2feaa5acea5779e1fc272e853ece046173cf1b46f",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/kandil_jd_responsibility.json": "50e752ffeb33e97450c15721460a6f8c274505ea6aa9bdb1e4fd574b14b3f7ae",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_responsibility/kandil_jd_responsibility.py": "e2326703d6de823defcba290ae7548636abcd72a3dc254256c379a347b6dedfe",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.js": "220fb319fd33693c97baf2aa6ec4144120446bd3a0bec10eec21453abf9ab8e7",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.json": "87f9646f80579826e78a0e1efef592328a0879eb7238085d9eb21d543f412b78",
+    "kandil_hr/kandil_hr/doctype/kandil_jd_revision/kandil_jd_revision.py": "9a2e48c6b94be04aff47e19251da84054c980b111922a117e4a62a5b862b90e1",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.js": "6b1582eb8eac1b6f816fdac2239733dc5d8eaf2f01947dc9e3e1ee0885b0e2bd",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.json": "05fe535293a9acbd83bd1aee0809593662a280dbceef43f3925f9df5fc0a5375",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.py": "f9dfea2b4f9d1ec1ddeae4dca3d1fa8fd70ca41acab40f9a51aa93e5b1fda95c",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.js": "6b7d886747c9d7933378a0407a5f196239c8e8d0547a522a4a5209fd10b5a4ba",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.json": "d868a09f05ae0c5eeca9ae596454101df71aab714107052e161cd31c627bbd3a",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_import/kandil_organization_import.py": "67b8532296982b1dcf8336629bb0e5f02bafac0f4a356d784b8d74908ea12402",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/kandil_organization_settings.json": "7d49a55b6945553a63c028462caaf5ece9ab079782f2567663ed2c65c16f08d9",
+    "kandil_hr/kandil_hr/doctype/kandil_organization_settings/kandil_organization_settings.py": "074fd948c65cf805113ce030d57f4d25610f6f78a48156169b33880aa7b673cc",
+    "kandil_hr/kandil_hr/doctype/kandil_position/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.js": "e32ddf43148e1fa72d2eeae8bd1fe6058c641d548e2207617ea9a062dfc2d351",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.json": "0ed0341a77d368364e9a64075ace9f361d6017c4e1bef2cdf4fb7e6dae9b93aa",
+    "kandil_hr/kandil_hr/doctype/kandil_position/kandil_position.py": "37f1620c9f511975870602b6d94cb801c9ce656e39a03b488b9fcbee131fdd40",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.js": "7fca26cb05b0768123626d593bb1c47cca52194b203348362d98a2877c00642b",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.json": "8b627a56dc4264f2ba06ff7bb01c15d8775024b126d4476d32eee0b575797854",
+    "kandil_hr/kandil_hr/doctype/kandil_position_assignment/kandil_position_assignment.py": "5c8a2bb8db6a20e24764eb13d837e0de4b25f9ba014efb46647fe2a66b907873",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/kandil_position_hierarchy.json": "6855b98a803aaf92a882bdf64215c203494778a794f017c580cca5413fa285af",
+    "kandil_hr/kandil_hr/doctype/kandil_position_hierarchy/kandil_position_hierarchy.py": "fa0c033ce3b1e20828c540ef04593e53031deef807b283d5950595e078dae7fe",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/kandil_recruiter_member.json": "fa2a4dbf7c936b1f4a7fe94af9582c73b9e668f8032cc27be3985f24466af21b",
+    "kandil_hr/kandil_hr/doctype/kandil_recruiter_member/kandil_recruiter_member.py": "b78262758734d1520d5bba23a0c5595b627502fcd879db64de373f443a64386f",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.json": "485eb42f1c027837d85ac75e3ea79ca7152c8dc749daaa3d434766b33c21f33a",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.py": "2805bf4a425b7062206a5da8c43d8c9a694a439c68d52aa276c6c4075354f5ad",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/kandil_recruitment_route.json": "ac3a18e9ed110876a0c0fc8aa11e8a412a57f6589a5b088e52f71eb0a98d388f",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_route/kandil_recruitment_route.py": "50e1e189b9feaf9c5513972aa13610f7f0d69aa87722e15c0609175ae78268ab",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/kandil_request_line.json": "8b663a6e46a7dd9cf548df9bb3653e740ef6cff37ebec1932189c5e62bb04b73",
+    "kandil_hr/kandil_hr/doctype/kandil_request_line/kandil_request_line.py": "62de2a516a6ff8503d3388316eda92df1228aa01a23d79ed6ce2bffe5778ccdf",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/kandil_request_revision.json": "83c04868c650c5423cafa7ce8d44ae66e50a9520f285d833f2421556653422ce",
+    "kandil_hr/kandil_hr/doctype/kandil_request_revision/kandil_request_revision.py": "12fb4737e2b0af2aa0559cc99fe51a025b1a8d79f86afdfd469af6c207240d60",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/kandil_security_event.json": "4de527d0165ea45299fbbbe7eac76c77de824135664603c466f6e5cd8a0b8510",
+    "kandil_hr/kandil_hr/doctype/kandil_security_event/kandil_security_event.py": "31f6eea28eb135c4f6e538ec720dc3006a5ac2d96a0646773cd0211b6ced0a97",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/kandil_security_policy.json": "2cabcfa0bbbecf541b70fcd5d8364d62618bef051007c7f8df6a93d89f374b19",
+    "kandil_hr/kandil_hr/doctype/kandil_security_policy/kandil_security_policy.py": "a1cd914d8948bd4ed737be8e4d1d7c560d1bec40b28e00256d01516672d8e6a4",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.js": "b85b6608fe871f12eab597ab4e65c4370bb6c627e8f45c8be77d40a107cb869d",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.json": "dbfb80653ea6e0675f6e538e86f95447a6f6a0a734d5abb785835c456ee45ec0",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_change/kandil_structure_change.py": "5c5360d177c4d7bda91aa02d54a0f8f07567378064a706d8422758ce6340544e",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/kandil_structure_snapshot.json": "7b930731bce068e3b4f0e41e134bc746ed24e1c16e0e025a15668c2bec821c12",
+    "kandil_hr/kandil_hr/doctype/kandil_structure_snapshot/kandil_structure_snapshot.py": "e9bbb38532af9e6e32eca0df05796579374c067cbebc60aff16a145d6c018d90",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/kandil_vacancy_queue.js": "423ee77184793d4544dc91741a45cc8896f2d2a98ce549c5670dd7eb4daa4354",
+    "kandil_hr/kandil_hr/page/kandil_vacancy_queue/kandil_vacancy_queue.json": "4967f0eb082407ca0ecdcdc45c967002f22d146b084afad1f09b79cfbe0dff08",
+    "kandil_hr/organization/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/organization/api.py": "d5a57a3f9b8f369656306bd29dd8339f889f55e05332d784b8ca544d734eb39e",
+    "kandil_hr/organization/capacity.py": "6d3bf8665364c0f789b6134946e258d12c8883f791a44bcc0377ccbe21f70b44",
+    "kandil_hr/organization/concurrency_tests.py": "0da9af14fad94c86ff48b52365d2cc65a2dbbd00610c084f940169f73fea6817",
+    "kandil_hr/organization/contracts.py": "e24f3c74d27f19302004f1a661c4afaca5403613b30404d2a3b4a886d32c7e2c",
+    "kandil_hr/organization/csv_import.py": "107f08d28521c1e669fddad14f9323352bb0beaf7952f7840a24ca911a85bd57",
+    "kandil_hr/organization/current.py": "800a04e7c0edc78c02fa183b0e31cecb939bab2378e71ad22223d0104e1e06fb",
+    "kandil_hr/organization/documents.py": "b72e7d615e1ed6f6f528aaa63ad954848a9556a84c52457026d3fea063e8249f",
+    "kandil_hr/organization/integration_tests.py": "3ed5669237f0114f9e4c4f7c5d47a9b6573e14f30d14d75fcf50a7c725697605",
+    "kandil_hr/organization/jd_rules.py": "0d22cded72cdd1d53613078a01facc09c27a075e2818a221a511f49c90e61d0d",
+    "kandil_hr/organization/models.py": "c7a87ac6c6edc8f3ce64592515136907092fe15a16ba66b48fcde36f5a182de3",
+    "kandil_hr/organization/permissions.py": "71ff82ec6ab83b78ce98cdae9a1e5b5918308a8253b0148d2919920d354f514f",
+    "kandil_hr/organization/review_fixture.py": "65157d4890db9d148213ebd12caff55c7cf7aede3bc82cf469b329a878e1ff73",
+    "kandil_hr/organization/rules.py": "bf8894e5c89d3885f495d3c33c03306ac6f157b3769383051e548ec1237f979b",
+    "kandil_hr/organization/test_csv_import.py": "970ddada5b43da1295c3dec0270fbb72de00ba341525a2478374f815a2bac068",
+    "kandil_hr/organization/test_jd_rules.py": "861812b85456afc1da77563757d6946869f0db5bfddddf14e73fd4923baad9a0",
+    "kandil_hr/organization/test_rules.py": "aa9cd1c134af52ad73143d6e24e2b82dc636da34adb8255f5092bfb3bfc49672",
+    "kandil_hr/patches/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/pilot/api.py": "7f526860f58585f4aaa72a626ccc22bd3150abd2c574f3742e89b07cec145f40",
+    "kandil_hr/pilot/extensions.py": "12a5fec0840d120151a2d149c71b332e62f8796eaa3caba0e2ffb5e56eb38f59",
+    "kandil_hr/pilot/models.py": "51b0f3a9047f46bd329676527c0bb9faf7d21226ab8509603fb6685ff2d95b62",
+    "kandil_hr/pilot/navigation.py": "81623229a1557de47881b1fc6d1de22b3e049b27587051af888966430ccd17d8",
+    "kandil_hr/pilot/permissions.py": "0b1be126ce4ed55edf7dc0697714b6853734087dd23777a1bdc7027b7ce60237",
+    "kandil_hr/pilot/setup.py": "4318899ab4c4d4ff2cbb497555b93aded386f7b9fb03107c86eea42ce367b465",
+    "kandil_hr/public/css/workspace.css": "147ce0055b96b334062c004228474c86b344d586b587b22a9399524e7275aaba",
+    "kandil_hr/public/js/hiring_request_list.js": "1696439044c7d14c10f8dd5f4401ae129a4bec0f2a33f5bd58a16d5cd75dd818",
+    "kandil_hr/public/js/job_offer.js": "bbcb5a2800e5de5961d70f025dc74ab19beda0dc2bd3772a4eb59f2472656b98",
+    "kandil_hr/public/js/job_opening.js": "2849838ce9420034603820297f49fdf6b72f5cce3829dbd6c4c6168490684bf2",
+    "kandil_hr/recruitment/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "kandil_hr/recruitment/api.py": "0b5d0b2b05d9195b8640aa6c32d1ff8830d2c844c72eac0ebd54dd585872e57e",
+    "kandil_hr/recruitment/concurrency_fixture.py": "3cf254638777bcde82fa0edf3e150f8d0c7b36c607042c1913feb3d7d94ff7f3",
+    "kandil_hr/recruitment/guards.py": "43785b577080328af694d21262a32b56a0629c8fdc0712e4206f0628deaa3bb1",
+    "kandil_hr/recruitment/joining.py": "c8ec5ef32d46c6fbd01d5a6a73243234ab59ca5d34f1f5bd3bbad92067a95123",
+    "kandil_hr/recruitment/models.py": "65a5d01c841af97d8c3fa6ec8ac8dd856fda16894d81b9bab2198786f664e35c",
+    "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
+    "kandil_hr/recruitment/setup.py": "413c590e76ec3886ec53b171ed4d44b69aa6a8eac6758ff38ced0d0ae34f6fc6",
+    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/test_commands.py": "4d916791bf89fc598313a1307f09652d389a36a2a6cab35844c2a1586f9e0522",
+    "kandil_hr/recruitment/test_joining.py": "f0adcbbb453067c96f9986487ef635b76616ef98b246eec5a950b9a429e74682",
+    "kandil_hr/recruitment/test_priority.py": "3e97a58535ee57b760e52edba1001a17af8275a51e0ce4474aec5cb26085046f",
+    "kandil_hr/recruitment/test_sla.py": "2382e1623819412fe794f94a3b0b3f74c626849c35ead1543a4bb987e2771995",
+    "kandil_hr/recruitment/vacancies.py": "c8a6da90069e8e344ed56f0c502ef52a6b760270ffade7893483d1cd84d30a27",
+    "kandil_hr/templates/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/templates/pages/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "kandil_hr/translations/ar.csv": "ff862819ff8bb17ba9151ad1b45d487c494690b7bdd021754c69a02146a70f97",
+    "kandil_hr/www/kandil-pilot.html": "a4c590cc1b5544b6f99c7478bf5275365c1a1f243eff1566ae89b03b386cee3d",
+    "kandil_hr/www/kandil.html": "258e5a2a08e4fe40fe8d5e4ce6661a4b50089dd95873f0c5673f06630066d0ba",
+    "kandil_hr/www/kandil.py": "5081817d2d5b165636e7e3104b175c2b98f589ad8a26bf2b33de828bdf8f0bf9",
+    "kandil_hr/www/kandil_pilot.py": "b55547c5120901daf8c9c71c1d35d90761b1e90dfc9cc60f8d1894bbb791e1b1"
+  },
+  "source_unchanged_during_run": true,
+  "status": "PASS",
+  "total": 46,
+  "finished_at_utc": "2026-10-12T03:03:33.877378+00:00"
+}

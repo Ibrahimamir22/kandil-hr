@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-10-12T02:22:36.199014+00:00",
+  "status": "passed",
+  "site": "kandil-sandbox.localhost",
+  "url": "http://localhost:8110/login",
+  "http_status": 200,
+  "apps": [
+    "frappe",
+    "erpnext",
+    "hrms",
+    "kandil_hr"
+  ],
+  "upstream_commits": {
+    "frappe": {
+      "url": "https://github.com/frappe/frappe.git",
+      "commit": "2871914b69b6e14a4b023d9b7cc52dc3e269cc1b"
+    },
+    "erpnext": {
+      "url": "https://github.com/frappe/erpnext.git",
+      "commit": "7474d9e786277383de1242ab882f16856d17a9c9"
+    },
+    "hrms": {
+      "url": "https://github.com/frappe/hrms.git",
+      "commit": "7c037698ce57d1492f05a8b4a586a7578f722879"
+    }
+  },
+  "source_files": {
+    "deployment/versions.lock.json": "246da6f48766b24c2a97d989396381a92994d4b05b9b6e3d30f629ee48ef519f",
+    "deployment/seed_parity.py": "10d57082249b147eefebdb9de8e0080c8c49ac2938862f1e2bec84be7fba733f",
+    "deployment/README.md": "751524cb080765f127d411afd0866cee44be4684ffa3a635fc72db8f01ebc835",
+    "deployment/compose.yaml": "ed839f08e71f88d6cfc5934e277eada8a41a3fac02815b477c5f1ca308abb5d9",
+    "deployment/install.py": "8e660d894b32ee8580bfb854a8a61638ad1c552ccfec1e35cac3ed888d6edc55",
+    "deployment/prepare.py": "5028696f328cc73528181257cfe9db085e8b88115bd556e1fce728abf08adb30"
+  },
+  "limitations": [
+    "Dirty local custom checkout; not a tagged release",
+    "Restore rehearsal pending",
+    "Local ARM64 development only; production hardening excluded"
+  ],
+  "initial_failure": "Docker bind-mount ownership required safe.directory for explicit known source paths; installer corrected and rerun successfully"
+}

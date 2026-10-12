@@ -1,0 +1,38 @@
+{
+  "checked_at": "2026-10-12T02:44:59.451Z",
+  "site": "kandil-parity.localhost",
+  "request": "cvds1h2rbk",
+  "openings": [
+    "HR-OPN-2026-0004",
+    "HR-OPN-2026-0005"
+  ],
+  "checks": [
+    {
+      "name": "Department manager approves using native request action and comment dialog",
+      "status": "PASS"
+    },
+    {
+      "name": "HR final approval creates exactly two approved vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "Native vacancy queue bulk-assigns both request lines through its dialog",
+      "status": "PASS"
+    },
+    {
+      "name": "Native opening action moves one assigned vacancy to Open with a reason",
+      "status": "PASS"
+    },
+    {
+      "name": "No native workflow runtime errors or server 5xx",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "serverErrors": [],
+  "limitations": [
+    "Department approval → HR approval → bulk assignment → opening only; submission proven separately",
+    "Persistent synthetic review request intentionally advanced for manual inspection",
+    "Not HR policy acceptance or production validation"
+  ]
+}

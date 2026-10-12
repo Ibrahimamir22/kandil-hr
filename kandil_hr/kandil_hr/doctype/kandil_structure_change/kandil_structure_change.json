@@ -1,0 +1,174 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Structure Change",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "effective_on",
+    "reason",
+    "changes_json",
+    "preview_hash",
+    "snapshot_hash",
+    "status",
+    "approved_by",
+    "approved_at",
+    "snapshot",
+    "operations_preview",
+    "approval_steps",
+    "command_history",
+    "route_snapshot",
+    "created_positions_json"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "effective_on",
+      "label": "Effective On",
+      "fieldtype": "Date",
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "reqd": 1
+    },
+    {
+      "fieldname": "changes_json",
+      "label": "Proposed Changes",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "reqd": 1,
+      "hidden": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "preview_hash",
+      "label": "Preview Hash",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "snapshot_hash",
+      "label": "Baseline Hash",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Draft\nPending\nApproved\nRejected",
+      "default": "Draft",
+      "read_only": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "approved_by",
+      "label": "Approved By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1
+    },
+    {
+      "fieldname": "approved_at",
+      "label": "Approved At",
+      "fieldtype": "Datetime",
+      "read_only": 1
+    },
+    {
+      "fieldname": "snapshot",
+      "label": "Snapshot",
+      "fieldtype": "Link",
+      "options": "Kandil Structure Snapshot",
+      "read_only": 1
+    },
+    {
+      "fieldname": "operations_preview",
+      "label": "Proposed Changes",
+      "fieldtype": "HTML"
+    },
+    {
+      "fieldname": "approval_steps",
+      "label": "Approval Steps",
+      "fieldtype": "Table",
+      "options": "Kandil Approval Step",
+      "read_only": 1
+    },
+    {
+      "fieldname": "command_history",
+      "label": "Command History",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "route_snapshot",
+      "label": "Authority Snapshot",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    },
+    {
+      "fieldname": "created_positions_json",
+      "label": "Created Positions",
+      "fieldtype": "Code",
+      "options": "JSON",
+      "read_only": 1,
+      "hidden": 1
+    }
+  ],
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "write": 1,
+      "report": 1,
+      "print": 1,
+      "create": 1
+    },
+    {
+      "role": "Kandil CEO Approver",
+      "read": 1,
+      "write": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Board Approver",
+      "read": 1,
+      "write": 1,
+      "report": 1,
+      "print": 1
+    }
+  ]
+}

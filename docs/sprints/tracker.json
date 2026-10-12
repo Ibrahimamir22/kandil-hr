@@ -1,0 +1,727 @@
+{
+  "schema_version": 1,
+  "updated": "2026-10-12",
+  "timezone": "Africa/Cairo",
+  "title": "قنديل | HR delivery sprints",
+  "release_goal": "Deliver a reproducible, bilingual local Frappe HR release for P0–P3, with the selected 40 requirements verified against 80 baseline cases and targeted regression tests.",
+  "scope": "P0 baseline + P1 security + P2 organization + P3 requests and vacancies. Full HR parity (P4–P10), company platform, Odoo integrations and production are separate milestones.",
+  "status_note": "Development checkpoint: 186 mixed suite checks passed, plus independent database and HTTP races and native AR/EN browser evidence. Strict baseline assessment is 10 passed, 53 partial and 17 blocked; HR acceptance remains pending. The implementation goal remains active.",
+  "sprints": [
+    {
+      "id": "S0",
+      "name": "Reproducible project",
+      "ar": "تجهيز المشروع وتثبيت المتطلبات",
+      "outcome": "A new machine can install the same pinned HR stack, and everyone can see the exact scope.",
+      "gate": "Version lock + install/restore instructions + synthetic-site plan + requirement ownership reviewed; clean bootstrap proof required before setup is Done.",
+      "parallel": "Lead: packaging. Security: interfaces. Organization: mapping. QA: baseline and cases.",
+      "depends": []
+    },
+    {
+      "id": "S1",
+      "name": "Secure organization foundation",
+      "ar": "الصلاحيات والهيكل التنظيمي",
+      "outcome": "Position data and scoped authority are consistent, with safe write commands.",
+      "gate": "Real accounts cannot cross company/branch boundaries; duplicate commands are safe; hierarchy, assignments and capacity constraints pass native tests.",
+      "parallel": "Security and organization build independently against agreed scope/route contracts; lead fixes commands; QA prepares fixtures.",
+      "depends": [
+        "S0"
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "Complete hiring workflows",
+      "ar": "طلبات التوظيف والاعتمادات والشواغر",
+      "outcome": "A request moves from draft through the correct approvals into an accurately tracked vacancy.",
+      "gate": "Returns, amendments, delegations, CEO/board routes, capacity, priority and recruiter queues work under normal and negative cases.",
+      "parallel": "Lead: request state machine. Security: identity/account controls. Organization: structural approval and capacity. QA: bilingual/native UI.",
+      "depends": [
+        "S1"
+      ]
+    },
+    {
+      "id": "S3",
+      "name": "Integration and bilingual proof",
+      "ar": "الاختبار المتكامل والعربية والإنجليزية",
+      "outcome": "The selected 40 requirements have dated evidence for all 80 baseline acceptance cases plus targeted regression cases.",
+      "gate": "No unresolved critical authorization or headcount defect; concurrent operations reconcile; EN/AR native UI, files, exports and notifications pass; unresolved provider/policy cases stay blocked.",
+      "parallel": "Security: adversarial tests. Organization: import/history tests. Lead: serial integration/concurrency. QA: EN/AR browser tests after fixture stability.",
+      "depends": [
+        "S2"
+      ]
+    },
+    {
+      "id": "S4",
+      "name": "Reviewable release and handover",
+      "ar": "نسخة للمراجعة والتسليم",
+      "outcome": "A tagged, reproducible local release, testing walkthrough and HR decision record.",
+      "gate": "Independent source review, restore rehearsal, secret scan, tested commit pushed, evidence tied to commit, and HR UAT decision recorded. This is not production go-live.",
+      "parallel": "Lead: release. Security: review. Organization: operator guide. QA: evidence pack and HR walkthrough.",
+      "depends": [
+        "S3"
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "T01",
+      "sprint": "S0",
+      "phase": "P0",
+      "lane": "QA",
+      "title": "Freeze and validate requirements",
+      "ar": "تثبيت المتطلبات والتحقق منها",
+      "status": "verified",
+      "depends": [],
+      "acceptance": "All 98 IDs retained; 40 selected requirements and 80 cases; six reference-file hashes verified.",
+      "evidence": "evidence/baseline-check.json — rerun on 12 Oct Cairo; baseline PASS.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T02",
+      "sprint": "S0",
+      "phase": "P0",
+      "lane": "Lead",
+      "title": "Record repositories and upstream boundaries",
+      "ar": "توثيق المستودعات والإصدارات",
+      "status": "verified",
+      "depends": [],
+      "acceptance": "Official upstream commits/remotes recorded; upstream working trees clean; custom origin identified.",
+      "evidence": "Official upstream pins and clean working trees rechecked. GitHub repository metadata confirms private Ibrahimamir22/kandil-hr, default branch main. Source publication is tracked separately.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T03",
+      "sprint": "S0",
+      "phase": "Setup",
+      "lane": "Lead",
+      "title": "Package pinned installation and recovery",
+      "ar": "تجهيز التثبيت والاستعادة",
+      "status": "in_progress",
+      "depends": [
+        "T02"
+      ],
+      "acceptance": "Lock exact app revisions and image versions; install custom app from its repo on a clean environment, rebuild assets and migrate; document backup/config/restore; no secrets tracked.",
+      "evidence": "Pinned ARM64 fresh installation and synthetic database/files/encryption-key restore passed. Final clean tested commit remains the release gate.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T04",
+      "sprint": "S0",
+      "phase": "P0",
+      "lane": "QA",
+      "title": "Resolve policy and contract decisions",
+      "ar": "حسم القواعد وعقود التكامل",
+      "status": "needs_decision",
+      "depends": [
+        "T01"
+      ],
+      "acceptance": "Record decision owner, chosen rule and impacted tests for PD-02/03/08/09/11/12; fail closed for unresolved consequential behavior. Unrelated source work may proceed.",
+      "evidence": "docs/phases_0_3/POLICY_DECISIONS.md — no HR sign-off.",
+      "requirement_ids": [],
+      "risk": "HR decisions cannot be inferred from prototype source."
+    },
+    {
+      "id": "T05",
+      "sprint": "S0",
+      "phase": "Setup",
+      "lane": "Lead",
+      "title": "Prepare isolated integration site and seed",
+      "ar": "تجهيز بيئة اختبار مستقلة",
+      "status": "verified",
+      "depends": [
+        "T03"
+      ],
+      "acceptance": "Install current custom app on parity test site; synthetic companies/branches/roles and known capacities; mute email; private credentials; existing sites/data preserved.",
+      "evidence": "Isolated parity site at port 8102; two TEST companies, ordinary role accounts, private generated credentials and muted email. Native review works; read-only legacy login/workspace/offer checks passed.",
+      "requirement_ids": [],
+      "risk": "Separate databases share development services; this is not production isolation."
+    },
+    {
+      "id": "T06",
+      "sprint": "S1",
+      "phase": "P1",
+      "lane": "Security",
+      "title": "Enforce scoped write and read access",
+      "ar": "تطبيق صلاحيات القراءة والتعديل",
+      "status": "in_progress",
+      "depends": [
+        "T01",
+        "T02"
+      ],
+      "acceptance": "Mutations require manage scope plus authority; direct API, form, query, search/export and file access deny unauthorized scope; revocation is immediate.",
+      "evidence": "Final foundation 52 checks: 25 native DB, 14 pure calendar/clock, 13 mocked scope/helper. Independent stale-snapshot revocation/disabled-account/role-removal gates passed. Complete HTTP channel matrix remains.",
+      "requirement_ids": [
+        "ACC-003"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T07",
+      "sprint": "S1",
+      "phase": "P1",
+      "lane": "Lead",
+      "title": "Make commands replay-safe and versioned",
+      "ar": "منع تكرار الأوامر والتعارض",
+      "status": "verified",
+      "depends": [
+        "T06"
+      ],
+      "acceptance": "Persist deterministic command identity; same payload retry returns original result; changed payload fails; exact step and expected version mandatory; one state transition under concurrency.",
+      "evidence": "Native stale-version/payload checks plus 20 simultaneous identical manager approvals and 20 final approvals returned one effect. A current locking receipt read fixes repeatable-read replay visibility.",
+      "requirement_ids": [
+        "AUD-002"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T08",
+      "sprint": "S1",
+      "phase": "P2",
+      "lane": "Organization",
+      "title": "Complete position/hierarchy/assignment model",
+      "ar": "إكمال الوظائف والهيكل والتكليفات",
+      "status": "in_progress",
+      "depends": [
+        "T01",
+        "T02"
+      ],
+      "acceptance": "Separate designation/position/employee/opening; dated assignments; no cycles/overlaps; consistent CEO/board roles; company-scoped forms and API; closed history retained.",
+      "evidence": "Final organization 47 native +35 pure checks and six independent connection race gates passed. Stable IDs, dates, hierarchy, imports and capacity invariants exercised; exact baseline gaps retained.",
+      "requirement_ids": [
+        "ORG-001",
+        "ORG-002",
+        "ORG-007",
+        "ORG-008",
+        "ORG-009"
+      ],
+      "risk": "Organization scope hooks and authority role mapping need integration."
+    },
+    {
+      "id": "T09",
+      "sprint": "S1",
+      "phase": "P2",
+      "lane": "Organization",
+      "title": "Reconcile position capacity and imports",
+      "ar": "مطابقة الطاقة الاستيعابية والاستيراد",
+      "status": "in_progress",
+      "depends": [
+        "T08",
+        "T06"
+      ],
+      "acceptance": "Reviewed mapping for existing employees/seats; default one seat; reimport idempotent; database-enforced unique position capacity; no resize below occupied+reserved+open; concurrent duplicate prevented.",
+      "evidence": "47 native organization checks cover reviewed imports, replay and capacity. CSV native browser preview/load passed without saving. Concurrent seat and assignment gates passed; real employee mapping remains.",
+      "requirement_ids": [
+        "HC-001",
+        "HC-002"
+      ],
+      "risk": "Do not guess position allocation from employee title."
+    },
+    {
+      "id": "T10",
+      "sprint": "S1",
+      "phase": "P1",
+      "lane": "Security",
+      "title": "Protect sensitive records and audit trail",
+      "ar": "حماية البيانات وسجل التدقيق",
+      "status": "in_progress",
+      "depends": [
+        "T06"
+      ],
+      "acceptance": "Sensitive grade/pay/employee fields denied across UI/API/report/file routes; before/after and actor recorded; audit-key/seal design decided and tampering tested before claiming cryptographic parity.",
+      "evidence": "Immutable local events, private-file and report boundaries passed native tests. Protected external cryptographic anchor remains unimplemented and needs key-custody decisions.",
+      "requirement_ids": [
+        "AUD-001"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T11",
+      "sprint": "S1",
+      "phase": "P1",
+      "lane": "Security",
+      "title": "Deliver reliable local notifications and clock",
+      "ar": "الإشعارات والتقويم",
+      "status": "in_progress",
+      "depends": [
+        "T06"
+      ],
+      "acceptance": "Transactional outbox rollback/dedupe/retry/exhaustion/revocation tested; operator retry view; no email side effects; SLA uses injectable Cairo clock and calendar.",
+      "evidence": "Eight independent transactions enqueue one outbox record; eight delivery workers create one notification. Rollback recovery, no outbound Email Queue growth and cleanup passed all five concurrency gates. Clock/calendar and retry tests also pass.",
+      "requirement_ids": [],
+      "risk": "External email delivery is not configured."
+    },
+    {
+      "id": "T12",
+      "sprint": "S1",
+      "phase": "P2",
+      "lane": "Organization",
+      "title": "Complete JD revisions and outputs",
+      "ar": "الوصف الوظيفي والإصدارات",
+      "status": "in_progress",
+      "depends": [
+        "T08",
+        "T10"
+      ],
+      "acceptance": "Approved immutable JD revisions, competencies, permissioned view/AR-EN print/PDF; email adapter proof explicitly separate from muted local delivery.",
+      "evidence": "40native+19pure organization tests; fourAR/EN JD/workercardPDFs visuallyverified. Gradeexcluded, KPI/responsibilityrules tested; review/distribution/livebrowser gaps explicit.",
+      "requirement_ids": [
+        "ORG-003"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T13",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Lead",
+      "title": "Complete request form and approval routing",
+      "ar": "نموذج الطلب ومسار الاعتماد",
+      "status": "in_progress",
+      "depends": [
+        "T07",
+        "T08",
+        "T09"
+      ],
+      "acceptance": "HR-REC-F02 fields; scoped positions; multilocation lines; vacant manager, same-person steps, self-interest, CEO dated rules and board evidence all tested.",
+      "evidence": "26native recruitment checks passed with26 sourcecheck point; additions include requester and childAPI guards,revokedHRrole,protecteddelegation failure. Full routingbaseline notyetcomplete.",
+      "requirement_ids": [
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "BRD-001"
+      ],
+      "risk": "Check final approval before Job Opening insert; preserve board evidence and resolve CEO/board role mismatch."
+    },
+    {
+      "id": "T14",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Lead",
+      "title": "Returns, amendments and reviewed snapshots",
+      "ar": "الإرجاع والتعديلات ونسخ الاعتماد",
+      "status": "in_progress",
+      "depends": [
+        "T13"
+      ],
+      "acceptance": "Approve/reject/return/edit/send CEO require Pending state and authority; per-step snapshot; returned revision; increased qty reapproval updates same vacancy; allowed reductions/branch edits conserve capacity.",
+      "evidence": "Native checks passed return/revise/amend/reduce/stale and command replay; full baseline mapping and broader HR edits remain.",
+      "requirement_ids": [
+        "REQ-006",
+        "REQ-008",
+        "REQ-009",
+        "REQ-011"
+      ],
+      "risk": "Expanded tests must cover recent owner/child-row safeguards."
+    },
+    {
+      "id": "T15",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Organization",
+      "title": "Structural approval and delegated authority",
+      "ar": "اعتماد الهيكل والتفويض",
+      "status": "in_progress",
+      "depends": [
+        "T08",
+        "T06"
+      ],
+      "acceptance": "Scoped dated delegation incl revocation/90-day limit and CEO authorization; independent structural-change approval; immutable snapshots; no self-approval via delegate.",
+      "evidence": "Native structural approval/import checks passed. CEO/Boarddelegation nowfailclosed pending independent approval workflow; do not claim exactdelegation parity.",
+      "requirement_ids": [
+        "ORG-005",
+        "ORG-006"
+      ],
+      "risk": "No delegation expiry or CEO rule should be assumed proven by old pilot."
+    },
+    {
+      "id": "T16",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Lead",
+      "title": "Close headcount and vacancy lifecycle gaps",
+      "ar": "إدارة العدد والشواغر",
+      "status": "in_progress",
+      "depends": [
+        "T14",
+        "T09"
+      ],
+      "acceptance": "Atomic reservations; warn/block approved rule; exception authority; partial joins; hold/resume/close; cancellation releases only intended balances; guidance and actual joins reconcile.",
+      "evidence": "Atomic joining passed 11 native cases: partial/full filling, dated assignment, stable replay and protected submitted offers. Onboarding is Draft only; joining correction/void and concurrent joining proof remain.",
+      "requirement_ids": [
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "HC-007",
+        "VAC-001",
+        "VAC-002"
+      ],
+      "risk": "Status/quantity transitions and zero-delta shortage edge cases need explicit tests."
+    },
+    {
+      "id": "T17",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Lead",
+      "title": "Recruiter team, priority and queue",
+      "ar": "فريق التوظيف والأولوية وقائمة العمل",
+      "status": "in_progress",
+      "depends": [
+        "T13",
+        "T06"
+      ],
+      "acceptance": "Lead/team permissioned updates; scoped unassigned queue/bulk reassignment; missing role recorded; priority formula and reasoned override; vacancy/request listing with correct filters.",
+      "evidence": "Native queue and atomic bulk assignment are implemented. Real browser assigned both openings through the native dialog; permission, stale-batch and priority tests passed. Complete ownership migration remains.",
+      "requirement_ids": [
+        "PRI-001",
+        "VAC-003",
+        "VAC-004",
+        "VAC-005",
+        "VAC-006"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T18",
+      "sprint": "S2",
+      "phase": "P1",
+      "lane": "Security",
+      "title": "Native identity, MFA and account controls",
+      "ar": "الهوية والتحقق وتغيير الحسابات",
+      "status": "planned",
+      "depends": [
+        "T04",
+        "T06"
+      ],
+      "acceptance": "Record selected identity contract; test enrollment/recovery/session revocation/MFA policy; implement dual-control privileged changes and disabled-user handling; external identity remains gated on provider/configuration.",
+      "evidence": "Security Policy record is configuration only; not enforced MFA or dual control.",
+      "requirement_ids": [
+        "ACC-001",
+        "ACC-002"
+      ],
+      "risk": "HR/IT choice needed for CEO exception, recovery and identity provider."
+    },
+    {
+      "id": "T19",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "QA",
+      "title": "Bilingual native workspace and timelines",
+      "ar": "واجهة عربية وإنجليزية وسجل الطلبات",
+      "status": "in_progress",
+      "depends": [
+        "T13",
+        "T14",
+        "T11"
+      ],
+      "acceptance": "EN/AR per-user language; translated errors/actions; RTL/mobile; My Requests and approval timeline; every step/edit creates scoped local notification; five missing static keys and untranslated throws resolved.",
+      "evidence": "Native request and queue render in English and Arabic on desktop/mobile. Manager approval, HR approval, bulk assignment and Open buttons passed. Full timeline and notification UI acceptance remains.",
+      "requirement_ids": [
+        "REQ-007",
+        "REQ-010"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T20",
+      "sprint": "S2",
+      "phase": "P3",
+      "lane": "Security",
+      "title": "SLA reminders and escalation",
+      "ar": "التذكير والتصعيد والمواعيد",
+      "status": "in_progress",
+      "depends": [
+        "T11",
+        "T13"
+      ],
+      "acceptance": "Controlled dates verify reminder2/escalation3/warning4/expiry5 working days, holidays, delegation/revision reset and dedupe. Automatic rejection disabled until policy confirmed and tests pass.",
+      "evidence": "Nine native SLA tests passed for days 2–5 and duplicate suppression. Day 5 sends a notice; automatic rejection is disabled. Scheduled daemon execution remains untested.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T21",
+      "sprint": "S2",
+      "phase": "P1",
+      "lane": "QA",
+      "title": "Verify no payroll actions",
+      "ar": "التحقق من عدم تنفيذ إجراءات الأجور",
+      "status": "planned",
+      "depends": [
+        "T13",
+        "T18"
+      ],
+      "acceptance": "All new commands and role workflows leave pay/deductions/stops/payments untouched; audit logs and permission tests enforce boundary.",
+      "evidence": "Recruitment-only scope documented; regression proof needed.",
+      "requirement_ids": [
+        "WAG-001"
+      ],
+      "risk": ""
+    },
+    {
+      "id": "T22",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "Lead",
+      "title": "Integrate schemas and migrate serially",
+      "ar": "دمج التعديلات وترحيل المخطط",
+      "status": "in_progress",
+      "depends": [
+        "T05",
+        "T07",
+        "T08",
+        "T10",
+        "T12",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21"
+      ],
+      "acceptance": "One integration owner wires hooks/setup, migrates isolated site, seeds/reset fixtures in controlled order, records schema/app commit; no shared-site migration from agents.",
+      "evidence": "Schemas migrated only on synthetic parity site; 146-check integrated checkpoint passed before subsequent CSV/joining changes. Affected suites are being rerun.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T23",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "Security",
+      "title": "Native authorization and identity tests",
+      "ar": "اختبارات الصلاحيات والهوية",
+      "status": "in_progress",
+      "depends": [
+        "T22"
+      ],
+      "acceptance": "Actual low-privilege sessions cover two companies/branches, grants/delegates, files, searches/exports and sensitive fields; MFA/recovery/dual-control cases evidenced; no reliance on mocked checks.",
+      "evidence": "Foundation52, mutation authorization4 and scoped browser denials passed on final source. MFA/provider and complete channel matrix remain.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T24",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "Organization",
+      "title": "Native organization and import tests",
+      "ar": "اختبارات الهيكل والاستيراد",
+      "status": "in_progress",
+      "depends": [
+        "T22"
+      ],
+      "acceptance": "Run native suite for dated routes, hierarchy cycles, acting authority, scope, unique capacity, imports/reimports, resize, JD snapshot/print; record failures and retest evidence.",
+      "evidence": "Organization47 native +35 pure +6 independent races passed. Native CSV preview/load and AR/EN document downloads passed.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T25",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "Lead",
+      "title": "Concurrency, rollback and ledger tests",
+      "ar": "اختبارات التزامن ومطابقة الأرصدة",
+      "status": "in_progress",
+      "depends": [
+        "T22"
+      ],
+      "acceptance": "Race reservations/amendments/cancel/approval; retries advance once; no duplicate vacancies; rollback leaves no orphan notifications; reconcile every ledger; document shared DB setting.",
+      "evidence": "Final HTTP20-request batches passed capacity contention and identical manager/final approval replay. Organization6, mutation authorization4 and outbox5 gates passed. Broader cross-company contention and joining race remain.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T26",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "QA",
+      "title": "Arabic/English browser and mobile tests",
+      "ar": "اختبار الواجهة بالعربية والإنجليزية",
+      "status": "in_progress",
+      "depends": [
+        "T22"
+      ],
+      "acceptance": "Native role accounts complete form→approval→vacancy in both languages; RTL, errors, PDF, restricted data, narrow viewport, notifications and console inspected with screenshots.",
+      "evidence": "Six initial native/render groups, five JD/PDF groups, five workflow groups and four CSV preview groups passed. Arabic RTL/mobile and private document access verified; full acceptance walkthrough remains.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T27",
+      "sprint": "S3",
+      "phase": "Test",
+      "lane": "Lead",
+      "title": "Acceptance matrix and regression gate",
+      "ar": "بوابة القبول واختبارات عدم التراجع",
+      "status": "in_progress",
+      "depends": [
+        "T23",
+        "T24",
+        "T25",
+        "T26"
+      ],
+      "acceptance": "All 80 baseline cases have actual evidence or explicit failing/blocked status; supplemental defect and concurrency cases included; existing pilot regression checked; no critical open defects.",
+      "evidence": "Strict 80-case mapping:10 fully evidenced,53 partial,17 blocked. Technical suite totals are separate; HR UAT pending.",
+      "requirement_ids": [],
+      "risk": "Passing focused checks is not full requirement acceptance."
+    },
+    {
+      "id": "T28",
+      "sprint": "S4",
+      "phase": "Release",
+      "lane": "Lead",
+      "title": "Fresh install and restore rehearsal",
+      "ar": "تجربة التثبيت والاستعادة",
+      "status": "in_progress",
+      "depends": [
+        "T27",
+        "T03"
+      ],
+      "acceptance": "Install pinned release cleanly; restore synthetic DB/files/config in disposable site and reconcile checks; dependency upgrades never automatic; upstream source remains clean.",
+      "evidence": "Fresh isolated sandbox and restore to a separate new site passed: original record IDs, private file bytes, encrypted field and migration. Final tagged-source restore still required.",
+      "requirement_ids": [],
+      "risk": "Synthetic blank-company restore only; no production recovery-time claim."
+    },
+    {
+      "id": "T29",
+      "sprint": "S4",
+      "phase": "Release",
+      "lane": "Security",
+      "title": "Independent review and secret scan",
+      "ar": "المراجعة المستقلة وفحص الأسرار",
+      "status": "in_progress",
+      "depends": [
+        "T27"
+      ],
+      "acceptance": "Reviewer checks final code/permission boundaries; staged source excludes credentials/uploads/DB; resolve critical defects; record reviewed revision.",
+      "evidence": "Scoped source review resolved identified defects; original history and remaining limits retained. Final staged secret scan required before checkpoint commit.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T30",
+      "sprint": "S4",
+      "phase": "Release",
+      "lane": "Lead",
+      "title": "Publish tested commit and release notes",
+      "ar": "رفع النسخة المختبرة والتوثيق",
+      "status": "in_progress",
+      "depends": [
+        "T28",
+        "T29"
+      ],
+      "acceptance": "Custom repo receives tested commit/tag and installation docs; evidence names exact revision; GitHub remote verified; local tools packaged without secrets. No production deployment implied.",
+      "evidence": "Preparing a private development checkpoint with exact tested source references; no release tag or completion claim.",
+      "requirement_ids": [],
+      "risk": ""
+    },
+    {
+      "id": "T31",
+      "sprint": "S4",
+      "phase": "Review",
+      "lane": "QA",
+      "title": "HR walkthrough and decision",
+      "ar": "مراجعة الموارد البشرية واعتماد النتائج",
+      "status": "planned",
+      "depends": [
+        "T30",
+        "T04"
+      ],
+      "acceptance": "Provide private test accounts through local secure file, EN/AR walkthrough and expected results; Ibrahim/HR records accepted/rework and policy decisions; HR acceptance cannot be self-awarded by agents.",
+      "evidence": "",
+      "requirement_ids": [],
+      "risk": ""
+    }
+  ],
+  "decisions": [
+    {
+      "id": "PD-02/12",
+      "owner": "HR + Ibrahim",
+      "question": "Approve independent authority, personal-interest/CEO escalation and rerouting rules.",
+      "blocks": "Authority acceptance in T13/T15; source work may continue with explicit fail-closed defaults."
+    },
+    {
+      "id": "PD-03",
+      "owner": "HR",
+      "question": "Define WARN versus BLOCK and who can approve excess headcount.",
+      "blocks": "T16 acceptance; never silently approve extra seats."
+    },
+    {
+      "id": "PD-08",
+      "owner": "HR/IT + Ibrahim",
+      "question": "Select native account/MFA/CEO recovery policy and any external identity provider.",
+      "blocks": "T18 identity acceptance and provider-specific tests."
+    },
+    {
+      "id": "PD-09",
+      "owner": "IT/security owner",
+      "question": "Choose audit key custody, external seal location, retention and operator.",
+      "blocks": "Cryptographic AUD-001 parity; local immutable events can be tested separately."
+    },
+    {
+      "id": "PD-11",
+      "owner": "HR",
+      "question": "Confirm employee-to-position mapping and baseline occupied seats.",
+      "blocks": "Real migration; synthetic mapping tests can proceed."
+    },
+    {
+      "id": "PD-05",
+      "owner": "HR",
+      "question": "Confirm workweek/holidays and automatic-expiry outcome.",
+      "blocks": "Automatic rejection remains disabled until tested and approved."
+    },
+    {
+      "id": "PD-13",
+      "owner": "HR + Ibrahim",
+      "question": "Review Arabic terminology and which business-content fields require both Arabic and English.",
+      "blocks": "Final bilingual UAT; stable API identifiers are not translated."
+    }
+  ],
+  "parallel_policy": [
+    "Four concurrent slots: Lead/integration, Security, Organization, QA/bilingual. Owners may change at sprint boundaries; no two agents edit the same file concurrently.",
+    "Freeze scope, route, command receipt and capacity contracts first. Independent source work can overlap sprints, but acceptance gates remain ordered.",
+    "Only Lead edits shared hooks/setup/schema integration, runs migrations, manages fixtures and creates release commits. Other workstreams return patches or file-scoped changes.",
+    "Use separate disposable sites for independent database suites when feasible. Tests sharing a database run serially, especially capacity races and fixture changes.",
+    "Baseline and translation work may run throughout. Browser acceptance starts after schema and fixtures are stable; security review is independent of implementation.",
+    "No unattended background work or recurring refresh is configured. Tracker changes when source/evidence are updated; user review marks are separate browser-local notes."
+  ],
+  "cadence": "Outcome-based sprints, not promised dates. At sprint start confirm scope; during work update task evidence; at sprint close show the demo and gate. Estimate calendar dates after S0 clean bootstrap and initial fixture integration reveal actual blockers.",
+  "later": [
+    {
+      "phase": "P4",
+      "name": "Candidates, sourcing and private journey"
+    },
+    {
+      "phase": "P5",
+      "name": "Interviews and selection"
+    },
+    {
+      "phase": "P6",
+      "name": "Compensation and offers"
+    },
+    {
+      "phase": "P7",
+      "name": "Joining and onboarding"
+    },
+    {
+      "phase": "P8",
+      "name": "Probation, transfers and exit"
+    },
+    {
+      "phase": "P9",
+      "name": "Reports and assisted CV review"
+    },
+    {
+      "phase": "P10",
+      "name": "Full integration and production readiness"
+    }
+  ]
+}

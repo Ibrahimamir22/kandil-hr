@@ -1,0 +1,35 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil JD Authority",
+  "module": "Kandil HR",
+  "custom": 0,
+  "istable": 1,
+  "engine": "InnoDB",
+  "field_order": [
+    "decision",
+    "decision_ar",
+    "authority_level"
+  ],
+  "fields": [
+    {
+      "fieldname": "decision",
+      "label": "Decision",
+      "fieldtype": "Small Text",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "decision_ar",
+      "label": "Arabic Decision",
+      "fieldtype": "Small Text"
+    },
+    {
+      "fieldname": "authority_level",
+      "label": "Decision Authority",
+      "fieldtype": "Select",
+      "options": "Decide\nRecommend\nConsult\nInform\nStop\nRefuse",
+      "reqd": 1,
+      "in_list_view": 1
+    }
+  ]
+}

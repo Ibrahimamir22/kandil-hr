@@ -1,0 +1,28 @@
+{
+  "checked_at": "2026-10-12T02:58:30.878Z",
+  "site": "kandil-parity.localhost",
+  "checks": [
+    {
+      "name": "Own draft opens with native CSV action",
+      "status": "PASS"
+    },
+    {
+      "name": "Local CSV validates and displays normalized Arabic/English row preview",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit load changes only the unsaved local draft",
+      "status": "PASS"
+    },
+    {
+      "name": "CSV UI has no runtime errors",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "limitations": [
+    "Native file choice, preview and local draft load only; intentionally no database save/review/apply",
+    "Server-side independent review/apply covered by separate native tests",
+    "Synthetic CSV only"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "checked_at": "2026-10-12T02:42:37.793Z",
+  "checks": [
+    {
+      "name": "Existing main and legacy pilot login endpoints remain available",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy ordinary HR login, workspace and protected review offer remain readable",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy navigation uses the original workflow mode",
+      "status": "PASS"
+    }
+  ],
+  "limitations": [
+    "Read-only regression smoke; not a complete replay of earlier mutable pilot scenarios",
+    "Main business records were not read or migrated"
+  ]
+}

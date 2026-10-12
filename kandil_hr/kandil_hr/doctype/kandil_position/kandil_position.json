@@ -1,0 +1,147 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Position",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "hash",
+  "field_order": [
+    "company",
+    "department",
+    "branch",
+    "position_code",
+    "title",
+    "title_ar",
+    "designation",
+    "structural",
+    "status",
+    "closed_on",
+    "external_id",
+    "job_family"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "department",
+      "label": "Department",
+      "fieldtype": "Link",
+      "options": "Department",
+      "reqd": 1
+    },
+    {
+      "fieldname": "branch",
+      "label": "Branch",
+      "fieldtype": "Link",
+      "options": "Branch"
+    },
+    {
+      "fieldname": "position_code",
+      "label": "Position Code",
+      "fieldtype": "Data",
+      "reqd": 0,
+      "unique": 1,
+      "in_list_view": 1,
+      "description": "Leave empty to assign a permanent position code automatically."
+    },
+    {
+      "fieldname": "title",
+      "label": "Title",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "title_ar",
+      "label": "Arabic Title",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "designation",
+      "label": "Designation",
+      "fieldtype": "Link",
+      "options": "Designation",
+      "reqd": 1
+    },
+    {
+      "fieldname": "structural",
+      "label": "Structural Seats",
+      "fieldtype": "Int",
+      "default": "1",
+      "reqd": 1
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "options": "Active\nClosed",
+      "default": "Active",
+      "read_only": 1
+    },
+    {
+      "fieldname": "closed_on",
+      "label": "Closed On",
+      "fieldtype": "Date",
+      "read_only": 1
+    },
+    {
+      "fieldname": "external_id",
+      "label": "External ID",
+      "fieldtype": "Data"
+    },
+    {
+      "fieldname": "job_family",
+      "label": "Job Family",
+      "fieldtype": "Data"
+    }
+  ],
+  "track_changes": 1,
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Sector Approver",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil CEO Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Board Approver",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    },
+    {
+      "role": "Kandil Requester",
+      "read": 1,
+      "report": 1,
+      "print": 1
+    }
+  ]
+}

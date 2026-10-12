@@ -1,0 +1,43 @@
+name: kandil-hr-sandbox
+services:
+  mariadb:
+    image: mariadb@sha256:6422478cb8e159f080fb1d8ccf65101e26fe51385787fde7d16c3b165a331f15
+    platform: linux/arm64
+    command: [--character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --skip-character-set-client-handshake, --innodb-snapshot-isolation=OFF]
+    environment:
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/db_password
+    secrets: [db_password]
+    volumes: [database:/var/lib/mysql]
+    healthcheck:
+      test: [CMD, healthcheck.sh, --connect, --innodb_initialized]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  redis-cache:
+    image: redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    platform: linux/arm64
+  redis-queue:
+    image: redis@sha256:02419de7eddf55aa5bcf49efb74e88fa8d931b4d77c07eff8a6b2144472b6952
+    platform: linux/arm64
+  bench:
+    image: frappe/bench@sha256:8c500a20cb1933d0427c1568dcf3c8c37021c0e07be1ac268539fd7fe14ef557
+    platform: linux/arm64
+    init: true
+    working_dir: /workspace
+    command: [bash, -c, "python /opt/kandil-source/deployment/install.py && cd /workspace/frappe-bench && exec bench start"]
+    environment:
+      FRAPPE_BIND_ADDR: 0.0.0.0
+    ports: ['127.0.0.1:8110:8000', '127.0.0.1:9110:9110']
+    volumes:
+      - ./.local/workspace:/workspace
+      - ../:/opt/kandil-source:ro
+    secrets: [db_password, admin_password]
+    depends_on:
+      mariadb: {condition: service_healthy}
+      redis-cache: {condition: service_started}
+      redis-queue: {condition: service_started}
+secrets:
+  db_password: {file: ./.local/db_password}
+  admin_password: {file: ./.local/admin_password}
+volumes:
+  database:
