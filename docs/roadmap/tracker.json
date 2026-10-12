@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-10-13",
   "goal_status": "active",
-  "current_sprint": "S2",
+  "current_sprint": "S3",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
   "scope": "Custom AR/EN HR portal over Frappe HR; all 98 frozen reference requirements plus security/operational acceptance. Not the wider company platform.",
   "cadence": "Up to two-week review cycles; split large sprints. No fixed completion date or promise of equal effort. Re-estimate after S1 against measured throughput and external decisions.",
@@ -222,7 +222,7 @@
     {
       "id": "S3",
       "title": "Full hiring requests and approvals / الطلبات والاعتمادات",
-      "status": "planned",
+      "status": "in_progress",
       "depends_on": [
         "S2"
       ],
@@ -231,7 +231,11 @@
         {
           "id": "S3-01",
           "description": "Complete every agreed request field, replacement information, skills, employment terms and multi-location quantities.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Audited current form/API/schema: complete business fields, paginated reference selectors, replacement-employee authorization and full review/detail projection remain to implement.",
+          "evidence": [
+            "S3_IMPLEMENTATION_BRIEF.md"
+          ]
         },
         {
           "id": "S3-02",
@@ -260,7 +264,9 @@
         "No screen or native endpoint bypasses server authority."
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
-      "external_decisions": []
+      "external_decisions": [],
+      "progress": "Source/coverage audit complete; 17 frozen S3 requirements mapped into five implementation slices. Existing native commands will be reused. Full form implementation is next; no new S3 portal workflow is claimed complete. S2 engineering dependencies are available while HR/document/live-email acceptance remains open.",
+      "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
       "id": "S4",
