@@ -1,8 +1,8 @@
 # Command audit envelope — implemented scope and remaining gaps
 
-Status: **implemented selected adapters; final native regression verified**, 12 October 2026. The 23-suite serial gate passed on unchanged source. See [execution evidence](../sprints/evidence/audit-document-final-2026-10-12.json) and [checkpoint](../sprints/CHECKPOINT.md) for the tested commit and separate browser/HTTP results.
+Status: **implemented selected adapters; final native regression verified**, 12 October 2026. See [checkpoint](../sprints/CHECKPOINT.md) for the exact tested source, final native evidence and separate browser/HTTP results. The finite obligation and dedicated-event alternatives are defined in [DECISION_AUDIT_INVENTORY.md](DECISION_AUDIT_INVENTORY.md).
 
-**AT-AUD-001-01 remains partial.** The implemented wrappers now record exact command envelopes, but they do not cover every decision boundary. **AT-AUD-001-02 is separate:** these are immutable local application records, not an external tamper-evidence anchor. Baseline definitions and policy decisions are unchanged.
+**AT-AUD-001-01 status is recorded in the current checkpoint.** The finite P0–P3 inventory combines central envelopes with dedicated immutable events; new adapters require their final regression evidence before acceptance. **AT-AUD-001-02 is separate:** these are immutable local application records, not an external tamper-evidence anchor. Baseline definitions and policy decisions are unchanged.
 
 ## Requirement and implementation
 
@@ -12,7 +12,7 @@ AT-AUD-001-01 requires a decision to record its actor, acting principal, before/
 
 | Stored group | Current meaning |
 |---|---|
-| Identity | Schema version, domain, operation, target DocType/name, company/department, client command ID and existing receipt/history reference |
+| Identity | Schema version, domain, operation, target DocType/name, company/department, explicitly labeled client command or server invocation ID and receipt/history reference |
 | Reviewed input | Reviewed version plus canonical reviewed endpoint payload, retained as data rather than only a hash |
 | Authority | Authenticated actor; original frozen approval principal and step; completed Board member/method/note/evidence fields when relevant |
 | Time | Server-recorded occurrence time, ISO timestamp with offset, explicit `Africa/Cairo` timezone and native Datetime field |
@@ -33,25 +33,24 @@ For ordinary direct commands, principal defaults to actor. Approval adapters fre
 | `recruitment.api.command` | Submit, decide, revise, HR review, send-to-CEO, amend and cancel; request/line/approval state, frozen authority, exact command, receipt and result | This is the wrapper's finite registry, not all HR decisions. Rejected commands roll back rather than producing durable denial records. |
 | Amendment creation and approval | Parent/child request projections, related capacities/openings, newly created amendment included after creation | No invented pre-creation state; atomic pending-quantity editing is still absent. |
 | Vacancy state/team/pin and bulk assignment | Related Job Openings and capacities; explicit team state; affected Applicant ownership/task projections for team changes | Bulk operations produce envelopes for their underlying request commands with existing batch payload/replay rules; this does not establish a separate global batch audit or a new concurrency test result. |
-| `ownership.application_command` through recruitment wrapper | Selected Applicant owner/task before/after, request/version/result | After-commit disabled-user cleanup remains a separate unwired invocation boundary. |
+| `ownership.application_command` through recruitment wrapper | Selected Applicant owner/task before/after, request/version/result | Disabled-user cleanup uses the separate private system-event adapter described below. |
 | `corrections.correct_approved` | Request, old/new capacities and openings; old related targets retained after relocation so released state remains visible | Only bounded approved corrections; no general compensation or payroll reversal. |
-| `joining_corrections.void_joining` | Offer, Applicant, Employee, Position Assignment, draft Onboarding, Capacity and Opening projections under the request wrapper | This captures the bounded reversal command, not the original joining/outcome creation boundary. |
+| `joining_corrections.void_joining` | Offer, Applicant, Employee, Position Assignment, draft Onboarding, Capacity and Opening projections under the request wrapper | This captures the bounded reversal command; the original outcome uses the dedicated joining adapter below. |
 | `organization.api.structure_command` | Submit and decide; Structure Change, frozen approval step, reviewed preview/baseline, command history receipt; changed Positions/Hierarchy/Capacity and resulting Structure Snapshot | Does not wrap every native organization save. Revision approvals and imports use their own adapter below. |
-
 | `organization.api.approve_revision` | Exact JD/Grade before/after, full AR/EN JD children and content, approved/superseded related records; independent actor and submitted reviewed version | Deterministic server invocation identity, explicitly distinguished from a client command ID. |
 | `organization.api.review_import` / `apply_import` | Reviewed raw rows, digest, preview, result; actual created/reused Positions, Units, Jobs, Hierarchy, Assignments, codes, capacities and snapshots | All five import kinds; no invented before state for newly created records. |
+| `recruitment.joining.record_outcome` | Exact original outcome arguments; server-observed locked Offer version, request/capacity/opening/source records and actual created Employee/Assignment/draft Onboarding including activities | Replay retains the original result without refreshing ledgers. This is not full P7 orchestration or a client-reviewed version assertion. |
+| `foundation.delegation` create/revoke/decide/revise | Exact endpoint arguments for decisions/revisions, explicit observed native deltas for create/revoke, original version and new version, actor/principal/time | Native creation records explicit absence. Endpoint hook suppression prevents duplicate envelopes. Semantic timestamp normalization does not rewrite user input. |
 
-The actual adapters are `recruitment/command_audit.py`, `organization/command_audit.py` and `organization/revision_import_audit.py`. They obtain related records through the locked request/structure changes and reviewed arguments. Recruitment preserves old captured targets in the after set when relocation removes them from current lines. Structure capture includes created Position IDs after approval and dated hierarchy records, rather than only the parent request's status.
+The actual adapters are `recruitment/command_audit.py`, `organization/command_audit.py` and `organization/revision_import_audit.py`, `recruitment/joining_audit.py` and `foundation/delegation_audit.py`. They obtain related records through the locked request/structure changes and reviewed arguments. Recruitment preserves old captured targets in the after set when relocation removes them from current lines. Structure capture includes created Position IDs after approval and dated hierarchy records, rather than only the parent request's status.
 
-## Boundaries still missing this exact envelope
+## Separate event contracts and remaining obligations
 
 Existing histories below remain useful evidence, but are not relabeled as exact command envelopes:
 
 | Boundary | Existing evidence and missing work |
 |---|---|
-| `pilot.api.record_outcome` / joining creation | Final-outcome guards and linked resulting records exist. Original Joined/No Show/Withdrawn execution bypasses `recruitment.api.command`; it needs its own compatible invocation/receipt contract and before/after adapter. |
-| `foundation.delegation.decide` / `revise` / native revoke | Decision/revision keys, immutable scope versions, approval identity and security events exist. Dedicated fresh revocation reason was added. None of these currently writes this central envelope. |
-| After-commit/scheduled disabled-account ownership handoff | Original initiator or explicitly unknown system origin and owner/task history are preserved. A separate system invocation envelope is not installed. |
+| After-commit/scheduled disabled-account ownership handoff | Private immutable Long Text Security Events preserve original initiator or explicitly unknown system origin, system executor, exact invocation, opening before/after and separate Applicant ownership/task changes. Shared vacancy events exclude private task content. Audit persists independently of Applicant deletion. |
 | Native drafts, confidential HR notes, Department/organization saves, access grants and policy configuration | Native Versions, dedicated histories or security events cover selected changes. There is no universal exact-command wrapper; confidential notes must stay isolated. |
 | Document delivery capture / local outbox operations | These have their own local capture/receipt/history contracts, not the central command envelope. A local mail capture is not an email delivery assertion. |
 | Denied/failed commands | Transaction rollback prevents committed business/audit effects. Durable failed-attempt auditing requires a separate transaction/privacy/retention design. |
@@ -74,8 +73,12 @@ Historical receipts/events remain historical partial evidence. No migration fabr
 * `recruitment.test_command_audit`: exact submit/decision payload and generated opening, audit-failure rollback/retry, delegated HR principal, new amendment capture, relocation released/added capacities, team handoff Applicant effects, void-joining effects and fixture callback cleanup isolation.
 * `organization.integration_tests`: exact submit/approval envelope identity and reviewed input; real actor/frozen principal/step; one envelope on replay; resize Position/Capacity before/after; final Create Position/Capacity/Hierarchy/Snapshot capture; future Reparent old-parent interval closure and new-parent start date.
 
-The linked final gate executes foundation audit 14 (5 pure/9 native), recruitment audit 8 and organization 51 checks plus 15 grouped scenarios. Focused failures remain preserved in the evidence directory. AT-AUD-001-01 remains **partial** until the agreed decision inventory and required surfaces are covered; AT-AUD-001-02 remains separate pending external tamper-evidence design and proof.
+The linked final gate executes foundation audit 15 (6 pure/9 native), recruitment audit 8 and organization 51 checks plus 15 grouped scenarios. Focused failures remain preserved in the evidence directory. AT-AUD-001-01 acceptance follows the finite inventory and current executed evidence; AT-AUD-001-02 remains separate pending external tamper-evidence design and proof.
 
 ## Revision/import extension
 
 The new registry marks command origin as `client_command` or `server_invocation`; old records are not backfilled. Revision/import IDs hash operation, target, actor and submitted version/digest. Only declared temporal schema fields normalize to ISO; reviewed free text and import JSON stay intact. These adapters no-op outside the opted-in parity site flags. Audit insertion failure propagates to roll back every business effect in the transaction. The 11 focused native checks cover all five import kinds, independent approval, replay, full JD children, private Grade ranges, supersession, foreign-company denial, rollback and inactive-site compatibility. Final regression evidence is recorded in the current checkpoint.
+
+## Dedicated organization decision events
+
+Occupied-baseline reconciliation retains a protected Security Event with explicit actor and principal, exact callable name/arguments, old/new occupied values, basis and as-of dates, reason and server creation time. Department maintenance retains actor/principal, create/save operation, previous modified version, exact whitelisted changed field values, before/after and reason. A native field delta is labeled `native_document_delta`; it does not claim to reconstruct an HTTP request body. These are existing immutable event records, not duplicate central envelopes. Their native tests assert the concrete contents and forbidden ordinary mutation.

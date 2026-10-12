@@ -213,6 +213,7 @@ def reconcile_baseline(name, expected_version, expected_occupied, expected_basel
 	assert_current_scope(cap.company, cap.department, cap.branch, required_roles=("Kandil Sector Approver",))
 	from kandil_hr.pilot.api import transition
 
+	previous_as_of = str(cap.occupancy_as_of) if cap.occupancy_as_of else None
 	with refresh_context(), transition():
 		cap.occupied = result["occupied"]
 		cap.occupancy_basis = "Dated Assignments"
@@ -232,11 +233,23 @@ def reconcile_baseline(name, expected_version, expected_occupied, expected_basel
 			json.dumps(
 				{
 					"actor": frappe.session.user,
+					"principal": frappe.session.user,
+					"command": "occupancy.reconcile_baseline",
+					"command_origin": "server_invocation",
+					"payload": {
+						"name": name,
+						"expected_version": str(expected_version),
+						"expected_occupied": expected_occupied,
+						"expected_baseline": expected_baseline,
+						"reason": reason,
+					},
 					"capacity": cap.name,
 					"company": cap.company,
 					"before": cint(expected_baseline),
 					"after": cap.occupied,
 					"as_of": result["as_of"],
+					"before_as_of": previous_as_of,
+					"after_as_of": str(cap.occupancy_as_of),
 					"before_basis": result["basis"],
 					"after_basis": cap.occupancy_basis,
 					"reason": reason,

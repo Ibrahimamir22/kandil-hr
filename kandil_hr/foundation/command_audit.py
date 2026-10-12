@@ -54,9 +54,11 @@ OPERATIONS = {
 			"application_task",
 			"hr_correction",
 			"void_joining",
+			"record_outcome",
 		}
 	),
 	"organization": frozenset({"submit", "decide", "approve_revision", "review_import", "apply_import"}),
+	"delegation": frozenset({"create", "revoke", "decide", "revise"}),
 }
 COMMON = (
 	"doctype",
@@ -284,10 +286,16 @@ def project_structure(doc):
 
 
 def project_related(doc):
+	from kandil_hr.foundation import delegation_audit
 	from kandil_hr.organization import audit_projections
+	from kandil_hr.recruitment import joining_audit
 
 	if doc.doctype == "Kandil Hiring Request":
 		return project_request(doc)
+	if doc.doctype == "Kandil Delegation":
+		return delegation_audit.project(doc)
+	if doc.doctype in joining_audit.PROJECTION_FIELDS:
+		return joining_audit.project(doc)
 	if doc.doctype in audit_projections.PROJECTION_FIELDS:
 		return audit_projections.project(doc)
 	fields = RELATED_FIELDS.get(doc.doctype)
@@ -302,12 +310,21 @@ def project_related(doc):
 	return copy(value)
 
 
-def checked_projection(value):
+def checked_projection(value, *, allow_absent=False):
+	from kandil_hr.foundation import delegation_audit
 	from kandil_hr.organization import audit_projections
+	from kandil_hr.recruitment import joining_audit
 
 	if not isinstance(value, dict) or not value.get("name"):
 		raise ValueError("Audit state requires a named projected target")
 	doctype = value.get("doctype")
+	if (
+		allow_absent
+		and doctype == "Kandil Delegation"
+		and set(value) == {"doctype", "name", "record_exists"}
+		and value["record_exists"] is False
+	):
+		return copy(value)
 	children = {}
 	if doctype == "Kandil Hiring Request":
 		from kandil_hr.recruitment.privacy import LINE_FIELDS, REQUEST_FIELDS, STEP_FIELDS
@@ -317,6 +334,11 @@ def checked_projection(value):
 	elif doctype == "Kandil Structure Change":
 		allowed = set(STRUCTURE_FIELDS) | {"approval_steps"}
 		children = {"approval_steps": STRUCTURE_STEP_FIELDS}
+	elif doctype == "Kandil Delegation":
+		allowed = set(delegation_audit.FIELDS)
+	elif doctype in joining_audit.PROJECTION_FIELDS:
+		children = joining_audit.CHILD_FIELDS.get(doctype, {})
+		allowed = set(joining_audit.PROJECTION_FIELDS[doctype]) | set(children)
 	elif doctype in audit_projections.PROJECTION_FIELDS:
 		children = audit_projections.CHILD_FIELDS.get(doctype, {})
 		allowed = set(audit_projections.PROJECTION_FIELDS[doctype]) | set(children)
@@ -409,7 +431,11 @@ def record_command(
 	authority=None,
 	command_origin="client_command",
 ):
-	flag = {"recruitment": "kandil_transition", "organization": "kandil_organization_transition"}.get(domain)
+	flag = {
+		"recruitment": "kandil_transition",
+		"organization": "kandil_organization_transition",
+		"delegation": "kandil_delegation_audit",
+	}.get(domain)
 	if not active() or not flag or not frappe.flags.get(flag) or operation not in OPERATIONS[domain]:
 		frappe.throw(_("Command audit requires an authorized server transition."), frappe.PermissionError)
 	if (
@@ -437,12 +463,17 @@ def record_command(
 	actor = frappe.session.user
 	if actor == "Guest":
 		frappe.throw(_("Command audit requires an authenticated actor."), frappe.PermissionError)
-	before, after = checked_projection(before), checked_projection(after)
+	creating = domain == "delegation" and operation == "create"
+	before = checked_projection(before, allow_absent=creating)
+	after = checked_projection(after)
+	if creating and before.get("record_exists") is not False:
+		raise ValueError("Creation audit requires explicit absent before state")
 	identity = (target.doctype, target.name)
 	if any((value["doctype"], value["name"]) != identity for value in (before, after)):
 		raise ValueError("Audit before and after must identify the command target")
 	allowed_targets = {
 		"recruitment": {"Kandil Hiring Request"},
+		"delegation": {"Kandil Delegation"},
 		"organization": {
 			"Kandil Structure Change",
 			"Kandil JD Revision",

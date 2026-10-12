@@ -156,10 +156,26 @@ def run_cases(ctx):
 	events = frappe.get_all(
 		"Kandil Security Event",
 		filters={"reference": unit.name, "action": "Organization unit maintained"},
-		fields=["actor", "changed_fields"],
+		fields=["actor", "changed_fields", "creation"],
 	)
 	assert len(events) == 2 and all(e.actor == authority for e in events)
 	assert all(json.loads(e.changed_fields)["reason"] for e in events)
+	audits = {json.loads(e.changed_fields)["command"]: json.loads(e.changed_fields) for e in events}
+	assert set(audits) == {"organization.unit.create", "organization.unit.save"}
+	for event in events:
+		value = json.loads(event.changed_fields)
+		assert value["principal"] == value["actor"] == authority and event.creation
+		assert value["command_origin"] == "native_document_delta"
+		assert value["payload"]["name"] == unit.name
+		assert value["payload"]["reason"] == value["reason"]
+	assert audits["organization.unit.create"]["before"] is None
+	assert audits["organization.unit.create"]["payload"]["reviewed_version"] is None
+	assert audits["organization.unit.save"]["before"]["department_name"] == prefix + " Native Unit"
+	assert audits["organization.unit.save"]["after"]["department_name"] == prefix + " Updated Unit"
+	assert audits["organization.unit.save"]["payload"]["changes"] == {
+		"department_name": prefix + " Updated Unit"
+	}
+	assert audits["organization.unit.save"]["payload"]["reviewed_version"]
 	cases.append(
 		dict(
 			case_id="AT-ORG-007-01",

@@ -209,6 +209,9 @@ def audit(doc):
 	]
 	if changes:
 		record_security_event("Delegation changed", doc.to_user, ",".join(changes), doc.name)
+	from kandil_hr.foundation import delegation_audit
+
+	delegation_audit.native(doc)
 
 
 def lock_context(name):
@@ -260,13 +263,20 @@ def decide(name, decision, reason, expected_version, command_id):
 		return doc.as_dict()
 	if doc.approval_status != "Pending CEO" or get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This delegation changed. Reload before deciding."), frappe.TimestampMismatchError)
-	with effect():
+	from kandil_hr.foundation import delegation_audit
+
+	before = delegation_audit.project(doc)
+	payload = dict(
+		name=name, decision=decision, reason=reason, expected_version=expected_version, command_id=command_id
+	)
+	with effect(), delegation_audit.endpoint():
 		doc.approval_status = "Active" if decision == "Approve" else "Rejected"
 		doc.approved_by = frappe.session.user
 		doc.approved_on = now_cairo().replace(tzinfo=None)
 		doc.decision_reason = reason.strip()
 		doc.decision_key = key
 		doc.save(ignore_permissions=True)
+		delegation_audit.record("decide", doc, before, payload, command_id, expected_version, key)
 	return doc.as_dict()
 
 
@@ -290,7 +300,19 @@ def revise(name, process_scope, from_date, to_date, reason, expected_version, co
 		return frappe.get_doc("Kandil Delegation", prior[0]).as_dict()
 	if doc.revoked or get_datetime(doc.modified) != get_datetime(expected_version):
 		frappe.throw(_("This delegation changed. Reload before revising."), frappe.TimestampMismatchError)
-	with effect():
+	from kandil_hr.foundation import delegation_audit
+
+	before = delegation_audit.project(doc)
+	payload = dict(
+		name=name,
+		process_scope=process_scope,
+		from_date=from_date,
+		to_date=to_date,
+		reason=reason,
+		expected_version=expected_version,
+		command_id=command_id,
+	)
+	with effect(), delegation_audit.endpoint():
 		doc.revoked = 1
 		doc.revocation_reason = reason
 		doc.save()
@@ -310,4 +332,7 @@ def revise(name, process_scope, from_date, to_date, reason, expected_version, co
 				revision_key=key,
 			)
 		).insert()
+		delegation_audit.record(
+			"revise", doc, before, payload, command_id, expected_version, key, new_version=new
+		)
 	return new.as_dict()

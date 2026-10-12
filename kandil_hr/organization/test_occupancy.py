@@ -233,6 +233,7 @@ class TestOccupancy(TestRecruitmentCommands):
 				occupancy.reconcile_baseline(
 					cap.name, current["expected_version"], 99, 3, "Incorrect preview"
 				)
+			previous_as_of = frappe.db.get_value("Kandil Capacity", cap.name, "occupancy_as_of")
 			result = occupancy.reconcile_baseline(
 				cap.name, current["expected_version"], 2, 3, "Synthetic HR reviewed unmatched baseline"
 			)
@@ -249,7 +250,23 @@ class TestOccupancy(TestRecruitmentCommands):
 				(audit["actor"], audit["before"], audit["after"], audit["as_of"]),
 				(self.users["sector"], 3, 2, today()),
 			)
+			self.assertEqual(audit["before_as_of"], str(previous_as_of) if previous_as_of else None)
+			self.assertEqual(audit["after_as_of"], str(result["as_of"]))
 			self.assertEqual(audit["reason"], "Synthetic HR reviewed unmatched baseline")
+			self.assertEqual(audit["principal"], self.users["sector"])
+			self.assertEqual(audit["command"], "occupancy.reconcile_baseline")
+			self.assertEqual(audit["command_origin"], "server_invocation")
+			self.assertEqual(
+				audit["payload"],
+				{
+					"name": cap.name,
+					"expected_version": str(current["expected_version"]),
+					"expected_occupied": 2,
+					"expected_baseline": 3,
+					"reason": "Synthetic HR reviewed unmatched baseline",
+				},
+			)
+			self.assertTrue(event.creation)
 			event.changed_fields = "tampered"
 			with self.assertRaises(frappe.PermissionError):
 				event.save()

@@ -107,6 +107,17 @@ def on_update(doc, method=None):
 			json.dumps(
 				dict(
 					actor=frappe.session.user,
+					principal=frappe.session.user,
+					command="organization.unit.create" if old is None else "organization.unit.save",
+					command_origin="native_document_delta",
+					payload=dict(
+						name=doc.name,
+						reviewed_version=str(old.modified) if old else None,
+						changes={
+							key: after[key] for key in FIELDS if before is None or before[key] != after[key]
+						},
+						reason=doc.custom_kandil_change_reason,
+					),
 					before=before,
 					after=after,
 					reason=doc.custom_kandil_change_reason,

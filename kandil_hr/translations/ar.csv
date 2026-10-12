@@ -1222,3 +1222,4 @@ Revision audit reference is outside the reviewed company,مرجع تدقيق ا�
 Import audit target is outside the reviewed company,السجل المستهدف في تدقيق الاستيراد لا ينتمي إلى الشركة محل المراجعة.
 client_command,أمر من الواجهة
 server_invocation,استدعاء من الخادم
+Creation audit requires explicit absent before state,يتطلب تدقيق الإنشاء تسجيلًا صريحًا بأن السجل لم يكن موجودًا قبل العملية.

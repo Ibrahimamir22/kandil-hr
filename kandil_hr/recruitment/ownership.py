@@ -7,7 +7,9 @@ fallback, never a guessed replacement user. Generic native ToDo is outside this
 application-next-action contract.
 """
 
+import hashlib
 import json
+import uuid
 from contextlib import contextmanager
 from functools import partial
 
@@ -107,7 +109,7 @@ def require_owner(user, opening, request):
 	assert_current_request_scope(request, user=user, required_roles=("Kandil Recruiter",))
 
 
-def append_history(app, action, reason, before, actor=None):
+def append_history(app, action, reason, before, actor=None, audit_context=None):
 	history = json.loads(app.get("custom_kandil_ownership_history") or "[]")
 	history.append(
 		dict(
@@ -117,6 +119,7 @@ def append_history(app, action, reason, before, actor=None):
 			at=now_cairo().isoformat(),
 			before=before,
 			after={field: app.get(field) for field in FIELDS if field != "custom_kandil_ownership_history"},
+			**({"invocation": audit_context} if audit_context else {}),
 		)
 	)
 	app.custom_kandil_ownership_history = frappe.as_json(history)
@@ -187,7 +190,9 @@ def authorize_application(app, opening, request):
 		)
 
 
-def store(app, owner, reason, action, *, next_owner=None, task=None, due=None, actor=None):
+def store(
+	app, owner, reason, action, *, next_owner=None, task=None, due=None, actor=None, audit_context=None
+):
 	before = values(app)
 	app.custom_kandil_responsible_user = owner or None
 	if next_owner is not None:
@@ -197,7 +202,7 @@ def store(app, owner, reason, action, *, next_owner=None, task=None, due=None, a
 		app.custom_kandil_next_action_due = due or None
 	app.custom_kandil_ownership_state = "Assigned" if owner else "Unassigned"
 	app.custom_kandil_ownership_reason = reason
-	append_history(app, action, reason, before, actor)
+	append_history(app, action, reason, before, actor, audit_context)
 	with transition(), effect():
 		app.save(ignore_permissions=True)
 	return dict(
@@ -393,6 +398,27 @@ def _after_disable(user, actor):
 
 @transactional_retry
 def handoff_disabled_user(user, actor="Internal scheduler (original actor unavailable)"):
+	"""Atomic cleanup and dedicated histories; never commits its caller's work."""
+	point = "handoff_" + uuid.uuid4().hex
+	callbacks = {
+		key: (getattr(frappe.db, key), len(getattr(frappe.db, key)))
+		for key in ("before_commit", "after_commit", "before_rollback", "after_rollback")
+	}
+	frappe.db.savepoint(point)
+	try:
+		return _handoff_disabled_user(user, actor)
+	except frappe.QueryDeadlockError:
+		# The outer retry owns full-transaction rollback after InnoDB deadlock.
+		raise
+	except Exception:
+		frappe.db.rollback(save_point=point)
+		for manager, length in callbacks.values():
+			manager.truncate(length)
+		frappe.local.document_cache = {}
+		raise
+
+
+def _handoff_disabled_user(user, actor):
 	guard()
 	if frappe.db.get_value("User", user, "enabled") != 0:
 		return dict(openings=0, applications=0)
@@ -413,10 +439,10 @@ def handoff_disabled_user(user, actor="Internal scheduler (original actor unavai
 		name: frappe.get_doc("Kandil Hiring Request", name, for_update=True)
 		for name in sorted({row.custom_kandil_request for row in rows})
 	}
-	from kandil_hr.pilot.api import lock_capacities
-
-	for request in requests.values():
-		lock_capacities(request)
+	# Team cleanup must not refresh/persist occupancy as a side effect. Lock the
+	# capacity rows read-only; this operation never changes their ledger.
+	for capacity in sorted({line.capacity for request in requests.values() for line in request.lines}):
+		frappe.db.sql("SELECT name FROM `tabKandil Capacity` WHERE name=%s FOR UPDATE", (capacity,))
 	openings = [frappe.get_doc("Job Opening", row.name, for_update=True) for row in rows]
 	applications = {}
 	for opening in openings:
@@ -431,7 +457,8 @@ def handoff_disabled_user(user, actor="Internal scheduler (original actor unavai
 				applications[opening.name].append(app)
 	for recipient in sorted({user} | {request.requested_by for request in requests.values()}):
 		frappe.db.sql("SELECT name FROM `tabUser` WHERE name=%s FOR UPDATE", (recipient,))
-	if frappe.db.get_value("User", user, "enabled", for_update=True) != 0:
+	account = frappe.db.get_value("User", user, ["enabled", "modified"], as_dict=True, for_update=True)
+	if not account or account.enabled != 0:
 		return dict(openings=0, applications=0)
 	before_user = frappe.session.user
 	frappe.set_user("Administrator")
@@ -442,6 +469,24 @@ def handoff_disabled_user(user, actor="Internal scheduler (original actor unavai
 				request = requests[opening.custom_kandil_request]
 				if request.status != "Approved" or opening.custom_kandil_vacancy_state not in ACTIVE:
 					continue
+				from kandil_hr.recruitment.vacancies import vacancy_snapshot
+
+				before = json.loads(frappe.as_json(vacancy_snapshot(opening, request)))
+				reason = _("Recruiter account disabled; HR assignment required.")
+				invocation = {
+					"command": "kandil_hr.recruitment.ownership.handoff_disabled_user",
+					"origin": "system_invocation",
+					"actor": actor,
+					"principal": actor,
+					"executor": "Administrator",
+					"payload": {"user": user, "actor": actor, "reason": reason},
+					"invocation_id": hashlib.sha256(
+						frappe.as_json(
+							[user, str(account.modified), opening.name, str(opening.modified)]
+						).encode()
+					).hexdigest(),
+					"at": now_cairo().isoformat(),
+				}
 				changed = opening.custom_kandil_lead == user or any(
 					row.user == user for row in opening.custom_kandil_team
 				)
@@ -451,31 +496,86 @@ def handoff_disabled_user(user, actor="Internal scheduler (original actor unavai
 					"custom_kandil_team",
 					[dict(user=row.user) for row in opening.custom_kandil_team if row.user != user],
 				)
+				application_changes = []
 				for app in applications[opening.name]:
 					if user not in (app.custom_kandil_responsible_user, app.custom_kandil_next_action_owner):
 						continue
+					app_before = values(app)
 					store(
 						app,
 						None
 						if app.custom_kandil_responsible_user == user
 						else app.custom_kandil_responsible_user,
-						_("Recruiter account disabled; HR assignment required."),
+						reason,
 						"Account disabled",
 						next_owner="" if app.custom_kandil_next_action_owner == user else None,
 						actor=actor,
+						audit_context=invocation,
 					)
+					application_changes.append({"name": app.name, "before": app_before, "after": values(app)})
 					counts["applications"] += 1
 				if changed:
-					from kandil_hr.recruitment.vacancies import audit
+					from kandil_hr.recruitment.api import save
 
-					audit(
+					opening.save(ignore_permissions=True)
+					# Preserve the shared vacancy projection only. Private Applicant
+					# and task values stay in each protected ownership history.
+					save(
 						request,
-						opening,
 						"Disabled recruiter unassigned",
-						_("Recruiter account disabled; HR assignment required."),
-						initiated_by=actor,
+						frappe.as_json(
+							{
+								"reason": reason,
+								"initiated_by": actor,
+								"before": before,
+								"after": vacancy_snapshot(opening, request),
+								"invocation": invocation,
+							}
+						),
 					)
 					counts["openings"] += 1
+				if changed or application_changes:
+					from kandil_hr.foundation.models import record_security_event
+
+					# Independent immutable PRIVATE history survives Applicant deletion.
+					# Only ownership/task projections are retained, never contact/CV/pay.
+					record_security_event(
+						"Recruitment ownership cleanup",
+						user,
+						frappe.as_json(
+							{
+								"invocation": invocation,
+								"request": request.name,
+								"company": request.company,
+								"opening": opening.name,
+								"before": before,
+								"after": vacancy_snapshot(opening, request),
+								"application_count": len(application_changes),
+							}
+						),
+						reference=invocation["invocation_id"],
+					)
+					# Each application has its own bounded TEXT payload. Aggregating
+					# all Arabic task bodies into one event can exceed MariaDB's
+					# 65535-byte TEXT limit and prevent the entire cleanup.
+					for application in application_changes:
+						key = hashlib.sha256(
+							(invocation["invocation_id"] + "\0" + application["name"]).encode()
+						).hexdigest()
+						record_security_event(
+							"Recruitment application cleanup",
+							user,
+							frappe.as_json(
+								{
+									"invocation": invocation,
+									"request": request.name,
+									"company": request.company,
+									"opening": opening.name,
+									"application": application,
+								}
+							),
+							reference=key,
+						)
 		return counts
 	finally:
 		frappe.set_user(before_user)

@@ -12,6 +12,7 @@ from kandil_hr.foundation.clock import today_cairo
 from kandil_hr.foundation.security import request_scope
 from kandil_hr.foundation.teams import effective_lead
 from kandil_hr.pilot.api import change_capacity, lock_capacities, require_role, transition
+from kandil_hr.recruitment import joining_audit
 from kandil_hr.recruitment.api import save
 from kandil_hr.recruitment.models import guard
 
@@ -34,13 +35,19 @@ def offer_context(offer_name):
 	doc.check_permission("read")
 	if doc.company != company or not request_scope(doc, frappe.session.user, "manage"):
 		frappe.throw(_("Management access is required for joining actions."), frappe.PermissionError)
-	caps = lock_capacities(doc)
+	doc.flags.joining_audit = joining_audit.start(doc)
+	# Read/lock the recorded ledger here. Replay must not persist a dated
+	# occupancy refresh before returning its original result.
+	caps = {
+		name: frappe.get_doc("Kandil Capacity", name, for_update=True)
+		for name in sorted({row.capacity for row in doc.lines})
+	}
 	# This must be a current read: a plain get_value can retain the pre-lock
 	# REPEATABLE READ snapshot and miss a Hold/Freeze committed while waiting.
 	opening = frappe.get_doc("Job Opening", initial_opening.name, for_update=True)
 	offer = frappe.get_doc("Job Offer", offer_name, for_update=True)
 	offer.check_permission("read")
-	applicant = frappe.get_doc("Job Applicant", offer.job_applicant)
+	applicant = frappe.get_doc("Job Applicant", offer.job_applicant, for_update=True)
 	if offer.job_applicant != initial_offer.job_applicant or applicant.job_title != opening.name:
 		frappe.throw(_("The offer or application changed. Reload before recording an outcome."))
 	line = next((row for row in doc.lines if row.job_opening == opening.name), None)
@@ -57,6 +64,7 @@ def offer_context(offer_name):
 		frappe.db.sql(
 			"SELECT name FROM `tabKandil Position` WHERE name=%s FOR UPDATE", (doc.requested_position,)
 		)
+	joining_audit.attach(doc.flags.joining_audit, doc, cap, offer, applicant, opening)
 	# Save notifies the requester. Lock all eventual User rows in one order before
 	# current identity/grant checks to avoid opposing actor/recipient lock order.
 	for user in sorted(
@@ -126,6 +134,9 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 		return existing_result(offer, outcome, reason, joining_date, date_of_birth, gender)
 	if previous != "Pending":
 		frappe.throw(_("This offer already has a final joining outcome."))
+	# Only a new outcome refreshes effective-dated occupancy. The audit start
+	# retained the recorded pre-refresh ledger while the same mutex was held.
+	cap = lock_capacities(doc)[line.capacity]
 	if doc.status != "Approved":
 		frappe.throw(_("The request is not open for recruitment."))
 	if opening.custom_kandil_vacancy_state not in ("Open", "Partially Filled"):
@@ -247,10 +258,24 @@ def record_outcome(offer_name, outcome, reason="", joining_date=None, date_of_bi
 		offer.custom_kandil_outcome_reason = reason
 		offer.save(ignore_permissions=True)
 		save(doc, outcome, reason)
-		return dict(
+		result = dict(
 			outcome=outcome,
 			employee=employee.name if employee else None,
 			onboarding=onboarding.name if onboarding else None,
 			assignment=assignment.name if assignment else None,
 			onboarding_status="Draft" if onboarding else None,
 		)
+		joining_audit.finish(
+			doc.flags.joining_audit,
+			doc,
+			dict(
+				offer_name=offer_name,
+				outcome=outcome,
+				reason=reason,
+				joining_date=joining_date,
+				date_of_birth=date_of_birth,
+				gender=gender,
+			),
+			result,
+		)
+		return result

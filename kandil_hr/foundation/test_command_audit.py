@@ -16,6 +16,19 @@ from kandil_hr.foundation import command_audit as audit
 
 
 class TestAuditPrimitives(unittest.TestCase):
+	def test_absent_projection_is_explicit_and_creation_only(self):
+		absent = {"doctype": "Kandil Delegation", "name": "new-version", "record_exists": False}
+		self.assertEqual(audit.checked_projection(absent, allow_absent=True), absent)
+		with self.assertRaises(ValueError):
+			audit.checked_projection(absent)
+		for invalid in (
+			absent | {"record_exists": 0},
+			absent | {"status": "Draft"},
+			absent | {"doctype": "User"},
+		):
+			with self.assertRaises(ValueError):
+				audit.checked_projection(invalid, allow_absent=True)
+
 	def test_canonical_primitives_are_deterministic_and_copied(self):
 		data = {"z": [Decimal("1.20"), date(2026, 10, 12)], "a": "قنديل"}
 		before = audit.copy(data)
@@ -341,18 +354,18 @@ def run():
 		raise RuntimeError("Command audit tests require isolated opted-in parity Administrator CLI")
 	classes = (TestAuditPrimitives, TestAuditDatabase)
 	suite = unittest.TestSuite()
-	for case, expected in zip(classes, (5, 9), strict=True):
+	for case, expected in zip(classes, (6, 9), strict=True):
 		names = sorted(name for name in case.__dict__ if name.startswith("test_"))
 		if len(names) != expected:
 			raise RuntimeError("Unexpected command audit discovery count")
 		suite.addTests(case(name) for name in names)
 	result = unittest.TextTestRunner(verbosity=2).run(suite)
 	value = dict(
-		result="PASS" if result.wasSuccessful() and not result.skipped and result.testsRun == 14 else "FAIL",
-		discovered=14,
+		result="PASS" if result.wasSuccessful() and not result.skipped and result.testsRun == 15 else "FAIL",
+		discovered=15,
 		executed=result.testsRun,
 		native=9,
-		pure=5,
+		pure=6,
 		failures=len(result.failures),
 		errors=len(result.errors),
 		skips=len(result.skipped),
