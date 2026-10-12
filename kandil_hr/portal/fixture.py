@@ -39,8 +39,16 @@ def prepare(run_id):
     ]:
         email = f"portal-{run_id}-{key}@example.invalid"
         password = secrets.token_urlsafe(28)
-        insert("User", email=email, first_name=label, enabled=1, send_welcome_email=0,
-               user_type="System User", language="ar", roles=[{"role": role} for role in roles])
+        # The CLI guard restricts this to a UUID synthetic parity cohort.
+        # Use Frappe's bulk-import path only during test User creation; repeated
+        # acceptance runs must not change the site's normal hourly signup limit.
+        previous_import = frappe.flags.get("in_import")
+        try:
+            frappe.flags.in_import = True
+            insert("User", email=email, first_name=label, enabled=1, send_welcome_email=0,
+                   user_type="System User", language="ar", roles=[{"role": role} for role in roles])
+        finally:
+            frappe.flags.in_import = previous_import
         update_password(email, password, logout_all_sessions=True)
         users[key] = dict(email=email, password=password)
         if key != "outsider":
@@ -94,3 +102,35 @@ def inspect(run_id):
         openings=frappe.get_all("Job Opening", filters={"company": data["company"]},
             fields=["name", "custom_kandil_request", "custom_kandil_capacity", "custom_kandil_lead", "vacancies"]),
     )
+
+
+def cleanup(run_id):
+    """Retire only this synthetic cohort, retaining its business/audit history."""
+    from kandil_hr.recruitment import api
+    from kandil_hr.recruitment.test_commands import acting_as
+
+    guard(run_id)
+    data = json.loads(path_for(run_id).read_text())
+    if data['company'] != 'Kandil PORTAL TEST ' + run_id:
+        raise RuntimeError('Refusing cross-company portal cleanup')
+    if not data.get('cleaned'):
+        names = frappe.get_all('Kandil Hiring Request', filters={'company': data['company']}, pluck='name')
+        with acting_as(data['users']['hr']['email']):
+            for name in names:
+                doc = frappe.get_doc('Kandil Hiring Request', name)
+                if doc.status != 'Cancelled':
+                    api.cancel_request(name, uuid.uuid4().hex, str(doc.modified),
+                                       'Synthetic portal regression complete; history retained')
+        for account in data['users'].values():
+            user = frappe.get_doc('User', account['email'])
+            user.enabled = 0
+            user.save(ignore_permissions=True)
+        frappe.db.commit()
+        data['cleaned'] = True
+        for account in data['users'].values(): account.pop('password', None)
+        persist(path_for(run_id), data)
+    state = inspect(run_id)
+    if any(row[k] for row in state['capacities'] for k in ('reserved', 'occupied', 'open_slots')):
+        raise RuntimeError('Portal cleanup did not reconcile capacity')
+    return dict(run_id=run_id, cleaned=True, accounts_disabled=len(data['users']),
+                all_fixture_ledgers_zero=True, history_retained=True)

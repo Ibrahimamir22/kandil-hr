@@ -95,6 +95,24 @@ class TestPendingRevision(unittest.TestCase):
 		self.f.approve_all(name)
 		self.f.ledger((2, 1), (3, 2))
 
+	def test_second_location_shortage_keeps_every_location_and_old_notifications_unchanged(self):
+		route = frappe.get_doc("Kandil Recruitment Route", self.f.route.name)
+		route.headcount_mode = "Block"
+		route.save(ignore_permissions=True)
+		self.seed_capacity(0, 5)
+		self.seed_capacity(1, 2)
+		name = self.pending((2, 1))
+		before = self.state(name)
+		# First line fits, second line does not. No partial delta, revision,
+		# approval reset or old-notification suppression may survive the denial.
+		outcome = self.revise(name, (3, 3))
+		self.assertEqual(outcome["code"], "HEADCOUNT_BLOCKED")
+		self.assertEqual(self.state(name), before)
+		self.f.ledger((2, 1), (0, 0))
+		self.revise(name, (3, 2))
+		self.f.ledger((3, 2), (0, 0))
+
+
 	def test_signed_reduction_releases_only_own_delta(self):
 		other = self.pending((1,))
 		name = self.pending((3,))
@@ -235,6 +253,40 @@ class TestPendingRevision(unittest.TestCase):
 		self.assertEqual({key: len(getattr(frappe.db, key)) for key in callbacks}, callbacks)
 		self.revise(name, (3,))
 
+	def test_revision_suppresses_old_queued_notices_and_preserves_delivered_history(self):
+		from kandil_hr.foundation import outbox
+		name = self.pending()
+		other = self.pending((1,))
+		def notice(key, reference=name):
+			return outbox.enqueue(uuid.uuid4().hex, self.f.users["manager"], key,
+				reference_doctype="Kandil Hiring Request", reference_name=reference)
+		queued = notice("Approval reminder")
+		retry = notice("Approval expiry warning")
+		failed = notice("Approval escalation")
+		# Exercise the existing worker failure path, without external delivery.
+		outbox._record_failure(retry, "SyntheticFailure")
+		for _ in range(5): outbox._record_failure(failed, "SyntheticFailure")
+		delivered = notice("Previously delivered approval reminder")
+		self.assertEqual(outbox.deliver(delivered), "Delivered locally")
+		history = frappe.as_json(frappe.get_doc("Kandil Notification Outbox", delivered).as_dict())
+		unrelated = notice("Another request", other)
+		old = {row.name for row in frappe.get_all("Kandil Notification Outbox", filters={"reference_name": name})}
+		self.revise(name, (3,))
+		for key in old - {delivered}:
+			row = frappe.get_doc("Kandil Notification Outbox", key)
+			self.assertEqual(row.status, "Suppressed")
+			self.assertEqual(row.last_error, "Superseded by pending quantity revision")
+			self.assertFalse(row.next_attempt)
+			self.assertFalse(row.notification_log)
+			self.assertEqual(outbox.deliver(key), "Suppressed")
+		self.assertEqual(frappe.as_json(frappe.get_doc("Kandil Notification Outbox", delivered).as_dict()), history)
+		self.assertEqual(frappe.get_doc("Kandil Notification Outbox", unrelated).status, "Pending")
+		new = frappe.get_all("Kandil Notification Outbox", filters={"reference_name": name, "name": ["not in", list(old)]}, fields=["name", "status"])
+		self.assertEqual(len(new), 2)
+		for row in new: self.assertEqual(outbox.deliver(row.name), "Delivered locally")
+		with self.assertRaises(frappe.ValidationError): outbox.retry_failed(failed, "Must not resurrect obsolete reminder")
+
+
 	def test_revoked_requester_scope_denies_without_business_changes(self):
 		name = self.pending()
 		grant = frappe.get_doc("Kandil Access Grant", self.f.grants["requester"])
@@ -307,11 +359,11 @@ def run():
 
 	_guard()
 	suite = unittest.defaultTestLoader.loadTestsFromTestCase(TestPendingRevision)
-	assert suite.countTestCases() == 13
+	assert suite.countTestCases() == 15
 	result = unittest.TextTestRunner(verbosity=2, resultclass=RecordedResult).run(suite)
 	summary = dict(
 		result="PASS" if result.wasSuccessful() and not result.skipped else "FAIL",
-		discovered=13,
+		discovered=15,
 		executed=result.testsRun,
 		failures=len(result.failures),
 		errors=len(result.errors),
@@ -319,7 +371,7 @@ def run():
 		tests=result.checks,
 		limits="Native synthetic rollback tests; independent connection races and EN/AR HTTP/UI require separate proof",
 	)
-	if not result.wasSuccessful() or result.skipped or result.testsRun != 13:
+	if not result.wasSuccessful() or result.skipped or result.testsRun != 15:
 		error = AssertionError("Pending quantity revision checks failed")
 		error.summary = summary
 		raise error

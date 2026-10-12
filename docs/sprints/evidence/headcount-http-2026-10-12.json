@@ -1,7 +1,7 @@
 {
-  "run_id": "b5bd590eef74",
+  "run_id": "8b6e2922163a",
   "site": "kandil-parity.localhost",
-  "checked_at": "2026-10-12T17:53:13.256895+00:00",
+  "checked_at": "2026-10-12T18:03:55.826865+00:00",
   "status": "PASS",
   "source_hashes_before": {
     "kandil_hr/foundation/__init__.py": "12274a7fc88aceeebeb8302efa3f5e829fd63ec6130ae0226706c9344fefdf24",
@@ -81,14 +81,15 @@
     "kandil_hr/recruitment/ownership.py": "6b9577ee82a403cdb937349f539aac066c1d28cc624a8500a94d5a5670f925f4",
     "kandil_hr/recruitment/ownership_browser_fixture.py": "267fdb983fe8ea7857fb18da974392a7b1a05c7d23f1721b670132abbc94b17c",
     "kandil_hr/recruitment/ownership_commit_runner.py": "52964a5bc5fea89c805de676a09dbcb1a13b2c8a9216153f8b6929a0ba749362",
-    "kandil_hr/recruitment/pending_revision.py": "3a5c462ee086ef95abe918a380c0379c24121197c5e2e12f19769949b2d77f6e",
+    "kandil_hr/recruitment/pending_revision.py": "420e5767ba5b598fc8f4a5fe7e65781b4fcb208d4f129c212ce0a575bb6e0ef4",
+    "kandil_hr/recruitment/pending_revision_races.py": "b06355c7179f9afb682981afc67c0788cd4fb9d1431f07a65e87e0c8e986f3a0",
     "kandil_hr/recruitment/preview.py": "e938dbd86d5203fff871da82a0255561682200f85ddd9efed974f9da0a62ab0a",
     "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
     "kandil_hr/recruitment/privacy.py": "ef860d50ecff2e4a8fa31575fd5ac4b114ea82b7e5e9911c71866fd02d6b7aff",
     "kandil_hr/recruitment/review_browser_fixture.py": "78410bba4b7c086005fc2abba9cbf3e53834c4e4ab13579313f91344cf68cb8c",
     "kandil_hr/recruitment/review_views.py": "afbe44adecb85afd9dda59554f4a01cfbbc242602d626960025770eecea808d7",
     "kandil_hr/recruitment/setup.py": "2365b2cea89782ba7c321eeaf66f33cd1c1e2d99a977a1b2b57186503d0a380c",
-    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/sla.py": "fb0dba1c27ecc225ad285e99ed2c77b1dba1d252b89d12b9dcc4854ad4820648",
     "kandil_hr/recruitment/vacancies.py": "ffd0e0e9f485344dbcddad5111c867c79faf009e51d85266449bca1e593f9031"
   },
   "checks": [
@@ -100,7 +101,7 @@
       "statuses": {
         "200": 20
       },
-      "maximum_seconds": 0.274,
+      "maximum_seconds": 0.264,
       "server_retries": [
         0,
         0,
@@ -131,7 +132,7 @@
         200,
         200
       ],
-      "denied_command": "kandil_hr.recruitment.pending_revision.revise_pending_quantities",
+      "denied_command": "kandil_hr.recruitment.api.submit_request",
       "ledger": {
         "structural": 3,
         "occupied": 0,
@@ -139,20 +140,20 @@
         "open_slots": 0,
         "available": 0
       },
-      "denial_event": "ce53ctuerd"
+      "denial_event": "in3oqp4dja"
     },
     {
       "name": "Denied pending revision durable/replay stable/changed-payload conflict",
       "status": "PASS",
       "conflict_status": 417,
-      "denial_event": "cepf45f83v"
+      "denial_event": "inmgtccfqb"
     },
     {
       "name": "Same3/1 shortage BLOCK denies blank and valid reason with durable replayable audit",
       "status": "PASS",
       "events": [
-        "cg5n4scq1f",
-        "ch32013ou3"
+        "iot287vdfn",
+        "ipo0o2vueo"
       ]
     },
     {
@@ -164,7 +165,7 @@
       "statuses": {
         "200": 20
       },
-      "maximum_seconds": 0.433,
+      "maximum_seconds": 0.318,
       "server_retries": [
         0,
         0,
@@ -191,7 +192,7 @@
     {
       "name": "WARN short justification durable; changed policy does not rewrite prior BLOCK denial",
       "status": "PASS",
-      "denial_event": "ck163lgimi"
+      "denial_event": "isgvj63o6i"
     },
     {
       "name": "New command re-evaluates WARN and routes to independent Sector; ordinary HR denied",
@@ -210,105 +211,99 @@
   ],
   "committed_denials": [
     {
-      "name": "ce53ctuerd",
+      "name": "in3oqp4dja",
       "action": "Headcount command denied",
-      "actor": "browser-b5bd590eef74-requester@example.invalid",
-      "reference": "0c364cdc0c1c91b0cca97023ed34a9f968525ca67b56555a8e76e70e88919bd9",
-      "creation": "2026-10-12 20:53:23.740076",
+      "actor": "browser-8b6e2922163a-requester@example.invalid",
+      "reference": "d7d36c14e1c6fed0825ad83994e55357fbd4b5f99d8adf654fdc459ac6990901",
+      "creation": "2026-10-12 21:04:06.735946",
       "payload": {
-        "actor": "browser-b5bd590eef74-requester@example.invalid",
-        "business_after_hash": "ea97d89ded303efb2fd0a6293a200805ed8c31251beb7b2bca1441f724e4fc7e",
-        "business_before_hash": "ea97d89ded303efb2fd0a6293a200805ed8c31251beb7b2bca1441f724e4fc7e",
-        "command": "revise_pending_quantities",
-        "command_id": "539105ea6697492096381f642d0c451b",
+        "actor": "browser-8b6e2922163a-requester@example.invalid",
+        "business_after_hash": "39f3044d772d95b86dc7cbb4e3692ae5f5c5e05bc66cc6703d794b8ad0f62ef5",
+        "business_before_hash": "39f3044d772d95b86dc7cbb4e3692ae5f5c5e05bc66cc6703d794b8ad0f62ef5",
+        "command": "submit",
+        "command_id": "b7b42eb31cc34e0b82ced7c02ed4f60b",
         "command_origin": "client_command",
-        "company": "Kandil BROWSER TEST b5bd590eef74",
+        "company": "Kandil BROWSER TEST 8b6e2922163a",
         "denial": {
           "code": "HEADCOUNT_BLOCKED",
           "message": "Headcount blocking is enabled. Adjust capacity or requested quantity."
         },
-        "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+        "department": "BROWSER-8b6e2922163a - B8b6e2",
         "evaluation": {
-          "company": "Kandil BROWSER TEST b5bd590eef74",
-          "department": "BROWSER-b5bd590eef74 - Bb5bd5",
-          "exception_reason": "Valid synthetic shortage explanation",
+          "company": "Kandil BROWSER TEST 8b6e2922163a",
+          "department": "BROWSER-8b6e2922163a - B8b6e2",
+          "exception_reason": "",
           "lines": [
             {
-              "additional_qty": 3,
+              "additional_qty": 1,
               "available": 0,
-              "branch": "BROWSER-b5bd590eef74",
-              "capacity": "KCAP-7402c577f26d915be67ab4ae",
-              "effective_available": 2,
+              "branch": "BROWSER-8b6e2922163a",
+              "capacity": "KCAP-0e237aaf3e89b363d610ad78",
+              "effective_available": 0,
               "excess": 1,
-              "line": "ccdlfli5ah",
+              "line": "ilah856ktt",
               "occupancy_as_of": "2026-10-12",
               "occupancy_basis": "Dated Assignments",
               "occupied": 0,
               "open_slots": 0,
-              "own_reserved_qty": 2,
-              "requested_qty": 3,
+              "own_reserved_qty": 0,
+              "requested_qty": 1,
               "reserved": 3,
               "structural": 3
             }
           ],
           "policy": {
-            "config": "KROUTE-b1c1627a7747a602e09810e3",
-            "config_modified": "2026-10-12 20:53:17.837262",
+            "config": "KROUTE-afeac0b56a3a759c4a7e98f3",
+            "config_modified": "2026-10-12 21:04:00.787640",
             "evaluated_on": "2026-10-12",
             "mode": "Block"
           },
-          "request": "ccdd67ras3",
+          "request": "ilav8fv9k3",
           "revision": 1
         },
-        "occurred_at": "2026-10-12T20:53:23.739518+03:00",
+        "occurred_at": "2026-10-12T21:04:06.734019+03:00",
         "outcome": "denied",
-        "payload": {
-          "exception_reason": "Valid synthetic shortage explanation",
-          "quantities": {
-            "ccdlfli5ah": 3
-          },
-          "reason": "Synthetic HTTP pending reservation revision"
-        },
-        "payload_hash": "4a1005fbf60f8851817a2f04ccfcb322ae30caacaa22235497eb77b2eb89b410",
-        "principal": "browser-b5bd590eef74-requester@example.invalid",
-        "request": "ccdd67ras3",
-        "reviewed_version": "2026-10-12 20:53:18.122875",
+        "payload": {},
+        "payload_hash": "513de8a0bb8aec9bb2eede48b4c2a3aa34e298ec1eb45c91be2215493e562d72",
+        "principal": "browser-8b6e2922163a-requester@example.invalid",
+        "request": "ilav8fv9k3",
+        "reviewed_version": "2026-10-12 21:04:01.066347",
         "schema_version": 1,
         "timezone": "Africa/Cairo"
       }
     },
     {
-      "name": "cepf45f83v",
+      "name": "inmgtccfqb",
       "action": "Headcount command denied",
-      "actor": "browser-b5bd590eef74-requester@example.invalid",
-      "reference": "8225d1ce2d9e8ef754dbc06c100c8f930d8acd10cd6e9855d9473e5c9fe2abd5",
-      "creation": "2026-10-12 20:53:25.731931",
+      "actor": "browser-8b6e2922163a-requester@example.invalid",
+      "reference": "c5e15a5bbb95b071f4b305a8fba4d2c653cb17d63f7a7aa7d351cd48dfc9c136",
+      "creation": "2026-10-12 21:04:08.602568",
       "payload": {
-        "actor": "browser-b5bd590eef74-requester@example.invalid",
-        "business_after_hash": "81671e7993940facd76c05f892cc8675dfcd28635f8836944b34a9ba3bf9e0d9",
-        "business_before_hash": "81671e7993940facd76c05f892cc8675dfcd28635f8836944b34a9ba3bf9e0d9",
+        "actor": "browser-8b6e2922163a-requester@example.invalid",
+        "business_after_hash": "3a92d61dcc3c163eabc4e9b9c2b7e9c2314171a37cfdc2f5f7b5a86e3258a885",
+        "business_before_hash": "3a92d61dcc3c163eabc4e9b9c2b7e9c2314171a37cfdc2f5f7b5a86e3258a885",
         "command": "revise_pending_quantities",
-        "command_id": "5e25e8693b5c4ceb8f64af99b776ea05",
+        "command_id": "e32703c344b4410fa43646476813a332",
         "command_origin": "client_command",
-        "company": "Kandil BROWSER TEST b5bd590eef74",
+        "company": "Kandil BROWSER TEST 8b6e2922163a",
         "denial": {
           "code": "HEADCOUNT_BLOCKED",
           "message": "Headcount blocking is enabled. Adjust capacity or requested quantity."
         },
-        "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+        "department": "BROWSER-8b6e2922163a - B8b6e2",
         "evaluation": {
-          "company": "Kandil BROWSER TEST b5bd590eef74",
-          "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+          "company": "Kandil BROWSER TEST 8b6e2922163a",
+          "department": "BROWSER-8b6e2922163a - B8b6e2",
           "exception_reason": "Valid synthetic shortage explanation",
           "lines": [
             {
               "additional_qty": 5,
               "available": 1,
-              "branch": "BROWSER-b5bd590eef74",
-              "capacity": "KCAP-fd214b21640b2a45efa18238",
+              "branch": "BROWSER-8b6e2922163a",
+              "capacity": "KCAP-5f808856ad57fdebd56cbfef",
               "effective_available": 3,
               "excess": 2,
-              "line": "ccd2qopmct",
+              "line": "ila2r3din5",
               "occupancy_as_of": "2026-10-12",
               "occupancy_basis": "Dated Assignments",
               "occupied": 0,
@@ -320,63 +315,63 @@
             }
           ],
           "policy": {
-            "config": "KROUTE-b1c1627a7747a602e09810e3",
-            "config_modified": "2026-10-12 20:53:17.837262",
+            "config": "KROUTE-afeac0b56a3a759c4a7e98f3",
+            "config_modified": "2026-10-12 21:04:00.787640",
             "evaluated_on": "2026-10-12",
             "mode": "Block"
           },
-          "request": "ccdlodrbq6",
+          "request": "ilaneef54j",
           "revision": 1
         },
-        "occurred_at": "2026-10-12T20:53:25.731702+03:00",
+        "occurred_at": "2026-10-12T21:04:08.602368+03:00",
         "outcome": "denied",
         "payload": {
           "exception_reason": "Valid synthetic shortage explanation",
           "quantities": {
-            "ccd2qopmct": 5
+            "ila2r3din5": 5
           },
           "reason": "Synthetic HTTP pending reservation revision"
         },
-        "payload_hash": "f9e2390f7214039e32a024fee4cc3a679faa251c500d69e7e4c1f018af7018ff",
-        "principal": "browser-b5bd590eef74-requester@example.invalid",
-        "request": "ccdlodrbq6",
-        "reviewed_version": "2026-10-12 20:53:18.173136",
+        "payload_hash": "6a227e3c9a0aaf8149773cc0429f41787cf8d2ee1253173c04974fa10b6343d0",
+        "principal": "browser-8b6e2922163a-requester@example.invalid",
+        "request": "ilaneef54j",
+        "reviewed_version": "2026-10-12 21:04:01.104462",
         "schema_version": 1,
         "timezone": "Africa/Cairo"
       }
     },
     {
-      "name": "cg5n4scq1f",
+      "name": "iot287vdfn",
       "action": "Headcount command denied",
-      "actor": "browser-b5bd590eef74-requester@example.invalid",
-      "reference": "626840415702409c2f2c240ea1c3aa604cca96b28803459171fb2f0d0bde7b9e",
-      "creation": "2026-10-12 20:53:30.110943",
+      "actor": "browser-8b6e2922163a-requester@example.invalid",
+      "reference": "3f3eca16778a4c917567d8c3a9cd462a503aee169ba4d5b16c3412d79826c2f9",
+      "creation": "2026-10-12 21:04:12.527380",
       "payload": {
-        "actor": "browser-b5bd590eef74-requester@example.invalid",
-        "business_after_hash": "4f76904d820d607031ae4eb938c5b3bbbf35022a95fa61e907ca3c3cc4a80906",
-        "business_before_hash": "4f76904d820d607031ae4eb938c5b3bbbf35022a95fa61e907ca3c3cc4a80906",
+        "actor": "browser-8b6e2922163a-requester@example.invalid",
+        "business_after_hash": "246a3f66e37b733b94e69b51bfc4771aaee92f907dfbe2d9c564120e3ed0baac",
+        "business_before_hash": "246a3f66e37b733b94e69b51bfc4771aaee92f907dfbe2d9c564120e3ed0baac",
         "command": "submit",
-        "command_id": "cc12bb3e02a3474fabebc95a9ead6b10",
+        "command_id": "a9de76b934da4c88bd7d26a9d8268ea1",
         "command_origin": "client_command",
-        "company": "Kandil BROWSER TEST b5bd590eef74",
+        "company": "Kandil BROWSER TEST 8b6e2922163a",
         "denial": {
           "code": "HEADCOUNT_BLOCKED",
           "message": "Headcount blocking is enabled. Adjust capacity or requested quantity."
         },
-        "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+        "department": "BROWSER-8b6e2922163a - B8b6e2",
         "evaluation": {
-          "company": "Kandil BROWSER TEST b5bd590eef74",
-          "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+          "company": "Kandil BROWSER TEST 8b6e2922163a",
+          "department": "BROWSER-8b6e2922163a - B8b6e2",
           "exception_reason": "",
           "lines": [
             {
               "additional_qty": 3,
               "available": 1,
-              "branch": "BROWSER-b5bd590eef74",
-              "capacity": "KCAP-5fadf0554c00d540fa38bda9",
+              "branch": "BROWSER-8b6e2922163a",
+              "capacity": "KCAP-a64b54b383bc4bc52fe5ebe8",
               "effective_available": 1,
               "excess": 2,
-              "line": "ccdcsv2gav",
+              "line": "ilbjbhav6l",
               "occupancy_as_of": "2026-10-12",
               "occupancy_basis": "Dated Assignments",
               "occupied": 0,
@@ -388,57 +383,57 @@
             }
           ],
           "policy": {
-            "config": "KROUTE-b1c1627a7747a602e09810e3",
-            "config_modified": "2026-10-12 20:53:17.837262",
+            "config": "KROUTE-afeac0b56a3a759c4a7e98f3",
+            "config_modified": "2026-10-12 21:04:00.787640",
             "evaluated_on": "2026-10-12",
             "mode": "Block"
           },
-          "request": "ccd6mas04l",
+          "request": "ilb9asfu86",
           "revision": 1
         },
-        "occurred_at": "2026-10-12T20:53:30.110764+03:00",
+        "occurred_at": "2026-10-12T21:04:12.527127+03:00",
         "outcome": "denied",
         "payload": {},
-        "payload_hash": "e559b49a18ae463699b19279868d769b2fef27f9b6ff35b96306ef75d1eca6cf",
-        "principal": "browser-b5bd590eef74-requester@example.invalid",
-        "request": "ccd6mas04l",
-        "reviewed_version": "2026-10-12 20:53:18.197494",
+        "payload_hash": "797dd8bab6a3ac06de53d905150e6cb501599af093d021bc6b99fc39f15b94c5",
+        "principal": "browser-8b6e2922163a-requester@example.invalid",
+        "request": "ilb9asfu86",
+        "reviewed_version": "2026-10-12 21:04:01.125552",
         "schema_version": 1,
         "timezone": "Africa/Cairo"
       }
     },
     {
-      "name": "ch32013ou3",
+      "name": "ipo0o2vueo",
       "action": "Headcount command denied",
-      "actor": "browser-b5bd590eef74-requester@example.invalid",
-      "reference": "c671b0ba1249da9184ef2388bc4c768d768411043c28193dfa69422e1a34c3d0",
-      "creation": "2026-10-12 20:53:33.171516",
+      "actor": "browser-8b6e2922163a-requester@example.invalid",
+      "reference": "f99f2259bffcab2cfd91a0c5870e46e023f6ccc43bf0512cbfd9dbb257cd3322",
+      "creation": "2026-10-12 21:04:15.224066",
       "payload": {
-        "actor": "browser-b5bd590eef74-requester@example.invalid",
-        "business_after_hash": "119b2f6c426adb4e3d5ff48b34163b4fb15e76dfda58aaf57add823a846a20c4",
-        "business_before_hash": "119b2f6c426adb4e3d5ff48b34163b4fb15e76dfda58aaf57add823a846a20c4",
+        "actor": "browser-8b6e2922163a-requester@example.invalid",
+        "business_after_hash": "dc846a1b5d1498e740f901b61f946bcb8a085c16164c57c1e20dfcc8a4be1d57",
+        "business_before_hash": "dc846a1b5d1498e740f901b61f946bcb8a085c16164c57c1e20dfcc8a4be1d57",
         "command": "submit",
-        "command_id": "d6e109c3d83c48d9b97ad0e789eb389a",
+        "command_id": "d4cea6b0fe3c456293966994bb93fa37",
         "command_origin": "client_command",
-        "company": "Kandil BROWSER TEST b5bd590eef74",
+        "company": "Kandil BROWSER TEST 8b6e2922163a",
         "denial": {
           "code": "HEADCOUNT_BLOCKED",
           "message": "Headcount blocking is enabled. Adjust capacity or requested quantity."
         },
-        "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+        "department": "BROWSER-8b6e2922163a - B8b6e2",
         "evaluation": {
-          "company": "Kandil BROWSER TEST b5bd590eef74",
-          "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+          "company": "Kandil BROWSER TEST 8b6e2922163a",
+          "department": "BROWSER-8b6e2922163a - B8b6e2",
           "exception_reason": "Valid synthetic shortage justification",
           "lines": [
             {
               "additional_qty": 3,
               "available": 1,
-              "branch": "BROWSER-b5bd590eef74",
-              "capacity": "KCAP-0f78f57117d779ae817cf121",
+              "branch": "BROWSER-8b6e2922163a",
+              "capacity": "KCAP-e7ab0e4bc96218dd8a26b08a",
               "effective_available": 1,
               "excess": 2,
-              "line": "ccehbi3nt1",
+              "line": "ilbhtfsn2e",
               "occupancy_as_of": "2026-10-12",
               "occupancy_basis": "Dated Assignments",
               "occupied": 0,
@@ -450,57 +445,57 @@
             }
           ],
           "policy": {
-            "config": "KROUTE-b1c1627a7747a602e09810e3",
-            "config_modified": "2026-10-12 20:53:17.837262",
+            "config": "KROUTE-afeac0b56a3a759c4a7e98f3",
+            "config_modified": "2026-10-12 21:04:00.787640",
             "evaluated_on": "2026-10-12",
             "mode": "Block"
           },
-          "request": "ccevllv70o",
+          "request": "ilb0p5936u",
           "revision": 1
         },
-        "occurred_at": "2026-10-12T20:53:33.171390+03:00",
+        "occurred_at": "2026-10-12T21:04:15.223984+03:00",
         "outcome": "denied",
         "payload": {},
-        "payload_hash": "c45ff3c6e861c0d0fb5f1864b8459db5efe68483fecd4b4d7ec03b036b340e49",
-        "principal": "browser-b5bd590eef74-requester@example.invalid",
-        "request": "ccevllv70o",
-        "reviewed_version": "2026-10-12 20:53:18.209825",
+        "payload_hash": "8dd8f06e907e5cdb982046eced8410d5ab77d0c84269d28ecfe117cb8427b8e0",
+        "principal": "browser-8b6e2922163a-requester@example.invalid",
+        "request": "ilb0p5936u",
+        "reviewed_version": "2026-10-12 21:04:01.139702",
         "schema_version": 1,
         "timezone": "Africa/Cairo"
       }
     },
     {
-      "name": "ck163lgimi",
+      "name": "isgvj63o6i",
       "action": "Headcount command denied",
-      "actor": "browser-b5bd590eef74-requester@example.invalid",
-      "reference": "6ff01d7416ad7dd59bf85999f4fd3d06a271cf37757443bf0f15548ab7f50a16",
-      "creation": "2026-10-12 20:53:42.552188",
+      "actor": "browser-8b6e2922163a-requester@example.invalid",
+      "reference": "503979be1451522a8c9f3dfd22fd721187905b79a5efb803ad5eadc7b82bdde1",
+      "creation": "2026-10-12 21:04:24.088938",
       "payload": {
-        "actor": "browser-b5bd590eef74-requester@example.invalid",
-        "business_after_hash": "8712aa4239c8fd3d4dccedb9b9ed246428eb13c0acc264e54776fd6c4338ed0c",
-        "business_before_hash": "8712aa4239c8fd3d4dccedb9b9ed246428eb13c0acc264e54776fd6c4338ed0c",
+        "actor": "browser-8b6e2922163a-requester@example.invalid",
+        "business_after_hash": "ad20614ef06a01d98126976d11764cb0a38f03e739bf2dbc512c1d9311923c65",
+        "business_before_hash": "ad20614ef06a01d98126976d11764cb0a38f03e739bf2dbc512c1d9311923c65",
         "command": "submit",
-        "command_id": "b5ec07816b9a4862933f888462edaee5",
+        "command_id": "8e251732062c4e8dab74d6fb734e4e32",
         "command_origin": "client_command",
-        "company": "Kandil BROWSER TEST b5bd590eef74",
+        "company": "Kandil BROWSER TEST 8b6e2922163a",
         "denial": {
           "code": "HEADCOUNT_REASON_REQUIRED",
           "message": "Headcount exception justification must contain at least 10 characters."
         },
-        "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+        "department": "BROWSER-8b6e2922163a - B8b6e2",
         "evaluation": {
-          "company": "Kandil BROWSER TEST b5bd590eef74",
-          "department": "BROWSER-b5bd590eef74 - Bb5bd5",
+          "company": "Kandil BROWSER TEST 8b6e2922163a",
+          "department": "BROWSER-8b6e2922163a - B8b6e2",
           "exception_reason": "123456789",
           "lines": [
             {
               "additional_qty": 3,
               "available": 1,
-              "branch": "BROWSER-b5bd590eef74",
-              "capacity": "KCAP-3ad67f12d1f08074da2b8cd3",
+              "branch": "BROWSER-8b6e2922163a",
+              "capacity": "KCAP-8c73bba24145b42fe5b4018c",
               "effective_available": 1,
               "excess": 2,
-              "line": "cce6dd04qi",
+              "line": "ilbmdnvhk8",
               "occupancy_as_of": "2026-10-12",
               "occupancy_basis": "Dated Assignments",
               "occupied": 0,
@@ -512,28 +507,28 @@
             }
           ],
           "policy": {
-            "config": "KROUTE-b1c1627a7747a602e09810e3",
-            "config_modified": "2026-10-12 20:53:40.153202",
+            "config": "KROUTE-afeac0b56a3a759c4a7e98f3",
+            "config_modified": "2026-10-12 21:04:21.450994",
             "evaluated_on": "2026-10-12",
             "mode": "Warn"
           },
-          "request": "ccepl9031o",
+          "request": "ilbr6scac3",
           "revision": 1
         },
-        "occurred_at": "2026-10-12T20:53:42.551996+03:00",
+        "occurred_at": "2026-10-12T21:04:24.088777+03:00",
         "outcome": "denied",
         "payload": {},
-        "payload_hash": "af8c8fc4c2a0e3e50fd370122de4aa1df27c229f27b22a6605750f707d04f292",
-        "principal": "browser-b5bd590eef74-requester@example.invalid",
-        "request": "ccepl9031o",
-        "reviewed_version": "2026-10-12 20:53:18.222694",
+        "payload_hash": "5b4db5d8ed6034822a642d7d938c5b942bdb10697f433dce78094c4985377af5",
+        "principal": "browser-8b6e2922163a-requester@example.invalid",
+        "request": "ilbr6scac3",
+        "reviewed_version": "2026-10-12 21:04:01.154957",
         "schema_version": 1,
         "timezone": "Africa/Cairo"
       }
     }
   ],
   "cleanup": {
-    "run_id": "b5bd590eef74",
+    "run_id": "8b6e2922163a",
     "cleaned": true,
     "users_disabled": 4,
     "all_fixture_ledgers_zero": true,
@@ -617,14 +612,15 @@
     "kandil_hr/recruitment/ownership.py": "6b9577ee82a403cdb937349f539aac066c1d28cc624a8500a94d5a5670f925f4",
     "kandil_hr/recruitment/ownership_browser_fixture.py": "267fdb983fe8ea7857fb18da974392a7b1a05c7d23f1721b670132abbc94b17c",
     "kandil_hr/recruitment/ownership_commit_runner.py": "52964a5bc5fea89c805de676a09dbcb1a13b2c8a9216153f8b6929a0ba749362",
-    "kandil_hr/recruitment/pending_revision.py": "3a5c462ee086ef95abe918a380c0379c24121197c5e2e12f19769949b2d77f6e",
+    "kandil_hr/recruitment/pending_revision.py": "420e5767ba5b598fc8f4a5fe7e65781b4fcb208d4f129c212ce0a575bb6e0ef4",
+    "kandil_hr/recruitment/pending_revision_races.py": "b06355c7179f9afb682981afc67c0788cd4fb9d1431f07a65e87e0c8e986f3a0",
     "kandil_hr/recruitment/preview.py": "e938dbd86d5203fff871da82a0255561682200f85ddd9efed974f9da0a62ab0a",
     "kandil_hr/recruitment/priority.py": "a68315a48eb8324a8db3d63a5b95e01a896b54f8d07a03f5e519256a1ffbd603",
     "kandil_hr/recruitment/privacy.py": "ef860d50ecff2e4a8fa31575fd5ac4b114ea82b7e5e9911c71866fd02d6b7aff",
     "kandil_hr/recruitment/review_browser_fixture.py": "78410bba4b7c086005fc2abba9cbf3e53834c4e4ab13579313f91344cf68cb8c",
     "kandil_hr/recruitment/review_views.py": "afbe44adecb85afd9dda59554f4a01cfbbc242602d626960025770eecea808d7",
     "kandil_hr/recruitment/setup.py": "2365b2cea89782ba7c321eeaf66f33cd1c1e2d99a977a1b2b57186503d0a380c",
-    "kandil_hr/recruitment/sla.py": "429ef4c65d2d011499224b4c6e046085df4bd444f752ec509b19087cf4a3fb90",
+    "kandil_hr/recruitment/sla.py": "fb0dba1c27ecc225ad285e99ed2c77b1dba1d252b89d12b9dcc4854ad4820648",
     "kandil_hr/recruitment/vacancies.py": "ffd0e0e9f485344dbcddad5111c867c79faf009e51d85266449bca1e593f9031"
   },
   "source_unchanged": true

@@ -55,7 +55,11 @@ def process_request(name):
 	_server_guard()
 	if not enabled():
 		return {"status": "Disabled", "outbox": []}
+	company = frappe.db.get_value("Kandil Hiring Request", name, "company")
+	frappe.db.sql("SELECT name FROM `tabCompany` WHERE name=%s FOR UPDATE", (company,))
 	doc = frappe.get_doc("Kandil Hiring Request", name, for_update=True)
+	if doc.company != company:
+		raise RuntimeError("Approval reminder company changed; retry transaction")
 	step = next((row for row in doc.approval_steps if row.decision == "Pending"), None)
 	if doc.status != "Pending" or not step:
 		return {"status": "Inactive", "outbox": []}

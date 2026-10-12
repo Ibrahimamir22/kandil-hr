@@ -1,5 +1,6 @@
 """Serial opt-in synthetic S1 regression; never emits private raw fixture output."""
 from pathlib import Path
+import argparse
 import datetime
 import hashlib
 import json
@@ -14,6 +15,9 @@ SUITES = (
     'kandil_hr.recruitment.test_contracts.run',
     'kandil_hr.portal.test_api.run',
     'kandil_hr.recruitment.test_commands.run',
+    'kandil_hr.recruitment.test_sla.run',
+    'kandil_hr.foundation.tests_runner.run',
+    'kandil_hr.recruitment.pending_revision_races.run',
 )
 
 def hashes():
@@ -22,10 +26,13 @@ def hashes():
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--suite', action='append', choices=SUITES)
+    selected = parser.parse_args().suite or SUITES
     result = dict(run_id=uuid.uuid4().hex[:12], checked_at=datetime.datetime.now(datetime.UTC).isoformat(),
                   site='kandil-parity.localhost', suites=[], source_before=hashes(),
-                  limits=['Serial native rollback tests only; HTTP/browser evidence is separate.'])
-    for suite in SUITES:
+                  limits=['Serial native synthetic suites, including committed UUID race fixtures with cleanup; HTTP/browser evidence is separate.'])
+    for suite in selected:
         run = subprocess.run(['docker', 'compose', 'exec', '-T', '-w', '/workspace/frappe-bench',
                               'parity-web', 'bench', '--site', result['site'], 'execute', suite],
                              cwd=DEV, capture_output=True, text=True, timeout=600)
@@ -47,7 +54,7 @@ def main():
             private.write_text(run.stdout + '\n' + run.stderr)
             break
     result['source_unchanged'] = result['source_before'] == hashes()
-    result['status'] = 'PASS' if result['source_unchanged'] and len(result['suites']) == len(SUITES) and all(s['status'] == 'PASS' for s in result['suites']) else 'FAIL'
+    result['status'] = 'PASS' if result['source_unchanged'] and len(result['suites']) == len(selected) and all(s['status'] == 'PASS' for s in result['suites']) else 'FAIL'
     output = APP / 'docs/roadmap/evidence' / ('s1-regression-' + result['run_id'] + '.json')
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps(dict(status=result['status'], evidence=str(output))))

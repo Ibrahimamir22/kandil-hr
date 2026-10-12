@@ -37,6 +37,31 @@ def quantity_map(value):
 	return value
 
 
+def supersede_queued_notifications(doc):
+	"""Caller holds Company/request locks; update only this request's old queue.
+
+	The delivery worker takes the same domain locks first. It either completes
+	before this revision (retained history), or sees terminal suppression after
+	commit. A failed notification cannot later be manually revived for old steps.
+	New revision notifications are enqueued by save() only after this call.
+	"""
+	from kandil_hr.foundation.models import effect
+
+	rows = frappe.db.sql(
+		"""SELECT name FROM `tabKandil Notification Outbox`
+		WHERE reference_doctype='Kandil Hiring Request' AND reference_name=%s
+		AND status IN ('Pending','Retry','Failed') ORDER BY name FOR UPDATE""",
+		(doc.name,), as_dict=True,
+	)
+	with effect():
+		for row in rows:
+			notice = frappe.get_doc("Kandil Notification Outbox", row.name, for_update=True)
+			notice.status = "Suppressed"
+			notice.last_error = "Superseded by pending quantity revision"
+			notice.next_attempt = None
+			notice.save(ignore_permissions=True)
+
+
 @frappe.whitelist(methods=["POST"])
 @transactional_retry
 def revise_pending_quantities(name, command_id, expected_version, quantities, reason, exception_reason=None):
@@ -150,6 +175,7 @@ def revise_pending_quantities(name, command_id, expected_version, quantities, re
 		doc.submitted_snapshot = api.dump(api.snapshot_payload(doc))
 		for line in doc.lines:
 			change_capacity(caps[line.capacity], reserved=parsed[line.name] - old_reserved[line.name])
+		supersede_queued_notifications(doc)
 		result = api.save(doc, "Pending quantities revised", reason.strip())
 		from kandil_hr.recruitment.authority import notify_vacant_heads
 
