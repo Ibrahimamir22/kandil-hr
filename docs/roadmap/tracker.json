@@ -444,7 +444,7 @@
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
           "status": "in_progress",
-          "progress": "AR/EN delivered-message inbox, exact unread counts and current-reference privacy are connected. Added original-requester amendment/skipped-route notices, bounded submitted-amendment baseline reads, stale-step SLA suppression and event-time inbox ordering. 134 distinct native checks across recorded checkpoints; 96 final native and 76 final ordinary-session browser checks passed. Detailed proof and limitations are in S4_NOTIFICATION_EVENTS_CHECKPOINT.md. Complete event/recipient review, actual scheduled operation, deadline/calendar UI and external email remain open.",
+          "progress": "AR/EN delivered-message inbox, requester amendment/route-skip updates, current-reference privacy and stale-step suppression have prior evidence. Native wall-clock scheduled SLA/outbox execution and post-restart redrive now pass 15 isolated integration checks plus 35 focused native regressions. Complete calendar/deadline UI, recipient/template review and aging/holiday delivery semantics remain open.",
           "evidence": [
             "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
             "evidence/s2-regression-02c66abed7ae.json",
@@ -465,18 +465,24 @@
             "../portal/evidence/notification-events-d7ce4da164c3/results.json",
             "../portal/evidence/notification-events-d7ce4da164c3/visual-review.json",
             "../portal/evidence/notifications-c886ea23a778/results.json",
-            "../portal/evidence/browser-4660a7efec85/regression.json"
+            "../portal/evidence/browser-4660a7efec85/regression.json",
+            "S4_SCHEDULER_CHECKPOINT.md",
+            "evidence/scheduler-rehearsal-739f9e51bfe9.json"
           ]
         },
         {
           "id": "S4-05",
           "description": "Verify outbox retries, worker restart recovery, disabled recruiter handoff and email templates in local capture.",
           "status": "in_progress",
-          "progress": "Actual independent RQ worker crash/restart and retry proof passed 35 checks on one exact synthetic queue. Before/after-commit crashes, bounded retries, operator recovery and revoked-recipient suppression preserve one receipt/capture; all six accounts retired and unrelated queues unchanged. Automatic scheduled redrive, disabled recruiter handoff and complete templates remain open. Final affected native regression: 102 checks passed.",
+          "progress": "Real process-death/retry recovery passed 35 checks and 102 affected native regressions in the earlier checkpoint. Native scheduled execution now proves due retries, graceful worker restart/redrive and disabled-recruiter fallback with 15 integration checks plus 35 focused native cases. All 18 scheduler-attempt accounts retired; queues preserved. Complete local template/recipient coverage and candidate-facing ownership acceptance remain open.",
           "evidence": [
             "S4_WORKER_RECOVERY_CHECKPOINT.md",
             "evidence/worker-recovery-1fc8a9b12e9f.json",
-            "evidence/s2-regression-54c85a77c187.json"
+            "evidence/s2-regression-54c85a77c187.json",
+            "S4_SCHEDULER_CHECKPOINT.md",
+            "evidence/scheduler-rehearsal-739f9e51bfe9.json",
+            "evidence/scheduler-retirement-2026-10-13.json",
+            "evidence/s2-regression-44b201888070.json"
           ]
         }
       ],
@@ -491,8 +497,8 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Scoped vacancy operations, dashboard/approvals, delivered-message inbox and requester-event updates have checkpoint evidence. Real isolated local worker crash/retry recovery is verified. S4 remains open for complete recipient/template review, business-calendar/deadline UI, actual scheduled execution/redrive and disabled-recruiter handoff; external email and HR/IT acceptance remain distinct.",
-      "checkpoint": "S4_WORKER_RECOVERY_CHECKPOINT.md"
+      "progress": "Scoped vacancy operations, dashboard/approvals, delivered-message inbox, requester events and real worker recovery are verified at recorded checkpoints. Native timed SLA, outbox retry/redrive and disabled-recruiter fallback now pass in a separate sandbox. Calendar/deadline UI, aging/non-working-day delivery behavior, complete recipient/templates and HR/IT/external-email acceptance remain open.",
+      "checkpoint": "S4_SCHEDULER_CHECKPOINT.md"
     },
     {
       "id": "S5",
@@ -886,8 +892,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Isolated real worker crash/restart and bounded retry recovery verified, with terminal idempotency and current-access suppression. Shared jobs preserved. S4 and release gates remain open.",
-    "evidence": "S4_WORKER_RECOVERY_CHECKPOINT.md",
-    "next": "Prove actual scheduled SLA and outbox redrive in an isolated scheduler environment; complete recipient/calendar/deadline semantics and disabled-recruiter handoff, retaining all 98 requirements."
+    "summary": "Native wall-clock scheduled SLA/outbox and disabled-recruiter fallback verified in a separate sandbox; graceful restart redrives outstanding work without duplicate effects. All cohorts retired and shared queues preserved.",
+    "evidence": "S4_SCHEDULER_CHECKPOINT.md",
+    "next": "Complete calendar/deadline UI and queued-milestone/non-working-day delivery semantics; reconcile event/recipient/templates and remaining S4/S5 ownership acceptance. Preserve all 98 requirements and release gates."
   }
 }

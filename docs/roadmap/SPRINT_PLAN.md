@@ -1,10 +1,12 @@
 # قنديل — HR delivery sprint plan
 
-The [worker recovery checkpoint](S4_WORKER_RECOVERY_CHECKPOINT.md) verifies real isolated RQ process crashes before/after commit, bounded retries, reasoned operator recovery and revoked-recipient suppression with 35 checks. Automatic scheduled redrive, disabled-recruiter handoff and complete templates remain open.
+The [native scheduler checkpoint](S4_SCHEDULER_CHECKPOINT.md) verifies automatic reminders, due retries, disabled-recruiter fallback and worker-restart redrive with 15 integration checks and 35 focused native cases. S4 remains open for calendar/deadline UI and complete delivery policy/templates.
+
+The [worker recovery checkpoint](S4_WORKER_RECOVERY_CHECKPOINT.md) verifies real isolated RQ process crashes before/after commit, bounded retries, reasoned operator recovery and revoked-recipient suppression with 35 checks. Scheduled retry/redrive and disabled-recruiter fallback are now covered by the newer scheduler checkpoint; complete templates and candidate-facing ownership acceptance remain open.
 
 **Active goal:** complete the custom Arabic/English HR portal over Frappe HR, using the reference requirements and verified acceptance gates. Odoo and other departments remain separate.
 
-The [requester-event and reminder checkpoint](S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Actual scheduled execution and final event/recipient policy remain open.
+The [requester-event and reminder checkpoint](S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Native scheduled execution now has separate evidence; final event/recipient policy remains open.
 
 **Starting point:** the first connected hiring journey is implemented and has recorded 10 native + 31 HTTP + 24 browser checks. The older 80-case baseline is 70 passed / 6 partial / 4 blocked at its own checkpoint. Neither result proves complete HR parity or production readiness.
 
