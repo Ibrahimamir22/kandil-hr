@@ -1,0 +1,42 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Person",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "company",
+    "identity_state"
+  ],
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "identity_state",
+      "label": "Identity Review",
+      "fieldtype": "Select",
+      "options": "Unreviewed",
+      "default": "Unreviewed",
+      "reqd": 1,
+      "read_only": 1
+    }
+  ],
+  "permissions": [
+    {
+      "role": "Kandil Recruiter",
+      "read": 1,
+      "select": 1,
+      "report": 1,
+      "print": 1
+    }
+  ],
+  "track_changes": 0
+}

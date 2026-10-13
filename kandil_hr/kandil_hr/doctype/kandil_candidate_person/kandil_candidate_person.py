@@ -1,0 +1,1 @@
+from kandil_hr.candidates.identity import KandilCandidatePerson

@@ -1,5 +1,7 @@
 # قنديل · Kandil HR
 
+The [S5 identity checkpoint](docs/roadmap/S5_IDENTITY_CHECKPOINT.md) adds an **opt-in backend foundation**, with **80 native checks passed**: opaque person/application IDs, explicit identity reuse, scoped duplicate warnings and conservative legacy binding. Full candidate profiles, AR/EN candidate screens, migration preview and HTTP/concurrency acceptance remain pending. The new intake mode is not yet enabled for ordinary review traffic.
+
 The [team notification checkpoint](docs/roadmap/S4_TEAM_NOTIFICATIONS_CHECKPOINT.md) passed **60 native and 37 browser checks**, with inspected English desktop and Arabic mobile captures. Assignment notices exclude the actor, include lead/support changes and consolidate bulk updates into one summary per recipient. S4 business acceptance and recruiter-wide MOVE_ALL remain open. The [S5 implementation contract](docs/roadmap/S5_IMPLEMENTATION_BRIEF.md) defines the next candidate/person, application, sourcing and privacy work; that contract is planning, not a completed candidate workspace.
 
 The [vacancy filter checkpoint](docs/roadmap/S4_FILTER_SELECTORS_CHECKPOINT.md) replaces exact-name company/department/location fields with scoped searchable selectors. **31 native and 65 browser checks passed**, including AR/EN, dependent resets, stale responses and lookup retry. S4 HR acceptance and shared ownership workflows remain open; full candidate work follows in S5.
@@ -22,7 +24,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 The [requester-event and reminder checkpoint](docs/roadmap/S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Native scheduled execution now has separate evidence; final event/recipient policy remains open.
 
-**Current engineering focus: S4 verification handoff into Sprint 5 — candidates and sourcing.** The AR/EN portal includes organization, HR + CEO structural/individual assignment approvals, job descriptions, hiring forms, routing, HR actions, delegation, Board decisions and review history.
+**Current engineering focus: Sprint 5 — candidates and sourcing.** The AR/EN portal includes organization, HR + CEO structural/individual assignment approvals, job descriptions, hiring forms, routing, HR actions, delegation, Board decisions and review history.
 
 [S3 engineering verification](docs/roadmap/S3_ENGINEERING_REVIEW.md) passed 215 native checks, 350 browser checks and three concurrent HTTP scenarios. S3 remains open for HR policy/UAT acceptance. The [17-ID results](docs/roadmap/S3_REQUIREMENT_RESULTS.json) distinguish engineering evidence from business and release acceptance.
 

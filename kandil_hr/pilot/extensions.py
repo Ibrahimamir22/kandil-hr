@@ -40,7 +40,8 @@ def pilot_opening(name, lock=False):
 
 class ApplicantMixin:
 	def autoname(self):
-		if enabled() and not self.email_id:
+		from kandil_hr.candidates.identity import enabled as candidate_identity_enabled
+		if enabled() and (not self.email_id or candidate_identity_enabled()):
 			self.name = "KJA-" + uuid.uuid4().hex[:20]
 		else:
 			super().autoname()
@@ -48,10 +49,16 @@ class ApplicantMixin:
 	def before_insert(self):
 		if enabled() and self.job_title:
 			pilot_opening(self.job_title, lock=True)
+		from kandil_hr.candidates.identity import enabled as candidate_identity_enabled
+		if candidate_identity_enabled():
+			# Contact duplication is reviewed per person, never a shared-contact ban.
+			return
 		super().before_insert()
 
 	def validate(self):
 		super().validate()
+		from kandil_hr.candidates.identity import validate_applicant
+		validate_applicant(self)
 		if not enabled():
 			return
 		if not self.email_id and not (self.phone_number or "").strip():
@@ -71,7 +78,9 @@ class ApplicantMixin:
 			contact = (
 				("email:" + (self.email_id or "").strip().lower()) if self.email_id else "phone:" + phone
 			)
-			self.custom_kandil_application_key = identity(self.job_title, contact)
+			self.custom_kandil_application_key = identity(
+				self.job_title, "application:" + self.name if self.get("custom_kandil_person") else contact
+			)
 		elif not old and self.get("custom_kandil_application_key"):
 			deny("Application identity is server managed.")
 		elif old and self.get("custom_kandil_application_key") != old.get("custom_kandil_application_key"):

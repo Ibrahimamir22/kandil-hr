@@ -1,0 +1,17 @@
+{
+  "site": "kandil-parity.localhost",
+  "candidate_intake_enabled": false,
+  "person_doctype_installed": true,
+  "person_records": 0,
+  "read_only_fields": [
+    "custom_kandil_person",
+    "custom_kandil_identity_origin",
+    "custom_kandil_source_channel",
+    "custom_kandil_source_detail"
+  ],
+  "portal_http_status": 200,
+  "method": "Read-only Frappe ORM inspection after parity-web-only restart; HTTP GET of review portal",
+  "limits": [
+    "No intake activation or business-data migration. Native fixture changes were rolled back. HTTP status is health evidence only, not authenticated candidate workflow proof."
+  ]
+}

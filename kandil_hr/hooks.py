@@ -493,3 +493,7 @@ override_whitelisted_methods['frappe.desk.doctype.notification_log.notification_
 
 # Event-triggered invitations also recover missed jobs and newly effective grants.
 scheduler_events["all"].append("kandil_hr.recruitment.invitations.process_pending")
+
+# Person reads inherit permitted applications; mutation uses reviewed commands.
+has_permission["Kandil Candidate Person"] = "kandil_hr.candidates.identity.permission"
+permission_query_conditions["Kandil Candidate Person"] = "kandil_hr.candidates.identity.query"

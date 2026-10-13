@@ -55,6 +55,17 @@ def related_state(doc, operation, payload, result=None, previous=()):
 		for name in sorted((payload.get("relocations") or {}).values()):
 			add("Kandil Capacity", name)
 	opening_names = {name for kind, name in targets if kind == "Job Opening"}
+	if operation in ("candidate_intake", "candidate_identity_migrate"):
+		if payload.get("opening") not in opening_names:
+			frappe.throw(_("The candidate vacancy does not belong to this request."), frappe.PermissionError)
+		if payload.get("person"):
+			add("Kandil Candidate Person", payload["person"])
+		applicant = payload.get("application") or (result or {}).get("application")
+		if applicant:
+			if frappe.db.get_value("Job Applicant", applicant, "job_title") not in opening_names:
+				frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)
+			app = add("Job Applicant", applicant)
+			add("Kandil Candidate Person", app.get("custom_kandil_person"))
 	if operation in ("application_owner", "application_task"):
 		if frappe.db.get_value("Job Applicant", payload["application"], "job_title") not in opening_names:
 			frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)

@@ -560,9 +560,11 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Person/application identity and migration contract prepared; schema and command implementation pending.",
+          "progress": "Identity schema, versioned recruiter intake, application-scoped person access and conservative legacy-binding primitive implemented and native-tested. Complete person profile/history, duplicate review UI, former/internal candidates, migration rollout and HTTP/concurrency acceptance remain pending.",
           "evidence": [
-            "S5_IMPLEMENTATION_BRIEF.md"
+            "S5_IMPLEMENTATION_BRIEF.md",
+            "S5_IDENTITY_CHECKPOINT.md",
+            "evidence/s2-regression-269ddacc42c4.json"
           ]
         },
         {
@@ -601,7 +603,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Reference inspection and six-increment implementation contract prepared. Candidate identity schema, migration and full workspace implementation are pending. No S5 feature acceptance is claimed."
+      "progress": "Opt-in backend identity/intake foundation implemented: opaque company person, distinct HRMS applications, scoped duplicate warnings, immutable source and explicit legacy binding. 17 focused and 63 affected native cases passed. Full person profile, UI, migration preview, HTTP/concurrency and S5 acceptance remain open; ordinary review intake mode stays disabled.",
+      "checkpoint": "S5_IDENTITY_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -944,9 +947,9 @@
     "Human acceptance is separately recorded and never inferred from automated tests."
   ],
   "latest_checkpoint": {
-    "sprint": "S4",
-    "summary": "Reference-aligned recruiter team notifications: 60 native and 37 browser checks passed; final EN/AR screenshots reviewed. All 98 requirements preserved. S5 contract prepared, implementation pending.",
-    "evidence": "S4_TEAM_NOTIFICATIONS_CHECKPOINT.md",
-    "next": "Implement S5 person/application identity and guarded migration, followed by candidate workspace, sourcing and MOVE_ALL ownership transfer. HR/IT/security/capacity/release gates remain open."
+    "sprint": "S5",
+    "summary": "Opt-in candidate identity/intake backend passed 80 native checks (17 focused plus 63 affected regressions). No production or site-wide activation; full candidate profile and workspace remain open.",
+    "evidence": "S5_IDENTITY_CHECKPOINT.md",
+    "next": "Implement full scoped person/application projections and controlled profile changes, AR/EN candidate intake/workspace and migration preview; then committed ordinary-session and concurrency validation before synthetic-site activation. Preserve all 98 requirements and release gates."
   }
 }
