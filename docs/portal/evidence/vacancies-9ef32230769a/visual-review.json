@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-10-13",
+  "status": "PASS",
+  "images": [
+    {
+      "file": "queue-en.png",
+      "sha256": "efa8e4b8c4b4943d249480f3b6a3bc73995d1914a24e756c00eba5653a246e64",
+      "observation": "Readable desktop filter grid, exact total, paused vacancy quantities and priority explanation; no observed overlap."
+    },
+    {
+      "file": "queue-ar.png",
+      "sha256": "a753435333fd4729b511c6b549d716b82377f651871f16307731a915ade6d276",
+      "observation": "RTL mobile layout fits viewport; header captured at top, all filter actions and vacancy content visible; priority date remains unbroken."
+    }
+  ],
+  "limits": [
+    "Synthetic EN desktop and AR mobile filtered vacancy screen only; complete HR UAT and accessibility audit remain open."
+  ]
+}

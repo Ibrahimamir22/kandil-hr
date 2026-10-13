@@ -6,7 +6,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 [S3 engineering verification](docs/roadmap/S3_ENGINEERING_REVIEW.md) passed 215 native checks, 350 browser checks and three concurrent HTTP scenarios. S3 remains open for HR policy/UAT acceptance. The [17-ID results](docs/roadmap/S3_REQUIREMENT_RESULTS.json) distinguish engineering evidence from business and release acceptance.
 
-Next: implement the dedicated vacancy queue, recruiter teams and lifecycle actions described in the [S4 brief](docs/roadmap/S4_IMPLEMENTATION_BRIEF.md). See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements.
+The [dedicated vacancy queue](docs/roadmap/S4_VACANCY_QUEUE_CHECKPOINT.md) now provides scoped server-side search, exact totals, pagination, team/unassigned/state/location filters, quantities and priority explanations in AR/EN. Evidence covers 15 final queue tests, 37 existing native regressions and 51 browser checks. Next: paginated recruiter lookup, complete team/bulk assignment and lifecycle controls from the [S4 brief](docs/roadmap/S4_IMPLEMENTATION_BRIEF.md). See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements.
 
 The local site uses synthetic data. HR acceptance, live email, independent security review, sustained 1,000+ account capacity/recovery testing, hosting and production rollout remain separate gates.
 

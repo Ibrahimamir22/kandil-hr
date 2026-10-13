@@ -388,7 +388,16 @@
         {
           "id": "S4-01",
           "description": "Complete vacancy lead/team assignment, unassigned queue, bulk actions, priority and reasoned pinning.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Dedicated vacancy queue and existing lead assignment verified. Live lead eligibility and native parent/opening/child restrictions apply before totals. Full team editing, bulk/pin controls and bounded recruiter directory are still required; this task is not complete.",
+          "evidence": [
+            "S4_VACANCY_QUEUE_CHECKPOINT.md",
+            "evidence/s2-regression-4b56e52fd719.json",
+            "evidence/s2-regression-6d1c282c89d5.json",
+            "../portal/evidence/vacancies-9ef32230769a/results.json",
+            "../portal/evidence/vacancies-9ef32230769a/visual-review.json",
+            "../portal/evidence/browser-74bf04ec66d3/regression.json"
+          ]
         },
         {
           "id": "S4-02",
@@ -422,7 +431,8 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Current-source gap review and delivery contract prepared. Dedicated scoped vacancy read model and portal are next; no new S4 screen is claimed implemented by this checkpoint."
+      "progress": "Dedicated scoped AR/EN vacancy queue implemented and verified: exact counts/pages/search, team/unassigned/state/location filters, quantities and priority explanations. 15 final queue cases, 37 existing native regressions and 51 browser checks passed at the source checkpoints recorded in S4_VACANCY_QUEUE_CHECKPOINT.md. S4 remains in progress: paginated recruiter lookup, complete team/bulk/lifecycle controls, dashboard/inbox and scheduler remain open.",
+      "checkpoint": "S4_VACANCY_QUEUE_CHECKPOINT.md"
     },
     {
       "id": "S5",

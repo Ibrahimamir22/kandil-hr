@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "run_id": "3158dc5b9123",
+  "checked_at": "2026-10-13T03:11:42.244Z",
+  "checks": [
+    {
+      "name": "28 real approved per-location vacancies prepared",
+      "status": "PASS"
+    },
+    {
+      "name": "en: first page contains 25 cards and total 28",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second page has 3 distinct rows, exact total, stable ordering",
+      "status": "PASS"
+    },
+    {
+      "name": "en: final page cannot advance",
+      "status": "PASS"
+    },
+    {
+      "name": "en: server search resets offset and finds a vacancy outside the first page",
+      "status": "PASS"
+    },
+    {
+      "name": "en: priority breakdown displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "en: RTL/LTR and viewport fit",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unassigned count excludes live authorized lead",
+      "status": "PASS"
+    },
+    {
+      "name": "en: my team includes non-lead team member",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paused filter preserves remaining quantity and zero score",
+      "status": "PASS"
+    },
+    {
+      "name": "en: literal search has accurate empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: location filter counts all 14 matching openings",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: first page contains 25 cards and total 28",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second page has 3 distinct rows, exact total, stable ordering",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: final page cannot advance",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: server search resets offset and finds a vacancy outside the first page",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: priority breakdown displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: RTL/LTR and viewport fit",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unassigned count excludes live authorized lead",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: my team includes non-lead team member",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paused filter preserves remaining quantity and zero score",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: literal search has accurate empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: location filter counts all 14 matching openings",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider with recruiter role cannot list or count guessed company",
+      "status": "PASS"
+    },
+    {
+      "name": "Live grant revocation moves assigned vacancy into unassigned results",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript errors, HTTP 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged throughout browser test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "3158dc5b9123",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/vacancies.py": "a58d8a28693d9584ad9e7a9b51d59077b5e4ae8522e3d60827abedb45cafd6c8",
+    "kandil_hr/portal/vacancy_fixture.py": "a62be1c497b1ae9e0683e9e8929e0c6f8958bed2307e9772ca6b7212c29e8947",
+    "kandil_hr/portal/test_vacancies.py": "fc932338a9efbfbee5ed1e536bd4adb7357559c858ac6cb70fd72cc1568a049f",
+    "kandil_hr/recruitment/vacancies.py": "ef28f6a2640817abdde25164839203b3074d9801eee9a65c16b77324e0f26a10",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/security.py": "018db24a3c4e27bd499a431d7eaa99765daa54582b069d22e8c58911286430bb",
+    "frontend/portal/src/VacancyQueue.tsx": "003b68688e6e50ca1a767f2d61fea018ff8cecb3c52e3f3d0c2a524fc90e49b5",
+    "frontend/portal/src/main.tsx": "ba1a23ba4f529fd6e474c01d5d309e920c4a7999631b936b439a389c3fc71481",
+    "frontend/portal/src/portal.css": "62aa353fda2792d7a8c11d04b526501a2f464a85dedc5acc0abcce91bfb6a655",
+    "kandil_hr/public/portal/portal.js": "2dc798db2ed9780db5220e1718f57ba6e675355922c7f5b5bb06ec4b3534afb2",
+    "docs/portal/test_vacancy_queue.cjs": "430bc53497bbdea2aac2951cfb831c5e660d4145ae8412b2b29bf9b576e6f4e8"
+  },
+  "limits": [
+    "Synthetic vacancy read model and existing lead assignment only; bulk/lifecycle controls, directory pagination, scheduler and production scale remain open."
+  ]
+}

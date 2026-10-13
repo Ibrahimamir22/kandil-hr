@@ -1,0 +1,47 @@
+{
+  "status": "FAIL",
+  "run_id": "a39516ddfd38",
+  "checked_at": "2026-10-13T03:10:49.571Z",
+  "checks": [
+    {
+      "name": "28 real approved per-location vacancies prepared",
+      "status": "PASS"
+    },
+    {
+      "name": "en: first page contains 25 cards and total 28",
+      "status": "PASS"
+    },
+    {
+      "name": "Vacancy browser failure",
+      "status": "FAIL",
+      "error_type": "Error",
+      "error_message": "page.evaluate: TypeError: r.status is not a function"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a39516ddfd38",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/vacancies.py": "a58d8a28693d9584ad9e7a9b51d59077b5e4ae8522e3d60827abedb45cafd6c8",
+    "kandil_hr/portal/vacancy_fixture.py": "a62be1c497b1ae9e0683e9e8929e0c6f8958bed2307e9772ca6b7212c29e8947",
+    "kandil_hr/portal/test_vacancies.py": "fc932338a9efbfbee5ed1e536bd4adb7357559c858ac6cb70fd72cc1568a049f",
+    "kandil_hr/recruitment/vacancies.py": "ef28f6a2640817abdde25164839203b3074d9801eee9a65c16b77324e0f26a10",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/security.py": "018db24a3c4e27bd499a431d7eaa99765daa54582b069d22e8c58911286430bb",
+    "frontend/portal/src/VacancyQueue.tsx": "003b68688e6e50ca1a767f2d61fea018ff8cecb3c52e3f3d0c2a524fc90e49b5",
+    "frontend/portal/src/main.tsx": "ba1a23ba4f529fd6e474c01d5d309e920c4a7999631b936b439a389c3fc71481",
+    "frontend/portal/src/portal.css": "62aa353fda2792d7a8c11d04b526501a2f464a85dedc5acc0abcce91bfb6a655",
+    "kandil_hr/public/portal/portal.js": "2dc798db2ed9780db5220e1718f57ba6e675355922c7f5b5bb06ec4b3534afb2",
+    "docs/portal/test_vacancy_queue.cjs": "357a8a21982250f7d1702c0d23c3968b246678feffe9db0e169a31dc1d00b777"
+  },
+  "limits": [
+    "Synthetic vacancy read model and existing lead assignment only; bulk/lifecycle controls, directory pagination, scheduler and production scale remain open."
+  ]
+}
