@@ -2,9 +2,11 @@
 
 Custom Frappe HR extension for Kandil's HR department. Odoo and the broader company platform remain separate. This repository contains Kandil's application source, schemas, native Frappe screens, tests and deployment package. The official Frappe, ERPNext and HRMS sources are installed as separate pinned dependencies, without modifying their core code.
 
-**Current status: Sprint 3 is in progress.** The AR/EN portal includes organization browsing, HR + CEO structural/individual assignment approvals, job descriptions, PDF/local delivery, hiring forms, route previews, request operations, delegation, Board decisions and recorded review history.
+**Current engineering focus: Sprint 4 — vacancy operations.** The AR/EN portal includes organization, HR + CEO structural/individual assignment approvals, job descriptions, hiring forms, routing, HR actions, delegation, Board decisions and review history.
 
-The latest [attachment checkpoint](docs/roadmap/S3_INDIRECT_FILES_CHECKPOINT.md) protects indirect file links and retained aliases, with 110 native and 34 signed-in HTTP checks passed. The [S3 acceptance matrix](docs/roadmap/S3_ACCEPTANCE_MATRIX.md) maps all 17 hiring/authority requirements to their verification cases. Next: integrated S3 acceptance, then S4 vacancy/recruiter operations. See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements and earlier checkpoints.
+[S3 engineering verification](docs/roadmap/S3_ENGINEERING_REVIEW.md) passed 215 native checks, 350 browser checks and three concurrent HTTP scenarios. S3 remains open for HR policy/UAT acceptance. The [17-ID results](docs/roadmap/S3_REQUIREMENT_RESULTS.json) distinguish engineering evidence from business and release acceptance.
+
+Next: implement the dedicated vacancy queue, recruiter teams and lifecycle actions described in the [S4 brief](docs/roadmap/S4_IMPLEMENTATION_BRIEF.md). See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements.
 
 The local site uses synthetic data. HR acceptance, live email, independent security review, sustained 1,000+ account capacity/recovery testing, hosting and production rollout remain separate gates.
 

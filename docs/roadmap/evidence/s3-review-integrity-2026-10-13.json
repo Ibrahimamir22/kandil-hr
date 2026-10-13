@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "frozen_reference_sha256": "25dbbe46c0bdcac9b2f33fa466cb21c26eedf80888f1b06d8052b7f7746ba2fd",
+  "reference_ids": 98,
+  "requirement_text_and_allocations_unchanged": true,
+  "source_accounting": [
+    {
+      "evidence": "s2-regression-51e45850d96c.json",
+      "later_fixture_or_harness_changes": [
+        "kandil_hr/recruitment/concurrency_fixture.py"
+      ]
+    },
+    {
+      "evidence": "s3-browser-acceptance-73c43299eeb1.json",
+      "later_fixture_or_harness_changes": [
+        "docs/portal/test_board.cjs",
+        "docs/roadmap/run_s3_browser_acceptance.py",
+        "kandil_hr/recruitment/concurrency_fixture.py"
+      ]
+    },
+    {
+      "evidence": "s3-browser-acceptance-5036f7507834.json",
+      "later_fixture_or_harness_changes": [
+        "docs/roadmap/run_s3_browser_acceptance.py",
+        "kandil_hr/recruitment/concurrency_fixture.py"
+      ]
+    },
+    {
+      "evidence": "s3-browser-acceptance-0d316e8d3fb2.json",
+      "later_fixture_or_harness_changes": [
+        "kandil_hr/recruitment/concurrency_fixture.py"
+      ]
+    }
+  ],
+  "final_concurrency_fingerprints_match": true,
+  "limits": [
+    "Evidence integrity and scope preservation, not additional application acceptance tests."
+  ]
+}

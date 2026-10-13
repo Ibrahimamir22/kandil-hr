@@ -11,6 +11,8 @@ import os
 import re
 import secrets
 from pathlib import Path
+from contextlib import contextmanager
+from unittest.mock import patch
 
 import frappe
 from frappe.utils import today
@@ -64,7 +66,32 @@ def insert(doctype, **values):
 	return frappe.get_doc(dict(doctype=doctype, **values)).insert(ignore_permissions=True)
 
 
+@contextmanager
+def local_user_contacts(run_id):
+	"""Exact CLI cohort contact sync; leave existing shared jobs untouched."""
+	guard(run_id)
+	if getattr(frappe.local, "request", None):
+		raise RuntimeError("Synthetic contact setup requires the parity CLI")
+	original = frappe.enqueue
+	allowed = {f"conc-{run_id}-{role}@example.invalid" for role in ("requester", "manager", "hr", "sector")}
+	def enqueue(method, *args, **kwargs):
+		if (method == "frappe.core.doctype.user.user.create_contact"
+				and getattr(kwargs.get("user"), "name", None) in allowed):
+			kwargs["now"] = True
+		return original(method, *args, **kwargs)
+	with patch("frappe.enqueue", side_effect=enqueue):
+		yield
+
+
 def prepare(run_id):
+	guard(run_id)
+	# Employee linking also saves its User; keep that exact cohort contact
+	# synchronization inside the same local setup boundary.
+	with local_user_contacts(run_id):
+		return _prepare(run_id)
+
+
+def _prepare(run_id):
 	guard(run_id)
 	path = path_for(run_id)
 	if path.exists():
@@ -89,15 +116,15 @@ def prepare(run_id):
 	}.items():
 		email = prefix.lower() + "-" + key + "@example.invalid"
 		password = secrets.token_urlsafe(36)
-		insert(
-			"User",
-			email=email,
-			first_name=prefix + " " + key,
-			enabled=1,
-			send_welcome_email=0,
-			user_type="System User",
-			roles=[{"role": r} for r in roles],
-		)
+		# Match the existing portal fixture's bulk-import creation path without
+		# changing the site's signup throttle or executing unrelated queued jobs.
+		previous_import = frappe.flags.get("in_import")
+		try:
+			frappe.flags.in_import = True
+			insert("User", email=email, first_name=prefix + " " + key, enabled=1,
+				send_welcome_email=0, user_type="System User", roles=[{"role": r} for r in roles])
+		finally:
+			frappe.flags.in_import = previous_import
 		update_password(email, password, logout_all_sessions=True)
 		users[key] = dict(email=email, password=password)
 		insert(
@@ -296,7 +323,8 @@ def cleanup(run_id):
 		for account in data["users"].values():
 			user = frappe.get_doc("User", account["email"])
 			user.enabled = 0
-			user.save(ignore_permissions=True)
+			with local_user_contacts(run_id):
+				user.save(ignore_permissions=True)
 		data["cleaned"] = True
 		for account in data["users"].values():
 			account.pop("password", None)
@@ -304,7 +332,11 @@ def cleanup(run_id):
 		persist(path_for(run_id), data)
 	result = inspect(run_id)
 	result["audit_retained"] = True
-	result["accounts_disabled"] = True
+	result["accounts_disabled"] = not any(
+		frappe.db.get_value("User", account["email"], "enabled") for account in data["users"].values()
+	)
+	if not result["accounts_disabled"]:
+		raise RuntimeError("A synthetic concurrency account remains enabled")
 	if any(result["ledger"][key] for key in ["occupied", "reserved", "open_slots"]):
 		raise RuntimeError("Synthetic cleanup ledger did not reconcile to zero")
 	return result

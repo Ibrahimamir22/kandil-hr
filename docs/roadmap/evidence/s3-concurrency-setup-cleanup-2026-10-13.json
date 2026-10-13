@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "run_ids": [
+    "6c2a382a90eb",
+    "0e31fb1883d3",
+    "72e9dcf66f82"
+  ],
+  "remaining_failed_fixture_records": {
+    "Company": 0,
+    "User": 0
+  },
+  "scope": "Exact three failed concurrency preparation cohorts only; read-only database count."
+}

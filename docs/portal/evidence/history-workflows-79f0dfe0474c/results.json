@@ -1,0 +1,353 @@
+{
+  "status": "PASS",
+  "run_id": "79f0dfe0474c",
+  "checked_at": "2026-10-13T02:38:41.881Z",
+  "checks": [
+    {
+      "name": "en: delegate sees original two-seat review and distinct principal",
+      "status": "PASS"
+    },
+    {
+      "name": "en: delegate identity is rendered beside principal",
+      "status": "PASS"
+    },
+    {
+      "name": "delegate-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO historical review preserves requested two versus proposed one",
+      "status": "PASS"
+    },
+    {
+      "name": "en: CEO reference reads do not enable live headcount preview",
+      "status": "PASS"
+    },
+    {
+      "name": "ceo-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old Board return survives a later approval and HR correction",
+      "status": "PASS"
+    },
+    {
+      "name": "en: actual Board member is distinct from recorder and frozen chair",
+      "status": "PASS"
+    },
+    {
+      "name": "en: retained supporting proof appears on old decision",
+      "status": "PASS"
+    },
+    {
+      "name": "en: current authorized member downloads original retained bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider cannot download historical Board proof",
+      "status": "PASS"
+    },
+    {
+      "name": "board-retained-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original submission compares with exact old Board reviewed quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "board-comparison-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: correction preserves original requested quantity and reduces approval",
+      "status": "PASS"
+    },
+    {
+      "name": "en: correction shows captured reason and changed requirements",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary correction is not labelled approval restart",
+      "status": "PASS"
+    },
+    {
+      "name": "correction-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unchanged quantity request has no new revision or restart",
+      "status": "PASS"
+    },
+    {
+      "name": "en: no-change explanation is visible",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: increased quantities show original and new reservation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: completed approval was replaced by fresh pending steps",
+      "status": "PASS"
+    },
+    {
+      "name": "en: restart reason and explanation are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "restart-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old manager decision retains two seats after later three-seat approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "en: pre-change saved version has a localized label",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved source remains readable despite earlier unchanged command",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider cannot enumerate expanded history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: a permitted request cannot borrow an event from another",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: delegate sees original two-seat review and distinct principal",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: delegate identity is rendered beside principal",
+      "status": "PASS"
+    },
+    {
+      "name": "delegate-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO historical review preserves requested two versus proposed one",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: CEO reference reads do not enable live headcount preview",
+      "status": "PASS"
+    },
+    {
+      "name": "ceo-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old Board return survives a later approval and HR correction",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: actual Board member is distinct from recorder and frozen chair",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: retained supporting proof appears on old decision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: current authorized member downloads original retained bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider cannot download historical Board proof",
+      "status": "PASS"
+    },
+    {
+      "name": "board-retained-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original submission compares with exact old Board reviewed quantity",
+      "status": "PASS"
+    },
+    {
+      "name": "board-comparison-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: correction preserves original requested quantity and reduces approval",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: correction shows captured reason and changed requirements",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary correction is not labelled approval restart",
+      "status": "PASS"
+    },
+    {
+      "name": "correction-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unchanged quantity request has no new revision or restart",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: no-change explanation is visible",
+      "status": "PASS"
+    },
+    {
+      "name": "unchanged-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: increased quantities show original and new reservation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: completed approval was replaced by fresh pending steps",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: restart reason and explanation are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "restart-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old manager decision retains two seats after later three-seat approvals",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: pre-change saved version has a localized label",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: saved source remains readable despite earlier unchanged command",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider cannot enumerate expanded history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: a permitted request cannot borrow an event from another",
+      "status": "PASS"
+    },
+    {
+      "name": "en: restricted recorded actor is omitted while the actual permitted principal remains",
+      "status": "PASS"
+    },
+    {
+      "name": "en: restricted policy authority is omitted without losing quantities",
+      "status": "PASS"
+    },
+    {
+      "name": "en: explicit restricted-identity label replaces hidden account",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HTTP projected history contains no restricted account identifier",
+      "status": "PASS"
+    },
+    {
+      "name": "restricted-identity-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: restricted recorded actor is omitted while the actual permitted principal remains",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: restricted policy authority is omitted without losing quantities",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: explicit restricted-identity label replaces hidden account",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HTTP projected history contains no restricted account identifier",
+      "status": "PASS"
+    },
+    {
+      "name": "restricted-identity-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked Board grant clears historical decision and proof link",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked Board grant denies the old proof download",
+      "status": "PASS"
+    },
+    {
+      "name": "All recorded revision and audit bytes unchanged by history reads",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript errors, server failures or external browser traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "unchanged": {
+    "run_id": "79f0dfe0474c",
+    "history_unchanged": true
+  },
+  "cleanup": {
+    "run_id": "79f0dfe0474c",
+    "cleaned": true,
+    "accounts_disabled": 9,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/history_identities.py": "2ba0bdbe16550416bab9d686fdcca3809cfc7f09fdc950de2846c5a53aeb1346",
+    "kandil_hr/recruitment/history_references.py": "8b1424df244ff6db14139d3bff349d8e32c34087efb856ed200baa51a41706b0",
+    "kandil_hr/recruitment/note_projection.py": "6ce82c49c51f098d75a53ef1fa9ae9c043cb12cfe53ab691ce75c133acb74c81",
+    "kandil_hr/recruitment/event_access.py": "6f317942b7e135ba220fb7921d781492a12df23cc27096cc2567b57ce2bf94a3",
+    "kandil_hr/recruitment/review_views.py": "7661259c164554f45ca972137dd46ac7b8a8dae5e3d02bf26402575a39869dde",
+    "kandil_hr/pilot/permissions.py": "3bf5a9c9e91a13bffd120fb630c208fdaaca5a65017b41f9c019ee5ec4730482",
+    "kandil_hr/pilot/models.py": "3d1c23c7241465c1e415461e2a8b36c2630d455702e9d83112032d2be96fd552",
+    "kandil_hr/portal/history_workflows_fixture.py": "14d7ec20c3f78acfb169ee4511873b2e7209b81c2abbd351ce5e9b6a63867c6b",
+    "kandil_hr/portal/board_fixture.py": "a018a5266a8af329cba70abee0c0761151b8c1e943642848eb63d6067ff91537",
+    "kandil_hr/portal/request_history.py": "da65b5a564781f807c34b60a3a6eabf444f4a439b4d20f88b182763bed16b6bd",
+    "kandil_hr/portal/request_revisions.py": "67ba1b273942b78576302ce31017fecf086b0d6b5b6058cac571b6c2850f2c05",
+    "kandil_hr/portal/history_rationale.py": "b46ca5cb8a0c6f23c66950d424365670cbe7038bdfcc517c73ccbd9174f3a7ac",
+    "kandil_hr/recruitment/corrections.py": "4f406d0ed9332db2372cf5e7fd3f06e75c8a88192452d4a82b39f9540f97e1c4",
+    "kandil_hr/recruitment/pending_revision.py": "420e5767ba5b598fc8f4a5fe7e65781b4fcb208d4f129c212ce0a575bb6e0ef4",
+    "kandil_hr/recruitment/api.py": "cabe6343a4f92a08ae2fd02986884de9624ccc625bb7038082a5cc89269536a7",
+    "kandil_hr/recruitment/authority.py": "5f8db8e0747103ee6213c22cb6af14137cfadcc610f6fd815cfde13d4a64d035",
+    "kandil_hr/foundation/files.py": "ee307c37c1fbda295987f826ec60aa6ca20443a6e5cead2820e057a3cf615f64",
+    "kandil_hr/foundation/board_files.py": "28fa85c7c7dea23a0f6535d3cdc5b59a3c831090bffe210660518134f1d3c909",
+    "kandil_hr/portal/board.py": "ffede0843eae4d1226f359a320bbcd6aca015415918915c46f1c43c3f4324beb",
+    "kandil_hr/pilot/navigation.py": "3b2a961230638b7025c24ec29a251508bc952b2b4014fffb6fa58f20a4d2e1a9",
+    "kandil_hr/recruitment/preview.py": "103d7d2503601f139f866e5fd32e8c4e39020a22a0456b2285975f867ba213a7",
+    "frontend/portal/src/RequestHistory.tsx": "091f2467f876115e2e652fdafc214e753365e21f69eca721f1dd09d97d91584b",
+    "frontend/portal/src/RequestRevisions.tsx": "1e477db65e3da2ff9dbf7ae5dcd60b7331195b7108eb65e04043962f624f064e",
+    "frontend/portal/src/HistoryCapture.tsx": "439a75b565b49f3485d2d98752342a94d1f104c5174383b8858bf5169ea2de5c",
+    "frontend/portal/src/main.tsx": "12b75363f1b7eee503e7e460cbac34ee2ca809828c60f9b854518c0b5f1e3e92",
+    "kandil_hr/public/portal/portal.js": "d76d0a338e9a3eec00ab027efa641d868321b920288ebb02d0dbb6f78b5227bd",
+    "docs/portal/test_history_workflows.cjs": "da25a25092bcc626ced7d84008e259dad7110e72779a2b831f36f55d2ac3c0ee"
+  },
+  "limits": [
+    "Synthetic ordinary-session historical views; mutation workflows have separate acceptance. Remaining native raw history/reference audit and independent HR/security/capacity gates stay open."
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "checked_at": "2026-10-13T02:29:54.190932+00:00",
+  "native_evidence": "evidence/s2-regression-51e45850d96c.json",
+  "native_checks": 215,
+  "description": "Selected clause anchors in the 215-check native run. The complete suite results and S3_ACCEPTANCE_MATRIX.md supply supporting cases. A matching test name is not by itself a business acceptance decision.",
+  "policy_register": "../phases_0_3/POLICY_DECISIONS.md",
+  "requirements": [
+    {
+      "id": "ORG-005",
+      "requirement": "Delegation / acting authority with dates and history",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_delegations.TestPortalDelegations.test_revise_creates_linked_version_and_revokes_old_without_overwrite",
+        "kandil_hr.portal.test_delegations.TestPortalDelegations.test_ceo_authority_needs_configured_ceo_decision_and_new_version_reapproval",
+        "kandil_hr.portal.test_delegations.TestPortalDelegations.test_ninety_inclusive_days_allowed_ninety_one_denied",
+        "kandil_hr.portal.test_delegations.TestPortalDelegations.test_effective_date_boundaries_and_process_isolation",
+        "kandil_hr.portal.test_delegations.TestPortalDelegations.test_revocation_between_view_and_delegated_approval_denies_action"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "ORG-006",
+      "requirement": "Structural change: chain, HR review, CEO approval, Position ID on approval",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_structure.TestStructurePortal.test_independent_chain_replay_and_exact_capacity_change",
+        "kandil_hr.portal.test_structure.TestStructurePortal.test_create_and_close_without_replacing_existing_headcount",
+        "kandil_hr.portal.test_structure.TestStructurePortal.test_return_revision_preserves_history_and_invalidates_old_steps"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "HC-003",
+      "requirement": "Current / available HC shown as guidance; any number requestable",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_route_preview.TestRoutePreview.test_block_warn_reason_and_independent_exception",
+        "kandil_hr.portal.test_route_preview.TestRoutePreview.test_stale_preview_cannot_authorize_later_shortage"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "HC-004",
+      "requirement": "HC exception approved by the HR Sector Manager only (CHG-40/2)",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_hc00402_personal_sector_shortage_requires_independent_ceo"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "HC-005",
+      "requirement": "Available = Structural − Occupied − Open; no double counting",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_contracts.TestRecruitmentContracts.test_hc_005_01_real_assignments_openings_and_reservations",
+        "kandil_hr.recruitment.test_contracts.TestRecruitmentContracts.test_preview_incremental_demand_for_approved_and_amendment"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "HC-006",
+      "requirement": "HC checks warn-only until switched to block",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_contracts.TestRecruitmentContracts.test_hc_006_same_shortage_block_then_warn_and_frozen_authority"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-001",
+      "requirement": "Manager requests only positions in his scope, server-side",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_request_form.TestRequestForm.test_native_employee_user_permission_filters_selector_and_guessed_native_save",
+        "kandil_hr.portal.test_request_form.TestRequestForm.test_branch_management_scope_rejects_guessed_employee",
+        "kandil_hr.portal.test_request_form.TestRequestForm.test_revocation_guest_readonly_and_invalid_selector"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-002",
+      "requirement": "Current form fields kept (HR-REC-F02)",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_request_form.TestRequestForm.test_full_fields_round_trip_edit_submit_and_saved_detail",
+        "kandil_hr.portal.test_request_form.TestRequestForm.test_restricted_existing_reference_is_hidden_preserved_and_replay_redacted"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-003",
+      "requirement": "One request, several locations via request lines",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_two_locations_reserve_approve_and_cancel_exact_balances",
+        "kandil_hr.recruitment.test_commands.TestRecruitmentCommands.test_bulk_team_second_parent_stale_rolls_back_first_parent"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-004",
+      "requirement": "Chain from structure; missing level skipped; self-approval blocked",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00401_vacant_head_is_recorded_and_hr_notified_once",
+        "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_req00402_creator_and_beneficiary_are_independent_and_frozen",
+        "kandil_hr.recruitment.test_authority_audit.TestAuthorityAudit.test_acc00302_interested_delegated_actor_cannot_approve_independent_principal"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-005",
+      "requirement": "CEO by HR routing, dated CEO rules, Sector Manager → CEO",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_contracts.TestRecruitmentContracts.test_req_005_01_cairo_midnight_rule_boundary",
+        "kandil_hr.recruitment.test_contracts.TestRecruitmentContracts.test_req_005_02_hr_routing_reason_and_pending_principal_stability"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-006",
+      "requirement": "HR Manager approve / reject / return / edit / send to CEO",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_request_operations.TestRequestOperations.test_review_retains_requested_changes_only_reserved_and_replays_once",
+        "kandil_hr.portal.test_request_operations.TestRequestOperations.test_add_ceo_keeps_hr_pending_and_requires_both_decisions",
+        "kandil_hr.portal.test_request_operations.TestRequestOperations.test_disabled_revoked_and_interested_ceo_cannot_be_added",
+        "kandil_hr.portal.test_request_operations.TestRequestOperations.test_stale_changed_replay_and_revoked_replay_are_denied"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-008",
+      "requirement": "Return for revision with timestamps and versions",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_request_revisions.TestRequestRevisions.test_return_revise_keeps_old_snapshot_and_cross_revision_label",
+        "kandil_hr.portal.test_request_revisions.TestRequestRevisions.test_multiple_actions_in_one_revision_have_distinct_saved_records"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-009",
+      "requirement": "Approval snapshot of what each approver saw",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_request_history.TestRequestHistory.test_decision_content_survives_return_revision_and_policy_change",
+        "kandil_hr.portal.test_request_history.TestRequestHistory.test_actual_frozen_policy_not_current_settings",
+        "kandil_hr.portal.test_request_history.TestRequestHistory.test_requested_and_hr_proposed_values_are_distinct",
+        "kandil_hr.portal.test_request_history.TestRequestHistory.test_no_private_envelope_fields_and_no_read_side_effects"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-010",
+      "requirement": "Request timeline and My Requests",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_requests.TestRequests.test_mine_and_scope_counts_follow_requester_identity",
+        "kandil_hr.portal.test_requests.TestRequests.test_pages_stable_complete_and_total_not_page_count",
+        "kandil_hr.portal.test_requests.TestRequests.test_search_applies_before_pagination_and_count",
+        "kandil_hr.portal.test_requests.TestRequests.test_revocation_removes_count_and_records_immediately"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "REQ-011",
+      "requirement": "Change request and reapproval for material post-approval changes",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.recruitment.test_corrections.TestApprovedCorrections.test_exact_joined_floor_reduction_replay_and_history",
+        "kandil_hr.recruitment.test_corrections.TestApprovedCorrections.test_relocation_keeps_joiners_and_moves_only_open_remainder",
+        "kandil_hr.recruitment.test_corrections.TestApprovedCorrections.test_role_reason_unknown_field_increase_and_stale_version_fail_without_effect"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    },
+    {
+      "id": "BRD-001",
+      "requirement": "Board approval (Chairman or Vice) after the CEO",
+      "native_status": "PASS",
+      "selected_native_checks": [
+        "kandil_hr.portal.test_board.TestBoardPortal.test_direct_chair_and_vice_can_approve_without_external_fields",
+        "kandil_hr.portal.test_board.TestBoardPortal.test_no_board_or_upload_action_before_ceo_completes",
+        "kandil_hr.portal.test_board.TestBoardPortal.test_recording_requires_member_method_note_and_same_private_proof",
+        "kandil_hr.portal.test_board.TestBoardPortal.test_current_revocation_disabled_member_and_self_interest_deny_actions"
+      ],
+      "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+      "business_acceptance": "PENDING",
+      "release_acceptance": "PENDING"
+    }
+  ],
+  "remaining": [
+    "HR policy, terminology and workflow UAT remain pending.",
+    "Independent security, production identity/email, sustained 1000+ account load, recovery and real-data rollout remain pending."
+  ],
+  "browser_sequence": "evidence/s3-browser-acceptance-73c43299eeb1.json",
+  "browser_checks_main_sequence": 307,
+  "supplemental_browser_evidence": [
+    "../portal/evidence/structure-6f531c180bfa/results.json",
+    "../portal/evidence/history-assignments-b8f932c519c5/results.json"
+  ],
+  "supplemental_browser_checks": 43,
+  "runner_diagnostic": {
+    "evidence": "evidence/s3-browser-acceptance-5036f7507834.json",
+    "explanation": "Structure passed; the assignment child process exited 0 and its own 22-check evidence passed with cleanup, but the new aggregator searched assignments-* instead of the actual history-assignments-* directory. The sequence correctly stopped before Board. The prefix is corrected; no product assertion was changed or removed."
+  },
+  "browser_status": "PASS_CONFIGURED_WORKFLOWS",
+  "board_visual_recheck": "../portal/evidence/board-1ada29bd0a4b/results.json",
+  "concurrency_evidence": "evidence/s3-concurrency-confirmed-2026-10-13.json",
+  "next_engineering": "S4_IMPLEMENTATION_BRIEF.md",
+  "engineering_scope": "Configured workflow verification; not unconditional source parity or business/release acceptance."
+}

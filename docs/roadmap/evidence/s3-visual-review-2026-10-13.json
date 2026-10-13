@@ -1,0 +1,21 @@
+{
+  "method": "Model visual inspection of rendered synthetic browser captures",
+  "files": {
+    "request-form-b0dc825e44f2/review-ar.png": "0c7953c89109944388030108ecc8a5b4567a6d9aa66d0757f963e335929456b0",
+    "request-form-b0dc825e44f2/review-en.png": "734315d8907e236f15e55e4a5b37eefca109d273ee8b404044c276da25b44756",
+    "board-deeaa69a9c1c/direct-chair-en-panel.png": "40ba3750057900d5c4a1d17be84f6f0419b94d7f5f7e0418fe8abc50930c64bf",
+    "board-deeaa69a9c1c/record-review-ar-panel.png": "ebd329f558663c350a6b9de4b901bf84e842348d8549089e1f305bfba5420042",
+    "request-operations-488ed989dd97/correction-ar.png": "35fa1f821829825e3b070bee7a30e7b70b238102467705761d42549de59b6c6f",
+    "board-1ada29bd0a4b/record-review-ar-panel.png": "658d89372d00daef01844b66a67a2741c934c7362c83160f0bcc817626dc4a82"
+  },
+  "findings": [
+    "EN desktop and AR mobile form fields, location quantities and submission controls are visible without horizontal clipping.",
+    "Arabic correction review shows original/current/reduced quantities, changed fields, relocation and the mandatory reason.",
+    "English Board panel distinguishes the deciding member and recorder, reviewed version and confirmation.",
+    "Arabic Board element capture contains the sticky topbar over the upper explanatory area. This screenshot is not clean proof of that area; do not interpret a passing click test as full visual sign-off.",
+    "Corrected Board capture hides the sticky topbar only during element screenshot. The new Arabic image clearly shows the saved-private-document notice, CEO prerequisite, deciding member, recorder, reason, evidence and confirmation. The ordinary workflow is unchanged and its 51 checks passed again."
+  ],
+  "limits": [
+    "Selected captures only; no HR terminology acceptance or full accessibility certification."
+  ]
+}

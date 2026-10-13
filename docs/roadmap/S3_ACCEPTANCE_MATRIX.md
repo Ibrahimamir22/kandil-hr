@@ -1,6 +1,6 @@
 # S3 clause-by-clause acceptance map
 
-13 October 2026. This maps all 17 frozen S3 requirements to actual source tests and the relevant portal checkpoint. It does not promote requirements to accepted merely because tests exist. The frozen scope is unchanged; S3 remains in progress pending integrated acceptance. HR/IT decisions and production assurance remain separate.
+13 October 2026. This maps all 17 frozen S3 requirements to actual source tests and the relevant portal checkpoint. It does not promote requirements to accepted merely because tests exist. The frozen scope is unchanged. [Integrated engineering verification](S3_ENGINEERING_REVIEW.md) passed under the configured policy; [per-ID results](S3_REQUIREMENT_RESULTS.json) preserve exact evidence. S3 remains open for HR/IT/UAT acceptance and production assurance remains separate.
 
 | ID | Required clauses / resolved policy | Positive and negative source checks | Portal evidence entry point |
 |---|---|---|---|
@@ -22,7 +22,7 @@
 | REQ-011 | Later policy: quantity increases reapprove; ordinary HR corrections require reason/version/notice and cannot drop below joins; approved parent remains intact | `portal/test_request_operations.py` amendments/corrections/replay; `recruitment/test_corrections.py` joined floor, relocation and unresolved-candidate atomic denial; pending revision has separate S1 proof | [Operations](S3_OPERATIONS_CHECKPOINT.md), [authority history](S3_AUTHORITY_HISTORY_CHECKPOINT.md), PD-06 |
 | BRD-001 | Chair or Vice after CEO; actual member/recorder distinction; private immutable evidence for authorized on-behalf recording | `portal/test_board.py` direct Chair/Vice, before-CEO denial, recorder constraints, frozen proof and revocation; `portal/test_history_workflows.py` historical evidence survives later decisions | [Board](S3_BOARD_CHECKPOINT.md), [authority history](S3_AUTHORITY_HISTORY_CHECKPOINT.md) |
 
-## Closeout sequence
+## Engineering review sequence (executed; see linked current results)
 
 1. Indirect file/child/alias checkpoint passed: [source and verification](S3_INDIRECT_FILES_CHECKPOINT.md). Preserve legitimate access and explicit denials in integration acceptance. Native Event actor/principal restrictions already have explicit positive baseline and User Permission denial coverage in the structured-note increment.
 2. Run the mapped native suites serially on `kandil-parity.localhost`, retaining original assertions and documenting fixture-only diagnostics separately. Reconcile tests with each clause above, including `recruitment/test_authority_audit.py` for HC-004/REQ-004 and `recruitment/test_contracts.py` for dated/HR-added CEO routing; use `portal/test_structure.py::test_independent_chain_replay_and_exact_capacity_change` and `test_create_and_close_without_replacing_existing_headcount` for ORG-006.

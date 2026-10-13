@@ -34,11 +34,14 @@ OUTPUT=APP/'docs/sprints/evidence/concurrency-http-2026-10-12.json'
 
 
 def bench(action, run_id):
-    command=['docker','compose','exec','-T','-w','/workspace/frappe-bench','frappe',
+    command=['docker','compose','exec','-T','-w','/workspace/frappe-bench','parity-web',
         'bench','--site',SITE,'execute',FIXTURE+'.'+action,'--kwargs',json.dumps({'run_id':run_id})]
     result=subprocess.run(command,cwd=DEV_ROOT,capture_output=True,text=True,timeout=180)
     if result.returncode:
-        # Bench traceback can contain fixture local values; never echo it.
+        # Keep fixture-local values in a private diagnostic, never in evidence.
+        diagnostic=Path('/tmp')/('kandil-concurrency-'+run_id+'-'+action+'.txt')
+        diagnostic.touch(mode=0o600)
+        diagnostic.write_text(result.stdout+'\n'+result.stderr)
         raise RuntimeError('Internal fixture '+action+' failed; inspect locally without exposing credentials')
     lines=[line for line in result.stdout.splitlines() if line.startswith('{')]
     if not lines:raise RuntimeError('Fixture returned no structured evidence')

@@ -1,0 +1,324 @@
+{
+  "status": "PASS",
+  "run_id": "b8f932c519c5",
+  "checked_at": "2026-10-13T02:41:04.909Z",
+  "checks": [
+    {
+      "name": "Employee assignment submitted through the real portal",
+      "status": "PASS"
+    },
+    {
+      "name": "Review explicitly shows the proposed allocation",
+      "status": "PASS"
+    },
+    {
+      "name": "Individual route requires separate HR and CEO decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "HR alone does not create the assignment",
+      "status": "PASS"
+    },
+    {
+      "name": "CEO decision creates one future assignment",
+      "status": "PASS"
+    },
+    {
+      "name": "Future assignment leaves current occupied ledgers unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Transfer retains source and creates a separate dated destination",
+      "status": "PASS"
+    },
+    {
+      "name": "Transfer approval history includes changed assignment records",
+      "status": "PASS"
+    },
+    {
+      "name": "Review retains submitted assignment before-values",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic assignment review fits mobile viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Ending preserves both historical episodes and applies the inclusive end date",
+      "status": "PASS"
+    },
+    {
+      "name": "Later ending preserves the transfer event snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic structural history fits mobile without overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Native REST create cannot bypass HR and CEO approval",
+      "status": "PASS"
+    },
+    {
+      "name": "Native REST edit cannot bypass reviewed dates",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only employee catalog is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only user cannot read structural audit history",
+      "status": "PASS"
+    },
+    {
+      "name": "Department-only assignment review is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent final approval retries return the same result",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent retries create one new assignment and one final audit",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser exceptions, server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser verification",
+      "status": "PASS"
+    }
+  ],
+  "state": {
+    "changes": [
+      {
+        "name": "1glgn3hc0n",
+        "status": "Approved",
+        "reason": "Synthetic AssignEmployee 2026-10-15 b8f932c519c5",
+        "changes_json": "[{\"action\":\"AssignEmployee\",\"employee\":\"HR-EMP-00200\",\"position\":\"PORTAL-b8f932c519c5-0\"}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[]}"
+      },
+      {
+        "name": "1hr23r4b88",
+        "status": "Approved",
+        "reason": "Synthetic MoveEmployee 2026-10-17 b8f932c519c5",
+        "changes_json": "[{\"action\":\"MoveEmployee\",\"assignment\":\"1hglmj84h9\",\"position\":\"PORTAL-b8f932c519c5-0\",\"target_position\":\"PORTAL-b8f932c519c5-1\"}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[]}"
+      },
+      {
+        "name": "1ih4j010bl",
+        "status": "Approved",
+        "reason": "Synthetic EndAssignment 2026-10-19 b8f932c519c5",
+        "changes_json": "[{\"action\":\"EndAssignment\",\"assignment\":\"1i271ggjq0\",\"position\":\"PORTAL-b8f932c519c5-1\"}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[]}"
+      },
+      {
+        "name": "1jai3qkkuk",
+        "status": "Approved",
+        "reason": "Synthetic AssignEmployee 2090-01-01 b8f932c519c5",
+        "changes_json": "[{\"action\":\"AssignEmployee\",\"employee\":\"HR-EMP-00200\",\"position\":\"PORTAL-b8f932c519c5-0\"}]",
+        "created_positions_json": "{}",
+        "route_snapshot": "{\"chain\":[{\"authority\":\"HR Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-hr@example.invalid\"},{\"authority\":\"CEO Approval\",\"position\":null,\"principal\":\"portal-b8f932c519c5-sector@example.invalid\"}],\"history\":[],\"round\":1,\"skipped\":[]}"
+      }
+    ],
+    "capacities": [
+      {
+        "name": "KCAP-38b17e46a4e2bc19e751ba64",
+        "position": "PORTAL-b8f932c519c5-2",
+        "structural": 1,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      },
+      {
+        "name": "KCAP-a9e8f70f23074f815f9995c1",
+        "position": "PORTAL-b8f932c519c5-1",
+        "structural": 30,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      },
+      {
+        "name": "KCAP-05bd5512477729be629540a4",
+        "position": "PORTAL-b8f932c519c5-0",
+        "structural": 30,
+        "occupied": 0,
+        "reserved": 0,
+        "open_slots": 0
+      }
+    ],
+    "audit": [
+      {
+        "name": "65a7ac1d07ffd6d76831d7b1d6b6ef26f80d0c2b88de086accfcf258a7cc9ad6",
+        "target_name": "1glgn3hc0n",
+        "operation": "submit",
+        "command_id": "28938aec-e5be-462d-b728-766b0699c825",
+        "actor": "portal-b8f932c519c5-manager@example.invalid"
+      },
+      {
+        "name": "dbec5c504fc6b223dc65a57f6859f94b9b99e0afa40229c3c5abb5eb9ff12cf3",
+        "target_name": "1glgn3hc0n",
+        "operation": "decide",
+        "command_id": "c78decae-3e25-495d-bcc6-0615623e8c2e",
+        "actor": "portal-b8f932c519c5-hr@example.invalid"
+      },
+      {
+        "name": "8f4d2d59514d29007d89b5beae47bc7ec44f650843465db7475072d3e7c7e2eb",
+        "target_name": "1glgn3hc0n",
+        "operation": "decide",
+        "command_id": "7c00497c-a2e8-4696-9d49-b0f07dfd708f",
+        "actor": "portal-b8f932c519c5-sector@example.invalid"
+      },
+      {
+        "name": "dbc92a3b33ccc07fa520a3b75679ddfb71859199f2fb1cad0a992d57b2b040e8",
+        "target_name": "1hr23r4b88",
+        "operation": "submit",
+        "command_id": "611f3897-2157-4177-ae8d-74942c2c88e0",
+        "actor": "portal-b8f932c519c5-manager@example.invalid"
+      },
+      {
+        "name": "6f276bdf6cc4165df4e9a5da43996303461b78191fa7846c4c8c3870903ccf78",
+        "target_name": "1hr23r4b88",
+        "operation": "decide",
+        "command_id": "dd0ac18e-8d2e-4566-8fd4-6ccd40ef3e9f",
+        "actor": "portal-b8f932c519c5-hr@example.invalid"
+      },
+      {
+        "name": "77e92f0c20a07ec547f1ba6cc28f292c645a3882485195f86e22814e11b03e2d",
+        "target_name": "1hr23r4b88",
+        "operation": "decide",
+        "command_id": "4bad25e3-4704-445a-bb88-0d1f885a7076",
+        "actor": "portal-b8f932c519c5-sector@example.invalid"
+      },
+      {
+        "name": "cafd75b393b77d78bff43808be74df8a08659e2c10435faa3680c0627d2a1327",
+        "target_name": "1ih4j010bl",
+        "operation": "submit",
+        "command_id": "208702e3-e71f-4c35-9096-a6e23bce1e19",
+        "actor": "portal-b8f932c519c5-manager@example.invalid"
+      },
+      {
+        "name": "6f0daab0d7f6075f4999128ecbce03af70494c5f8dbb29ad8db5f74e87407d71",
+        "target_name": "1ih4j010bl",
+        "operation": "decide",
+        "command_id": "bb53d18d-5a3d-4cd6-b501-6e4d11402fa1",
+        "actor": "portal-b8f932c519c5-hr@example.invalid"
+      },
+      {
+        "name": "0ca0d954487c2e4083038e18ddbb094ef063e3ac11767b7b0e8997aa463bda78",
+        "target_name": "1ih4j010bl",
+        "operation": "decide",
+        "command_id": "585d3bb4-f435-471c-b2ab-1c7bdb7cfb38",
+        "actor": "portal-b8f932c519c5-sector@example.invalid"
+      },
+      {
+        "name": "30670123ecf5404a114e73de0dd7bc1b44cdc938cb509b41101c55aa48b8701d",
+        "target_name": "1jai3qkkuk",
+        "operation": "submit",
+        "command_id": "ee472c01-13c8-4c85-9b38-ad75f5fb5a79",
+        "actor": "portal-b8f932c519c5-manager@example.invalid"
+      },
+      {
+        "name": "573aab43223d69ea4bf71c65defa715ee40b5b3db227c1d529b02d2286987c60",
+        "target_name": "1jai3qkkuk",
+        "operation": "decide",
+        "command_id": "5d83306a-3bab-4dab-a255-667f2009ee17",
+        "actor": "portal-b8f932c519c5-hr@example.invalid"
+      },
+      {
+        "name": "c5cde39e35f22a4bbeb06b9b3391b437c18ef3f2f2802c016b45c8bee205616f",
+        "target_name": "1jai3qkkuk",
+        "operation": "decide",
+        "command_id": "209977c6-6c47-49b8-a846-062573bc46e4",
+        "actor": "portal-b8f932c519c5-sector@example.invalid"
+      }
+    ],
+    "assignments": [
+      {
+        "name": "1hglmj84h9",
+        "employee": "HR-EMP-00200",
+        "position": "PORTAL-b8f932c519c5-0",
+        "allocation": "Primary",
+        "valid_from": "2026-10-15",
+        "valid_until": "2026-10-16"
+      },
+      {
+        "name": "1i271ggjq0",
+        "employee": "HR-EMP-00200",
+        "position": "PORTAL-b8f932c519c5-1",
+        "allocation": "Primary",
+        "valid_from": "2026-10-17",
+        "valid_until": "2026-10-19"
+      },
+      {
+        "name": "1jfahdtv2s",
+        "employee": "HR-EMP-00200",
+        "position": "PORTAL-b8f932c519c5-0",
+        "allocation": "Primary",
+        "valid_from": "2090-01-01",
+        "valid_until": null
+      }
+    ]
+  },
+  "race": [
+    {
+      "status": 200,
+      "result": {
+        "name": "1jai3qkkuk",
+        "status": "Approved",
+        "snapshot": "1jfeculc5b"
+      }
+    },
+    {
+      "status": 200,
+      "result": {
+        "name": "1jai3qkkuk",
+        "snapshot": "1jfeculc5b",
+        "status": "Approved"
+      }
+    }
+  ],
+  "cleanup": {
+    "run_id": "b8f932c519c5",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_company_ledgers_zero": true,
+    "company_ledger_count": 3,
+    "retained_future_assignments": "Synthetic future episodes retained in their isolated test company; zero counts are current-date only."
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/fixture.py": "24c08f35d66ca98f210005cbe7aad3164fe5d1b2fb439ff614b1ac1672596f6d",
+    "kandil_hr/portal/structure_fixture.py": "427d931f6a193b12ec234baf31e9e6073716b58d19c05c27609a1821e7008e04",
+    "frontend/portal/src/HistoryPanel.tsx": "71f2dd10e025382ecf23e01bcc5275e53f1eb536d82430d9d11f793c8206061d",
+    "kandil_hr/portal/history.py": "d465026e848771ad771f132b91eca97819e5b92257f895f3f0db2c29a1880253",
+    "kandil_hr/public/portal/portal.js": "d76d0a338e9a3eec00ab027efa641d868321b920288ebb02d0dbb6f78b5227bd",
+    "frontend/portal/src/main.tsx": "12b75363f1b7eee503e7e460cbac34ee2ca809828c60f9b854518c0b5f1e3e92",
+    "frontend/portal/src/StructureChanges.tsx": "0be53521bb28821c055a67ec09952ce6f2c45c3ed42454911f463ef5c3705da7",
+    "frontend/portal/src/portal.css": "62f3c7e33bf3711d215fca48b933a58add01d713aa5284ca6366fefd1ccaac26",
+    "kandil_hr/portal/structure.py": "4e70b2fbd364004d39ff0c8e2e88d79d33a5b6a3ae66b0ebfd6fd87163cb7f6d",
+    "kandil_hr/portal/reference_permissions.py": "25b9675de5e8eae7d4fff0e30fdba14d56fe735eff4ed2a3fbe5b893b31e443c",
+    "kandil_hr/recruitment/setup.py": "614855cdce617b4083cb192fcaa71c051e3e8e3f0654734b645cfbdd8213ec73",
+    "kandil_hr/translations/ar.csv": "55608a620619c5c3513e742694e88c7f3544fff2fa6bca243a7389bbf2a92f73",
+    "docs/portal/test_assignments.cjs": "f50e7302d70578e0eaa4afc287d2d8a638e74d91116b15374f335056ea6f2c90",
+    "kandil_hr/portal/assignment_fixture.py": "ed9d6333c91f2644e84d41980beef2ad96422ba34ce115cb69daa1b94aad1bbe",
+    "kandil_hr/organization/assignments.py": "d20d31744ffe0601d06469429c2304a537615d8a4a59ffdc33842d24fda52f34",
+    "kandil_hr/organization/api.py": "b9575724e25919e61d8258f9c55c851bcc063e275943eba437978e6d0f802145",
+    "kandil_hr/organization/models.py": "cb8716bcaec8a5e05962bd5ff0687c4ff6457a471ad93d9f1c3540c8919ec5e2"
+  },
+  "limits": [
+    "Synthetic local employee assignment journey; not full S2 or production acceptance.",
+    "Future synthetic assignment episodes retained with disabled fixture accounts. Current-date zero occupancy is not permanent.",
+    "Current-date transfer/occupancy tested separately in rollback-scoped native tests."
+  ]
+}

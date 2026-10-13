@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-10-13",
   "goal_status": "active",
-  "current_sprint": "S3",
+  "current_sprint": "S4",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
   "scope": "Custom AR/EN HR portal over Frappe HR; all 98 frozen reference requirements plus security/operational acceptance. Not the wider company platform.",
   "cadence": "Up to two-week review cycles; split large sprints. No fixed completion date or promise of equal effort. Re-estimate after S1 against measured throughput and external decisions.",
@@ -274,8 +274,8 @@
         {
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
-          "status": "in_progress",
-          "progress": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open. Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
+          "status": "complete",
+          "progress": "Engineering verification passed for return/revise/reject/cancel, amendments, corrections and immutable requested-versus-reviewed history. See the integrated S3 review; HR/UAT and release acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -336,7 +336,12 @@
             "S3_INDIRECT_FILES_CHECKPOINT.md",
             "evidence/s2-regression-e9d9b4e8e82c.json",
             "../portal/evidence/indirect-files-5e132c520f04/results.json",
-            "../portal/evidence/history-notes-913d9f3fa605/results.json"
+            "../portal/evidence/history-notes-913d9f3fa605/results.json",
+            "S3_ENGINEERING_REVIEW.md",
+            "S3_REQUIREMENT_RESULTS.json",
+            "evidence/s2-regression-51e45850d96c.json",
+            "evidence/s3-browser-acceptance-73c43299eeb1.json",
+            "evidence/s3-concurrency-confirmed-2026-10-13.json"
           ]
         },
         {
@@ -363,14 +368,18 @@
         "No screen or native endpoint bypasses server authority."
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
-      "external_decisions": [],
-      "progress": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open. Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
-      "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
+      "external_decisions": [
+        "HR: approve configured authority decision table and WARN/BLOCK deployment semantics (PD-02/PD-03).",
+        "HR: approve terminology, request/review layouts and workflow UAT."
+      ],
+      "progress": "Configured S3 engineering workflows verified: 215 native and 350 AR/EN browser checks; three concurrent HTTP scenarios (60 requests). HR policy/UAT acceptance remains open. Engineering focus moves to S4.",
+      "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md",
+      "engineering_status": "verified_configured_workflows"
     },
     {
       "id": "S4",
       "title": "Vacancy operations and notifications / الشواغر والتنبيهات",
-      "status": "planned",
+      "status": "in_progress",
       "depends_on": [
         "S3"
       ],
@@ -411,7 +420,9 @@
       "external_decisions": [
         "HR: priority/SLA calendar.",
         "IT/owner: email provider/test recipients before any external sending."
-      ]
+      ],
+      "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
+      "progress": "Current-source gap review and delivery contract prepared. Dedicated scoped vacancy read model and portal are next; no new S4 screen is claimed implemented by this checkpoint."
     },
     {
       "id": "S5",
@@ -805,8 +816,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open.",
-    "evidence": "S3_INDIRECT_FILES_CHECKPOINT.md",
-    "next": "Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open."
+    "summary": "Configured S3 engineering workflows verified: 215 native and 350 AR/EN browser checks; three concurrent HTTP scenarios (60 requests). HR policy/UAT acceptance remains open. Engineering focus moves to S4.",
+    "evidence": "S3_ENGINEERING_REVIEW.md",
+    "next": "Implement S4 slice 1: dedicated bounded vacancy read model and AR/EN queue. Preserve all 98 requirements and remaining acceptance gates."
   }
 }
