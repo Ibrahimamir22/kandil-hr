@@ -53,7 +53,6 @@ def employee_condition(value, user):
 
 def condition(user=None):
     from kandil_hr.recruitment.models import enabled
-    from kandil_hr.pilot.permissions import request_query
     user = user or frappe.session.user
     if not enabled() or user=='Guest' or not frappe.db.get_value('User',user,'enabled'): return '1=0'
     if user=='Administrator': return '1=1'  # documented break-glass account
@@ -117,6 +116,8 @@ def capture_condition(source, user):
         WHERE NOT ({keys_allowed(step,STEP_FIELDS,'history_step_keys')}) OR
         (COALESCE({authority_position},'')<>'' AND NOT EXISTS
           (SELECT 1 FROM `tabKandil Position` WHERE `tabKandil Position`.name={authority_position} AND ({readable('Kandil Position',user)}))))""")
+    from kandil_hr.recruitment.history_references import condition as route_references, identities
+    parts.extend((identities(source,user), route_references(source,user)))
     return ' AND '.join('('+p+')' for p in parts)
 
 

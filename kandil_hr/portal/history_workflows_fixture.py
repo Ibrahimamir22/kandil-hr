@@ -112,3 +112,13 @@ def revoke(run_id):
             grant=frappe.get_doc('Kandil Access Grant',name);grant.revoked=1;grant.save(ignore_permissions=True)
     frappe.db.commit()
     return dict(run_id=run_id,revoked=True)
+
+
+def restrict_identities(run_id):
+    guard(run_id);data=load(run_id);user=data['users']['requester']['email']
+    for role,account in data['users'].items():
+        if role!='sector':
+            frappe.get_doc(dict(doctype='User Permission',user=user,allow='User',for_value=account['email'],
+                apply_to_all_doctypes=1)).insert(ignore_permissions=True)
+    frappe.clear_cache(user=user);frappe.db.commit()
+    return dict(restricted=True,subject='recorded_sector_actor_and_policy_reference')

@@ -8,6 +8,7 @@ import json
 from datetime import datetime
 
 import frappe
+from kandil_hr.portal.history_identities import metadata as project_metadata
 
 from kandil_hr.portal import request_history as history
 from kandil_hr.portal.delegations import identifier
@@ -93,7 +94,7 @@ def projected(row, doc):
         history.deny()
     related, event_id = captured_locations(snapshot, doc)
     value = history.project(snapshot, related, doc)
-    return dict(revision={key: row.get(key) for key in META}, snapshot=value,
+    return dict(revision=project_metadata({key: row.get(key) for key in META},('actor',)), snapshot=value,
                 location_source='exact_command_capture' if event_id else 'legacy_uncaptured',
                 basis='immutable_saved_revision')
 

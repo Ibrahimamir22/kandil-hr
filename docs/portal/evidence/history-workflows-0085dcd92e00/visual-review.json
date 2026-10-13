@@ -1,0 +1,18 @@
+{
+  "run_id": "0085dcd92e00",
+  "reviewed_at": "2026-10-13",
+  "scope": "Focused rendered screenshot inspection of new identity-restriction display, EN desktop and AR mobile.",
+  "images": [
+    "restricted-identity-en.png",
+    "restricted-identity-ar.png"
+  ],
+  "findings": [
+    "Restricted recorder has an explicit localized label while permitted actual Board principal remains visible.",
+    "Before/after status and quantity comparison remains readable; English panels sit side by side and Arabic mobile panels stack.",
+    "No clipping of the restriction label observed in these captures."
+  ],
+  "limits": [
+    "Element screenshots only; not a complete page, accessibility or HR design acceptance review.",
+    "Long synthetic identifiers wrap heavily on mobile; production content and terminology still need HR review."
+  ]
+}

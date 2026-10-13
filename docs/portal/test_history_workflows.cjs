@@ -5,7 +5,7 @@ const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary
 const app=path.resolve(__dirname,'../..'),dev=path.resolve(app,'../../../..'),run=crypto.randomBytes(6).toString('hex');
 const out=path.join(__dirname,'evidence',`history-workflows-${run}`),manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-portal-${run}.json`);
 fs.mkdirSync(out,{recursive:true});
-const files=['kandil_hr/recruitment/note_projection.py','kandil_hr/recruitment/event_access.py','kandil_hr/recruitment/review_views.py','kandil_hr/pilot/permissions.py','kandil_hr/pilot/models.py','kandil_hr/portal/history_workflows_fixture.py','kandil_hr/portal/board_fixture.py','kandil_hr/portal/request_history.py','kandil_hr/portal/request_revisions.py','kandil_hr/portal/history_rationale.py','kandil_hr/recruitment/corrections.py','kandil_hr/recruitment/pending_revision.py','kandil_hr/recruitment/api.py','kandil_hr/recruitment/authority.py','kandil_hr/foundation/files.py','kandil_hr/foundation/board_files.py','kandil_hr/portal/board.py','kandil_hr/pilot/navigation.py','kandil_hr/recruitment/preview.py','frontend/portal/src/RequestHistory.tsx','frontend/portal/src/RequestRevisions.tsx','frontend/portal/src/HistoryCapture.tsx','frontend/portal/src/main.tsx','kandil_hr/public/portal/portal.js','docs/portal/test_history_workflows.cjs'];
+const files=['kandil_hr/portal/history_identities.py','kandil_hr/recruitment/history_references.py','kandil_hr/recruitment/note_projection.py','kandil_hr/recruitment/event_access.py','kandil_hr/recruitment/review_views.py','kandil_hr/pilot/permissions.py','kandil_hr/pilot/models.py','kandil_hr/portal/history_workflows_fixture.py','kandil_hr/portal/board_fixture.py','kandil_hr/portal/request_history.py','kandil_hr/portal/request_revisions.py','kandil_hr/portal/history_rationale.py','kandil_hr/recruitment/corrections.py','kandil_hr/recruitment/pending_revision.py','kandil_hr/recruitment/api.py','kandil_hr/recruitment/authority.py','kandil_hr/foundation/files.py','kandil_hr/foundation/board_files.py','kandil_hr/portal/board.py','kandil_hr/pilot/navigation.py','kandil_hr/recruitment/preview.py','frontend/portal/src/RequestHistory.tsx','frontend/portal/src/RequestRevisions.tsx','frontend/portal/src/HistoryCapture.tsx','frontend/portal/src/main.tsx','kandil_hr/public/portal/portal.js','docs/portal/test_history_workflows.cjs'];
 const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,f))).digest('hex')])),source=hashes();
 const prefix='kandil_hr.portal.request_history.',revPrefix='kandil_hr.portal.request_revisions.';
 let browser,page,data,cleanup,unchanged;const checks=[],errors=[],failures=[],external=[];
@@ -72,6 +72,17 @@ async function capture(p,selector,file){await p.locator(selector).screenshot({pa
   check(lang+': outsider cannot enumerate expanded history',(await get(outsider,prefix+'events',{name:b.name})).status===403);
   check(lang+': a permitted request cannot borrow an event from another',(await get(requester,prefix+'event',{name:q.name,event_id:b.events.board_return})).status===403);
   for(const p of [requester,delegate,ceo,chair,hr,outsider])await p.context().close();
+ }
+ bench('restrict_identities');
+ for(const lang of ['en','ar']){
+  const t=(ar,en)=>lang==='ar'?ar:en,viewer=await login('requester',lang);await open(viewer,b,t);const value=await select(viewer,b,b.events.board_return);
+  check(lang+': restricted recorded actor is omitted while the actual permitted principal remains',value.event.actor===null&&value.event.restricted_identities.includes('actor')&&value.event.principal===data.users.vice.email);
+  check(lang+': restricted policy authority is omitted without losing quantities',value.after.policy.exception_approver===null&&value.after.policy.restricted_identities.includes('exception_approver')&&value.before.lines[0].requested_qty===2);
+  const visible=await viewer.locator('.history-comparison').innerText();
+  check(lang+': explicit restricted-identity label replaces hidden account',visible.includes(t('هوية مقيدة بالصلاحيات','Identity restricted by permissions'))&&!visible.includes(data.users.sector.email));
+  const raw=await viewer.request.get('http://localhost:8102/api/method/kandil_hr.portal.request_history.event?'+new URLSearchParams({name:b.name,event_id:b.events.board_return}));
+  check(lang+': HTTP projected history contains no restricted account identifier',raw.status()===200&&!(await raw.text()).includes(data.users.sector.email));
+  await capture(viewer,'.history-comparison',`restricted-identity-${lang}.png`);await viewer.context().close();
  }
  const chair=await login('chair');await open(chair,b,(ar,en)=>en);await select(chair,b,b.events.board_return);bench('revoke');
  const refresh=chair.waitForResponse(r=>r.url().includes(prefix+'events'));await chair.getByRole('button',{name:'Refresh history',exact:true}).click();assert.equal((await refresh).status(),403);await settled(chair);

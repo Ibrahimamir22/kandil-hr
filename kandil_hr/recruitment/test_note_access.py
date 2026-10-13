@@ -98,6 +98,10 @@ class TestNoteAccess(unittest.TestCase):
         value=json.loads(revision.snapshot_json);note=json.loads(value['decision_note'])
         note['before']['lines'][0]['capacity']=self.f.capacities[1]
         note['before']['lines'][0]['job_opening']=None
+        # Keep this synthetic previous capture coherent, including its recorded basis.
+        route=json.loads(note['before']['route_snapshot'])
+        route['headcount_basis'][self.f.capacities[1]]=route['headcount_basis'].pop(self.f.capacities[0])
+        note['before']['route_snapshot']=json.dumps(route)
         value['decision_note']=json.dumps(note)
         frappe.db.set_value('Kandil Request Revision',revision.name,'snapshot_json',json.dumps(value))
         # Before restricting the old location, raw bytes are still readable.

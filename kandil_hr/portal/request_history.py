@@ -116,7 +116,8 @@ def project(snapshot, related, doc):
     from kandil_hr.portal.history_rationale import rationale
     result['rationale'] = rationale(route)
     result['location_capture'] = 'partial' if missing else 'complete'
-    return result
+    from kandil_hr.portal.history_identities import capture
+    return capture(result)
 
 
 def envelope(row, doc):
@@ -129,7 +130,8 @@ def envelope(row, doc):
 
 
 def metadata(row, after):
-    return {key: row.get(key) for key in META} | {'revision': after.get('revision'), 'status': after.get('status')}
+    from kandil_hr.portal.history_identities import metadata as project_metadata
+    return project_metadata({key: row.get(key) for key in META} | {'revision': after.get('revision'), 'status': after.get('status')})
 
 
 def action_context(value):

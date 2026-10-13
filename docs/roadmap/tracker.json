@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "AR/EN operations and captured histories are connected. Current request/Event notes now show server-derived reasons; raw notes stay private. Native correction revisions authorize both full captures, and Event/attached-File reads enforce historical references and native User Permissions. 95 native, 35 personal-session HTTP and 65 AR/EN browser checks pass with original audit bytes preserved. Remaining route/cohort and other structured-note identity policies, indirect files and integrated S3 acceptance remain open.",
+          "progress": "Frozen route/cohort references and projected identity restrictions verified: 104 native, 16 HTTP and 75 AR/EN browser checks. Original audit bytes preserved. Full S3 and release gates remain open. Review other serialized vacancy/ownership note families and indirect File/child/report authorization; reconcile all 17 S3 requirements before sprint exit, then S4 vacancy operations.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -322,7 +322,13 @@
             "evidence/s2-regression-79adb33ed05e.json",
             "../portal/evidence/note-access-35ec5e9d89c7/results.json",
             "../portal/evidence/history-workflows-68e909d16eab/results.json",
-            "../portal/evidence/history-workflows-68e909d16eab/visual-review.json"
+            "../portal/evidence/history-workflows-68e909d16eab/visual-review.json",
+            "S3_REFERENCE_POLICY.md",
+            "S3_REFERENCE_CHECKPOINT.md",
+            "evidence/s2-regression-0f512eee3656.json",
+            "../portal/evidence/history-references-fd945c91376e/results.json",
+            "../portal/evidence/history-workflows-0085dcd92e00/results.json",
+            "../portal/evidence/history-workflows-0085dcd92e00/visual-review.json"
           ]
         },
         {
@@ -350,7 +356,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "AR/EN command/saved history, route reasons and amendment navigation are connected, including delegated/CEO/Board, retained proof and correction/restart/no-change comparisons. S3-05 engineering integration is complete. Remaining native reference paths and full S3 acceptance remain open.",
+      "progress": "AR/EN request operations, captured review histories, route reasons and amendment navigation are connected. Frozen route/cohort references and projected User identities now enforce current reference permissions. Other structured notes, indirect reads and integrated S3 acceptance remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -791,8 +797,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Safe correction explanations, guarded nested correction captures and native Event/attachment access verified: 95 native, 35 HTTP and 65 AR/EN browser checks. Raw records/timestamps preserved through derived-field migration. Full S3 and release gates remain open.",
-    "evidence": "S3_NOTE_ACCESS_CHECKPOINT.md",
-    "next": "Finish frozen route/cohort reference and Board/actor/principal policies, other serialized note families and indirect-file authorization; then integrated S3 acceptance and S4 vacancy operations."
+    "summary": "Frozen route/cohort references and projected identity restrictions verified: 104 native, 16 HTTP and 75 AR/EN browser checks. Original audit bytes preserved. Full S3 and release gates remain open.",
+    "evidence": "S3_REFERENCE_CHECKPOINT.md",
+    "next": "Review other serialized vacancy/ownership note families and indirect File/child/report authorization; reconcile all 17 S3 requirements before sprint exit, then S4 vacancy operations."
   }
 }
