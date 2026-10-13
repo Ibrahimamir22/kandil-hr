@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Focused inspection of ordinary and amendment inbox messages in synthetic Arabic mobile and English desktop captures. Not full portal accessibility or HR acceptance.",
+  "images": {
+    "amendment-inbox-ar.png": "fde64488fa239b9fc0b56accf5c6d526d2686a806c098edc325186db2b5aec85",
+    "amendment-inbox-en.png": "496006801bb5131e6dd80f647e02056c0d0d590b8cfd9f7144f793147873bac6",
+    "ordinary-inbox-ar.png": "04de28c9d00fb4bdefcecf8694f2c0966a9eb864d16d28db5b8c096f63bd3e92",
+    "ordinary-inbox-en.png": "ef55900661a0a537c4740820a25ff7cf19a6e270fc5aaae6b4a7f1b560d7f97e"
+  },
+  "observations": [
+    "Four ordinary historical updates and five amendment-related updates are readable in both languages.",
+    "Arabic navigation, filters, wrapped bilingual messages and action buttons fit the 390px viewport; English desktop uses the wider layout.",
+    "Messages describe recorded actions and retain links to the original request. No private amendment reason or child identifier is visible.",
+    "No clipped message or action observed; mixed-direction punctuation wraps on Arabic mobile. HR wording acceptance remains open."
+  ]
+}

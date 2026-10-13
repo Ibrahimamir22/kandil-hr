@@ -1,0 +1,141 @@
+{
+  "status": "PASS",
+  "run_id": "11060b39bf5e",
+  "checked_at": "2026-10-13T19:18:17.252Z",
+  "checks": [
+    {
+      "name": "Original request approved through ordinary requester, manager and HR sessions",
+      "status": "PASS"
+    },
+    {
+      "name": "Independent CEO cannot read unrelated original before amendment",
+      "status": "PASS"
+    },
+    {
+      "name": "HR amendment creation preserves original baseline version",
+      "status": "PASS"
+    },
+    {
+      "name": "Draft amendment does not grant original access",
+      "status": "PASS"
+    },
+    {
+      "name": "Creation retry returns the same amendment",
+      "status": "PASS"
+    },
+    {
+      "name": "Submitted independent reviewer can read exact original and child",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot read either record",
+      "status": "PASS"
+    },
+    {
+      "name": "Controlled business-day reminder queued for active CEO",
+      "status": "PASS"
+    },
+    {
+      "name": "Independent CEO applies HR-owned amendment",
+      "status": "PASS"
+    },
+    {
+      "name": "Completed approval suppresses its queued reminder without receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester updates delivered locally without external mail",
+      "status": "PASS"
+    },
+    {
+      "name": "Original requester sees proposal, submission and approval messages",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester amendment messages reference original without child details",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary request events have both languages and no private notes",
+      "status": "PASS"
+    },
+    {
+      "name": "Submission and approval event labels remain searchable",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: real amendment notifications render",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary bilingual events render in the inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: real amendment notifications render",
+      "status": "PASS"
+    },
+    {
+      "name": "en: inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary bilingual events render in the inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester opens original from amendment notification",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "11060b39bf5e",
+    "cleaned": true,
+    "accounts_disabled": 7,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/notification_templates.py": "cb80c7957dacaec152543fe109444546d0ef32287f4b5308728b37390ce489fd",
+    "kandil_hr/recruitment/notifications.py": "52a6e0ec6d99f9c340dae72cffc64c04ddacd181c9b5054360ae0e847ad96bc7",
+    "kandil_hr/recruitment/amendment_access.py": "debb35df22dbc6b3c08ee8b364502ae84a57c98e4a948a3b46abd7ca2a68b07f",
+    "kandil_hr/recruitment/sla.py": "77bba5c22003a9fa7890b881e10bf61a8eeca2394a35341e0d1f0c25093b31cb",
+    "kandil_hr/recruitment/api.py": "8d4a66e660d22f484c9370abdb54ab1d7eb2211e918cdb1e2862c3d71a4efd83",
+    "kandil_hr/recruitment/authority.py": "2d4d1599ade9c1c90c00c86f4ac752db117ba8ad209243f94235c7b0e958b4ec",
+    "kandil_hr/foundation/outbox.py": "c8ad5a338f159714740ebfebbdac5212d0cb8456444ea756cb5a2c8c4d51513f",
+    "kandil_hr/foundation/outbox_access.py": "60b96f3bb22c8c0e3ce18108a40793e61edc2d1574d35bffc82bd61b385e52f9",
+    "kandil_hr/pilot/permissions.py": "8d25589be1f8106a8cbe972a8b9f793c423564e11bac4549f7a1956608c63c5d",
+    "kandil_hr/portal/notification_event_fixture.py": "2ca62a373175908ad3b79d2dade11f73015e09df24b58b7591a91bf210df4132",
+    "kandil_hr/portal/notifications.py": "ef13365355c1845c4760e8e6509d16066de3a4d3625508698f55736195d851f1",
+    "kandil_hr/kandil_hr/doctype/kandil_notification_outbox/kandil_notification_outbox.json": "5df971d20683cad73f63df4b7d8fd2096825acefc03e80f1ab777a1385b640fd",
+    "frontend/portal/src/Notifications.tsx": "e055b35aa1552982756cbe4e02b43bbe8fba7c6e57c79ff6cad2662f64666501",
+    "kandil_hr/public/portal/portal.js": "a233a08d8e2fdbfb6846ec8dc726166331aa70d7ea44242003cdcd0895142d26",
+    "docs/portal/test_notification_events.cjs": "7e77f94ff789a2ca1bb646898ef5ddd9f7f46dd95dd6707239a553e3e652ffaf"
+  },
+  "limits": [
+    "Synthetic ordinary-role HTTP journey plus AR/EN inbox UI. Controlled CLI reminder queue/delivery; not scheduled worker/restart, HR UAT or production capacity proof."
+  ]
+}

@@ -23,7 +23,7 @@ class TestCompletion(unittest.TestCase):
 			filters={
 				"reference_doctype": "Kandil Hiring Request",
 				"reference_name": self.j.name,
-				"subject": "Recruitment request completed",
+				"subject": "Recruitment request completed / اكتمل طلب التوظيف",
 			},
 			fields=["name", "recipient", "body"],
 		)
@@ -34,6 +34,7 @@ class TestCompletion(unittest.TestCase):
 		self.assertEqual(len(notices), 1)
 		self.assertEqual(notices[0].recipient, self.f.users["requester"])
 		self.assertIn("All request vacancies are filled, closed or cancelled.", notices[0].body)
+		self.assertIn("تم شغل جميع شواغر الطلب", notices[0].body)
 		events = frappe.get_all(
 			"Kandil Recruitment Event",
 			filters={"request": self.j.name},

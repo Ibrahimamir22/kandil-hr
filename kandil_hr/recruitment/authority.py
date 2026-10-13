@@ -175,13 +175,15 @@ def notify_vacant_heads(doc, resolved):
 	if not hr:
 		frappe.throw(_("A vacant authority notice requires the frozen HR reviewer."))
 	from kandil_hr.recruitment.notifications import skipped_route
+	from kandil_hr.recruitment.notification_templates import vacant_heads
 
 	skipped_route(doc)
+	subject, body = vacant_heads(doc.name, skipped)
 	return enqueue(
 		f"{doc.name}:{doc.revision}:vacant-heads:{hr}",
 		hr,
-		_("Vacant approval position"),
-		json.dumps(dict(request=doc.name, skipped=skipped), ensure_ascii=False, sort_keys=True),
+		subject,
+		body,
 		doc.doctype,
 		doc.name,
 	)

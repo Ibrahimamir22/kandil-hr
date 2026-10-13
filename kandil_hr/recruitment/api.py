@@ -311,13 +311,15 @@ def save(doc, action, note="", principal=None):
 		recipients.add(step.principal)
 		if step.authority == "Board Approval" and step.get("board_vice"):
 			recipients.add(step.board_vice)
+	from kandil_hr.recruitment.notification_templates import request_update
+
+	subject, body = request_update(doc.name, action, completed=completed)
 	for user in sorted(recipients):
 		enqueue(
 			f"{doc.name}:{doc.modified}:{action}:{user}",
 			user,
-			_("Recruitment request completed") if completed else _("Recruitment request updated"),
-			f"{doc.name}: "
-			+ (_("All request vacancies are filled, closed or cancelled.") if completed else _(action)),
+			subject,
+			body,
 			"Kandil Hiring Request",
 			doc.name,
 		)

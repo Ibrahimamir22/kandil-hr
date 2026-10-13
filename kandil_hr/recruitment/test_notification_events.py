@@ -1,5 +1,7 @@
 """Requester event coverage through real commands, local receipts and inbox reads."""
 import json
+from email import policy
+from email.parser import BytesParser
 import sys
 import unittest
 import uuid
@@ -36,7 +38,15 @@ class TestNotificationEvents(unittest.TestCase):
         for row in added:
             self.assertIn(label, row.subject + row.body)
             self.assertNotIn('PRIVATE_REASON', row.body)
+            self.assertRegex(row.subject, r'[\u0600-\u06ff]')
+            self.assertRegex(row.body, r'[\u0600-\u06ff]')
             self.assertEqual(outbox.deliver(row.name), 'Delivered locally')
+            from kandil_hr.foundation.mail_capture import content
+            capture = frappe.get_doc('Kandil Mail Capture', {'outbox': row.name})
+            mime = BytesParser(policy=policy.default).parsebytes(content(capture))
+            self.assertEqual(str(mime['Subject']), row.subject)
+            self.assertIn(row.body, mime.get_body(preferencelist=('plain',)).get_content())
+            self.assertNotIn('PRIVATE_REASON', mime.get_body(preferencelist=('plain',)).get_content())
             receipt = frappe.db.get_value('Kandil Notification Outbox', row.name, 'notification_log')
             self.assertEqual(outbox.deliver(row.name), 'Delivered locally')
             self.assertEqual(frappe.db.get_value('Kandil Notification Outbox', row.name, 'notification_log'), receipt)
@@ -51,10 +61,10 @@ class TestNotificationEvents(unittest.TestCase):
 
     def test_submission_approvals_hr_review_and_correction_reach_requester(self):
         self.check_event(lambda: self.f.submit(self.request.name), 'Submitted')
-        self.check_event(lambda: self.f.decide(self.request.name, 'manager'), 'Approve')
+        self.check_event(lambda: self.f.decide(self.request.name, 'manager'), 'Approval recorded')
         self.check_event(lambda: self.f.call('hr', api.review, self.request.name,
             quantities={}, priority='Normal', reason='PRIVATE_REASON HR review'), 'HR review')
-        self.check_event(lambda: self.f.decide(self.request.name, 'hr'), 'Approve')
+        self.check_event(lambda: self.f.decide(self.request.name, 'hr'), 'Approval recorded')
         self.check_event(lambda: self.f.call('hr', corrections.correct_approved, self.request.name,
             fields={'skills_required': 'Updated synthetic requirement'}, reason='PRIVATE_REASON correction'), 'HR correction')
 
@@ -245,12 +255,50 @@ class TestNotificationEvents(unittest.TestCase):
         self.assertNotIn(assignment.position, notices[0].body)
         self.assertNotIn(self.f.users['manager'], notices[0].body)
         self.assertIn('تم تجاوز', notices[0].body)
+        hr_notice = frappe.get_all('Kandil Notification Outbox', filters={
+            'reference_name': self.request.name, 'recipient': self.f.users['hr'],
+            'subject': 'Vacant approval position / تجاوز منصب اعتماد',
+        }, fields=['name', 'body'])
+        self.assertEqual(len(hr_notice), 1)
+        self.assertIn(assignment.position, hr_notice[0].body)
+        self.assertIn('منصب شاغر', hr_notice[0].body)
+        self.assertNotIn(self.f.users['manager'], hr_notice[0].body)
+        self.assertNotIn('{', hr_notice[0].body)
+        self.assertEqual(outbox.deliver(hr_notice[0].name), 'Delivered locally')
         self.assertEqual(outbox.deliver(notices[0].name), 'Delivered locally')
         before = self.notices()
         self.f.submit(self.request.name, **args)
         self.assertEqual(self.notices(), before)
         with acting_as(self.f.users['requester']):
             self.assertEqual(listing(search='Approval route updated')['total'], 1)
+
+    def test_fixed_payload_survives_actor_locale_change_and_command_replay(self):
+        previous_language = frappe.local.lang
+        args = dict(command_id=uuid.uuid4().hex, expected_version=str(self.request.modified))
+        try:
+            frappe.local.lang = 'ar'
+            self.check_event(lambda: self.f.submit(self.request.name, **args), 'Submitted')
+            before = self.notices()
+            frappe.local.lang = 'en'
+            self.f.submit(self.request.name, **args)
+            self.assertEqual(self.notices(), before)
+            self.check_event(lambda: self.f.decide(self.request.name, 'manager'), 'Approval recorded')
+        finally:
+            frappe.local.lang = previous_language
+
+    def test_unknown_internal_action_cannot_echo_private_text(self):
+        from kandil_hr.recruitment.notification_templates import request_update, vacant_heads
+        subject, body = request_update(self.request.name, 'PRIVATE_REASON <script>diagnostic</script>')
+        self.assertIn('تم تحديث', subject + body)
+        self.assertNotIn('PRIVATE_REASON', body)
+        self.assertNotIn('<script>', body)
+        subject, body = vacant_heads(self.request.name, [dict(
+            position=self.f.positions[0] if hasattr(self.f, 'positions') else 'SYNTHETIC-POSITION',
+            reason='PRIVATE_REASON unknown diagnostic', principal='private-person@example.invalid')])
+        self.assertIn('راجع مسار الاعتماد', body)
+        self.assertNotIn('PRIVATE_REASON', body)
+        self.assertNotIn('private-person', body)
+        self.assertNotIn('{', body)
 
     def test_revoked_original_requester_cannot_receive_hr_amendment_notice(self):
         self.approved()

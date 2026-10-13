@@ -1,6 +1,8 @@
 # S4 — vacancy operations and notifications
 
-The [current-authority reminder checkpoint](S4_REMINDER_RECIPIENTS_CHECKPOINT.md) verifies effective delegates, frozen Board Vice, revocation checks, fixed AR/EN milestone payloads and duplicate prevention across authority changes with 63 native and 20 browser checks. The [event matrix](S4_NOTIFICATION_MATRIX.md) keeps ordinary templates and immediate delegate invitations open. S4 is still in progress.
+The [bilingual event-template checkpoint](S4_EVENT_TEMPLATES_CHECKPOINT.md) verifies ordinary request/completion messages, readable skipped-route HR notices and minimal vacancy/application assignments with 56 native and 26 browser checks. Immediate delegate invitations and complete S4 event policy remain open; HR wording acceptance is separate.
+
+The [current-authority reminder checkpoint](S4_REMINDER_RECIPIENTS_CHECKPOINT.md) verifies effective delegates, frozen Board Vice, revocation checks, fixed AR/EN milestone payloads and duplicate prevention across authority changes with 63 native and 20 browser checks. The [event matrix](S4_NOTIFICATION_MATRIX.md) tracks delivered ordinary templates and the remaining immediate delegate invitations. S4 is still in progress.
 
 The [native scheduler checkpoint](S4_SCHEDULER_CHECKPOINT.md) verifies automatic reminders, due retries, disabled-recruiter fallback and worker-restart redrive with 15 integration checks and 35 focused native cases. The deadline/calendar UI has separate verified evidence; complete delivery policy/templates remain open.
 

@@ -206,13 +206,15 @@ def _assign(doc, opening_name, lead, members, reason):
 
 	result["application_handoffs"] = reconcile_team(opening, doc, reason)
 	from kandil_hr.foundation.outbox import enqueue
+	from kandil_hr.recruitment.notification_templates import vacancy_assignment
 
+	subject, body = vacancy_assignment(opening.name)
 	for user in sorted(set(team) - set(previous)):
 		enqueue(
 			f"{doc.name}:{doc.modified}:team:{user}",
 			user,
-			_("Vacancy assigned"),
-			opening.name,
+			subject,
+			body,
 			"Job Opening",
 			opening.name,
 		)

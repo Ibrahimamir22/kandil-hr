@@ -313,12 +313,15 @@ def set_next_action(name, task, due, owner, reason, command_id, expected_version
 def notify_assignment(app, opening, owner):
 	from kandil_hr.foundation.outbox import enqueue
 
+	from kandil_hr.recruitment.notification_templates import application_assignment
+
+	subject, body = application_assignment()
 	# Notification references opening metadata, never candidate name/contact or notes.
 	enqueue(
 		f"application-owner:{app.name}:{app.modified}:{owner}",
 		owner,
-		_("Application assignment updated"),
-		_("Open the scoped application queue to review your assigned work."),
+		subject,
+		body,
 		"Job Opening",
 		opening.name,
 	)

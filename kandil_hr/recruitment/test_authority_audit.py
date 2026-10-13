@@ -421,7 +421,7 @@ class TestAuthorityAudit(unittest.TestCase):
 			filters={
 				"reference_name": doc.name,
 				"recipient": self.f.users["hr"],
-				"subject": "Vacant approval position",
+				"subject": "Vacant approval position / تجاوز منصب اعتماد",
 			},
 			fields=["name", "body"],
 		)
@@ -431,7 +431,7 @@ class TestAuthorityAudit(unittest.TestCase):
 		self.assertEqual(
 			frappe.db.count(
 				"Kandil Notification Outbox",
-				{"reference_name": doc.name, "subject": "Vacant approval position"},
+				{"reference_name": doc.name, "subject": "Vacant approval position / تجاوز منصب اعتماد"},
 			),
 			1,
 		)

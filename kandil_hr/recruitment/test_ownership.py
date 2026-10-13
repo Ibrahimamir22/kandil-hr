@@ -88,6 +88,33 @@ class TestOwnership(TestRecruitmentCommands):
 		with self.rejected(frappe.PermissionError):
 			self.app_call("hr", ownership.assign_application, name, app, owner=self.users["requester"])
 
+	def test_assignment_messages_are_bilingual_minimal_and_delivered_once(self):
+		from kandil_hr.foundation import outbox
+		name, opening, app = self.fixture()
+		args = dict(owner=self.users['hr'], command_id=uuid.uuid4().hex,
+			expected_version=str(self.load(name).modified), application_version=str(app.modified),
+			reason='PRIVATE_REASON handoff')
+		self.app_call('manager', ownership.assign_application, name, app, **args)
+		rows = frappe.get_all('Kandil Notification Outbox', filters={
+			'reference_doctype': 'Job Opening', 'reference_name': opening,
+			'recipient': self.users['hr'],
+		}, fields=['name', 'subject', 'body'])
+		self.assertTrue(any(r.subject.startswith('Vacancy assigned /') for r in rows))
+		self.assertTrue(any(r.subject.startswith('Application assignment updated /') for r in rows))
+		for row in rows:
+			self.assertRegex(row.subject, r'[\u0600-\u06ff]')
+			self.assertRegex(row.body, r'[\u0600-\u06ff]')
+			self.assertNotIn('PRIVATE_REASON', row.body)
+			self.assertNotIn(app.phone_number, row.body)
+			self.assertNotIn(app.name, row.body)
+			self.assertEqual(outbox.deliver(row.name), 'Delivered locally')
+			receipt = frappe.db.get_value('Kandil Notification Outbox', row.name, 'notification_log')
+			self.assertEqual(outbox.deliver(row.name), 'Delivered locally')
+			self.assertEqual(frappe.db.get_value('Kandil Notification Outbox', row.name, 'notification_log'), receipt)
+		count = frappe.db.count('Kandil Notification Outbox', {'reference_name': opening})
+		self.app_call('manager', ownership.assign_application, name, app, **args)
+		self.assertEqual(frappe.db.count('Kandil Notification Outbox', {'reference_name': opening}), count)
+
 	def test_readonly_scope_denies_owner_command(self):
 		name, _opening, app = self.fixture()
 		frappe.db.set_value("Kandil Access Grant", self.grants["manager"], "can_manage_recruitment", 0)
@@ -256,7 +283,7 @@ def run():
 	if not frappe.conf.get("allow_tests") or "parity" not in str(frappe.local.site):
 		raise RuntimeError("Requires synthetic parity test site")
 	names = sorted(name for name in TestOwnership.__dict__ if name.startswith("test_"))
-	assert len(names) == 10
+	assert len(names) == 11
 	result = unittest.TextTestRunner(verbosity=2).run(
 		unittest.TestSuite(TestOwnership(name) for name in names)
 	)
