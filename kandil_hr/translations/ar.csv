@@ -1341,3 +1341,11 @@ Choose My Requests or All within my scope.,اختر طلباتي أو كل ال�
 Choose a valid request status.,اختر حالة طلب صحيحة.
 Decision Reason,سبب القرار
 Public Note,الملاحظة المعروضة
+This selection changed. Refresh vacancies and review it again.,تغيرت الشواغر المحددة. حدّث القائمة وراجع الاختيار مجددًا.
+Only active or paused vacancies can have their team changed.,يمكن تغيير فريق الشواغر النشطة أو المتوقفة مؤقتًا فقط.
+Some recruiter identities are outside your permissions. The team has not been changed.,بعض هويات مسؤولي التوظيف خارج صلاحياتك. لم يتم تغيير الفريق.
+Only the configured recruitment authority may change this team.,سلطة التوظيف المحددة فقط يمكنها تغيير هذا الفريق.
+This vacancy does not match the reviewed request and location.,هذا الشاغر لا يطابق الطلب والموقع محل المراجعة.
+Every vacancy requires its request and reviewed version.,كل شاغر يتطلب الطلب والإصدار محل المراجعة.
+Vacancies from the same request need the same reviewed version.,شواغر الطلب الواحد تتطلب الإصدار نفسه محل المراجعة.
+The vacancy selection is too large.,عدد الشواغر المحددة أكبر من الحد المسموح.

@@ -1,0 +1,18 @@
+{
+  "status": "REVIEWED",
+  "screens": [
+    "editor-ar.png",
+    "confirm-en.png"
+  ],
+  "observations": [
+    "Arabic 390px editor: RTL, current lead badge paired with its own identity, complete team retained, actionable search and confirmation, no horizontal overflow.",
+    "English 1440px confirmation: current and proposed teams, lead, reason and replacement implications visible; title remains below sticky header."
+  ],
+  "limits": [
+    "Synthetic data and these captured states only; full HR terminology and accessibility acceptance remains pending."
+  ],
+  "image_sha256": {
+    "editor-ar.png": "528b895736d63049af0421235147524f1719fcb537b33abdab7a4cf5655d76e5",
+    "confirm-en.png": "a915166e1196ca71c75ef9442b1ac34305c628b3e39882a6959b2c8b5321aa7a"
+  }
+}

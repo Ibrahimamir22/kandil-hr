@@ -10,6 +10,8 @@ import uuid
 APP = Path(__file__).resolve().parents[2]
 DEV = APP.parents[3]
 SUITES = (
+    'kandil_hr.portal.test_vacancy_teams.run',
+    'kandil_hr.recruitment.test_ownership.run',
     'kandil_hr.portal.test_vacancies.run',
     'kandil_hr.foundation.test_indirect_files.run',
     'kandil_hr.recruitment.test_history_notes.run',
@@ -80,9 +82,10 @@ def main():
                     break
                 except ValueError:
                     continue
-        legacy_delegation_ok = (suite == 'kandil_hr.foundation.test_delegation.run' and summary
+        legacy_delegation_ok = (suite in {'kandil_hr.foundation.test_delegation.run', 'kandil_hr.recruitment.test_ownership.run'} and summary
             and summary.get('discovered', 0) > 0 and summary.get('executed') == summary.get('discovered')
-            and all(summary.get(k) == 0 for k in ('failures', 'errors', 'skips')))
+            and summary.get('failures') == 0 and summary.get('errors') == 0
+            and summary.get('skips', summary.get('skipped')) == 0)
         ok = run.returncode == 0 and summary and (summary.get('successful') is True or summary.get('result') == 'PASS' or legacy_delegation_ok)
         result['suites'].append(dict(suite=suite, status='PASS' if ok else 'FAIL', result=summary))
         print(json.dumps(dict(suite=suite, status='PASS' if ok else 'FAIL')), flush=True)

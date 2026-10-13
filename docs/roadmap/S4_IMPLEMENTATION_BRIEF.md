@@ -1,6 +1,6 @@
 # S4 — vacancy operations and notifications
 
-13 October 2026. Delivery contract derived from the custom portal and domain commands. The dedicated read model and AR/EN queue are now implemented; current evidence and remaining slice-one work are in [the vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md). S3 engineering verification passed separately; HR/IT and production gates remain open.
+13 October 2026. Delivery contract derived from the custom portal and domain commands. The dedicated read model and AR/EN queue are now implemented; queue evidence is in [the vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md), and complete-team editing/bulk assignment with paginated recruiter lookup is in [the team checkpoint](S4_TEAM_ASSIGNMENT_CHECKPOINT.md). S3 engineering verification passed separately; HR/IT and production gates remain open.
 
 ## Scope and existing code
 
@@ -8,7 +8,7 @@ The eight frozen delivery IDs are REQ-007, PRI-001 and VAC-001 through VAC-006. 
 
 `recruitment/vacancies.py` already implements transactional team assignment, bulk assignment, reasoned pinning and Open/Hold/Resume/Freeze/Unfreeze/Close transitions. Commands reuse request version and receipt rules and update capacity under locks. `priority.py` supplies explainable score components. `ownership.py` handles disabled-recruiter handoffs. Reuse these commands; do not create a second set of vacancy business rules in the UI.
 
-At the start of S4, `frontend/portal/src/main.tsx` exposed vacancy cards and lead assignment only. The dedicated `VacancyQueue.tsx` now uses `portal/vacancies.py`; the limitations below remain relevant to the old overview and native queue paths. `portal/api.py::overview` derives vacancies and approvals from one page of requests and explicitly reports page counts. `recruitment/vacancies.py::queue` loads every permitted opening, filters/sorts in Python, then slices. Neither is the final searchable, counted queue suitable for the stated scale. Existing lead selection also stops at 500 candidates. These limitations require implementation, not relabeling of page counts as totals.
+At the start of S4, `frontend/portal/src/main.tsx` exposed vacancy cards and lead assignment only. The dedicated `VacancyQueue.tsx` now uses `portal/vacancies.py`; the limitations below remain relevant to the old overview and native queue paths. `portal/api.py::overview` derives vacancies and approvals from one page of requests and explicitly reports page counts. `recruitment/vacancies.py::queue` loads every permitted opening, filters/sorts in Python, then slices. Neither is the final searchable, counted queue suitable for the stated scale. The former lead picker stopped at 500 candidates; the custom portal now uses scoped paginated lookup and complete-team review. Remaining overview/native-queue limitations still require implementation, not relabeling of page counts as totals.
 
 ## Slice 1 — dedicated vacancy read model and portal
 

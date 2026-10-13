@@ -1,5 +1,7 @@
 # S4 vacancy queue — implementation checkpoint
 
+Later increment: [complete-team editing, paginated lookup and bulk assignment](S4_TEAM_ASSIGNMENT_CHECKPOINT.md) is now implemented. This document preserves the earlier queue checkpoint and its evidence; its team-picker limitations describe that earlier state.
+
 13 October 2026. Scope: the dedicated vacancy read model and Arabic/English portal screen. **S4 remains in progress.** This is a working increment, not acceptance of all eight S4 requirements or production readiness.
 
 ## What changed

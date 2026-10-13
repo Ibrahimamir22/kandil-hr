@@ -25,6 +25,8 @@ def opening_for(doc, name):
 		frappe.throw(_("This vacancy is not part of an open approved request."))
 	caps = lock_capacities(doc)
 	opening = frappe.get_doc("Job Opening", name, for_update=True)
+	from kandil_hr.recruitment.vacancy_access import check_opening
+	check_opening(doc, opening)
 	return opening, line, caps[line.capacity]
 
 

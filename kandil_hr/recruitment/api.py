@@ -204,7 +204,9 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		roles = ("Kandil Recruiter",)
 	if operation == "cancel" and doc.requested_by != frappe.session.user:
 		roles = ("Kandil Recruiter",)
-	assert_current_request_scope(doc, required_roles=roles)
+	current_roles = assert_current_request_scope(doc, required_roles=roles)
+	from kandil_hr.recruitment.vacancy_access import check_command as check_vacancy_command
+	check_vacancy_command(doc, operation, payload, current_roles)
 	key = hashlib.sha256(f"{frappe.session.user}|{name}|{command_id}".encode()).hexdigest()
 	digest = hashlib.sha256(dump([operation, payload, str(expected_version)]).encode()).hexdigest()
 	# Current locking read: a snapshot established before waiting for the request

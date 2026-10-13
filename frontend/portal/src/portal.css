@@ -76,3 +76,9 @@
 @media(max-width:760px){.vacancy-filters{grid-template-columns:1fr}.vacancy-queue .pagination{flex-wrap:wrap;gap:12px}}
 
 .vacancy-queue .register-count bdi{white-space:nowrap}
+
+/* Recruiter assignment is a reviewed complete-team replacement. */
+.team-fields{border:0;padding:0;margin:0;min-width:0}.team-current{display:grid;gap:10px;max-height:300px;overflow:auto;margin-block:18px}.team-current article{border:1px solid var(--line,#e5e1dc);border-radius:10px;padding:12px;overflow-wrap:anywhere}.team-current p{margin-block:5px}.team-selected{list-style:none;padding:0}.team-selected li,.team-results article{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line,#e5e1dc);padding:12px 0;overflow-wrap:anywhere}.team-selected li>span,.team-results article>span{min-width:0}.team-selected small,.team-results small{display:block;overflow-wrap:anywhere}.team-selected .badge{margin-inline-start:8px}.team-selected .alert{display:block;margin-block:8px}.team-directory{margin-block:22px;padding:16px;border:1px solid var(--line,#e5e1dc);border-radius:12px}.team-directory .field{flex:1;min-width:0}.team-selection{margin-block:18px;flex-wrap:wrap}.team-confirm{overflow-wrap:anywhere}.team-editor h2:focus{outline:2px solid var(--accent,#a91923);outline-offset:4px}.team-editor .card-head{flex-wrap:wrap}.vacancy-card .card-head input[type=checkbox]{width:20px;height:20px;flex-shrink:0}
+@media(max-width:640px){.team-selected li,.team-results article{align-items:flex-start;flex-direction:column}.team-directory{padding:10px}.team-editor .toolbar{flex-wrap:wrap}.team-directory .pagination{align-items:flex-start;gap:10px}.team-directory .pagination .actions{flex-wrap:wrap}.team-current{max-height:240px}}
+
+.team-current-members{list-style:none;margin:0;padding:0}.team-current-members li{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-block:6px}.team-current-members bdi{overflow-wrap:anywhere}

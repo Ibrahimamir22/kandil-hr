@@ -6,7 +6,7 @@
 
 **Current engineering focus: S4.** [S3 engineering verification](S3_ENGINEERING_REVIEW.md) records 215 native checks, 350 AR/EN browser checks and three concurrent HTTP scenarios. All 17 S3 IDs have [explicit evidence](S3_REQUIREMENT_RESULTS.json). S3 remains open for HR policy/terminology/UAT acceptance; S2 document/history acceptance and live email also remain open. S0/S1 engineering stabilization is complete.
 
-The [S4 vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md) delivers the dedicated scoped read model and AR/EN queue with exact totals, filters, pagination, quantity progress and explainable priority. Evidence covers 15 final queue tests, 37 existing native regressions and 51 browser checks. The [S4 implementation brief](S4_IMPLEMENTATION_BRIEF.md) retains the remaining recruiter lookup, team/bulk/lifecycle controls, company-wide dashboard/inbox and scheduled notification work. S4 is still in progress. Earlier checkpoints remain linked from the tracker and S3 acceptance matrix.
+The [S4 vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md) covers the dedicated read model and AR/EN queue. The [team-assignment checkpoint](S4_TEAM_ASSIGNMENT_CHECKPOINT.md) adds complete-team editing, paginated eligible-recruiter search and reviewed multi-request bulk assignment, with native and real-session test evidence. The [S4 brief](S4_IMPLEMENTATION_BRIEF.md) retains pin/lifecycle controls, company-wide dashboard/inbox and scheduled delivery. S4 remains in progress; earlier evidence remains in the tracker.
 
 The current 80-case register is **72 passed / 4 partial / 4 blocked**. Completing S1 does not complete all 98 requirements or the pending HR/IT/security/production decisions.
 

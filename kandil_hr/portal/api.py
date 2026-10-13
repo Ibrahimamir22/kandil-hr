@@ -172,16 +172,13 @@ def recruiters(opening_name):
     if not hints.get("can_assign") or not hints.get("can_manage"):
         frappe.throw(_("You cannot assign recruiters to this vacancy."), frappe.PermissionError)
     doc = read_request(hints["name"])
-    # The projection discloses only enabled recruiters scoped to this whole request.
-    candidates = frappe.db.sql("""SELECT DISTINCT u.name,u.full_name FROM `tabUser` u
-        JOIN `tabHas Role` r ON r.parent=u.name AND r.parenttype='User'
-        WHERE u.enabled=1 AND u.name NOT IN ('Administrator','Guest') AND r.role='Kandil Recruiter'
-        AND EXISTS (SELECT 1 FROM `tabKandil Access Grant` g WHERE g.user=u.name AND g.company=%s)
-        ORDER BY u.full_name,u.name LIMIT 501""", (doc.company,), as_dict=True)
-    if len(candidates) > 500:
-        frappe.throw(_("Too many recruiter choices. Narrow the recruitment scope."))
-    return [dict(id=row.name, label=row.full_name or row.name) for row in candidates
-            if request_scope(doc, row.name, "manage")]
+    # Compatibility projection for older clients. The current portal uses the
+    # bounded directory endpoint; this path may not expose hidden User references.
+    from kandil_hr.portal.vacancy_teams import projected_directory
+    result = projected_directory([doc],page_length=100)
+    if result['has_more']:
+        frappe.throw(_('Use the searchable recruiter directory to choose from this team.'))
+    return result['rows']
 
 
 def editable_payload(payload):
