@@ -1,5 +1,7 @@
 # قنديل · Kandil HR
 
+The [durable recovery backend](docs/roadmap/S5_RECOVERY_BACKEND_CHECKPOINT.md) now stores encrypted, actor-owned candidate commands and safely resumes the original action across sessions. **48 native checks passed, 13 recovery checks were rerun after the concurrency fix, and 18 session/concurrency checks passed.** Candidate forms are **not yet connected** to this backend; the bilingual recovery inbox, navigation/reload UX and payload retention/cleanup remain next. Ordinary candidate mode stays disabled.
+
 The [reviewed migration checkpoint](docs/roadmap/S5_MIGRATION_APPLY_CHECKPOINT.md) adds HR-confirmed legacy identity links, stale-preview rejection, transactional preservation checks and exact-command retries in AR/EN. **48 native and 63 browser checks passed**, including simultaneous first writes. Ordinary candidate mode stays disabled pending recovery across navigation/reloads; full S5 and production gates remain open.
 
 The [S5 search and migration-preview checkpoint](docs/roadmap/S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md) adds search/duplicate review against corrected person details, preserves historical application search, and provides a read-only HR legacy-record review in AR/EN. **46 native and 46 browser checks passed.** Applying migration links, recovery across navigation and ordinary intake activation remain pending; full S5 and release gates stay open.

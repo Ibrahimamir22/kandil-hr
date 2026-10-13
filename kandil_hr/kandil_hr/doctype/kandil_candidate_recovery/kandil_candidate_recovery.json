@@ -1,0 +1,78 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Recovery",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "dedupe_key",
+    "actor",
+    "request",
+    "operation",
+    "payload_hash",
+    "payload_cipher",
+    "status"
+  ],
+  "fields": [
+    {
+      "fieldname": "dedupe_key",
+      "label": "Recovery Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User",
+      "search_index": 1
+    },
+    {
+      "fieldname": "request",
+      "label": "Request",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Hiring Request"
+    },
+    {
+      "fieldname": "operation",
+      "label": "Operation",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "intake\ncorrection\nmigration"
+    },
+    {
+      "fieldname": "payload_hash",
+      "label": "Payload Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "payload_cipher",
+      "label": "Payload Cipher",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "status",
+      "label": "Status",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Pending\nCompleted\nAcknowledged\nCancelled",
+      "search_index": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

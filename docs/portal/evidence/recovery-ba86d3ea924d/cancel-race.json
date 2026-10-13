@@ -1,0 +1,21 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-c08372709c0bd54838dd4a2eaac1655601c05116d5565970aa7e4554f2c9d8e2",
+      "operation": "intake",
+      "status": "Completed",
+      "created": "2026-10-14 00:31:51.566199",
+      "result": {
+        "application": "KJA-d1812f2f196f4469a14c",
+        "person": "KCP-a2abcd9ead364ac18f74b445d10f3466",
+        "application_version": "2026-10-14 00:31:52.330791",
+        "person_version": "2026-10-14 00:31:52.329047"
+      }
+    }
+  },
+  {
+    "status": 417,
+    "type": "ValidationError"
+  }
+]

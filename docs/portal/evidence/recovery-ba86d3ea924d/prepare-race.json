@@ -1,0 +1,20 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-b8b84d5877cf133e5a6bdeb51100d90ee625f8d07878fae13f41a8c905fd4f5c",
+      "operation": "intake",
+      "status": "Pending",
+      "created": "2026-10-14 00:31:48.733378"
+    }
+  },
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-b8b84d5877cf133e5a6bdeb51100d90ee625f8d07878fae13f41a8c905fd4f5c",
+      "operation": "intake",
+      "status": "Pending",
+      "created": "2026-10-14 00:31:48.733378"
+    }
+  }
+]

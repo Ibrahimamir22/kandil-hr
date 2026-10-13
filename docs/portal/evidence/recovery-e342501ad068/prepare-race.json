@@ -1,0 +1,15 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-0fd7f69a2e48895e9db330cafb18fa7f9f7c50cf4831e4a70fa7c5323c65c5a7",
+      "operation": "intake",
+      "status": "Pending",
+      "created": "2026-10-14 00:29:52.686945"
+    }
+  },
+  {
+    "status": 403,
+    "type": "PermissionError"
+  }
+]

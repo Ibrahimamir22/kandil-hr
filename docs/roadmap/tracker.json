@@ -584,12 +584,16 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "AR/EN directory, search/status/paging, basic detail and recruiter-assisted intake tested. Private files, follow-up/activity/rejection workflows and complete candidate workspace remain required.",
+          "progress": "AR/EN candidate directory, basic detail and reviewed intake/corrections/migration implemented. Durable encrypted actor-owned command preparation, recovery execution, acknowledgement and pending cancellation passed native/session concurrency tests. Forms still call original commands; recovery inbox, navigation/reload connection and transient payload cleanup remain next. Private files, follow-up/activity/rejection and complete workspace remain required.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
             "S5_PROFILE_CORRECTIONS_CHECKPOINT.md",
-            "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md"
+            "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md",
+            "S5_RECOVERY_BACKEND_CHECKPOINT.md",
+            "evidence/s2-regression-05a90348bfc3.json",
+            "evidence/s2-regression-808d33ebbfda.json",
+            "../portal/evidence/recovery-ba86d3ea924d/results.json"
           ]
         },
         {
@@ -624,7 +628,7 @@
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
       "progress": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
-      "checkpoint": "S5_MIGRATION_APPLY_CHECKPOINT.md"
+      "checkpoint": "S5_RECOVERY_BACKEND_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -968,8 +972,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Reviewed single-record legacy migration now has an AR/EN confirmation flow, reason/acknowledgement, stale-preview/version checks, current HR/native permissions, exact retries and transactional preservation checks. 48 native and 63 browser checks passed. Ordinary candidate mode stays disabled; full S5 and release gates remain open.",
-    "evidence": "S5_MIGRATION_APPLY_CHECKPOINT.md",
-    "next": "Implement recovery of intake, correction and migration commands across global navigation and reload before ordinary activation. Continue candidate ownership/follow-up/activity and full recruiter handoff; preserve all 98 requirements and release gates."
+    "summary": "Durable encrypted candidate command recovery backend verified: 48 native checks, final 13-case recovery rerun and 18 personal-session HTTP/concurrency checks. No new recovery UI yet; ordinary mode remains disabled. All 98 requirements and production gates remain open where unfulfilled.",
+    "evidence": "S5_RECOVERY_BACKEND_CHECKPOINT.md",
+    "next": "Connect intake/correction/migration forms to prepare/execute and add AR/EN recovery inbox, reviewed resume/result acknowledgement, navigation/reload and competing-tab tests, plus bounded transient payload cleanup. Then continue full candidate ownership/follow-up/activity and recruiter handoff."
   }
 }

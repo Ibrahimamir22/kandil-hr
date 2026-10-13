@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "run_id": "ba86d3ea924d",
+  "checks": [
+    {
+      "name": "Concurrent prepare requests succeed",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent prepare returns one durable reference",
+      "status": "PASS"
+    },
+    {
+      "name": "Preparation has no business effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Unexecuted command survives full page reload",
+      "status": "PASS"
+    },
+    {
+      "name": "Pending index contains no candidate payload",
+      "status": "PASS"
+    },
+    {
+      "name": "Different HR account cannot inspect or execute another users command",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent recovery execution succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovery retries have one identical result",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovered command creates exactly one application and person",
+      "status": "PASS"
+    },
+    {
+      "name": "New personal session discovers completed but unacknowledged command",
+      "status": "PASS"
+    },
+    {
+      "name": "Result recovery across sessions keeps original business IDs",
+      "status": "PASS"
+    },
+    {
+      "name": "Acknowledgement succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "Acknowledged command leaves recovery inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "Acknowledged private payload cannot be fetched",
+      "status": "PASS"
+    },
+    {
+      "name": "Completed execution cannot be cancelled",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked scope blocks payload inspection and execution",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "ba86d3ea924d",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/candidates/recovery.py": "21700192f4b7a88eea36b5f145d7cbaa87e8a13e5c32528101f9c78853c65727",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "a84fb3bdbcc823f619e28363c7f20bf29e89081ee2f022f860adaf8b1b0d0aac",
+    "docs/portal/test_candidate_recovery.cjs": "c4acea0fca0e79e3438111cfcfd2d3c7ee47bdebde72fb4bafcbc5eb4e1c7e0f",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "c4f2c02af5c1433a820c563775cc79068c26316adafe8681a691fe7639239d4f",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "c19dbde778a678037631bf6a1194680167424713adec58ae4bbdf8904ec5b4fa",
+    "kandil_hr/foundation/command_audit.py": "8d4787a54255325be2b52c124775b4b7a8d727b90c3536191c365c91bb69b869",
+    "frontend/portal/src/CandidateProfile.tsx": "a0d634ee142ddb43d1f563a1f7e79565bb8722b0e4ba97973bec5ad518450184",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/portal/api.py": "9c876f5fde772ccc58d600d057725b701ae2242943fca4ac94f38e524e0275e6",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "d17367e91356e1f7c1d5ec69c3a3f0688d9951dc906a7f3d6e30c6f27f997695",
+    "frontend/portal/src/Candidates.tsx": "9225fb84b913879887a9fc131b73f8a42a4ee1f760a33d242168dbec7398c0e9",
+    "frontend/portal/src/main.tsx": "8b5434789a9c37bff672302882cf0ec066089df19aef7046ef2d5a27c5111410",
+    "frontend/portal/src/portal.css": "bd59fae480daba1af7238a18e078ac3957ebdb72efbac1088f0a4b8d85ccf318",
+    "kandil_hr/public/portal/portal.js": "256c440218f062c727c4acdd79d3089ac9a6229b653aeac253b2f678e9b693f7",
+    "docs/portal/test_candidates.cjs": "f967de0f90a28dc3cd0b8cf2d94da511734d240ec6ed3644308237bb7b14f731"
+  },
+  "limits": [
+    "Recovery API and personal-session durability only; candidate forms are not yet wired to recovery. No automatic activation or production readiness."
+  ]
+}
