@@ -1,6 +1,8 @@
 # قنديل — HR delivery sprint plan
 
-The [event-triggered invitation checkpoint](S4_INVITATIONS_CHECKPOINT.md) verifies post-commit request/delegation jobs, current-authority recipients and bilingual inbox actions with 86 native and 23 HTTP/RQ/browser checks. Generation is event-triggered; delivery follows the outbox worker schedule. Periodic catch-up and complete S4 acceptance remain open.
+The [scheduled invitation catch-up checkpoint](S4_INVITATION_CATCHUP_CHECKPOINT.md) adds **10 passed real scheduler/worker checks** for missed event jobs, later delegates and duplicate suppression in a separate sandbox. The [eight-ID reconciliation](S4_REQUIREMENT_RECONCILIATION.md) identifies remaining selector, event-policy and candidate-workspace gaps. **S4 remains in progress.**
+
+The [event-triggered invitation checkpoint](S4_INVITATIONS_CHECKPOINT.md) verifies post-commit request/delegation jobs, current-authority recipients and bilingual inbox actions with 86 native and 23 HTTP/RQ/browser checks. Generation is event-triggered; delivery follows the outbox worker schedule. Periodic catch-up now has separate evidence; complete S4 acceptance remains open.
 
 The [bilingual event-template checkpoint](S4_EVENT_TEMPLATES_CHECKPOINT.md) verifies ordinary request/completion messages, readable skipped-route HR notices and minimal vacancy/application assignments with 56 native and 26 browser checks. Event-triggered invitations now have separate evidence; complete S4 event policy and HR wording acceptance remain open.
 

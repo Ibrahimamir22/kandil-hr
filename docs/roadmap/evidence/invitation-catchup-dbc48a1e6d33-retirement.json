@@ -1,0 +1,12 @@
+{
+  "run_id": "dbc48a1e6d33",
+  "method": "kandil_hr.foundation.invitation_scheduler_rehearsal.cleanup",
+  "result": {
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "scheduler_paused": true,
+    "all_fixture_delegations_revoked": true
+  }
+}

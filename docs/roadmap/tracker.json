@@ -444,7 +444,7 @@
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
           "status": "in_progress",
-          "progress": "AR/EN action inbox, current-reference privacy, business-calendar deadlines/reminders, fixed bilingual event templates and event-triggered principal/delegate/frozen-Board invitations are implemented with recorded evidence. Invitations use real after-commit jobs and recheck step/authority at delivery. Final invitation checkpoint: 86 native and 23 HTTP/RQ/browser checks. Periodic invitation catch-up, full event/recipient policy, HR calendar/wording and external email acceptance remain open.",
+          "progress": "AR/EN inbox, business-calendar deadlines, reminders, event templates and authority-bound invitations are implemented. Final invitation checkpoint has 86 native and 23 HTTP/RQ/browser checks; separate native scheduled catch-up now passes 10 integration checks. Complete event-policy, searchable organization selectors, HR wording/calendar and external-email acceptance remain open.",
           "evidence": [
             "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
             "evidence/s2-regression-02c66abed7ae.json",
@@ -486,14 +486,17 @@
             "S4_INVITATIONS_CHECKPOINT.md",
             "evidence/s2-regression-39fb3bccac8d.json",
             "../portal/evidence/invitations-ab814b475cd6/results.json",
-            "../portal/evidence/invitations-ab814b475cd6/visual-review.json"
+            "../portal/evidence/invitations-ab814b475cd6/visual-review.json",
+            "S4_INVITATION_CATCHUP_CHECKPOINT.md",
+            "evidence/invitation-catchup-065c904c1e8c.json",
+            "S4_REQUIREMENT_RECONCILIATION.md"
           ]
         },
         {
           "id": "S4-05",
           "description": "Verify outbox retries, worker restart recovery, disabled recruiter handoff and email templates in local capture.",
           "status": "in_progress",
-          "progress": "Earlier checkpoints verify worker process-death/retry recovery, scheduled retry/redrive and disabled-recruiter fallback. Fixed local templates and invitation generation now have native and real HTTP/RQ/browser evidence. Invitation delivery was CLI targeted; timed catch-up and complete operational worker latency remain unverified. Candidate-facing ownership and external-email acceptance remain open.",
+          "progress": "Real worker crash/retry recovery, scheduled redrive and disabled-recruiter fallback have earlier evidence. Invitation catch-up now passes 10 wall-clock scheduler/RQ checks on separate DB/Redis, including missed callbacks, late delegation and duplicate suppression. Production latency/capacity, candidate-facing ownership and external-email acceptance remain open.",
           "evidence": [
             "S4_WORKER_RECOVERY_CHECKPOINT.md",
             "evidence/worker-recovery-1fc8a9b12e9f.json",
@@ -515,7 +518,10 @@
             "S4_INVITATIONS_CHECKPOINT.md",
             "evidence/s2-regression-39fb3bccac8d.json",
             "../portal/evidence/invitations-ab814b475cd6/results.json",
-            "../portal/evidence/invitations-ab814b475cd6/visual-review.json"
+            "../portal/evidence/invitations-ab814b475cd6/visual-review.json",
+            "S4_INVITATION_CATCHUP_CHECKPOINT.md",
+            "evidence/invitation-catchup-065c904c1e8c.json",
+            "S4_REQUIREMENT_RECONCILIATION.md"
           ]
         }
       ],
@@ -925,8 +931,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Event-triggered, authority-bound AR/EN approval invitations after request/delegation commit. Final 86 native and 23 HTTP/RQ/browser checks passed. Exact synthetic jobs and users retired; S4 remains in progress.",
-    "evidence": "S4_INVITATIONS_CHECKPOINT.md",
-    "next": "Verify periodic invitation catch-up and operational worker behavior in an isolated environment; reconcile the eight S4 IDs and remaining event/selector gaps, then continue S5. HR/IT/security/capacity/release gates remain open."
+    "summary": "Real scheduled invitation catch-up passed 10 integration checks on separate DB/Redis; failed setup cohort retired and final cohort cleaned. Eight frozen S4 IDs reconciled with explicit remaining clauses. S4 remains in progress.",
+    "evidence": "S4_INVITATION_CATCHUP_CHECKPOINT.md",
+    "next": "Implement scoped searchable company/department/location vacancy selectors, reconcile remaining team event policy, then continue S5 candidate workspace/ownership. HR/IT/security/capacity/release gates remain open."
   }
 }
