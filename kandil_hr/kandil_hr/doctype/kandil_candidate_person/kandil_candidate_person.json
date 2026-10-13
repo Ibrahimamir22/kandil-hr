@@ -8,7 +8,8 @@
   "allow_rename": 0,
   "field_order": [
     "company",
-    "identity_state"
+    "identity_state",
+    "profile_json"
   ],
   "fields": [
     {
@@ -26,6 +27,12 @@
       "options": "Unreviewed",
       "default": "Unreviewed",
       "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "profile_json",
+      "label": "Basic Profile",
+      "fieldtype": "Code",
       "read_only": 1
     }
   ],

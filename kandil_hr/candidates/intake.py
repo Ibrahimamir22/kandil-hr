@@ -51,7 +51,7 @@ def authorize(request, operation, payload):
 @frappe.whitelist(methods=['POST'])
 @transactional_retry
 def create_application(name, opening_name, details, command_id, expected_version,
-                       person=None, person_version=None, identity_reason=''):
+                       person=None, person_version=None, identity_reason='', profile=None):
     identity.guard()
     if isinstance(details, str) and len(details) > 4000:
         frappe.throw(_('Candidate details are too large.'))
@@ -62,18 +62,27 @@ def create_application(name, opening_name, details, command_id, expected_version
     data = {key: text(details[key], 140, key not in ('email_id', 'phone_number')) for key in keys}
     if not data['email_id'] and len(re.sub(r'\D', '', data['phone_number'])) < 7:
         frappe.throw(_('Provide a valid contact phone or email.'))
+    from kandil_hr.candidates.profile import normalize
+    if isinstance(profile, str) and len(profile) > 8000:
+        frappe.throw(_('Candidate profile is too large.'))
+    extra = frappe.parse_json(profile or '{}')
+    if not isinstance(extra,dict) or set(extra) & {'full_name','email_id','phone_number'}:
+        frappe.throw(_('Name and contact values come from the application details.'))
+    if person and extra:
+        frappe.throw(_('Existing person profiles are not overwritten by a new application.'))
+    person_profile = normalize(dict(extra, full_name=data['applicant_name'], email_id=data['email_id'], phone_number=data['phone_number']))
     person = text(person, 140) if person else None
     reason = text(identity_reason, 1000) if person else ''
     if person and not person_version:
         frappe.throw(_('Review the existing candidate identity before reusing it.'))
-    payload = dict(opening=opening_name, details_hash=hashlib.sha256(dump(data).encode()).hexdigest(),
+    payload = dict(opening=opening_name, profile_hash=hashlib.sha256(dump(person_profile).encode()).hexdigest(), details_hash=hashlib.sha256(dump(data).encode()).hexdigest(),
                    person=person, person_version=str(person_version) if person else None,
                    identity_reason=reason)
 
     def act(request):
         from kandil_hr.pilot.extensions import pilot_opening
         pilot_opening(opening_name, lock=True)
-        candidate = frappe.get_doc(identity.DT, person, for_update=True) if person else identity.new_person(request.company)
+        candidate = frappe.get_doc(identity.DT, person, for_update=True) if person else identity.new_person(request.company, person_profile)
         if person and get_datetime(candidate.modified) != get_datetime(person_version):
             frappe.throw(_('Candidate identity changed. Review it again.'), frappe.TimestampMismatchError)
         with identity.effect():
@@ -105,7 +114,7 @@ def migrate_application(name, opening_name, application, application_version, co
             frappe.throw(_('Legacy application changed. Review it again.'), frappe.TimestampMismatchError)
         if app.custom_kandil_person:
             frappe.throw(_('This application already has a candidate identity.'))
-        person = identity.new_person(request.company)
+        person = identity.new_person(request.company, dict(full_name=app.applicant_name or '',email_id=app.email_id or '',phone_number=app.phone_number or ''))
         frappe.db.set_value('Job Applicant', app.name, {
             'custom_kandil_person': person.name, 'custom_kandil_identity_origin': 'Legacy migration'})
         return dict(application=app.name, person=person.name,
@@ -116,7 +125,7 @@ def migrate_application(name, opening_name, application, application_version, co
 
 
 @frappe.whitelist(methods=['POST'])
-def duplicate_review(company, email_id='', phone_number='', applicant_name=''):
+def duplicate_review(company, email_id='', phone_number='', applicant_name='', after=''):
     """Exact normalized contact/name warnings from readable applications only.
 
     No hidden counts, automatic linking, national IDs or other application history.
@@ -140,10 +149,12 @@ def duplicate_review(company, email_id='', phone_number='', applicant_name=''):
         tests.append("REGEXP_REPLACE(COALESCE(phone_number,''),'[^0-9+]','')=%s"); params.append(phone)
     if len(name) >= 3:
         tests.append('LOWER(TRIM(applicant_name))=%s'); params.append(name)
+    after = text(after, 140, False)
+    params.append(after)
     rows = frappe.db.sql(f"""SELECT name AS application, applicant_name, custom_kandil_person AS person
         FROM `tabJob Applicant` WHERE job_title IN
         (SELECT name FROM `tabJob Opening` WHERE company=%s)
-        AND ({identity.applicant_condition()}) AND ({' OR '.join(tests)})
+        AND ({identity.applicant_condition()}) AND ({' OR '.join(tests)}) AND name>%s
         ORDER BY name LIMIT 21""", params, as_dict=True)
-    return dict(rows=rows[:20], has_more=len(rows)>20,
+    return dict(rows=rows[:20], has_more=len(rows)>20, next_after=rows[19].application if len(rows)>20 else None,
                 policy='Review possible matches; contacts never merge or select a person automatically.')

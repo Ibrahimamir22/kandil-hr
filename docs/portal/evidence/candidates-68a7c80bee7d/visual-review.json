@@ -1,0 +1,40 @@
+{
+  "reviewer": "Codex visual inspection",
+  "scope": "Six synthetic browser screenshots; not HR acceptance or accessibility certification",
+  "observations": [
+    {
+      "file": "directory-en.png",
+      "sha256": "4781485b2c1f81528206eed050ed40c3b394a2ff7a180155f7601bd799a0945c",
+      "observation": "English desktop candidate list, scoped count, paging and active navigation inspected. Synthetic IDs wrap inside rows."
+    },
+    {
+      "file": "intake-en.png",
+      "sha256": "b82282b649a1b2618b13351a6f47e64d584941c332f0c4fefcb0c3b9d3b01585",
+      "observation": "English recruiter intake, explicit identity choice, optional basic profile and confirmation inspected. Long matching list is usable but requires scrolling."
+    },
+    {
+      "file": "detail-en.png",
+      "sha256": "3df25d2de10b5b881b9116cb4f71ebbc12924e3e3277a858712f4ef0818d6bb5",
+      "observation": "Application contact snapshot and separate person profile inspected; zero experience displays as 0 while missing values display Not recorded."
+    },
+    {
+      "file": "directory-ar.png",
+      "sha256": "79f1c12986749a04f9b5fd62c084e64ef5ca81f0b98166065d7ce14097b55618",
+      "observation": "Arabic mobile RTL list and filters inspected; cards wrap and paging remains within the viewport."
+    },
+    {
+      "file": "intake-ar.png",
+      "sha256": "abdf378bccd4067dbc48e08592cd294a2a5455e74bd018865c048d4e7bc8b1af",
+      "observation": "Arabic mobile identity reuse, reason field and review acknowledgment inspected. Opaque identity strings wrap across lines."
+    },
+    {
+      "file": "detail-ar.png",
+      "sha256": "1063798bc1868fdda6e2c38d6d9cfbfd7d997bdae655c428db9f8131cf1061ec",
+      "observation": "Arabic mobile detail inspected; preserved original person profile and three distinct visible applications shown."
+    }
+  ],
+  "limits": [
+    "Full-page screenshots taken after scrolling show sticky navigation/header at the capture scroll position; these are not separate duplicate headers.",
+    "Candidate matching lists are long for deliberately shared-contact test data; compact match cards and broader profile/history work remain planned."
+  ]
+}

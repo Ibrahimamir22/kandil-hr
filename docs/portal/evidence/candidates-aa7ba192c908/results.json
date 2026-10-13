@@ -1,0 +1,79 @@
+{
+  "status": "FAIL",
+  "run_id": "aa7ba192c908",
+  "checks": [
+    {
+      "name": "First page shows 20 of 22 permitted applications",
+      "status": "PASS"
+    },
+    {
+      "name": "Server-backed second page contains remaining applications",
+      "status": "PASS"
+    },
+    {
+      "name": "directory-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Possible matches never select an identity automatically",
+      "status": "PASS"
+    },
+    {
+      "name": "intake-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain creation freezes edits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response retry creates one application and reuses command ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Intake leaves headcount unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "detail-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Person lookup returns only allowed basic profile",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent identical personal-session intake returns identical result",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup": {
+    "run_id": "aa7ba192c908",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/candidates.py": "c745c234861f64eb2e26e7d3af47180c4c497285342e0984724e801ddf1d16d5",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "1ef582c8ee973760790e6bf8311af554f5eb849dcb2186a27de6736248b1d2ff",
+    "kandil_hr/portal/candidate_fixture.py": "e1f30dfdb04875d06915e00962700a737902c16dc22ecae4b65518e342797fd9",
+    "kandil_hr/portal/api.py": "818ea7bb9c121d5864a122fd051da1d84c5ee5f6bdc53c25dc4d1c093c6ee1f2",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "7ccef06eee5bd9feaed21904956d5a012fbdcf0df87889d4ec75a2d83525bf14",
+    "frontend/portal/src/Candidates.tsx": "b2f237dffbc25aa71eb4fa34e99a63c567f7027778e2ccf1fae1cc64b6542940",
+    "frontend/portal/src/main.tsx": "77214e05eef60b89c7a2df94ceaf43923601a8d4b241d596030ae92c468db777",
+    "frontend/portal/src/portal.css": "7a81c3799a3bf5d46bdc7c8d5a42dfd4420fb5a7279cc244cf87e35760f4fb57",
+    "kandil_hr/public/portal/portal.js": "8cf0887ca68e9807b6896cbeec456814187759d3eb6094b1c31882104ac9319c",
+    "docs/portal/test_candidates.cjs": "67f515f326414e3ce92829346352655a7eaeb40383dcb71c37a012000092614c"
+  },
+  "limits": [
+    "Synthetic recruiter intake and basic profile only. Mode restored after temporary test activation. Full profile correction/history, migration rollout, consent, files and production gates remain open."
+  ]
+}

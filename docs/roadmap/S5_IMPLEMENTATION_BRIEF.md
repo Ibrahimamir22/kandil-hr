@@ -1,6 +1,6 @@
 # S5 — candidate identity, applications and sourcing
 
-The [S5 identity checkpoint](S5_IDENTITY_CHECKPOINT.md) adds an **opt-in backend foundation**, with **80 native checks passed**: opaque person/application IDs, explicit identity reuse, scoped duplicate warnings and conservative legacy binding. Full candidate profiles, AR/EN candidate screens, migration preview and HTTP/concurrency acceptance remain pending. The new intake mode is not yet enabled for ordinary review traffic.
+The [S5 candidate workspace checkpoint](S5_CANDIDATE_WORKSPACE_CHECKPOINT.md) adds scoped AR/EN candidate lists, basic person/application details and reviewed recruiter intake. **35 native and 25 candidate browser checks passed**, including lost-response retry, concurrent creation and access revocation. This is partial S5 delivery: full profiles/history, migration, ownership actions, private files, consent and sourcing remain open. Intake was tested under a temporary synthetic-site lease and remains disabled for ordinary review traffic.
 
 13 October 2026. **Implementation contract, not completed functionality.** Reference clone inspected at `7824be24292c4743b4005e14e2df540786cfe167` (clean checkout). Preserve every frozen S5 ID below and the shared VAC-003/VAC-005 application ownership clauses. Current native Job Applicant/ownership foundations are useful but do not satisfy this sprint.
 

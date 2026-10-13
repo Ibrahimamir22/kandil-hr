@@ -1,6 +1,6 @@
 """Opaque company identity with application-derived access, never contact matching.
 
-The person holds no contact, salary, private note or hidden-application count.
+The basic person profile holds no salary, national ID, private note or hidden-application count.
 Activation is explicit until the candidate portal and migration review are ready.
 """
 from contextlib import contextmanager
@@ -64,6 +64,8 @@ class KandilCandidatePerson(Document):
             deny()
         if self.identity_state != 'Unreviewed':
             deny()
+        from kandil_hr.candidates.profile import dump
+        self.profile_json = dump(frappe.parse_json(self.profile_json or '{}'))
 
     def on_trash(self):
         deny()
@@ -72,9 +74,9 @@ class KandilCandidatePerson(Document):
         deny()
 
 
-def new_person(company):
+def new_person(company, profile=None):
     with effect():
-        return frappe.get_doc(dict(doctype=DT, company=company, identity_state='Unreviewed')).insert(ignore_permissions=True)
+        return frappe.get_doc(dict(doctype=DT, company=company, identity_state='Unreviewed', profile_json=frappe.as_json(profile or {}))).insert(ignore_permissions=True)
 
 
 def applicant_condition(user=None):

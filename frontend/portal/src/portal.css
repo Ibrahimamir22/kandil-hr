@@ -97,3 +97,13 @@
 @media(max-width:480px){.approval-deadlines .deadline-milestones{grid-template-columns:1fr}.approval-deadlines .card-head{align-items:flex-start;flex-wrap:wrap;gap:.5rem}}
 
 .vacancy-scope-select{min-width:0}.vacancy-scope-select select{width:100%;max-width:100%}.vacancy-filter-help{grid-column:1/-1;margin:0}
+
+/* Candidate workspace, using the established portal layout in both directions. */
+.candidate-actions{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.candidate-filters{display:flex;align-items:flex-end;gap:1rem;padding:1.25rem;flex-wrap:wrap}.candidate-filters .field{flex:1;min-width:180px}
+.candidate-list{display:grid}.candidate-row{width:100%;background:transparent;border:0;border-bottom:1px solid #e5e1db;padding:1.25rem;text-align:start;display:flex;justify-content:space-between;gap:1rem;cursor:pointer;color:inherit;min-width:0}
+.candidate-row:hover{background:#faf7f3}.candidate-row>span{min-width:0}.candidate-row small{display:block;margin-top:.4rem;color:#79766e;overflow-wrap:anywhere}.candidate-row strong{font-size:1rem;overflow-wrap:anywhere}
+.candidate-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem;padding:1.5rem;margin:0}.candidate-details dt{font-size:.85rem;color:#79766e;margin-bottom:.5rem}.candidate-details dd{margin:0;overflow-wrap:anywhere}
+.candidate-pagination{justify-content:space-between}.candidate-fieldset{border:0;padding:0;margin:0;min-width:0}.candidate-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:1.25rem}
+.candidate-choices{display:grid;gap:.75rem}.candidate-choices label,.candidate-ack{display:flex;align-items:flex-start;gap:.6rem;overflow-wrap:anywhere}.candidate-choices input,.candidate-ack input{width:auto;flex:0 0 auto;margin-top:.25rem}.candidate-ack{margin-top:1.5rem}.candidate-review{padding:1rem;margin-top:1rem;background:#f7f4ef;border-radius:12px}.candidate-review p{overflow-wrap:anywhere}
+@media(max-width:680px){.candidate-details,.candidate-form-grid{grid-template-columns:1fr}.candidate-row{flex-direction:column}.candidate-actions{width:100%}.candidate-pagination{flex-wrap:wrap;gap:.75rem}.candidates .page-heading,.candidate-intake .page-heading{flex-wrap:wrap}}

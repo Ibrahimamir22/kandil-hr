@@ -1,0 +1,9 @@
+{
+  "run_id": "e049c321a614",
+  "cleaned": true,
+  "accounts_disabled": 6,
+  "all_fixture_ledgers_zero": true,
+  "history_retained": true,
+  "intake_lease_restored": true,
+  "portal_http": 200
+}

@@ -560,17 +560,25 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Identity schema, versioned recruiter intake, application-scoped person access and conservative legacy-binding primitive implemented and native-tested. Complete person profile/history, duplicate review UI, former/internal candidates, migration rollout and HTTP/concurrency acceptance remain pending.",
+          "progress": "Opaque person/application identity, basic professional profile, scoped person/application views and explicit duplicate review/reuse have native and personal-session browser evidence. Full profile correction/history, former/internal candidates and controlled migration/activation remain pending.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
-            "evidence/s2-regression-269ddacc42c4.json"
+            "evidence/s2-regression-269ddacc42c4.json",
+            "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
+            "evidence/s2-regression-2652211f4907.json",
+            "../portal/evidence/candidates-68a7c80bee7d/results.json"
           ]
         },
         {
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "AR/EN directory, search/status/paging, basic detail and recruiter-assisted intake tested. Private files, follow-up/activity/rejection workflows and complete candidate workspace remain required.",
+          "evidence": [
+            "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
+            "../portal/evidence/candidates-68a7c80bee7d/results.json"
+          ]
         },
         {
           "id": "S5-03",
@@ -603,8 +611,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Opt-in backend identity/intake foundation implemented: opaque company person, distinct HRMS applications, scoped duplicate warnings, immutable source and explicit legacy binding. 17 focused and 63 affected native cases passed. Full person profile, UI, migration preview, HTTP/concurrency and S5 acceptance remain open; ordinary review intake mode stays disabled.",
-      "checkpoint": "S5_IDENTITY_CHECKPOINT.md"
+      "progress": "Scoped AR/EN candidate directory, person/application details and reviewed intake implemented. 35 native and 25 personal-session candidate browser checks passed with retry, concurrency, revocation and cleanup evidence. Full profile/history, controlled migration/activation, ownership actions, sourcing, private files and consent remain open. Ordinary intake mode stays disabled.",
+      "checkpoint": "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -948,8 +956,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Opt-in candidate identity/intake backend passed 80 native checks (17 focused plus 63 affected regressions). No production or site-wide activation; full candidate profile and workspace remain open.",
-    "evidence": "S5_IDENTITY_CHECKPOINT.md",
-    "next": "Implement full scoped person/application projections and controlled profile changes, AR/EN candidate intake/workspace and migration preview; then committed ordinary-session and concurrency validation before synthetic-site activation. Preserve all 98 requirements and release gates."
+    "summary": "Scoped AR/EN candidate directory, person/application details and reviewed intake implemented. 35 native and 25 personal-session candidate browser checks passed with retry, concurrency, revocation and cleanup evidence. Full profile/history, controlled migration/activation, ownership actions, sourcing, private files and consent remain open. Ordinary intake mode stays disabled.",
+    "evidence": "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
+    "next": "Complete versioned profile correction/history and migration preview; protect intake recovery across navigation; add candidate ownership/follow-up/activity and full shared recruiter handoff. Preserve all 98 requirements and release gates."
   }
 }
