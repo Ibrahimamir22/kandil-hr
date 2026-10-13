@@ -1,0 +1,13 @@
+import React,{useEffect,useState} from 'react';
+import {api} from './api';
+import {historyText} from './HistoryCapture';
+import type {Tr} from './types';
+
+type Link={name:string;title:string;status:string;revision:number};
+type Page={parent:Link|null;parent_restricted:boolean;amendments:Link[];next_start:number;has_more:boolean};
+export function RequestLinks({name,t,onOpen}:{name:string;t:Tr;onOpen:(name:string)=>void}){
+ const [query,setQuery]=useState({start:0,refresh:0}),[page,setPage]=useState<Page|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ useEffect(()=>{let stopped=false;setBusy(true);setPage(null);setError('');api<Page>('kandil_hr.portal.request_links.related',{name,start:query.start}).then(v=>{if(!stopped)setPage(v)}).catch(()=>{if(!stopped)setError(t('تعذر تحميل الطلبات المرتبطة. تحقق من الصلاحيات وأعد المحاولة.','Could not load linked requests. Check access and retry.'))}).finally(()=>{if(!stopped)setBusy(false)});return()=>{stopped=true}},[name,query]);
+ const link=(row:Link)=><button className="btn history-event" data-linked-request={row.name} key={row.name} onClick={()=>onOpen(row.name)}><strong>{row.title}</strong><span>{historyText(row.status,t)} · {t('إصدار','Revision')} {row.revision}</span></button>;
+ return <section className="card section-gap request-links" aria-busy={busy}><div className="card-head"><h2>{t('الطلب الأصلي والتعديلات','Original request and amendments')}</h2><button className="btn small" disabled={busy} onClick={()=>setQuery({start:0,refresh:query.refresh+1})}>{t('تحديث الروابط','Refresh links')}</button></div><div className="form-body">{error&&<p role="alert" className="alert error">{error}</p>}{busy&&<p>{t('جارٍ التحميل…','Loading…')}</p>}{page&&<>{page.parent&&<div><h3>{t('الطلب الأصلي','Original request')}</h3>{link(page.parent)}</div>}{page.parent_restricted&&<p className="muted">{t('الطلب الأصلي غير متاح بصلاحياتك الحالية.','The original request is unavailable with your current permissions.')}</p>}<h3>{t('طلبات التعديل المرتبطة','Linked amendments')}</h3>{page.amendments.length?<div className="history-events">{page.amendments.map(link)}</div>:<p className="muted">{t('لا توجد تعديلات متاحة في هذه الصفحة.','No accessible amendments on this page.')}</p>}{(query.start>0||page.has_more)&&<div className="actions"><button className="btn small" disabled={!query.start||busy} onClick={()=>setQuery({...query,start:Math.max(0,query.start-20)})}>{t('السابق','Previous')}</button><button className="btn small" disabled={!page.has_more||busy} onClick={()=>setQuery({...query,start:page.next_start})}>{t('التالي','Next')}</button></div>}</>}</div></section>;
+}

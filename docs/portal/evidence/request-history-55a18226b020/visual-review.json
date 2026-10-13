@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-13T00:56:52.695303+00:00",
+  "method": "Agent visual inspection of the four rendered Playwright captures using view_image",
+  "files": {
+    "route-rationale-ar.png": "33a70bb01ec572eee4649082ec1f08318d0157592013822a21aba32b346f13eb",
+    "amendment-links-ar.png": "dd7fe732f061e07ae9c1d56b4309e7546c9ba680da4dde71de38033ab4260b43",
+    "route-rationale-en.png": "8a554dd10363691c68f951a69ae9888d18044f6aa34669dd32cd2f84b92e71fe",
+    "amendment-links-en.png": "0e198e63458654310374f84399284570b40e5d2c95e4cb3174cd585ec22a53a7"
+  },
+  "findings": [
+    "Arabic mobile RTL route dates, authority level, personal-interest explanation and original dated rule are readable.",
+    "English desktop shows original dated reason, rule dates and skipped authority clearly.",
+    "AR/EN amendment cards show original title, current state and revision with accessible navigation and refresh controls."
+  ],
+  "limits": [
+    "Four focused captures inspected; not an independent accessibility audit or HR terminology sign-off."
+  ]
+}

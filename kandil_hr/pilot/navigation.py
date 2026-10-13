@@ -134,6 +134,7 @@ def page_context(context, route):
 @frappe.whitelist(methods=["GET"])
 def request_actions(name):
 	enabled_guard()
+	from kandil_hr.recruitment.preview import can_preview
 	doc = frappe.get_doc("Kandil Hiring Request", name)
 	doc.check_permission("read")
 	step = next((row for row in doc.approval_steps if row.decision == "Pending"), None)
@@ -211,6 +212,7 @@ def request_actions(name):
 		board_files=board_files,
 		headcount_preview=bool(
 			frappe.conf.get("kandil_parity_enabled")
+			and can_preview()
 			and request_scope(doc)
 			and all(
 				frappe.get_doc("Kandil Capacity", capacity).has_permission("read")

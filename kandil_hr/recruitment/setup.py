@@ -127,3 +127,7 @@ def install():
 	from kandil_hr.recruitment.authority import install as install_authority
 
 	install_authority()
+
+	from kandil_hr.foundation.approver_capacity_access import execute as install_capacity_access
+
+	install_capacity_access()

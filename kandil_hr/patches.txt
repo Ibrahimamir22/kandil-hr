@@ -6,3 +6,4 @@
 # Patches added in this section will be executed after doctypes are migrated
 kandil_hr.foundation.position_history_index
 kandil_hr.foundation.request_history_indexes
+kandil_hr.foundation.approver_capacity_access

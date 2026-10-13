@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Request operations, register, command history and standalone saved-version browsing are connected. Selected saved versions compare with exact recorded pre-decision content, including different revision numbers and original-versus-HR-proposed quantities. Expanded delegated/CEO/Board/correction/pending-quantity history, route rationale, amendment links and remaining native reference/file/reporting paths remain open.",
+          "progress": "Request operations, register, command history and saved versions are connected. Captured route explanations preserve original rules/skips without excluded identities. Permission-checked original/amendment links and saved-version retention across amendment creation are implemented. Expanded authority/correction/pending-quantity screen acceptance and native reference/File/reporting audit remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -296,7 +296,13 @@
             "S3_REVISION_CHECKPOINT.md",
             "evidence/s2-regression-06239da79727.json",
             "../portal/evidence/request-history-db0d5ad8bb14/results.json",
-            "../portal/evidence/browser-f83f595c85fe/regression.json"
+            "../portal/evidence/browser-f83f595c85fe/regression.json",
+            "S3_ROUTE_LINKS_CHECKPOINT.md",
+            "evidence/s2-regression-a9e97348a1d9.json",
+            "evidence/s2-regression-4889b97ef408.json",
+            "../portal/evidence/request-history-55a18226b020/results.json",
+            "../portal/evidence/request-history-55a18226b020/visual-review.json",
+            "../portal/evidence/browser-02cf51b48264/regression.json"
           ]
         },
         {
@@ -317,7 +323,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Command history, standalone saved versions and selected pre-decision comparisons are implemented and tested. Expanded authority/correction history, route rationale, amendment links, remaining native reference paths and full S3 acceptance remain open.",
+      "progress": "Command history, saved versions, pre-decision comparisons, captured route reasons and amendment navigation are connected. Native delegated/CEO/Board history and scoped capacity-reference access are tested. Expanded authority/correction browser history, remaining native reference paths and full S3 acceptance remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -758,8 +764,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Saved-version browsing and selected pre-decision comparisons connected in AR/EN. Exact capture matching, historical permissions, distinct decision/outcome display and per-request history indexes verified. 50 final native and 103 browser checks passed; full S3 and release gates remain open.",
-    "evidence": "S3_REVISION_CHECKPOINT.md",
-    "next": "Complete frozen route-rationale and linked-amendment navigation; expand delegated/CEO/Board/correction/pending-quantity history acceptance and finish remaining native historical-reference paths before S3 closeout."
+    "summary": "Captured route reasons and original/amendment navigation verified in AR/EN, including saved-version retention and duplicate-panel regression. Scoped CEO/Board Capacity reference reads preserve live-preview restrictions. 112 broader native checks plus an overlapping final 40-case affected run (113 distinct cases), and 125 final browser checks passed. Full S3 and release gates remain open.",
+    "evidence": "S3_ROUTE_LINKS_CHECKPOINT.md",
+    "next": "Expand delegated/CEO/Board history screen acceptance and correction/pending-quantity comparisons; finish the native nested-route/reference/File/reporting audit before S3 closeout."
   }
 }

@@ -27,9 +27,9 @@ Ordinary requester/manager/HR/Board and outside-scope sessions; changed organiza
 ## Remaining after the saved-revision increment
 
 - Immutable Request Revision metadata/detail and exact command capture matching are implemented. Keep legacy missing captures explicitly partial; do not fabricate pre-decision records. Complete the expanded authority/correction acceptance below.
-- Submitted-version versus selected-decision comparison across commands and across revision numbers is implemented. Useful linked-amendment navigation and all mapped correction/pending-quantity history cases remain.
+- Submitted-version versus selected-decision comparison across commands and across revision numbers is implemented. Permission-checked linked-amendment navigation is implemented; complete all mapped correction/pending-quantity history cases.
 - The initial native Revision scope/current-reference checks and nested snapshot field protections are implemented. Complete the remaining nested-route/reference/File/reporting audit and hardening. The new adapter filters its own output; this does not prove that existing native legacy endpoints meet historical-scope and restricted-reference requirements. Preserve positive authorized immutable-byte contracts where disclosure is safe.
 - Expand ordinary-session history coverage to delegated/CEO/Board decisions and retained evidence across revisions. Existing Board action tests remain separate from history-screen acceptance.
-- Preserve full frozen route rationale (rules/skipped levels/interests) through an explicitly reviewed projection; the current screen shows actual steps and the captured policy subset.
+- Captured dated rules and skipped authority reasons now have an explicit projection shared by command and saved-version views. Excluded users/assignments and unproven historical position identities remain private; no current rerouting is presented as history. Complete the remaining authority/correction browser acceptance.
 
 New recruitment command envelopes also capture the requested Position alongside capacities. Old envelopes are never rewritten. Old missing location context is explicitly partial and requires current department-wide scope; narrow-branch readers cannot rely on today's location to infer historical authorization.

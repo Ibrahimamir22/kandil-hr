@@ -56,6 +56,18 @@ class TestRequestRevisions(unittest.TestCase):
         self.assertEqual(len({r['name'] for r in rows}), 2)
         self.assertIn('Submitted', {r['action'] for r in rows})
 
+    def test_amendment_creation_preserves_original_approved_saved_version(self):
+        self.f.approve_all(self.name)
+        saved=frappe.get_all(revisions.DT,filters={'request':self.name},fields=['name','snapshot_json'],order_by='creation desc')[0]
+        original=self.read(saved.name)
+        self.assertEqual(original['snapshot']['status'],'Approved')
+        for index in range(2):
+            child=self.f.call('requester',api.amend,self.name,reason='Revision navigation regression')['name']
+            self.assertEqual(self.read(saved.name),original)
+            self.assertIn(saved.name,{r['name'] for r in self.listing()['rows']})
+            self.f.call('requester',api.cancel_request,child,reason='Withdraw synthetic amendment')
+        self.assertEqual(frappe.db.get_value(revisions.DT,saved.name,'snapshot_json'),saved.snapshot_json)
+
     def test_original_submission_versus_actual_hr_reviewed_quantities(self):
         self.f.decide(self.name, 'manager')
         self.f.call('hr', api.review, self.name, quantities={self.f.load(self.name).lines[0].name: 1}, priority='Normal', reason='One needed')

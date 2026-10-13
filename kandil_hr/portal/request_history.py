@@ -102,6 +102,8 @@ def project(snapshot, related, doc):
     if not isinstance(route, dict) or (route.get('policy') is not None and not isinstance(route['policy'], dict)): deny()
     # Frozen policy only, never today's policy or arbitrary configuration JSON.
     result['policy'] = {key: (route.get('policy') or {}).get(key) for key in POLICY_FIELDS} if route.get('policy') else None
+    from kandil_hr.portal.history_rationale import rationale
+    result['rationale'] = rationale(route)
     result['location_capture'] = 'partial' if missing else 'complete'
     return result
 

@@ -13,9 +13,18 @@ from kandil_hr.recruitment.api import route_config
 from kandil_hr.recruitment.models import guard
 
 
+def can_preview():
+	# Reading frozen request references does not grant operational recalculation.
+	return frappe.session.user == 'Administrator' or bool({
+		'Kandil Requester', 'Kandil Approver', 'Kandil Recruiter', 'Kandil Sector Approver'
+	}.intersection(frappe.get_roles()))
+
+
 @frappe.whitelist()
 def headcount(name):
 	guard()
+	if not can_preview():
+		frappe.throw(_("Your role cannot preview live headcount."), frappe.PermissionError)
 	company = frappe.db.get_value("Kandil Hiring Request", name, "company")
 	if not company:
 		frappe.throw(_("Hiring request not found."), frappe.DoesNotExistError)

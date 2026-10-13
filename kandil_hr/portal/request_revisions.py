@@ -16,6 +16,9 @@ from kandil_hr.portal.organization import paging
 DT = 'Kandil Request Revision'
 META = ('name', 'revision', 'action', 'actor', 'creation')
 FIELDS = (*META, 'request', 'company', 'department', 'snapshot_json')
+# amend creates a different request without saving its original. Its unchanged
+# parent AFTER capture cannot identify when that parent's version was saved.
+SNAPSHOT_OPERATIONS = tuple(op for op in history.OPERATIONS if op != 'amend')
 
 
 def parse(value):
@@ -63,8 +66,8 @@ def captured_locations(snapshot, doc):
           AND target_name=%s AND operation IN %(operations)s
           AND REPLACE(JSON_UNQUOTE(JSON_EXTRACT(envelope_json, '$.after.modified')), ' ', 'T')=%s
         ORDER BY occurred_at DESC, name DESC LIMIT 2
-    '''.replace('%(operations)s', '(' + ','.join(['%s'] * len(history.OPERATIONS)) + ')'),
-        (doc.company, history.DT, doc.name, *history.OPERATIONS, normalized['modified']), as_dict=True)
+    '''.replace('%(operations)s', '(' + ','.join(['%s'] * len(SNAPSHOT_OPERATIONS)) + ')'),
+        (doc.company, history.DT, doc.name, *SNAPSHOT_OPERATIONS, normalized['modified']), as_dict=True)
     matches = []
     for row in rows:
         value = parse(row.envelope_json)
