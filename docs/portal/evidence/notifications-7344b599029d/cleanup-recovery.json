@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-13T12:48:05.445123+00:00",
+  "run_id": "7344b599029d",
+  "cleaned": true,
+  "accounts_disabled": 6,
+  "all_fixture_ledgers_zero": true,
+  "history_retained": true,
+  "method": "Separate audited temporary grant for exact synthetic HR account; normal cancel then disable all accounts and revoke temporary grant. Original revoked grant retained.",
+  "fixture_sha256": "ef6c5aff224ed4647fd0ff7ade9799afe92dbbc409055808469250c45a0d35d9"
+}

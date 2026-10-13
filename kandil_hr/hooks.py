@@ -484,3 +484,9 @@ doctype_js["Kandil Document Delivery"] = "public/js/document_delivery.js"
 # A derived private lookup is never a replacement for source authorization.
 has_permission["Kandil Position Audit Link"] = "kandil_hr.foundation.command_audit.permission"
 permission_query_conditions["Kandil Position Audit Link"] = "kandil_hr.foundation.command_audit.query"
+
+# Current linked-record authorization for delivered HR notifications, including
+# native Desk/resource reads; preserved sites retain upstream behavior.
+has_permission['Notification Log'] = 'kandil_hr.foundation.notification_access.native_permission'
+permission_query_conditions['Notification Log'] = 'kandil_hr.foundation.notification_access.native_condition'
+override_whitelisted_methods['frappe.desk.doctype.notification_log.notification_log.get_notification_logs'] = 'kandil_hr.foundation.notification_access.get_notification_logs'

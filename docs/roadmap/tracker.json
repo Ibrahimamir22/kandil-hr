@@ -443,7 +443,17 @@
         {
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Delivered-message inbox connected in AR/EN with exact counts, paging, literal search, repeat-safe reads and reference navigation. Current reference permissions also protect native notification reads. Final mixed-access browser/CSRF checks and native privacy regressions passed; 49 distinct native and 90 browser checks across incremental runs. Business-calendar deadlines, scheduled reminders and complete event/recipient coverage remain. External delivery, HR/security/scale release acceptance are not complete.",
+          "evidence": [
+            "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
+            "evidence/s2-regression-02c66abed7ae.json",
+            "evidence/s2-regression-52c7b65daffb.json",
+            "../portal/evidence/notifications-2e961c76fbbb/results.json",
+            "../portal/evidence/notifications-d447f12d8b6e/visual-review.json",
+            "../portal/evidence/dashboard-5a6eae2a376d/results.json",
+            "../portal/evidence/browser-4558a7fb94cf/regression.json"
+          ]
         },
         {
           "id": "S4-05",

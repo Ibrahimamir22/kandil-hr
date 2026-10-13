@@ -1,0 +1,153 @@
+{
+  "status": "FAIL",
+  "run_id": "7344b599029d",
+  "checked_at": "2026-10-13T12:46:00.032Z",
+  "checks": [
+    {
+      "name": "29 delivered messages exceed one inbox page",
+      "status": "PASS"
+    },
+    {
+      "name": "en: exact inbox and unread totals",
+      "status": "PASS"
+    },
+    {
+      "name": "en: first page is bounded at 25 messages",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second page has remaining four messages",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old message found across pages",
+      "status": "PASS"
+    },
+    {
+      "name": "en: message body cannot execute HTML",
+      "status": "PASS"
+    },
+    {
+      "name": "en: layout and language direction fit viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: read action updates unread totals and removes read button",
+      "status": "PASS"
+    },
+    {
+      "name": "en: concurrent repeat reads both return the same state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: reference opens real authorized request",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unread filter excludes marked messages",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: exact inbox and unread totals",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: first page is bounded at 25 messages",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second page has remaining four messages",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old message found across pages",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: message body cannot execute HTML",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: layout and language direction fit viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: read action updates unread totals and removes read button",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: concurrent repeat reads both return the same state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: reference opens real authorized request",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unread filter excludes marked messages",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox responses prohibit HTTP caching",
+      "status": "PASS"
+    },
+    {
+      "name": "Another recipient cannot be marked read",
+      "status": "PASS"
+    },
+    {
+      "name": "Read mutation requires session CSRF token",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation removes messages and unread count on refresh",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked notification cannot be marked through direct API",
+      "status": "PASS"
+    },
+    {
+      "name": "Native notification feed also hides revoked content and forbids cache",
+      "status": "PASS"
+    },
+    {
+      "name": "Native guessed receipt resource is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider inbox has no other company messages",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript errors, HTTP 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during browser acceptance",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "cleaned": false
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/foundation/notification_access.py": "b19fe99e7e9eed7647e285d528c6f550e8ab227af44be3eee84b3ad975dbddd8",
+    "kandil_hr/portal/notifications.py": "2b463d2ba8fc3eeb96750fb16dd1545f52ca1678716144fd087beccf66342fc1",
+    "kandil_hr/portal/notification_fixture.py": "6226b161432261b1034ee340fc476db03661545c16b39ccf243d2d24801598fe",
+    "kandil_hr/portal/test_notifications.py": "11582ba68910b56a077017823b2666a245ce7674a435d01de9c3fcc36663ef49",
+    "kandil_hr/hooks.py": "0f49e6f3f2c54cb95e0c503b840730a8e4ba203bf64a4c78086860c315246585",
+    "kandil_hr/portal/vacancies.py": "f60c972a84a6efb063afa2192a46a65f2b01b1a2e57b04310f71be5a5d52a0a0",
+    "frontend/portal/src/Notifications.tsx": "3c9dd7d75d487a119bfc66a6d3bb8da2f0244743bfd0da590b8d83528d985437",
+    "frontend/portal/src/main.tsx": "ff95af47b9c97a4e8e82d6c0b5ee395ef55eb9df1a0af525f675b0faf93a360f",
+    "frontend/portal/src/portal.css": "95f662bffe0cb94df727046443496085c7afee43b9bdc69805759608671bd5c7",
+    "kandil_hr/public/portal/portal.js": "0fd09b0e05a3b00666796920a9c8e7f515b2009873bf2afd8fd972286ccb3853",
+    "docs/portal/test_notifications.cjs": "007d0c1e47d3444adca7a3a226f4f04aac6b4e5080df64532a341b7c5b901b23"
+  },
+  "limits": [
+    "Local delivered inbox only; scheduler, complete event coverage and external email remain separate. Not sustained 1,000-account load or independent security acceptance."
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "reviewed_at": "2026-10-13T12:49:17.792969+00:00",
+  "status": "PASS",
+  "method": "Direct inspection of rendered screenshots",
+  "screenshots": {
+    "inbox-ar.png": "d154eb099dac3e8db8b836a43f70c720d3570d59feb9bd417342e07416cb3f50",
+    "inbox-en.png": "25f1371013d99e92fa35667eeaba7f137e6673ade0130ad0dbca8f243060da3a"
+  },
+  "findings": [
+    "Arabic 390px RTL: search, read filter, distinct matching/unread totals, message text and read/open actions fit viewport.",
+    "English desktop: inbox badge, toolbar, status, message and paging controls visible."
+  ],
+  "follow_up": [
+    "Timestamp uses raw precision; format to seconds and isolate bidi direction."
+  ],
+  "limits": [
+    "Synthetic messages; real HR message-template wording acceptance remains open."
+  ]
+}

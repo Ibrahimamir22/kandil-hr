@@ -11,6 +11,7 @@ import uuid
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from threading import Event
+from unittest.mock import patch
 
 import frappe
 
@@ -59,13 +60,12 @@ def _race(site, sites_path, company, principal, recipient, request, name):
 	return result
 
 
-def run():
+def _run(prefix):
 	_guard()
 	company = frappe.db.exists("Company", "Kandil PARITY TEST A")
 	if not company:
 		raise RuntimeError("Canonical synthetic Company is required")
 	site, sites_path = frappe.local.site, str(Path(frappe.local.sites_path).resolve())
-	prefix = "outbox-authority-" + uuid.uuid4().hex
 	users, grants = {}, []
 	request_name = prefix + "-request"
 	outbox_name = None
@@ -82,17 +82,22 @@ def run():
 		):
 			user = prefix + "-" + key + "@example.invalid"
 			users[key] = user
-			frappe.get_doc(
-				dict(
-					doctype="User",
-					email=user,
-					first_name="Synthetic outbox authority",
-					enabled=1,
-					send_welcome_email=0,
-					user_type="System User",
-					roles=[dict(role=role)],
-				)
-			).insert(ignore_permissions=True)
+			previous_import = frappe.flags.get('in_import')
+			try:
+				frappe.flags.in_import = True
+				frappe.get_doc(
+					dict(
+						doctype="User",
+						email=user,
+						first_name="Synthetic outbox authority",
+						enabled=1,
+						send_welcome_email=0,
+						user_type="System User",
+						roles=[dict(role=role)],
+					)
+				).insert(ignore_permissions=True)
+			finally:
+				frappe.flags.in_import = previous_import
 			grant = frappe.get_doc(
 				dict(
 					doctype="Kandil Access Grant",
@@ -213,3 +218,18 @@ def run():
 			"No provider calls or other fixture-account mutations",
 		],
 	)
+
+
+def run():
+    _guard()
+    prefix = "outbox-authority-" + uuid.uuid4().hex
+    original = frappe.enqueue
+    def enqueue(method, *args, **kwargs):
+        identity = getattr(kwargs.get('user'), 'name', '') or ''
+        if (method == 'frappe.core.doctype.user.user.create_contact'
+                and identity.startswith(prefix + '-') and identity.endswith('@example.invalid')):
+            kwargs['now'] = True
+        return original(method, *args, **kwargs)
+    # Only this race's exact synthetic accounts; never start/drain shared workers.
+    with patch('frappe.enqueue', side_effect=enqueue):
+        return _run(prefix)

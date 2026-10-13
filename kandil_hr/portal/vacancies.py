@@ -71,18 +71,19 @@ def ranking(o, r, at):
     return Case().when(o.custom_kandil_vacancy_state.isin(RANKED), base + age_points + due_points + pin).else_(0)
 
 
-def permitted_names(kind):
+def permitted_names(kind, user=None):
     # Native list compilation does not check child Link User Permissions, while
     # Document.check_permission does. Apply those restrictions BEFORE the count
     # rather than dropping inaccessible rows after pagination.
     from frappe.permissions import get_allowed_docs_for_doctype
-    q = frappe.qb.get_query(kind, fields=['name'], ignore_permissions=False, db_query_compat=True)
-    if frappe.session.user == 'Administrator':
+    user = user or frappe.session.user
+    q = frappe.qb.get_query(kind, fields=['name'], ignore_permissions=False, db_query_compat=True, user=user)
+    if user == 'Administrator':
         return q
     parent = frappe.qb.DocType(kind)
-    permissions = frappe.permissions.get_user_permissions(frappe.session.user)
+    permissions = frappe.permissions.get_user_permissions(user)
     strict = frappe.get_system_settings('apply_strict_user_permissions')
-    q = q.where(RawCriterion(user_permissions(kind, frappe.session.user)))
+    q = q.where(RawCriterion(user_permissions(kind, user)))
     for table_field in frappe.get_meta(kind).get_table_fields():
         child = frappe.qb.DocType(table_field.options)
         for field in frappe.get_meta(table_field.options).get_link_fields():

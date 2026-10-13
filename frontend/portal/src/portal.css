@@ -84,3 +84,7 @@
 .team-current-members{list-style:none;margin:0;padding:0}.team-current-members li{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-block:6px}.team-current-members bdi{overflow-wrap:anywhere}
 
 .vacancy-actions .card-head,.vacancy-card .form-footer{flex-wrap:wrap;gap:10px}.vacancy-actions h2:focus{outline:2px solid var(--accent,#a91923);outline-offset:4px}.vacancy-actions p,.vacancy-effect{overflow-wrap:anywhere}.vacancy-actions .field{margin-block:18px}.vacancy-effect p{margin-block:8px}.vacancy-actions select{max-width:100%}
+.notification-count{margin-inline-start:auto;background:var(--red-soft);color:var(--red);padding:3px 7px;border-radius:5px;font-size:11px}
+.inbox-toolbar{justify-content:flex-start;align-items:flex-end;flex-wrap:wrap}.inbox-toolbar .field:first-child{flex:1;min-width:180px}.inbox-toolbar .field{margin:0}.inbox-counts{display:flex;gap:20px;flex-wrap:wrap}
+.notification-item{padding:22px;border-top:1px solid var(--line);overflow-wrap:anywhere}.notification-item.is-unread{border-inline-start:3px solid var(--red)}.notification-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}.notification-heading h2{font-size:16px;margin:0}.notification-item p{line-height:1.7}.notification-item .actions{margin-top:16px;flex-wrap:wrap}.notification-item.is-read .notification-heading h2{font-weight:500}
+@media(max-width:760px){.inbox-toolbar .field{width:100%}.notification-heading{flex-wrap:wrap}.notification-item{padding:16px}}

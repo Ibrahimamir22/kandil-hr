@@ -1,0 +1,16 @@
+{
+  "reviewed_at": "2026-10-13T12:56:39.388469+00:00",
+  "status": "PASS",
+  "method": "Direct rendered screenshot inspection",
+  "screenshots": {
+    "inbox-ar.png": "1785ec1732694d5f22047c0a97d6c9e8bfaad5ed57e4d344c06038270340cc31",
+    "inbox-en.png": "3142f575360021edcadbd681b441d5610f776e3bff586931b03ebb7e0ce469f7"
+  },
+  "findings": [
+    "Arabic mobile 390px RTL search, read filter, totals, message, actions and pagination fit without clipping. Timestamp is isolated and shown to seconds.",
+    "English desktop unread badge, distinct filtered/global totals, actions and timestamp visible."
+  ],
+  "limits": [
+    "Synthetic messages; HR wording acceptance and full accessibility audit remain separate."
+  ]
+}
