@@ -17,15 +17,16 @@ All entry points remain non-whitelisted and Administrator-only server functions.
 """
 
 import json
+from datetime import datetime, time
 from zoneinfo import ZoneInfo
 
 import frappe
 from frappe import _
-from frappe.utils import get_datetime
+from frappe.utils import get_datetime, get_system_timezone
 
 from kandil_hr.foundation.business_calendar import company_calendar
 from kandil_hr.foundation.clock import now_cairo
-from kandil_hr.foundation.outbox import enqueue
+from kandil_hr.foundation.outbox import enqueue, recheck_calendar_deferred
 from kandil_hr.recruitment.models import enabled
 
 STAGES = {2: "reminder", 3: "escalation", 4: "warning", 5: "expiry"}
@@ -71,6 +72,57 @@ def delivery_reason(request, notice):
 	return ""
 
 
+def timing_plan(request, notice):
+	"""Internal delivery timing, before recipient locks; caller holds Company.
+
+	Later due milestones suppress stale instructions. Holidays/weekends or a
+	calendar edit moving this same milestone into the future postpone the row
+	without consuming an attempt. The existing stable key remains usable.
+	"""
+	if not notice.get("delivery_context") or delivery_reason(request, notice):
+		return {}
+	context = json.loads(notice.delivery_context)
+	calendar = company_calendar(request.company, current=True)
+	start = _waiting_date(context["waiting_since"])
+	day = now_cairo().date()
+	elapsed = calendar.elapsed(start, day) if day >= start else 0
+	target = next(n for n, label in STAGES.items() if label == context["stage"])
+	if elapsed > target and target < 5:
+		return {"reason": "Approval reminder superseded by a later business-day milestone"}
+	if elapsed < target:
+		resume = calendar.deadline(start, target)
+	elif day.weekday() in calendar.weekends or day in calendar.holidays:
+		resume = calendar.deadline(day, 1)
+	else:
+		return {}
+	# next_attempt uses the Frappe site's naive wall-clock representation, while
+	# business dates use Cairo (including historical DST). No browser clock input.
+	instant = datetime.combine(resume, time.min, tzinfo=ZoneInfo("Africa/Cairo"))
+	return {"defer_until": instant.astimezone(ZoneInfo(get_system_timezone())).replace(tzinfo=None)}
+
+
+def deadline_projection(doc):
+	"""Minimal read-only projection for an already-authorized request viewer."""
+	result = dict(state="inactive", timezone="Africa/Cairo", as_of=now_cairo().date().isoformat(),
+		automatic_rejection=False, policy_status="Awaiting HR confirmation")
+	step = next((row for row in doc.approval_steps if row.decision == "Pending"), None)
+	if doc.status != "Pending" or not step:
+		return result
+	if not step.waiting_since or not step.step_key or not step.principal:
+		return result | {"state": "unavailable"}
+	try:
+		calendar = company_calendar(doc.company)
+		start, day = _waiting_date(step.waiting_since), now_cairo().date()
+		elapsed = calendar.elapsed(start, day) if day >= start else 0
+		milestones = [dict(working_day=n, stage=label, date=calendar.deadline(start, n).isoformat()) for n, label in STAGES.items()]
+		return result | dict(state="active", waiting_from=start.isoformat(), working_days=elapsed,
+			weekends=list(calendar.weekends), working_today=day.weekday() not in calendar.weekends and day not in calendar.holidays,
+			current_stage=due_milestone(elapsed), milestones=milestones)
+	except (frappe.ValidationError, ValueError):
+		# Do not expose calendar IDs, holiday descriptions or configuration traces.
+		return result | {"state": "unavailable"}
+
+
 def due_milestone(working_days):
 	return STAGES.get(min(working_days, 5))
 
@@ -106,7 +158,7 @@ def process_request(name):
 		return {"status": "Inactive", "outbox": []}
 	if not step.waiting_since or not step.step_key or not step.principal:
 		frappe.throw(_("The active approval step is missing its frozen identity or waiting date."))
-	calendar = company_calendar(doc.company)
+	calendar = company_calendar(doc.company, current=True)
 	current_date = now_cairo().date()
 	start = _waiting_date(step.waiting_since)
 	if start > current_date:
@@ -147,7 +199,9 @@ def process_request(name):
 	queued = []
 	for user in sorted(recipients):
 		key = f"approval-sla:v2:{doc.name}:{doc.revision}:{step.step_key}:{stage}:{user}"
-		queued.append(enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name, delivery_context=context))
+		name = enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name, delivery_context=context)
+		recheck_calendar_deferred(name)
+		queued.append(name)
 	return {"status": stage, "step": step.step_key, "working_days": elapsed, "outbox": queued}
 
 

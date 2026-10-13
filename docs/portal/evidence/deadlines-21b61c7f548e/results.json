@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "run_id": "21b61c7f548e",
+  "checked_at": "2026-10-13T16:05:31.658Z",
+  "checks": [
+    {
+      "name": "Draft deadline projection is inactive",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary requester sees four server-calculated milestones",
+      "status": "PASS"
+    },
+    {
+      "name": "Expiry is advisory and no-store header protects response",
+      "status": "PASS"
+    },
+    {
+      "name": "Deadline read does not change request version or reservations",
+      "status": "PASS"
+    },
+    {
+      "name": "Cross-scope account cannot read dates",
+      "status": "PASS"
+    },
+    {
+      "name": "Unauthenticated HTTP request denied",
+      "status": "PASS"
+    },
+    {
+      "name": "POST rejected for read-only deadline endpoint",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: four dates and advisory rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: current milestone highlighted",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: correct document direction",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "en: four dates and advisory rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "en: current milestone highlighted",
+      "status": "PASS"
+    },
+    {
+      "name": "en: correct document direction",
+      "status": "PASS"
+    },
+    {
+      "name": "en: no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing/ambiguous calendar removes stale dates and shows actionable generic state",
+      "status": "PASS"
+    },
+    {
+      "name": "Calendar failure does not expose private configuration",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked session refresh fails and clears prior projection",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "21b61c7f548e",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/sla.py": "b49052863cac2067bfaccb2bdb71c9a92f27b9f1dbeb744e8b8087935ef4615f",
+    "kandil_hr/foundation/business_calendar.py": "ef0fce68961e680232dd0762be54e598aedf84f577b7223bdd688f840cab46b8",
+    "kandil_hr/foundation/outbox.py": "c8ad5a338f159714740ebfebbdac5212d0cb8456444ea756cb5a2c8c4d51513f",
+    "kandil_hr/foundation/outbox_access.py": "7cd981c7540cab9903e2cafe46cb5dc23b7ac11fa0695f863c08462759d91486",
+    "kandil_hr/portal/approval_deadlines.py": "782737e3e7bcda50b6168a607706b46b2cd05e3547196af6048bd9d4acb45d1f",
+    "kandil_hr/portal/deadline_fixture.py": "bfd59a74e88d67ff5e5a4daf3cb561ed57aa61b9424fbb09d70452c4332294c8",
+    "frontend/portal/src/ApprovalDeadlines.tsx": "910ba216f1781851d07372e2f2fd65c970b9f273d589c9ee4614a945a10ea7cf",
+    "frontend/portal/src/main.tsx": "3a50734e79e1e5bde1b0ff823d3dafc6c788e064a11186b6dbb3c859ada8fd00",
+    "frontend/portal/src/portal.css": "218e976d5d6ea9ca3f7fc234189fcb8a4ad3a4f9b96716aeea9d3dfeb5fac5f9",
+    "kandil_hr/public/portal/portal.js": "a233a08d8e2fdbfb6846ec8dc726166331aa70d7ea44242003cdcd0895142d26",
+    "docs/portal/test_deadlines.cjs": "f9cf06f4bcdcf57770bb085772dcd0fbd79c73dbdae39917d73d9f6aba65b6d5"
+  },
+  "limits": [
+    "Synthetic ordinary-role HTTP and AR/EN desktop/mobile panel. CLI sets own fixture waiting date. No production load, external email or HR policy acceptance."
+  ]
+}

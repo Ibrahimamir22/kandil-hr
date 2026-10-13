@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "Focused human-visible inspection of generated synthetic AR mobile and EN desktop full-page captures; not full portal accessibility or HR acceptance.",
+  "images": {
+    "deadlines-ar.png": "8312ea574172c8021993ce6228820c3e1746c97deb86c22b5d3c925145c4e4cf",
+    "deadlines-en.png": "91c4386b9ca41c693b2c4b2b2876de178d4418ad96877d202e228ac9192a1098"
+  },
+  "observations": [
+    "Final full-page captures have visible panel headings without navigation animation occlusion.",
+    "Arabic cards stack in RTL at 390px; English cards form a four-column row at 1440px.",
+    "Current expiry is highlighted and explicitly advisory; dates, working-day labels and reservation warning are readable.",
+    "No observed clipped panel content; separate browser assertions cover document overflow."
+  ]
+}

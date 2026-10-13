@@ -1,6 +1,8 @@
 # قنديل — HR delivery sprint plan
 
-The [native scheduler checkpoint](S4_SCHEDULER_CHECKPOINT.md) verifies automatic reminders, due retries, disabled-recruiter fallback and worker-restart redrive with 15 integration checks and 35 focused native cases. S4 remains open for calendar/deadline UI and complete delivery policy/templates.
+The [deadline/calendar checkpoint](S4_DEADLINES_CHECKPOINT.md) adds permission-checked Arabic/English approval dates and calendar-aware queued reminders. Holiday deferrals do not consume attempts, corrected calendars can wake due notices, and obsolete milestones are suppressed. Expiry remains advisory; S4 recipient/templates and HR acceptance remain open.
+
+The [native scheduler checkpoint](S4_SCHEDULER_CHECKPOINT.md) verifies automatic reminders, due retries, disabled-recruiter fallback and worker-restart redrive with 15 integration checks and 35 focused native cases. The newer deadline checkpoint covers the date panel and queued calendar behavior; complete delivery policy/templates remain open.
 
 The [worker recovery checkpoint](S4_WORKER_RECOVERY_CHECKPOINT.md) verifies real isolated RQ process crashes before/after commit, bounded retries, reasoned operator recovery and revoked-recipient suppression with 35 checks. Scheduled retry/redrive and disabled-recruiter fallback are now covered by the newer scheduler checkpoint; complete templates and candidate-facing ownership acceptance remain open.
 

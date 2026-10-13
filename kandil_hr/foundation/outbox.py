@@ -16,6 +16,24 @@ from kandil_hr.foundation.models import effect, guard
 from kandil_hr.foundation.security import enabled
 
 
+CALENDAR_DEFERRED = "Deferred until the applicable business-day milestone"
+
+
+def recheck_calendar_deferred(name):
+	"""Wake only calendar deferrals after the scheduler proves this milestone due.
+
+	Caller holds Company, calendar and recipient locks. Technical failure backoff
+	and terminal outcomes must never be reset by a routine scheduler replay.
+	"""
+	_worker_guard()
+	guard()
+	doc = frappe.get_doc("Kandil Notification Outbox", name, for_update=True)
+	if doc.status in ("Pending", "Retry") and doc.last_error == CALENDAR_DEFERRED:
+		with effect():
+			doc.next_attempt, doc.last_error = now_datetime(), ""
+			doc.save(ignore_permissions=True)
+
+
 def enqueue(key, recipient, subject, body="", reference_doctype=None, reference_name=None, *, delivery_context=None):
 	guard()
 	if not key or not recipient or not subject:
@@ -82,10 +100,16 @@ def deliver(name):
 	guard()
 	from kandil_hr.foundation.outbox_access import lock_delivery
 
-	doc, suppression_reason = lock_delivery(name)
+	doc, suppression_reason, defer_until = lock_delivery(name)
 	if doc.status in ("Delivered locally", "Suppressed", "Failed"):
 		return doc.status
 	if doc.next_attempt and doc.next_attempt > now_datetime():
+		return doc.status
+	if defer_until and not suppression_reason:
+		with effect():
+			doc.next_attempt = defer_until
+			doc.last_error = CALENDAR_DEFERRED
+			doc.save(ignore_permissions=True)
 		return doc.status
 	doc.attempts += 1
 	with effect():

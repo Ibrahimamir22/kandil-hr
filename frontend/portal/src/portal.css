@@ -88,3 +88,10 @@
 .inbox-toolbar{justify-content:flex-start;align-items:flex-end;flex-wrap:wrap}.inbox-toolbar .field:first-child{flex:1;min-width:180px}.inbox-toolbar .field{margin:0}.inbox-counts{display:flex;gap:20px;flex-wrap:wrap}
 .notification-item{padding:22px;border-top:1px solid var(--line);overflow-wrap:anywhere}.notification-item.is-unread{border-inline-start:3px solid var(--red)}.notification-heading{display:flex;justify-content:space-between;align-items:start;gap:12px}.notification-heading h2{font-size:16px;margin:0}.notification-item p{line-height:1.7}.notification-item .actions{margin-top:16px;flex-wrap:wrap}.notification-item.is-read .notification-heading h2{font-weight:500}
 @media(max-width:760px){.inbox-toolbar .field{width:100%}.notification-heading{flex-wrap:wrap}.notification-item{padding:16px}}
+
+.approval-deadlines .deadline-milestones{list-style:none;padding:0;margin:1rem 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}
+.deadline-milestones li{display:flex;flex-direction:column;gap:.5rem;border:1px solid #dedbd6;border-radius:12px;padding:1rem;min-width:0;overflow-wrap:anywhere}
+.deadline-milestones li[aria-current=step]{border:2px solid #a71925;background:#fff5f4}
+.deadline-advisory{border-inline-start:3px solid #b58330;background:#fff8e9;padding:.8rem 1rem;line-height:1.7}
+@media(max-width:900px){.approval-deadlines .deadline-milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.approval-deadlines .deadline-milestones{grid-template-columns:1fr}.approval-deadlines .card-head{align-items:flex-start;flex-wrap:wrap;gap:.5rem}}

@@ -40,7 +40,7 @@ class CompanyCalendar:
 		return count
 
 
-def company_calendar(company, calendar_name=None):
+def company_calendar(company, calendar_name=None, *, current=False):
 	"""Load one explicit/company calendar; no implicit workweek or annual rollover."""
 	import frappe
 	from frappe import _
@@ -53,12 +53,20 @@ def company_calendar(company, calendar_name=None):
 	filters = {"company": company}
 	if calendar_name:
 		filters["name"] = calendar_name
-	rows = frappe.get_all(
-		"Kandil Business Calendar",
-		filters=filters,
-		fields=["name", "company", "weekend_days", "holiday_list", "timezone"],
-		limit_page_length=2,
-	)
+	# Delivery/scheduler callers acquire Company before these calendar/holiday
+	# locks and acquire User rows afterwards. Current reads avoid a stale RR
+	# snapshot established before waiting for the company's workflow mutex.
+	if current:
+		rows = frappe.db.sql(
+			"SELECT name,company,weekend_days,holiday_list,timezone FROM `tabKandil Business Calendar` "
+			"WHERE company=%s" + (" AND name=%s" if calendar_name else "") + " ORDER BY name LIMIT 2 FOR UPDATE",
+			(company, calendar_name) if calendar_name else (company,), as_dict=True,
+		)
+	else:
+		rows = frappe.get_all(
+			"Kandil Business Calendar", filters=filters,
+			fields=["name", "company", "weekend_days", "holiday_list", "timezone"], limit_page_length=2,
+		)
 	if len(rows) != 1:
 		frappe.throw(
 			_(
@@ -73,15 +81,18 @@ def company_calendar(company, calendar_name=None):
 	add_working_days(date(2000, 1, 1), 0, weekends)
 	holidays, valid_from, valid_until = (), None, None
 	if row.holiday_list:
-		period = frappe.db.get_value("Holiday List", row.holiday_list, ["from_date", "to_date"], as_dict=True)
+		period = frappe.db.get_value("Holiday List", row.holiday_list, ["from_date", "to_date"],
+			as_dict=True, for_update=current)
 		if not period or not period.from_date or not period.to_date:
 			frappe.throw(_("The selected holiday list must define its coverage dates."))
 		valid_from, valid_until = as_date(period.from_date), as_date(period.to_date)
-		holiday_rows = frappe.get_all(
-			"Holiday",
-			filters={"parent": row.holiday_list, "parenttype": "Holiday List"},
-			pluck="holiday_date",
-		)
+		if current:
+			holiday_rows = frappe.db.sql(
+				"SELECT holiday_date FROM `tabHoliday` WHERE parent=%s AND parenttype='Holiday List' ORDER BY name FOR UPDATE",
+				(row.holiday_list,), pluck=True,
+			)
+		else:
+			holiday_rows = frappe.get_all("Holiday", filters={"parent": row.holiday_list, "parenttype": "Holiday List"}, pluck="holiday_date")
 		holidays = tuple(as_date(day) for day in holiday_rows)
 	return CompanyCalendar(row.name, row.company, weekends, holidays, valid_from, valid_until)
 

@@ -36,7 +36,7 @@ class TestApprovalSLA(unittest.TestCase):
 		)
 		# Existing site calendars remain untouched; select this test's real record.
 		self.calendar_patch = patch.object(
-			sla, "company_calendar", side_effect=lambda company: company_calendar(company, self.calendar.name)
+			sla, "company_calendar", side_effect=lambda company, **kwargs: company_calendar(company, self.calendar.name, **kwargs)
 		)
 		self.calendar_patch.start()
 		self.addCleanup(self.calendar_patch.stop)
@@ -51,8 +51,12 @@ class TestApprovalSLA(unittest.TestCase):
 		return step.step_key
 
 	def process_on(self, day):
-		with test_clock(datetime.fromisoformat(day + "T12:00:00").replace(tzinfo=ZoneInfo("Africa/Cairo"))):
+		with test_clock(datetime.fromisoformat(day + "T12:00:00").replace(tzinfo=ZoneInfo("Africa/Cairo"))), patch.object(outbox, "now_datetime", return_value=datetime.fromisoformat(day + "T12:00:00")):
 			return sla.process_request(self.request.name)
+
+	def deliver_on(self, name, day="2026-10-12"):
+		with test_clock(datetime.fromisoformat(day + "T12:00:00").replace(tzinfo=ZoneInfo("Africa/Cairo"))), patch.object(outbox, "now_datetime", return_value=datetime.fromisoformat(day + "T12:00:00")):
+			return outbox.deliver(name)
 
 	def test_milestones_replay_and_expiry_preserves_pending_reservations(self):
 		before = self.fixture.load(self.request.name)
@@ -106,7 +110,7 @@ class TestApprovalSLA(unittest.TestCase):
 
 	def assert_suppressed(self, names):
 		for name in names:
-			self.assertEqual(outbox.deliver(name), "Suppressed")
+			self.assertEqual(self.deliver_on(name, "2026-10-20"), "Suppressed")
 			self.assertFalse(frappe.db.get_value("Kandil Notification Outbox", name, "notification_log"))
 			self.assertFalse(frappe.db.exists("Kandil Mail Capture", {"outbox": name}))
 
@@ -136,10 +140,10 @@ class TestApprovalSLA(unittest.TestCase):
 
 	def test_current_step_delivers_once_and_history_survives_completion(self):
 		name = self.process_on("2026-10-12")["outbox"][0]
-		self.assertEqual(outbox.deliver(name), "Delivered locally")
+		self.assertEqual(self.deliver_on(name), "Delivered locally")
 		receipt = frappe.db.get_value("Kandil Notification Outbox", name, "notification_log")
 		self.fixture.approve_all(self.request.name)
-		self.assertEqual(outbox.deliver(name), "Delivered locally")
+		self.assertEqual(self.deliver_on(name), "Delivered locally")
 		self.assertEqual(frappe.db.get_value("Kandil Notification Outbox", name, "notification_log"), receipt)
 
 	def test_unverifiable_legacy_reminder_suppressed_but_ordinary_update_retained(self):
@@ -152,7 +156,7 @@ class TestApprovalSLA(unittest.TestCase):
 		self.assertEqual(outbox.deliver(ordinary), "Delivered locally")
 		fresh = self.process_on("2026-10-12")["outbox"][0]
 		self.assertNotEqual(fresh, legacy)
-		self.assertEqual(outbox.deliver(fresh), "Delivered locally")
+		self.assertEqual(self.deliver_on(fresh), "Delivered locally")
 
 	def test_context_is_hashed_and_malformed_delivery_fails_without_receipt(self):
 		import json
@@ -239,6 +243,130 @@ class TestApprovalSLA(unittest.TestCase):
 				{"method": "Approval SLA request failed", "error": ["like", "SYNTHETIC-BAD: ValueError;%"]},
 			)
 		)
+
+
+	def add_holiday(self, day):
+		holiday = self.fixture.insert("Holiday List", holiday_list_name=self.fixture.prefix + " Deferred holiday",
+			from_date="2026-01-01", to_date="2026-12-31",
+			holidays=[dict(holiday_date=day, description="Private calendar description")])
+		self.calendar.holiday_list = holiday.name
+		self.calendar.save(ignore_permissions=True)
+
+	def test_later_milestone_suppresses_old_reminder(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		self.assertEqual(self.deliver_on(name, "2026-10-13"), "Suppressed")
+		self.assertIn("later business-day", frappe.db.get_value("Kandil Notification Outbox", name, "last_error"))
+		self.assertFalse(frappe.db.exists("Kandil Mail Capture", {"outbox": name}))
+		for current in self.process_on("2026-10-13")["outbox"]:
+			self.assertEqual(self.deliver_on(current, "2026-10-13"), "Delivered locally")
+
+	def test_expiry_waits_through_weekend_without_attempts_or_effects(self):
+		name = self.process_on("2026-10-15")["outbox"][0]
+		for day in ("2026-10-16", "2026-10-17"):
+			self.assertEqual(self.deliver_on(name, day), "Pending")
+			row = frappe.get_doc("Kandil Notification Outbox", name)
+			self.assertEqual(row.attempts, 0)
+			self.assertFalse(row.notification_log)
+			self.assertFalse(frappe.db.exists("Kandil Mail Capture", {"outbox": name}))
+		self.assertEqual(self.deliver_on(name, "2026-10-18"), "Delivered locally")
+		self.assertEqual(self.fixture.load(self.request.name).status, "Pending")
+		self.fixture.ledger((2, 1), (0, 0))
+
+	def test_holiday_correction_wakes_same_key_without_duplicate(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		self.add_holiday("2026-10-12")
+		self.assertEqual(self.deliver_on(name), "Pending")
+		row = frappe.get_doc("Kandil Notification Outbox", name)
+		self.assertEqual(row.attempts, 0)
+		self.assertEqual(row.last_error, outbox.CALENDAR_DEFERRED)
+		self.assertGreater(row.next_attempt, datetime(2026, 10, 12, 12))
+		self.calendar.holiday_list = None
+		self.calendar.save(ignore_permissions=True)
+		self.assertEqual(self.process_on("2026-10-12")["outbox"], [name])
+		self.assertEqual(self.deliver_on(name), "Delivered locally")
+		self.assertEqual(frappe.db.count("Kandil Mail Capture", {"outbox": name}), 1)
+
+	def test_calendar_recheck_does_not_erase_technical_failure_backoff(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		with patch.object(outbox, "now_datetime", return_value=datetime(2026, 10, 12, 12)):
+			outbox._record_failure(name, "SyntheticFailure")
+		before = frappe.get_doc("Kandil Notification Outbox", name)
+		self.process_on("2026-10-12")
+		after = frappe.get_doc("Kandil Notification Outbox", name)
+		self.assertEqual((after.status, after.attempts, after.next_attempt, after.last_error),
+			(before.status, before.attempts, before.next_attempt, before.last_error))
+
+	def test_calendar_error_fails_closed_but_revoked_recipient_is_suppressed(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		with patch.object(sla, "company_calendar", side_effect=frappe.ValidationError("Private config")):
+			with self.assertRaises(frappe.ValidationError):
+				self.deliver_on(name)
+			self.assertFalse(frappe.db.exists("Kandil Mail Capture", {"outbox": name}))
+			grant = frappe.get_doc("Kandil Access Grant", self.fixture.grants["manager"])
+			grant.revoked = 1
+			grant.save(ignore_permissions=True)
+			self.assertEqual(self.deliver_on(name), "Suppressed")
+
+	def test_delivered_replay_does_not_depend_on_later_calendar(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		self.assertEqual(self.deliver_on(name), "Delivered locally")
+		with patch.object(sla, "company_calendar", side_effect=AssertionError("Must not read")):
+			self.assertEqual(self.deliver_on(name, "2026-10-20"), "Delivered locally")
+
+	def test_projection_excludes_holidays_and_private_configuration(self):
+		import json
+		self.add_holiday("2026-10-13")
+		with test_clock(datetime(2026, 10, 12, 12, tzinfo=ZoneInfo("Africa/Cairo"))):
+			result = sla.deadline_projection(self.fixture.load(self.request.name))
+		self.assertEqual(result["state"], "active")
+		self.assertEqual([m["date"] for m in result["milestones"]], ["2026-10-12", "2026-10-14", "2026-10-15", "2026-10-18"])
+		self.assertEqual(result["current_stage"], "reminder")
+		self.assertFalse(result["automatic_rejection"])
+		self.assertNotIn(self.calendar.name, json.dumps(result))
+		self.assertNotIn("Private calendar", json.dumps(result))
+
+	def test_unavailable_projection_is_generic_and_completed_is_inactive(self):
+		with patch.object(sla, "company_calendar", side_effect=frappe.ValidationError("Private config")):
+			result = sla.deadline_projection(self.fixture.load(self.request.name))
+			self.assertEqual(result["state"], "unavailable")
+			self.assertNotIn("Private", str(result))
+		self.fixture.approve_all(self.request.name)
+		self.assertEqual(sla.deadline_projection(self.fixture.load(self.request.name))["state"], "inactive")
+
+	def test_deferral_converts_cairo_midnight_to_site_timezone(self):
+		name = self.process_on("2026-10-15")["outbox"][0]
+		with test_clock(datetime(2026, 10, 16, 12, tzinfo=ZoneInfo("Africa/Cairo"))), patch.object(sla, "get_system_timezone", return_value="UTC"):
+			plan = sla.timing_plan(self.fixture.load(self.request.name), frappe.get_doc("Kandil Notification Outbox", name))
+		self.assertEqual(plan["defer_until"], datetime(2026, 10, 17, 21))
+
+
+	def test_deadline_endpoint_authorized_read_has_no_business_side_effect(self):
+		from kandil_hr.portal.approval_deadlines import get
+		from kandil_hr.recruitment.test_commands import acting_as
+		before = self.fixture.counts(self.request.name)
+		with acting_as(self.fixture.users["requester"]):
+			result = get(self.request.name)
+		self.assertEqual(result["state"], "active")
+		self.assertEqual(before, self.fixture.counts(self.request.name))
+		self.assertEqual(set(result), {"state", "timezone", "as_of", "automatic_rejection", "policy_status",
+			"waiting_from", "working_days", "weekends", "working_today", "current_stage", "milestones"})
+
+	def test_deadline_endpoint_revoked_scope_denies_before_calendar_read(self):
+		from kandil_hr.portal.approval_deadlines import get
+		from kandil_hr.recruitment.test_commands import acting_as
+		grant = frappe.get_doc("Kandil Access Grant", self.fixture.grants["requester"])
+		grant.revoked = 1
+		grant.save(ignore_permissions=True)
+		with acting_as(self.fixture.users["requester"]), patch.object(sla, "company_calendar", side_effect=AssertionError("Unauthorized calendar read")):
+			with self.assertRaises(frappe.PermissionError):
+				get(self.request.name)
+
+	def test_deadline_endpoint_guest_denied(self):
+		from kandil_hr.portal.approval_deadlines import get
+		from kandil_hr.recruitment.test_commands import acting_as
+		with acting_as("Guest"):
+			with self.assertRaises(frappe.PermissionError):
+				get(self.request.name)
 
 	def test_parity_opt_out_performs_no_sla_processing(self):
 		with patch.dict(frappe.conf, {"kandil_parity_enabled": 0}):

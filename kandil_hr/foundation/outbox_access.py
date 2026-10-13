@@ -156,8 +156,18 @@ def lock_delivery(name):
 		terminal = frappe.get_doc("Kandil Notification Outbox", name, for_update=True)
 		if terminal.status not in ("Delivered locally", "Suppressed", "Failed"):
 			raise RuntimeError("Notification retry state changed; retry transaction")
-		return terminal, ""
+		return terminal, "", None
 	doc, request = lock_domain(hint.reference_doctype, hint.reference_name)
+	# Company/domain -> calendar -> Users -> grants -> Outbox. Preserve access
+	# denial precedence if calendar configuration is broken: revoked recipients
+	# are suppressed instead of being retried for a configuration error.
+	from kandil_hr.recruitment.sla import timing_plan
+
+	plan, calendar_error = {}, None
+	try:
+		plan = timing_plan(request, hint)
+	except (frappe.ValidationError, ValueError) as error:
+		calendar_error = error
 	if doc and doc.doctype == "Kandil Hiring Request" and frappe.conf.get("kandil_parity_enabled"):
 		# Domain -> all relevant User rows in one deterministic order -> roles /
 		# grants / delegation -> outbox. A later delegation predicate must not
@@ -208,4 +218,8 @@ def lock_delivery(name):
 		from kandil_hr.recruitment.sla import delivery_reason
 
 		reason = delivery_reason(request, outbox)
-	return outbox, reason
+		if not reason:
+			if calendar_error:
+				raise calendar_error
+			reason = plan.get("reason", "")
+	return outbox, reason, None if reason else plan.get("defer_until")
