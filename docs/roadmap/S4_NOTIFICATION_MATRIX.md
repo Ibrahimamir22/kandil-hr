@@ -31,7 +31,7 @@ Terminal delivered history is preserved. A suppressed notification is never resu
 
 1. Review the fixed AR/EN ordinary-event, skipped-route and vacancy templates with HR; retain existing stored messages unchanged.
 2. Periodic catch-up now has 10 passing isolated checks in S4_INVITATION_CATCHUP_CHECKPOINT.md. Production worker monitoring/latency and workload acceptance remain.
-3. Use S4_REQUIREMENT_RECONCILIATION.md for the eight frozen S4 IDs; finish selector and event-policy gaps without hiding candidate-dependent clauses.
+3. Use S4_REQUIREMENT_RECONCILIATION.md for the eight frozen S4 IDs; selector gap now has S4_FILTER_SELECTORS_CHECKPOINT.md evidence; finish event-policy gaps without hiding candidate-dependent clauses.
 4. Continue S5 candidate workflows and their ownership/notification acceptance.
 
 External provider setup, recipients, consent/privacy rules, delivery failure handling and HR acceptance remain separate gates. Local capture does not satisfy external email delivery, and this matrix does not certify production security or 1,000+ account capacity.

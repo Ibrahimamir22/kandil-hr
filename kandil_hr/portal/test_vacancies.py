@@ -66,6 +66,7 @@ class TestVacancies(unittest.TestCase):
         # The approved request also references the manager's position in its
         # approval child rows. Without that native allowance, neither is readable.
         self.assertEqual(self.listing()['total'],0)
+        self.assertEqual(self.options(kind='company')['rows'],[])
         manager_position=frappe.db.get_value('Kandil Position',{'position_code':self.f.prefix+'-manager'},'name')
         self.f.insert('User Permission',user=self.f.users['hr'],allow='Kandil Position',for_value=manager_position,apply_to_all_doctypes=1)
         frappe.clear_cache(user=self.f.users['hr'])
@@ -86,6 +87,7 @@ class TestVacancies(unittest.TestCase):
         new=self.f.insert('Kandil Access Grant',user=self.f.users['hr'],company=self.f.company,department=self.f.department,
             branch=frappe.db.get_value('Kandil Capacity',self.f.capacities[0],'branch'),valid_from=today(),reason='One branch queue')
         result=self.listing();self.assertEqual(result['total'],1);self.assertEqual(result['rows'][0]['request'],first.name)
+        self.assertEqual(len(self.options(kind='branch')['rows']),1)
         new.revoked=1;new.save(ignore_permissions=True)
         self.assertEqual(self.listing()['total'],0)
 
@@ -180,6 +182,62 @@ class TestVacancies(unittest.TestCase):
         frappe.db.set_value('Job Opening',one.lines[0].job_opening,'custom_kandil_request',two.name)
         self.assertEqual(self.listing()['total'],1)
         self.assertEqual(self.listing()['rows'][0]['request'],two.name)
+
+    def options(self,role='hr',**args):
+        with acting_as(self.f.users[role]):return vacancies.filter_options(**args)
+
+    def test_filter_options_distinct_bounded_search_and_resolution(self):
+        self.create(both=True);self.create(both=True)
+        before=self.listing()
+        branches=sorted(frappe.db.get_value('Kandil Capacity',c,'branch') for c in self.f.capacities)
+        first=self.options(kind='branch',page_length=1)
+        second=self.options(kind='branch',page_length=1,start=first['next_start'])
+        self.assertEqual([r['id'] for r in first['rows']+second['rows']],branches)
+        self.assertTrue(first['has_more']);self.assertFalse(second['has_more'])
+        self.assertEqual(self.options(kind='branch',start=99)['rows'],[])
+        self.assertEqual(self.options(kind='company')['rows'],[dict(id=self.f.company,label=self.f.company)])
+        self.assertEqual(self.options(kind='branch',name=branches[1])['rows'],[dict(id=branches[1],label=branches[1])])
+        self.assertEqual(self.options(kind='branch',search=branches[1])['rows'],[dict(id=branches[1],label=branches[1])])
+        self.assertEqual(self.options(kind='branch',search="' OR 1=1 --")['rows'],[])
+        self.assertEqual(self.options(kind='branch',search='%_')['rows'],[])
+        self.assertEqual(before,self.listing())
+
+    def test_filter_options_dependencies_and_terminal_history(self):
+        doc=self.create()
+        self.assertEqual(self.options(kind='department',company=self.f.company)['rows'][0]['id'],self.f.department)
+        for args in ({'kind':'department','company':'Unknown'}, {'kind':'branch','department':'Unknown'},
+                     {'kind':'branch','company':'Unknown'},{'kind':'branch','name':'Unknown'}):
+            self.assertEqual(self.options(**args)['rows'],[])
+        self.f.call('hr',commands.set_state,doc.name,opening_name=doc.lines[0].job_opening,action='Close',reason='Synthetic selector history')
+        self.assertEqual(self.listing()['total'],0)
+        self.assertEqual(len(self.options(kind='branch')['rows']),1)
+
+    def test_filter_options_exclude_drafts_outsiders_and_revoked_scope(self):
+        self.base.save(self.base.payload())
+        self.assertEqual(self.options()['rows'],[])
+        self.create(both=True)
+        frappe.db.set_value('Kandil Access Grant',self.f.grants['manager'],'revoked',1)
+        self.assertEqual(self.options('manager',company=self.f.company)['rows'],[])
+        frappe.db.set_value('Kandil Access Grant',self.f.grants['hr'],'revoked',1)
+        for kind in ('company','department','branch'):
+            self.assertEqual(self.options(kind=kind)['rows'],[])
+
+    def test_filter_options_native_opening_permission(self):
+        first=self.create();self.create(position=1)
+        self.f.insert('User Permission',user=self.f.users['hr'],allow='Job Opening',for_value=first.lines[0].job_opening,
+                      apply_to_all_doctypes=0,applicable_for='Job Opening')
+        frappe.clear_cache(user=self.f.users['hr'])
+        branch=frappe.db.get_value('Kandil Capacity',first.lines[0].capacity,'branch')
+        self.assertEqual(self.options(kind='branch')['rows'],[dict(id=branch,label=branch)])
+
+    def test_filter_options_validation_and_disabled_session(self):
+        for args in ({'kind':{}},{'kind':'User'},{'company':[]},{'department':'x'*141},{'search':{}},{'name':'x'*141}):
+            with self.f.rejected():self.options(**args)
+        result=self.options(start=-10,page_length=9999)
+        self.assertEqual((result['start'],result['page_length']),(0,100))
+        with acting_as('Guest'),self.f.rejected(frappe.PermissionError):vacancies.filter_options()
+        account=frappe.get_doc('User',self.f.users['hr']);account.enabled=0;account.save(ignore_permissions=True)
+        with self.f.rejected(frappe.PermissionError):self.options()
 
     def test_guest_disabled_invalid_and_bounded(self):
         with acting_as('Guest'),self.f.rejected(frappe.PermissionError):vacancies.listing()

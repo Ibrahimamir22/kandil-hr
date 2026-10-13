@@ -203,3 +203,33 @@ def listing(mode='scope', state='active', search='', company='', department='', 
     return dict(rows=rows, total=total, start=start, page_length=limit, next_start=start+limit,
                 has_more=start+limit<total, count_scope='permission_filtered_matching_vacancies', as_of=at,
                 mode=mode, state=state, states=list(STATES))
+
+
+@frappe.whitelist(methods=['GET'])
+def filter_options(kind='company', company='', department='', search='', name='', start=0, page_length=20):
+    """Distinct dimensions of readable vacancies, never a global HR directory.
+
+    Include all vacancy states so selecting another state cannot strand a filter.
+    Company and department narrow dependent choices. Reuse the listing's exact
+    native parent/opening/child and all-location scope predicates before paging.
+    """
+    authenticated()
+    if not isinstance(kind, str) or kind not in ('company', 'department', 'branch'):
+        frappe.throw(_('Choose a valid vacancy filter.'))
+    company, department, search, name = map(bounded_text, (company, department, search, name))
+    start, limit = paging(start, page_length)
+    parts = query('scope', 'all', '', company if kind != 'company' else '',
+                  department if kind == 'branch' else '', '', str(today_cairo()))
+    q, r, cap = parts[0], parts[2], parts[3]
+    field = {'company': r.company, 'department': r.department, 'branch': cap.branch}[kind]
+    q = q.where(Coalesce(field, '') != '')
+    if name:
+        q = q.where(field == name)
+    if search:
+        literal = '%' + search.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_') + '%'
+        q = q.where(field.like(literal))
+    # Fetch just one extra distinct choice. No unbounded directory materialization.
+    rows = q.select(field.as_('id')).distinct().orderby(field).limit(limit+1).offset(start).run(as_dict=True)
+    return dict(rows=[dict(id=row.id, label=row.id) for row in rows[:limit]],
+                start=start, next_start=start+limit, page_length=limit, has_more=len(rows)>limit,
+                source='readable_vacancies_all_states')

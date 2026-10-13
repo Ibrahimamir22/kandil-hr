@@ -430,21 +430,25 @@
           "id": "S4-03",
           "description": "Replace page-only dashboard counts/search with correctly scoped server-wide projections and pagination.",
           "status": "complete",
-          "progress": "Engineering verification complete: exact scoped dashboard totals, bounded previews and paginated direct/delegated/Board approval actions replace first-page counts. 72 distinct native cases across recorded checkpoints, 34 dedicated browser checks and 24 original-journey checks passed. Arabic mobile badge and delayed stale-response/revocation behavior verified. S4 notification inbox, scheduling and searchable organization selectors remain; HR/security/scale release acceptance is separate.",
+          "progress": "Exact scoped dashboard totals and paginated approval actions are engineering-verified in earlier checkpoints. Searchable company/department/location vacancy selectors now reuse native/scoped listing access, with dependent reset, bounded lookup, stale response and retry. Final selector checkpoint: 31 native and 65 browser checks including the original journey. HR/UAT and release-scale/security gates remain open.",
           "evidence": [
             "S4_DASHBOARD_CHECKPOINT.md",
             "evidence/s2-regression-86687aa8ed55.json",
             "evidence/s2-regression-6026fba5d5cb.json",
             "../portal/evidence/dashboard-3a42bd11d1ea/results.json",
             "../portal/evidence/dashboard-3a42bd11d1ea/visual-review.json",
-            "../portal/evidence/browser-a9fd95a8a88f/regression.json"
+            "../portal/evidence/browser-a9fd95a8a88f/regression.json",
+            "S4_FILTER_SELECTORS_CHECKPOINT.md",
+            "evidence/s2-regression-c96ee83c4d43.json",
+            "../portal/evidence/vacancies-d8f90f3149a8/results.json",
+            "../portal/evidence/browser-ee2a5765c37f/regression.json"
           ]
         },
         {
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
           "status": "in_progress",
-          "progress": "AR/EN inbox, business-calendar deadlines, reminders, event templates and authority-bound invitations are implemented. Final invitation checkpoint has 86 native and 23 HTTP/RQ/browser checks; separate native scheduled catch-up now passes 10 integration checks. Complete event-policy, searchable organization selectors, HR wording/calendar and external-email acceptance remain open.",
+          "progress": "AR/EN inbox, business-calendar deadlines, reminders, event templates and authority-bound invitations are implemented. Final invitation checkpoint has 86 native and 23 HTTP/RQ/browser checks; separate native scheduled catch-up now passes 10 integration checks. Complete event-policy, HR wording/calendar and external-email acceptance remain open.",
           "evidence": [
             "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
             "evidence/s2-regression-02c66abed7ae.json",
@@ -931,8 +935,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Real scheduled invitation catch-up passed 10 integration checks on separate DB/Redis; failed setup cohort retired and final cohort cleaned. Eight frozen S4 IDs reconciled with explicit remaining clauses. S4 remains in progress.",
-    "evidence": "S4_INVITATION_CATCHUP_CHECKPOINT.md",
-    "next": "Implement scoped searchable company/department/location vacancy selectors, reconcile remaining team event policy, then continue S5 candidate workspace/ownership. HR/IT/security/capacity/release gates remain open."
+    "summary": "Searchable scoped company/department/location vacancy selectors implemented. 31 native and 65 browser checks passed; both browser cohorts retired and source stable. All 98 requirements preserved.",
+    "evidence": "S4_FILTER_SELECTORS_CHECKPOINT.md",
+    "next": "Reconcile remaining vacancy team event policy against frozen reference intent, then implement S5 candidate sourcing/workspace and application ownership. HR/IT/security/capacity/release gates remain open."
   }
 }

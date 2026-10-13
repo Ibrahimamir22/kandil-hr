@@ -4,7 +4,7 @@ const {execFileSync}=require('node:child_process');
 const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const app=path.resolve(__dirname,'../..'),dev=path.resolve(app,'../../../..'),run=crypto.randomBytes(6).toString('hex'),out=path.join(__dirname,'evidence',`vacancies-${run}`);
 fs.mkdirSync(out,{recursive:true});const manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-portal-${run}.json`);
-const files=['kandil_hr/portal/vacancies.py','kandil_hr/portal/vacancy_fixture.py','kandil_hr/portal/test_vacancies.py','kandil_hr/recruitment/vacancies.py','kandil_hr/foundation/teams.py','kandil_hr/foundation/security.py','frontend/portal/src/VacancyQueue.tsx','frontend/portal/src/main.tsx','frontend/portal/src/portal.css','kandil_hr/public/portal/portal.js','docs/portal/test_vacancy_queue.cjs'];
+const files=['kandil_hr/portal/vacancies.py','kandil_hr/portal/vacancy_fixture.py','kandil_hr/portal/test_vacancies.py','kandil_hr/recruitment/vacancies.py','kandil_hr/foundation/teams.py','kandil_hr/foundation/security.py','frontend/portal/src/VacancyQueue.tsx','frontend/portal/src/VacancyScopeSelect.tsx','frontend/portal/src/main.tsx','frontend/portal/src/portal.css','kandil_hr/public/portal/portal.js','docs/portal/test_vacancy_queue.cjs'];
 const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,f))).digest('hex')]));const before=hashes();
 let data,browser,page,cleanup;const checks=[],errors=[],failures=[],external=[];
 function bench(action){try{const raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.portal.vacancy_fixture.'+action,'--kwargs',JSON.stringify({run_id:run})],{cwd:dev,encoding:'utf8',timeout:240000,stdio:['ignore','pipe','pipe']});return JSON.parse(raw.split('\n').filter(l=>l.startsWith('{')).at(-1))}catch(e){fs.writeFileSync(`/tmp/kandil-vacancies-${run}-${action}.txt`,String(e.stdout||'')+'\n'+String(e.stderr||''),{mode:0o600});throw Error('Private fixture '+action+' failed')}}
@@ -31,12 +31,51 @@ async function read(p,args={}){return p.evaluate(async args=>{const r=await fetc
  await p.getByLabel(t('نطاق الشواغر','Vacancy view'),{exact:true}).selectOption('mine');result=await action(p,t('بحث','Search'));check(lang+': my team includes non-lead team member',result.total===1&&result.rows[0].members.includes(data.users.hr.email));
  await action(p,t('مسح الفلاتر','Clear filters'));await p.getByLabel(t('حالة الشاغر','Vacancy state'),{exact:true}).selectOption('On Hold');result=await action(p,t('بحث','Search'));check(lang+': paused filter preserves remaining quantity and zero score',result.total===1&&result.rows[0].remaining===1&&result.rows[0].priority.score===0);
  await p.getByLabel(t('بحث في الشواغر','Search vacancies'),{exact:true}).fill("' OR 1=1 --");result=await action(p,t('بحث','Search'));check(lang+': literal search has accurate empty state',result.total===0&&await p.locator('.vacancy-card').count()===0);
- await action(p,t('مسح الفلاتر','Clear filters'));await p.getByLabel(t('الموقع (الاسم الكامل)','Location (exact name)'),{exact:true}).fill(data.queue_branch);result=await action(p,t('بحث','Search'));check(lang+': location filter counts all 14 matching openings',result.total===14&&result.rows.every(r=>r.branch===data.queue_branch));
+ await action(p,t('مسح الفلاتر','Clear filters'));
+ const selector=p.locator('.vacancy-scope-select[data-kind="branch"]');
+ await selector.locator('select').waitFor();await p.locator('.vacancy-scope-select[data-kind="branch"][aria-busy="false"]').waitFor();
+ await p.getByLabel(t('الموقع','Location'),{exact:true}).selectOption(data.queue_branch);result=await action(p,t('بحث','Search'));check(lang+': location filter counts all 14 matching openings',result.total===14&&result.rows.every(r=>r.branch===data.queue_branch));
+ await p.locator('.vacancy-scope-select[data-kind="company"][aria-busy="false"]').waitFor();
+ await p.getByLabel(t('الشركة','Company'),{exact:true}).selectOption(data.company);
+ check(lang+': company change clears dependent department and location',await p.getByLabel(t('الإدارة','Department'),{exact:true}).inputValue()===''&&await p.getByLabel(t('الموقع','Location'),{exact:true}).inputValue()==='');
+ await p.locator('.vacancy-scope-select[data-kind="department"][aria-busy="false"]').waitFor();
+ await p.getByLabel(t('الإدارة','Department'),{exact:true}).selectOption(data.department);
+ await p.locator('.vacancy-scope-select[data-kind="branch"][aria-busy="false"]').waitFor();
+ await selector.getByRole('textbox').fill(data.queue_branch);await selector.getByRole('textbox').press('Enter');
+ await p.waitForFunction(branch=>{const el=document.querySelector('.vacancy-scope-select[data-kind="branch"]');return el.getAttribute('aria-busy')==='false'&&el.querySelectorAll('select option').length===2&&el.querySelector('select option:last-child').value===branch},data.queue_branch);
+ check(lang+': keyboard selector search resolves permitted location without submitting listing',await p.locator('.register-count strong').innerText()==='14');
+ await p.getByLabel(t('الموقع','Location'),{exact:true}).selectOption(data.queue_branch);
+ await selector.getByRole('textbox').fill('NO-MATCH');await selector.getByRole('textbox').press('Enter');
+ await selector.getByText(t('لا توجد اختيارات مطابقة ضمن صلاحياتك.','No matching choices within your permissions.'),{exact:true}).waitFor();
+ check(lang+': empty selector search preserves an independently verified selected value',await p.getByLabel(t('الموقع','Location'),{exact:true}).inputValue()===data.queue_branch);
+ await p.getByLabel(t('الإدارة','Department'),{exact:true}).selectOption('');
+ check(lang+': department change clears location',await p.getByLabel(t('الموقع','Location'),{exact:true}).inputValue()==='');
+ await action(p,t('مسح الفلاتر','Clear filters'));
+ await p.locator('.vacancy-scope-select[data-kind="branch"][aria-busy="false"]').waitFor();
+ check(lang+': narrow viewport still fits after complete selectors',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+ await p.evaluate(()=>window.scrollTo(0,0));await p.screenshot({path:path.join(out,`selectors-${lang}.png`),fullPage:true});
+ if(lang==='en'){
+  let release,started;const held=new Promise(r=>release=r),seen=new Promise(r=>started=r);
+  const pattern='**/api/method/kandil_hr.portal.vacancies.filter_options?**';
+  await p.route(pattern,async route=>{if(new URL(route.request().url()).searchParams.get('search')==='DELAY-MISSING'){const response=await route.fetch();started();await held;await route.fulfill({response})}else await route.continue()});
+  await selector.getByRole('textbox').fill('DELAY-MISSING');await selector.getByRole('textbox').press('Enter');await seen;
+  await selector.getByRole('textbox').fill(data.queue_branch);await selector.getByRole('textbox').press('Enter');
+  await p.waitForFunction(branch=>document.querySelector('.vacancy-scope-select[data-kind="branch"] select option:last-child')?.value===branch,data.queue_branch);
+  release();await p.unrouteAll({behavior:'wait'});
+  check('Delayed stale selector response cannot replace newer search',await selector.locator('select option').count()===2&&await selector.locator('select option').last().getAttribute('value')===data.queue_branch);
+  let failed=false;await p.route(pattern,async route=>{if(!failed&&new URL(route.request().url()).searchParams.get('search')==='RETRY'){failed=true;await route.abort('failed')}else await route.continue()});
+  await selector.getByRole('textbox').fill('RETRY');await selector.getByRole('textbox').press('Enter');await selector.getByRole('alert').waitFor();
+  check('Failed lookup shows retry message and clears old options',await selector.locator('select option').count()===1);
+  await selector.getByRole('textbox').fill(data.queue_branch);await selector.getByRole('textbox').press('Enter');
+  await p.waitForFunction(branch=>document.querySelector('.vacancy-scope-select[data-kind="branch"] select option:last-child')?.value===branch,data.queue_branch);
+  check('Lookup recovers after network retry',await selector.getByRole('alert').count()===0);await p.unrouteAll({behavior:'wait'});
+ }
+
  await p.context().close();
  }
- const outsider=await login('outsider');const denied=await read(outsider,{company:data.company});check('Outsider with recruiter role cannot list or count guessed company',denied.status===200&&denied.body.total===0&&denied.body.rows.length===0);await outsider.context().close();
+ const outsider=await login('outsider');const denied=await read(outsider,{company:data.company});check('Outsider with recruiter role cannot list or count guessed company',denied.status===200&&denied.body.total===0&&denied.body.rows.length===0);const hidden=await outsider.evaluate(async company=>(await (await fetch('/api/method/kandil_hr.portal.vacancies.filter_options?kind=branch&company='+encodeURIComponent(company))).json()).message,data.company);check('Outsider cannot discover guessed company locations through selectors',hidden.rows.length===0&&!hidden.has_more);await outsider.context().close();
  const hr=await login('hr');await nav(hr,'en');bench('revoke_lead');await hr.getByLabel('Vacancy view',{exact:true}).selectOption('unassigned');let result=await action(hr,'Search');check('Live grant revocation moves assigned vacancy into unassigned results',result.total===28&&result.rows.every(r=>r.unassigned));
  check('No JavaScript errors, HTTP 5xx or external requests',!errors.length&&!failures.length&&!external.length);check('Source unchanged throughout browser test',JSON.stringify(before)===JSON.stringify(hashes()));
  }catch(e){fs.writeFileSync(`/tmp/kandil-vacancies-browser-${run}.txt`,String(e.stack||e),{mode:0o600});checks.push({name:'Vacancy browser failure',status:'FAIL',error_type:e.name,error_message:String(e.message).split('\n')[0].slice(0,180)});if(page&&!page.isClosed())await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});console.log('FAIL',e.name,String(e.message).split('\n')[0]);process.exitCode=1}
- finally{await browser?.close();if(fs.existsSync(manifest)){try{cleanup=bench('cleanup')}catch{cleanup={cleaned:false};process.exitCode=1}}const status=checks.length>1&&checks.every(c=>c.status==='PASS')&&cleanup?.cleaned?'PASS':'FAIL';fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status,run_id:run,checked_at:new Date().toISOString(),checks,cleanup,errors,server_failures:failures,external,source_hashes:before,limits:['Synthetic vacancy read model and existing lead assignment only; bulk/lifecycle controls, directory pagination, scheduler and production scale remain open.']},null,2)+'\n');console.log(JSON.stringify({status,run_id:run,checks:checks.length,evidence:out}));if(status!=='PASS')process.exitCode=1}
+ finally{await browser?.close();if(fs.existsSync(manifest)){try{cleanup=bench('cleanup')}catch{cleanup={cleaned:false};process.exitCode=1}}const status=checks.length>1&&checks.every(c=>c.status==='PASS')&&cleanup?.cleaned?'PASS':'FAIL';fs.writeFileSync(path.join(out,'results.json'),JSON.stringify({status,run_id:run,checked_at:new Date().toISOString(),checks,cleanup,errors,server_failures:failures,external,source_hashes:before,limits:['Synthetic vacancy listing and scoped searchable filters; actual browser AR/EN, dependency reset, stale lookup and retry. Production scale, HR acceptance and full candidate workflow remain separate.']},null,2)+'\n');console.log(JSON.stringify({status,run_id:run,checks:checks.length,evidence:out}));if(status!=='PASS')process.exitCode=1}
 })();

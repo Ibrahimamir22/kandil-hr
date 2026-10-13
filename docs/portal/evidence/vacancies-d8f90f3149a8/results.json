@@ -1,0 +1,198 @@
+{
+  "status": "PASS",
+  "run_id": "d8f90f3149a8",
+  "checked_at": "2026-10-13T19:48:31.613Z",
+  "checks": [
+    {
+      "name": "28 real approved per-location vacancies prepared",
+      "status": "PASS"
+    },
+    {
+      "name": "en: first page contains 25 cards and total 28",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second page has 3 distinct rows, exact total, stable ordering",
+      "status": "PASS"
+    },
+    {
+      "name": "en: final page cannot advance",
+      "status": "PASS"
+    },
+    {
+      "name": "en: server search resets offset and finds a vacancy outside the first page",
+      "status": "PASS"
+    },
+    {
+      "name": "en: priority breakdown displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "en: RTL/LTR and viewport fit",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unassigned count excludes live authorized lead",
+      "status": "PASS"
+    },
+    {
+      "name": "en: my team includes non-lead team member",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paused filter preserves remaining quantity and zero score",
+      "status": "PASS"
+    },
+    {
+      "name": "en: literal search has accurate empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: location filter counts all 14 matching openings",
+      "status": "PASS"
+    },
+    {
+      "name": "en: company change clears dependent department and location",
+      "status": "PASS"
+    },
+    {
+      "name": "en: keyboard selector search resolves permitted location without submitting listing",
+      "status": "PASS"
+    },
+    {
+      "name": "en: empty selector search preserves an independently verified selected value",
+      "status": "PASS"
+    },
+    {
+      "name": "en: department change clears location",
+      "status": "PASS"
+    },
+    {
+      "name": "en: narrow viewport still fits after complete selectors",
+      "status": "PASS"
+    },
+    {
+      "name": "Delayed stale selector response cannot replace newer search",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed lookup shows retry message and clears old options",
+      "status": "PASS"
+    },
+    {
+      "name": "Lookup recovers after network retry",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: first page contains 25 cards and total 28",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second page has 3 distinct rows, exact total, stable ordering",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: final page cannot advance",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: server search resets offset and finds a vacancy outside the first page",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: priority breakdown displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: RTL/LTR and viewport fit",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unassigned count excludes live authorized lead",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: my team includes non-lead team member",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paused filter preserves remaining quantity and zero score",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: literal search has accurate empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: location filter counts all 14 matching openings",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: company change clears dependent department and location",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: keyboard selector search resolves permitted location without submitting listing",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: empty selector search preserves an independently verified selected value",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: department change clears location",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: narrow viewport still fits after complete selectors",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider with recruiter role cannot list or count guessed company",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot discover guessed company locations through selectors",
+      "status": "PASS"
+    },
+    {
+      "name": "Live grant revocation moves assigned vacancy into unassigned results",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript errors, HTTP 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged throughout browser test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "d8f90f3149a8",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/vacancies.py": "336cb6de3b2cea8716d7ec087434ac6411cc82c453e4eae955aa758853a54717",
+    "kandil_hr/portal/vacancy_fixture.py": "a62be1c497b1ae9e0683e9e8929e0c6f8958bed2307e9772ca6b7212c29e8947",
+    "kandil_hr/portal/test_vacancies.py": "846caa9d3adb580b5df5903ef1ce1df3974570f1b3a1b43f1356fe16401af797",
+    "kandil_hr/recruitment/vacancies.py": "3a267d9126161b95b790dcb5b974c5dd4142a0cb7cd1d2ed310c83ff6e92ea93",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/security.py": "018db24a3c4e27bd499a431d7eaa99765daa54582b069d22e8c58911286430bb",
+    "frontend/portal/src/VacancyQueue.tsx": "0a06a97ae19ca8552b312cce1f2feaa71f7521d2bb8c014e9651b670c10882e4",
+    "frontend/portal/src/VacancyScopeSelect.tsx": "2945cab0e32a23f051eef10b8d946f2637252f15a3ab3b7f4ab5a0e64083ef9e",
+    "frontend/portal/src/main.tsx": "3a50734e79e1e5bde1b0ff823d3dafc6c788e064a11186b6dbb3c859ada8fd00",
+    "frontend/portal/src/portal.css": "54e8afccc6fa1db026945635ff9b61aa3dd2f11be9d963a9e26085e8ebdab5b1",
+    "kandil_hr/public/portal/portal.js": "0a5b075a3b8e11322f1adfefe67aac35efddbf4a3bc2311e79d180085002d75d",
+    "docs/portal/test_vacancy_queue.cjs": "a381d407e29ea9fa2b3baf86479ead578dda48899a13ec96cc67b81f7ecee383"
+  },
+  "limits": [
+    "Synthetic vacancy listing and scoped searchable filters; actual browser AR/EN, dependency reset, stale lookup and retry. Production scale, HR acceptance and full candidate workflow remain separate."
+  ]
+}

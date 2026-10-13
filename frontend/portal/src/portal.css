@@ -95,3 +95,5 @@
 .deadline-advisory{border-inline-start:3px solid #b58330;background:#fff8e9;padding:.8rem 1rem;line-height:1.7}
 @media(max-width:900px){.approval-deadlines .deadline-milestones{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.approval-deadlines .deadline-milestones{grid-template-columns:1fr}.approval-deadlines .card-head{align-items:flex-start;flex-wrap:wrap;gap:.5rem}}
+
+.vacancy-scope-select{min-width:0}.vacancy-scope-select select{width:100%;max-width:100%}.vacancy-filter-help{grid-column:1/-1;margin:0}

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "scope": "Visual inspection of retained EN desktop and AR mobile selector captures; inspection crops preserve the top of original screenshots.",
+  "observations": [
+    "English labels, three-column filters, scoped help and controls readable without overlap.",
+    "Arabic controls and labels right-aligned with RTL select direction; narrow viewport has no horizontal clipping.",
+    "Long mobile list is a full-page capture of 25 synthetic vacancies, not a claim of large-workload performance."
+  ],
+  "images": {
+    "selectors-en.png": "3efaeb3399edc3b032f6bdd12a541fe00b2bc9016a693b486e5a84f45f6a41ba",
+    "selectors-ar.png": "8b79550319a99828d85a7ed809f4ecaed11be011dd26ac997216f565cede620a",
+    "selectors-en-detail.png": "5a3029bcf0778956124f361121f5a5df462d46f3278ca1b7e58ff1a89bacfa2f",
+    "selectors-ar-detail.png": "47497b93ab0a8745a3dac7d68383795faebf05ecd5ff47c79a70cb5f07a1139f"
+  }
+}
