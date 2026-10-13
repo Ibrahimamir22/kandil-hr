@@ -42,3 +42,7 @@ The [note/Event checkpoint](S3_NOTE_ACCESS_CHECKPOINT.md) preserves raw note/cap
 ## Frozen-reference and identity checkpoint
 
 The [reference policy](S3_REFERENCE_POLICY.md) and [checkpoint](S3_REFERENCE_CHECKPOINT.md) add raw route/cohort/identity reference checks and projected identity restriction markers. Final affected evidence is 104 native, 16 HTTP and 75 AR/EN browser checks; original stored bytes remain unchanged. This advances the open items in the preceding historical checkpoints. Other structured-note families, native Event identity/indirect reads, full 17-requirement S3 acceptance and production gates remain open.
+
+## Structured-note writer audit
+
+The [structured-note checkpoint](S3_STRUCTURED_NOTES_CHECKPOINT.md) covers the emitted vacancy/team, disabled-recruiter and joining-reversal note families as well as the previously guarded HR correction captures. New team snapshots contain only explicit User references; retained legacy rows are checked without rewriting them. Native Event actor/principal User Permission denial is verified. The [17-requirement acceptance matrix](S3_ACCEPTANCE_MATRIX.md) is the closeout checklist; indirect files and integrated S3 acceptance remain open.

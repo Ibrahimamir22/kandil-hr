@@ -1,0 +1,113 @@
+{
+  "status": "PASS",
+  "run_id": "41f6694ef061",
+  "checked_at": "2026-10-13T02:08:17.943Z",
+  "checks": [
+    {
+      "name": "Authorized owner can list retained revision attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner reads exact immutable revision bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner can read native File detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner downloads exact private bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user sees no attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user cannot read File detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user cannot download private bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical-team-restricted owner retains current portal request access",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical-team-restricted owner cannot read unredacted old revision",
+      "status": "PASS"
+    },
+    {
+      "name": "File ownership cannot expose restricted historical filename or URL",
+      "status": "PASS"
+    },
+    {
+      "name": "Same session loses native File detail immediately",
+      "status": "PASS"
+    },
+    {
+      "name": "Same session loses private file download immediately",
+      "status": "PASS"
+    },
+    {
+      "name": "Restricted native revision listing contains no historical JSON",
+      "status": "PASS"
+    },
+    {
+      "name": "Projected saved version retains requested quantities without restricted former team identity",
+      "status": "PASS"
+    },
+    {
+      "name": "Current portal timeline retains safe team-change reason without encoded note or restricted identity",
+      "status": "PASS"
+    },
+    {
+      "name": "Permission checks leave snapshot and attachment bytes unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "No HTTP server failures",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during HTTP test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "41f6694ef061",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "private_synthetic_attachment_retained": true
+  },
+  "unchanged": {
+    "run_id": "41f6694ef061",
+    "snapshot_unchanged": true,
+    "file_unchanged": true
+  },
+  "server_failures": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/history_notes.py": "0cece3db8392ace6fd34e9e16fc4dbd9c1e1571ac8e5a1ad18ff33784b75d050",
+    "kandil_hr/recruitment/vacancies.py": "ef28f6a2640817abdde25164839203b3074d9801eee9a65c16b77324e0f26a10",
+    "kandil_hr/recruitment/history_references.py": "8b1424df244ff6db14139d3bff349d8e32c34087efb856ed200baa51a41706b0",
+    "kandil_hr/recruitment/note_projection.py": "6ce82c49c51f098d75a53ef1fa9ae9c043cb12cfe53ab691ce75c133acb74c81",
+    "kandil_hr/recruitment/event_access.py": "6f317942b7e135ba220fb7921d781492a12df23cc27096cc2567b57ce2bf94a3",
+    "kandil_hr/recruitment/review_views.py": "7661259c164554f45ca972137dd46ac7b8a8dae5e3d02bf26402575a39869dde",
+    "kandil_hr/pilot/permissions.py": "3bf5a9c9e91a13bffd120fb630c208fdaaca5a65017b41f9c019ee5ec4730482",
+    "kandil_hr/pilot/models.py": "3d1c23c7241465c1e415461e2a8b36c2630d455702e9d83112032d2be96fd552",
+    "kandil_hr/foundation/security.py": "e0aefd0660b64f7de2b8843b6edf8e07f226357c68e7cb8319b4d5f879af57b3",
+    "kandil_hr/foundation/files.py": "c2171e081ba9ac0217351a6b31f4c0b4281e06c9bc1f4ce6e2ebc6f5b8bade62",
+    "kandil_hr/recruitment/history_access.py": "79b14f4f8f56eeab35204643340634dfbe4e7fb83cd9e78670fd44da525a20e8",
+    "kandil_hr/recruitment/history_schema.py": "3582e7859b8d8c0a4551fb101aa2584356052703817f19bac0eaaec876d91d84",
+    "kandil_hr/recruitment/models.py": "301f2a0565b5b288eb8eece960cc78deac31a6da05488aa9ddf1da8194e970b8",
+    "kandil_hr/portal/history_notes_fixture.py": "48b684edda9ca714e2c7cdf5ef07a0a7ff5a0099de1bbbea541d3e6b38e2f5fc",
+    "docs/portal/test_history_notes.cjs": "983f0f55958c36ad94a02fc0178dc9ca7055c8181a5f52d8bb79cc35399caad6"
+  },
+  "limits": [
+    "Synthetic retained vacancy-team User Permission and attachment HTTP list/detail/download boundaries using personal accounts. No browser rendering, production load or complete raw nested-reference audit is claimed."
+  ]
+}

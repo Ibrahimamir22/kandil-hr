@@ -35,7 +35,6 @@ def vacancy_snapshot(opening, request):
 			"name",
 			"custom_kandil_vacancy_state",
 			"custom_kandil_lead",
-			"custom_kandil_team",
 			"custom_kandil_pin_until",
 			"custom_kandil_pin_reason",
 			"custom_kandil_priority_score",
@@ -45,6 +44,10 @@ def vacancy_snapshot(opening, request):
 			"custom_kandil_before_freeze",
 		]
 	}
+
+	# Explicit shared projection: adding a private child field must never add it
+	# to the request audit. Previously stored snapshots remain unchanged.
+	value["custom_kandil_team"] = [{"user": row.user} for row in opening.get("custom_kandil_team") or []]
 
 	# The queue computes a live score; the stored field may still be its default
 	# before the first pin. Record the same evaluated value the reviewer saw.

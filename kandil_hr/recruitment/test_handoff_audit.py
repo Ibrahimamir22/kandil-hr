@@ -191,7 +191,16 @@ class TestHandoffAudit(unittest.TestCase):
 		note, _history = self.cleanup(self.f.users["hr"])
 		private = self.application_event(note["invocation"]["invocation_id"], self.app.name)
 		original = private.changed_fields
-		client.delete("Job Applicant", self.app.name)
+		# This rollback fixture must not enqueue cleanup for a row that will be
+		# restored by rollback. Run only this exact synthetic deletion inline.
+		enqueue = frappe.enqueue
+		def fixture_delete(method, *args, **kwargs):
+			if (method == "frappe.model.delete_doc.delete_dynamic_links"
+					and kwargs.get("doctype") == "Job Applicant" and kwargs.get("name") == self.app.name):
+				kwargs["now"] = True
+			return enqueue(method, *args, **kwargs)
+		with patch("frappe.enqueue", side_effect=fixture_delete):
+			client.delete("Job Applicant", self.app.name)
 		self.assertFalse(frappe.db.exists("Job Applicant", self.app.name))
 		self.assertEqual(frappe.get_doc("Kandil Security Event", private.name).changed_fields, original)
 		self.assertEqual(json.loads(original)["application"]["name"], self.app.name)

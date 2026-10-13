@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Frozen route/cohort references and projected identity restrictions verified: 104 native, 16 HTTP and 75 AR/EN browser checks. Original audit bytes preserved. Full S3 and release gates remain open. Review other serialized vacancy/ownership note families and indirect File/child/report authorization; reconcile all 17 S3 requirements before sprint exit, then S4 vacancy operations.",
+          "progress": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout. Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -328,7 +328,11 @@
             "evidence/s2-regression-0f512eee3656.json",
             "../portal/evidence/history-references-fd945c91376e/results.json",
             "../portal/evidence/history-workflows-0085dcd92e00/results.json",
-            "../portal/evidence/history-workflows-0085dcd92e00/visual-review.json"
+            "../portal/evidence/history-workflows-0085dcd92e00/visual-review.json",
+            "S3_STRUCTURED_NOTES_CHECKPOINT.md",
+            "S3_ACCEPTANCE_MATRIX.md",
+            "evidence/s2-regression-392125117ec4.json",
+            "../portal/evidence/history-notes-41f6694ef061/results.json"
           ]
         },
         {
@@ -356,7 +360,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "AR/EN request operations, captured review histories, route reasons and amendment navigation are connected. Frozen route/cohort references and projected User identities now enforce current reference permissions. Other structured notes, indirect reads and integrated S3 acceptance remain open.",
+      "progress": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout. Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -797,8 +801,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Frozen route/cohort references and projected identity restrictions verified: 104 native, 16 HTTP and 75 AR/EN browser checks. Original audit bytes preserved. Full S3 and release gates remain open.",
-    "evidence": "S3_REFERENCE_CHECKPOINT.md",
-    "next": "Review other serialized vacancy/ownership note families and indirect File/child/report authorization; reconcile all 17 S3 requirements before sprint exit, then S4 vacancy operations."
+    "summary": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout.",
+    "evidence": "S3_STRUCTURED_NOTES_CHECKPOINT.md",
+    "next": "Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations."
   }
 }

@@ -138,7 +138,9 @@ def correction_condition(source, user):
     for item in captures:
         checks.append(capture_condition(item,user))
         checks.append(f"COALESCE({scalar(item,'$.decision_note')},'')=''")
-    return f"(NOT {is_correction} OR ("+' AND '.join('('+c+')' for c in checks)+'))'
+    from kandil_hr.recruitment.history_notes import condition as note_condition
+    correction = f"(NOT {is_correction} OR ("+' AND '.join('('+c+')' for c in checks)+'))'
+    return f"({correction}) AND ({note_condition(source,user,is_correction)})"
 
 
 def allowed(doc, user=None):
