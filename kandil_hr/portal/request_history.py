@@ -121,6 +121,25 @@ def metadata(row, after):
     return {key: row.get(key) for key in META} | {'revision': after.get('revision'), 'status': after.get('status')}
 
 
+def action_context(value):
+    """One shared reason, never the raw correction note, payload or receipt."""
+    payload = value.get('payload', {})
+    if not isinstance(payload, dict): deny()
+    reason = payload.get('comment' if value['operation'] == 'decide' else 'reason')
+    if reason is not None and not isinstance(reason, str): deny()
+    result = dict(reason=reason, approval_restart=False, no_change=False)
+    if value['operation'] == 'revise_pending_quantities':
+        before, after = value['before'], value['after']
+        if before == after:
+            result['no_change'] = True
+        else:
+            result['approval_restart'] = (after.get('revision', 0) > before.get('revision', 0)
+                and after.get('status') == 'Pending'
+                and bool(after.get('approval_steps'))
+                and all(s.get('decision') == 'Pending' for s in after['approval_steps']))
+    return result
+
+
 @frappe.whitelist(methods=['GET'])
 def events(name, start=0, page_length=20):
     doc = target(name); start, limit = paging(start, page_length)
@@ -147,4 +166,5 @@ def event(name, event_id):
                 changed_fields=[key for key in after if before.get(key) != after.get(key)],
                 reviewed_before_decision=row.operation == 'decide',
                 reviewed_step=value.get('step_key') if row.operation == 'decide' else None,
+                action=action_context(value),
                 basis='immutable_command_before_after')

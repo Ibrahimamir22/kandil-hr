@@ -190,3 +190,9 @@ Authenticated GET `portal.request_links.related(name, start=0, page_length=20)` 
 Live `recruitment.preview.headcount` and its navigation action share an explicit operational-role check (Requester, Approver, Recruiter or Sector; Administrator break-glass). CEO/Board reference-read permission alone does not enable this recalculation. Native Capacity permissions and request scope are still checked by the endpoint.
 
 Saved-version location matching considers snapshot-writing operations only. `amend` is excluded because it creates a child without saving the parent; its unchanged parent AFTER capture cannot establish the original version’s historical location. This prevents legitimate amendment creation from making the parent’s approved version unavailable, while retaining strict full-content matching and ambiguity denial for candidate writes.
+
+## Historical action explanation (Sprint 3)
+
+`request_history.event` also returns `action={reason, approval_restart, no_change}`. Only the shared reason (or decision comment) is projected from the recorded command payload; the payload itself and correction's raw embedded decision note remain private. Nontext reasons are denied. Pending-quantity commands with identical captured before/after content are explicitly no-change; a changed, higher Pending revision with fresh Pending steps is labelled an approval restart. Other operations do not acquire that label merely because their revision increased. The UI renders the reason as text alongside the historical comparison.
+
+Saved-version capture lookup excludes a pending-quantity command explicitly recorded with `result.pending_revision_unchanged=true`. Like amendment creation, this command does not write a new target snapshot; its duplicate AFTER timestamp must not hide the original saved version. Other candidate writes still require exact full-content matching and reject ambiguity. No existing audit or revision bytes are rewritten.

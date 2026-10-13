@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Request operations, register, command history and saved versions are connected. Captured route explanations preserve original rules/skips without excluded identities. Permission-checked original/amendment links and saved-version retention across amendment creation are implemented. Expanded authority/correction/pending-quantity screen acceptance and native reference/File/reporting audit remain open.",
+          "progress": "Request operations, register, command history, saved versions, captured route reasons and amendment navigation are connected. Delegated/CEO/Board, retained proof, correction and pending-quantity history screens passed expanded AR/EN tests. Native nested-reference/File/reporting audit and full S3 acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -302,17 +302,30 @@
             "evidence/s2-regression-4889b97ef408.json",
             "../portal/evidence/request-history-55a18226b020/results.json",
             "../portal/evidence/request-history-55a18226b020/visual-review.json",
-            "../portal/evidence/browser-02cf51b48264/regression.json"
+            "../portal/evidence/browser-02cf51b48264/regression.json",
+            "S3_AUTHORITY_HISTORY_CHECKPOINT.md",
+            "evidence/s2-regression-786d6db90634.json",
+            "../portal/evidence/history-workflows-3582232e6013/results.json",
+            "../portal/evidence/history-workflows-3582232e6013/visual-review.json",
+            "../portal/evidence/request-history-596ebb3de5e4/results.json",
+            "../portal/evidence/pending-1e170027e543/results.json"
           ]
         },
         {
           "id": "S3-05",
           "description": "Integrate the S1 pending-quantity command into the final request UX with reapproval notice and safe retries.",
-          "status": "in_progress",
-          "progress": "Existing S1 pending-quantity UI remains integrated and regression-tested alongside new actions. Full S3 authority/history integration and acceptance remain open.",
+          "status": "complete",
+          "progress": "Engineering complete: integrated pending-quantity editor retains reviewed deltas, restart warning, safe denial/stale handling and S1 retry contracts. Historical views distinguish real restart from unchanged submissions and preserve earlier decisions and saved versions. Fresh 16-check action UI regression and expanded history checks pass. Full S3 and release gates remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
-            "../portal/evidence/pending-22759b3bec7c/results.json"
+            "../portal/evidence/pending-22759b3bec7c/results.json",
+            "S1_CHECKPOINT.md",
+            "S3_AUTHORITY_HISTORY_CHECKPOINT.md",
+            "evidence/s2-regression-786d6db90634.json",
+            "../portal/evidence/history-workflows-3582232e6013/results.json",
+            "../portal/evidence/history-workflows-3582232e6013/visual-review.json",
+            "../portal/evidence/request-history-596ebb3de5e4/results.json",
+            "../portal/evidence/pending-1e170027e543/results.json"
           ]
         }
       ],
@@ -323,7 +336,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Command history, saved versions, pre-decision comparisons, captured route reasons and amendment navigation are connected. Native delegated/CEO/Board history and scoped capacity-reference access are tested. Expanded authority/correction browser history, remaining native reference paths and full S3 acceptance remain open.",
+      "progress": "AR/EN command/saved history, route reasons and amendment navigation are connected, including delegated/CEO/Board, retained proof and correction/restart/no-change comparisons. S3-05 engineering integration is complete. Remaining native reference paths and full S3 acceptance remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -764,8 +777,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Captured route reasons and original/amendment navigation verified in AR/EN, including saved-version retention and duplicate-panel regression. Scoped CEO/Board Capacity reference reads preserve live-preview restrictions. 112 broader native checks plus an overlapping final 40-case affected run (113 distinct cases), and 125 final browser checks passed. Full S3 and release gates remain open.",
-    "evidence": "S3_ROUTE_LINKS_CHECKPOINT.md",
-    "next": "Expand delegated/CEO/Board history screen acceptance and correction/pending-quantity comparisons; finish the native nested-route/reference/File/reporting audit before S3 closeout."
+    "summary": "Authority/correction/pending-quantity history and explicit action reasons verified. 47 native and 182 final browser checks passed; four focused rendered captures inspected. S3-05 engineering-complete; native raw-history audit, full S3 and release gates remain open.",
+    "evidence": "S3_AUTHORITY_HISTORY_CHECKPOINT.md",
+    "next": "Finish native nested-route/reference/File/reporting security audit and mapped S3 acceptance, then progress to vacancy/candidate/interview workflows without dropping the 98 frozen requirements."
   }
 }

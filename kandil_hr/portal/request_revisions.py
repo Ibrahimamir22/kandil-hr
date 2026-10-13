@@ -64,6 +64,8 @@ def captured_locations(snapshot, doc):
         SELECT name, operation, envelope_json FROM `tabKandil Command Audit`
         WHERE company=%s AND domain='recruitment' AND target_doctype=%s
           AND target_name=%s AND operation IN %(operations)s
+          AND (operation<>'revise_pending_quantities' OR
+               COALESCE(JSON_UNQUOTE(JSON_EXTRACT(envelope_json, '$.result.pending_revision_unchanged')), '')<>'true')
           AND REPLACE(JSON_UNQUOTE(JSON_EXTRACT(envelope_json, '$.after.modified')), ' ', 'T')=%s
         ORDER BY occurred_at DESC, name DESC LIMIT 2
     '''.replace('%(operations)s', '(' + ','.join(['%s'] * len(SNAPSHOT_OPERATIONS)) + ')'),

@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-13T01:07:57.686409+00:00",
+  "method": "Agent visual inspection of four rendered Playwright captures using view_image",
+  "files": {
+    "restart-ar.png": "7f042369e1959f6b85bdaac9a23e4804f31489f347eea4516aad7521338cfd86",
+    "correction-en.png": "e9749e53f4714321614ec12b7acd0069a2b5ea986c9002545a363fa695687e4a",
+    "board-retained-ar.png": "11f4a8de5b3bdd168cc5f36ce428752f05638ad267bed03e755db30ccd743020",
+    "unchanged-en.png": "600428325022ba7d2c9146d600569ca3f12454ff46372f9ba6a847947b58d79f"
+  },
+  "findings": [
+    "Arabic mobile restart explanation and stacked before/after approval routes fit the captured panel.",
+    "English desktop correction preserves requested quantities, highlights changed qualifications and revision, and shows the reason.",
+    "Arabic retained Board history distinguishes the original principal from the actual decision member and recorder, with supporting-document link.",
+    "English no-change history states that no new revision or approval restart occurred."
+  ],
+  "limits": [
+    "Four focused captures inspected; not an independent accessibility audit, full-screen design review or HR terminology sign-off."
+  ]
+}
