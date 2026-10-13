@@ -1,0 +1,136 @@
+{
+  "status": "FAIL",
+  "run_id": "a141416ea310",
+  "checked_at": "2026-10-13T12:25:41.902Z",
+  "checks": [
+    {
+      "name": "57 ordinary-command requests span old 50-row and new 25-row boundaries",
+      "status": "PASS"
+    },
+    {
+      "name": "Read-only summaries do not mutate requests or headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR sees total 57 requests and 2 active vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "en: dashboard recent list stays bounded at 5",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unassigned and past-required-date figures visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: dashboard fits viewport and language direction",
+      "status": "PASS"
+    },
+    {
+      "name": "en: next-action badge uses global approval total",
+      "status": "PASS"
+    },
+    {
+      "name": "en: first approval page has 25 rows and full total",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second approval page has exact remaining distinct results",
+      "status": "PASS"
+    },
+    {
+      "name": "en: server search finds old approval and resets offset",
+      "status": "PASS"
+    },
+    {
+      "name": "en: approvals fit viewport with current authority label",
+      "status": "PASS"
+    },
+    {
+      "name": "en: literal hostile search cannot widen results",
+      "status": "PASS"
+    },
+    {
+      "name": "en: real approval leaves manager queue and updates global badge",
+      "status": "PASS"
+    },
+    {
+      "name": "en: dashboard count refresh follows decision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HR sees total 57 requests and 2 active vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: dashboard recent list stays bounded at 5",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: unassigned and past-required-date figures visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: dashboard fits viewport and language direction",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: next-action badge uses global approval total",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: first approval page has 25 rows and full total",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second approval page has exact remaining distinct results",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: server search finds old approval and resets offset",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: approvals fit viewport with current authority label",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: literal hostile search cannot widen results",
+      "status": "PASS"
+    },
+    {
+      "name": "Dashboard browser failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "ar: real approval leaves manager queue and updates global badge"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a141416ea310",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/dashboard.py": "6e1fae07c364a06943652364f953b7a2bd9d04d10b14ee6df44e0a22b6ca2a43",
+    "kandil_hr/portal/approval_query.py": "aa6f3d198443214b76771cc9e70dd2846465f4f184deb2ef922c726d235989b7",
+    "kandil_hr/portal/api.py": "9a9b801276980897a5341686df07afcb020b645e73278ed84ca86e234c1b543c",
+    "kandil_hr/portal/vacancies.py": "441da5b4c414392eba84cae30449c85d714f8f05408f2c257285df01915cf8b5",
+    "kandil_hr/portal/dashboard_fixture.py": "0d0e0f12455ab509ebb6d71c38c6ffec1e1ca1c996359fa9d4b6ad127cc59524",
+    "kandil_hr/portal/test_dashboard.py": "ad8f3f82bb9c80f22a3fa870786cbf3cc60928b8fcff85dee982b5f343f4ec6f",
+    "kandil_hr/portal/fixture.py": "9368f21133c656996df61b3c1682424a7104c400a5be3af43dd241dc78ea7b86",
+    "frontend/portal/src/ApprovalQueue.tsx": "cca440ea99f6cb5ec6f273eaaeafec7a88710992f3a1b540cafdaa32f9f11582",
+    "frontend/portal/src/main.tsx": "3701066bda0dde3cd91e5680e7abfc1752c6653cb05b582dbbf276f71b3d3099",
+    "frontend/portal/src/types.ts": "5d94c5d2905708b3b54dff13454ad7cd6ea59e30bb6e7abeb75c112902681629",
+    "kandil_hr/public/portal/portal.js": "a3a2bcd3ec3c6a18cda0992688671ffa4fd6750f3051077dc5b646cade28fc38",
+    "docs/portal/test_dashboard.cjs": "db230984ef9316653d17e24779781ef03340da2e1f21b12480f3c7885383f7da"
+  },
+  "limits": [
+    "Synthetic dashboard and paginated approval browser proof; Board/delegation read-model parity tested natively. No sustained 1,000-account workload or external notification delivery proof."
+  ]
+}

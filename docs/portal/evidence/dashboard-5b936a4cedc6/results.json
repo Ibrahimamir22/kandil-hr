@@ -1,0 +1,68 @@
+{
+  "status": "FAIL",
+  "run_id": "5b936a4cedc6",
+  "checked_at": "2026-10-13T12:24:23.290Z",
+  "checks": [
+    {
+      "name": "57 ordinary-command requests span old 50-row and new 25-row boundaries",
+      "status": "PASS"
+    },
+    {
+      "name": "Read-only summaries do not mutate requests or headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR sees total 57 requests and 2 active vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "en: dashboard recent list stays bounded at 5",
+      "status": "PASS"
+    },
+    {
+      "name": "en: unassigned and past-required-date figures visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: dashboard fits viewport and language direction",
+      "status": "PASS"
+    },
+    {
+      "name": "en: next-action badge uses global approval total",
+      "status": "PASS"
+    },
+    {
+      "name": "Dashboard browser failure",
+      "status": "FAIL",
+      "error_type": "TimeoutError",
+      "error_message": "locator.click: Timeout 30000ms exceeded."
+    }
+  ],
+  "cleanup": {
+    "run_id": "5b936a4cedc6",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/dashboard.py": "6e1fae07c364a06943652364f953b7a2bd9d04d10b14ee6df44e0a22b6ca2a43",
+    "kandil_hr/portal/approval_query.py": "aa6f3d198443214b76771cc9e70dd2846465f4f184deb2ef922c726d235989b7",
+    "kandil_hr/portal/api.py": "9a9b801276980897a5341686df07afcb020b645e73278ed84ca86e234c1b543c",
+    "kandil_hr/portal/vacancies.py": "441da5b4c414392eba84cae30449c85d714f8f05408f2c257285df01915cf8b5",
+    "kandil_hr/portal/dashboard_fixture.py": "0d0e0f12455ab509ebb6d71c38c6ffec1e1ca1c996359fa9d4b6ad127cc59524",
+    "kandil_hr/portal/test_dashboard.py": "ad8f3f82bb9c80f22a3fa870786cbf3cc60928b8fcff85dee982b5f343f4ec6f",
+    "kandil_hr/portal/fixture.py": "9368f21133c656996df61b3c1682424a7104c400a5be3af43dd241dc78ea7b86",
+    "frontend/portal/src/ApprovalQueue.tsx": "cca440ea99f6cb5ec6f273eaaeafec7a88710992f3a1b540cafdaa32f9f11582",
+    "frontend/portal/src/main.tsx": "806dc168533503b9302feac347553acfca2da862c94214ede28732385c7e2a79",
+    "frontend/portal/src/types.ts": "5d94c5d2905708b3b54dff13454ad7cd6ea59e30bb6e7abeb75c112902681629",
+    "kandil_hr/public/portal/portal.js": "3abaa501fd13a3b9a66f8b81acbddeceea1109d1c0a41d459c4a7fee4af2ee4f",
+    "docs/portal/test_dashboard.cjs": "a7046f4862530c0505264d4665a2b97e6cb2ba14cbbea28bed21cb746030a4e3"
+  },
+  "limits": [
+    "Synthetic dashboard and paginated approval browser proof; Board/delegation read-model parity tested natively. No sustained 1,000-account workload or external notification delivery proof."
+  ]
+}

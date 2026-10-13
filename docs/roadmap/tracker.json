@@ -429,7 +429,16 @@
         {
           "id": "S4-03",
           "description": "Replace page-only dashboard counts/search with correctly scoped server-wide projections and pagination.",
-          "status": "planned"
+          "status": "complete",
+          "progress": "Engineering verification complete: exact scoped dashboard totals, bounded previews and paginated direct/delegated/Board approval actions replace first-page counts. 72 distinct native cases across recorded checkpoints, 34 dedicated browser checks and 24 original-journey checks passed. Arabic mobile badge and delayed stale-response/revocation behavior verified. S4 notification inbox, scheduling and searchable organization selectors remain; HR/security/scale release acceptance is separate.",
+          "evidence": [
+            "S4_DASHBOARD_CHECKPOINT.md",
+            "evidence/s2-regression-86687aa8ed55.json",
+            "evidence/s2-regression-6026fba5d5cb.json",
+            "../portal/evidence/dashboard-3a42bd11d1ea/results.json",
+            "../portal/evidence/dashboard-3a42bd11d1ea/visual-review.json",
+            "../portal/evidence/browser-a9fd95a8a88f/regression.json"
+          ]
         },
         {
           "id": "S4-04",

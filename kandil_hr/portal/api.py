@@ -125,15 +125,17 @@ def overview(start=0, page_length=50):
             if not opening.has_permission("read"):
                 continue
             hints = actions(opening.name)
+            from kandil_hr.portal.vacancies import visible_team
+            labels, restricted = visible_team(opening)
             lead = opening.custom_kandil_lead
             vacancies.append(dict(
                 name=opening.name, request=doc.name, title=doc.title,
                 branch=frappe.db.get_value("Kandil Capacity", line.capacity, "branch"),
                 quantity=line.approved_qty, joined=line.joined_qty,
-                state=opening.custom_kandil_vacancy_state, lead=lead,
-                members=[row.user for row in opening.custom_kandil_team],
-                lead_name=get_fullname(lead) if lead else None, expected_version=str(doc.modified),
-                can_assign=bool(hints.get("can_assign") and hints.get("can_manage")),
+                state=opening.custom_kandil_vacancy_state, lead=lead if lead in labels else None,
+                members=[row.user for row in opening.custom_kandil_team if row.user in labels],
+                lead_name=labels.get(lead), team_restricted=restricted, expected_version=str(doc.modified),
+                can_assign=bool(not restricted and hints.get("can_assign") and hints.get("can_manage")),
             ))
     # These are explicit page counts; do not present them as organization totals.
     return dict(requests=requests, approvals=approvals, vacancies=vacancies,

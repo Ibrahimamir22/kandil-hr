@@ -9,3 +9,5 @@ export interface Vacancy{name:string;request:string;title:string;branch:string;q
 export interface Overview{requests:RequestCard[];approvals:RequestCard[];vacancies:Vacancy[];counts:Record<string,number>;count_scope?:string;start?:number;next_start?:number;has_more?:boolean}
 export interface Choices{truncated?:boolean;positions:{id:string;label:string;company:string;department:string;designation:string}[];capacities:{id:string;position:string;company:string;department:string;branch:string;designation:string;available:number}[]}
 export type Tr=(ar:string,en:string)=>string;
+
+export interface DashboardSummary{requests:RequestCard[];approvals:RequestCard[];counts:Record<string,number>;as_of:string;count_scope:string}

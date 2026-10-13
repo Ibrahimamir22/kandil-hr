@@ -1,0 +1,16 @@
+{
+  "reviewed_at": "2026-10-13T12:33:10.236774+00:00",
+  "method": "Rendered screenshots inspected directly",
+  "result": "PASS",
+  "screenshots": {
+    "dashboard-ar.png": "19893dc526ba3627a98386e62026adeca1957f753add28b7a27d426ebc4544e8",
+    "approvals-en.png": "3e169c781c21c99c97083583ce338d10ad142e5a5835a19c02e2c8e8c472aab1"
+  },
+  "findings": [
+    "Arabic mobile dashboard at 390px: RTL layout, totals, Cairo date, controls and bounded request cards visible without horizontal clipping.",
+    "English desktop approval search: global badge distinct from filtered total, authority labels and pagination visible."
+  ],
+  "limits": [
+    "Synthetic data; not HR wording acceptance or a full accessibility audit."
+  ]
+}
