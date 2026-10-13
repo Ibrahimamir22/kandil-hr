@@ -1,0 +1,26 @@
+{
+  "reviewer": "Codex visual inspection",
+  "scope": "Four correction/history screenshots; engineering review, not HR UAT or accessibility certification",
+  "images": [
+    {
+      "file": "profile-review-en.png",
+      "sha256": "c7d7e11cb329e804bfbf05a23740e5ba402d3ce704d6dfb4ebb4241bf179d55f",
+      "observation": "English desktop correction review displays exact email/city before and after, reason and confirmation."
+    },
+    {
+      "file": "profile-history-en.png",
+      "sha256": "1012bfc85eed7f1e9118f29ba9d298d474f0fda384eb137780a98c2091152c50",
+      "observation": "English detail keeps application email unchanged and shows corrected person email plus one scoped revision with actor/reason/diff."
+    },
+    {
+      "file": "profile-review-ar.png",
+      "sha256": "d7f25e79e8906e417618ac9595e0098b0b8e0ad32d060fa6d4a6c491b775b1ed",
+      "observation": "Arabic mobile correction review fits the viewport and shows city/language changes plus confirmation. Language values currently display their ar/en codes."
+    },
+    {
+      "file": "profile-history-ar.png",
+      "sha256": "5c6f2f96fd7226f84f20d5d224c282c80bb449b2bc963ef22fde3f95fdfbfacd",
+      "observation": "Arabic RTL mobile history, original application snapshot and updated shared person profile inspected; no horizontal clipping observed."
+    }
+  ]
+}

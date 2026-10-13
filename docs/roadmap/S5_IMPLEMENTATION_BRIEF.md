@@ -1,5 +1,7 @@
 # S5 — candidate identity, applications and sourcing
 
+The [S5 profile correction checkpoint](S5_PROFILE_CORRECTIONS_CHECKPOINT.md) adds reasoned AR/EN basic-profile corrections, before/after review and permission-filtered revision history while preserving application snapshots. **74 native checks passed**, with 24 affected checks rerun after final link validation, plus **37 browser checks** covering intake, corrections, retries, competing edits and revocation. Full S5 remains open; ordinary intake/correction activation remains disabled pending migration and recovery work.
+
 The [S5 candidate workspace checkpoint](S5_CANDIDATE_WORKSPACE_CHECKPOINT.md) adds scoped AR/EN candidate lists, basic person/application details and reviewed recruiter intake. **35 native and 25 candidate browser checks passed**, including lost-response retry, concurrent creation and access revocation. This is partial S5 delivery: full profiles/history, migration, ownership actions, private files, consent and sourcing remain open. Intake was tested under a temporary synthetic-site lease and remains disabled for ordinary review traffic.
 
 13 October 2026. **Implementation contract, not completed functionality.** Reference clone inspected at `7824be24292c4743b4005e14e2df540786cfe167` (clean checkout). Preserve every frozen S5 ID below and the shared VAC-003/VAC-005 application ownership clauses. Current native Job Applicant/ownership foundations are useful but do not satisfy this sprint.

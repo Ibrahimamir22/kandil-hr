@@ -55,9 +55,13 @@ def related_state(doc, operation, payload, result=None, previous=()):
 		for name in sorted((payload.get("relocations") or {}).values()):
 			add("Kandil Capacity", name)
 	opening_names = {name for kind, name in targets if kind == "Job Opening"}
-	if operation in ("candidate_intake", "candidate_identity_migrate"):
+	if operation in ("candidate_intake", "candidate_identity_migrate", "candidate_profile_correct"):
 		if payload.get("opening") not in opening_names:
 			frappe.throw(_("The candidate vacancy does not belong to this request."), frappe.PermissionError)
+		if operation == "candidate_profile_correct":
+			anchor = frappe.db.get_value("Job Applicant", payload.get("application"), ["job_title", "custom_kandil_person"], as_dict=True)
+			if not anchor or anchor.job_title != payload["opening"] or anchor.custom_kandil_person != payload.get("person"):
+				frappe.throw(_("The candidate profile does not match this application."), frappe.PermissionError)
 		if payload.get("person"):
 			add("Kandil Candidate Person", payload["person"])
 		applicant = payload.get("application") or (result or {}).get("application")
@@ -66,6 +70,8 @@ def related_state(doc, operation, payload, result=None, previous=()):
 				frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)
 			app = add("Job Applicant", applicant)
 			add("Kandil Candidate Person", app.get("custom_kandil_person"))
+		if operation == "candidate_profile_correct" and (result or {}).get("revision"):
+			add("Kandil Candidate Profile Revision", result["revision"])
 	if operation in ("application_owner", "application_task"):
 		if frappe.db.get_value("Job Applicant", payload["application"], "job_title") not in opening_names:
 			frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)

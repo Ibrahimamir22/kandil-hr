@@ -84,7 +84,11 @@ def detail(name):
         next_action=app.custom_kandil_next_action,next_action_due=app.custom_kandil_next_action_due,
         next_action_owner=labels.get(app.custom_kandil_next_action_owner))
     candidate=person_detail(app.custom_kandil_person) if app.custom_kandil_person else None
-    return dict(application=result,person=candidate)
+    from kandil_hr.foundation.security import request_scope
+    from kandil_hr.foundation.teams import candidate_access
+    can_correct = bool(candidate and identity.enabled() and request_scope(request, frappe.session.user, 'manage') and candidate_access(opening, request))
+    return dict(application=result,person=candidate,profile_edit=dict(allowed=can_correct,
+                request=request.name, opening=opening.name, expected_version=str(request.modified)))
 
 
 def person_detail(name):
@@ -117,3 +121,27 @@ def openings(search='',start=0,page_length=25):
     rows=(q.select(o.name,o.job_title,r.name.as_('request'),r.modified.as_('expected_version'),r.company)
           .orderby(o.job_title).orderby(o.name).limit(limit).offset(offset).run(as_dict=True))
     return dict(rows=rows,total=total,start=offset,has_more=offset+limit<total)
+
+
+@frappe.whitelist(methods=['GET'])
+def profile_history(name, start=0, page_length=10):
+    """Only revisions anchored to applications currently readable by this viewer."""
+    from kandil_hr.candidates.corrections import REVISION
+    access(); app=readable_application(bounded_text(name)); offset,limit=paging(start,page_length)
+    if not app.custom_kandil_person:
+        return dict(rows=[],total=0,start=offset,has_more=False)
+    person_detail(app.custom_kandil_person)
+    q,a,o,r=base()
+    h=frappe.qb.DocType(REVISION)
+    query=(frappe.qb.from_(h).where(h.person==app.custom_kandil_person)
+           .where(h.application.isin(q.select(a.name))))
+    total=deepcopy(query).select(Count(h.name).as_('total')).run(as_dict=True)[0].total
+    rows=(query.select(h.name,h.creation,h.actor,h.reason,h.before_json,h.after_json)
+          .orderby(h.creation,order=Order.desc).orderby(h.name).limit(limit).offset(offset).run(as_dict=True))
+    labels=identity_labels([x.actor for x in rows])
+    result=[]
+    for row in rows:
+        before=normalize(row.before_json);after=normalize(row.after_json)
+        result.append(dict(name=row.name,created=row.creation,actor=labels.get(row.actor,_('Restricted actor')),
+            reason=row.reason,changes=[dict(field=k,before=before[k],after=after[k]) for k in before if before[k]!=after[k]]))
+    return dict(rows=result,total=total,start=offset,has_more=offset+limit<total)

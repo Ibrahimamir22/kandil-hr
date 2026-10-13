@@ -1,0 +1,101 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Profile Revision",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "person",
+    "application",
+    "company",
+    "actor",
+    "reason",
+    "before_version",
+    "after_version",
+    "before_json",
+    "after_json",
+    "content_hash"
+  ],
+  "fields": [
+    {
+      "fieldname": "person",
+      "label": "Candidate Person",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Kandil Candidate Person",
+      "search_index": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Correction Reason",
+      "fieldtype": "Small Text",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "before_version",
+      "label": "Reviewed Person Version",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "after_version",
+      "label": "Result Person Version",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "before_json",
+      "label": "Previous Basic Profile",
+      "fieldtype": "Code",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "after_json",
+      "label": "Updated Basic Profile",
+      "fieldtype": "Code",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Revision Content Hash",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

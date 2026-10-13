@@ -107,3 +107,5 @@
 .candidate-pagination{justify-content:space-between}.candidate-fieldset{border:0;padding:0;margin:0;min-width:0}.candidate-form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;padding:1.25rem}
 .candidate-choices{display:grid;gap:.75rem}.candidate-choices label,.candidate-ack{display:flex;align-items:flex-start;gap:.6rem;overflow-wrap:anywhere}.candidate-choices input,.candidate-ack input{width:auto;flex:0 0 auto;margin-top:.25rem}.candidate-ack{margin-top:1.5rem}.candidate-review{padding:1rem;margin-top:1rem;background:#f7f4ef;border-radius:12px}.candidate-review p{overflow-wrap:anywhere}
 @media(max-width:680px){.candidate-details,.candidate-form-grid{grid-template-columns:1fr}.candidate-row{flex-direction:column}.candidate-actions{width:100%}.candidate-pagination{flex-wrap:wrap;gap:.75rem}.candidates .page-heading,.candidate-intake .page-heading{flex-wrap:wrap}}
+
+.profile-revision{border-top:1px solid #e5e1db}.profile-revision p,.profile-correction p{overflow-wrap:anywhere}.profile-history .card-head{flex-wrap:wrap;gap:1rem}.profile-history .card-head>div{min-width:0}

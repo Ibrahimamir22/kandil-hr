@@ -1,0 +1,187 @@
+{
+  "status": "PASS",
+  "run_id": "4ba92b6ede6e",
+  "checks": [
+    {
+      "name": "First page shows 20 of 22 permitted applications",
+      "status": "PASS"
+    },
+    {
+      "name": "Server-backed second page contains remaining applications",
+      "status": "PASS"
+    },
+    {
+      "name": "directory-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Possible matches never select an identity automatically",
+      "status": "PASS"
+    },
+    {
+      "name": "intake-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain creation freezes edits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response retry creates one application and reuses command ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Intake leaves headcount unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "detail-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-review-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain correction prevents editing reviewed values",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed success response keeps correction retry available",
+      "status": "PASS"
+    },
+    {
+      "name": "Correction updates person but preserves application contact snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response correction has one revision and same command",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-history-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale profile version cannot overwrite newer correction",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent conflicting corrections allow one winner and one stale denial",
+      "status": "PASS"
+    },
+    {
+      "name": "Person lookup returns only allowed basic profile",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent intake requests both succeed",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent identical personal-session intake returns identical result",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent requests commit one application",
+      "status": "PASS"
+    },
+    {
+      "name": "Person has multiple distinct application records",
+      "status": "PASS"
+    },
+    {
+      "name": "directory-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate review can load remaining scoped matches",
+      "status": "PASS"
+    },
+    {
+      "name": "intake-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "detail-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic UI links reviewed identity without overwriting original profile",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-review-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile correction and history show reviewed values",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-history-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Unauthorized account has no candidate navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "Direct candidate list and guessed detail are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot read correction history or replay correction",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter sees no candidate rows",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation denies person, application and intake replay",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser runtime errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "4ba92b6ede6e",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/candidates.py": "4d4dacd8964ed86c2de36034ab24c1174e875a46fe5d55f77276b21eb9b8bab6",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "c19dbde778a678037631bf6a1194680167424713adec58ae4bbdf8904ec5b4fa",
+    "kandil_hr/foundation/command_audit.py": "8d4787a54255325be2b52c124775b4b7a8d727b90c3536191c365c91bb69b869",
+    "frontend/portal/src/CandidateProfile.tsx": "a0d634ee142ddb43d1f563a1f7e79565bb8722b0e4ba97973bec5ad518450184",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "1ef582c8ee973760790e6bf8311af554f5eb849dcb2186a27de6736248b1d2ff",
+    "kandil_hr/portal/candidate_fixture.py": "e1f30dfdb04875d06915e00962700a737902c16dc22ecae4b65518e342797fd9",
+    "kandil_hr/portal/api.py": "818ea7bb9c121d5864a122fd051da1d84c5ee5f6bdc53c25dc4d1c093c6ee1f2",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "d17367e91356e1f7c1d5ec69c3a3f0688d9951dc906a7f3d6e30c6f27f997695",
+    "frontend/portal/src/Candidates.tsx": "1c2b4e374595a470c93cd05f57ba51bdbeab70b264c2b57dbb30615eda15802d",
+    "frontend/portal/src/main.tsx": "77214e05eef60b89c7a2df94ceaf43923601a8d4b241d596030ae92c468db777",
+    "frontend/portal/src/portal.css": "bd59fae480daba1af7238a18e078ac3957ebdb72efbac1088f0a4b8d85ccf318",
+    "kandil_hr/public/portal/portal.js": "9ee49d9594d2ea7b2bc56ef888cc58714aed70c377614cffd182933bc2d127f1",
+    "docs/portal/test_candidates.cjs": "2143f6b47cbf4311ad9dd95deaa70f97e7a9f88f83fe3915c2340c82e88110c0"
+  },
+  "limits": [
+    "Synthetic recruiter intake and basic profile only. Mode restored after temporary test activation. Full profile correction/history, migration rollout, consent, files and production gates remain open."
+  ]
+}

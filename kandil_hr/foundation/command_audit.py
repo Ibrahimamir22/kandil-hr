@@ -54,6 +54,7 @@ OPERATIONS = {
 			"application_task",
 			"candidate_intake",
 			"candidate_identity_migrate",
+			"candidate_profile_correct",
 			"hr_correction",
 			"void_joining",
 			"record_outcome",
@@ -133,6 +134,7 @@ RELATED_FIELDS = {
 		"custom_kandil_priority_pin",
 	),
 	"Kandil Candidate Person": (*COMMON, "identity_state"),
+	"Kandil Candidate Profile Revision": (*COMMON, "person", "application", "content_hash", "before_version", "after_version"),
 	"Job Applicant": (
 		*COMMON,
 		"job_title",
