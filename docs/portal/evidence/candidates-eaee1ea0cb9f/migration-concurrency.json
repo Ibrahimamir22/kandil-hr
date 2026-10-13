@@ -1,0 +1,52 @@
+[
+  [
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-f59a0000e3f14004a942",
+        "person": "KCP-6adb2eab50a94546a9d6e8695fb84f02",
+        "application_version": "2026-10-14 00:19:59.219016",
+        "person_version": "2026-10-14 00:19:59.217667",
+        "reconciliation": {
+          "preserved": true,
+          "before_hash": "79cfdb2de128fe25b8151c1268b2510a008a011c590b4356f39dcb77354d12f3",
+          "after_hash": "79cfdb2de128fe25b8151c1268b2510a008a011c590b4356f39dcb77354d12f3"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-f59a0000e3f14004a942",
+        "application_version": "2026-10-14 00:19:59.219016",
+        "person": "KCP-6adb2eab50a94546a9d6e8695fb84f02",
+        "person_version": "2026-10-14 00:19:59.217667",
+        "reconciliation": {
+          "after_hash": "79cfdb2de128fe25b8151c1268b2510a008a011c590b4356f39dcb77354d12f3",
+          "before_hash": "79cfdb2de128fe25b8151c1268b2510a008a011c590b4356f39dcb77354d12f3",
+          "preserved": true
+        }
+      }
+    }
+  ],
+  [
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-33294a4209b841ad80eb",
+        "person": "KCP-0047d57cd3b042bf955114979dc7de08",
+        "application_version": "2026-10-14 00:20:00.711052",
+        "person_version": "2026-10-14 00:20:00.709640",
+        "reconciliation": {
+          "preserved": true,
+          "before_hash": "21c5f298541c5bcd32432537a4b830986ab418b5c986b95c6ddfc194c88c0ac2",
+          "after_hash": "21c5f298541c5bcd32432537a4b830986ab418b5c986b95c6ddfc194c88c0ac2"
+        }
+      }
+    },
+    {
+      "status": 417,
+      "type": "TimestampMismatchError"
+    }
+  ]
+]

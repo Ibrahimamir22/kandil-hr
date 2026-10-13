@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Opaque person/application workspace, basic corrections/history and current-master plus historical search/matching tested. HR-only legacy preview is read-only, available with intake off and preserves records. Applying links/reconciling migration, full profiles/sensitive fields, fuzzy identity review and former/internal links remain open.",
+          "progress": "Opaque identity/application workspace, basic corrections/history and current/historical search tested. Configured HR can preview and apply one conservative legacy link with reason, exact preview/version checks, current authority, idempotent receipt and transactional preservation hashes. 48 native and 63 browser checks passed, including lost replies and simultaneous first writes. Navigation/reload recovery, batch migration/import reconciliation, full profiles/sensitive fields, fuzzy identity review and former/internal links remain open; ordinary activation disabled.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -574,7 +574,10 @@
             "../portal/evidence/candidates-4ba92b6ede6e/results.json",
             "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md",
             "evidence/s2-regression-9c67797464c3.json",
-            "../portal/evidence/candidates-f57a4a71704f/results.json"
+            "../portal/evidence/candidates-f57a4a71704f/results.json",
+            "S5_MIGRATION_APPLY_CHECKPOINT.md",
+            "evidence/s2-regression-6c850d2a0758.json",
+            "../portal/evidence/candidates-eaee1ea0cb9f/results.json"
           ]
         },
         {
@@ -621,7 +624,7 @@
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
       "progress": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
-      "checkpoint": "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md"
+      "checkpoint": "S5_MIGRATION_APPLY_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -965,8 +968,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
-    "evidence": "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md",
-    "next": "Implement reviewed migration apply/reconciliation with replay and stale-preview protection, then recoverable intake/correction navigation before ordinary activation. Continue candidate ownership/follow-up/activity and full recruiter handoff; preserve all 98 requirements and release gates."
+    "summary": "Reviewed single-record legacy migration now has an AR/EN confirmation flow, reason/acknowledgement, stale-preview/version checks, current HR/native permissions, exact retries and transactional preservation checks. 48 native and 63 browser checks passed. Ordinary candidate mode stays disabled; full S5 and release gates remain open.",
+    "evidence": "S5_MIGRATION_APPLY_CHECKPOINT.md",
+    "next": "Implement recovery of intake, correction and migration commands across global navigation and reload before ordinary activation. Continue candidate ownership/follow-up/activity and full recruiter handoff; preserve all 98 requirements and release gates."
   }
 }

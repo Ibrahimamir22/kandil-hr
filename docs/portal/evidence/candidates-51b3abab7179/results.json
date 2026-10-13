@@ -1,0 +1,254 @@
+{
+  "status": "FAIL",
+  "run_id": "51b3abab7179",
+  "checks": [
+    {
+      "name": "First page shows 20 of 22 permitted applications",
+      "status": "PASS"
+    },
+    {
+      "name": "Server-backed second page contains remaining applications",
+      "status": "PASS"
+    },
+    {
+      "name": "directory-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Possible matches never select an identity automatically",
+      "status": "PASS"
+    },
+    {
+      "name": "intake-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain creation freezes edits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response retry creates one application and reuses command ID",
+      "status": "PASS"
+    },
+    {
+      "name": "Intake leaves headcount unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "detail-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-review-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain correction prevents editing reviewed values",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed success response keeps correction retry available",
+      "status": "PASS"
+    },
+    {
+      "name": "Correction updates person but preserves application contact snapshot",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response correction has one revision and same command",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-history-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale profile version cannot overwrite newer correction",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent conflicting corrections allow one winner and one stale denial",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate review finds corrected master contact without copying contacts into result",
+      "status": "PASS"
+    },
+    {
+      "name": "Directory search shows current person name and original application name",
+      "status": "PASS"
+    },
+    {
+      "name": "current-profile-search-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter cannot access HR legacy migration preview",
+      "status": "PASS"
+    },
+    {
+      "name": "Person lookup returns only allowed basic profile",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent intake requests both succeed",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent identical personal-session intake returns identical result",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent requests commit one application",
+      "status": "PASS"
+    },
+    {
+      "name": "Person has multiple distinct application records",
+      "status": "PASS"
+    },
+    {
+      "name": "directory-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Duplicate review can load remaining scoped matches",
+      "status": "PASS"
+    },
+    {
+      "name": "intake-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "detail-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic UI links reviewed identity without overwriting original profile",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-review-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile correction and history show reviewed values",
+      "status": "PASS"
+    },
+    {
+      "name": "profile-history-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "HR legacy directory excludes applications already linked to a person",
+      "status": "PASS"
+    },
+    {
+      "name": "Migration requires explicit reason and review acknowledgement",
+      "status": "PASS"
+    },
+    {
+      "name": "migration-preview-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "migration-preview-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Preview does not create person links or change application/capacity state",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter cannot apply a guessed HR migration",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed preview is rejected before any link",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain migration freezes reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain migration freezes local navigation",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed migration reply remains retryable",
+      "status": "PASS"
+    },
+    {
+      "name": "migration-applied-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response uses exactly the same reviewed migration command",
+      "status": "PASS"
+    },
+    {
+      "name": "Migration adds no application or headcount and links only reviewed legacy record",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent migration retries return one identical reconciled effect",
+      "status": "PASS"
+    },
+    {
+      "name": "Second stale Arabic review cannot create another person",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic refresh removes apply for linked application",
+      "status": "PASS"
+    },
+    {
+      "name": "migration-linked-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Applied migration disappears from unlinked directory",
+      "status": "PASS"
+    },
+    {
+      "name": "Private fixture migration_race_records failed",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup": {
+    "run_id": "51b3abab7179",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "c4f2c02af5c1433a820c563775cc79068c26316adafe8681a691fe7639239d4f",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "c19dbde778a678037631bf6a1194680167424713adec58ae4bbdf8904ec5b4fa",
+    "kandil_hr/foundation/command_audit.py": "8d4787a54255325be2b52c124775b4b7a8d727b90c3536191c365c91bb69b869",
+    "frontend/portal/src/CandidateProfile.tsx": "a0d634ee142ddb43d1f563a1f7e79565bb8722b0e4ba97973bec5ad518450184",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "b7546288e8032e0526b49b0d802e69f899560d2c149177c4c3f35a236e80c56f",
+    "kandil_hr/portal/api.py": "9c876f5fde772ccc58d600d057725b701ae2242943fca4ac94f38e524e0275e6",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "d17367e91356e1f7c1d5ec69c3a3f0688d9951dc906a7f3d6e30c6f27f997695",
+    "frontend/portal/src/Candidates.tsx": "9225fb84b913879887a9fc131b73f8a42a4ee1f760a33d242168dbec7398c0e9",
+    "frontend/portal/src/main.tsx": "8b5434789a9c37bff672302882cf0ec066089df19aef7046ef2d5a27c5111410",
+    "frontend/portal/src/portal.css": "bd59fae480daba1af7238a18e078ac3957ebdb72efbac1088f0a4b8d85ccf318",
+    "kandil_hr/public/portal/portal.js": "256c440218f062c727c4acdd79d3089ac9a6229b653aeac253b2f678e9b693f7",
+    "docs/portal/test_candidates.cjs": "353b10df48a78ebeea7d6e6b6f1ed417d1d2dd21970dedd147fada34e9335ffb"
+  },
+  "limits": [
+    "Synthetic recruiter intake and basic profile only. Mode restored after temporary test activation. Full candidate scope, navigation recovery, migration rollout, consent, files and production gates remain open."
+  ]
+}

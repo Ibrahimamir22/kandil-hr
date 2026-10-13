@@ -62,7 +62,9 @@ def snapshot(run_id):
     data=load(run_id)
     apps=frappe.get_all('Job Applicant',filters={'job_title':data['candidate']['opening']},
         fields=['name','custom_kandil_person','status'])
-    return dict(applications=apps,capacity=fixture.inspect(run_id)['capacities'])
+    return dict(applications=apps,capacity=fixture.inspect(run_id)['capacities'],
+        people=frappe.db.count('Kandil Candidate Person',{'company':data['company']}),
+        migrations=frappe.db.count('Kandil Command Audit',{'operation':'candidate_identity_migrate','target_name':data['candidate']['request']}))
 
 
 def revoke(run_id):
@@ -86,3 +88,20 @@ def cleanup(run_id):
     frappe.db.commit()
     result=fixture.cleanup(run_id);result['intake_lease_restored']=True
     return result
+
+
+def migration_race_records(run_id):
+    """Two fresh legacy applications for committed first-write race evidence."""
+    data=load(run_id)
+    if not data['candidate']['lease'] or not frappe.conf.get('kandil_candidate_identity_enabled'):
+        raise RuntimeError('Expected active synthetic candidate lease')
+    if data['candidate'].get('migration_race'):
+        raise RuntimeError('This cohort already has race records')
+    names=[]
+    with patch.dict(frappe.conf,{'kandil_candidate_identity_enabled':0}),acting_as(data['users']['hr']['email']):
+        for index in range(2):
+            doc=frappe.get_doc(dict(doctype='Job Applicant',applicant_name='Legacy race '+str(index)+' '+run_id,
+                phone_number='0109876000'+str(index),job_title=data['candidate']['opening'])).insert()
+            names.append(doc.name)
+    data['candidate']['migration_race']=names;persist(fixture.path_for(run_id),data);frappe.db.commit()
+    return dict(applications=names)

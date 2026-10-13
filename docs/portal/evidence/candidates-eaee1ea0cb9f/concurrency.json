@@ -1,0 +1,20 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "application": "KJA-56a37c2a201645cb8e3d",
+      "person": "KCP-2513e1ac34f94359bd93c0ba6e9ed113",
+      "application_version": "2026-10-14 00:19:45.741373",
+      "person_version": "2026-10-14 00:19:34.537047"
+    }
+  },
+  {
+    "status": 200,
+    "body": {
+      "application": "KJA-56a37c2a201645cb8e3d",
+      "application_version": "2026-10-14 00:19:45.741373",
+      "person": "KCP-2513e1ac34f94359bd93c0ba6e9ed113",
+      "person_version": "2026-10-14 00:19:34.537047"
+    }
+  }
+]

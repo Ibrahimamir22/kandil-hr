@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "scope": "Engineering visual inspection, not HR UAT or independent accessibility certification",
+  "screens": [
+    {
+      "file": "migration-applied-en.png",
+      "sha256": "831636737dfa10d3f84a9302efef99cc9fbfb932663770294c03c89451804581",
+      "observation": "English success state, person reference and reconciliation confirmation visible without clipping."
+    },
+    {
+      "file": "migration-preview-ar.png",
+      "sha256": "4bd23ae24cb72cf84bc465eb33e5282ea2b5c6162445400b8d23ed662cca7d28",
+      "observation": "Arabic mobile review, reason, acknowledgement and confirmation fit the viewport with RTL text."
+    },
+    {
+      "file": "migration-linked-ar.png",
+      "sha256": "a69d1d529b1a39c3f3d62ce31af61e2f10ce869f3bc572169c8ed53998c0fc05",
+      "observation": "Already-linked warning is readable and no apply control remains on Arabic mobile."
+    }
+  ]
+}

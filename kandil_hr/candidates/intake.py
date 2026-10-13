@@ -99,7 +99,7 @@ def create_application(name, opening_name, details, command_id, expected_version
 
 
 @transactional_retry
-def migrate_application(name, opening_name, application, application_version, command_id, expected_version):
+def migrate_application(name, opening_name, application, application_version, command_id, expected_version, preview_hash=None, reason=None):
     """Non-whitelisted migration primitive; caller must review explicit IDs/versions.
 
     A fresh unreviewed person per legacy application; contacts never drive linking.
@@ -107,6 +107,8 @@ def migrate_application(name, opening_name, application, application_version, co
     """
     identity.guard()
     payload = dict(opening=opening_name, application=application, application_version=str(application_version))
+    if preview_hash is not None:
+        payload.update(preview_hash=preview_hash,reason=text(reason,1000))
 
     def act(request):
         app = frappe.get_doc('Job Applicant', application, for_update=True)
@@ -114,12 +116,23 @@ def migrate_application(name, opening_name, application, application_version, co
             frappe.throw(_('Legacy application changed. Review it again.'), frappe.TimestampMismatchError)
         if app.custom_kandil_person:
             frappe.throw(_('This application already has a candidate identity.'))
-        person = identity.new_person(request.company, dict(full_name=app.applicant_name or '',email_id=app.email_id or '',phone_number=app.phone_number or ''))
+        from kandil_hr.candidates.migration import review_state,preserved_hash
+        reviewed,current_hash=review_state(app,request,frappe.get_doc('Job Opening',opening_name,for_update=True))
+        if preview_hash is not None and current_hash!=preview_hash:
+            frappe.throw(_('Legacy preview changed. Reload and review it again.'),frappe.TimestampMismatchError)
+        if reviewed['issues']:
+            frappe.throw(_('Resolve the legacy profile issues before migration.'))
+        before=preserved_hash(app,request)
+        person = identity.new_person(request.company, reviewed['proposed_profile'])
         frappe.db.set_value('Job Applicant', app.name, {
             'custom_kandil_person': person.name, 'custom_kandil_identity_origin': 'Legacy migration'})
+        current=frappe.get_doc('Job Applicant',app.name,for_update=True)
+        after=preserved_hash(current,frappe.get_doc(request.doctype,request.name,for_update=True))
+        if before!=after:
+            frappe.throw(_('Legacy migration reconciliation failed. No changes were saved.'))
         return dict(application=app.name, person=person.name,
-                    application_version=str(frappe.db.get_value('Job Applicant', app.name, 'modified')),
-                    person_version=str(person.modified))
+                    application_version=str(current.modified),person_version=str(person.modified),
+                    reconciliation=dict(preserved=True,before_hash=before,after_hash=after))
 
     return command(name, 'candidate_identity_migrate', command_id, expected_version, payload, act)
 
