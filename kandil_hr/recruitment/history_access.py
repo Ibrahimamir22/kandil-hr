@@ -65,7 +65,8 @@ def condition(user=None):
     # lacks reliably captured position branches on legacy rows, branch-only
     # grants cannot prove full historical scope. The portal permits scoped,
     # projected modern captures with recorded branches instead.
-    parts=[scope_query(DT,user) or '1=1',
+    from kandil_hr.recruitment.history_schema import condition as shape_condition
+    parts=[shape_condition(source), scope_query(DT,user) or '1=1',
         f"{TABLE}.request IN (SELECT name FROM `tabKandil Hiring Request` WHERE ({request_query(user) or '1=1'}) AND ({user_permissions('Kandil Hiring Request',user)}))",
         f"JSON_TYPE({source})='OBJECT'",
         f"{scalar(source,'$.doctype')}='Kandil Hiring Request'",
@@ -79,6 +80,8 @@ def condition(user=None):
         f"JSON_LENGTH(JSON_EXTRACT({source},'$.lines'))>0",
         f"JSON_TYPE(JSON_EXTRACT({source},'$.approval_steps'))='ARRAY'",
     ]
+    amendment=scalar(source,'$.amends')
+    parts.append(f"(COALESCE({amendment},'')='' OR EXISTS (SELECT 1 FROM `tabKandil Hiring Request` WHERE `tabKandil Hiring Request`.name={amendment} AND `tabKandil Hiring Request`.company={TABLE}.company AND ({request_query(user) or '1=1'}) AND ({user_permissions('Kandil Hiring Request',user)})))")
     # Capacity dimensions are immutable through supported native writes. Access
     # to every current reference is still checked, independently of old scope.
     line='history_lines.row_json';capacity=scalar(line,'$.capacity')
@@ -87,6 +90,22 @@ def condition(user=None):
         (SELECT 1 FROM `tabKandil Capacity` WHERE `tabKandil Capacity`.name={capacity}
           AND `tabKandil Capacity`.company={TABLE}.company AND `tabKandil Capacity`.department={TABLE}.department
           AND ({readable('Kandil Capacity',user)})))""")
+    opening=scalar('history_openings.row_json','$.job_opening')
+    # A captured opening ID is shared in its authorized request context; this
+    # does not grant access to the opening's candidate or other record data.
+    parts.append(f"""NOT EXISTS (SELECT 1 FROM JSON_TABLE({source}, '$.lines[*]' COLUMNS (row_json JSON PATH '$')) history_openings
+        WHERE COALESCE({opening},'')<>'' AND NOT EXISTS
+        (SELECT 1 FROM `tabJob Opening` WHERE `tabJob Opening`.name={opening}
+          AND `tabJob Opening`.company={TABLE}.company AND `tabJob Opening`.custom_kandil_request={TABLE}.request
+          AND `tabJob Opening`.custom_kandil_capacity={scalar('history_openings.row_json','$.capacity')}
+          AND ({user_permissions('Job Opening',user)})))""")
+    proof=scalar('history_proofs.row_json','$.board_evidence')
+    parts.append(f"""NOT EXISTS (SELECT 1 FROM JSON_TABLE({source}, '$.approval_steps[*]' COLUMNS (row_json JSON PATH '$')) history_proofs
+        WHERE COALESCE({proof},'')<>'' AND NOT EXISTS
+        (SELECT 1 FROM `tabFile` WHERE `tabFile`.name={proof} AND `tabFile`.is_private=1 AND `tabFile`.is_folder=0
+          AND LEFT(`tabFile`.file_url,15)='/private/files/'
+          AND `tabFile`.attached_to_doctype='Kandil Hiring Request' AND `tabFile`.attached_to_name={TABLE}.request
+          AND ({user_permissions('File',user)})))""")
     step='history_steps.row_json';authority_position=scalar(step,'$.authority_position')
     parts.append(f"""NOT EXISTS (SELECT 1 FROM JSON_TABLE({source}, '$.approval_steps[*]' COLUMNS (row_json JSON PATH '$')) history_steps
         WHERE NOT ({keys_allowed(step,STEP_FIELDS,'history_step_keys')}) OR

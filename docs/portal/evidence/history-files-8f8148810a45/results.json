@@ -1,0 +1,97 @@
+{
+  "status": "PASS",
+  "run_id": "8f8148810a45",
+  "checked_at": "2026-10-13T01:24:25.710Z",
+  "checks": [
+    {
+      "name": "Authorized owner can list retained revision attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner reads exact immutable revision bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner can read native File detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized owner downloads exact private bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user sees no attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user cannot read File detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Outside-scope user cannot download private bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Branch-scoped owner retains current portal request access",
+      "status": "PASS"
+    },
+    {
+      "name": "Branch-scoped owner cannot read unredacted old revision",
+      "status": "PASS"
+    },
+    {
+      "name": "File ownership cannot expose restricted historical filename or URL",
+      "status": "PASS"
+    },
+    {
+      "name": "Same session loses native File detail immediately",
+      "status": "PASS"
+    },
+    {
+      "name": "Same session loses private file download immediately",
+      "status": "PASS"
+    },
+    {
+      "name": "Restricted native revision listing contains no historical JSON",
+      "status": "PASS"
+    },
+    {
+      "name": "Permission checks leave snapshot and attachment bytes unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "No HTTP server failures",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during HTTP test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "8f8148810a45",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "private_synthetic_attachment_retained": true
+  },
+  "unchanged": {
+    "run_id": "8f8148810a45",
+    "snapshot_unchanged": true,
+    "file_unchanged": true
+  },
+  "server_failures": [],
+  "source_hashes": {
+    "kandil_hr/foundation/security.py": "411b27e4ded42a9f56d906577cb1aa4d1ee256280f8918b135f2e1543dca7d27",
+    "kandil_hr/foundation/files.py": "c2171e081ba9ac0217351a6b31f4c0b4281e06c9bc1f4ce6e2ebc6f5b8bade62",
+    "kandil_hr/recruitment/history_access.py": "d0abd2964db9331f311569685bfe2d2a71606bbe172e75aaaca8112032eb6948",
+    "kandil_hr/recruitment/history_schema.py": "4c92538fbb9f95433e89cf2b639c61435a31e077bce11a200da5d31759d32f29",
+    "kandil_hr/recruitment/models.py": "301f2a0565b5b288eb8eece960cc78deac31a6da05488aa9ddf1da8194e970b8",
+    "kandil_hr/portal/history_files_fixture.py": "bb0750744284f90925fd8a7b82be6641a5e2887475b1f4ac8dad70bb113c5540",
+    "docs/portal/test_history_files.cjs": "e99be49d5a9d5fb50cd3f5cff76d759a14a720fa0837167ce624336cf348da26"
+  },
+  "limits": [
+    "Synthetic native HTTP list/detail/download boundaries using personal accounts. No browser rendering, production load or complete raw nested-reference audit is claimed."
+  ]
+}

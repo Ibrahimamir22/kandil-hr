@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Request operations and AR/EN recorded histories are connected. Revision attachment metadata now follows full historical revision scope and native User Permissions, with positive/negative list/detail/download evidence. Nested raw route/reference authorization, Event/indirect-file audit and full S3 acceptance remain open.",
+          "progress": "AR/EN request operations and recorded histories are connected. Native revisions now validate declared nested shapes, amendment/opening/proof references and revision-attachment scope; portal scalar values cannot expose nested objects. Positive original-byte reads remain verified after approval, amendment, correction and relocation. Encoded correction-note paths, deeper route identities, Event/indirect files and full S3 acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -312,7 +312,11 @@
             "S3_NATIVE_READ_AUDIT.md",
             "evidence/s2-regression-66ef36379b2d.json",
             "evidence/s2-regression-833829c7c273.json",
-            "../portal/evidence/history-files-d1f0b24d7985/results.json"
+            "../portal/evidence/history-files-d1f0b24d7985/results.json",
+            "S3_NESTED_HISTORY_CHECKPOINT.md",
+            "evidence/s2-regression-93077df92760.json",
+            "../portal/evidence/history-files-8f8148810a45/results.json",
+            "../portal/evidence/request-history-a23d0f7dc428/results.json"
           ]
         },
         {
@@ -781,8 +785,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Fixed native historical revision attachment filename/URL disclosure when live request access survives a historical scope restriction. 106 native and 16 ordinary-session HTTP checks passed; authorized immutable reads/downloads preserved. S3 remains active.",
-    "evidence": "S3_NATIVE_READ_AUDIT.md",
-    "next": "Implement and verify nested frozen-route/reference guards, Event/indirect-file paths and integrated S3 acceptance; preserve all 98 requirements and later recruitment/lifecycle/reporting work."
+    "summary": "Declared nested snapshot shapes, amendment/opening/proof references and portal scalar projections guarded without rewriting historical bytes. 93 native, 101 AR/EN browser and 16 personal-session HTTP checks passed. Full S3 and release gates remain open.",
+    "evidence": "S3_NESTED_HISTORY_CHECKPOINT.md",
+    "next": "Prioritize encoded correction notes across current requests, command responses, revisions and Events; then finish deeper frozen route/cohort identity and indirect-file authorization before integrated S3 acceptance."
   }
 }

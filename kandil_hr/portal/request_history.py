@@ -65,12 +65,22 @@ def historical_location(kind, name, snapshot, related, missing):
     return None
 
 
+def scalar_fields(row, fields):
+    # JSON objects/lists beneath an allowed scalar field must never escape as
+    # private nested data or reach the UI as an invalid React child.
+    if any(row.get(key) is not None and not isinstance(row[key], (str, int, float, bool)) for key in fields):
+        deny()
+
+
 def project(snapshot, related, doc):
     if not isinstance(snapshot, dict) or (snapshot.get('doctype'), snapshot.get('name'), snapshot.get('company')) != (DT, doc.name, doc.company): deny()
     if not snapshot.get('department') or not isinstance(snapshot.get('lines'), list): deny()
     if not isinstance(related, list) or any(not isinstance(r, dict) for r in related): deny()
     if any(not isinstance(r, dict) for r in snapshot['lines']): deny()
     if not isinstance(snapshot.get('approval_steps', []), list) or any(not isinstance(r, dict) for r in snapshot.get('approval_steps', [])): deny()
+    scalar_fields(snapshot, REQUEST_FIELDS)
+    for row in snapshot['lines']: scalar_fields(row, LINE_FIELDS)
+    for row in snapshot.get('approval_steps', []): scalar_fields(row, (*STEP_FIELDS, 'board_evidence'))
     missing = []
     branch = historical_location('Kandil Position', snapshot.get('requested_position'), snapshot, related, missing)
     result = {key: snapshot.get(key) for key in REQUEST_FIELDS}
@@ -100,6 +110,7 @@ def project(snapshot, related, doc):
     try: route = json.loads(snapshot.get('route_snapshot') or '{}')
     except (TypeError, ValueError): deny()
     if not isinstance(route, dict) or (route.get('policy') is not None and not isinstance(route['policy'], dict)): deny()
+    if route.get('policy'): scalar_fields(route['policy'], POLICY_FIELDS)
     # Frozen policy only, never today's policy or arbitrary configuration JSON.
     result['policy'] = {key: (route.get('policy') or {}).get(key) for key in POLICY_FIELDS} if route.get('policy') else None
     from kandil_hr.portal.history_rationale import rationale
