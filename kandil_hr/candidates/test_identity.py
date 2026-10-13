@@ -127,7 +127,7 @@ class TestCandidateIdentity(unittest.TestCase):
         with acting_as(self.f.users['manager']):
             result = intake.duplicate_review(self.f.company, phone_number='01012345678')
             self.assertEqual(len(result['rows']), 3)  # Includes readable legacy application.
-            self.assertTrue(all(set(row)=={'application','applicant_name','person'} for row in result['rows']))
+            self.assertTrue(all(set(row)=={'application','applicant_name','person','person_name'} for row in result['rows']))
             self.assertEqual(intake.duplicate_review('Kandil PARITY TEST B', email_id='shared@example.invalid')['rows'], [])
             self.assertEqual(intake.duplicate_review(self.f.company, applicant_name="' OR 1=1 --")['rows'], [])
         self.assertEqual(self.counts(), counts)

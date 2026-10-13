@@ -1,0 +1,21 @@
+{
+  "reviewer": "Codex visual inspection",
+  "scope": "Three search/preview screenshots; not HR acceptance or accessibility certification",
+  "images": [
+    {
+      "file": "current-profile-search-en.png",
+      "sha256": "d39ec804d4d87c1498e11d037ced888a07af210e844fa7951c720f811f1a784a",
+      "observation": "Searching the corrected email returns one current person name and a separately labelled original application name. Contact values are not added to the card."
+    },
+    {
+      "file": "migration-preview-en.png",
+      "sha256": "68441f1f07f40c09c0d0aeec2351b41d65a7882f49b08e1c764f88d50a377d9e",
+      "observation": "English HR preview clearly labels read-only status, proposed profile, preservation rules and scoped linked-record samples. No apply control appears."
+    },
+    {
+      "file": "migration-preview-ar.png",
+      "sha256": "34689f6cbd14a754dcc2d928e179e68efb84c174af02e9a2251330ac6adc2da6",
+      "observation": "Arabic mobile RTL preview inspected; paragraphs, controls and reference sections remain within the viewport."
+    }
+  ]
+}

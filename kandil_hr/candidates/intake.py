@@ -126,7 +126,7 @@ def migrate_application(name, opening_name, application, application_version, co
 
 @frappe.whitelist(methods=['POST'])
 def duplicate_review(company, email_id='', phone_number='', applicant_name='', after=''):
-    """Exact normalized contact/name warnings from readable applications only.
+    """Exact normalized contact/name warnings from current profiles and application snapshots.
 
     No hidden counts, automatic linking, national IDs or other application history.
     Twenty matches plus a visible-scope continuation hint, not a global identity search.
@@ -142,19 +142,9 @@ def duplicate_review(company, email_id='', phone_number='', applicant_name='', a
     name = text(applicant_name, 140, False).lower()
     if not email and len(re.sub(r'\D', '', phone)) < 7 and len(name) < 3:
         frappe.throw(_('Provide a contact or full name to review possible duplicates.'))
-    tests, params = [], [company]
-    if email:
-        tests.append('LOWER(TRIM(email_id))=%s'); params.append(email)
-    if len(re.sub(r'\D', '', phone)) >= 7:
-        tests.append("REGEXP_REPLACE(COALESCE(phone_number,''),'[^0-9+]','')=%s"); params.append(phone)
-    if len(name) >= 3:
-        tests.append('LOWER(TRIM(applicant_name))=%s'); params.append(name)
+    from kandil_hr.candidates.search import duplicate_rows
     after = text(after, 140, False)
-    params.append(after)
-    rows = frappe.db.sql(f"""SELECT name AS application, applicant_name, custom_kandil_person AS person
-        FROM `tabJob Applicant` WHERE job_title IN
-        (SELECT name FROM `tabJob Opening` WHERE company=%s)
-        AND ({identity.applicant_condition()}) AND ({' OR '.join(tests)}) AND name>%s
-        ORDER BY name LIMIT 21""", params, as_dict=True)
+    rows = duplicate_rows(company, email, phone if len(re.sub(r'\D', '', phone)) >= 7 else '',
+                          name if len(name) >= 3 else '', after)
     return dict(rows=rows[:20], has_more=len(rows)>20, next_after=rows[19].application if len(rows)>20 else None,
                 policy='Review possible matches; contacts never merge or select a person automatically.')

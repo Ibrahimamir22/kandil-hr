@@ -27,11 +27,8 @@ def access():
 
 
 def base():
-    a=frappe.qb.DocType('Job Applicant');o=frappe.qb.DocType('Job Opening');r=frappe.qb.DocType('Kandil Hiring Request')
-    q=(frappe.qb.from_(a).join(o).on(a.job_title==o.name).join(r).on(o.custom_kandil_request==r.name)
-       .where(a.name.isin(permitted_names('Job Applicant')) & o.name.isin(permitted_names('Job Opening'))
-              & r.name.isin(permitted_names('Kandil Hiring Request'))))
-    return q,a,o,r
+    from kandil_hr.candidates.search import application_query
+    return application_query()
 
 
 def filters(q,a,o,r,search='',status='',opening='',person=''):
@@ -43,7 +40,8 @@ def filters(q,a,o,r,search='',status='',opening='',person=''):
     term=bounded_text(search)
     if term:
         literal='%'+term.replace('\\','\\\\').replace('%','\\%').replace('_','\\_')+'%'
-        q=q.where(a.applicant_name.like(literal)|a.name.like(literal)|a.email_id.like(literal)|a.phone_number.like(literal))
+        from kandil_hr.candidates.search import person_matches
+        q=q.where(a.applicant_name.like(literal)|a.name.like(literal)|a.email_id.like(literal)|a.phone_number.like(literal)|a.custom_kandil_person.isin(person_matches(literal=literal)))
     return q
 
 
@@ -57,8 +55,11 @@ def listing(search='',status='',opening='',person='',start=0,page_length=25):
         o.name.as_('opening'),o.job_title.as_('job_title'),r.company)
         .orderby(a.modified,order=Order.desc).orderby(a.name).limit(limit).offset(offset).run(as_dict=True))
     labels=identity_labels([x.recruiter for x in rows])
+    from kandil_hr.candidates.search import labels as person_labels
+    names=person_labels([x.person for x in rows])
     for row in rows:
         row['recruiter_label']=labels.get(row.pop('recruiter'),_('Unassigned or restricted'))
+        row['person_name']=names.get(row.person)
     return dict(rows=rows,total=total,start=offset,page_length=limit,has_more=offset+limit<total,
                 intake_enabled=bool(identity.enabled()))
 

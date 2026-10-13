@@ -1,5 +1,7 @@
 # S5 — candidate identity, applications and sourcing
 
+The [S5 search and migration-preview checkpoint](S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md) adds search/duplicate review against corrected person details, preserves historical application search, and provides a read-only HR legacy-record review in AR/EN. **46 native and 46 browser checks passed.** Applying migration links, recovery across navigation and ordinary intake activation remain pending; full S5 and release gates stay open.
+
 The [S5 profile correction checkpoint](S5_PROFILE_CORRECTIONS_CHECKPOINT.md) adds reasoned AR/EN basic-profile corrections, before/after review and permission-filtered revision history while preserving application snapshots. **74 native checks passed**, with 24 affected checks rerun after final link validation, plus **37 browser checks** covering intake, corrections, retries, competing edits and revocation. Full S5 remains open; ordinary intake/correction activation remains disabled pending migration and recovery work.
 
 The [S5 candidate workspace checkpoint](S5_CANDIDATE_WORKSPACE_CHECKPOINT.md) adds scoped AR/EN candidate lists, basic person/application details and reviewed recruiter intake. **35 native and 25 candidate browser checks passed**, including lost-response retry, concurrent creation and access revocation. This is partial S5 delivery: full profiles/history, migration, ownership actions, private files, consent and sourcing remain open. Intake was tested under a temporary synthetic-site lease and remains disabled for ordinary review traffic.

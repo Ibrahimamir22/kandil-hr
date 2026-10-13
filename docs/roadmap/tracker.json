@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated": "2026-10-13",
+  "updated": "2026-10-14",
   "goal_status": "active",
   "current_sprint": "S5",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Basic profiles now have reasoned versioned corrections and immutable scoped revision history; application snapshots are preserved. Native/API bypass, atomic audit rollback, retry, stale/concurrent writes and AR/EN browser flows tested. Full profile/sensitive disclosures, former/internal links, corrected-master search/matching and controlled migration remain open.",
+          "progress": "Opaque person/application workspace, basic corrections/history and current-master plus historical search/matching tested. HR-only legacy preview is read-only, available with intake off and preserves records. Applying links/reconciling migration, full profiles/sensitive fields, fuzzy identity review and former/internal links remain open.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -571,7 +571,10 @@
             "S5_PROFILE_CORRECTIONS_CHECKPOINT.md",
             "evidence/s2-regression-af2113b62e28.json",
             "evidence/s2-regression-26690a91ea57.json",
-            "../portal/evidence/candidates-4ba92b6ede6e/results.json"
+            "../portal/evidence/candidates-4ba92b6ede6e/results.json",
+            "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md",
+            "evidence/s2-regression-9c67797464c3.json",
+            "../portal/evidence/candidates-f57a4a71704f/results.json"
           ]
         },
         {
@@ -582,7 +585,8 @@
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
-            "S5_PROFILE_CORRECTIONS_CHECKPOINT.md"
+            "S5_PROFILE_CORRECTIONS_CHECKPOINT.md",
+            "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md"
           ]
         },
         {
@@ -616,8 +620,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "AR/EN basic-profile correction/review/history added to the candidate workspace. 74 native checks passed, with 24 affected cases rerun after final link validation; 37 browser checks passed including lost/malformed-response retry, concurrent stale-write protection and revocation. Complete profile/sensitive fields, corrected-master search/matching, migration/activation, recovery, ownership, sourcing, private files and consent remain open.",
-      "checkpoint": "S5_PROFILE_CORRECTIONS_CHECKPOINT.md"
+      "progress": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
+      "checkpoint": "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -961,8 +965,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "AR/EN basic-profile correction/review/history added to the candidate workspace. 74 native checks passed, with 24 affected cases rerun after final link validation; 37 browser checks passed including lost/malformed-response retry, concurrent stale-write protection and revocation. Complete profile/sensitive fields, corrected-master search/matching, migration/activation, recovery, ownership, sourcing, private files and consent remain open.",
-    "evidence": "S5_PROFILE_CORRECTIONS_CHECKPOINT.md",
-    "next": "Use corrected master contacts in scoped search/duplicate review; implement reviewed legacy migration preview and intake/correction recovery across navigation before ordinary activation. Then connect ownership/follow-up/activity and complete recruiter handoff. Preserve all 98 requirements and release gates."
+    "summary": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
+    "evidence": "S5_SEARCH_MIGRATION_PREVIEW_CHECKPOINT.md",
+    "next": "Implement reviewed migration apply/reconciliation with replay and stale-preview protection, then recoverable intake/correction navigation before ordinary activation. Continue candidate ownership/follow-up/activity and full recruiter handoff; preserve all 98 requirements and release gates."
   }
 }

@@ -82,6 +82,7 @@ def capabilities(doc):
 def bootstrap():
     authenticated()
     from frappe.sessions import get_csrf_token
+    from kandil_hr.candidates.migration import can_review as can_review_migration
 
     grants = frappe.get_all("Kandil Access Grant", filters={"user": frappe.session.user,
         "revoked": 0, "can_manage_recruitment": 1, "valid_from": ["<=", today()]}, fields=["valid_until"])
@@ -90,6 +91,7 @@ def bootstrap():
         user=dict(id=frappe.session.user, full_name=get_fullname()),
         synthetic_test=frappe.local.site == "kandil-parity.localhost",
         csrf_token=get_csrf_token(),
+        can_review_candidate_migration=can_review_migration(),
         can_read_candidates=bool(frappe.has_permission("Job Applicant", "read") and (frappe.session.user == "Administrator" or "Kandil Recruiter" in frappe.get_roles())),
         can_create=bool(can_manage and set(WRITE_ROLES).intersection(frappe.get_roles()) and frappe.has_permission("Kandil Hiring Request", "create")),
     )
