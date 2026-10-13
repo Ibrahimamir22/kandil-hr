@@ -471,7 +471,13 @@
         {
           "id": "S4-05",
           "description": "Verify outbox retries, worker restart recovery, disabled recruiter handoff and email templates in local capture.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Actual independent RQ worker crash/restart and retry proof passed 35 checks on one exact synthetic queue. Before/after-commit crashes, bounded retries, operator recovery and revoked-recipient suppression preserve one receipt/capture; all six accounts retired and unrelated queues unchanged. Automatic scheduled redrive, disabled recruiter handoff and complete templates remain open. Final affected native regression: 102 checks passed.",
+          "evidence": [
+            "S4_WORKER_RECOVERY_CHECKPOINT.md",
+            "evidence/worker-recovery-1fc8a9b12e9f.json",
+            "evidence/s2-regression-54c85a77c187.json"
+          ]
         }
       ],
       "acceptance": [
@@ -485,8 +491,8 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Scoped vacancy queue, team/bulk assignment, lifecycle/priority, dashboard/approvals and delivered-message inbox are implemented with checkpoint evidence. Current work closes requester-event gaps and stale reminders. S4 remains open for complete recipient/template review, business-calendar/deadline UI, isolated scheduled execution, worker recovery and disabled-recruiter handoff; external email and HR/IT acceptance remain distinct.",
-      "checkpoint": "S4_NOTIFICATION_EVENTS_CHECKPOINT.md"
+      "progress": "Scoped vacancy operations, dashboard/approvals, delivered-message inbox and requester-event updates have checkpoint evidence. Real isolated local worker crash/retry recovery is verified. S4 remains open for complete recipient/template review, business-calendar/deadline UI, actual scheduled execution/redrive and disabled-recruiter handoff; external email and HR/IT acceptance remain distinct.",
+      "checkpoint": "S4_WORKER_RECOVERY_CHECKPOINT.md"
     },
     {
       "id": "S5",
@@ -880,8 +886,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Requester amendment/route-skip notices, scoped amendment baseline review and stale-step reminder suppression verified; event-time ordering preserves chronology during delayed delivery. S4 and production gates remain open.",
-    "evidence": "S4_NOTIFICATION_EVENTS_CHECKPOINT.md",
-    "next": "Complete calendar/recipient semantics and deadline UI, then prove isolated scheduled delivery and failure/restart recovery without starting the shared worker. Reconcile REQ-007 and remaining S4/S5 ownership clauses; retain all 98 requirements."
+    "summary": "Isolated real worker crash/restart and bounded retry recovery verified, with terminal idempotency and current-access suppression. Shared jobs preserved. S4 and release gates remain open.",
+    "evidence": "S4_WORKER_RECOVERY_CHECKPOINT.md",
+    "next": "Prove actual scheduled SLA and outbox redrive in an isolated scheduler environment; complete recipient/calendar/deadline semantics and disabled-recruiter handoff, retaining all 98 requirements."
   }
 }

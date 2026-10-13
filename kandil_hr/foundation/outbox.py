@@ -152,22 +152,44 @@ class LocalNotificationMixin:
 		set_notifications_as_unseen(self.for_user)
 
 
+def _worker_guard():
+	if frappe.session.user != "Administrator" or getattr(frappe.local, "request", None):
+		frappe.throw(_("Notification processing is restricted to internal workers."), frappe.PermissionError)
+
+
+def process_one(name):
+	"""Internal worker transaction boundary; callers must not carry business writes.
+
+	Both the scheduled batch and a targeted recovery job use this same boundary.
+	A failed local capture/receipt rolls back completely before its bounded retry
+	state is committed. Process death before commit leaves the outbox due for the
+	next scan; death after commit leaves a terminal idempotent receipt.
+	"""
+	_worker_guard()
+	guard()
+	try:
+		status = deliver(name)
+		frappe.db.commit()
+		return status
+	except Exception as exc:
+		frappe.db.rollback()
+		status = _record_failure(name, type(exc).__name__)
+		frappe.db.commit()
+		return status
+
+
 def process_pending():
+	_worker_guard()
 	if not enabled():
 		return
 	for name in frappe.get_all(
 		"Kandil Notification Outbox",
 		filters={"status": ["in", ["Pending", "Retry"]], "next_attempt": ["<=", now_datetime()]},
 		pluck="name",
+		order_by="next_attempt asc, name asc",
 		limit=100,
 	):
-		try:
-			deliver(name)
-			frappe.db.commit()
-		except Exception as exc:
-			frappe.db.rollback()
-			_record_failure(name, type(exc).__name__)
-			frappe.db.commit()
+		process_one(name)
 
 
 def _record_failure(name, error_type):

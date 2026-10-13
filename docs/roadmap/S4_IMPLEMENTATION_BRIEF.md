@@ -1,8 +1,10 @@
 # S4 — vacancy operations and notifications
 
+The [worker recovery checkpoint](S4_WORKER_RECOVERY_CHECKPOINT.md) verifies real isolated RQ process crashes before/after commit, bounded retries, reasoned operator recovery and revoked-recipient suppression with 35 checks. Automatic scheduled redrive, disabled-recruiter handoff and complete templates remain open.
+
 13 October 2026. Delivery contract derived from the custom portal and domain commands. The dedicated read model and AR/EN queue are now implemented; queue evidence is in [the vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md), and complete-team editing/bulk assignment with paginated recruiter lookup is in [the team checkpoint](S4_TEAM_ASSIGNMENT_CHECKPOINT.md). Reviewed lifecycle/pin controls are recorded in [the lifecycle checkpoint](S4_VACANCY_LIFECYCLE_CHECKPOINT.md). Exact scoped dashboard totals and paginated approvals are recorded in [the dashboard checkpoint](S4_DASHBOARD_CHECKPOINT.md); the [notification inbox checkpoint](S4_NOTIFICATION_INBOX_CHECKPOINT.md) now connects delivered messages with current-reference privacy. Complete event/recipient coverage and scheduled reminders remain. S3 engineering verification passed separately; HR/IT and production gates remain open.
 
-The [requester-event and reminder checkpoint](S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Actual scheduler/recovery proof and final event/recipient policy remain open.
+The [requester-event and reminder checkpoint](S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Actual scheduled execution and final event/recipient policy remain open.
 
 ## Scope and existing code
 
