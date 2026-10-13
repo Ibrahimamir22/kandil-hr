@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Candidate intake/corrections/reviewed legacy links now have AR/EN recovery and fixed expiry. Bounded cleanup erases ciphertext without altering business records or retry identity; 56 native, 42 recovery UI and 63 candidate browser checks passed. Scheduled dispatch and in-flight session-expiry rehearsal remain before ordinary activation; full profiles, ownership, sourcing, files and consent remain open.",
+          "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -584,14 +584,19 @@
             "S5_RECOVERY_EXPIRY_CHECKPOINT.md",
             "evidence/s2-regression-ab1a8396d4f6.json",
             "../portal/evidence/recovery-ui-ce1f6e7de3c5/results.json",
-            "../portal/evidence/candidates-e9cdc5c2ec40/results.json"
+            "../portal/evidence/candidates-e9cdc5c2ec40/results.json",
+            "S5_RECOVERY_OPERATIONS_CHECKPOINT.md",
+            "../portal/evidence/candidate-sessions-32c975f9f2d5/results.json",
+            "../portal/evidence/recovery-ui-f87b8cf8bcf5/results.json",
+            "evidence/candidate-cleanup-scheduler-a47fbec54950.json",
+            "evidence/candidate-cleanup-retirement-a47fbec54950.json"
           ]
         },
         {
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Candidate intake/corrections/reviewed legacy links now have AR/EN recovery and fixed expiry. Bounded cleanup erases ciphertext without altering business records or retry identity; 56 native, 42 recovery UI and 63 candidate browser checks passed. Scheduled dispatch and in-flight session-expiry rehearsal remain before ordinary activation; full profiles, ownership, sourcing, files and consent remain open.",
+          "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -608,7 +613,12 @@
             "evidence/s2-regression-ab1a8396d4f6.json",
             "../portal/evidence/recovery-ui-ce1f6e7de3c5/results.json",
             "../portal/evidence/candidates-e9cdc5c2ec40/results.json",
-            "../portal/evidence/recovery-2228ee332362/results.json"
+            "../portal/evidence/recovery-2228ee332362/results.json",
+            "S5_RECOVERY_OPERATIONS_CHECKPOINT.md",
+            "../portal/evidence/candidate-sessions-32c975f9f2d5/results.json",
+            "../portal/evidence/recovery-ui-f87b8cf8bcf5/results.json",
+            "evidence/candidate-cleanup-scheduler-a47fbec54950.json",
+            "evidence/candidate-cleanup-retirement-a47fbec54950.json"
           ]
         },
         {
@@ -642,8 +652,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Candidate intake/corrections/reviewed legacy links now have AR/EN recovery and fixed expiry. Bounded cleanup erases ciphertext without altering business records or retry identity; 56 native, 42 recovery UI and 63 candidate browser checks passed. Scheduled dispatch and in-flight session-expiry rehearsal remain before ordinary activation; full profiles, ownership, sourcing, files and consent remain open.",
-      "checkpoint": "S5_RECOVERY_EXPIRY_CHECKPOINT.md"
+      "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
+      "checkpoint": "S5_RECOVERY_OPERATIONS_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -987,8 +997,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Candidate intake/corrections/reviewed legacy links now have AR/EN recovery and fixed expiry. Bounded cleanup erases ciphertext without altering business records or retry identity; 56 native, 42 recovery UI and 63 candidate browser checks passed. Scheduled dispatch and in-flight session-expiry rehearsal remain before ordinary activation; full profiles, ownership, sourcing, files and consent remain open.",
-    "evidence": "S5_RECOVERY_EXPIRY_CHECKPOINT.md",
-    "next": "Rehearse isolated scheduled cleanup (including failure/restart and bounded backlog) and in-flight session expiry, then controlled synthetic activation and full candidate ownership/follow-up/rejection/activity and recruiter-wide handoff."
+    "summary": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
+    "evidence": "S5_RECOVERY_OPERATIONS_CHECKPOINT.md",
+    "next": "Activate a clearly labelled synthetic candidate review cohort, verify personal-role access and reversible operations, and ensure later tests preserve its configuration. Then complete candidate ownership/follow-up/rejection/activity, recruiter handoff and remaining S5 scope."
   }
 }

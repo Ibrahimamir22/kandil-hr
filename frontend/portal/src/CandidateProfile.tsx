@@ -1,4 +1,4 @@
-import {candidateCommand,recoveryExpired,expiryMessage,type CandidateAttempt} from './candidateCommands';
+import {candidateCommand,recoveryAccessChanged,recoveryAccessMessage,recoveryExpired,expiryMessage,type CandidateAttempt} from './candidateCommands';
 import React,{useEffect,useRef,useState} from 'react';
 import {api,ApiError} from './api';
 import type {Tr} from './types';
@@ -9,7 +9,7 @@ type Change={field:string;before:string|number|null;after:string|number|null};
 type History={rows:{name:string;created:string;actor:string;reason:string;changes:Change[]}[];total:number;has_more:boolean};
 const numeric=['graduation_year','experience_years','notice_days'];
 const value=(v:string|number|null|undefined,t:Tr)=>v===null||v===undefined||v===''?t('غير مسجل','Not recorded'):String(v);
-function failure(e:unknown,t:Tr){return recoveryExpired(e)?expiryMessage(t):e instanceof ApiError&&[401,403].includes(e.status)?t('لم تعد تملك صلاحية الوصول.','Access is no longer available.'):e instanceof ApiError&&e.status===417?t('تعذر الحفظ. راجع الإصدار الحالي والبيانات ثم أعد المحاولة.','Could not save. Review the current version and values before retrying.'):t('تعذر تأكيد النتيجة. أعد المحاولة بنفس الطلب عند انقطاع الاتصال.','Could not confirm the result. Retry the same request after a connection failure.')}
+function failure(e:unknown,t:Tr){return recoveryAccessChanged(e)?recoveryAccessMessage(t):recoveryExpired(e)?expiryMessage(t):e instanceof ApiError&&[401,403].includes(e.status)?t('لم تعد تملك صلاحية الوصول.','Access is no longer available.'):e instanceof ApiError&&e.status===417?t('تعذر الحفظ. راجع الإصدار الحالي والبيانات ثم أعد المحاولة.','Could not save. Review the current version and values before retrying.'):t('تعذر تأكيد النتيجة. أعد المحاولة بنفس الطلب عند انقطاع الاتصال.','Could not confirm the result. Retry the same request after a connection failure.')}
 function Differences({changes,labels,t}:{changes:Change[];labels:Labels;t:Tr}){return <dl className="candidate-details">{changes.map(c=><div key={c.field}><dt>{labels[c.field]?t(...labels[c.field]):c.field}</dt><dd><span>{t('قبل: ','Before: ')}{value(c.before,t)}</span><br/><strong>{t('بعد: ','After: ')}{value(c.after,t)}</strong></dd></div>)}</dl>}
 export function ProfileHistory({application,version,labels,t}:{application:string;version:string;labels:Labels;t:Tr}){
  const [start,setStart]=useState(0),[data,setData]=useState<History|null>(null),[error,setError]=useState(''),[busy,setBusy]=useState(true),[reload,setReload]=useState(0);

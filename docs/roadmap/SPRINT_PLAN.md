@@ -1,6 +1,6 @@
 # قنديل — HR delivery sprint plan
 
-The [recovery expiry checkpoint](S5_RECOVERY_EXPIRY_CHECKPOINT.md) adds fixed recovery deadlines, bounded ciphertext cleanup and AR/EN expired-request guidance while preserving business records, audit and retry identities. **56 native, 42 recovery UI and 63 candidate browser checks passed.** Ordinary candidate mode stays disabled pending isolated scheduled-dispatch and in-flight session-expiry rehearsal. Full S5 and release gates remain open.
+The [recovery operations checkpoint](S5_RECOVERY_OPERATIONS_CHECKPOINT.md) preserves original requests across session loss, clears displayed private state on confirmed logout and returns to the actor-owned inbox after sign-in. **19 session checks, 42 recovery UI checks and 10 isolated scheduler/worker checks passed.** Native scheduled cleanup respected its 100-row bound and recovered after worker restart without changing business records. Ordinary candidate mode remains disabled until controlled review-cohort activation. Full S5 and release gates remain open.
 
 Earlier checkpoints below retain their original scope and outstanding work at the time; the current status above supersedes their recovery next-step notes.
 

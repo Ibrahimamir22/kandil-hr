@@ -2,6 +2,21 @@ import {api,ApiError} from './api';
 import type {Tr} from './types';
 export const recoveryExpired=(e:unknown)=>e instanceof ApiError&&e.code==='CandidateRecoveryExpired';
 export const expiryMessage=(t:Tr)=>t('انتهت مهلة استكمال الطلب المحفوظ. راجع سجل طلبات الترشح قبل إنشاء طلب جديد؛ قد تكون العملية نُفذت بالفعل.','The saved request has expired. Review application records before starting a new request; the action may already have completed.');
+export const recoveryAccessChanged=(e:unknown)=>e instanceof ApiError&&e.code==='CandidateRecoveryAccessChanged';
+export const recoveryAccessMessage=(t:Tr)=>t('تغيّرت الجلسة أو الصلاحيات. سجّل الدخول عند الحاجة واستكمل الطلب الأصلي من «إجراءات غير مكتملة»؛ لا تبدأ طلبًا بديلًا.','Your session or access changed. Sign in if needed and recover the original request from Unfinished actions; do not start a replacement.');
+export async function recoveryRequest<T>(method:string,args:Record<string,unknown>={},verb:'GET'|'POST'='GET'):Promise<T>{
+ try{return await api<T>(method,args,verb)}catch(e){
+  if(e instanceof ApiError&&[401,403].includes(e.status)){
+   // A denial now does not prove that an earlier lost reply never committed.
+   // Probe authentication separately: a scoped denial must not log out a valid user.
+   let signedOut=false;
+   try{const user=await api<string>('frappe.auth.get_logged_user');signedOut=!user||user==='Guest'}catch(probe){signedOut=probe instanceof ApiError&&[401,403].includes(probe.status)}
+   if(signedOut)window.dispatchEvent(new Event('kandil:candidate-reauthenticate'));
+   throw new ApiError('RECOVERY_ACCESS_CHANGED',0,false,'CandidateRecoveryAccessChanged');
+  }
+  throw e;
+ }
+}
 export const recoveryApi='kandil_hr.candidates.recovery.';
 export type CandidateOperation='intake'|'correction'|'migration';
 export type CandidateAttempt={id:string;payload:Record<string,unknown>;recovery?:string};
@@ -16,12 +31,12 @@ export function validCandidateResult(operation:CandidateOperation,value:unknown,
  return true;
 }
 export async function candidateCommand<T>(operation:CandidateOperation,attempt:CandidateAttempt,active:()=>boolean):Promise<T>{
- if(!attempt.recovery){const prepared=await api<RecoveryRow>(recoveryApi+'prepare',{operation,arguments:{...attempt.payload,command_id:attempt.id}},'POST');if(prepared?.status==='Expired')throw new ApiError('RECOVERY_EXPIRED',0,false,'CandidateRecoveryExpired');if(!prepared?.name||prepared.operation!==operation||!['Pending','Completed'].includes(prepared.status))throw new ApiError('NETWORK_UNCERTAIN',0);attempt.recovery=prepared.name}
+ if(!attempt.recovery){const prepared=await recoveryRequest<RecoveryRow>(recoveryApi+'prepare',{operation,arguments:{...attempt.payload,command_id:attempt.id}},'POST');if(prepared?.status==='Expired')throw new ApiError('RECOVERY_EXPIRED',0,false,'CandidateRecoveryExpired');if(!prepared?.name||prepared.operation!==operation||!['Pending','Completed'].includes(prepared.status))throw new ApiError('NETWORK_UNCERTAIN',0);attempt.recovery=prepared.name}
  // Leaving a form before preparation finishes must not start an unseen action.
  // The server inbox retains the prepared command for explicit review instead.
  if(!active())throw new ApiError('NETWORK_UNCERTAIN',0);
  let response:{name:string;status:string;result:unknown};
- try{response=await api(recoveryApi+'execute',{name:attempt.recovery},'POST')}
+ try{response=await recoveryRequest(recoveryApi+'execute',{name:attempt.recovery},'POST')}
  catch(e){
   // An expired response does not establish whether a prior execution committed.
   // Freeze this attempt; require record review, never mint a replacement ID.
@@ -29,7 +44,7 @@ export async function candidateCommand<T>(operation:CandidateOperation,attempt:C
   if(e instanceof ApiError&&e.status>=400&&e.status<500&&![401,403].includes(e.status)){
    // Only a confirmed, unexecuted command can be discarded. If this cleanup is
    // uncertain, keep its original reference; never generate a replacement ID.
-   try{const closed=await api<{cancelled:boolean}>(recoveryApi+'cancel',{name:attempt.recovery},'POST');if(!closed?.cancelled)throw new Error('unconfirmed')}
+   try{const closed=await recoveryRequest<{cancelled:boolean}>(recoveryApi+'cancel',{name:attempt.recovery},'POST');if(!closed?.cancelled)throw new Error('unconfirmed')}
    catch{throw new ApiError('NETWORK_UNCERTAIN',0)}
   }
   throw e;
@@ -38,7 +53,7 @@ export async function candidateCommand<T>(operation:CandidateOperation,attempt:C
  if(active()){
   // A failed acknowledgement leaves the completed result in the inbox. It does
   // not turn a known successful business action back into an uncertain write.
-  try{await api(recoveryApi+'acknowledge',{name:attempt.recovery},'POST')}catch{/* Recoverable through the inbox. */}
+  try{await recoveryRequest(recoveryApi+'acknowledge',{name:attempt.recovery},'POST')}catch{/* Recoverable through the inbox. */}
  }
  return response.result as T;
 }

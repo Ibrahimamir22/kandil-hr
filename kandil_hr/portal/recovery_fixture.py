@@ -35,3 +35,12 @@ def expire_recovery(run_id):
     rows=frappe.get_all(recovery.DT,filters={'request':data['candidate']['request']},fields=['name','status','payload_cipher'])
     frappe.db.commit()
     return dict(**result,rows=[dict(name=r.name,status=r.status,has_payload=bool(r.payload_cipher)) for r in rows])
+
+
+def expire_sessions(run_id):
+    data=cohort(run_id)
+    from frappe.sessions import clear_sessions
+    user=data['users']['recruiter']['email']
+    clear_sessions(user=user,force=True)
+    frappe.db.commit()
+    return dict(sessions_revoked=True,remaining=frappe.db.count('Sessions',{'user':user}))

@@ -1,0 +1,15 @@
+{
+  "reviewed": "2026-10-14",
+  "images": [
+    "session-login-en.png",
+    "session-result-ar.png"
+  ],
+  "observations": [
+    "English sign-in screen explains recovery and contains no prior candidate form.",
+    "Arabic mobile result and primary controls fit the viewport; long IDs wrap.",
+    "Full-page mobile capture includes the fixed header at the captured scroll position."
+  ],
+  "limits": [
+    "Not full accessibility or HR acceptance."
+  ]
+}
