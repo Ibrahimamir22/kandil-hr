@@ -1,0 +1,178 @@
+{
+  "status": "PASS",
+  "run_id": "35ec5e9d89c7",
+  "checked_at": "2026-10-13T01:38:41.114Z",
+  "checks": [
+    {
+      "name": "Ordinary HR correction returns readable reason without nested audit payload",
+      "status": "PASS"
+    },
+    {
+      "name": "Same command replays the same safe response",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: /api/resource/ current request hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: /api/resource/ event hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: /api/v2/document/ current request hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: /api/v2/document/ event hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: native wildcard list has public explanation but no encoded note",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: explicit get_value cannot retrieve decision_note",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: explicit get_value cannot retrieve note",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: timeline displays correction reason",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: authorized raw revision keeps original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "requester: standard print shows reason without encoded correction records",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: /api/resource/ current request hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: /api/resource/ event hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: /api/v2/document/ current request hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: /api/v2/document/ event hides raw note and shows explanation",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: native wildcard list has public explanation but no encoded note",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: explicit get_value cannot retrieve decision_note",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: explicit get_value cannot retrieve note",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: timeline displays correction reason",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: authorized raw revision keeps original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "hr: standard print shows reason without encoded correction records",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot read current request",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot read correction event",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner initially sees Event attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Owner initially downloads Event attachment",
+      "status": "PASS"
+    },
+    {
+      "name": "Event-specific restriction keeps current request accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "Event-specific restriction keeps allowed correction accessible",
+      "status": "PASS"
+    },
+    {
+      "name": "Event-specific restriction hides original event",
+      "status": "PASS"
+    },
+    {
+      "name": "Event restriction hides attachment metadata",
+      "status": "PASS"
+    },
+    {
+      "name": "Event restriction denies attachment detail",
+      "status": "PASS"
+    },
+    {
+      "name": "Event restriction denies private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Reads and restriction preserve raw current and historical audit bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "No HTTP server failures",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged during HTTP test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "35ec5e9d89c7",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "unchanged": {
+    "snapshot_unchanged": true,
+    "note_unchanged": true,
+    "current_matches_audit": true
+  },
+  "server_failures": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/note_projection.py": "6ce82c49c51f098d75a53ef1fa9ae9c043cb12cfe53ab691ce75c133acb74c81",
+    "kandil_hr/recruitment/privacy.py": "fde5b5005a5233fabf7116e0b149eb05087dc6018d7789c9468944e6b54b3fa5",
+    "kandil_hr/recruitment/event_access.py": "6f317942b7e135ba220fb7921d781492a12df23cc27096cc2567b57ce2bf94a3",
+    "kandil_hr/recruitment/history_access.py": "8dad9639be5d3c27ca9a3a53831e0265741f73e3ed21b4eeda54701d4c76d113",
+    "kandil_hr/recruitment/history_schema.py": "3582e7859b8d8c0a4551fb101aa2584356052703817f19bac0eaaec876d91d84",
+    "kandil_hr/pilot/permissions.py": "3bf5a9c9e91a13bffd120fb630c208fdaaca5a65017b41f9c019ee5ec4730482",
+    "kandil_hr/pilot/models.py": "3d1c23c7241465c1e415461e2a8b36c2630d455702e9d83112032d2be96fd552",
+    "kandil_hr/foundation/security.py": "e0aefd0660b64f7de2b8843b6edf8e07f226357c68e7cb8319b4d5f879af57b3",
+    "kandil_hr/recruitment/review_views.py": "7661259c164554f45ca972137dd46ac7b8a8dae5e3d02bf26402575a39869dde",
+    "kandil_hr/portal/note_access_fixture.py": "03e090d2b5a63f32e2bdc403741264934765fbe470326701533a6a2a6b5e93e8",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json": "341afd8cc5fa0cb6476ad36f473025744030973abbe573262e5a886ba0ccc584",
+    "kandil_hr/kandil_hr/doctype/kandil_recruitment_event/kandil_recruitment_event.json": "e6e02a6f5e98d79d9d634032fda3f58a3a9b42bf0ce36d4e266762cf752e2ff9",
+    "docs/portal/test_note_access.cjs": "6b374dee955cdb6629f50595d2e616ed923f1d673df6325ab26f108a4b3f786a"
+  },
+  "limits": [
+    "Synthetic personal-session HTTP corrections, native v1/v2 reads, print, timeline, exact raw history and Event attachment revocation. Not independent security or sustained capacity certification."
+  ]
+}

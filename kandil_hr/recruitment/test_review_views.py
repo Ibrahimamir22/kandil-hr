@@ -39,12 +39,14 @@ class TestReviewViews(unittest.TestCase):
 		return user.name
 
 	def request_as(self, key):
-		original = self.f.users["requester"]
-		try:
-			self.f.users["requester"] = self.f.users[key]
-			return self.f.request((1,))
-		finally:
-			self.f.users["requester"] = original
+		# This is an expansion fixture. Do not let the manager's implicit native
+		# Employee default populate the unrelated replacement-employee field.
+		with fixtures.acting_as(self.f.users[key]):
+			return frappe.get_doc(dict(doctype="Kandil Hiring Request", company=self.f.company,
+				department=self.f.department, title=self.f.prefix + " expansion request",
+				requested_position=self.f.positions[0], revision=1, need_reason="Expansion",
+				replacement_employee="", requested_priority="Normal",
+				lines=[dict(capacity=self.f.capacities[0], requested_qty=1)])).insert()
 
 	def delegate(self, department=None, start=None, end=None):
 		return self.f.insert(

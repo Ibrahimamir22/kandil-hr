@@ -59,6 +59,12 @@ def condition(user=None):
     if user=='Administrator': return '1=1'  # documented break-glass account
     raw=f'{TABLE}.snapshot_json'
     source=f"IF(JSON_VALID({raw}),{raw},'{{}}')"
+    return f"({capture_condition(source, user)}) AND ({correction_condition(source, user)})"
+
+
+def capture_condition(source, user):
+    """Authorize one complete capture, including captures inside corrections."""
+    from kandil_hr.pilot.permissions import request_query
     position=scalar(source,'$.requested_position')
     employee=scalar(source,'$.replacement_employee')
     # The metadata was captured with the old revision. Since native raw JSON
@@ -112,6 +118,26 @@ def condition(user=None):
         (COALESCE({authority_position},'')<>'' AND NOT EXISTS
           (SELECT 1 FROM `tabKandil Position` WHERE `tabKandil Position`.name={authority_position} AND ({readable('Kandil Position',user)}))))""")
     return ' AND '.join('('+p+')' for p in parts)
+
+
+def correction_condition(source, user):
+    """An HR correction contains two full captures inside an encoded note.
+
+    Authorize both without rewriting original bytes. Nested correction notes
+    are not emitted by the writer and are rejected, avoiding recursive payloads.
+    """
+    value=scalar(source, '$.decision_note')
+    note=f"IF(JSON_VALID({value}),{value},'{{}}')"
+    captures=[f"JSON_EXTRACT({note}, '$.{key}')" for key in ('before','after')]
+    signatures=[f"JSON_CONTAINS_PATH({item}, 'one', '$.doctype', '$.lines', '$.route_snapshot', '$.requested_position')" for item in captures]
+    is_correction=f"({TABLE}.action='HR correction' OR COALESCE(({signatures[0]}),0) OR COALESCE(({signatures[1]}),0))"
+    checks=[f"JSON_VALID({value})",f"JSON_TYPE({note})='OBJECT'",
+            keys_allowed(note,('reason','before','after'),'correction_keys'),
+            f"JSON_TYPE(JSON_EXTRACT({note}, '$.reason'))='STRING'"]
+    for item in captures:
+        checks.append(capture_condition(item,user))
+        checks.append(f"COALESCE({scalar(item,'$.decision_note')},'')=''")
+    return f"(NOT {is_correction} OR ("+' AND '.join('('+c+')' for c in checks)+'))'
 
 
 def allowed(doc, user=None):

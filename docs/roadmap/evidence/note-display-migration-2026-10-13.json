@@ -1,0 +1,11 @@
+{
+  "site": "kandil-parity.localhost",
+  "raw_notes_snapshots_and_modified_unchanged": true,
+  "records": {
+    "Kandil Hiring Request": {"rows": 664, "sha256": "1baa5e76070e8f2c44064d73af93b9b7a233d672396c1268857dbf32d37accf1"},
+    "Kandil Recruitment Event": {"rows": 1863, "sha256": "ed7c4055fd61b3ed4cfb0d3b2f15c5bd9774533e96933c633f078b53d7173135"},
+    "Kandil Request Revision": {"rows": 1601, "sha256": "04b2c70e32480da717d9e79db992d38af319458b4c29e48a025ab4ac29f455a0"}
+  },
+  "derived_fields_backfilled": true,
+  "command": "bench --site kandil-parity.localhost execute kandil_hr.recruitment.test_note_access.prepare_schema"
+}

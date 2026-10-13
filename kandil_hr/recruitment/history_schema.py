@@ -32,7 +32,7 @@ SNAPSHOT = {**fields(*REQUEST_FIELDS), 'lines': ('array',fields(*LINE_FIELDS)),
             'approval_steps': ('array',fields(*STEP_FIELDS))}
 
 
-def condition(source):
+def condition(source, shape=SNAPSHOT, include_route=True):
     from kandil_hr.recruitment.history_access import keys_allowed, scalar
     aliases=count()
 
@@ -62,6 +62,8 @@ def condition(source):
             return f"(COALESCE(JSON_TYPE({value}),'NULL')='NULL' OR ({valid}))"
         return '('+valid+')'
 
+    if not include_route:
+        return compile_shape(source, shape, False)
     route_value=scalar(source,'$.route_snapshot')
     route=f"IF(JSON_VALID({route_value}),{route_value},'{{}}')"
-    return f"({compile_shape(source,SNAPSHOT,False)}) AND (COALESCE({route_value},'')='' OR (JSON_TYPE(JSON_EXTRACT({source},'$.route_snapshot'))='STRING' AND JSON_VALID({route_value}) AND {compile_shape(route,ROUTE,False)}))"
+    return f"({compile_shape(source,shape,False)}) AND (COALESCE({route_value},'')='' OR (JSON_TYPE(JSON_EXTRACT({source},'$.route_snapshot'))='STRING' AND JSON_VALID({route_value}) AND {compile_shape(route,ROUTE,False)}))"

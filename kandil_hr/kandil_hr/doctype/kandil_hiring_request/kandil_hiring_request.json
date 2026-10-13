@@ -16,6 +16,7 @@
     "lines",
     "approval_steps",
     "submitted_snapshot",
+    "decision_reason",
     "decision_note",
     "requested_position",
     "request_kind",
@@ -109,10 +110,18 @@
       "permlevel": 1
     },
     {
+      "fieldname": "decision_reason",
+      "label": "Decision Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
       "fieldname": "decision_note",
       "label": "Decision Note",
       "fieldtype": "Small Text",
-      "read_only": 1
+      "read_only": 1,
+      "permlevel": 1,
+      "hidden": 1
     },
     {
       "fieldname": "requested_position",

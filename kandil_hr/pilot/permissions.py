@@ -74,12 +74,18 @@ def request_permission(doc, user=None, ptype=None):
 
 
 def event_permission(doc, user=None, ptype=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.event_access import allowed
+		return ptype in (None, "read", "select", "print", "report") and allowed(doc, user)
 	if ptype not in (None, "read", "select", "print", "export", "report", "email"):
 		return False
 	return request_permission(frappe.get_doc("Kandil Hiring Request", doc.request), user, "read")
 
 
 def event_query(user=None):
+	if frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.event_access import condition
+		return condition(user)
 	condition = request_query(user)
 	if not condition:
 		return ""

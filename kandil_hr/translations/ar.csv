@@ -1339,3 +1339,5 @@ Request attachment content is immutable. Upload a new file.,لا يمكن تغي
 Recorded Board evidence must be retained with its decision history.,يجب الاحتفاظ بإثبات المجلس المسجّل مع سجل القرار.
 Choose My Requests or All within my scope.,اختر طلباتي أو كل الطلبات ضمن صلاحياتي.
 Choose a valid request status.,اختر حالة طلب صحيحة.
+Decision Reason,سبب القرار
+Public Note,الملاحظة المعروضة

@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "AR/EN request operations and recorded histories are connected. Native revisions now validate declared nested shapes, amendment/opening/proof references and revision-attachment scope; portal scalar values cannot expose nested objects. Positive original-byte reads remain verified after approval, amendment, correction and relocation. Encoded correction-note paths, deeper route identities, Event/indirect files and full S3 acceptance remain open.",
+          "progress": "AR/EN operations and captured histories are connected. Current request/Event notes now show server-derived reasons; raw notes stay private. Native correction revisions authorize both full captures, and Event/attached-File reads enforce historical references and native User Permissions. 95 native, 35 personal-session HTTP and 65 AR/EN browser checks pass with original audit bytes preserved. Remaining route/cohort and other structured-note identity policies, indirect files and integrated S3 acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -316,7 +316,13 @@
             "S3_NESTED_HISTORY_CHECKPOINT.md",
             "evidence/s2-regression-93077df92760.json",
             "../portal/evidence/history-files-8f8148810a45/results.json",
-            "../portal/evidence/request-history-a23d0f7dc428/results.json"
+            "../portal/evidence/request-history-a23d0f7dc428/results.json",
+            "S3_NOTE_ACCESS_CHECKPOINT.md",
+            "evidence/note-display-migration-2026-10-13.json",
+            "evidence/s2-regression-79adb33ed05e.json",
+            "../portal/evidence/note-access-35ec5e9d89c7/results.json",
+            "../portal/evidence/history-workflows-68e909d16eab/results.json",
+            "../portal/evidence/history-workflows-68e909d16eab/visual-review.json"
           ]
         },
         {
@@ -785,8 +791,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Declared nested snapshot shapes, amendment/opening/proof references and portal scalar projections guarded without rewriting historical bytes. 93 native, 101 AR/EN browser and 16 personal-session HTTP checks passed. Full S3 and release gates remain open.",
-    "evidence": "S3_NESTED_HISTORY_CHECKPOINT.md",
-    "next": "Prioritize encoded correction notes across current requests, command responses, revisions and Events; then finish deeper frozen route/cohort identity and indirect-file authorization before integrated S3 acceptance."
+    "summary": "Safe correction explanations, guarded nested correction captures and native Event/attachment access verified: 95 native, 35 HTTP and 65 AR/EN browser checks. Raw records/timestamps preserved through derived-field migration. Full S3 and release gates remain open.",
+    "evidence": "S3_NOTE_ACCESS_CHECKPOINT.md",
+    "next": "Finish frozen route/cohort reference and Board/actor/principal policies, other serialized note families and indirect-file authorization; then integrated S3 acceptance and S4 vacancy operations."
   }
 }

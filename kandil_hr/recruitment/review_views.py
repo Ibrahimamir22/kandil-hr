@@ -4,8 +4,6 @@ Absent historical principals stay absent; this projection never guesses from the
 current route and never returns revision payloads or confidential HR notes.
 """
 
-import json
-
 import frappe
 from frappe import _
 from frappe.utils import cint, get_system_timezone
@@ -43,18 +41,13 @@ def timeline(name, start=0, page_length=100):
 	rows = frappe.get_list(
 		"Kandil Recruitment Event",
 		filters={"request": name},
-		fields=["name", "action", "actor", "principal", "creation", "note"],
+		fields=["name", "action", "actor", "principal", "creation", "public_note"],
 		order_by="creation asc, name asc",
 		start=start,
 		page_length=page_length + 1,
 	)
 	for row in rows:
-		if row.action == "HR correction":
-			try:
-				value = json.loads(row.note or "{}")
-				row.note = value.get("reason", "") if isinstance(value, dict) else ""
-			except (TypeError, ValueError):
-				row.note = ""
+		row.note = row.pop("public_note", "")
 	return dict(
 		name=name,
 		events=rows[:page_length],

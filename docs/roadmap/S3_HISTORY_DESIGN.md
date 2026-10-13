@@ -33,3 +33,8 @@ Ordinary requester/manager/HR/Board and outside-scope sessions; changed organiza
 - Captured dated rules and skipped authority reasons now have an explicit projection shared by command and saved-version views. Excluded users/assignments and unproven historical position identities remain private; no current rerouting is presented as history. Expanded authority/correction browser checks passed; native raw-history surfaces remain a separate audit.
 
 New recruitment command envelopes also capture the requested Position alongside capacities. Old envelopes are never rewritten. Old missing location context is explicitly partial and requires current department-wide scope; narrow-branch readers cannot rely on today's location to infer historical authorization.
+
+
+## Correction-note and Event checkpoint
+
+The [note/Event checkpoint](S3_NOTE_ACCESS_CHECKPOINT.md) preserves raw note/capture bytes while adding server-derived public explanations, ordinary command/replay projection, both-capture authorization for HR correction revisions, and historical Event/attached-File access checks. Its migration and 95 native, 35 HTTP and 65 AR/EN browser checks are recorded separately. Remaining frozen route/cohort identities, other structured-note families, indirect files and integrated S3 acceptance stay open; this does not close the full sprint or release gates.

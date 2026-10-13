@@ -10,6 +10,7 @@
     "action",
     "actor",
     "principal",
+    "public_note",
     "note",
     "snapshot"
   ],
@@ -44,9 +45,18 @@
       "options": "User"
     },
     {
+      "fieldname": "public_note",
+      "label": "Public Note",
+      "fieldtype": "Small Text",
+      "read_only": 1
+    },
+    {
       "fieldname": "note",
       "label": "Note",
-      "fieldtype": "Small Text"
+      "fieldtype": "Small Text",
+      "permlevel": 1,
+      "hidden": 1,
+      "read_only": 1
     },
     {
       "fieldname": "snapshot",

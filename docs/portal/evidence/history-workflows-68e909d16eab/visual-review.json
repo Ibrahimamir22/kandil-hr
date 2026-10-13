@@ -1,0 +1,16 @@
+{
+  "reviewed": [
+    "correction-ar.png",
+    "correction-en.png"
+  ],
+  "method": "Direct visual inspection of saved browser captures",
+  "observations": [
+    "Correction reason and changed qualifications are visible in both languages.",
+    "English before/after cards appear side by side; Arabic mobile cards stack with RTL labels.",
+    "Captured actor/principal and old/new approved quantities remain visible."
+  ],
+  "limits": [
+    "Only these two captures visually inspected in this checkpoint.",
+    "No full accessibility, typography or HR terminology acceptance claimed."
+  ]
+}

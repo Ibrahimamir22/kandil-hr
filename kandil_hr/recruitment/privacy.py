@@ -176,7 +176,10 @@ def command_response(result):
 		return result
 	if frappe.session.user == "Administrator":
 		return result
+	from kandil_hr.recruitment.note_projection import shared_note
 	public = dict(result)
+	public["decision_note"] = shared_note(result.get("decision_note"))
+	public["decision_reason"] = public["decision_note"]
 	for key in ("submitted_snapshot", "route_snapshot"):
 		public.pop(key, None)
 	public["approval_steps"] = [

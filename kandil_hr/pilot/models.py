@@ -115,6 +115,8 @@ class KandilHiringRequest(Document):
 
 	def validate(self):
 		enabled_guard()
+		from kandil_hr.recruitment.note_projection import shared_note
+		self.decision_reason = shared_note(self.decision_note)
 		if frappe.conf.get("kandil_parity_enabled"):
 			from kandil_hr.recruitment.models import validate_request
 
@@ -201,6 +203,8 @@ class KandilRecruitmentEvent(Document):
 	def validate(self):
 		if not self.is_new():
 			deny("Audit events are immutable.")
+		from kandil_hr.recruitment.note_projection import shared_note
+		self.public_note = shared_note(self.note)
 
 	def on_trash(self):
 		deny("Audit events cannot be deleted.")
