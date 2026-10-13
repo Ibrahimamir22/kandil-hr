@@ -5,6 +5,8 @@ records are selected through the locked request and explicit command arguments.
 Commands outside recruitment.api.command remain separate integration work.
 """
 
+import hashlib
+
 import frappe
 from frappe import _
 
@@ -109,4 +111,10 @@ def completed_authority(doc, authority):
 					for key in ("board_member", "board_evidence", "on_behalf_method", "on_behalf_note")
 				}
 			)
+			if step.get("board_evidence"):
+				proof = frappe.get_doc("File", step.board_evidence, for_update=True)
+				content = proof.get_content()
+				content = content.encode("utf-8") if isinstance(content, str) else content
+				value["evidence_identity"] = dict(file=proof.name, file_name=proof.file_name,
+					sha256=hashlib.sha256(content).hexdigest(), size=len(content))
 	return value

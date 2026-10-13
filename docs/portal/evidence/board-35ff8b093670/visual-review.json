@@ -1,0 +1,21 @@
+{
+  "status": "PASS_WITH_CAPTURE_LIMITATION",
+  "reviewed_at": "2026-10-13",
+  "method": "Direct visual inspection of retained browser screenshots",
+  "files": {
+    "record-review-en-panel.png": "311dc4769923f1f8263db8e519978f2afa06e3be72ae3bcadf92809915b8ef15",
+    "record-review-ar.png": "be9d4b7c6c9e6da204424096455e36b7159ad1fcf84c8ba18fdb0e0c9b20df32",
+    "direct-chair-en.png": "88fd7c97850151b5fe4c4be2593995965cacdf9b8af7ed312af1fda170cc14a2",
+    "recorded-history-en.png": "574c7129e81cf52bfc1b323be562c9c5d9f159762b6bf7aa2688deaa97a3f35b"
+  },
+  "observations": [
+    "EN review exposes reviewed version, distinct member/actor, decision reason and evidence.",
+    "AR full-page review uses RTL, readable wrapping and accessible confirmation actions without horizontal overflow.",
+    "Direct Chair review identifies the actor as deciding member and labels proof optional.",
+    "Recorded result retains actor/member distinction, note, method, time and private proof link."
+  ],
+  "limits": [
+    "Supplemental mobile element-only *-panel.png captures include the sticky top bar over part of the crop; use the full-page counterparts for layout review.",
+    "Scoped visual review, not full accessibility or HR terminology acceptance."
+  ]
+}

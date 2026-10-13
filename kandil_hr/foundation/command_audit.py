@@ -460,12 +460,27 @@ def record_command(
 			"authority",
 			"board_member",
 			"board_evidence",
+			"evidence_identity",
 			"on_behalf_method",
 			"on_behalf_note",
 			"step_key",
 		}
 	):
 		raise ValueError("Audit authority contains unreviewed fields")
+	if authority and "evidence_identity" in authority:
+		proof = authority["evidence_identity"]
+		if (
+			domain != "recruitment" or operation != "decide"
+			or authority.get("authority") != "Board Approval"
+			or not isinstance(proof, dict)
+			or set(proof) != {"file", "file_name", "sha256", "size"}
+			or not isinstance(proof.get("file"), str) or not 1 <= len(proof["file"]) <= 140
+			or proof["file"] != authority.get("board_evidence")
+			or not isinstance(proof.get("file_name"), str) or not 1 <= len(proof["file_name"]) <= 255
+			or not isinstance(proof.get("sha256"), str) or not re.fullmatch(r"[0-9a-f]{64}", proof["sha256"])
+			or type(proof.get("size")) is not int or proof["size"] < 0
+		):
+			raise ValueError("Audit Board evidence identity is invalid")
 	actor = frappe.session.user
 	if actor == "Guest":
 		frappe.throw(_("Command audit requires an authenticated actor."), frappe.PermissionError)

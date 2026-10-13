@@ -1325,3 +1325,15 @@ Enter a reason between 3 and 2000 characters.,أدخل سببًا بين ٣ و٢
 Both delegation dates are required.,يجب تحديد تاريخي بداية التفويض ونهايته.
 Unknown delegation action.,إجراء التفويض غير معروف.
 This delegation changed. Reload before revoking.,تغير هذا التفويض. حدّث السجل قبل إلغائه.
+Board decision fields exceed the supported text limits.,تجاوزت حقول قرار المجلس الحدود المسموح بها للنص.
+Enter a valid decision comment.,أدخل تعليقًا صحيحًا على القرار.
+Choose a Board approval step for this action.,اختر خطوة اعتماد مجلس الإدارة لهذا الإجراء.
+Choose a simple evidence filename of up to 160 characters.,اختر اسم ملف إثبات بسيطًا لا يتجاوز ١٦٠ حرفًا.
+Evidence must be a file of at most 10 MB.,يجب أن يكون الإثبات ملفًا لا يزيد حجمه على ١٠ ميجابايت.
+Evidence content must be valid base64.,تعذر قراءة محتوى ملف الإثبات. أعد اختيار الملف.
+"Upload a PDF, PNG, JPEG or UTF-8 text file matching its extension.",ارفع ملف PDF أو PNG أو JPEG أو نص UTF-8 مطابقًا لامتداده.
+This request changed. Reload before uploading evidence.,تغيّر هذا الطلب. حدّثه قبل رفع الإثبات.
+You cannot upload evidence for the current Board step.,ليست لديك صلاحية رفع إثبات لخطوة المجلس الحالية.
+Request attachments cannot be replaced or relabelled. Upload a new file.,لا يمكن استبدال مرفقات الطلب أو تغيير بياناتها. ارفع ملفًا جديدًا.
+Request attachment content is immutable. Upload a new file.,لا يمكن تغيير محتوى مرفق الطلب. ارفع ملفًا جديدًا.
+Recorded Board evidence must be retained with its decision history.,يجب الاحتفاظ بإثبات المجلس المسجّل مع سجل القرار.

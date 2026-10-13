@@ -352,6 +352,8 @@ doc_events.setdefault("User", {}).update(
 	}
 )
 doc_events.setdefault("File", {})["validate"] = _foundation + "security.validate_private_file"
+doc_events["File"]["before_validate"] = _foundation + "board_files.before_validate"
+doc_events["File"]["before_rename"] = _foundation + "board_files.protect_recorded"
 has_permission["File"] = _foundation + "security.file_permission"
 extend_doctype_class["Notification Log"] = [_foundation + "outbox.LocalNotificationMixin"]
 scheduler_events = {"all": [_foundation + "outbox.process_pending"]}

@@ -66,7 +66,7 @@ Review each command's current signature/authority before wiring. Use `command_id
 
 ## Slice 4 — delegation and Board evidence
 
-**Delegation engineering checkpoint:** [S3 delegation checkpoint](S3_DELEGATION_CHECKPOINT.md) records the connected AR/EN screens and guarded adapters. Board evidence remains unimplemented in the custom portal, so this slice and S3-03 remain in progress.
+**Delegation engineering checkpoint:** [S3 delegation checkpoint](S3_DELEGATION_CHECKPOINT.md) records the connected AR/EN screens and guarded adapters. The [Board checkpoint](S3_BOARD_CHECKPOINT.md) records the connected Chair/Vice and authorized on-behalf evidence flow. Slice 4 engineering is covered by these two checkpoints; full frozen request histories, HR/IT acceptance and the integrated S3 closeout remain separate.
 
 Connect existing `foundation/delegation.py` rules through guarded portal adapters and bilingual screens for create/read/revise/revoke and CEO decisions. New versions preserve history; authority cannot be edited in place. Keep process scope, company/department, inclusive effective dates, independent CEO approval, immediate revocation and disabled-account behavior.
 

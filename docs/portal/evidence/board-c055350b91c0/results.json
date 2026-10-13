@@ -1,0 +1,224 @@
+{
+  "status": "PASS",
+  "run_id": "c055350b91c0",
+  "checked_at": "2026-10-12T23:53:48.191Z",
+  "checks": [
+    {
+      "name": "en: Board inactive before CEO",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Sector records and two independent members available",
+      "status": "PASS"
+    },
+    {
+      "name": "en: generic decision does not bypass Board panel",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider context denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: request-reading HR cannot upload Board proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: on-behalf review requires evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "en: upload stays Pending and selects proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: exact upload retry returns one File",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized proof download",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider proof download denied",
+      "status": "PASS"
+    },
+    {
+      "name": "record-review-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: returned decision retains separate member and recorder",
+      "status": "PASS"
+    },
+    {
+      "name": "en: decision response minimal",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old decision retry after revision has no new effect",
+      "status": "PASS"
+    },
+    {
+      "name": "en: retained decision proof cannot be deleted",
+      "status": "PASS"
+    },
+    {
+      "name": "en: vice direct form hides recording fields",
+      "status": "PASS"
+    },
+    {
+      "name": "direct-vice-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: vice direct Approve preserves actor and no external proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: chair direct form hides recording fields",
+      "status": "PASS"
+    },
+    {
+      "name": "direct-chair-en.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en: chair direct Reject preserves actor and no external proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Board inactive before CEO",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Sector records and two independent members available",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: generic decision does not bypass Board panel",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider context denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: request-reading HR cannot upload Board proof",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: on-behalf review requires evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: upload stays Pending and selects proof",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: exact upload retry returns one File",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: authorized proof download",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider proof download denied",
+      "status": "PASS"
+    },
+    {
+      "name": "record-review-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: returned decision retains separate member and recorder",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: decision response minimal",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old decision retry after revision has no new effect",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: retained decision proof cannot be deleted",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: vice direct form hides recording fields",
+      "status": "PASS"
+    },
+    {
+      "name": "direct-vice-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: vice direct Approve preserves actor and no external proof",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: chair direct form hides recording fields",
+      "status": "PASS"
+    },
+    {
+      "name": "direct-chair-ar.png: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: chair direct Reject preserves actor and no external proof",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: GET and missing CSRF denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest context denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS exceptions, server errors or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "c055350b91c0",
+    "cleaned": true,
+    "accounts_disabled": 9,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/BoardApproval.tsx": "b5f0905c0e777155347690a14f93d0b17d34253cd4424d7637ad2a6a7b22672c",
+    "frontend/portal/src/main.tsx": "61606e5e9cd41d5763329687daf7cf123afe1714e2bd5d96384591cfdbc4f8c9",
+    "frontend/portal/src/portal.css": "39b3643c9658fef39a6c4704e58f9d4f497cb16f2a9fe4c25749ea22cf388ab4",
+    "kandil_hr/public/portal/portal.js": "8ae61c27860e2a5560fc7ef3a2f166599b59d8c1b93800252950cd9aea148747",
+    "kandil_hr/portal/board.py": "022fd549c090d16139b4c5623d73dde6b24ffe795952b3fd01049d63e1dcd62f",
+    "kandil_hr/portal/board_fixture.py": "a018a5266a8af329cba70abee0c0761151b8c1e943642848eb63d6067ff91537",
+    "kandil_hr/foundation/board_files.py": "28fa85c7c7dea23a0f6535d3cdc5b59a3c831090bffe210660518134f1d3c909",
+    "kandil_hr/foundation/files.py": "c2171e081ba9ac0217351a6b31f4c0b4281e06c9bc1f4ce6e2ebc6f5b8bade62",
+    "kandil_hr/foundation/command_audit.py": "23dc7402e82f1021f1f1ab07429608f75185038c0e103570b68cdf9e090faf52",
+    "kandil_hr/recruitment/command_audit.py": "6482f45710a661ee28f965598e62d2c7291d2d0dc8b485bdd8b891be76cf6596",
+    "kandil_hr/recruitment/authority.py": "5f8db8e0747103ee6213c22cb6af14137cfadcc610f6fd815cfde13d4a64d035",
+    "kandil_hr/hooks.py": "2c4b1240af672f3ff05146f079d4cf7a7c34c63808f8999fda74024933e36a9e",
+    "kandil_hr/translations/ar.csv": "46c7915298d11402ee087b75d1a292dd9e2ef098c1c05d8835e13ac2bb83b1e6",
+    "docs/portal/test_board.cjs": "a6f9df63fa87ce22830f49f65df43be0fbf4d2d737d7e467792345c1e50ed1ca"
+  },
+  "limits": [
+    "Synthetic AR/EN Board screens and personal-session HTTP checks. Current-round display only; complete S3 history, HR acceptance, independent security and sustained capacity remain open."
+  ]
+}

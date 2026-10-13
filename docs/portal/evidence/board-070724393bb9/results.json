@@ -1,0 +1,74 @@
+{
+  "status": "FAIL",
+  "run_id": "070724393bb9",
+  "checked_at": "2026-10-12T23:57:29.366Z",
+  "checks": [
+    {
+      "name": "en: Board inactive before CEO",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Sector records and two independent members available",
+      "status": "PASS"
+    },
+    {
+      "name": "en: generic decision does not bypass Board panel",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider context denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: request-reading HR cannot upload Board proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: on-behalf review requires evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "en: upload stays Pending and selects proof",
+      "status": "PASS"
+    },
+    {
+      "name": "en: exact upload retry returns one File",
+      "status": "PASS"
+    },
+    {
+      "name": "Board journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "en: simultaneous first upload creates one File"
+    }
+  ],
+  "cleanup": {
+    "run_id": "070724393bb9",
+    "cleaned": true,
+    "accounts_disabled": 9,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/BoardApproval.tsx": "6bb6d75f4df9ffcf181537329ea2914539a983da6b3e44cb67858194933b1e52",
+    "frontend/portal/src/main.tsx": "61606e5e9cd41d5763329687daf7cf123afe1714e2bd5d96384591cfdbc4f8c9",
+    "frontend/portal/src/portal.css": "39b3643c9658fef39a6c4704e58f9d4f497cb16f2a9fe4c25749ea22cf388ab4",
+    "kandil_hr/public/portal/portal.js": "a3af1f7e9408f0cb0bf50e27af37c14730a46f357c6f20a59ffeb603d714bd78",
+    "kandil_hr/portal/board.py": "2a7d131cbc55a497cf4693c7ad49d4742586213c2881b73c50eca6d83a10bca9",
+    "kandil_hr/portal/board_fixture.py": "a018a5266a8af329cba70abee0c0761151b8c1e943642848eb63d6067ff91537",
+    "kandil_hr/foundation/board_files.py": "28fa85c7c7dea23a0f6535d3cdc5b59a3c831090bffe210660518134f1d3c909",
+    "kandil_hr/foundation/files.py": "c2171e081ba9ac0217351a6b31f4c0b4281e06c9bc1f4ce6e2ebc6f5b8bade62",
+    "kandil_hr/foundation/command_audit.py": "23dc7402e82f1021f1f1ab07429608f75185038c0e103570b68cdf9e090faf52",
+    "kandil_hr/recruitment/command_audit.py": "6482f45710a661ee28f965598e62d2c7291d2d0dc8b485bdd8b891be76cf6596",
+    "kandil_hr/recruitment/authority.py": "5f8db8e0747103ee6213c22cb6af14137cfadcc610f6fd815cfde13d4a64d035",
+    "kandil_hr/hooks.py": "2c4b1240af672f3ff05146f079d4cf7a7c34c63808f8999fda74024933e36a9e",
+    "kandil_hr/translations/ar.csv": "46c7915298d11402ee087b75d1a292dd9e2ef098c1c05d8835e13ac2bb83b1e6",
+    "docs/portal/test_board.cjs": "a10afcaf940c356738958123c41f9c179156ef7d0daf1e983091351c6e7e7c51"
+  },
+  "limits": [
+    "Synthetic AR/EN Board screens and personal-session HTTP checks. Current-round display only; complete S3 history, HR acceptance, independent security and sustained capacity remain open."
+  ]
+}

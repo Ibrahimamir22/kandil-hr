@@ -55,6 +55,16 @@ def strict_file_access(doc, user=None, ptype="read"):
 
 
 class FileMixin:
+	def on_trash(self):
+		from kandil_hr.foundation.board_files import protect_recorded
+		protect_recorded(self)
+		return super().on_trash()
+
+	def save_file(self, *args, **kwargs):
+		from kandil_hr.foundation.board_files import before_content_write
+		before_content_write(self)
+		return super().save_file(*args, **kwargs)
+
 	def is_downloadable(self):
 		return strict_file_access(self) and super().is_downloadable()
 

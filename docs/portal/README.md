@@ -6,6 +6,8 @@ The approved portal design now runs as a React + TypeScript application connecte
 
 **Private test accounts:** open `development/frappe-bench/sites/kandil-parity.localhost/private/Kandil_Portal_Private_Test_Accounts.html` from the `Kandil_HR_Dev` directory. This local file contains personal synthetic accounts and a walkthrough; it is outside the application repository. Never commit or forward it.
 
+Current full-scope progress is in the [roadmap tracker](../roadmap/tracker.json). The [Board checkpoint](../roadmap/S3_BOARD_CHECKPOINT.md) describes the latest approval/evidence UI and its exact test limits. The list below describes the original connected milestone.
+
 ## What is working
 
 1. Personal password login and logout using Frappe session cookies and CSRF protection.

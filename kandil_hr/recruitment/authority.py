@@ -208,6 +208,9 @@ def authorize_board(
 	if evidence:
 		if (
 			not evidence.is_private
+			or evidence.is_folder
+			or evidence.is_remote_file
+			or not (evidence.file_url or "").startswith("/private/files/")
 			or evidence.attached_to_doctype != doc.doctype
 			or evidence.attached_to_name != doc.name
 		):

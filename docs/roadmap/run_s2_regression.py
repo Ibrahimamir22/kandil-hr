@@ -10,6 +10,8 @@ import uuid
 APP = Path(__file__).resolve().parents[2]
 DEV = APP.parents[3]
 SUITES = (
+    'kandil_hr.portal.test_board.run',
+    'kandil_hr.recruitment.test_authority_audit.run',
     'kandil_hr.portal.test_delegations.run',
     'kandil_hr.foundation.test_delegation.run',
     'kandil_hr.foundation.test_delegation_audit.run',
