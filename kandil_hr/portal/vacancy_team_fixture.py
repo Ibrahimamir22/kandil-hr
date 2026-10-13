@@ -39,6 +39,7 @@ def snapshot(run_id):
     guard(run_id);data=json.loads(fixture.path_for(run_id).read_text())
     assert data['company']==f'Kandil PORTAL TEST {run_id}'
     return dict(
+        summaries=summaries(run_id),
         capacities=fixture.inspect(run_id)['capacities'],
         openings=[dict(name=name,lead=frappe.db.get_value('Job Opening',name,'custom_kandil_lead'),
             members=[row.user for row in frappe.get_doc('Job Opening',name).custom_kandil_team]) for name in data['queue_names']],
@@ -48,3 +49,22 @@ def snapshot(run_id):
 
 def cleanup(run_id):
     guard(run_id);return fixture.cleanup(run_id)
+
+
+def summaries(run_id):
+    guard(run_id);data=json.loads(fixture.path_for(run_id).read_text())
+    assert data['company']==f'Kandil PORTAL TEST {run_id}'
+    roles={v['email']:k for k,v in data['users'].items()}
+    rows=frappe.get_all('Kandil Notification Outbox',filters={'recipient':['in',list(roles)],
+        'subject':'Recruitment assignments updated / تم تحديث إسنادات التوظيف'},
+        fields=['name','recipient','reference_name','reference_doctype','status','notification_log'],order_by='name')
+    return [dict(name=r.name,role=roles[r.recipient],reference=bool(r.reference_name or r.reference_doctype),
+                 status=r.status,receipt=r.notification_log) for r in rows]
+
+
+def deliver_summaries(run_id):
+    from kandil_hr.foundation import outbox
+    rows=summaries(run_id)
+    for row in rows:outbox.deliver(row['name'])
+    frappe.db.commit()
+    return dict(rows=summaries(run_id))

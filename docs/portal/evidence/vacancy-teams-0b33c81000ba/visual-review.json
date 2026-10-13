@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-13",
+  "method": "Visual inspection of final desktop English and mobile Arabic screenshots",
+  "images": [
+    {
+      "file": "summary-en.png",
+      "sha256": "7748c37d05177c1c6cd7125d9549b153b4e5fac6aa2c7a55a3da11fc90c3ee15"
+    },
+    {
+      "file": "summary-ar.png",
+      "sha256": "beba0a2dbf356286e0289370fbfad7b5e80a1439a7ca7b9fa4c88adb0f9140e3"
+    }
+  ],
+  "observations": [
+    "English desktop shows exactly one readable bilingual batch summary and unobstructed inbox controls.",
+    "Arabic mobile has settled closed navigation, right-to-left controls, wrapped readable summary and no horizontal clipping."
+  ],
+  "limits": [
+    "Synthetic review; not HR wording sign-off or full accessibility certification."
+  ]
+}

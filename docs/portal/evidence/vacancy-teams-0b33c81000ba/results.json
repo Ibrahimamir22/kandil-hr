@@ -1,0 +1,187 @@
+{
+  "status": "PASS",
+  "run_id": "0b33c81000ba",
+  "checked_at": "2026-10-13T20:03:30.216Z",
+  "checks": [
+    {
+      "name": "Isolated cohort contains 36 normal users and 28 vacancies",
+      "status": "PASS"
+    },
+    {
+      "name": "en: current team is reviewed before replacement",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paged directory shows 25 of 32 eligible recruiters",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second directory page has 7 results",
+      "status": "PASS"
+    },
+    {
+      "name": "en: search resets paging and finds eligible recruiter",
+      "status": "PASS"
+    },
+    {
+      "name": "en: mobile/desktop editor has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "en: review step makes no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain result locks changes but allows exact retry",
+      "status": "PASS"
+    },
+    {
+      "name": "en: confirmed team saved and prior members explicitly preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "en: assignment leaves capacity unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost-response retry reuses exact command ID and does not create another revision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: current team is reviewed before replacement",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paged directory shows 25 of 32 eligible recruiters",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second directory page has 7 results",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: search resets paging and finds eligible recruiter",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: mobile/desktop editor has no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: review step makes no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: confirmed team saved and prior members explicitly preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: assignment leaves capacity unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Selection persists across queue pages",
+      "status": "PASS"
+    },
+    {
+      "name": "Bulk editor reviews both locations and parents",
+      "status": "PASS"
+    },
+    {
+      "name": "Bulk assignment replaces complete teams across different requests",
+      "status": "PASS"
+    },
+    {
+      "name": "One batch summary per new recruiter, without business references",
+      "status": "PASS"
+    },
+    {
+      "name": "Two simultaneous identical bulk commands return the same successful result",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent duplicate bulk generates one summary per recipient",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent bulk receipt replays without a second team or request revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Selection persists across queue pages",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale bulk is denied and neither parent partially overwritten",
+      "status": "PASS"
+    },
+    {
+      "name": "All exact cohort batch summaries delivered locally once",
+      "status": "PASS"
+    },
+    {
+      "name": "Delivery retry preserves original summary receipts",
+      "status": "PASS"
+    },
+    {
+      "name": "en: recipient sees one bilingual summary for concurrent batch",
+      "status": "PASS"
+    },
+    {
+      "name": "en: settled notification view fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: recipient sees one bilingual summary for concurrent batch",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: settled notification view fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot inspect guessed team selection",
+      "status": "PASS"
+    },
+    {
+      "name": "No JavaScript errors, HTTP 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged throughout test",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "0b33c81000ba",
+    "cleaned": true,
+    "accounts_disabled": 36,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/api.py": "08ec0d62c24a1c9e3609cd2c1279595fa4dcbde8efead0d550f144d1c6ab73c6",
+    "kandil_hr/recruitment/notification_templates.py": "c12dc3cbfb5a7ea9557a82f2a116500fee35ddc1936ceb5bb592649a76e91ecf",
+    "kandil_hr/portal/vacancies.py": "336cb6de3b2cea8716d7ec087434ac6411cc82c453e4eae955aa758853a54717",
+    "kandil_hr/portal/vacancy_fixture.py": "a62be1c497b1ae9e0683e9e8929e0c6f8958bed2307e9772ca6b7212c29e8947",
+    "kandil_hr/portal/test_vacancies.py": "846caa9d3adb580b5df5903ef1ce1df3974570f1b3a1b43f1356fe16401af797",
+    "kandil_hr/recruitment/vacancies.py": "0f4ac717437afa9557d020b5dfd89028662bdf8bd20e786a9ef476753f633183",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/security.py": "018db24a3c4e27bd499a431d7eaa99765daa54582b069d22e8c58911286430bb",
+    "frontend/portal/src/VacancyQueue.tsx": "0a06a97ae19ca8552b312cce1f2feaa71f7521d2bb8c014e9651b670c10882e4",
+    "frontend/portal/src/main.tsx": "3a50734e79e1e5bde1b0ff823d3dafc6c788e064a11186b6dbb3c859ada8fd00",
+    "frontend/portal/src/portal.css": "54e8afccc6fa1db026945635ff9b61aa3dd2f11be9d963a9e26085e8ebdab5b1",
+    "kandil_hr/public/portal/portal.js": "0a5b075a3b8e11322f1adfefe67aac35efddbf4a3bc2311e79d180085002d75d",
+    "docs/portal/test_vacancy_teams.cjs": "791fe6c99b5db79e814ce99a24fa703dc1d5d4f46b61cd99d1831df57bbae8d2",
+    "kandil_hr/portal/vacancy_teams.py": "2f8d5e8c0e51210c20f9fcf0e0c80c21acd2fc3850ae4caaa28be214f4acae68",
+    "kandil_hr/portal/vacancy_team_fixture.py": "a8c44df145acafd7c330efc3df378fc3ee0636981de5144d6a1966ab10a91bbb",
+    "kandil_hr/recruitment/vacancy_access.py": "3d13ac2ee030ae769ec01a39e2665da15a291e81033e8a1f6edd990c0c152bf0",
+    "frontend/portal/src/VacancyTeamEditor.tsx": "b6a0d9f1f032ca5f431988ec5a56515f3a17c44c4edc07a3b23704258e77b5f9"
+  },
+  "limits": [
+    "Synthetic personal-session team assignment, paginated lookup and atomic stale/replay checks. Batch summary receipt and bilingual recipient inbox verified with targeted local delivery; no external sending or production-scale certification."
+  ]
+}

@@ -1,5 +1,8 @@
 """Scoped vacancy actions reuse the request transaction, version and receipt contract."""
 
+import hashlib
+import json
+
 import frappe
 from frappe import _
 from frappe.utils import cint, getdate
@@ -172,7 +175,7 @@ def set_state(name, opening_name, action, reason, command_id, expected_version):
 	)
 
 
-def _assign(doc, opening_name, lead, members, reason):
+def _assign(doc, opening_name, lead, members, reason, *, notification_batch=None):
 	from kandil_hr.foundation.mutation_access import assert_current_request_scope
 
 	settings = frappe.get_doc("Kandil Organization Settings", doc.company, for_update=True)
@@ -198,7 +201,10 @@ def _assign(doc, opening_name, lead, members, reason):
 	# save() also notifies the requester; lock the entire recipient set in one order.
 	for user in sorted(set(team) | {doc.requested_by}):
 		frappe.db.sql("SELECT name FROM `tabUser` WHERE name=%s FOR UPDATE", (user,))
-	previous = [x.user for x in opening.custom_kandil_team]
+	previous = {x.user for x in opening.custom_kandil_team}
+	previous_lead = opening.custom_kandil_lead
+	if previous_lead:
+		previous.add(previous_lead)
 	opening.custom_kandil_lead = lead
 	opening.set("custom_kandil_team", [{"user": x} for x in team])
 	result = audit(doc, opening, "Recruiter team changed", reason)
@@ -209,7 +215,17 @@ def _assign(doc, opening_name, lead, members, reason):
 	from kandil_hr.recruitment.notification_templates import vacancy_assignment
 
 	subject, body = vacancy_assignment(opening.name)
-	for user in sorted(set(team) - set(previous)):
+	# The reference records lead/support changes as fresh assignments too.
+	changed = set(team) - previous
+	if previous_lead != lead:
+		changed.add(lead)
+		if previous_lead in team:
+			changed.add(previous_lead)
+	changed.discard(frappe.session.user)
+	if notification_batch is not None:
+		notification_batch.update(changed)
+		return result
+	for user in sorted(changed):
 		enqueue(
 			f"{doc.name}:{doc.modified}:team:{user}",
 			user,
@@ -429,6 +445,7 @@ def bulk_assign(items, lead, members, reason, command_id):
 	frappe.db.savepoint(point)
 	try:
 		result = []
+		notification_batch = set()
 		for name in sorted(groups):
 
 			def act(doc):
@@ -436,7 +453,7 @@ def bulk_assign(items, lead, members, reason, command_id):
 				handoffs = []
 				for item in sorted(groups[doc.name], key=lambda x: x["opening_name"]):
 					# Internal handler: one receipt represents the complete reviewed batch.
-					change = _assign(doc, item["opening_name"], lead, members, reason)
+					change = _assign(doc, item["opening_name"], lead, members, reason, notification_batch=notification_batch)
 					handoffs.append(
 						dict(opening=item["opening_name"], applications=change["application_handoffs"])
 					)
@@ -453,6 +470,16 @@ def bulk_assign(items, lead, members, reason, command_id):
 					name, "bulk_vacancy_team", command_id, groups[name][0]["expected_version"], payload, act
 				)
 			)
+		# One account-only summary for the batch. No references, vacancy count,
+		# names or candidate details survive a subsequent scope change in a body.
+		# Current work is read through the permission-checked vacancy queue.
+		from kandil_hr.foundation.outbox import enqueue
+		from kandil_hr.recruitment.notification_templates import vacancy_batch_assignment
+		subject, body = vacancy_batch_assignment()
+		batch_key = hashlib.sha256(json.dumps(dict(actor=frappe.session.user,
+			command_id=command_id, payload=payload), sort_keys=True).encode()).hexdigest()
+		for recipient in sorted(notification_batch):
+			enqueue(f"vacancy-team-batch:{batch_key}:{recipient}", recipient, subject, body)
 		return result
 	except frappe.QueryDeadlockError:
 		# MariaDB already rolled back the whole transaction; outer retry owns recovery.

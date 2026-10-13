@@ -163,6 +163,78 @@ class TestVacancyTeams(unittest.TestCase):
         result=self.call('recruiters',page_length=9999,start=-1)
         self.assertEqual((result['page_length'],result['start']),(100,0))
 
+    def batch_notices(self):
+        return frappe.get_all('Kandil Notification Outbox',filters={'recipient':self.f.users['manager'],
+            'subject':'Recruitment assignments updated / تم تحديث إسنادات التوظيف'},
+            fields=['name','recipient','subject','body','reference_doctype','reference_name','notification_log','status'])
+
+    def test_batch_has_one_private_safe_summary_per_recipient_and_replay(self):
+        from kandil_hr.foundation import outbox
+        second=self.base.create(both=True)
+        items=self.items()+self.items(second);key=uuid.uuid4().hex
+        self.assignment(items,command_id=key,reason='PRIVATE_TEAM_REASON')
+        rows=self.batch_notices();self.assertEqual(len(rows),1)
+        row=rows[0]
+        self.assertFalse(row.reference_doctype);self.assertFalse(row.reference_name)
+        for value in (self.doc.name,second.name,self.f.company,self.f.department,'PRIVATE_TEAM_REASON'):
+            self.assertNotIn(value,row.body)
+        self.assertRegex(row.body,r'[\u0600-\u06ff]')
+        self.assertEqual(frappe.db.count('Kandil Notification Outbox',{'recipient':self.f.users['hr'],
+            'subject':row.subject}),0) # actor is excluded
+        self.assertEqual(frappe.db.count('Kandil Notification Outbox',{'recipient':self.f.users['manager'],
+            'subject':'Vacancy assigned / تم إسناد شاغر إليك'}),0)
+        self.assertEqual(outbox.deliver(row.name),'Delivered locally')
+        receipt=frappe.db.get_value('Kandil Notification Outbox',row.name,'notification_log')
+        self.assertTrue(receipt)
+        self.assignment(items,command_id=key,reason='PRIVATE_TEAM_REASON')
+        self.assertEqual(len(self.batch_notices()),1)
+        self.assertEqual(outbox.deliver(row.name),'Delivered locally')
+        self.assertEqual(frappe.db.get_value('Kandil Notification Outbox',row.name,'notification_log'),receipt)
+
+    def test_role_only_change_notifies_once_and_unchanged_team_does_not(self):
+        self.assignment();self.assertEqual(len(self.batch_notices()),1)
+        self.assignment();self.assertEqual(len(self.batch_notices()),1)
+        self.assignment(lead=self.f.users['hr'],members=[self.f.users['manager']])
+        self.assertEqual(len(self.batch_notices()),2) # manager remains but becomes support
+        self.assignment(lead=self.f.users['hr'],members=[])
+        self.assertEqual(len(self.batch_notices()),2) # removal alone is not a new assignment
+
+    def test_single_role_change_keeps_scoped_reference(self):
+        opening=self.doc.lines[0].job_opening
+        self.f.call('hr',commands.assign_team,self.doc.name,opening_name=opening,
+            lead=self.f.users['manager'],members=[self.f.users['hr']],reason='Synthetic initial team')
+        self.f.call('hr',commands.assign_team,self.doc.name,opening_name=opening,
+            lead=self.f.users['hr'],members=[self.f.users['manager']],reason='Synthetic role swap')
+        rows=frappe.get_all('Kandil Notification Outbox',filters={'recipient':self.f.users['manager'],
+            'subject':'Vacancy assigned / تم إسناد شاغر إليك'},fields=['reference_doctype','reference_name','body'])
+        self.assertEqual(len(rows),2)
+        self.assertTrue(all(r.reference_doctype=='Job Opening' and r.reference_name==opening for r in rows))
+        self.assertTrue(all('assignment was updated' in r.body for r in rows))
+
+    def test_batch_summary_enqueue_failure_rolls_back_all_assignments(self):
+        from kandil_hr.foundation import outbox
+        original=outbox.enqueue
+        before=self.f.counts(self.doc.name)
+        def fail_summary(key,*args,**kwargs):
+            if key.startswith('vacancy-team-batch:'):raise RuntimeError('Synthetic summary outage')
+            return original(key,*args,**kwargs)
+        with patch.object(outbox,'enqueue',side_effect=fail_summary),self.assertRaises(RuntimeError):self.assignment()
+        self.assertEqual(self.f.counts(self.doc.name),before)
+        self.assertEqual(self.batch_notices(),[])
+        self.assertTrue(all(not frappe.db.get_value('Job Opening',l.job_opening,'custom_kandil_lead') for l in self.doc.lines))
+
+    def test_generic_batch_summary_carries_no_business_reference_after_revocation(self):
+        from kandil_hr.foundation import outbox
+        self.assignment();row=self.batch_notices()[0]
+        frappe.db.set_value('Kandil Access Grant',self.f.grants['manager'],'revoked',1)
+        # Historical account-only alert discloses no company, count or object.
+        self.assertFalse(row.reference_name);self.assertNotIn(self.doc.name,row.body)
+        with acting_as(self.f.users['manager']):
+            from kandil_hr.portal.vacancies import listing
+            self.assertEqual(listing()['total'],0)
+        user=frappe.get_doc('User',self.f.users['manager']);user.enabled=0;user.save(ignore_permissions=True)
+        self.assertEqual(outbox.deliver(row.name),'Suppressed')
+
     def test_more_than_500_eligible_identities_are_counted_and_searchable(self):
         # Direct synthetic directory fixtures avoid password/Contact hooks; these
         # are not login accounts or proof of account provisioning/load capacity.

@@ -14,7 +14,7 @@ Engineering inventory, 13 October 2026. **Partial, not HR-approved policy or an 
 | Approval day 3 escalation | Current configured HR and Sector contacts with valid roles/manage scope | Follow-up escalation | HR must confirm contacts and escalation policy |
 | Approval day 4 warning | Same active authority audience as day 2 plus requester | Warning, not a rejection instruction | Fixed AR/EN payload, calendar and recipient checks; HR wording acceptance |
 | Approval day 5+ advisory expiry | Active authority audience, current HR/Sector and requester, deduplicated per user | Advisory only; no rejection, capacity release or payroll mutation | HR must confirm expiry policy; automatic rejection stays disabled |
-| Vacancy team added | Newly added team members | Job Opening reference and assignment update | Fixed AR/EN assignment templates implemented; removed-member/lead-only event policy and bulk-summary reconciliation remain |
+| Vacancy team added or role changed | Newly added members and retained members changing lead/support role; actor excluded | Single update has a scoped Job Opening reference; bulk queues one generic account-only summary per affected recipient | Reference-aligned implementation and native/browser evidence in S4_TEAM_NOTIFICATIONS_CHECKPOINT.md; no business identifiers/counts in batch summary; MOVE_ALL remains S5 |
 | Application ownership/task handoff | New owner; references opening without candidate identity or notes | Scoped work queue notification | Fixed AR/EN ownership template implemented; complete S5 candidate workspace and ownership acceptance remain |
 | Disabled recruiter fallback | Existing audited unassignment/save path | No silent owner replacement; explicitly unassigned work | Earlier scheduled fallback proven; full candidate-facing acceptance remains S5 |
 | Candidate/interview/offer/joining/lifecycle event families | Only existing foundational cases, not a completed event catalogue | Separate S5–S9 workflows | Specify and implement along with those workflows; do not mark complete from S4 evidence |
@@ -31,7 +31,7 @@ Terminal delivered history is preserved. A suppressed notification is never resu
 
 1. Review the fixed AR/EN ordinary-event, skipped-route and vacancy templates with HR; retain existing stored messages unchanged.
 2. Periodic catch-up now has 10 passing isolated checks in S4_INVITATION_CATCHUP_CHECKPOINT.md. Production worker monitoring/latency and workload acceptance remain.
-3. Use S4_REQUIREMENT_RECONCILIATION.md for the eight frozen S4 IDs; selector gap now has S4_FILTER_SELECTORS_CHECKPOINT.md evidence; finish event-policy gaps without hiding candidate-dependent clauses.
+3. Use S4_REQUIREMENT_RECONCILIATION.md for the eight frozen S4 IDs; selectors and assignment batching now have S4_FILTER_SELECTORS_CHECKPOINT.md and S4_TEAM_NOTIFICATIONS_CHECKPOINT.md evidence; retain HR policy acceptance and S5 handoff gaps without hiding candidate-dependent clauses.
 4. Continue S5 candidate workflows and their ownership/notification acceptance.
 
 External provider setup, recipients, consent/privacy rules, delivery failure handling and HR acceptance remain separate gates. Local capture does not satisfy external email delivery, and this matrix does not certify production security or 1,000+ account capacity.

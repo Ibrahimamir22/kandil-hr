@@ -99,8 +99,16 @@ class TestOwnership(TestRecruitmentCommands):
 			'reference_doctype': 'Job Opening', 'reference_name': opening,
 			'recipient': self.users['hr'],
 		}, fields=['name', 'subject', 'body'])
-		self.assertTrue(any(r.subject.startswith('Vacancy assigned /') for r in rows))
+		# The HR actor does not receive their own vacancy assignment. The other
+		# team member still receives it, and the later application owner is notified.
+		self.assertFalse(any(r.subject.startswith('Vacancy assigned /') for r in rows))
 		self.assertTrue(any(r.subject.startswith('Application assignment updated /') for r in rows))
+		team_rows = frappe.get_all('Kandil Notification Outbox', filters={
+			'reference_doctype': 'Job Opening', 'reference_name': opening,
+			'recipient': self.users['manager'], 'subject': 'Vacancy assigned / تم إسناد شاغر إليك',
+		}, fields=['name', 'subject', 'body'])
+		self.assertTrue(team_rows)
+		rows.extend(team_rows)
 		for row in rows:
 			self.assertRegex(row.subject, r'[\u0600-\u06ff]')
 			self.assertRegex(row.body, r'[\u0600-\u06ff]')

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "updated": "2026-10-13",
   "goal_status": "active",
-  "current_sprint": "S4",
+  "current_sprint": "S5",
   "baseline_commit": "4efb0526f9c27f2ff79af4a4b558c3822479cdab",
   "scope": "Custom AR/EN HR portal over Frappe HR; all 98 frozen reference requirements plus security/operational acceptance. Not the wider company platform.",
   "cadence": "Up to two-week review cycles; split large sprints. No fixed completion date or promise of equal effort. Re-estimate after S1 against measured throughput and external decisions.",
@@ -493,7 +493,11 @@
             "../portal/evidence/invitations-ab814b475cd6/visual-review.json",
             "S4_INVITATION_CATCHUP_CHECKPOINT.md",
             "evidence/invitation-catchup-065c904c1e8c.json",
-            "S4_REQUIREMENT_RECONCILIATION.md"
+            "S4_REQUIREMENT_RECONCILIATION.md",
+            "S4_TEAM_NOTIFICATIONS_CHECKPOINT.md",
+            "evidence/s2-regression-22b204bb8c4f.json",
+            "../portal/evidence/vacancy-teams-0b33c81000ba/results.json",
+            "../portal/evidence/vacancy-teams-0b33c81000ba/visual-review.json"
           ]
         },
         {
@@ -540,13 +544,13 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Scoped vacancy operations, dashboard, approval/inbox/deadline projections, local delivery/recovery, current-authority reminders, fixed bilingual historical templates and event-triggered invitations have recorded engineering evidence. Final invitation checkpoint passed 86 native and 23 HTTP/RQ/browser checks. Periodic invitation catch-up, complete event/selector coverage, S5 ownership and HR/IT acceptance remain open.",
-      "checkpoint": "S4_INVITATIONS_CHECKPOINT.md"
+      "progress": "Vacancy operations, scoped selectors, dashboard, inbox, scheduler recovery, authority-bound reminders/invitations and team batch summaries have engineering evidence. Latest checkpoint: 60 native and 37 browser checks with EN/AR visual review. S4 remains open for HR acceptance and shared S5 ownership/MOVE_ALL clauses; live email and release gates remain open.",
+      "checkpoint": "S4_TEAM_NOTIFICATIONS_CHECKPOINT.md"
     },
     {
       "id": "S5",
       "title": "Candidates and sourcing / المرشحون والمصادر",
-      "status": "planned",
+      "status": "in_progress",
       "depends_on": [
         "S4"
       ],
@@ -555,7 +559,11 @@
         {
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Person/application identity and migration contract prepared; schema and command implementation pending.",
+          "evidence": [
+            "S5_IMPLEMENTATION_BRIEF.md"
+          ]
         },
         {
           "id": "S5-02",
@@ -591,7 +599,9 @@
       "parallel_opportunity": "Recruiter UI, intake and sourcing can overlap once identity/privacy/API contracts are stable.",
       "external_decisions": [
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
-      ]
+      ],
+      "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
+      "progress": "Reference inspection and six-increment implementation contract prepared. Candidate identity schema, migration and full workspace implementation are pending. No S5 feature acceptance is claimed."
     },
     {
       "id": "S6",
@@ -935,8 +945,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Searchable scoped company/department/location vacancy selectors implemented. 31 native and 65 browser checks passed; both browser cohorts retired and source stable. All 98 requirements preserved.",
-    "evidence": "S4_FILTER_SELECTORS_CHECKPOINT.md",
-    "next": "Reconcile remaining vacancy team event policy against frozen reference intent, then implement S5 candidate sourcing/workspace and application ownership. HR/IT/security/capacity/release gates remain open."
+    "summary": "Reference-aligned recruiter team notifications: 60 native and 37 browser checks passed; final EN/AR screenshots reviewed. All 98 requirements preserved. S5 contract prepared, implementation pending.",
+    "evidence": "S4_TEAM_NOTIFICATIONS_CHECKPOINT.md",
+    "next": "Implement S5 person/application identity and guarded migration, followed by candidate workspace, sourcing and MOVE_ALL ownership transfer. HR/IT/security/capacity/release gates remain open."
   }
 }

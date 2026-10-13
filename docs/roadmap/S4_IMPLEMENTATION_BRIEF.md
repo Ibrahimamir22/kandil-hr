@@ -1,8 +1,10 @@
 # S4 — vacancy operations and notifications
 
-The [vacancy filter checkpoint](S4_FILTER_SELECTORS_CHECKPOINT.md) replaces exact-name company/department/location fields with scoped searchable selectors. **31 native and 65 browser checks passed**, including AR/EN, dependent resets, stale responses and lookup retry. S4 event-policy and HR acceptance, plus full S5 candidate workflows, remain open.
+The [team notification checkpoint](S4_TEAM_NOTIFICATIONS_CHECKPOINT.md) passed **60 native and 37 browser checks**, with inspected English desktop and Arabic mobile captures. Assignment notices exclude the actor, include lead/support changes and consolidate bulk updates into one summary per recipient. S4 business acceptance and recruiter-wide MOVE_ALL remain open. The [S5 implementation contract](S5_IMPLEMENTATION_BRIEF.md) defines the next candidate/person, application, sourcing and privacy work; that contract is planning, not a completed candidate workspace.
 
-The [scheduled invitation catch-up checkpoint](S4_INVITATION_CATCHUP_CHECKPOINT.md) adds **10 passed real scheduler/worker checks** for missed event jobs, later delegates and duplicate suppression in a separate sandbox. The [eight-ID reconciliation](S4_REQUIREMENT_RECONCILIATION.md) tracks the selector evidence and remaining event-policy/candidate-workspace gaps. **S4 remains in progress.**
+The [vacancy filter checkpoint](S4_FILTER_SELECTORS_CHECKPOINT.md) replaces exact-name company/department/location fields with scoped searchable selectors. **31 native and 65 browser checks passed**, including AR/EN, dependent resets, stale responses and lookup retry. S4 HR acceptance and shared ownership workflows remain open; full candidate work follows in S5.
+
+The [scheduled invitation catch-up checkpoint](S4_INVITATION_CATCHUP_CHECKPOINT.md) adds **10 passed real scheduler/worker checks** for missed event jobs, later delegates and duplicate suppression in a separate sandbox. The [eight-ID reconciliation](S4_REQUIREMENT_RECONCILIATION.md) tracks the selector evidence and remaining HR acceptance and candidate-workspace gaps. **S4 remains in progress.**
 
 The [event-triggered invitation checkpoint](S4_INVITATIONS_CHECKPOINT.md) verifies post-commit request/delegation jobs, current-authority recipients and bilingual inbox actions with 86 native and 23 HTTP/RQ/browser checks. Generation is event-triggered; delivery follows the outbox worker schedule. Periodic catch-up now has separate evidence; complete S4 acceptance remains open.
 

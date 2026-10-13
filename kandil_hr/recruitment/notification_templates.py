@@ -60,11 +60,17 @@ def vacant_heads(name, skipped):
 
 def vacancy_assignment(name):
     return ('Vacancy assigned / تم إسناد شاغر إليك',
-        f'Vacancy {name}: you have been added to the recruitment team. '
-        f'/ الشاغر {name}: تمت إضافتك إلى فريق التوظيف.')
+        f'Vacancy {name}: your recruitment team assignment was updated. '
+        f'/ الشاغر {name}: تم تحديث إسنادك في فريق التوظيف.')
 
 
 def application_assignment():
     return ('Application assignment updated / تم تحديث إسناد طلب ترشح',
         'Open the scoped application queue to review your assigned work. '
         '/ افتح قائمة طلبات الترشح ضمن صلاحياتك لمراجعة المهام المسندة إليك.')
+
+
+def vacancy_batch_assignment():
+    return ('Recruitment assignments updated / تم تحديث إسنادات التوظيف',
+        'Your vacancy team assignments were updated. Open Vacancies to review your current permitted work. '
+        '/ تم تحديث إسناداتك في فرق التوظيف. افتح الشواغر لمراجعة العمل المتاح ضمن صلاحياتك الحالية.')
