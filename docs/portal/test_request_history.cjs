@@ -4,7 +4,7 @@ const {execFileSync}=require('node:child_process');
 const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
 const app=path.resolve(__dirname,'../..'),dev=path.resolve(app,'../../../..'),run=crypto.randomBytes(6).toString('hex'),out=path.join(__dirname,'evidence',`request-history-${run}`);
 fs.mkdirSync(out,{recursive:true});const manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-portal-${run}.json`);
-const files=['frontend/portal/src/RequestHistory.tsx','frontend/portal/src/main.tsx','frontend/portal/src/portal.css','kandil_hr/public/portal/portal.js','kandil_hr/portal/request_history.py','kandil_hr/portal/request_history_fixture.py','kandil_hr/recruitment/command_audit.py','kandil_hr/recruitment/privacy.py','docs/portal/test_request_history.cjs'];
+const files=['frontend/portal/src/RequestHistory.tsx','frontend/portal/src/main.tsx','frontend/portal/src/portal.css','kandil_hr/public/portal/portal.js','kandil_hr/portal/request_history.py','kandil_hr/portal/request_history_fixture.py','kandil_hr/recruitment/command_audit.py','kandil_hr/recruitment/privacy.py','kandil_hr/recruitment/history_access.py','kandil_hr/recruitment/models.py','kandil_hr/recruitment/api.py','kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json','kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.json','docs/portal/test_request_history.cjs'];
 const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,f))).digest('hex')]));const source=hashes();
 let browser,page,data,cleanup;const checks=[],errors=[],failures=[],external=[];const prefix='kandil_hr.portal.request_history.';
 function bench(action){try{const raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.portal.request_history_fixture.'+action,'--kwargs',JSON.stringify({run_id:run})],{cwd:dev,encoding:'utf8',timeout:240000,stdio:['ignore','pipe','pipe']});return JSON.parse(raw.split('\n').filter(l=>l.startsWith('{')).at(-1))}catch(e){fs.writeFileSync(`/tmp/kandil-requests-${run}-${action}.txt`,String(e.stdout||'')+'\n'+String(e.stderr||''),{mode:0o600});throw Error('Private fixture '+action+' failed')}}
@@ -41,6 +41,19 @@ async function select(p,id){const response=p.waitForResponse(r=>r.url().includes
   check(lang+': outsider guessed event denied',(await get(outsider,prefix+'event',{name:data.history.name,event_id:data.history.return_event})).status===403);
   check(lang+': authorized reader cannot mix another request event',(await get(requester,prefix+'event',{name:data.history.name,event_id:data.history.other_event})).status===403);
   const raw=await requester.request.get('http://localhost:8102/api/resource/Kandil%20Command%20Audit/'+data.history.return_event);check(lang+': raw private audit access remains denied',raw.status()===403);
+  for(const p of [requester,hr,manager]){
+   const role=p===requester?'requester':p===hr?'HR':'manager';
+   for(const endpoint of ['/api/resource/Kandil%20Hiring%20Request/','/api/v2/document/Kandil%20Hiring%20Request/']){
+    const r=await p.request.get('http://localhost:8102'+endpoint+data.history.name),j=await r.json(),v=j.data;
+    check(lang+': '+role+' '+endpoint+' excludes embedded raw history',r.status()===200&&!v.submitted_snapshot&&!v.route_snapshot&&v.approval_steps.every(s=>!s.reviewed_snapshot));
+   }
+  }
+  const revisions=await get(requester,'frappe.client.get_list',{doctype:'Kandil Request Revision',fields:JSON.stringify(['name','snapshot_json']),filters:JSON.stringify({request:data.history.name}),limit_page_length:'100'});
+  check(lang+': authorized native immutable revisions remain available',revisions.status===200&&revisions.data.length>0&&revisions.data.every(r=>JSON.parse(r.snapshot_json).name===data.history.name));
+  const rev=revisions.data[0];
+  const native=await get(requester,'frappe.client.get',{doctype:'Kandil Request Revision',name:rev.name});
+  check(lang+': native detail preserves original revision bytes',native.status===200&&native.data.snapshot_json===rev.snapshot_json);
+  check(lang+': outsider cannot read native revision',(await get(outsider,'frappe.client.get',{doctype:'Kandil Request Revision',name:rev.name})).status===403);
   check(lang+': bounded page and second page are usable',(await get(requester,prefix+'events',{name:data.history.name,page_length:'2',start:'2'})).data.rows.length===2);
   for(const p of [requester,hr,manager,outsider])await p.context().close();
  }

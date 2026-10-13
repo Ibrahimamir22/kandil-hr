@@ -160,18 +160,17 @@ def validate_request(doc):
 
 
 def revision_permission(doc, user=None, ptype=None):
-	from kandil_hr.pilot.permissions import request_permission
+	from kandil_hr.recruitment.history_access import allowed
 
 	if ptype not in ("read", "select", "print"):
 		return False
-	return request_permission(frappe.get_doc("Kandil Hiring Request", doc.request), user, "read")
+	return allowed(doc, user)
 
 
 def revision_query(user=None):
-	from kandil_hr.pilot.permissions import request_query
+	from kandil_hr.recruitment.history_access import condition
 
-	condition = request_query(user) or "1=1"
-	return f"`tabKandil Request Revision`.request IN (SELECT name FROM `tabKandil Hiring Request` WHERE {condition})"
+	return condition(user)
 
 
 def authority_query(user=None):

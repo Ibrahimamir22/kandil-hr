@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "scope": "Manual inspection of existing history view after backend access changes",
+  "captures": [
+    {
+      "file": "fields-ar.png",
+      "assessment": "Arabic mobile fields show both before/after columns, wrapped synthetic references and no clipped columns."
+    },
+    {
+      "file": "snapshot-en.png",
+      "assessment": "English capture shows all quantity columns, decision actor/principal and frozen policy."
+    }
+  ],
+  "limits": [
+    "No UI design changes in this checkpoint. Full-page normal UI and other captures retained by browser harness. Element captures hide the sticky top bar during capture only."
+  ]
+}

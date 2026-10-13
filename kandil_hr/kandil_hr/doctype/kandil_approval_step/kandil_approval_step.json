@@ -71,7 +71,8 @@
       "label": "Reviewed Snapshot",
       "fieldtype": "Code",
       "hidden": 1,
-      "read_only": 1
+      "read_only": 1,
+      "permlevel": 1
     },
     {
       "fieldname": "waiting_since",

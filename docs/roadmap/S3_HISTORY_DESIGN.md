@@ -1,6 +1,6 @@
 # S3 remaining frozen-history implementation
 
-Inspected against the current source on 13 October 2026. This remains the full implementation contract. The modern command before/after adapter and AR/EN review screen are now implemented in `portal/request_history.py` and `RequestHistory.tsx`; see [command-history checkpoint](S3_COMMAND_HISTORY_CHECKPOINT.md). Standalone immutable revision navigation, arbitrary cross-event comparisons and native legacy-history scope hardening are not yet complete.
+Inspected against the current source on 13 October 2026. This remains the full implementation contract. The modern command before/after adapter and AR/EN review screen are now implemented in `portal/request_history.py` and `RequestHistory.tsx`; see [command-history checkpoint](S3_COMMAND_HISTORY_CHECKPOINT.md). The first native scope/embedded-snapshot guards are recorded in [native history checkpoint](S3_NATIVE_HISTORY_CHECKPOINT.md). Standalone immutable revision navigation, arbitrary cross-event comparisons and remaining native nested-reference/file/reporting guards are not yet complete.
 
 ## Current evidence and sources
 

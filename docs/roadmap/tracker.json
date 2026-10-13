@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "HR review, return/revise, cancellation, approved corrections and linked amendments are connected. The request register and recorded command before/after comparisons now show old reviewed content, requested/proposed/approved amounts, steps and frozen policy. Standalone revisions, cross-event comparisons, native legacy-history hardening and expanded authority history acceptance remain open.",
+          "progress": "HR operations, request register and recorded command before/after comparisons are connected. Native revisions now check historical department/current references; embedded raw snapshots are omitted from ordinary request reads and command replies. Standalone revision navigation, cross-event comparisons, remaining nested raw-reference/file/reporting guards and expanded authority-history acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -288,7 +288,11 @@
             "evidence/s2-regression-00357f5b2377.json",
             "evidence/s2-regression-1819a9f40497.json",
             "../portal/evidence/request-history-c4ef8ae1fc60/results.json",
-            "../portal/evidence/browser-82c314f7038a/regression.json"
+            "../portal/evidence/browser-82c314f7038a/regression.json",
+            "S3_NATIVE_HISTORY_CHECKPOINT.md",
+            "evidence/s2-regression-8470ece98ed6.json",
+            "../portal/evidence/request-history-c4222493ea82/results.json",
+            "../portal/evidence/browser-6665fbf73b5f/regression.json"
           ]
         },
         {
@@ -309,7 +313,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Slices 1–4 and the slice 5 request register are implemented. Modern command before/after history is now connected and tested. Standalone revision history, cross-event comparisons, native legacy-history access hardening and external acceptance remain open.",
+      "progress": "Modern command history and the first native snapshot protections are implemented and tested. Standalone revision navigation, cross-event comparisons, remaining native reference paths and full S3 acceptance remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -750,8 +754,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Modern request command before/after history connected in AR/EN with historical/current scope and restricted references. 83 distinct native and 61 final browser checks passed. Standalone revision navigation, cross-event comparison, native legacy-history hardening and full S3 acceptance remain open.",
-    "evidence": "S3_COMMAND_HISTORY_CHECKPOINT.md",
-    "next": "Connect standalone revision metadata/detail and submitted-versus-decision comparisons; harden native legacy history scope/reference reads while preserving safe immutable history access."
+    "summary": "Native historical scope/current-reference checks and protected embedded snapshots: 79 native and 79 final browser checks passed. Safe immutable revisions and AR/EN comparisons preserved. Remaining raw-reference paths and full S3 acceptance remain open.",
+    "evidence": "S3_NATIVE_HISTORY_CHECKPOINT.md",
+    "next": "Connect standalone revision navigation and selected submission-versus-decision comparisons; complete remaining native nested-reference/file/reporting checks and expanded authority-history acceptance."
   }
 }

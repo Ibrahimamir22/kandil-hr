@@ -163,3 +163,24 @@ class KandilHRNote(Document):
 
 	def on_trash(self):
 		frappe.throw(_("Confidential HR notes cannot be deleted."), frappe.PermissionError)
+
+
+def command_response(result):
+	"""Project only the public command return, including receipt replays.
+
+	Audit snapshots/receipts retain their original bytes and internal consumers
+	still use the full document. Ordinary callers review history through the
+	permission-checked revision or portal endpoints instead of nested raw JSON.
+	"""
+	if not isinstance(result, dict) or result.get("doctype") != "Kandil Hiring Request":
+		return result
+	if frappe.session.user == "Administrator":
+		return result
+	public = dict(result)
+	for key in ("submitted_snapshot", "route_snapshot"):
+		public.pop(key, None)
+	public["approval_steps"] = [
+		{key: value for key, value in row.items() if key != "reviewed_snapshot"}
+		for row in result.get("approval_steps", [])
+	]
+	return public

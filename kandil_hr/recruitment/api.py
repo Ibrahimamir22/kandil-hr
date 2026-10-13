@@ -63,7 +63,8 @@ def command(name, operation, command_id, expected_version, payload, handler):
 		frappe.local.document_cache = {}
 
 	try:
-		return _command(name, operation, command_id, expected_version, payload, handler, state)
+		from kandil_hr.recruitment.privacy import command_response
+		return command_response(_command(name, operation, command_id, expected_version, payload, handler, state))
 	except frappe.QueryDeadlockError:
 		raise  # Outer transactional_retry owns full rollback after an InnoDB deadlock.
 	except HeadcountDenied as denial:

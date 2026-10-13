@@ -105,7 +105,8 @@
       "label": "Submitted Snapshot",
       "fieldtype": "Code",
       "read_only": 1,
-      "hidden": 1
+      "hidden": 1,
+      "permlevel": 1
     },
     {
       "fieldname": "decision_note",
@@ -211,7 +212,8 @@
       "label": "Route Snapshot",
       "fieldtype": "Code",
       "hidden": 1,
-      "read_only": 1
+      "read_only": 1,
+      "permlevel": 1
     }
   ],
   "permissions": [
