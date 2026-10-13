@@ -388,8 +388,8 @@
         {
           "id": "S4-01",
           "description": "Complete vacancy lead/team assignment, unassigned queue, bulk actions, priority and reasoned pinning.",
-          "status": "in_progress",
-          "progress": "Queue, complete-team editing, paginated eligible recruiter lookup and bulk portal verified with current resource/identity/authority checks on writes and receipt replay. Reasoned priority pinning remains open; S4-01 is not complete.",
+          "status": "complete",
+          "progress": "Engineering complete: scoped queue, complete-team/bulk assignment and reasoned temporary priority pins are connected; expiry is evaluated by Cairo date and pause/freeze preserve zero priority. 65 native, 91 dedicated AR/EN lifecycle browser, 24 original-journey and 27 vacancy-queue browser checks passed across documented checkpoints. HR/IT acceptance, broader dashboard/inbox/delivery and production security/load gates remain open.",
           "evidence": [
             "S4_VACANCY_QUEUE_CHECKPOINT.md",
             "evidence/s2-regression-4b56e52fd719.json",
@@ -403,13 +403,28 @@
             "../portal/evidence/vacancy-teams-a4b91110e993/results.json",
             "../portal/evidence/vacancy-teams-a4b91110e993/visual-review.json",
             "../portal/evidence/browser-dd30d7e2c0ad/regression.json",
-            "../portal/evidence/vacancies-f7b3ec1a07ae/results.json"
+            "../portal/evidence/vacancies-f7b3ec1a07ae/results.json",
+            "S4_VACANCY_LIFECYCLE_CHECKPOINT.md",
+            "evidence/s2-regression-1aa108264075.json",
+            "../portal/evidence/vacancy-operations-08de66d5470b/results.json",
+            "../portal/evidence/vacancy-operations-08de66d5470b/visual-review.json",
+            "../portal/evidence/browser-b0c86604b69a/regression.json",
+            "../portal/evidence/vacancies-cff2f841024f/results.json"
           ]
         },
         {
           "id": "S4-02",
           "description": "Expose pause/resume/close/cancel and partial-fill progress without corrupting capacity.",
-          "status": "planned"
+          "status": "complete",
+          "progress": "Engineering complete: reviewed Open/Hold/Resume/Freeze/Unfreeze/Close/Cancel controls use existing transactional commands; closure releases only unfilled seats, preserves actual joiners and blocks unresolved commitments. 65 native, 91 dedicated AR/EN lifecycle browser, 24 original-journey and 27 vacancy-queue browser checks passed across documented checkpoints. HR/IT acceptance, broader dashboard/inbox/delivery and production security/load gates remain open.",
+          "evidence": [
+            "S4_VACANCY_LIFECYCLE_CHECKPOINT.md",
+            "evidence/s2-regression-1aa108264075.json",
+            "../portal/evidence/vacancy-operations-08de66d5470b/results.json",
+            "../portal/evidence/vacancy-operations-08de66d5470b/visual-review.json",
+            "../portal/evidence/browser-b0c86604b69a/regression.json",
+            "../portal/evidence/vacancies-cff2f841024f/results.json"
+          ]
         },
         {
           "id": "S4-03",
@@ -833,8 +848,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Complete-team editing, paginated eligible recruiter lookup and atomic bulk assignment verified alongside the vacancy queue. 77 distinct native cases and 80 final browser checks across documented checkpoints; HR/IT and production acceptance remain open.",
-    "evidence": "S4_TEAM_ASSIGNMENT_CHECKPOINT.md",
-    "next": "Finish pin and lifecycle controls, then server-wide dashboard, action inbox and scheduled delivery verification. Preserve all 98 requirements and external acceptance gates."
+    "summary": "Reviewed vacancy lifecycle and priority-pin controls verified with 65 native and 142 final browser checks across documented runs; full S4, HR/IT and production acceptance remain open.",
+    "evidence": "S4_VACANCY_LIFECYCLE_CHECKPOINT.md",
+    "next": "Implement scoped company-wide dashboard/search and action inbox, then isolated business-calendar scheduling, retry/restart and delivery verification. Preserve all 98 requirements and external acceptance gates."
   }
 }

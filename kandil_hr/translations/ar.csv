@@ -1349,3 +1349,8 @@ This vacancy does not match the reviewed request and location.,هذا الشاغ
 Every vacancy requires its request and reviewed version.,كل شاغر يتطلب الطلب والإصدار محل المراجعة.
 Vacancies from the same request need the same reviewed version.,شواغر الطلب الواحد تتطلب الإصدار نفسه محل المراجعة.
 The vacancy selection is too large.,عدد الشواغر المحددة أكبر من الحد المسموح.
+Give a reason between 1 and 2000 characters.,اكتب سببًا من حرف واحد إلى ٢٠٠٠ حرف.
+Choose a valid pin expiry date.,اختر تاريخ انتهاء صالحًا لتثبيت الأولوية.
+This action is unavailable for the current vacancy state.,هذا الإجراء غير متاح لحالة الشاغر الحالية.
+The vacancy quantities need reconciliation before closing.,يلزم مطابقة أعداد الشاغر قبل إغلاقه.
+Only active or paused vacancies can have a priority pin changed.,يمكن تغيير تثبيت الأولوية للشواغر النشطة أو المتوقفة مؤقتًا فقط.

@@ -1,0 +1,14 @@
+{
+  "scope": "Minimal local headless Chrome DOM reproduction; no HR data or service calls",
+  "without_wrapping_label": {
+    "playwright_isDisabled": true,
+    "native_disabled": true,
+    "native_matches_disabled": true
+  },
+  "with_wrapping_label": {
+    "playwright_isDisabled": false,
+    "native_disabled": true,
+    "native_matches_disabled": true
+  },
+  "fix": "Assert native disabled and :disabled directly on the option, not Playwright label retargeting. Product code unchanged."
+}

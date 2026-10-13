@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-13",
+  "method": "Direct visual inspection of final full-page browser screenshots",
+  "screens": [
+    {
+      "path": "close-ar.png",
+      "sha256": "ff0964e4fff977c8d58e807b36bbbb08f8eba7c699486aab51d57023cacb0981"
+    },
+    {
+      "path": "pin-en.png",
+      "sha256": "e84172200c736fcaefc5fcae684fb6b7352bd7952c52f7ff96d1b6f7a5957133"
+    }
+  ],
+  "observations": [
+    "Arabic 390px RTL closure review: visible quantities, released-seat and parent-state explanation, edit and confirm controls; no clipping or horizontal overflow.",
+    "English 1440px priority review: action, reason, Cairo expiry and unchanged capacity explanation readable with clear confirmation.",
+    "Long synthetic company/location labels wrap; mobile metrics wrap to another row. Test labels remain explicitly synthetic."
+  ],
+  "limits": [
+    "Visual review of these two states only; does not substitute for HR terminology acceptance, full accessibility audit or load certification."
+  ]
+}

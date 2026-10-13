@@ -1,0 +1,366 @@
+{
+  "status": "FAIL",
+  "run_id": "35cebda6d5bb",
+  "checked_at": "2026-10-13T11:08:22.786Z",
+  "checks": [
+    {
+      "name": "Isolated lifecycle cohort has six openings and ordinary role accounts",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Open preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Open persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Open preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Pin preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Pin screen direction and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost pin response locks edits and retains exact retry",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Pin persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Pin preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: pin stores selected Cairo date",
+      "status": "PASS"
+    },
+    {
+      "name": "Pin retry reuses identical command and applies exactly once",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Hold preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Hold persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Hold preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paused/frozen priority is zero after Hold",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Freeze preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Freeze persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Freeze preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paused/frozen priority is zero after Freeze",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unfreeze preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unfreeze persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unfreeze preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: paused/frozen priority is zero after Unfreeze",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Resume preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Resume persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Resume preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unpin preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unpin persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Unpin preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "en: removing pin clears expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Close preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Close screen direction and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "en: closure review shows two released seats and parent retained",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Close persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Close releases only its remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Close parent status is correct",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Cancel preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "en: last location review explains parent closure",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Cancel persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Cancel releases only its remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "en: Cancel parent status is correct",
+      "status": "PASS"
+    },
+    {
+      "name": "en: terminal opening has no actions or pin changes",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Open preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Open persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Open preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Pin preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Pin screen direction and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Pin persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Pin preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: pin stores selected Cairo date",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Hold preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Hold persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Hold preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paused/frozen priority is zero after Hold",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Freeze preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Freeze persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Freeze preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paused/frozen priority is zero after Freeze",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unfreeze preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unfreeze persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unfreeze preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: paused/frozen priority is zero after Unfreeze",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Resume preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Resume persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Resume preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unpin preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unpin persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Unpin preserves headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: removing pin clears expiry",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Close preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Close screen direction and no horizontal overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: closure review shows two released seats and parent retained",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Close persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Close releases only its remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Close parent status is correct",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Cancel preview performs no mutation",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: last location review explains parent closure",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Cancel persists expected state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Cancel releases only its remaining seats",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: Cancel parent status is correct",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: terminal opening has no actions or pin changes",
+      "status": "PASS"
+    },
+    {
+      "name": "Lifecycle browser failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "Unresolved candidates disable closure and cancellation in UI"
+    }
+  ],
+  "cleanup": {
+    "run_id": "35cebda6d5bb",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/api.py": "93e4dc6aa80b09f75b04a0b40509a1b25d9ab6fdb6b985e5a8b7b411c7647fa5",
+    "kandil_hr/recruitment/vacancies.py": "bee043a5a2df2490b17e8eb6a903b04772e13ecae7be3dd59a81a7116dfa1028",
+    "kandil_hr/recruitment/guards.py": "fea3e1183e317ae62e22263f47aaec768c51549815e90982b9906c493debfd98",
+    "kandil_hr/portal/vacancies.py": "441da5b4c414392eba84cae30449c85d714f8f05408f2c257285df01915cf8b5",
+    "kandil_hr/portal/vacancy_operations.py": "4d0b82d230ff40db73eb5baae2e26eda21ef77b364f4a18e572f8672ceca5f73",
+    "kandil_hr/portal/vacancy_operation_fixture.py": "5da6d34b7d5de6dc1cb469d9a190a29a062f2b5a403f9f66347deaa645723f5a",
+    "kandil_hr/portal/fixture.py": "9368f21133c656996df61b3c1682424a7104c400a5be3af43dd241dc78ea7b86",
+    "kandil_hr/portal/test_vacancy_operations.py": "a5e39727ba2a19001275a7329c32e4b2dd5524469eed6ffbb52ae6997cff1713",
+    "frontend/portal/src/VacancyActions.tsx": "04a313304ea3ec0725bb425984d5c4f49d50749f3fd2f070e065dfd1fed11a17",
+    "frontend/portal/src/VacancyQueue.tsx": "3589904cab4309c641d6e67ffc3a94f6488f4f9ab08967904f6fa80d096a85d2",
+    "frontend/portal/src/main.tsx": "43807d95d6d1cbfaed9ae7e8b06c2ebcb901d2833ec474f66062ad7e19f27bb0",
+    "frontend/portal/src/portal.css": "582e3ce4cc07045355dcf81cf8f5815e028a709147155f8e34ea3b000046d27f",
+    "kandil_hr/public/portal/portal.js": "cf01b46d466733e8dc741ff10f6ee632a5288b761d2f7f80c8930b4dbb394707",
+    "docs/portal/test_vacancy_operations.cjs": "0f2a10b31a6859534f9e095f3f7ac5d45cfe9e8c1a33b50becbf1316b64c24d9"
+  },
+  "limits": [
+    "Synthetic personal-session AR/EN lifecycle and priority controls. Partial joining retained by native rollback test; sustained load and HR acceptance remain separate."
+  ]
+}

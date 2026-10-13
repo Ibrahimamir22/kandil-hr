@@ -1,6 +1,6 @@
 # S4 — vacancy operations and notifications
 
-13 October 2026. Delivery contract derived from the custom portal and domain commands. The dedicated read model and AR/EN queue are now implemented; queue evidence is in [the vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md), and complete-team editing/bulk assignment with paginated recruiter lookup is in [the team checkpoint](S4_TEAM_ASSIGNMENT_CHECKPOINT.md). S3 engineering verification passed separately; HR/IT and production gates remain open.
+13 October 2026. Delivery contract derived from the custom portal and domain commands. The dedicated read model and AR/EN queue are now implemented; queue evidence is in [the vacancy checkpoint](S4_VACANCY_QUEUE_CHECKPOINT.md), and complete-team editing/bulk assignment with paginated recruiter lookup is in [the team checkpoint](S4_TEAM_ASSIGNMENT_CHECKPOINT.md). Reviewed lifecycle/pin controls are recorded in [the lifecycle checkpoint](S4_VACANCY_LIFECYCLE_CHECKPOINT.md). S3 engineering verification passed separately; HR/IT and production gates remain open.
 
 ## Scope and existing code
 

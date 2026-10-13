@@ -82,3 +82,5 @@
 @media(max-width:640px){.team-selected li,.team-results article{align-items:flex-start;flex-direction:column}.team-directory{padding:10px}.team-editor .toolbar{flex-wrap:wrap}.team-directory .pagination{align-items:flex-start;gap:10px}.team-directory .pagination .actions{flex-wrap:wrap}.team-current{max-height:240px}}
 
 .team-current-members{list-style:none;margin:0;padding:0}.team-current-members li{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-block:6px}.team-current-members bdi{overflow-wrap:anywhere}
+
+.vacancy-actions .card-head,.vacancy-card .form-footer{flex-wrap:wrap;gap:10px}.vacancy-actions h2:focus{outline:2px solid var(--accent,#a91923);outline-offset:4px}.vacancy-actions p,.vacancy-effect{overflow-wrap:anywhere}.vacancy-actions .field{margin-block:18px}.vacancy-effect p{margin-block:8px}.vacancy-actions select{max-width:100%}

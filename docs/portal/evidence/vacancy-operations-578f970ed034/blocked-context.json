@@ -1,0 +1,100 @@
+{
+  "context": {
+    "name": "bh37kqa25j",
+    "opening_name": "HR-OPN-2026-0418",
+    "expected_version": "2026-10-13 14:09:30.092963",
+    "title": "Vacancy operations / إدارة الشواغر blocked",
+    "company": "Kandil PORTAL TEST 578f970ed034",
+    "department": "الإنتاج · PORTAL-578f970ed034 - P578f9",
+    "branch": "العبور · 578f970ed034",
+    "state": "Open",
+    "parent_status": "Approved",
+    "approved": 2,
+    "joined": 0,
+    "closed": 0,
+    "remaining": 2,
+    "lead_ready": true,
+    "unresolved_candidates": true,
+    "actions": [
+      {
+        "action": "Close",
+        "target": "Closed",
+        "allowed": false,
+        "blocked_by": "unresolved_candidates",
+        "releases": 2,
+        "closes_parent": false
+      },
+      {
+        "action": "Cancel",
+        "target": "Cancelled",
+        "allowed": false,
+        "blocked_by": "unresolved_candidates",
+        "releases": 2,
+        "closes_parent": false
+      },
+      {
+        "action": "Hold",
+        "target": "On Hold",
+        "allowed": true,
+        "blocked_by": null,
+        "releases": 0,
+        "closes_parent": false
+      },
+      {
+        "action": "Freeze",
+        "target": "Frozen",
+        "allowed": true,
+        "blocked_by": null,
+        "releases": 0,
+        "closes_parent": false
+      }
+    ],
+    "can_pin": true,
+    "pin_until": null,
+    "pin_reason": "",
+    "as_of": "2026-10-13",
+    "priority": {
+      "score": 20,
+      "parts": [
+        {
+          "reason": "classification",
+          "points": 20
+        }
+      ],
+      "age_days": 0,
+      "due_days": null
+    }
+  },
+  "options": [
+    {
+      "value": "",
+      "disabled": false,
+      "text": "Choose an action"
+    },
+    {
+      "value": "Close",
+      "disabled": true,
+      "text": "Close vacancy — Resolve candidate and offer commitments first"
+    },
+    {
+      "value": "Cancel",
+      "disabled": true,
+      "text": "Cancel vacancy — Resolve candidate and offer commitments first"
+    },
+    {
+      "value": "Hold",
+      "disabled": false,
+      "text": "Put on hold"
+    },
+    {
+      "value": "Freeze",
+      "disabled": false,
+      "text": "Freeze vacancy"
+    },
+    {
+      "value": "Pin",
+      "disabled": false,
+      "text": "Set temporary priority pin"
+    }
+  ]
+}

@@ -14,6 +14,48 @@ from kandil_hr.recruitment.priority import score
 ACTIVE = ("Approved", "Open", "Partially Filled", "On Hold", "Frozen")
 
 
+def lifecycle_targets(opening):
+	"""Shared domain transitions for execution and read-only portal review."""
+	state = opening.custom_kandil_vacancy_state or "Approved"
+	if state not in ACTIVE:
+		return {}
+	targets = {"Close": "Closed", "Cancel": "Cancelled"}
+	if state == "Approved":
+		targets["Open"] = "Open"
+	if state in ("Approved", "Open", "Partially Filled"):
+		targets["Hold"] = "On Hold"
+	if state != "Frozen":
+		targets["Freeze"] = "Frozen"
+	if state == "On Hold":
+		target = opening.custom_kandil_before_pause or "Approved"
+		if target in ("Approved", "Open", "Partially Filled"):
+			targets["Resume"] = target
+	if state == "Frozen":
+		target = opening.custom_kandil_before_freeze or "Approved"
+		if target in ("Approved", "Open", "Partially Filled", "On Hold"):
+			targets["Unfreeze"] = target
+	return targets
+
+
+def valid_reason(reason):
+	if not isinstance(reason, str) or not reason.strip() or len(reason) > 2000:
+		frappe.throw(_("Give a reason between 1 and 2000 characters."))
+
+
+def valid_pin_date(pin_until):
+	from datetime import date
+	if pin_until in (None, ""):
+		return
+	if not isinstance(pin_until, str) or len(pin_until) != 10:
+		frappe.throw(_("Choose a valid pin expiry date."))
+	try:
+		value = date.fromisoformat(pin_until)
+	except ValueError:
+		frappe.throw(_("Choose a valid pin expiry date."))
+	if value < getdate(today()):
+		frappe.throw(_("A pin requires a reason and a current or future expiry date."))
+
+
 def require_hr():
 	if "Kandil Recruiter" not in frappe.get_roles():
 		frappe.throw(_("Only authorized HR recruiters may manage vacancies."), frappe.PermissionError)
@@ -89,52 +131,32 @@ def set_state(name, opening_name, action, reason, command_id, expected_version):
 	def act(doc):
 		opening, line, cap = opening_for(doc, opening_name)
 		state = opening.custom_kandil_vacancy_state or "Approved"
-		if not reason.strip():
-			frappe.throw(_("A reason is required."))
+		valid_reason(reason)
+		targets = lifecycle_targets(opening)
+		if not isinstance(action, str) or action not in targets:
+			frappe.throw(_("This action is unavailable for the current vacancy state."))
 		if action == "Open":
 			from kandil_hr.foundation.teams import effective_lead
-
-			if state != "Approved" or not effective_lead(opening):
-				frappe.throw(_("Assign a lead before opening an approved vacancy."))
 			from kandil_hr.foundation.mutation_access import assert_current_request_scope
-
-			assert_current_request_scope(
-				doc, user=opening.custom_kandil_lead, required_roles=("Kandil Recruiter",)
-			)
-			opening.custom_kandil_vacancy_state = "Open"
+			if not effective_lead(opening):
+				frappe.throw(_("Assign a lead before opening an approved vacancy."))
+			assert_current_request_scope(doc, user=opening.custom_kandil_lead, required_roles=("Kandil Recruiter",))
 			opening.custom_kandil_started_on = today()
 		elif action == "Hold":
-			if state not in ("Approved", "Open", "Partially Filled"):
-				frappe.throw(_("This vacancy cannot be put on hold."))
 			opening.custom_kandil_before_pause = state
-			opening.custom_kandil_vacancy_state = "On Hold"
-		elif action == "Resume":
-			if state != "On Hold":
-				frappe.throw(_("Only a held vacancy can resume."))
-			opening.custom_kandil_vacancy_state = opening.custom_kandil_before_pause or "Approved"
 		elif action == "Freeze":
-			if state not in ACTIVE or state == "Frozen":
-				frappe.throw(_("This vacancy cannot be frozen."))
 			opening.custom_kandil_before_freeze = state
-			opening.custom_kandil_vacancy_state = "Frozen"
-		elif action == "Unfreeze":
-			if state != "Frozen":
-				frappe.throw(_("Only a frozen vacancy can be unfrozen."))
-			opening.custom_kandil_vacancy_state = opening.custom_kandil_before_freeze or "Approved"
 		elif action in ("Close", "Cancel"):
-			if state not in ACTIVE:
-				frappe.throw(_("This vacancy is already closed."))
 			from kandil_hr.recruitment.guards import resolved_candidates
-
 			resolved_candidates(opening.name)
 			remaining = cint(line.approved_qty) - cint(line.joined_qty) - cint(line.closed_qty)
+			if remaining < 0:
+				frappe.throw(_("The vacancy quantities need reconciliation before closing."))
 			change_capacity(cap, opened=-remaining)
 			line.closed_qty = cint(line.closed_qty) + remaining
-			opening.custom_kandil_vacancy_state = "Closed" if action == "Close" else "Cancelled"
 			if all(cint(x.joined_qty) + cint(x.closed_qty) >= cint(x.approved_qty) for x in doc.lines):
 				doc.status = "Closed"
-		else:
-			frappe.throw(_("Unknown vacancy action."))
+		opening.custom_kandil_vacancy_state = targets[action]
 		opening.status = (
 			"Open" if opening.custom_kandil_vacancy_state in ("Open", "Partially Filled") else "Closed"
 		)
@@ -225,8 +247,10 @@ def pin(name, opening_name, pin_until, reason, command_id, expected_version):
 
 	def act(doc):
 		opening, _line, _cap = opening_for(doc, opening_name)
-		if not reason.strip() or (pin_until and getdate(pin_until) < getdate(today())):
-			frappe.throw(_("A pin requires a reason and a current or future expiry date."))
+		valid_reason(reason)
+		valid_pin_date(pin_until)
+		if opening.custom_kandil_vacancy_state not in ACTIVE:
+			frappe.throw(_("Only active or paused vacancies can have a priority pin changed."))
 		opening.custom_kandil_pin_until = pin_until or None
 		opening.custom_kandil_pin_reason = reason
 		opening.custom_kandil_priority_score = score(

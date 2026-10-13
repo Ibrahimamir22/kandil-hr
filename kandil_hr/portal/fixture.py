@@ -143,7 +143,9 @@ def cleanup(run_id):
         with acting_as(data['users']['hr']['email']):
             for name in names:
                 doc = frappe.get_doc('Kandil Hiring Request', name)
-                if doc.status != 'Cancelled':
+                # A terminal closed fixture already released its remaining seats.
+                # Preserve that history; the final zero-ledger check still applies.
+                if doc.status not in ('Cancelled', 'Closed'):
                     api.cancel_request(name, uuid.uuid4().hex, str(doc.modified),
                                        'Synthetic portal regression complete; history retained')
         for account in data['users'].values():
