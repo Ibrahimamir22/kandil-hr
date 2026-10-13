@@ -1,0 +1,189 @@
+{
+  "status": "PASS",
+  "run_id": "23b1cb057901",
+  "checked_at": "2026-10-13T00:07:34.586Z",
+  "checks": [
+    {
+      "name": "en: HR sees first 25 of all 29 permitted requests",
+      "status": "PASS"
+    },
+    {
+      "name": "en: second page contains four distinct rows and stable total",
+      "status": "PASS"
+    },
+    {
+      "name": "en: search finds old request beyond first page",
+      "status": "PASS"
+    },
+    {
+      "name": "en: literal wildcard search finds exact title",
+      "status": "PASS"
+    },
+    {
+      "name": "en: search view fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: register opens actual saved detail",
+      "status": "PASS"
+    },
+    {
+      "name": "en: My Requests shows two HR-owned requests",
+      "status": "PASS"
+    },
+    {
+      "name": "en: status intersects My Requests and gives honest empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "en: scoped Pending filter finds requester submission",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester total excludes HR-owned requests",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester own view paginates",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester own second page contains remaining two",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary manager sees routed request only",
+      "status": "PASS"
+    },
+    {
+      "name": "en: manager own view does not claim routed request is theirs",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider sees no rows or leaked count",
+      "status": "PASS"
+    },
+    {
+      "name": "en: guessing another request detail remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: forged view is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HR sees first 25 of all 29 permitted requests",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: second page contains four distinct rows and stable total",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: search finds old request beyond first page",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: literal wildcard search finds exact title",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: search view fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: register opens actual saved detail",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: My Requests shows two HR-owned requests",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: status intersects My Requests and gives honest empty state",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: scoped Pending filter finds requester submission",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester total excludes HR-owned requests",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester own view paginates",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester own second page contains remaining two",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary manager sees routed request only",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: manager own view does not claim routed request is theirs",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider sees no rows or leaked count",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: guessing another request detail remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: forged view is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation clears visible rows and total",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation denies direct saved record",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest listing denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS exceptions, server errors or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "23b1cb057901",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestRegister.tsx": "1b26d12efbb6d47e8ed18af2c7207f64e3102d6aa407de5dac7aca8ad6bbfdbb",
+    "frontend/portal/src/main.tsx": "5f37870213976a00b582d47b534c8db3d539dd363f80c99d8d67b47a8e1ffdae",
+    "frontend/portal/src/portal.css": "c01d87fa59d288ae16677e6b01f1b56cf8e579e5f7945a82bacda1149bbfb7bc",
+    "kandil_hr/public/portal/portal.js": "3704e35e0874ab1ebd1d6dfc618667b9545069fb0fae6dee948a178109f1b33d",
+    "kandil_hr/portal/requests.py": "f62b121053e13805e493ac9a79f09e4f568d1c02d2420042ee14da5d0a0d04e0",
+    "kandil_hr/portal/requests_fixture.py": "4ed118bb19083caa248e10b015a8ba089e789e74b790eb3c4807795dad0eaeb3",
+    "kandil_hr/portal/api.py": "40ab89e27727ff687b67c425d07ccbeb7c4ae1a669612e32df988f7655840437",
+    "kandil_hr/pilot/permissions.py": "2cc2b192fc9e2a6971a1c1c3e8230a79ab83718ce84e69da8d86ceb898d234b1",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/translations/ar.csv": "1196cc82697b5827bc75d93187b1638003ff6b7e9cf502278ddf2483636eb88e",
+    "docs/portal/test_requests.cjs": "a3fbf7727382835fccbb265e5af77a97a964c4271afaebb5998e274d4f8df5b5"
+  },
+  "limits": [
+    "Synthetic EN desktop and AR mobile request register. Full frozen request history, dashboard/approval/vacancy global counts, independent security and sustained capacity remain open."
+  ]
+}

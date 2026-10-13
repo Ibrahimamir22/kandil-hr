@@ -275,11 +275,15 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Connected HR review, returned revision, requester/HR cancellation including Returned, approved field/reduction/relocation corrections and linked amendment reapproval. Original requested amounts and old snapshots retained. Current requested/proposed/approved values and reason timeline are visible; complete frozen revision/decision comparison UI remains slice 5.",
+          "progress": "Connected HR review, returned revision, requester/HR cancellation including Returned, approved field/reduction/relocation corrections and linked amendment reapproval. Original requested amounts and old snapshots retained. Current requested/proposed/approved values and reason timeline are visible; complete frozen revision/decision comparison UI remains slice 5. The slice 5 request register is now connected and tested; full comparison history remains open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
-            "../portal/evidence/request-operations-617fb74d7f56/results.json"
+            "../portal/evidence/request-operations-617fb74d7f56/results.json",
+            "S3_REGISTER_CHECKPOINT.md",
+            "S3_HISTORY_DESIGN.md",
+            "evidence/s2-regression-287e05a9795f.json",
+            "../portal/evidence/requests-23b1cb057901/results.json"
           ]
         },
         {
@@ -300,7 +304,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Slices 1–4 engineering implemented, including dated delegation, independent CEO/Board decisions and private supporting evidence. Slice 5 My Requests and full frozen review history remain; S3 and external acceptance are not complete.",
+      "progress": "Slices 1–4 engineering implemented. Slice 5 request register is implemented with scoped server search, own/all-permitted modes and totals; full frozen revision/decision comparisons remain. S3 and external acceptance are not complete.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -741,8 +745,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Board evidence and direct/on-behalf decisions connected in AR/EN. 81 native and 75 browser checks passed; synthetic cohorts cleaned. S3-03 engineering complete; full review history and production acceptance remain open, with all 98 requirements retained.",
-    "evidence": "S3_BOARD_CHECKPOINT.md",
-    "next": "Connect server-filtered My Requests / All within my scope and immutable submitted-revision / per-decision review comparisons."
+    "summary": "Server-filtered My Requests / All within my scope, search, status and permission-aware totals implemented. 23 native and 63 browser checks passed; synthetic cohorts cleaned. Full frozen review history and all production acceptance gates remain open; all 98 requirements retained.",
+    "evidence": "S3_REGISTER_CHECKPOINT.md",
+    "next": "Connect immutable submitted-revision and per-decision review comparisons using S3_HISTORY_DESIGN.md; preserve current and historical scope plus restricted references."
   }
 }

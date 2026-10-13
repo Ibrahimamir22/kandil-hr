@@ -1,0 +1,18 @@
+{
+  "reviewed_at": "2026-10-13",
+  "screenshots": {
+    "search-ar.png": "f837d2ff088b4f0ab0c3835bf27031e8e1b456b1348e20a3859bb3c880a938c5",
+    "status-ar.png": "3c994c76797db3a416ce138b83b680bff26bcd4d03a915c69b7e1de1039286aa",
+    "search-en.png": "aceac210d6929ec770218d9a02dbeed8664ca97325a1af373dec6eac198a29e0",
+    "status-en.png": "ea506da5765d92b3fb6bf0d164cd3258514100aefadbee5aa429a72b62b2e503"
+  },
+  "result": "PASS",
+  "observations": [
+    "English desktop search/status filters, matching totals, result details and pagination visible without clipping.",
+    "Arabic 390px RTL search/status controls wrap vertically; result identity and requester wrap within the card; totals and pagination remain visible.",
+    "Mixed-language synthetic titles remain literal user content; no translation of record names is claimed."
+  ],
+  "limits": [
+    "Visual inspection of four captured states only; not a full accessibility or HR design acceptance audit."
+  ]
+}

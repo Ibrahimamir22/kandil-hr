@@ -1,0 +1,43 @@
+{
+  "status": "FAIL",
+  "run_id": "a7bbb6aed692",
+  "checked_at": "2026-10-13T00:06:39.949Z",
+  "checks": [
+    {
+      "name": "en: HR sees first 25 of all 29 permitted requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Register journey failure",
+      "status": "FAIL",
+      "error_type": "AssertionError",
+      "error_message": "en: second page contains four distinct rows and stable total"
+    }
+  ],
+  "cleanup": {
+    "run_id": "a7bbb6aed692",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestRegister.tsx": "1b26d12efbb6d47e8ed18af2c7207f64e3102d6aa407de5dac7aca8ad6bbfdbb",
+    "frontend/portal/src/main.tsx": "5f37870213976a00b582d47b534c8db3d539dd363f80c99d8d67b47a8e1ffdae",
+    "frontend/portal/src/portal.css": "c01d87fa59d288ae16677e6b01f1b56cf8e579e5f7945a82bacda1149bbfb7bc",
+    "kandil_hr/public/portal/portal.js": "3704e35e0874ab1ebd1d6dfc618667b9545069fb0fae6dee948a178109f1b33d",
+    "kandil_hr/portal/requests.py": "f62b121053e13805e493ac9a79f09e4f568d1c02d2420042ee14da5d0a0d04e0",
+    "kandil_hr/portal/requests_fixture.py": "4ed118bb19083caa248e10b015a8ba089e789e74b790eb3c4807795dad0eaeb3",
+    "kandil_hr/portal/api.py": "40ab89e27727ff687b67c425d07ccbeb7c4ae1a669612e32df988f7655840437",
+    "kandil_hr/pilot/permissions.py": "2cc2b192fc9e2a6971a1c1c3e8230a79ab83718ce84e69da8d86ceb898d234b1",
+    "kandil_hr/foundation/security.py": "d9e35cb20ad92c955ee97699558fb112c307c33edbd23a12518c96e6c8b8e45a",
+    "kandil_hr/translations/ar.csv": "1196cc82697b5827bc75d93187b1638003ff6b7e9cf502278ddf2483636eb88e",
+    "docs/portal/test_requests.cjs": "9a9c31844981a5ebfa0afffe02bc36cae6c5872aece6c3fbafdcb82c0404ffc4"
+  },
+  "limits": [
+    "Synthetic EN desktop and AR mobile request register. Full frozen request history, dashboard/approval/vacancy global counts, independent security and sustained capacity remain open."
+  ]
+}

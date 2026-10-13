@@ -1337,3 +1337,5 @@ You cannot upload evidence for the current Board step.,ليست لديك صلا�
 Request attachments cannot be replaced or relabelled. Upload a new file.,لا يمكن استبدال مرفقات الطلب أو تغيير بياناتها. ارفع ملفًا جديدًا.
 Request attachment content is immutable. Upload a new file.,لا يمكن تغيير محتوى مرفق الطلب. ارفع ملفًا جديدًا.
 Recorded Board evidence must be retained with its decision history.,يجب الاحتفاظ بإثبات المجلس المسجّل مع سجل القرار.
+Choose My Requests or All within my scope.,اختر طلباتي أو كل الطلبات ضمن صلاحياتي.
+Choose a valid request status.,اختر حالة طلب صحيحة.
