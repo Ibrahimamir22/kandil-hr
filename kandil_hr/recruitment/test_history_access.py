@@ -91,6 +91,77 @@ class TestHistoryAccess(unittest.TestCase):
         grant=frappe.get_doc('Kandil Access Grant',self.f.grants['requester']);grant.revoked=1;grant.save(ignore_permissions=True)
         self.denied()
 
+    def revision_attachment(self):
+        from pathlib import Path
+        import uuid
+        prefix = 'synthetic-history-file-' + uuid.uuid4().hex
+        # Revision writes are deliberately prohibited. Model a retained legacy
+        # attachment through a fixture-only DB insert, never a public API.
+        file = frappe.get_doc(dict(doctype='File', name=prefix,
+            file_name=prefix+'.txt', file_url='/private/files/'+prefix+'.txt',
+            is_private=1, is_folder=0, attached_to_doctype='Kandil Request Revision',
+            attached_to_name=self.revision.name, owner=self.f.users['requester']))
+        file.db_insert()
+        path = Path(frappe.get_site_path('private', 'files', file.file_name))
+        path.write_text('Synthetic immutable review attachment')
+        self.addCleanup(path.unlink, missing_ok=True)
+        return file
+
+    def file_listing(self, file, role='requester'):
+        with acting_as(self.f.users[role]):
+            return get_list('File', fields=['name','file_name','file_url'], filters={'name':file.name})
+
+    def test_safe_revision_file_metadata_and_download_remain_readable(self):
+        file = self.revision_attachment()
+        with acting_as(self.f.users['requester']):
+            self.assertTrue(frappe.get_doc('File',file.name).is_downloadable())
+            self.assertEqual(get('File',file.name)['file_url'],file.file_url)
+        self.assertEqual(self.file_listing(file)[0].file_url,file.file_url)
+
+    def test_revision_attachment_listing_cannot_outlive_historical_scope(self):
+        from kandil_hr.portal import api as portal
+        file = self.revision_attachment()
+        self.base.replace_requester_grant(branch=frappe.db.get_value('Kandil Capacity',self.f.capacities[0],'branch'))
+        with acting_as(self.f.users['requester']):
+            self.assertEqual(portal.detail(self.name)['request']['name'],self.name)
+            self.assertFalse(frappe.get_doc('File',file.name).is_downloadable())
+            with self.f.rejected(frappe.PermissionError):get('File',file.name)
+        # Native File ownership must not reveal name or URL after the revision
+        # is no longer readable, even though the live request is still usable.
+        self.assertEqual(self.file_listing(file),[])
+
+    def test_revision_attachment_listing_respects_reference_user_permissions(self):
+        file = self.revision_attachment()
+        self.f.insert('User Permission',user=self.f.users['requester'],allow='Kandil Position',for_value=self.f.positions[1],apply_to_all_doctypes=1)
+        frappe.clear_cache(user=self.f.users['requester'])
+        self.assertEqual(self.file_listing(file),[])
+
+    def test_revision_attachment_applies_parent_revision_user_permission(self):
+        file = self.revision_attachment()
+        self.f.decide(self.name,'manager',decision='Approve',comment='Reviewed')
+        other=frappe.get_all('Kandil Request Revision',filters={'request':self.name,'name':['!=',self.revision.name]},pluck='name')[0]
+        self.f.insert('User Permission',user=self.f.users['requester'],allow='Kandil Request Revision',for_value=other,apply_to_all_doctypes=1)
+        frappe.clear_cache(user=self.f.users['requester'])
+        self.assertEqual(self.file_listing(file),[])
+
+    def test_native_history_exports_require_export_permission(self):
+        from frappe.core.doctype.data_export.exporter import export_data
+        for role in ('requester','manager','hr'):
+            with acting_as(self.f.users[role]), self.f.rejected(frappe.PermissionError):
+                export_data(doctype='Kandil Request Revision',with_data=True,
+                    select_columns={'Kandil Request Revision':['name','snapshot_json']},
+                    filters={'request':self.name})
+
+    def test_native_history_report_query_uses_same_revision_guard(self):
+        from frappe.desk.reportview import execute
+        with acting_as(self.f.users['requester']):
+            rows = execute('Kandil Request Revision',fields=['name','snapshot_json'],filters={'request':self.name})
+        self.assertEqual(rows[0].snapshot_json,self.revision.snapshot_json)
+        value=json.loads(self.revision.snapshot_json);value['private_hr_note']='Never shared'
+        frappe.db.set_value('Kandil Request Revision',self.revision.name,'snapshot_json',json.dumps(value))
+        with acting_as(self.f.users['requester']):
+            self.assertEqual(execute('Kandil Request Revision',fields=['name','snapshot_json'],filters={'request':self.name}),[])
+
     def assert_no_embedded_history(self, value):
         self.assertFalse(value.get('submitted_snapshot'))
         self.assertFalse(value.get('route_snapshot'))
@@ -164,7 +235,7 @@ def run():
         raise RuntimeError('Requires isolated opted-in parity CLI')
     result=unittest.TextTestRunner(stream=sys.stderr,verbosity=2,resultclass=RecordedResult).run(unittest.defaultTestLoader.loadTestsFromTestCase(TestHistoryAccess))
     value=dict(result='PASS' if result.wasSuccessful() and not result.skipped else 'FAIL',total=result.testsRun,checks=result.checks,
-        limits=['Native raw Request Revision scope/reference policy. Nested current-request snapshots and other read surfaces require separate verification.'])
+        limits=['Native raw Request Revision scope, embedded snapshots, revision attachment metadata/download and report-builder/export guard checks. Nested raw route/reference disclosure and personal-session HTTP coverage remain separate.'])
     print(json.dumps(value))
     if value['result']!='PASS':raise AssertionError('Native history access failed')
     return value

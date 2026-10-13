@@ -362,7 +362,13 @@ def file_query(user=None):
 			condition = hr_query(doctype, user)
 		elif doctype == "Kandil Hiring Request":
 			condition = request_query(user)
-		elif doctype in ("Kandil Recruitment Event", "Kandil Request Revision"):
+		elif doctype == "Kandil Request Revision":
+			# A readable live request does not imply access to every raw old
+			# revision. Match the revision list/detail boundary before File
+			# pagination, including historical scope and nested User Permissions.
+			from kandil_hr.recruitment.history_access import condition as revision_condition, user_permissions
+			condition = f"({revision_condition(user)}) AND ({user_permissions(doctype, user)})"
+		elif doctype == "Kandil Recruitment Event":
 			condition = f"`tab{doctype}`.request IN (SELECT name FROM `tabKandil Hiring Request` WHERE {request_query(user) or '1=1'})"
 		elif frappe.get_meta(doctype).has_field("company"):
 			condition = scope_query(doctype, user, "sensitive" if doctype == "Kandil Grade Band" else "read")

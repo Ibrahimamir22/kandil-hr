@@ -17,8 +17,9 @@ from kandil_hr.foundation import outbox, security
 
 class TestFoundationDatabase(unittest.TestCase):
 	def setUp(self):
-		if not security.enabled() or not frappe.conf.get("allow_tests"):
-			self.skipTest("Requires an opted-in synthetic foundation site with allow_tests")
+		if (frappe.local.site != "kandil-parity.localhost" or getattr(frappe.local, "request", None)
+				or not security.enabled() or not frappe.conf.get("allow_tests")):
+			self.skipTest("Requires the opted-in synthetic parity CLI site")
 		self.original_user = frappe.session.user
 		frappe.set_user("Administrator")
 		self.savepoint = "foundation_" + uuid.uuid4().hex
@@ -28,17 +29,32 @@ class TestFoundationDatabase(unittest.TestCase):
 		if len(self.companies) < 2:
 			self.skipTest("Seed two synthetic companies before foundation tests")
 		self.user = "foundation-" + uuid.uuid4().hex[:12] + "@example.invalid"
-		frappe.get_doc(
-			dict(
-				doctype="User",
-				email=self.user,
-				first_name="Foundation Synthetic",
-				enabled=1,
-				send_welcome_email=0,
-				user_type="System User",
-				roles=[dict(role="Kandil Recruiter")],
-			)
-		).insert(ignore_permissions=True)
+		# Match the other CLI synthetic fixtures: do not consume the site's
+		# signup throttle or enqueue deferred contacts for rolled-back users.
+		original_enqueue = frappe.enqueue
+		def enqueue(method, *args, **kwargs):
+			if (method == "frappe.core.doctype.user.user.create_contact"
+					and getattr(kwargs.get("user"), "name", None) == self.user):
+				kwargs["now"] = True
+			return original_enqueue(method, *args, **kwargs)
+		self.enterContext(patch("frappe.enqueue", side_effect=enqueue))
+		old_import = frappe.flags.get("in_import")
+		try:
+			frappe.flags.in_import = True
+			frappe.get_doc(
+				dict(
+					doctype="User",
+					email=self.user,
+					first_name="Foundation Synthetic",
+					enabled=1,
+					send_welcome_email=0,
+					user_type="System User",
+					roles=[dict(role="Kandil Recruiter")],
+				)
+			).insert(ignore_permissions=True)
+		finally:
+			frappe.flags.in_import = old_import
+
 
 	def _restore(self):
 		if hasattr(self, "savepoint"):

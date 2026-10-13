@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Request operations, register, command history, saved versions, captured route reasons and amendment navigation are connected. Delegated/CEO/Board, retained proof, correction and pending-quantity history screens passed expanded AR/EN tests. Native nested-reference/File/reporting audit and full S3 acceptance remain open.",
+          "progress": "Request operations and AR/EN recorded histories are connected. Revision attachment metadata now follows full historical revision scope and native User Permissions, with positive/negative list/detail/download evidence. Nested raw route/reference authorization, Event/indirect-file audit and full S3 acceptance remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -308,7 +308,11 @@
             "../portal/evidence/history-workflows-3582232e6013/results.json",
             "../portal/evidence/history-workflows-3582232e6013/visual-review.json",
             "../portal/evidence/request-history-596ebb3de5e4/results.json",
-            "../portal/evidence/pending-1e170027e543/results.json"
+            "../portal/evidence/pending-1e170027e543/results.json",
+            "S3_NATIVE_READ_AUDIT.md",
+            "evidence/s2-regression-66ef36379b2d.json",
+            "evidence/s2-regression-833829c7c273.json",
+            "../portal/evidence/history-files-d1f0b24d7985/results.json"
           ]
         },
         {
@@ -777,8 +781,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Authority/correction/pending-quantity history and explicit action reasons verified. 47 native and 182 final browser checks passed; four focused rendered captures inspected. S3-05 engineering-complete; native raw-history audit, full S3 and release gates remain open.",
-    "evidence": "S3_AUTHORITY_HISTORY_CHECKPOINT.md",
-    "next": "Finish native nested-route/reference/File/reporting security audit and mapped S3 acceptance, then progress to vacancy/candidate/interview workflows without dropping the 98 frozen requirements."
+    "summary": "Fixed native historical revision attachment filename/URL disclosure when live request access survives a historical scope restriction. 106 native and 16 ordinary-session HTTP checks passed; authorized immutable reads/downloads preserved. S3 remains active.",
+    "evidence": "S3_NATIVE_READ_AUDIT.md",
+    "next": "Implement and verify nested frozen-route/reference guards, Event/indirect-file paths and integrated S3 acceptance; preserve all 98 requirements and later recruitment/lifecycle/reporting work."
   }
 }
