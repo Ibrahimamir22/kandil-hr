@@ -1,8 +1,11 @@
 import {api,ApiError} from './api';
+import type {Tr} from './types';
+export const recoveryExpired=(e:unknown)=>e instanceof ApiError&&e.code==='CandidateRecoveryExpired';
+export const expiryMessage=(t:Tr)=>t('انتهت مهلة استكمال الطلب المحفوظ. راجع سجل طلبات الترشح قبل إنشاء طلب جديد؛ قد تكون العملية نُفذت بالفعل.','The saved request has expired. Review application records before starting a new request; the action may already have completed.');
 export const recoveryApi='kandil_hr.candidates.recovery.';
 export type CandidateOperation='intake'|'correction'|'migration';
 export type CandidateAttempt={id:string;payload:Record<string,unknown>;recovery?:string};
-export type RecoveryRow={name:string;operation:CandidateOperation;status:'Pending'|'Completed'|'Acknowledged'|'Cancelled';created:string};
+export type RecoveryRow={name:string;operation:CandidateOperation;status:'Pending'|'Completed'|'Acknowledged'|'Cancelled'|'Expired';created:string;expires_at:string};
 export function validCandidateResult(operation:CandidateOperation,value:unknown,args?:Record<string,unknown>):value is Record<string,unknown>{
  if(!value||typeof value!=='object')return false;const r=value as Record<string,unknown>;
  const required=operation==='correction'?['application','person','person_version','revision']:['application','person','application_version','person_version'];
@@ -13,13 +16,16 @@ export function validCandidateResult(operation:CandidateOperation,value:unknown,
  return true;
 }
 export async function candidateCommand<T>(operation:CandidateOperation,attempt:CandidateAttempt,active:()=>boolean):Promise<T>{
- if(!attempt.recovery){const prepared=await api<RecoveryRow>(recoveryApi+'prepare',{operation,arguments:{...attempt.payload,command_id:attempt.id}},'POST');if(!prepared?.name||prepared.operation!==operation||!['Pending','Completed'].includes(prepared.status))throw new ApiError('NETWORK_UNCERTAIN',0);attempt.recovery=prepared.name}
+ if(!attempt.recovery){const prepared=await api<RecoveryRow>(recoveryApi+'prepare',{operation,arguments:{...attempt.payload,command_id:attempt.id}},'POST');if(prepared?.status==='Expired')throw new ApiError('RECOVERY_EXPIRED',0,false,'CandidateRecoveryExpired');if(!prepared?.name||prepared.operation!==operation||!['Pending','Completed'].includes(prepared.status))throw new ApiError('NETWORK_UNCERTAIN',0);attempt.recovery=prepared.name}
  // Leaving a form before preparation finishes must not start an unseen action.
  // The server inbox retains the prepared command for explicit review instead.
  if(!active())throw new ApiError('NETWORK_UNCERTAIN',0);
  let response:{name:string;status:string;result:unknown};
  try{response=await api(recoveryApi+'execute',{name:attempt.recovery},'POST')}
  catch(e){
+  // An expired response does not establish whether a prior execution committed.
+  // Freeze this attempt; require record review, never mint a replacement ID.
+  if(recoveryExpired(e))throw new ApiError('RECOVERY_EXPIRED',0,false,'CandidateRecoveryExpired');
   if(e instanceof ApiError&&e.status>=400&&e.status<500&&![401,403].includes(e.status)){
    // Only a confirmed, unexecuted command can be discarded. If this cleanup is
    // uncertain, keep its original reference; never generate a replacement ID.

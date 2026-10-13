@@ -1,0 +1,22 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-9ad43c4849ee0aba6788b13e245fa75a6a7dc6dc0f7d00421c716fdd57f6303d",
+      "operation": "intake",
+      "status": "Completed",
+      "created": "2026-10-14 00:59:16.139985",
+      "expires_at": "2026-10-21 00:59:16.139876",
+      "result": {
+        "application": "KJA-2b42e2756e124f71b468",
+        "person": "KCP-83980e486b404dd8aa99bda1f138b756",
+        "application_version": "2026-10-14 00:59:16.918282",
+        "person_version": "2026-10-14 00:59:16.916574"
+      }
+    }
+  },
+  {
+    "status": 417,
+    "type": "ValidationError"
+  }
+]

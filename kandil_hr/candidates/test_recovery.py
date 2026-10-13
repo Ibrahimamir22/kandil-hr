@@ -28,7 +28,7 @@ class TestRecovery(unittest.TestCase):
         self.assertNotIn(self.f.data['email_id'],stored.payload_cipher)
         self.assertNotIn(self.f.data['phone_number'],stored.payload_cipher)
         self.assertEqual(self.call('inspect',name=d['name'])['arguments'],self.args)
-        self.assertEqual(set(d),{'name','operation','status','created'})
+        self.assertEqual(set(d),{'name','operation','status','created','expires_at'})
 
     def test_prepare_retry_and_payload_conflict(self):
         d=self.prepare();self.assertEqual(d,self.prepare())
@@ -62,7 +62,7 @@ class TestRecovery(unittest.TestCase):
             with self.f.f.rejected(frappe.PermissionError):self.call(method,name=d['name'])
         # Own minimal receipt index contains no private business references.
         row=self.call('pending')['rows'][0]
-        self.assertEqual(set(row),{'name','operation','status','created'})
+        self.assertEqual(set(row),{'name','operation','status','created','expires_at'})
 
     def test_native_access_and_native_changes_are_denied(self):
         d=self.prepare()
@@ -128,6 +128,89 @@ class TestRecovery(unittest.TestCase):
             expected_version=p['request_version'],preview_hash=p['preview_hash'],reason='Reviewed migration',command_id=uuid.uuid4().hex)
         d=self.call('prepare',role='hr',operation='migration',arguments=args);first=self.call('execute',role='hr',name=d['name'])
         self.assertEqual(first,self.call('execute',role='hr',name=d['name']));self.assertTrue(first['result']['reconciliation']['preserved'])
+
+    def test_recovery_deadline_is_fixed_and_configuration_bounded(self):
+        from frappe.utils import add_to_date,get_datetime
+        current=recovery.now_datetime()
+        with patch.object(recovery,'now_datetime',return_value=current),patch.dict(frappe.conf,{'kandil_candidate_recovery_hours':2}):
+            doc=self.prepare()
+        self.assertEqual(get_datetime(doc['expires_at']),add_to_date(current,hours=2))
+        with patch.dict(frappe.conf,{'kandil_candidate_recovery_hours':720}):
+            self.assertEqual(self.prepare()['expires_at'],doc['expires_at'])
+        for value in (0,721,True,'7',1.5):
+            with patch.dict(frappe.conf,{'kandil_candidate_recovery_hours':value}),self.f.f.rejected():
+                self.prepare(command_id=uuid.uuid4().hex)
+
+    def test_expired_pending_is_unreadable_and_unexecutable_before_cleanup(self):
+        from frappe.utils import add_to_date
+        d=self.prepare();counts=self.f.counts()
+        frappe.db.set_value(recovery.DT,d['name'],'expires_at',add_to_date(recovery.now_datetime(),seconds=-1))
+        for method in ('inspect','execute','acknowledge','cancel'):
+            with self.f.f.rejected(recovery.CandidateRecoveryExpired):self.call(method,name=d['name'])
+        self.assertEqual(self.call('pending')['rows'],[])
+        self.assertEqual(counts,self.f.counts())
+        self.assertTrue(frappe.db.get_value(recovery.DT,d['name'],'payload_cipher'))
+
+    def test_expiry_is_rechecked_after_waiting_for_authorization(self):
+        from frappe.utils import add_to_date
+        d=self.prepare();counts=self.f.counts();authorize=recovery.authorize
+        def delayed(*args,**kwargs):
+            result=authorize(*args,**kwargs)
+            frappe.db.set_value(recovery.DT,d['name'],'expires_at',add_to_date(recovery.now_datetime(),seconds=-1))
+            return result
+        with patch.object(recovery,'authorize',side_effect=delayed),self.f.f.rejected(recovery.CandidateRecoveryExpired):
+            self.call('execute',name=d['name'])
+        self.assertEqual(counts,self.f.counts())
+
+    def test_cleanup_erases_payload_without_decryption_or_business_mutation(self):
+        from frappe.utils import add_to_date
+        d=self.prepare();counts=self.f.counts()
+        frappe.db.set_value(recovery.DT,d['name'],dict(expires_at=add_to_date(recovery.now_datetime(),seconds=-1),payload_cipher='unreadable-private-cipher'))
+        with patch.object(recovery,'decrypt',side_effect=AssertionError('Cleanup must never decrypt')),patch.dict(frappe.conf,{'kandil_candidate_identity_enabled':0}):
+            recovery.expire_pending()
+        doc=frappe.get_doc(recovery.DT,d['name']);self.assertEqual(doc.status,'Expired');self.assertFalse(doc.payload_cipher)
+        self.assertEqual(counts,self.f.counts());self.assertTrue(doc.payload_hash);self.assertEqual(doc.actor,self.f.f.users['manager'])
+        # Retaining the identity tombstone prevents same-ID preparation from
+        # recreating private data or turning an old retry into a new action.
+        self.assertEqual(self.prepare()['status'],'Expired')
+        self.assertFalse(frappe.db.get_value(recovery.DT,d['name'],'payload_cipher'))
+        with self.f.f.rejected(recovery.CandidateRecoveryExpired):self.call('execute',name=d['name'])
+        recovery.expire_pending();self.assertEqual(counts,self.f.counts())
+
+    def test_expiring_completed_action_preserves_receipt_profile_and_audit(self):
+        from frappe.utils import add_to_date
+        d=self.prepare();result=self.call('execute',name=d['name'])['result'];counts=self.f.counts()
+        frappe.db.set_value(recovery.DT,d['name'],'expires_at',add_to_date(recovery.now_datetime(),seconds=-1))
+        recovery.expire_pending()
+        self.assertEqual(counts,self.f.counts());self.assertEqual(frappe.db.get_value(recovery.DT,d['name'],'status'),'Expired')
+        # Original business command remains idempotent through its own receipt.
+        with acting_as(self.f.f.users['manager']):replayed=recovery.HANDLERS['intake'](**self.args)
+        self.assertEqual(result,replayed);self.assertEqual(counts,self.f.counts())
+
+    def test_cleanup_is_bounded_and_cannot_be_called_by_recruiter(self):
+        from frappe.utils import add_to_date
+        names=[self.prepare(command_id=uuid.uuid4().hex)['name'] for _ in range(3)]
+        for name in names:frappe.db.set_value(recovery.DT,name,'expires_at',add_to_date(recovery.now_datetime(),seconds=-1))
+        with acting_as(self.f.f.users['manager']),self.f.f.rejected(frappe.PermissionError):recovery.expire_pending()
+        for invalid in (0,501,True,'100',1.1):
+            with self.f.f.rejected():recovery.expire_pending(invalid)
+        first=recovery.expire_pending(2);self.assertEqual(first['expired'],2)
+        self.assertEqual(sum(frappe.db.get_value(recovery.DT,n,'status')=='Expired' for n in names),2)
+        second=recovery.expire_pending(2);self.assertEqual(second['expired'],1)
+        self.assertNotIn(recovery.expire_pending,frappe.whitelisted)
+
+    def test_legacy_deadline_uses_creation_and_not_modified_or_current_setting(self):
+        from frappe.utils import add_to_date
+        d=self.prepare();fresh=self.prepare(command_id=uuid.uuid4().hex)
+        old=add_to_date(recovery.now_datetime(),days=-8)
+        frappe.db.set_value(recovery.DT,d['name'],dict(expires_at=None,creation=old))
+        with patch.dict(frappe.conf,{'kandil_candidate_recovery_hours':720}):recovery.expire_pending()
+        self.assertEqual(frappe.db.get_value(recovery.DT,d['name'],'status'),'Expired')
+        self.assertEqual(frappe.db.get_value(recovery.DT,fresh['name'],'status'),'Pending')
+        self.assertTrue(frappe.db.get_value(recovery.DT,fresh['name'],'payload_cipher'))
+
+    def test_scheduler_cleanup_hook_is_registered(self):
+        self.assertIn('kandil_hr.candidates.recovery.expire_pending',frappe.get_hooks('scheduler_events')['hourly'])
 
 
 def run():

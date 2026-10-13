@@ -13,6 +13,7 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 from frappe.utils.password import encrypt,decrypt
+from frappe.utils import now_datetime, get_datetime, add_to_date
 
 from kandil_hr.candidates import identity,intake,corrections,migration
 from kandil_hr.pilot.api import transactional_retry
@@ -20,6 +21,30 @@ from kandil_hr.portal.api import authenticated
 from kandil_hr.foundation.mutation_access import assert_current_request_scope
 
 DT='Kandil Candidate Recovery'
+# Temporary retry-buffer lifetime, independent of candidate-record retention.
+DEFAULT_RECOVERY_HOURS=168
+
+
+class CandidateRecoveryExpired(frappe.ValidationError):
+    pass
+
+
+def recovery_hours():
+    value=frappe.conf.get('kandil_candidate_recovery_hours',DEFAULT_RECOVERY_HOURS)
+    if isinstance(value,bool) or not isinstance(value,int) or not 1<=value<=720:
+        frappe.throw(_('Candidate recovery lifetime must be an integer from 1 to 720 hours.'))
+    return value
+
+
+def deadline(doc):
+    # Legacy envelopes get a fixed seven days from creation, never an extension
+    # from a changing site setting or from a retry updating modified.
+    return get_datetime(doc.expires_at) if doc.expires_at else add_to_date(get_datetime(doc.creation),hours=DEFAULT_RECOVERY_HOURS)
+
+
+def assert_unexpired(doc):
+    if doc.status=='Expired' or deadline(doc)<=now_datetime():
+        frappe.throw(_('This saved action has expired. Review existing application records before starting another request.'),CandidateRecoveryExpired)
 COMMON={'name','opening_name','expected_version','command_id'}
 SCHEMAS={
     'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason'}),
@@ -105,6 +130,7 @@ def owned(name,lock=False):
 
 
 def decode(doc):
+    assert_unexpired(doc)
     if not doc.payload_cipher:frappe.throw(_('This command is closed and its recovery payload removed.'))
     args=frappe.parse_json(decrypt(doc.payload_cipher))
     validated,raw=payload(doc.operation,args)
@@ -114,7 +140,7 @@ def decode(doc):
 
 
 def projection(doc):
-    return dict(name=doc.name,operation=doc.operation,status=doc.status,created=str(doc.creation))
+    return dict(name=doc.name,operation=doc.operation,status=doc.status,created=str(doc.creation),expires_at=str(deadline(doc)))
 
 
 @frappe.whitelist(methods=['POST'])
@@ -130,7 +156,8 @@ def prepare(operation,arguments):
         return projection(owned(key,lock=True))
     with effect():
         doc=frappe.get_doc(dict(doctype=DT,dedupe_key=key,actor=frappe.session.user,request=request.name,
-            operation=operation,payload_hash=digest,payload_cipher=encrypt(raw),status='Pending')).insert(ignore_permissions=True)
+            operation=operation,payload_hash=digest,payload_cipher=encrypt(raw),status='Pending',
+            expires_at=add_to_date(now_datetime(),hours=recovery_hours()))).insert(ignore_permissions=True)
     return projection(doc)
 
 
@@ -185,9 +212,12 @@ def pending(start=0,page_length=20):
     offset,limit=paging(start,page_length)
     # Actor-owned minimal index only; details/effects always reauthorize. No
     # contact, profile, company or application IDs are exposed by the index.
-    rows=frappe.get_all(DT,filters={'actor':frappe.session.user,'status':['in',['Pending','Completed']]},
-        fields=['name','operation','status','creation'],order_by='creation desc, name desc',limit_start=offset,limit_page_length=limit+1)
-    return dict(rows=[dict(name=r.name,operation=r.operation,status=r.status,created=str(r.creation)) for r in rows[:limit]],start=offset,has_more=len(rows)>limit,next_start=offset+limit if len(rows)>limit else None)
+    rows=frappe.db.sql('''SELECT name, operation, status, creation, expires_at
+        FROM `tabKandil Candidate Recovery` WHERE actor=%s AND status IN ('Pending','Completed')
+        AND COALESCE(expires_at, DATE_ADD(creation, INTERVAL 168 HOUR)) > %s
+        ORDER BY creation DESC, name DESC LIMIT %s OFFSET %s''',
+        (frappe.session.user,now_datetime(),limit+1,offset),as_dict=True)
+    return dict(rows=[projection(r) for r in rows[:limit]],start=offset,has_more=len(rows)>limit,next_start=offset+limit if len(rows)>limit else None)
 
 
 @frappe.whitelist(methods=['POST'])
@@ -203,3 +233,31 @@ def cancel(name):
         frappe.throw(_('This action has completed. Recover its result instead of cancelling it.'))
     frappe.db.set_value(DT,doc.name,dict(status='Cancelled',payload_cipher=''))
     return dict(cancelled=True)
+
+
+@transactional_retry
+def expire_pending(batch_size=100):
+    """Bounded server-only cleanup; never decrypt or execute business commands.
+
+    The caller owns commit/rollback (scheduler job or bench). Row-only locks
+    cannot invert the company -> request -> recovery order of execution. After
+    waiting, recheck the deadline/status with a current locking read. Preserve
+    tombstones and business receipts so the original ID can never be reused.
+    This runs even when candidate mode is disabled or an actor loses access.
+    """
+    if frappe.session.user!='Administrator':
+        frappe.throw(_('Candidate recovery cleanup requires server administration.'),frappe.PermissionError)
+    if isinstance(batch_size,bool) or not isinstance(batch_size,int) or not 1<=batch_size<=500:
+        frappe.throw(_('Cleanup batch size must be an integer from 1 to 500.'))
+    candidates=frappe.db.sql("""SELECT name FROM `tabKandil Candidate Recovery`
+        WHERE status IN ('Pending','Completed')
+        AND COALESCE(expires_at, DATE_ADD(creation, INTERVAL 168 HOUR)) <= %s
+        ORDER BY creation, name LIMIT %s""",(now_datetime(),batch_size),as_dict=True)
+    expired=0
+    for row in candidates:
+        doc=frappe.get_doc(DT,row.name,for_update=True)
+        if doc.status not in ('Pending','Completed') or deadline(doc)>now_datetime():continue
+        frappe.db.set_value(DT,doc.name,dict(status='Expired',payload_cipher=''))
+        expired+=1
+    # Counts only: never log payloads, actor identities, request IDs or keys.
+    return dict(examined=len(candidates),expired=expired,batch_size=batch_size)

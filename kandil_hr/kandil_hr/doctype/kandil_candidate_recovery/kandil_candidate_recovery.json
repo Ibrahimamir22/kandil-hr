@@ -13,7 +13,8 @@
     "operation",
     "payload_hash",
     "payload_cipher",
-    "status"
+    "status",
+    "expires_at"
   ],
   "fields": [
     {
@@ -69,7 +70,14 @@
       "fieldtype": "Select",
       "read_only": 1,
       "reqd": 1,
-      "options": "Pending\nCompleted\nAcknowledged\nCancelled",
+      "options": "Pending\nCompleted\nAcknowledged\nCancelled\nExpired",
+      "search_index": 1
+    },
+    {
+      "fieldname": "expires_at",
+      "label": "Recovery Expiry",
+      "fieldtype": "Datetime",
+      "read_only": 1,
       "search_index": 1
     }
   ],

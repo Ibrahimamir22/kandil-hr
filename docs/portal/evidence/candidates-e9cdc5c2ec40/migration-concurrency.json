@@ -1,0 +1,52 @@
+[
+  [
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-44a6ffdcfe1043009083",
+        "application_version": "2026-10-14 00:57:53.983974",
+        "person": "KCP-18424d8823f247128621ce83ff1f640e",
+        "person_version": "2026-10-14 00:57:53.982621",
+        "reconciliation": {
+          "after_hash": "9165865560937526b25689ab1b106437e8f512977cec9eee52e31a1eb942d351",
+          "before_hash": "9165865560937526b25689ab1b106437e8f512977cec9eee52e31a1eb942d351",
+          "preserved": true
+        }
+      }
+    },
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-44a6ffdcfe1043009083",
+        "person": "KCP-18424d8823f247128621ce83ff1f640e",
+        "application_version": "2026-10-14 00:57:53.983974",
+        "person_version": "2026-10-14 00:57:53.982621",
+        "reconciliation": {
+          "preserved": true,
+          "before_hash": "9165865560937526b25689ab1b106437e8f512977cec9eee52e31a1eb942d351",
+          "after_hash": "9165865560937526b25689ab1b106437e8f512977cec9eee52e31a1eb942d351"
+        }
+      }
+    }
+  ],
+  [
+    {
+      "status": 417,
+      "type": "TimestampMismatchError"
+    },
+    {
+      "status": 200,
+      "body": {
+        "application": "KJA-46d6c036ba044112a79b",
+        "person": "KCP-83fc2c1638944217a528e5e4d179c724",
+        "application_version": "2026-10-14 00:57:55.480831",
+        "person_version": "2026-10-14 00:57:55.479472",
+        "reconciliation": {
+          "preserved": true,
+          "before_hash": "d97d2eacb8a961fac36d5ca8bac00273e2f15c9e4062c3eaa7e96dd53a7e8980",
+          "after_hash": "d97d2eacb8a961fac36d5ca8bac00273e2f15c9e4062c3eaa7e96dd53a7e8980"
+        }
+      }
+    }
+  ]
+]

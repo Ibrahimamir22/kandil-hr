@@ -497,3 +497,6 @@ scheduler_events["all"].append("kandil_hr.recruitment.invitations.process_pendin
 # Person reads inherit permitted applications; mutation uses reviewed commands.
 has_permission["Kandil Candidate Person"] = "kandil_hr.candidates.identity.permission"
 permission_query_conditions["Kandil Candidate Person"] = "kandil_hr.candidates.identity.query"
+
+# Erase expired transient candidate command payloads; preserve audit/receipts.
+scheduler_events.setdefault("hourly", []).append("kandil_hr.candidates.recovery.expire_pending")

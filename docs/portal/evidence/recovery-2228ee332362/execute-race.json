@@ -1,0 +1,34 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-baa1cc6ec7be9054064a09280b48afad97244c2f7e2fd0cf4cc2394df1e1a944",
+      "operation": "intake",
+      "status": "Completed",
+      "created": "2026-10-14 00:59:13.312564",
+      "expires_at": "2026-10-21 00:59:13.311588",
+      "result": {
+        "application": "KJA-fbea77ff01b54c6f8e0d",
+        "person": "KCP-b9355b619aba4114b738a5a2c8b2935c",
+        "application_version": "2026-10-14 00:59:14.811019",
+        "person_version": "2026-10-14 00:59:14.808262"
+      }
+    }
+  },
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-baa1cc6ec7be9054064a09280b48afad97244c2f7e2fd0cf4cc2394df1e1a944",
+      "operation": "intake",
+      "status": "Completed",
+      "created": "2026-10-14 00:59:13.312564",
+      "expires_at": "2026-10-21 00:59:13.311588",
+      "result": {
+        "application": "KJA-fbea77ff01b54c6f8e0d",
+        "application_version": "2026-10-14 00:59:14.811019",
+        "person": "KCP-b9355b619aba4114b738a5a2c8b2935c",
+        "person_version": "2026-10-14 00:59:14.808262"
+      }
+    }
+  }
+]

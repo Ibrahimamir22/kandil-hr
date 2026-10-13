@@ -1,0 +1,22 @@
+[
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-baa1cc6ec7be9054064a09280b48afad97244c2f7e2fd0cf4cc2394df1e1a944",
+      "operation": "intake",
+      "status": "Pending",
+      "created": "2026-10-14 00:59:13.312564",
+      "expires_at": "2026-10-21 00:59:13.311588"
+    }
+  },
+  {
+    "status": 200,
+    "body": {
+      "name": "KRC-baa1cc6ec7be9054064a09280b48afad97244c2f7e2fd0cf4cc2394df1e1a944",
+      "operation": "intake",
+      "status": "Pending",
+      "created": "2026-10-14 00:59:13.312564",
+      "expires_at": "2026-10-21 00:59:13.311588"
+    }
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "reviewed": "2026-10-14",
+  "images": [
+    "recovery-expired-en.png",
+    "recovery-expired-ar.png"
+  ],
+  "observations": [
+    "English inbox removes saved private details and displays expiry guidance with navigation available.",
+    "Arabic mobile intake displays expiry guidance and preserves the frozen original form.",
+    "Full-page Arabic capture is long because duplicate-review choices and basic profile fields remain present; usability simplification remains HR UX review work."
+  ],
+  "limits": [
+    "Screenshot inspection is not full accessibility or HR acceptance."
+  ]
+}

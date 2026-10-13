@@ -1,0 +1,29 @@
+# S5 transient recovery expiry
+
+14 October 2026. Engineering checkpoint on isolated synthetic data. Full S5 remains in progress. Ordinary candidate mode remains disabled while automatic scheduler dispatch and in-flight session expiry are rehearsed.
+
+## Contract
+
+Candidate recovery payloads are temporary retry copies, separate from candidate profiles, application snapshots, business receipts and immutable audit records. New envelopes receive an immutable `expires_at` at preparation. `kandil_candidate_recovery_hours` accepts integer hours from 1 to 720; the development default is 168 hours (seven days). Changing configuration affects new envelopes only. This technical buffer default is not an approved Kandil candidate-record retention policy.
+
+Legacy envelopes without `expires_at` expire seven days after their original creation, independent of `modified` or current configuration. Preparation retries cannot extend a deadline. Expired inspection/execution is denied even before the scheduled erasure runs; authorization is followed by a locked expiry recheck before execution. An action admitted under the lock before its deadline may finish after the deadline; cleanup waits and then removes its temporary copy without undoing its result.
+
+The server-only `kandil_hr.candidates.recovery.expire_pending` function erases ciphertext and changes the recovery status to Expired. It retains the actor/command identity, request, operation and payload digest. Same-ID preparation cannot resurrect the ciphertext or turn an expired retry into a new request. Existing business receipts continue to prevent duplicate business execution. This function never decrypts candidate payloads and works when candidate mode is disabled or the original actor loses access. It accepts bounded batches of 1–500 (default 100), returns counts only, and requires Administrator. It is not whitelisted for HTTP access.
+
+Cleanup takes only recovery-row locks and rechecks current status/deadline after waiting. It never takes Company/request locks after a recovery lock, avoiding inversion of the execution lock order. The scheduler hook is hourly; deploying it requires the normal app migration/job synchronization and a working worker/scheduler. Registering the hook and calling the function do not establish successful scheduled dispatch. Shared development workers/backlog were not started or drained.
+
+The portal shows recovery deadlines using site datetime values. On an expired response, the inbox clears the reviewed private detail. An expired form retry stays frozen and tells the user to inspect existing application records before starting another request: a previous execution may already have committed. No automatic replacement ID or background resubmission is introduced.
+
+## Verification
+
+- [56 native checks](evidence/s2-regression-ab1a8396d4f6.json) passed: 21 recovery, 9 reviewed migration, 17 identity and 9 correction cases. Cases cover fixed/bounded lifetime, denied expiry before cleanup, recheck after authorization, ciphertext removal without decryption, disabled-mode cleanup, retained receipts/audit, same-ID resurrection denial, bounded batches, non-admin denial, legacy deadlines and hook registration.
+- [42 personal-session AR/EN recovery UI checks](../portal/evidence/recovery-ui-ce1f6e7de3c5/results.json) passed. A request expiring after inbox review loses its displayed private detail and cannot execute. CLI cleanup clears the ciphertext without business changes; same-ID preparation cannot resurrect it. A completed action with a lost reply stays frozen after expiry, warns in both languages and does not create another application. Earlier recovery/navigation/concurrency/revocation cases remain included. The test restored the feature flag, disabled six accounts and reconciled cohort ledgers; no browser errors, server 5xx or external requests were recorded.
+- [63 complete candidate browser checks](../portal/evidence/candidates-e9cdc5c2ec40/results.json) passed on the expiry-enabled source, including search, correction, legacy migration, competing first writes and permission revocation.
+- [18 recovery API/session checks](../portal/evidence/recovery-2228ee332362/results.json) passed with the deadline projection: concurrent preparation/execution, new-session result recovery, acknowledgement, cancellation races and revoked access. Cleanup restored the feature flag, disabled six accounts and reconciled ledgers. The API harness retains historical "forms are not yet wired" wording in its limits; that wording is superseded by the current 42-case UI evidence above. The candidate harness likewise retains historical navigation-recovery wording; full rollout acceptance remains open, but the tested recovery UI is implemented.
+- TypeScript/Vite build passed with the existing advisory entry-chunk and local font resolution warnings. English desktop and Arabic mobile expiry screenshots were inspected; long mobile form layout remains a usability review item.
+
+## Operational limits and next work
+
+The hourly job must be exercised through isolated scheduler/worker dispatch, including failure/restart and accumulated batches. Alerting/backlog monitoring, capacity/query plans and encryption-key rotation/recovery remain operational work. Live-row erasure does not erase historical copies in backups, transaction logs or replicas; their retention and access are separate IT controls. Identity tombstones and business audit retention must also have an approved policy.
+
+Next: dedicated in-flight session expiry and isolated scheduled cleanup rehearsal, then controlled synthetic activation and full S5 ownership/follow-up/rejection/activity, private CVs, sourcing and imports. All 98 frozen requirements, S6–S12, HR/IT acceptance, independent security, sustained 1,000+ account capacity and production rollout remain open where unfulfilled.

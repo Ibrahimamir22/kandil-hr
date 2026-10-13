@@ -1,6 +1,6 @@
 # S5 — candidate identity, applications and sourcing
 
-The [candidate recovery UI](S5_RECOVERY_UI_CHECKPOINT.md) now connects intake, profile correction and legacy migration to encrypted server recovery, with an AR/EN inbox for reviewed resume, result recovery and safe discard. **63 candidate browser checks and 33 recovery UI checks passed.** Ordinary candidate mode stays disabled pending bounded transient payload cleanup and activation rehearsal. Full S5 and all release gates remain open.
+The [recovery expiry checkpoint](S5_RECOVERY_EXPIRY_CHECKPOINT.md) adds fixed recovery deadlines, bounded ciphertext cleanup and AR/EN expired-request guidance while preserving business records, audit and retry identities. **56 native, 42 recovery UI and 63 candidate browser checks passed.** Ordinary candidate mode stays disabled pending isolated scheduled-dispatch and in-flight session-expiry rehearsal. Full S5 and release gates remain open.
 
 Earlier checkpoints below retain their original scope and outstanding work at the time; the current status above supersedes their recovery next-step notes.
 
