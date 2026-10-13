@@ -1,0 +1,180 @@
+{
+  "status": "PASS",
+  "run_id": "2b757e1024e3",
+  "checks": [
+    {
+      "name": "Lost preparation response creates no application",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved intake values are reviewable after leaving the form",
+      "status": "PASS"
+    },
+    {
+      "name": "Resumption requires an explicit review",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery-review-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery-result-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Reload after a lost execution response preserves one application and person",
+      "status": "PASS"
+    },
+    {
+      "name": "No candidate payload persisted in browser storage",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovered result opens the actual application",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Leaving during preparation does not start unseen execution",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing UI sessions create one application and person",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovery works with browser storage unavailable",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic recovery review retains saved correction and reason",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery-correction-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery-result-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "HR migration recovers through the Arabic inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "recovery-migration-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale review is prepared without executing",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale action can be discarded without changing business records",
+      "status": "PASS"
+    },
+    {
+      "name": "Permission review command prepared",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox contains one unresolved action",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized review displays saved candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Other HR account has no access to the recruiters recovery inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation removes reviewed private data and prevents execution",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "2b757e1024e3",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/candidateCommands.ts": "5918c398313807d8fa654ead4b437ede4063f61c061d3a6dcf0967f779c47700",
+    "frontend/portal/src/CandidateRecovery.tsx": "33781b537cc550e0b267ac0c6de44874e8d2eac7d50b56a848190a468d538d80",
+    "docs/portal/test_candidate_recovery_ui.cjs": "f156ddb0fc24da46b46e4d8b08caed9ab862cbdfceed828c83197d4b08732675",
+    "kandil_hr/candidates/recovery.py": "21700192f4b7a88eea36b5f145d7cbaa87e8a13e5c32528101f9c78853c65727",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "a84fb3bdbcc823f619e28363c7f20bf29e89081ee2f022f860adaf8b1b0d0aac",
+    "docs/portal/test_candidate_recovery.cjs": "c4acea0fca0e79e3438111cfcfd2d3c7ee47bdebde72fb4bafcbc5eb4e1c7e0f",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "f9f65f788d84c9b38690465002900d57b0754124f068f3cd02ed95b3c23162de",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "c19dbde778a678037631bf6a1194680167424713adec58ae4bbdf8904ec5b4fa",
+    "kandil_hr/foundation/command_audit.py": "8d4787a54255325be2b52c124775b4b7a8d727b90c3536191c365c91bb69b869",
+    "frontend/portal/src/CandidateProfile.tsx": "325886a2d2bfc71edea9ecfc37eed62c16562dc211e30b304cebd725da39d34b",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/portal/api.py": "9c876f5fde772ccc58d600d057725b701ae2242943fca4ac94f38e524e0275e6",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "d17367e91356e1f7c1d5ec69c3a3f0688d9951dc906a7f3d6e30c6f27f997695",
+    "frontend/portal/src/Candidates.tsx": "c475d7bc843fa753becb80b1dd749d86e703a5349005f3cce514476a1ff36773",
+    "frontend/portal/src/main.tsx": "1befaabbe392f3dfae36cd748c66309789c659ca1fe961a8cb7ec9ceefb40b81",
+    "frontend/portal/src/portal.css": "e3fd4a9812d43b65dad4abcbf045f21e468c7b925fbc9f7338da8277b8d3a109",
+    "kandil_hr/public/portal/portal.js": "33b6c3b73dc8eeea8121dd65c8471ee7c8f483ea3b5e46cd50718a6275ce464a",
+    "docs/portal/test_candidates.cjs": "8b92674dc6e9509bbeeb655fa4068f21b8b3dd219ada2ebb9deea08e28f25d63"
+  },
+  "limits": [
+    "Synthetic AR/EN recovery UI only; transient payload cleanup, full S5 and production acceptance remain open."
+  ]
+}

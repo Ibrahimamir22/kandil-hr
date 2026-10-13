@@ -1,6 +1,8 @@
 # قنديل — HR delivery sprint plan
 
-The [durable recovery backend](S5_RECOVERY_BACKEND_CHECKPOINT.md) now stores encrypted, actor-owned candidate commands and safely resumes the original action across sessions. **48 native checks passed, 13 recovery checks were rerun after the concurrency fix, and 18 session/concurrency checks passed.** Candidate forms are **not yet connected** to this backend; the bilingual recovery inbox, navigation/reload UX and payload retention/cleanup remain next. Ordinary candidate mode stays disabled.
+The [candidate recovery UI](S5_RECOVERY_UI_CHECKPOINT.md) now connects intake, profile correction and legacy migration to encrypted server recovery, with an AR/EN inbox for reviewed resume, result recovery and safe discard. **63 candidate browser checks and 33 recovery UI checks passed.** Ordinary candidate mode stays disabled pending bounded transient payload cleanup and activation rehearsal. Full S5 and all release gates remain open.
+
+Earlier checkpoints below retain their original scope and outstanding work at the time; the current status above supersedes their recovery next-step notes.
 
 The [reviewed migration checkpoint](S5_MIGRATION_APPLY_CHECKPOINT.md) adds HR-confirmed legacy identity links, stale-preview rejection, transactional preservation checks and exact-command retries in AR/EN. **48 native and 63 browser checks passed**, including simultaneous first writes. Ordinary candidate mode stays disabled pending recovery across navigation/reloads; full S5 and production gates remain open.
 

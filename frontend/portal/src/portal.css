@@ -109,3 +109,7 @@
 @media(max-width:680px){.candidate-details,.candidate-form-grid{grid-template-columns:1fr}.candidate-row{flex-direction:column}.candidate-actions{width:100%}.candidate-pagination{flex-wrap:wrap;gap:.75rem}.candidates .page-heading,.candidate-intake .page-heading{flex-wrap:wrap}}
 
 .profile-revision{border-top:1px solid #e5e1db}.profile-revision p,.profile-correction p{overflow-wrap:anywhere}.profile-history .card-head{flex-wrap:wrap;gap:1rem}.profile-history .card-head>div{min-width:0}
+
+.candidate-recovery .recovery-confirm{display:flex;align-items:flex-start;gap:10px;margin-block:12px;line-height:1.8}
+.candidate-recovery bdi{overflow-wrap:anywhere}
+.candidate-recovery .recovery-result{display:block}

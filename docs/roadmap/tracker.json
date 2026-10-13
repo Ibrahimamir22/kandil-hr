@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Opaque identity/application workspace, basic corrections/history and current/historical search tested. Configured HR can preview and apply one conservative legacy link with reason, exact preview/version checks, current authority, idempotent receipt and transactional preservation hashes. 48 native and 63 browser checks passed, including lost replies and simultaneous first writes. Navigation/reload recovery, batch migration/import reconciliation, full profiles/sensitive fields, fuzzy identity review and former/internal links remain open; ordinary activation disabled.",
+          "progress": "Basic person/application workspace, corrections, scoped search and reviewed legacy migration implemented. All three forms now use durable recovery and an AR/EN inbox; 63 candidate and 33 recovery UI checks passed. Ordinary activation awaits bounded transient cleanup and rehearsal. Full candidate identity/profile, ownership, sourcing, files and consent remain open. Private files, follow-up/activity/rejection, former/internal candidate support and full reference acceptance remain required.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -577,14 +577,17 @@
             "../portal/evidence/candidates-f57a4a71704f/results.json",
             "S5_MIGRATION_APPLY_CHECKPOINT.md",
             "evidence/s2-regression-6c850d2a0758.json",
-            "../portal/evidence/candidates-eaee1ea0cb9f/results.json"
+            "../portal/evidence/candidates-eaee1ea0cb9f/results.json",
+            "S5_RECOVERY_UI_CHECKPOINT.md",
+            "../portal/evidence/candidates-0122d5ad96cf/results.json",
+            "../portal/evidence/recovery-ui-2b757e1024e3/results.json"
           ]
         },
         {
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "AR/EN candidate directory, basic detail and reviewed intake/corrections/migration implemented. Durable encrypted actor-owned command preparation, recovery execution, acknowledgement and pending cancellation passed native/session concurrency tests. Forms still call original commands; recovery inbox, navigation/reload connection and transient payload cleanup remain next. Private files, follow-up/activity/rejection and complete workspace remain required.",
+          "progress": "Basic person/application workspace, corrections, scoped search and reviewed legacy migration implemented. All three forms now use durable recovery and an AR/EN inbox; 63 candidate and 33 recovery UI checks passed. Ordinary activation awaits bounded transient cleanup and rehearsal. Full candidate identity/profile, ownership, sourcing, files and consent remain open. Private files, follow-up/activity/rejection, former/internal candidate support and full reference acceptance remain required.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -593,7 +596,10 @@
             "S5_RECOVERY_BACKEND_CHECKPOINT.md",
             "evidence/s2-regression-05a90348bfc3.json",
             "evidence/s2-regression-808d33ebbfda.json",
-            "../portal/evidence/recovery-ba86d3ea924d/results.json"
+            "../portal/evidence/recovery-ba86d3ea924d/results.json",
+            "S5_RECOVERY_UI_CHECKPOINT.md",
+            "../portal/evidence/candidates-0122d5ad96cf/results.json",
+            "../portal/evidence/recovery-ui-2b757e1024e3/results.json"
           ]
         },
         {
@@ -627,8 +633,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Corrected person name/contact and historical application search/duplicate review implemented with current native scope. Configured HR can review legacy records, proposed profiles, validation issues and visible downstream links in a read-only AR/EN preview. 46 native and 46 browser checks passed. Migration application/reconciliation, navigation recovery, full identity/profile, ownership, sourcing, files and consent remain open; ordinary intake mode stays disabled.",
-      "checkpoint": "S5_RECOVERY_BACKEND_CHECKPOINT.md"
+      "progress": "Basic person/application workspace, corrections, scoped search and reviewed legacy migration implemented. All three forms now use durable recovery and an AR/EN inbox; 63 candidate and 33 recovery UI checks passed. Ordinary activation awaits bounded transient cleanup and rehearsal. Full candidate identity/profile, ownership, sourcing, files and consent remain open.",
+      "checkpoint": "S5_RECOVERY_UI_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -972,8 +978,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Durable encrypted candidate command recovery backend verified: 48 native checks, final 13-case recovery rerun and 18 personal-session HTTP/concurrency checks. No new recovery UI yet; ordinary mode remains disabled. All 98 requirements and production gates remain open where unfulfilled.",
-    "evidence": "S5_RECOVERY_BACKEND_CHECKPOINT.md",
-    "next": "Connect intake/correction/migration forms to prepare/execute and add AR/EN recovery inbox, reviewed resume/result acknowledgement, navigation/reload and competing-tab tests, plus bounded transient payload cleanup. Then continue full candidate ownership/follow-up/activity and recruiter handoff."
+    "summary": "Basic person/application workspace, corrections, scoped search and reviewed legacy migration implemented. All three forms now use durable recovery and an AR/EN inbox; 63 candidate and 33 recovery UI checks passed. Ordinary activation awaits bounded transient cleanup and rehearsal. Full candidate identity/profile, ownership, sourcing, files and consent remain open.",
+    "evidence": "S5_RECOVERY_UI_CHECKPOINT.md",
+    "next": "Implement bounded expiry/cleanup of transient recovery payloads and rehearse controlled activation, including dedicated in-flight session expiry. Then continue full candidate ownership/follow-up/rejection/activity and recruiter-wide handoff."
   }
 }

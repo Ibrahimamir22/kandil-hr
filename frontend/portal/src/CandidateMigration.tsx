@@ -1,3 +1,4 @@
+import {candidateCommand,type CandidateAttempt} from './candidateCommands';
 import React,{useEffect,useRef,useState} from 'react';
 import {api,ApiError} from './api';
 import type {Tr} from './types';
@@ -7,13 +8,14 @@ type Applied={application:string;person:string;application_version:string;reconc
 export function CandidateMigration({t,close}:{t:Tr;close:()=>void}){
  const [query,setQuery]=useState(''),[term,setTerm]=useState(''),[start,setStart]=useState(0),[selected,setSelected]=useState(''),[page,setPage]=useState<{rows:Row[];total:number;has_more:boolean}|null>(null),[preview,setPreview]=useState<Preview|null>(null),[busy,setBusy]=useState(true),[error,setError]=useState(''),[revision,setRevision]=useState(0);
  const [reason,setReason]=useState(''),[ack,setAck]=useState(false),[saving,setSaving]=useState(false),[uncertain,setUncertain]=useState(false),[applied,setApplied]=useState<Applied|null>(null);
- const attempt=useRef<Record<string,unknown>|null>(null);
+ const attempt=useRef<CandidateAttempt|null>(null);
+ const active=useRef(true);useEffect(()=>{active.current=true;return()=>{active.current=false}},[]);
  const locked=saving||uncertain;
  async function apply(){if(!preview)return;setSaving(true);setError('');try{
-  if(!attempt.current)attempt.current={name:preview.request,opening_name:preview.opening,application:preview.application,application_version:preview.application_version,expected_version:preview.request_version,preview_hash:preview.preview_hash,reason:reason.trim(),command_id:crypto.randomUUID()};
-  const result=await api<Applied>('kandil_hr.candidates.migration.apply_review',attempt.current,'POST');
+  if(!attempt.current)attempt.current={id:crypto.randomUUID(),payload:{name:preview.request,opening_name:preview.opening,application:preview.application,application_version:preview.application_version,expected_version:preview.request_version,preview_hash:preview.preview_hash,reason:reason.trim()}};
+  const result=await candidateCommand<Applied>('migration',attempt.current,()=>active.current);
   if(result?.application!==preview.application||!result.person||!result.application_version||result.reconciliation?.preserved!==true||!result.reconciliation.before_hash||result.reconciliation.before_hash!==result.reconciliation.after_hash)throw new ApiError('NETWORK_UNCERTAIN',0);
-  setApplied(result);attempt.current=null;setUncertain(false);
+  attempt.current=null;if(active.current){setApplied(result);setUncertain(false)}
  }catch(e){const unknown=e instanceof ApiError&&(e.status===0||e.status>=500);setUncertain(unknown);if(!unknown)attempt.current=null;setError(unknown?t('تعذر تأكيد النتيجة. أعد نفس الطلب؛ لا تبدأ ربطًا جديدًا.','Could not confirm the result. Retry the same request; do not start another link.'):t('تعذر تطبيق الربط. حدّث المعاينة وراجع البيانات والصلاحيات قبل المحاولة.','Could not apply the link. Refresh the preview and review data and permissions before retrying.'))}finally{setSaving(false)}}
  useEffect(()=>{setReason('');setAck(false);setApplied(null);attempt.current=null;setUncertain(false);let live=true;setBusy(true);setError('');setPage(null);setPreview(null);(selected?api<Preview>('kandil_hr.candidates.migration.preview',{name:selected}).then(v=>{if(live)setPreview(v)}):api<{rows:Row[];total:number;has_more:boolean}>('kandil_hr.candidates.migration.listing',{search:term,start,page_length:10}).then(v=>{if(live)setPage(v)})).catch(()=>{if(live)setError(t('تعذر فتح المراجعة ضمن صلاحياتك الحالية.','Could not open the review within your current permissions.'))}).finally(()=>{if(live)setBusy(false)});return()=>{live=false}},[selected,term,start,revision]);
  const issues:Record<string,[string,string]>={already_linked:['هذا الطلب مرتبط بشخص بالفعل.','This application is already linked to a person.'],incomplete_contact:['الاسم أو وسيلة الاتصال تحتاج مراجعة.','Name or contact information needs review.'],invalid_profile:['بعض البيانات لا تستوفي قواعد الملف الأساسي.','Some data does not meet the basic profile rules.']};
