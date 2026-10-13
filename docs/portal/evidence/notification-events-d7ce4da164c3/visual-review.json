@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "reviewed_by": "Codex visual inspection",
+  "viewports": {
+    "ar": "390x844 mobile, full-page capture",
+    "en": "1440x1000 desktop, full-page capture"
+  },
+  "checks": [
+    "Arabic RTL and English LTR controls readable",
+    "No horizontal clipping in either viewport",
+    "Minimal bilingual amendment notices show the original reference without private child notes",
+    "Event timestamps descend from approval/application to submission/proposal after event-time ordering fix"
+  ],
+  "screenshots": {
+    "amendment-inbox-ar.png": "265f011c55ca1f1ab07aec8f5accd96f3eacfe5113df0995bd6ae537678293f2",
+    "amendment-inbox-en.png": "d76d34f66f11fb6aa400ea1ee64be8d332896f08caf747a0fe820afa54e791e5"
+  },
+  "limits": [
+    "Existing generic request-update subjects remain English in these captures; complete template localization remains an S4 review item.",
+    "Synthetic rendered inbox review, not accessibility certification or HR terminology acceptance."
+  ]
+}

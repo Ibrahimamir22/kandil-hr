@@ -16,6 +16,7 @@ rechecking recipient account and reference read permissions at delivery time.
 All entry points remain non-whitelisted and Administrator-only server functions.
 """
 
+import json
 from zoneinfo import ZoneInfo
 
 import frappe
@@ -28,6 +29,46 @@ from kandil_hr.foundation.outbox import enqueue
 from kandil_hr.recruitment.models import enabled
 
 STAGES = {2: "reminder", 3: "escalation", 4: "warning", 5: "expiry"}
+LEGACY_SUBJECTS = {"Approval reminder", "Approval escalation", "Approval expiry warning", "Approval deadline reached"}
+
+
+def validate_context(context):
+	fields = {"kind", "revision", "step_key", "principal", "waiting_since", "stage"}
+	if (not isinstance(context, dict) or set(context) != fields
+			or context["kind"] != "approval_sla_v2"
+			or type(context["revision"]) is not int or context["revision"] < 1
+			or context["stage"] not in STAGES.values()
+			or any(not isinstance(context[k], str) or not context[k] for k in ("step_key", "principal", "waiting_since"))):
+		raise ValueError("Invalid approval reminder delivery context")
+	get_datetime(context["waiting_since"])
+
+
+def delivery_reason(request, notice):
+	"""Called with current Company/request and recipient locks, before any receipt.
+
+	A historical update remains deliverable; an instruction to act on a finished
+	approval step does not. Unknown/malformed contexts fail visibly for recovery.
+	Old unversioned SLA events cannot prove their step and are suppressed; the
+	versioned scheduler key lets the current due reminder be regenerated safely.
+	Delivered receipts are untouched by this guard.
+	"""
+	raw = notice.get("delivery_context")
+	if not raw:
+		if (notice.reference_doctype == "Kandil Hiring Request" and notice.subject in LEGACY_SUBJECTS):
+			return "Legacy approval reminder lacks a verifiable step; regenerate through scheduler"
+		return ""
+	context = json.loads(raw)
+	validate_context(context)
+	if not request or notice.reference_doctype != "Kandil Hiring Request":
+		return "Approval reminder reference no longer exists"
+	step = next((row for row in request.approval_steps if row.decision == "Pending"), None)
+	if (request.status != "Pending" or not step
+			or int(request.revision) != context["revision"]
+			or step.step_key != context["step_key"] or step.principal != context["principal"]
+			or not step.waiting_since
+			or get_datetime(step.waiting_since) != get_datetime(context["waiting_since"])):
+		return "Approval reminder superseded by current request or approval step"
+	return ""
 
 
 def due_milestone(working_days):
@@ -101,10 +142,12 @@ def process_request(name):
 		body += " " + _(
 			"Automatic rejection is disabled; an authorized decision is still required.", lang="en"
 		)
+	context = dict(kind="approval_sla_v2", revision=int(doc.revision), step_key=step.step_key,
+		principal=step.principal, waiting_since=str(step.waiting_since), stage=stage)
 	queued = []
 	for user in sorted(recipients):
-		key = f"approval-sla:{doc.name}:{doc.revision}:{step.step_key}:{stage}:{user}"
-		queued.append(enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name))
+		key = f"approval-sla:v2:{doc.name}:{doc.revision}:{step.step_key}:{stage}:{user}"
+		queued.append(enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name, delivery_context=context))
 	return {"status": stage, "step": step.step_key, "working_days": elapsed, "outbox": queued}
 
 

@@ -37,7 +37,9 @@ def listing(state='all',search='',start=0,page_length=25):
         term='%'+search.replace('\\','\\\\').replace('%','\\%').replace('_','\\_')+'%'
         q=q.where(o.subject.like(term)|o.body.like(term))
     count=total(q,n)
-    rows=q.select(n.name,n.creation,n.read,o.subject,o.body,o.reference_doctype,o.reference_name).orderby(n.creation,order=Order.desc).orderby(n.name).limit(limit).offset(start).run(as_dict=True)
+    # Queue recovery may deliver old events after newer ones. Order and label
+    # by event creation, not receipt delivery, with a stable outbox-ID tie-breaker.
+    rows=q.select(n.name,o.creation,n.read,o.subject,o.body,o.reference_doctype,o.reference_name).orderby(o.creation,order=Order.desc).orderby(o.name).limit(limit).offset(start).run(as_dict=True)
     for row in rows:
         row['read']=bool(row['read'])
         # A fixed type allowlist, never a URL from message content.

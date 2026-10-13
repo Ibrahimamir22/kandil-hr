@@ -104,6 +104,71 @@ class TestApprovalSLA(unittest.TestCase):
 		self.fixture.decide(self.request.name, "hr")
 		self.assertEqual(self.process_on("2026-10-15")["status"], "Inactive")
 
+	def assert_suppressed(self, names):
+		for name in names:
+			self.assertEqual(outbox.deliver(name), "Suppressed")
+			self.assertFalse(frappe.db.get_value("Kandil Notification Outbox", name, "notification_log"))
+			self.assertFalse(frappe.db.exists("Kandil Mail Capture", {"outbox": name}))
+
+	def test_advanced_step_suppresses_queued_reminder_without_revoking_read_access(self):
+		queued = self.process_on("2026-10-12")["outbox"]
+		self.fixture.decide(self.request.name, "manager")
+		request = self.fixture.load(self.request.name)
+		self.assertTrue(frappe.has_permission(request.doctype, "read", doc=request, user=self.fixture.users["manager"]))
+		self.assert_suppressed(queued)
+
+	def test_completed_request_suppresses_all_queued_milestones(self):
+		queued = self.process_on("2026-10-15")["outbox"]
+		self.fixture.approve_all(self.request.name)
+		self.assert_suppressed(queued)
+		self.fixture.ledger((0, 0), (2, 1))
+
+	def test_waiting_restart_and_revision_change_invalidate_notice(self):
+		queued = self.process_on("2026-10-12")["outbox"]
+		doc = self.fixture.load(self.request.name)
+		step = next(row for row in doc.approval_steps if row.decision == "Pending")
+		frappe.db.set_value("Kandil Approval Step", step.name, "waiting_since", "2026-10-09 12:00:00", update_modified=False)
+		self.assert_suppressed(queued)
+		self.set_waiting_start()
+		queued = self.process_on("2026-10-14")["outbox"]
+		frappe.db.set_value(doc.doctype, doc.name, "revision", doc.revision + 1, update_modified=False)
+		self.assert_suppressed(queued)
+
+	def test_current_step_delivers_once_and_history_survives_completion(self):
+		name = self.process_on("2026-10-12")["outbox"][0]
+		self.assertEqual(outbox.deliver(name), "Delivered locally")
+		receipt = frappe.db.get_value("Kandil Notification Outbox", name, "notification_log")
+		self.fixture.approve_all(self.request.name)
+		self.assertEqual(outbox.deliver(name), "Delivered locally")
+		self.assertEqual(frappe.db.get_value("Kandil Notification Outbox", name, "notification_log"), receipt)
+
+	def test_unverifiable_legacy_reminder_suppressed_but_ordinary_update_retained(self):
+		import uuid
+		legacy = outbox.enqueue(uuid.uuid4().hex, self.fixture.users["manager"], "Approval reminder",
+			"Old queued reminder", "Kandil Hiring Request", self.request.name)
+		ordinary = outbox.enqueue(uuid.uuid4().hex, self.fixture.users["requester"], "Recruitment request updated",
+			"Historical update", "Kandil Hiring Request", self.request.name)
+		self.assert_suppressed([legacy])
+		self.assertEqual(outbox.deliver(ordinary), "Delivered locally")
+		fresh = self.process_on("2026-10-12")["outbox"][0]
+		self.assertNotEqual(fresh, legacy)
+		self.assertEqual(outbox.deliver(fresh), "Delivered locally")
+
+	def test_context_is_hashed_and_malformed_delivery_fails_without_receipt(self):
+		import json
+		name = self.process_on("2026-10-12")["outbox"][0]
+		row = frappe.get_doc("Kandil Notification Outbox", name)
+		context = json.loads(row.delivery_context)
+		self.assertEqual(context["step_key"], self.fixture.load(self.request.name).approval_steps[0].step_key)
+		key = f"approval-sla:v2:{self.request.name}:1:{context['step_key']}:reminder:{row.recipient}"
+		with self.fixture.rejected():
+			outbox.enqueue(key, row.recipient, row.subject, row.body, row.reference_doctype, row.reference_name,
+				delivery_context=context | {"stage": "warning"})
+		frappe.db.set_value(row.doctype, row.name, "delivery_context", '{"kind":"unknown"}', update_modified=False)
+		with self.assertRaises(ValueError):
+			outbox.deliver(name)
+		self.assertFalse(frappe.db.get_value(row.doctype, name, "notification_log"))
+
 	def test_notification_insert_failure_can_rollback_every_recipient(self):
 		before = frappe.db.count("Kandil Notification Outbox", {"reference_name": self.request.name})
 		frappe.db.savepoint("before_sla_enqueue")

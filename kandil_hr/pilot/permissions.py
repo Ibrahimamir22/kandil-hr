@@ -6,14 +6,14 @@ from kandil_hr.foundation.security import request_scope, scope_query
 from kandil_hr.pilot.models import enabled
 
 
-def request_query(user=None):
+def request_query(user=None, include_amendments=True, include_privileged=True):
 	if not enabled():
 		return "1=0"
 	user = user or frappe.session.user
 	scope = scope_query("Kandil Hiring Request", user)
-	if user == "Administrator" or {"Kandil Recruiter", "Kandil Sector Approver"}.intersection(
+	if user == "Administrator" or (include_privileged and {"Kandil Recruiter", "Kandil Sector Approver"}.intersection(
 		frappe.get_roles(user)
-	):
+	)):
 		return scope
 	u = frappe.db.escape(user)
 	day = frappe.db.escape(today())
@@ -29,6 +29,8 @@ def request_query(user=None):
 			+ " AND d.from_user<>`tabKandil Hiring Request`.requested_by"
 		)
 		board = board_query(user)
+		if not include_privileged:
+			board = f"({board}) AND EXISTS (SELECT 1 FROM `tabHas Role` br WHERE br.parent={u} AND br.parenttype='User' AND br.role='Kandil Board Approver')"
 		day = frappe.db.escape(str(today_cairo()))
 	relationship = f"""(`tabKandil Hiring Request`.requested_by={u} OR EXISTS (
         SELECT 1 FROM `tabKandil Approval Step` s WHERE s.parent=`tabKandil Hiring Request`.name
@@ -36,6 +38,10 @@ def request_query(user=None):
         WHERE d.from_user=s.principal AND d.to_user={u} AND d.revoked=0
         AND d.company=`tabKandil Hiring Request`.company AND d.department=`tabKandil Hiring Request`.department
         AND d.from_date<={day} AND d.to_date>={day} {extra}))) OR {board})"""
+	if include_amendments and frappe.conf.get("kandil_parity_enabled"):
+		from kandil_hr.recruitment.amendment_access import condition
+
+		relationship = f"({relationship}) OR ({condition(user)})"
 	return f"({scope}) AND ({relationship})" if scope else relationship
 
 
@@ -62,6 +68,10 @@ def request_permission(doc, user=None, ptype=None):
 	if frappe.conf.get("kandil_parity_enabled"):
 		from kandil_hr.recruitment.authority import board_reader
 
+		from kandil_hr.recruitment.amendment_access import allowed
+
+		if allowed(doc, user):
+			return True
 		if board_reader(doc, user):
 			return True
 	from kandil_hr.pilot.api import delegate_for

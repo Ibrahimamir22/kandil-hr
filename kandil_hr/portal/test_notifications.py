@@ -133,6 +133,19 @@ class TestNotifications(unittest.TestCase):
         result=self.listing();self.assertEqual(result['total'],1);self.assertIsNone(result['rows'][0].request)
         self.mark(name);self.assertEqual(self.listing()['unread'],0)
 
+    def test_event_order_survives_reverse_delivery_order(self):
+        older=outbox.enqueue(uuid.uuid4().hex,self.f.users['hr'],'Earlier event',reference_doctype='Kandil Hiring Request',reference_name=self.request)
+        newer=outbox.enqueue(uuid.uuid4().hex,self.f.users['hr'],'Later event',reference_doctype='Kandil Hiring Request',reference_name=self.request)
+        for name,instant in ((older,'2026-10-08 12:00:00'),(newer,'2026-10-09 12:00:00')):
+            frappe.db.set_value('Kandil Notification Outbox',name,'creation',instant,update_modified=False)
+        # Recovery delivers the newer event first; event history remains intact.
+        self.assertEqual(outbox.deliver(newer),'Delivered locally')
+        self.assertEqual(outbox.deliver(older),'Delivered locally')
+        result=self.listing()
+        self.assertEqual([r.subject for r in result['rows']],['Later event','Earlier event'])
+        self.assertEqual(str(result['rows'][0].creation),'2026-10-09 12:00:00')
+        self.assertEqual(str(result['rows'][1].creation),'2026-10-08 12:00:00')
+
     def test_invalid_filters_are_rejected_and_limit_bounded(self):
         for args in ({'state':'bad'},{'search':{}},{'search':'x'*141}):
             with self.f.rejected():self.listing(**args)
@@ -143,7 +156,7 @@ def run():
     from kandil_hr.foundation.concurrency_runner import _guard
     from kandil_hr.foundation.tests_runner import RecordedResult
     _guard();suite=unittest.defaultTestLoader.loadTestsFromTestCase(TestNotifications)
-    assert suite.countTestCases()==13
+    assert suite.countTestCases()==14
     result=unittest.TextTestRunner(verbosity=2,resultclass=RecordedResult).run(suite)
     summary=dict(result='PASS' if result.wasSuccessful() and not result.skipped else 'FAIL',total=result.testsRun,checks=result.checks)
     if not result.wasSuccessful() or result.skipped:

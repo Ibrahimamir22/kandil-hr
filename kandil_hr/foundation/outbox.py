@@ -16,7 +16,7 @@ from kandil_hr.foundation.models import effect, guard
 from kandil_hr.foundation.security import enabled
 
 
-def enqueue(key, recipient, subject, body="", reference_doctype=None, reference_name=None):
+def enqueue(key, recipient, subject, body="", reference_doctype=None, reference_name=None, *, delivery_context=None):
 	guard()
 	if not key or not recipient or not subject:
 		frappe.throw(_("A notification requires a stable key, recipient and subject."))
@@ -29,6 +29,15 @@ def enqueue(key, recipient, subject, body="", reference_doctype=None, reference_
 		reference_doctype=reference_doctype,
 		reference_name=reference_name,
 	)
+	# Optional context is hashed only for new contextual events. Legacy ordinary
+	# event payloads keep their original hashes and replay identities.
+	if delivery_context is not None:
+		from kandil_hr.recruitment.sla import validate_context
+
+		validate_context(delivery_context)
+		if reference_doctype != "Kandil Hiring Request":
+			frappe.throw(_("Approval reminders require a hiring request reference."))
+		data["delivery_context"] = json.dumps(delivery_context, sort_keys=True, ensure_ascii=False)
 	digest = hashlib.sha256(json.dumps(data, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 	name = "KNO-" + hashlib.sha256(key.encode()).hexdigest()[:40]
 	# Serialize writers through a stable, pre-existing User row, including first insert.

@@ -2,6 +2,8 @@
 
 Custom Frappe HR extension for Kandil's HR department. Odoo and the broader company platform remain separate. This repository contains Kandil's application source, schemas, native Frappe screens, tests and deployment package. The official Frappe, ERPNext and HRMS sources are installed as separate pinned dependencies, without modifying their core code.
 
+The [requester-event and reminder checkpoint](docs/roadmap/S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Actual scheduler/recovery proof and final event/recipient policy remain open.
+
 **Current engineering focus: Sprint 4 — vacancy operations.** The AR/EN portal includes organization, HR + CEO structural/individual assignment approvals, job descriptions, hiring forms, routing, HR actions, delegation, Board decisions and review history.
 
 [S3 engineering verification](docs/roadmap/S3_ENGINEERING_REVIEW.md) passed 215 native checks, 350 browser checks and three concurrent HTTP scenarios. S3 remains open for HR policy/UAT acceptance. The [17-ID results](docs/roadmap/S3_REQUIREMENT_RESULTS.json) distinguish engineering evidence from business and release acceptance.

@@ -29,7 +29,7 @@ SCOPED_TYPES = {
 	"Kandil Structure Snapshot",
 	"Kandil Organization Import",
 }
-ROUTING_FIELDS = ("recipient", "reference_doctype", "reference_name", "payload_hash")
+ROUTING_FIELDS = ("recipient", "reference_doctype", "reference_name", "payload_hash", "delivery_context")
 
 
 def lock_domain(doctype, name):
@@ -111,6 +111,10 @@ def request_relationship(doc, user, roles):
 			for step in doc.approval_steps
 		):
 			return True
+		from kandil_hr.recruitment.amendment_access import allowed as amendment_baseline_allowed
+
+		if amendment_baseline_allowed(doc, user, current=True):
+			return True
 		from kandil_hr.foundation.delegation import find_delegation
 
 		# A nonlocking permission fallback below can see an earlier RR snapshot.
@@ -158,8 +162,11 @@ def lock_delivery(name):
 		# Domain -> all relevant User rows in one deterministic order -> roles /
 		# grants / delegation -> outbox. A later delegation predicate must not
 		# acquire a previously unlocked principal User after the recipient.
+		from kandil_hr.recruitment.amendment_access import lock_principals
+
 		for account in sorted(
 			{hint.recipient} | {step.principal for step in doc.approval_steps if step.principal}
+			| lock_principals(doc)
 		):
 			frappe.db.sql("SELECT name FROM `tabUser` WHERE name=%s FOR UPDATE", (account,))
 	reason = ""
@@ -197,4 +204,8 @@ def lock_delivery(name):
 	outbox = frappe.get_doc("Kandil Notification Outbox", name, for_update=True)
 	if any(outbox.get(field) != hint.get(field) for field in ROUTING_FIELDS):
 		raise RuntimeError("Notification routing changed; retry transaction")
+	if not reason:
+		from kandil_hr.recruitment.sla import delivery_reason
+
+		reason = delivery_reason(request, outbox)
 	return outbox, reason

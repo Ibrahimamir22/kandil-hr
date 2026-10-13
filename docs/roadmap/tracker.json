@@ -444,7 +444,7 @@
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
           "status": "in_progress",
-          "progress": "Delivered-message inbox connected in AR/EN with exact counts, paging, literal search, repeat-safe reads and reference navigation. Current reference permissions also protect native notification reads. Final mixed-access browser/CSRF checks and native privacy regressions passed; 49 distinct native and 90 browser checks across incremental runs. Business-calendar deadlines, scheduled reminders and complete event/recipient coverage remain. External delivery, HR/security/scale release acceptance are not complete.",
+          "progress": "AR/EN delivered-message inbox, exact unread counts and current-reference privacy are connected. Added original-requester amendment/skipped-route notices, bounded submitted-amendment baseline reads, stale-step SLA suppression and event-time inbox ordering. 134 distinct native checks across recorded checkpoints; 96 final native and 76 final ordinary-session browser checks passed. Detailed proof and limitations are in S4_NOTIFICATION_EVENTS_CHECKPOINT.md. Complete event/recipient review, actual scheduled operation, deadline/calendar UI and external email remain open.",
           "evidence": [
             "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
             "evidence/s2-regression-02c66abed7ae.json",
@@ -452,7 +452,20 @@
             "../portal/evidence/notifications-2e961c76fbbb/results.json",
             "../portal/evidence/notifications-d447f12d8b6e/visual-review.json",
             "../portal/evidence/dashboard-5a6eae2a376d/results.json",
-            "../portal/evidence/browser-4558a7fb94cf/regression.json"
+            "../portal/evidence/browser-4558a7fb94cf/regression.json",
+            "S4_NOTIFICATION_EVENTS_CHECKPOINT.md",
+            "evidence/s2-regression-e4bc019e5c28.json",
+            "evidence/s2-regression-f505b587e5fd.json",
+            "evidence/s2-regression-5c3df1c5a273.json",
+            "../portal/evidence/notification-events-be021ec6e041/results.json",
+            "../portal/evidence/notification-events-be021ec6e041/visual-review.json",
+            "../portal/evidence/notifications-be225d3c056d/results.json",
+            "../portal/evidence/browser-a9ce6b10fbc7/regression.json",
+            "evidence/s2-regression-00d44c3160a1.json",
+            "../portal/evidence/notification-events-d7ce4da164c3/results.json",
+            "../portal/evidence/notification-events-d7ce4da164c3/visual-review.json",
+            "../portal/evidence/notifications-c886ea23a778/results.json",
+            "../portal/evidence/browser-4660a7efec85/regression.json"
           ]
         },
         {
@@ -472,8 +485,8 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Scoped AR/EN vacancy queue, complete-team editor, paginated common-scope recruiter lookup and cross-page atomic bulk assignment verified. Evidence: 77 distinct native cases across documented source checkpoints and 80 final browser checks, including lost-response retry, simultaneous identical bulk calls, stale-batch rollback and outsider denial. S4 remains in progress: pin/lifecycle controls, global dashboard/inbox and scheduled delivery remain open.",
-      "checkpoint": "S4_TEAM_ASSIGNMENT_CHECKPOINT.md"
+      "progress": "Scoped vacancy queue, team/bulk assignment, lifecycle/priority, dashboard/approvals and delivered-message inbox are implemented with checkpoint evidence. Current work closes requester-event gaps and stale reminders. S4 remains open for complete recipient/template review, business-calendar/deadline UI, isolated scheduled execution, worker recovery and disabled-recruiter handoff; external email and HR/IT acceptance remain distinct.",
+      "checkpoint": "S4_NOTIFICATION_EVENTS_CHECKPOINT.md"
     },
     {
       "id": "S5",
@@ -867,8 +880,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Reviewed vacancy lifecycle and priority-pin controls verified with 65 native and 142 final browser checks across documented runs; full S4, HR/IT and production acceptance remain open.",
-    "evidence": "S4_VACANCY_LIFECYCLE_CHECKPOINT.md",
-    "next": "Implement scoped company-wide dashboard/search and action inbox, then isolated business-calendar scheduling, retry/restart and delivery verification. Preserve all 98 requirements and external acceptance gates."
+    "summary": "Requester amendment/route-skip notices, scoped amendment baseline review and stale-step reminder suppression verified; event-time ordering preserves chronology during delayed delivery. S4 and production gates remain open.",
+    "evidence": "S4_NOTIFICATION_EVENTS_CHECKPOINT.md",
+    "next": "Complete calendar/recipient semantics and deadline UI, then prove isolated scheduled delivery and failure/restart recovery without starting the shared worker. Reconcile REQ-007 and remaining S4/S5 ownership clauses; retain all 98 requirements."
   }
 }

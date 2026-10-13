@@ -2,6 +2,8 @@
 
 **Active goal:** complete the custom Arabic/English HR portal over Frappe HR, using the reference requirements and verified acceptance gates. Odoo and other departments remain separate.
 
+The [requester-event and reminder checkpoint](S4_NOTIFICATION_EVENTS_CHECKPOINT.md) adds minimal AR/EN amendment/route-skip updates, scoped original-baseline access for submitted amendment reviewers, stale approval-step reminder suppression and event-time inbox ordering. Actual scheduler/recovery proof and final event/recipient policy remain open.
+
 **Starting point:** the first connected hiring journey is implemented and has recorded 10 native + 31 HTTP + 24 browser checks. The older 80-case baseline is 70 passed / 6 partial / 4 blocked at its own checkpoint. Neither result proves complete HR parity or production readiness.
 
 **Current engineering focus: S4.** [S3 engineering verification](S3_ENGINEERING_REVIEW.md) records 215 native checks, 350 AR/EN browser checks and three concurrent HTTP scenarios. All 17 S3 IDs have [explicit evidence](S3_REQUIREMENT_RESULTS.json). S3 remains open for HR policy/terminology/UAT acceptance; S2 document/history acceptance and live email also remain open. S0/S1 engineering stabilization is complete.

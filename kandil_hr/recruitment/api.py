@@ -167,6 +167,8 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	# Lock related domain records before the shared sorted User/grant order.
 	related_before = related_state(doc, operation, payload)
 	users = {frappe.session.user, doc.requested_by} | {s.principal for s in doc.approval_steps if s.principal}
+	if parent_name:
+		users.add(frappe.db.get_value("Kandil Hiring Request", parent_name, "requested_by", for_update=True))
 	if operation in {"submit", "revise_pending_quantities", "send_to_ceo"}:
 		users.update(route_candidate_users(doc))
 	for step in doc.approval_steps:
@@ -319,6 +321,9 @@ def save(doc, action, note="", principal=None):
 			"Kandil Hiring Request",
 			doc.name,
 		)
+	from kandil_hr.recruitment.notifications import amendment_update
+
+	amendment_update(doc, action)
 	return doc.as_dict()
 
 
@@ -828,6 +833,9 @@ def amend(name, command_id, expected_version, reason):
 			)
 		).insert(ignore_permissions=True)
 		snapshot(amended, "Amendment created")
+		from kandil_hr.recruitment.notifications import amendment_update
+
+		amendment_update(amended, "Amendment created")
 		return dict(name=amended.name, amends=doc.name)
 
 	return command(name, "amend", command_id, expected_version, {"reason": reason}, act)
