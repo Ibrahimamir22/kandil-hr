@@ -68,6 +68,9 @@ def historical_location(kind, name, snapshot, related, missing):
 def project(snapshot, related, doc):
     if not isinstance(snapshot, dict) or (snapshot.get('doctype'), snapshot.get('name'), snapshot.get('company')) != (DT, doc.name, doc.company): deny()
     if not snapshot.get('department') or not isinstance(snapshot.get('lines'), list): deny()
+    if not isinstance(related, list) or any(not isinstance(r, dict) for r in related): deny()
+    if any(not isinstance(r, dict) for r in snapshot['lines']): deny()
+    if not isinstance(snapshot.get('approval_steps', []), list) or any(not isinstance(r, dict) for r in snapshot.get('approval_steps', [])): deny()
     missing = []
     branch = historical_location('Kandil Position', snapshot.get('requested_position'), snapshot, related, missing)
     result = {key: snapshot.get(key) for key in REQUEST_FIELDS}
@@ -94,8 +97,9 @@ def project(snapshot, related, doc):
             except (frappe.PermissionError, frappe.DoesNotExistError):
                 frappe.clear_messages(); row['proof_restricted'] = True
         result['approval_steps'].append(row)
-    route = json.loads(snapshot.get('route_snapshot') or '{}')
-    if not isinstance(route, dict): deny()
+    try: route = json.loads(snapshot.get('route_snapshot') or '{}')
+    except (TypeError, ValueError): deny()
+    if not isinstance(route, dict) or (route.get('policy') is not None and not isinstance(route['policy'], dict)): deny()
     # Frozen policy only, never today's policy or arbitrary configuration JSON.
     result['policy'] = {key: (route.get('policy') or {}).get(key) for key in POLICY_FIELDS} if route.get('policy') else None
     result['location_capture'] = 'partial' if missing else 'complete'

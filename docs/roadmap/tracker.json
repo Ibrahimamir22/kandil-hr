@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "HR operations, request register and recorded command before/after comparisons are connected. Native revisions now check historical department/current references; embedded raw snapshots are omitted from ordinary request reads and command replies. Standalone revision navigation, cross-event comparisons, remaining nested raw-reference/file/reporting guards and expanded authority-history acceptance remain open.",
+          "progress": "Request operations, register, command history and standalone saved-version browsing are connected. Selected saved versions compare with exact recorded pre-decision content, including different revision numbers and original-versus-HR-proposed quantities. Expanded delegated/CEO/Board/correction/pending-quantity history, route rationale, amendment links and remaining native reference/file/reporting paths remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -292,7 +292,11 @@
             "S3_NATIVE_HISTORY_CHECKPOINT.md",
             "evidence/s2-regression-8470ece98ed6.json",
             "../portal/evidence/request-history-c4222493ea82/results.json",
-            "../portal/evidence/browser-6665fbf73b5f/regression.json"
+            "../portal/evidence/browser-6665fbf73b5f/regression.json",
+            "S3_REVISION_CHECKPOINT.md",
+            "evidence/s2-regression-06239da79727.json",
+            "../portal/evidence/request-history-db0d5ad8bb14/results.json",
+            "../portal/evidence/browser-f83f595c85fe/regression.json"
           ]
         },
         {
@@ -313,7 +317,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Modern command history and the first native snapshot protections are implemented and tested. Standalone revision navigation, cross-event comparisons, remaining native reference paths and full S3 acceptance remain open.",
+      "progress": "Command history, standalone saved versions and selected pre-decision comparisons are implemented and tested. Expanded authority/correction history, route rationale, amendment links, remaining native reference paths and full S3 acceptance remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -754,8 +758,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Native historical scope/current-reference checks and protected embedded snapshots: 79 native and 79 final browser checks passed. Safe immutable revisions and AR/EN comparisons preserved. Remaining raw-reference paths and full S3 acceptance remain open.",
-    "evidence": "S3_NATIVE_HISTORY_CHECKPOINT.md",
-    "next": "Connect standalone revision navigation and selected submission-versus-decision comparisons; complete remaining native nested-reference/file/reporting checks and expanded authority-history acceptance."
+    "summary": "Saved-version browsing and selected pre-decision comparisons connected in AR/EN. Exact capture matching, historical permissions, distinct decision/outcome display and per-request history indexes verified. 50 final native and 103 browser checks passed; full S3 and release gates remain open.",
+    "evidence": "S3_REVISION_CHECKPOINT.md",
+    "next": "Complete frozen route-rationale and linked-amendment navigation; expand delegated/CEO/Board/correction/pending-quantity history acceptance and finish remaining native historical-reference paths before S3 closeout."
   }
 }

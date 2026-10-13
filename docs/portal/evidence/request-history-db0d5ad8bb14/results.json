@@ -1,0 +1,357 @@
+{
+  "status": "PASS",
+  "run_id": "db0d5ad8bb14",
+  "checked_at": "2026-10-13T00:39:50.043Z",
+  "checks": [
+    {
+      "name": "en: request opens seven recorded commands",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old reviewed revision survives current revised request",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original title is rendered on both sides",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old decision reason and reviewed step visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original requested three versus HR proposal one",
+      "status": "PASS"
+    },
+    {
+      "name": "en: both recorded quantity tables are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: frozen policy is displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "en: history fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: all history comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved snapshots distinguish actions within each revision",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original submission uses exact recorded capture",
+      "status": "PASS"
+    },
+    {
+      "name": "en: comparison requires a selected decision",
+      "status": "PASS"
+    },
+    {
+      "name": "en: selected submission compared with actual pre-decision HR content",
+      "status": "PASS"
+    },
+    {
+      "name": "en: different revision comparison is explicitly labelled",
+      "status": "PASS"
+    },
+    {
+      "name": "en: compared original and revised titles rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outside-scope revision detail denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outside-scope comparison denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: comparison cannot borrow another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "en: saved version pagination is bounded",
+      "status": "PASS"
+    },
+    {
+      "name": "en: changing to a non-decision clears comparison",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary HR can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary manager can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider history list denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider guessed event denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized reader cannot mix another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "en: raw private audit access remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: requester /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: HR /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: manager /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: manager /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized native immutable revisions remain available",
+      "status": "PASS"
+    },
+    {
+      "name": "en: native detail preserves original revision bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider cannot read native revision",
+      "status": "PASS"
+    },
+    {
+      "name": "en: bounded page and second page are usable",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: request opens seven recorded commands",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old reviewed revision survives current revised request",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original title is rendered on both sides",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old decision reason and reviewed step visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original requested three versus HR proposal one",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: both recorded quantity tables are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: frozen policy is displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: history fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: all history comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: saved snapshots distinguish actions within each revision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original submission uses exact recorded capture",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: comparison requires a selected decision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: selected submission compared with actual pre-decision HR content",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: different revision comparison is explicitly labelled",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: compared original and revised titles rendered",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: saved comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outside-scope revision detail denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outside-scope comparison denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: comparison cannot borrow another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: saved version pagination is bounded",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: changing to a non-decision clears comparison",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary HR can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary manager can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider history list denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider guessed event denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: authorized reader cannot mix another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: raw private audit access remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: requester /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HR /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: HR /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: manager /api/resource/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: manager /api/v2/document/Kandil%20Hiring%20Request/ excludes embedded raw history",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: authorized native immutable revisions remain available",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: native detail preserves original revision bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider cannot read native revision",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: bounded page and second page are usable",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation clears previously displayed history",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation denies exact historical event",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest history denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS errors, server failures or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "db0d5ad8bb14",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestHistory.tsx": "0a37b14b718ebf2003210ed3d5de4d3e238cdd96359e89866aaafb7ba0c65f88",
+    "frontend/portal/src/HistoryCapture.tsx": "1f093968e85ff0c7bcd1a9528dc7a62b7a6d0a717f0542258f9cb52cdca3b46c",
+    "frontend/portal/src/RequestRevisions.tsx": "1afb8f0377cb89a8ca3e7fae08b16aaca6c0a236ca270b7a2aa238d09a826143",
+    "kandil_hr/portal/request_revisions.py": "db24aba53ec5ef3d710971f8ca75c3a2cbc3bb901d1c3ccef04852a3235704a8",
+    "kandil_hr/foundation/request_history_indexes.py": "88f7de7d31bc68b2842c9ca294eb04fa81c43f8eaa81e0f0726bddee3f310fb1",
+    "kandil_hr/patches.txt": "0c28be0929673ec510591a008f3d8d5fd7ed0c96e81b890c07b711978db44892",
+    "frontend/portal/src/main.tsx": "988fa223ba1bfda93b19cd1a46cfb45f3a6a8546716ec7d17080171c077e8591",
+    "frontend/portal/src/portal.css": "62f3c7e33bf3711d215fca48b933a58add01d713aa5284ca6366fefd1ccaac26",
+    "kandil_hr/public/portal/portal.js": "a1b8b93453abd8e66c27c62a5a8e83fe8f16c2144fce1e916df9afc178ae5de0",
+    "kandil_hr/portal/request_history.py": "678a52dd60e3998bb6e035717b59335c4ef0b07d5d5a1d59934fca41b33abcff",
+    "kandil_hr/portal/request_history_fixture.py": "ac025f898d29c07ec608f792a08f7d55f45ef9caa98ca077bca246035f3efda5",
+    "kandil_hr/recruitment/command_audit.py": "82873395755fbf2bda93430be2da9c767375fc639e0b556425b3469ef6d36631",
+    "kandil_hr/recruitment/privacy.py": "bf3a5118c4e161b19fb54d1e32904f9bd8adb9b684d0eb64bbb9ac8637fcb997",
+    "kandil_hr/recruitment/history_access.py": "eb54470b830031feed3c61ea93c7d03ff003c912a8db24af7103a5833358ee04",
+    "kandil_hr/recruitment/models.py": "301f2a0565b5b288eb8eece960cc78deac31a6da05488aa9ddf1da8194e970b8",
+    "kandil_hr/recruitment/api.py": "cabe6343a4f92a08ae2fd02986884de9624ccc625bb7038082a5cc89269536a7",
+    "kandil_hr/kandil_hr/doctype/kandil_hiring_request/kandil_hiring_request.json": "9681c61afe163bdc9cdf8e02cfdf85304bb0a9e25a3694e1e6f1a62039c1d509",
+    "kandil_hr/kandil_hr/doctype/kandil_approval_step/kandil_approval_step.json": "a1ac1a43ddce192fcb6f5b0797bdf34025f119adc7fbbd4e5f4dce6ae1bdce42",
+    "docs/portal/test_request_history.cjs": "44b5672e0d27c2a2dd2a9ff0dc77b95ec7a0c7451fc1577a68efb2d43309efbf"
+  },
+  "limits": [
+    "Command history plus saved revisions and selected pre-decision comparisons. Expanded authority/correction history, remaining native legacy paths and full S3 acceptance remain open."
+  ]
+}

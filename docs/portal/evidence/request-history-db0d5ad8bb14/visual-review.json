@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "captures": [
+    {
+      "file": "revision-fields-ar.png",
+      "assessment": "Arabic mobile shows both selected-version and pre-decision columns, revision 1 versus 2, wrapped references and changed-field shading without clipped columns."
+    },
+    {
+      "file": "revision-comparison-en.png",
+      "assessment": "English desktop shows cross-revision warning, actual decision separately from resulting request state, both quantity tables and highlighted reviewed HR step."
+    }
+  ],
+  "limits": [
+    "Element captures hide sticky navigation during capture only; full-page captures retain normal UI. Visual inspection is not HR acceptance."
+  ]
+}
