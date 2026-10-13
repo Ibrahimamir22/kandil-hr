@@ -326,6 +326,9 @@ def save(doc, action, note="", principal=None):
 	from kandil_hr.recruitment.notifications import amendment_update
 
 	amendment_update(doc, action)
+	from kandil_hr.recruitment.invitations import schedule_request
+
+	schedule_request(doc)
 	return doc.as_dict()
 
 

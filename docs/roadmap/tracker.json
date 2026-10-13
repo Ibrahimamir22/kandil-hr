@@ -444,7 +444,7 @@
           "id": "S4-04",
           "description": "Implement action inbox, business-calendar deadlines, reminders and in-app notifications.",
           "status": "in_progress",
-          "progress": "AR/EN delivered-message inbox and permission-checked approval deadline panel are connected. Queued milestones now defer across non-working days without spending attempts, suppress obsolete milestones, and recheck calendar corrections without resetting technical backoff. Native calendar/access and ordinary-session AR/EN browser evidence are recorded in S4_DEADLINES_CHECKPOINT.md. Current-authority scheduled delegate/Board reminders and fixed AR/EN milestone payloads now pass 63 native and 20 browser checks; authority-version deduplication and revoked-read-capable delegates are covered. Fixed AR/EN ordinary event, completion, skipped-route HR, vacancy-team and application-assignment templates now pass 56 native and 26 browser checks; Hiring Request MIME content and minimal assignment receipt privacy verified. Immediate delegate invitations, full event policy and candidate ownership remain open.",
+          "progress": "AR/EN action inbox, current-reference privacy, business-calendar deadlines/reminders, fixed bilingual event templates and event-triggered principal/delegate/frozen-Board invitations are implemented with recorded evidence. Invitations use real after-commit jobs and recheck step/authority at delivery. Final invitation checkpoint: 86 native and 23 HTTP/RQ/browser checks. Periodic invitation catch-up, full event/recipient policy, HR calendar/wording and external email acceptance remain open.",
           "evidence": [
             "S4_NOTIFICATION_INBOX_CHECKPOINT.md",
             "evidence/s2-regression-02c66abed7ae.json",
@@ -482,14 +482,18 @@
             "S4_EVENT_TEMPLATES_CHECKPOINT.md",
             "evidence/s2-regression-712fc036729e.json",
             "../portal/evidence/notification-events-11060b39bf5e/results.json",
-            "../portal/evidence/notification-events-11060b39bf5e/visual-review.json"
+            "../portal/evidence/notification-events-11060b39bf5e/visual-review.json",
+            "S4_INVITATIONS_CHECKPOINT.md",
+            "evidence/s2-regression-39fb3bccac8d.json",
+            "../portal/evidence/invitations-ab814b475cd6/results.json",
+            "../portal/evidence/invitations-ab814b475cd6/visual-review.json"
           ]
         },
         {
           "id": "S4-05",
           "description": "Verify outbox retries, worker restart recovery, disabled recruiter handoff and email templates in local capture.",
           "status": "in_progress",
-          "progress": "Real process-death/retry recovery passed 35 checks and 102 affected native regressions in the earlier checkpoint. Native scheduled execution now proves due retries, graceful worker restart/redrive and disabled-recruiter fallback with 15 integration checks plus 35 focused native cases. All 18 scheduler-attempt accounts retired; queues preserved. Current-authority scheduled delegate/Board reminders and fixed AR/EN milestone payloads now pass 63 native and 20 browser checks; authority-version deduplication and revoked-read-capable delegates are covered. Fixed AR/EN ordinary event, completion, skipped-route HR, vacancy-team and application-assignment templates now pass 56 native and 26 browser checks; Hiring Request MIME content and minimal assignment receipt privacy verified. Immediate delegate invitations, full event policy and candidate ownership remain open.",
+          "progress": "Earlier checkpoints verify worker process-death/retry recovery, scheduled retry/redrive and disabled-recruiter fallback. Fixed local templates and invitation generation now have native and real HTTP/RQ/browser evidence. Invitation delivery was CLI targeted; timed catch-up and complete operational worker latency remain unverified. Candidate-facing ownership and external-email acceptance remain open.",
           "evidence": [
             "S4_WORKER_RECOVERY_CHECKPOINT.md",
             "evidence/worker-recovery-1fc8a9b12e9f.json",
@@ -507,7 +511,11 @@
             "S4_EVENT_TEMPLATES_CHECKPOINT.md",
             "evidence/s2-regression-712fc036729e.json",
             "../portal/evidence/notification-events-11060b39bf5e/results.json",
-            "../portal/evidence/notification-events-11060b39bf5e/visual-review.json"
+            "../portal/evidence/notification-events-11060b39bf5e/visual-review.json",
+            "S4_INVITATIONS_CHECKPOINT.md",
+            "evidence/s2-regression-39fb3bccac8d.json",
+            "../portal/evidence/invitations-ab814b475cd6/results.json",
+            "../portal/evidence/invitations-ab814b475cd6/visual-review.json"
           ]
         }
       ],
@@ -522,8 +530,8 @@
         "IT/owner: email provider/test recipients before any external sending."
       ],
       "implementation_brief": "S4_IMPLEMENTATION_BRIEF.md",
-      "progress": "Scoped vacancy operations, dashboard, approval/inbox/date projections, scheduled delivery/recovery, current-authority reminders and fixed bilingual historical-event templates have recorded engineering evidence. Final template checkpoint passed 56 native and 26 browser checks. Immediate delegate invitations, complete event policy, candidate-facing ownership and HR/IT acceptance remain open.",
-      "checkpoint": "S4_EVENT_TEMPLATES_CHECKPOINT.md"
+      "progress": "Scoped vacancy operations, dashboard, approval/inbox/deadline projections, local delivery/recovery, current-authority reminders, fixed bilingual historical templates and event-triggered invitations have recorded engineering evidence. Final invitation checkpoint passed 86 native and 23 HTTP/RQ/browser checks. Periodic invitation catch-up, complete event/selector coverage, S5 ownership and HR/IT acceptance remain open.",
+      "checkpoint": "S4_INVITATIONS_CHECKPOINT.md"
     },
     {
       "id": "S5",
@@ -917,8 +925,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S4",
-    "summary": "Fixed bilingual ordinary request, completion, skipped-route, vacancy-team and application-assignment messages. Final 56 native and 26 browser checks passed with local MIME inspection, privacy and replay coverage. S4 remains in progress.",
-    "evidence": "S4_EVENT_TEMPLATES_CHECKPOINT.md",
-    "next": "Implement immediate current-authority-bound delegate invitations, reconcile remaining S4 event policy and requirements, then continue S5 candidate workspace. HR/IT and release gates remain open."
+    "summary": "Event-triggered, authority-bound AR/EN approval invitations after request/delegation commit. Final 86 native and 23 HTTP/RQ/browser checks passed. Exact synthetic jobs and users retired; S4 remains in progress.",
+    "evidence": "S4_INVITATIONS_CHECKPOINT.md",
+    "next": "Verify periodic invitation catch-up and operational worker behavior in an isolated environment; reconcile the eight S4 IDs and remaining event/selector gaps, then continue S5. HR/IT/security/capacity/release gates remain open."
   }
 }

@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "scope": "Focused synthetic invitation inbox inspection in AR mobile RTL and EN desktop; not full accessibility or HR acceptance.",
+  "images": {
+    "delegate-ar.png": "62e9397c940803bd4e9dde89d878e47c3391067258c29c46f8cfb7d89f5a0c40",
+    "delegate-en.png": "74e6039e1855c1b7122444b68bb9d7e8e7d2177672ed05622f8c02b410861829"
+  },
+  "observations": [
+    "Approval requested / مطلوب اعتمادك is visible with the active step and request reference.",
+    "Arabic mobile wraps both languages without clipped content; request/read actions fit the viewport.",
+    "English desktop shows one delivered invitation with the same request action.",
+    "No delegate identity, grant identifier or private reason is included in the message."
+  ]
+}

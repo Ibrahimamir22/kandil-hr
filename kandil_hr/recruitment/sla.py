@@ -36,7 +36,7 @@ LEGACY_SUBJECTS = {"Approval reminder", "Approval escalation", "Approval expiry 
 
 def validate_context(context):
 	fields = {"kind", "revision", "step_key", "principal", "waiting_since", "stage"}
-	if isinstance(context, dict) and context.get("kind") == "approval_sla_v3":
+	if isinstance(context, dict) and context.get("kind") in ("approval_sla_v3", "approval_invitation_v1"):
 		fields.add("recipient_basis")
 		bases = context.get("recipient_basis")
 		allowed = {"principal", "board_vice", "hr_contact", "sector_contact", "requester"}
@@ -45,11 +45,13 @@ def validate_context(context):
 				or bases != sorted(set(bases))):
 			raise ValueError("Invalid reminder recipient authority")
 	if (not isinstance(context, dict) or set(context) != fields
-			or context["kind"] not in ("approval_sla_v2", "approval_sla_v3")
+			or context["kind"] not in ("approval_sla_v2", "approval_sla_v3", "approval_invitation_v1")
 			or type(context["revision"]) is not int or context["revision"] < 1
-			or context["stage"] not in STAGES.values()
+			or context["stage"] not in (("invitation",) if context["kind"] == "approval_invitation_v1" else STAGES.values())
 			or any(not isinstance(context[k], str) or not context[k] for k in ("step_key", "principal", "waiting_since"))):
 		raise ValueError("Invalid approval reminder delivery context")
+	if context["kind"] == "approval_invitation_v1" and any(b in ("hr_contact", "sector_contact", "requester") for b in context["recipient_basis"]):
+		raise ValueError("Invitations require approval authority")
 	get_datetime(context["waiting_since"])
 
 
@@ -93,6 +95,8 @@ def timing_plan(request, notice):
 	if not notice.get("delivery_context") or delivery_reason(request, notice):
 		return {}
 	context = json.loads(notice.delivery_context)
+	if context["kind"] == "approval_invitation_v1":
+		return {}  # Event-triggered work does not wait for SLA/calendar milestones.
 	calendar = company_calendar(request.company, current=True)
 	start = _waiting_date(context["waiting_since"])
 	day = now_cairo().date()

@@ -490,3 +490,6 @@ permission_query_conditions["Kandil Position Audit Link"] = "kandil_hr.foundatio
 has_permission['Notification Log'] = 'kandil_hr.foundation.notification_access.native_permission'
 permission_query_conditions['Notification Log'] = 'kandil_hr.foundation.notification_access.native_condition'
 override_whitelisted_methods['frappe.desk.doctype.notification_log.notification_log.get_notification_logs'] = 'kandil_hr.foundation.notification_access.get_notification_logs'
+
+# Event-triggered invitations also recover missed jobs and newly effective grants.
+scheduler_events["all"].append("kandil_hr.recruitment.invitations.process_pending")

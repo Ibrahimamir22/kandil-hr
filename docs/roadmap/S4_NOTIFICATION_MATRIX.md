@@ -4,11 +4,12 @@ Engineering inventory, 13 October 2026. **Partial, not HR-approved policy or an 
 
 | Event | Current recipient selection | Reference / meaning | Remaining acceptance |
 |---|---|---|---|
-| Submit, approve, return, reject, revise, HR review, HR correction, cancel | Requester plus the currently pending principal and frozen Board Vice when applicable, through `recruitment.api.save` | Historical request update; minimal action label, no private decision note | Fixed AR/EN templates implemented; immediate delegate action notification remains separate from historical updates; full matrix closeout and HR wording acceptance remain |
+| Submit, approve, return, reject, revise, HR review, HR correction, cancel | Requester plus the currently pending principal and frozen Board Vice when applicable, through `recruitment.api.save` | Historical request update; minimal action label, no private decision note | Fixed AR/EN templates implemented; event-triggered authority-bound invitations are separate from historical updates; full matrix closeout and HR wording acceptance remain |
 | Pending quantity revision | Same save path, after route restart and quantity/ledger validation | Updated request and revision; old pending notices handled by existing revision logic | Fixed bilingual quantities/restarted-approval wording implemented; final HR terminology and complete event acceptance remain |
 | Original requester for an HR-owned amendment | Original requester, against original request | Minimal proposal/submission/decision/revision/cancel update; no child ID/reason/private detail | Existing requester-event tests; HR approval of wording remains |
 | Amendment applied | Original requester through original request save | Applied baseline event, distinct from child's decision | Existing event tests; complete template review |
 | Vacant authority skipped | Requester gets minimal bilingual route update; frozen HR reviewer receives skipped-route details | Request reference; no synthetic approval silently substituted | Human-readable bilingual position/reason summary implemented without principal identities or arbitrary diagnostics; HR acceptance remains |
+| Active approval step / new effective approved delegation | Current principal and valid delegates; frozen Chair/Vice for Board | After-commit short-queue invitation generation; current-step/authority-bound local delivery | Real HTTP/RQ generation and targeted delivery verified; periodic catch-up and operational latency acceptance remain |
 | Approval day 2 reminder | Current valid principal, approved effective APPROVALS/ALL delegates, or frozen Chair and Vice for a Board step | Action follow-up, current-step and recipient-authority-bound | Recipient checkpoint tests cover dates/process/CEO approval/interest/revocation; HR recipient policy acceptance remains |
 | Approval day 3 escalation | Current configured HR and Sector contacts with valid roles/manage scope | Follow-up escalation | HR must confirm contacts and escalation policy |
 | Approval day 4 warning | Same active authority audience as day 2 plus requester | Warning, not a rejection instruction | Fixed AR/EN payload, calendar and recipient checks; HR wording acceptance |
@@ -29,7 +30,7 @@ Terminal delivered history is preserved. A suppressed notification is never resu
 ## Next implementation order
 
 1. Review the fixed AR/EN ordinary-event, skipped-route and vacancy templates with HR; retain existing stored messages unchanged.
-2. Add current-authority-bound immediate approval invitations for delegates, separately from historical requester updates. Reuse the reviewed authority rules; extend the context schema and compatibility tests explicitly.
+2. Verify periodic invitation catch-up and operational worker configuration in an isolated scheduler environment. Event-triggered generation and authority-bound delivery are covered by S4_INVITATIONS_CHECKPOINT.md.
 3. Reconcile per-event coverage and the eight frozen S4 IDs; keep any unproven clause visible.
 4. Continue S5 candidate workflows and their ownership/notification acceptance.
 

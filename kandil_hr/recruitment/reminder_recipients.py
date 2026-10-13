@@ -17,7 +17,7 @@ def candidates(doc, step, stage):
     def add(user, basis):
         if user:
             result.setdefault(user, set()).add(basis)
-    if stage in ('reminder', 'warning', 'expiry'):
+    if stage in ('invitation', 'reminder', 'warning', 'expiry'):
         add(step.principal, 'principal')
         if step.authority == 'Board Approval':
             add(step.get('board_vice'), 'board_vice')
@@ -119,7 +119,7 @@ def milestone_already_delivered(notice, context):
 def delivery_reason(doc, notice, plan):
     import json
     context = json.loads(notice.delivery_context)
-    if context['kind'] != 'approval_sla_v3':
+    if context['kind'] not in ('approval_sla_v3', 'approval_invitation_v1'):
         return 'Legacy approval reminder recipient authority must be regenerated'
     step = next((s for s in doc.approval_steps if s.decision == 'Pending'), None)
     if not step:

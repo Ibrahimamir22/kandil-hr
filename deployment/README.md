@@ -51,3 +51,10 @@ checks query-index selection and reports aggregate queue state. It never starts 
 or clears jobs. Do not use this hardcoded synthetic verifier as production acceptance.
 See `docs/roadmap/S2_POSITION_HISTORY_CHECKPOINT.md` for tested migration scope, the
 idempotent Property Setter correction, evidence and rollback limitations.
+
+
+## Approval invitation workers
+
+`recruitment.invitations` schedules generation on Frappe's `short` queue **after an authorized domain transaction commits**. A deployment needs its short worker and scheduler configured and monitored. After installing/updating the app, the normal migration/job-sync process must register `kandil_hr.recruitment.invitations.process_pending` from the `all` scheduler hook. It catches missed event jobs and newly effective delegations. Generation is not a promise of instant delivery: receipts follow the existing outbox worker and retry schedule.
+
+Do not start a shared review-site worker merely to exercise this feature. The isolated synthetic [invitation rehearsal](../docs/roadmap/S4_INVITATIONS_CHECKPOINT.md) moved only exact cohort jobs to a private queue; it did not drain the shared backlog. Timed catch-up, production scheduling/latency and sustained capacity remain acceptance gates. No external email provider is enabled by this change.

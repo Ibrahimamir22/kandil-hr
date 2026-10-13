@@ -212,6 +212,9 @@ def audit(doc):
 	from kandil_hr.foundation import delegation_audit
 
 	delegation_audit.native(doc)
+	from kandil_hr.recruitment.invitations import schedule_delegation
+
+	schedule_delegation(doc)
 
 
 def lock_context(name):
