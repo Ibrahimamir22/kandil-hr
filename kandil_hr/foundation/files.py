@@ -7,33 +7,9 @@ import frappe
 from frappe import _
 
 
-def protected_target(doctype, name, depth=0):
-	"""Resolve child/File references to their protected owning document."""
-	from kandil_hr.foundation.security import protected_attachment
-
-	if not doctype or not name or depth > 4:
-		return None
-	if doctype == "File":
-		row = frappe.db.get_value("File", name, ["attached_to_doctype", "attached_to_name"], as_dict=True)
-		return protected_target(row.attached_to_doctype, row.attached_to_name, depth + 1) if row else None
-	if doctype == "Prepared Report":
-		from kandil_hr.foundation.reports import sensitive_report
-
-		report = frappe.db.get_value(doctype, name, "report_name")
-		return (doctype, name) if report and sensitive_report(report, include_builder=True) else None
-	if doctype == "Report":
-		from kandil_hr.foundation.reports import sensitive_report
-
-		return (
-			(doctype, name)
-			if frappe.db.exists("Report", name) and sensitive_report(name, include_builder=True)
-			else None
-		)
-	meta = frappe.get_meta(doctype)
-	if meta.istable:
-		row = frappe.db.get_value(doctype, name, ["parenttype", "parent"], as_dict=True)
-		return protected_target(row.parenttype, row.parent, depth + 1) if row else None
-	return (doctype, name) if protected_attachment(doctype) else None
+def protected_target(doctype, name, depth=0, user=None):
+	from kandil_hr.foundation.file_links import resolve
+	return resolve(doctype,name,depth,user=user)
 
 
 def strict_file_access(doc, user=None, ptype="read"):
@@ -41,17 +17,26 @@ def strict_file_access(doc, user=None, ptype="read"):
 
 	if not enabled():
 		return True
-	target = protected_target(doc.attached_to_doctype, doc.attached_to_name)
-	if not target:
-		return True
-	if target[0] == "Report":
-		from kandil_hr.foundation.reports import report_allowed
-
-		if not report_allowed(target[1], user, include_builder=True):
-			return False
-	return frappe.permissions.has_permission(
-		target[0], ptype, doc=target[1], user=user, ignore_share_permissions=True, print_logs=False
-	)
+	from kandil_hr.foundation.file_links import UNRESOLVED, file_reference
+	user = user or frappe.session.user
+	# Every retained alias of the same bytes must permit this reader. Checking
+	# only the selected File would let an old unattached alias bypass HR scope.
+	links = [(doc.name,doc.attached_to_doctype,doc.attached_to_name)]
+	if doc.file_url:
+		links += [(r.name,r.attached_to_doctype,r.attached_to_name) for r in frappe.get_all(
+			"File",filters={"file_url":doc.file_url,"name":["!=",doc.name]},
+			fields=["name","attached_to_doctype","attached_to_name"])]
+	for file_name,kind,name in links:
+		if file_name and frappe.db.exists("File",file_name) and not file_reference(file_name,user):return False
+		target = protected_target(kind,name,user=user)
+		if target == UNRESOLVED:return False
+		if not target:continue
+		if target[0] == "Report":
+			from kandil_hr.foundation.reports import report_allowed
+			if not report_allowed(target[1],user,include_builder=True):return False
+		if not frappe.permissions.has_permission(target[0],ptype,doc=target[1],user=user,
+				ignore_share_permissions=True,print_logs=False):return False
+	return True
 
 
 class FileMixin:

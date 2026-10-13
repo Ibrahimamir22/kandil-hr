@@ -10,6 +10,7 @@ import uuid
 APP = Path(__file__).resolve().parents[2]
 DEV = APP.parents[3]
 SUITES = (
+    'kandil_hr.foundation.test_indirect_files.run',
     'kandil_hr.recruitment.test_history_notes.run',
     'kandil_hr.recruitment.test_handoff_audit.run',
     'kandil_hr.portal.test_history_identities.run',

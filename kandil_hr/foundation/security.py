@@ -157,7 +157,8 @@ def sensitive_permission(doc, user=None, ptype=None):
 
 
 def file_permission(doc, user=None, ptype=None):
-	if not enabled() or not doc.attached_to_doctype or not doc.attached_to_name:
+	# Unattached legacy aliases can still point to protected HR content.
+	if not enabled():
 		return True
 	from kandil_hr.foundation.files import strict_file_access
 
@@ -332,6 +333,16 @@ def hr_query(doctype, user=None):
 
 
 def file_query(user=None):
+	if not enabled() or (user or frappe.session.user) == "Administrator":
+		return ""
+	user = user or frappe.session.user
+	if user == "Guest" or not frappe.db.get_value("User", user, "enabled"):
+		return "1=0"
+	from kandil_hr.foundation.file_links import condition
+	return condition(user)
+
+
+def direct_file_query(user=None, type_column="`tabFile`.attached_to_doctype", name_column="`tabFile`.attached_to_name"):
 	"""Additional list restriction; native File rules remain in force.
 
 	Unknown Kandil attachment types fail closed until their parent query is mapped.
@@ -378,17 +389,24 @@ def file_query(user=None):
 			continue
 		if not frappe.has_permission(doctype, "read", user=user):
 			continue
+		from frappe.model.db_query import DatabaseQuery
+		from kandil_hr.recruitment.history_access import user_permissions
+		if doctype not in ("Kandil Request Revision", "Kandil Recruitment Event"):
+			query = DatabaseQuery(doctype, user=user)
+			query.tables = [f"`tab{doctype}`"]
+			hook = query.get_permission_query_conditions()
+			condition = f"({hook or condition or '1=1'}) AND ({user_permissions(doctype,user)})"
 		conditions.append(
-			f"(`tabFile`.attached_to_doctype={frappe.db.escape(doctype)} AND `tabFile`.attached_to_name IN (SELECT name FROM `tab{doctype}` WHERE {condition or '1=1'}))"
+			f"({type_column}={frappe.db.escape(doctype)} AND {name_column} IN (SELECT name FROM `tab{doctype}` WHERE {condition or '1=1'}))"
 		)
 	protected = (
-		"LEFT(IFNULL(`tabFile`.attached_to_doctype,''),7)='Kandil ' OR IFNULL(`tabFile`.attached_to_doctype,'') IN ("
+		f"LEFT(IFNULL({type_column},''),7)='Kandil ' OR IFNULL({type_column},'') IN ("
 		+ ",".join(frappe.db.escape(x) for x in native)
 		+ ")"
 	)
 	from kandil_hr.foundation.reports import report_file_query
 
-	report_files = report_file_query(user)
+	report_files = report_file_query(user,type_column,name_column)
 	extra = f" AND ({report_files})" if report_files else ""
 	return "(NOT (" + protected + ") OR " + (" OR ".join(conditions) or "1=0") + ")" + extra
 

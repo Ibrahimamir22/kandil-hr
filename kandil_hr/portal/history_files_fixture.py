@@ -32,7 +32,8 @@ def prepare(run_id):
         file_url='/private/files/'+name+'.txt',is_private=1,is_folder=0,
         attached_to_doctype='Kandil Request Revision',attached_to_name=revision.name,
         owner=data['users']['requester']['email']))
-    file.db_insert()
+    with acting_as(data['users']['requester']['email']):file.db_insert()
+    if file.owner!=data['users']['requester']['email']:raise RuntimeError("Fixture file must belong to the tested reader")
     Path(frappe.get_site_path('private','files',file.file_name)).write_text(content)
     data['history_file']=dict(request=request['name'],revision=revision.name,file=file.name,
         file_url=file.file_url,content=content,snapshot_sha256=hashlib.sha256(revision.snapshot_json.encode()).hexdigest())

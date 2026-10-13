@@ -101,7 +101,8 @@ class TestHistoryAccess(unittest.TestCase):
             file_name=prefix+'.txt', file_url='/private/files/'+prefix+'.txt',
             is_private=1, is_folder=0, attached_to_doctype='Kandil Request Revision',
             attached_to_name=self.revision.name, owner=self.f.users['requester']))
-        file.db_insert()
+        with acting_as(self.f.users['requester']):file.db_insert()
+        self.assertEqual(frappe.db.get_value("File",file.name,"owner"),self.f.users["requester"])
         path = Path(frappe.get_site_path('private', 'files', file.file_name))
         path.write_text('Synthetic immutable review attachment')
         self.addCleanup(path.unlink, missing_ok=True)

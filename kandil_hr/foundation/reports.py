@@ -115,9 +115,9 @@ def prepared_query(user=None):
 	)
 
 
-def report_file_query(user=None):
+def report_file_query(user=None, type_column="`tabFile`.attached_to_doctype", name_column="`tabFile`.attached_to_name"):
 	blocked = blocked_report_names(user)
 	if not blocked:
 		return ""
 	names = ",".join(frappe.db.escape(name) for name in blocked)
-	return f"(IFNULL(`tabFile`.attached_to_doctype,'')!='Report' OR `tabFile`.attached_to_name NOT IN ({names})) AND (IFNULL(`tabFile`.attached_to_doctype,'')!='Prepared Report' OR `tabFile`.attached_to_name IN (SELECT name FROM `tabPrepared Report` WHERE report_name NOT IN ({names})))"
+	return f"(IFNULL({type_column},'')!='Report' OR {name_column} NOT IN ({names})) AND (IFNULL({type_column},'')!='Prepared Report' OR {name_column} IN (SELECT name FROM `tabPrepared Report` WHERE report_name NOT IN ({names})))"

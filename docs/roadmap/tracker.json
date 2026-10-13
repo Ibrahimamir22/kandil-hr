@@ -275,7 +275,7 @@
           "id": "S3-04",
           "description": "Complete return/revise/reject/cancel, approved amendments and requested-versus-approved histories.",
           "status": "in_progress",
-          "progress": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout. Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
+          "progress": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open. Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
           "evidence": [
             "S3_OPERATIONS_CHECKPOINT.md",
             "evidence/s2-regression-b9f4bb30aa39.json",
@@ -332,7 +332,11 @@
             "S3_STRUCTURED_NOTES_CHECKPOINT.md",
             "S3_ACCEPTANCE_MATRIX.md",
             "evidence/s2-regression-392125117ec4.json",
-            "../portal/evidence/history-notes-41f6694ef061/results.json"
+            "../portal/evidence/history-notes-41f6694ef061/results.json",
+            "S3_INDIRECT_FILES_CHECKPOINT.md",
+            "evidence/s2-regression-e9d9b4e8e82c.json",
+            "../portal/evidence/indirect-files-5e132c520f04/results.json",
+            "../portal/evidence/history-notes-913d9f3fa605/results.json"
           ]
         },
         {
@@ -360,7 +364,7 @@
       ],
       "parallel_opportunity": "Request wizard and approval inbox can overlap; capacity and shared authority changes have one owner.",
       "external_decisions": [],
-      "progress": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout. Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
+      "progress": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open. Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open.",
       "implementation_brief": "S3_IMPLEMENTATION_BRIEF.md"
     },
     {
@@ -801,8 +805,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S3",
-    "summary": "Declared vacancy/team, disabled-recruiter and joining-reversal note guards verified: 92 affected native and 18 personal-session HTTP checks. Explicit shared team projection, original audit bytes preserved, legitimate HR reads retained. All 17 S3 requirements mapped for closeout.",
-    "evidence": "S3_STRUCTURED_NOTES_CHECKPOINT.md",
-    "next": "Finish indirect File/child/alias authorization review, then integrated S3 acceptance against S3_ACCEPTANCE_MATRIX.md and S4 vacancy/recruiter operations."
+    "summary": "Indirect File/child/legacy-alias access verified: 110 affected native and 34 personal-session HTTP checks passed. Current scope and native User Permissions apply before pagination and to detail/download/ZIP; actual fixture ownership is now asserted. Stored bytes preserved. Full S3 acceptance remains open.",
+    "evidence": "S3_INDIRECT_FILES_CHECKPOINT.md",
+    "next": "Integrated S3 acceptance against all 17 requirements in S3_ACCEPTANCE_MATRIX.md, then S4 vacancy/recruiter operations. HR/IT acceptance and production gates remain open."
   }
 }

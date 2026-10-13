@@ -17,6 +17,8 @@ The regression reproduced two disclosure paths: reducing a department-wide grant
 
 [Personal-session HTTP verification](../portal/evidence/history-files-d1f0b24d7985/results.json): **16 checks passed**. An authorized owner can list/read/download the exact private bytes; an outsider cannot. After reducing the owner to branch-only scope, the same session retains current portal request access but cannot list/read/download its unredacted historical revision or attachment. Snapshot/file bytes remain unchanged, with no HTTP 500s. Cleanup disabled all six fixture accounts, reconciled all ledgers to zero, and retained private synthetic history/attachment evidence. This is an HTTP boundary test, not a visual/browser or production-capacity test. No frontend files or schema changed, so this increment does not require a frontend rebuild or schema migration. Only the synthetic parity web service was restarted to load the new Python code.
 
+Current indirect attachment evidence: [S3_INDIRECT_FILES_CHECKPOINT.md](S3_INDIRECT_FILES_CHECKPOINT.md). This supersedes the indirect-file open items below for the tested File/child/alias paths. It also corrects earlier fixture-owner claims: current fixtures assert the actual persisted owner. Complex/custom reports and integrated S3 acceptance remain open.
+
 ## Audit map
 
 | Surface | Verified boundary / source | Remaining work |

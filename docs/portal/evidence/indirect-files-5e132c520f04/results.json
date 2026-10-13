@@ -1,0 +1,172 @@
+{
+  "status": "PASS",
+  "run_id": "5e132c520f04",
+  "checked_at": "2026-10-13T02:26:34.561Z",
+  "checks": [
+    {
+      "name": "Authorized chain1 detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized chain4 detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized child detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized child_chain detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized alias detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized ordinary detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized indirect and ordinary metadata remains listed",
+      "status": "PASS"
+    },
+    {
+      "name": "Native child-list limitation retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider chain1 denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider child_chain denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider alias denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid orphan denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid cycle1 denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid cycle2 denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Invalid too_deep denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Broken and cyclic links absent before pagination",
+      "status": "PASS"
+    },
+    {
+      "name": "Authorized zip contains both allowed filenames",
+      "status": "PASS"
+    },
+    {
+      "name": "Narrow scope still reads the current request",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical scope revoked chain1 denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical scope revoked chain4 denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Historical scope revoked alias denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Current permitted child detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Current permitted child_chain detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Current permitted ordinary detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Page-one filtering returns only permitted metadata with no denied-row gaps",
+      "status": "PASS"
+    },
+    {
+      "name": "Mixed zip omits revoked history and alias but retains permitted child",
+      "status": "PASS"
+    },
+    {
+      "name": "Full scope revoked child denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Full scope revoked child_chain denies detail and private download",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary owned upload after HR revocation detail and original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Final metadata includes only the ordinary owned upload",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked zip contains no protected entries",
+      "status": "PASS"
+    },
+    {
+      "name": "All bytes, links and actual requester ownership unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "No server failures",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "5e132c520f04",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "private_synthetic_attachment_retained": true
+  },
+  "unchanged": {
+    "run_id": "5e132c520f04",
+    "unchanged": true,
+    "owner_verified": true
+  },
+  "server_failures": [],
+  "source_hashes": {
+    "kandil_hr/foundation/file_links.py": "2e0ac9920f23f1ef40d745fa74120908b82cfeb2e273805f26bf4a407f041ef9",
+    "kandil_hr/foundation/files.py": "ee307c37c1fbda295987f826ec60aa6ca20443a6e5cead2820e057a3cf615f64",
+    "kandil_hr/foundation/security.py": "018db24a3c4e27bd499a431d7eaa99765daa54582b069d22e8c58911286430bb",
+    "kandil_hr/foundation/reports.py": "3f3e0cbb6926ff75c512b03a4c9f7444bfeae20d05a495a3db22af729d91e043",
+    "kandil_hr/recruitment/history_access.py": "79b14f4f8f56eeab35204643340634dfbe4e7fb83cd9e78670fd44da525a20e8",
+    "kandil_hr/recruitment/history_notes.py": "0cece3db8392ace6fd34e9e16fc4dbd9c1e1571ac8e5a1ad18ff33784b75d050",
+    "kandil_hr/recruitment/history_references.py": "8b1424df244ff6db14139d3bff349d8e32c34087efb856ed200baa51a41706b0",
+    "kandil_hr/portal/history_files_fixture.py": "b40619fa542369e7161fba3376b5bbba75628c634b9d3b5a1dd37c8b9398148c",
+    "kandil_hr/portal/indirect_files_fixture.py": "015c21f0c7d6d790c75b04b76886c715224e64314317dfca047ecc3f32d2b9c3",
+    "docs/portal/test_indirect_files.cjs": "567bdebbe94c8f9569052146c0465a3cdf66307922fe272f5bc28f38b07e463a"
+  },
+  "limits": [
+    "Synthetic ordinary HTTP sessions, indirect File/child/legacy-alias metadata/detail/private download/zip boundaries. Native child listing retains upstream role restrictions. No browser rendering, sustained load or independent security certification."
+  ]
+}

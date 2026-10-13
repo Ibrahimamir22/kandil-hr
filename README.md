@@ -4,7 +4,7 @@ Custom Frappe HR extension for Kandil's HR department. Odoo and the broader comp
 
 **Current status: Sprint 3 is in progress.** The AR/EN portal includes organization browsing, HR + CEO structural/individual assignment approvals, job descriptions, PDF/local delivery, hiring forms, route previews, request operations, delegation, Board decisions and recorded review history.
 
-The latest [structured-note checkpoint](docs/roadmap/S3_STRUCTURED_NOTES_CHECKPOINT.md) protects retained vacancy/team and joining-reversal audit data. The [S3 acceptance matrix](docs/roadmap/S3_ACCEPTANCE_MATRIX.md) maps all 17 hiring/authority requirements to their verification cases. Next: indirect attachment checks, integrated S3 acceptance, then S4 vacancy/recruiter operations. See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements and earlier checkpoints.
+The latest [attachment checkpoint](docs/roadmap/S3_INDIRECT_FILES_CHECKPOINT.md) protects indirect file links and retained aliases, with 110 native and 34 signed-in HTTP checks passed. The [S3 acceptance matrix](docs/roadmap/S3_ACCEPTANCE_MATRIX.md) maps all 17 hiring/authority requirements to their verification cases. Next: integrated S3 acceptance, then S4 vacancy/recruiter operations. See the [sprint plan](docs/roadmap/SPRINT_PLAN.md) and [tracker](docs/roadmap/tracker.json) for all 98 requirements and earlier checkpoints.
 
 The local site uses synthetic data. HR acceptance, live email, independent security review, sustained 1,000+ account capacity/recovery testing, hosting and production rollout remain separate gates.
 
