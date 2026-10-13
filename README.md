@@ -1,5 +1,7 @@
 # قنديل · Kandil HR
 
+The [current-authority reminder checkpoint](docs/roadmap/S4_REMINDER_RECIPIENTS_CHECKPOINT.md) verifies effective delegates, frozen Board Vice, revocation checks, fixed AR/EN milestone payloads and duplicate prevention across authority changes with 63 native and 20 browser checks. The [event matrix](docs/roadmap/S4_NOTIFICATION_MATRIX.md) keeps ordinary templates and immediate delegate invitations open. S4 is still in progress.
+
 The [deadline/calendar checkpoint](docs/roadmap/S4_DEADLINES_CHECKPOINT.md) adds permission-checked Arabic/English approval dates and calendar-aware queued reminders. Holiday deferrals do not consume attempts, corrected calendars can wake due notices, and obsolete milestones are suppressed. Expiry remains advisory; S4 recipient/templates and HR acceptance remain open.
 
 The [native scheduler checkpoint](docs/roadmap/S4_SCHEDULER_CHECKPOINT.md) verifies automatic reminders, due retries, disabled-recruiter fallback and worker-restart redrive with 15 integration checks and 35 focused native cases. The newer deadline checkpoint covers the date panel and queued calendar behavior; complete delivery policy/templates remain open.

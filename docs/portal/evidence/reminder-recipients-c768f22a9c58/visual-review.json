@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "scope": "Focused visual inspection of synthetic AR mobile and EN desktop inbox captures, not full accessibility or HR acceptance.",
+  "images": {
+    "delegate-ar.png": "5f2da74e2237c1dd0dcb07a36a10031005b1e26f84642e441ff96438bd50015e",
+    "delegate-en.png": "071e05ea1303d1c5269a523287d467913e92a08dcaa6ea4783ebc497ad03f007"
+  },
+  "observations": [
+    "Arabic mobile navigation, filters and actions fit the 390px viewport; the bilingual message wraps across lines without clipping.",
+    "English desktop shows a single delivered reminder with request and read actions.",
+    "Both language versions are visible in the message. Mixed-direction punctuation wraps on mobile; HR wording and broader localization review remain open."
+  ]
+}

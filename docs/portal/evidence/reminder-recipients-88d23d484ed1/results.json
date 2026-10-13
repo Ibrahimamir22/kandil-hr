@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "run_id": "88d23d484ed1",
+  "checked_at": "2026-10-13T16:31:21.936Z",
+  "checks": [
+    {
+      "name": "Current principal and active delegate both queued",
+      "status": "PASS"
+    },
+    {
+      "name": "Sector revokes delegation through ordinary HTTP",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked delegate still has independent recruiter read access",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked queued reminder suppressed without receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "Fresh delegation creates distinct reminder authority identity",
+      "status": "PASS"
+    },
+    {
+      "name": "Fresh reminder delivered locally while old suppression retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Delegate inbox has one bilingual reminder",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: bilingual reminder visible in real inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: bilingual reminder visible in real inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "en: inbox fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Delegate can act through the same approved authority",
+      "status": "PASS"
+    },
+    {
+      "name": "Board stage queues frozen Chair and Vice, not ordinary delegate",
+      "status": "PASS"
+    },
+    {
+      "name": "Board Vice receives a delivered reminder",
+      "status": "PASS"
+    },
+    {
+      "name": "Vice opens own reminder inbox",
+      "status": "PASS"
+    },
+    {
+      "name": "Frozen Vice completes actual Board decision",
+      "status": "PASS"
+    },
+    {
+      "name": "Terminal delivery replay keeps same receipt",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider sees no reminder history",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "88d23d484ed1",
+    "cleaned": true,
+    "accounts_disabled": 9,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "all_fixture_delegations_revoked": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/recruitment/reminder_recipients.py": "f139d04ad484ed44ff96e39ebca53790cd285011cf6934605ca7fcf36a2ba310",
+    "kandil_hr/recruitment/sla.py": "5564cde1a9e9142fa59ed61d5f11d6fdd75b8f31a02e0369eb9fdd8ce14e8a31",
+    "kandil_hr/foundation/business_calendar.py": "ef0fce68961e680232dd0762be54e598aedf84f577b7223bdd688f840cab46b8",
+    "kandil_hr/foundation/outbox.py": "c8ad5a338f159714740ebfebbdac5212d0cb8456444ea756cb5a2c8c4d51513f",
+    "kandil_hr/foundation/outbox_access.py": "60b96f3bb22c8c0e3ce18108a40793e61edc2d1574d35bffc82bd61b385e52f9",
+    "kandil_hr/foundation/delegation.py": "af5cbe508eb032f453018151783b8d0f4f9f2ebd0049aa9514829858aa99bafa",
+    "kandil_hr/portal/reminder_recipient_fixture.py": "962390679ded6d149b03465f5741915d94e4714f1d50fd95d28102fe72656a8d",
+    "kandil_hr/portal/notifications.py": "ef13365355c1845c4760e8e6509d16066de3a4d3625508698f55736195d851f1",
+    "frontend/portal/src/Notifications.tsx": "e055b35aa1552982756cbe4e02b43bbe8fba7c6e57c79ff6cad2662f64666501",
+    "kandil_hr/public/portal/portal.js": "a233a08d8e2fdbfb6846ec8dc726166331aa70d7ea44242003cdcd0895142d26",
+    "docs/portal/test_reminder_recipients.cjs": "0f1425a232eea2892c649eeed05ed29ad3f646945cac4b46f03c2221b34e9fcf"
+  },
+  "limits": [
+    "Synthetic ordinary-role HTTP and bilingual inbox rendering. CLI backdates waiting and processes only exact cohort messages. Seven-day fixture calendar; real weekends covered in native tests. No external email, timed scheduler, production load or HR acceptance."
+  ]
+}

@@ -164,7 +164,7 @@ class TestApprovalSLA(unittest.TestCase):
 		row = frappe.get_doc("Kandil Notification Outbox", name)
 		context = json.loads(row.delivery_context)
 		self.assertEqual(context["step_key"], self.fixture.load(self.request.name).approval_steps[0].step_key)
-		key = f"approval-sla:v2:{self.request.name}:1:{context['step_key']}:reminder:{row.recipient}"
+		key = sla.notice_key(self.request.name, context, row.recipient)
 		with self.fixture.rejected():
 			outbox.enqueue(key, row.recipient, row.subject, row.body, row.reference_doctype, row.reference_name,
 				delivery_context=context | {"stage": "warning"})

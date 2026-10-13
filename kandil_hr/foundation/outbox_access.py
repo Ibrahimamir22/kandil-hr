@@ -163,9 +163,17 @@ def lock_delivery(name):
 	# are suppressed instead of being retried for a configuration error.
 	from kandil_hr.recruitment.sla import timing_plan
 
-	plan, calendar_error = {}, None
+	plan, calendar_error, recipient_plan = {}, None, {}
 	try:
 		plan = timing_plan(request, hint)
+		if hint.delivery_context:
+			import json
+			from kandil_hr.recruitment.sla import delivery_reason
+			from kandil_hr.recruitment.reminder_recipients import candidates
+			if not delivery_reason(request, hint):
+				context = json.loads(hint.delivery_context)
+				step = next(s for s in request.approval_steps if s.decision == "Pending")
+				recipient_plan = candidates(request, step, context["stage"])
 	except (frappe.ValidationError, ValueError) as error:
 		calendar_error = error
 	if doc and doc.doctype == "Kandil Hiring Request" and frappe.conf.get("kandil_parity_enabled"):
@@ -211,6 +219,11 @@ def lock_delivery(name):
 					reason = "Reference access revoked"
 	except frappe.PermissionError:
 		reason = "Recipient account or reference access revoked"
+	if not reason and hint.delivery_context and not calendar_error:
+		from kandil_hr.recruitment.sla import delivery_reason as step_reason
+		from kandil_hr.recruitment.reminder_recipients import delivery_reason as recipient_reason
+		if not step_reason(request, hint):
+			reason = recipient_reason(request, hint, recipient_plan)
 	outbox = frappe.get_doc("Kandil Notification Outbox", name, for_update=True)
 	if any(outbox.get(field) != hint.get(field) for field in ROUTING_FIELDS):
 		raise RuntimeError("Notification routing changed; retry transaction")

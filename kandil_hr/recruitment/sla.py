@@ -17,6 +17,7 @@ All entry points remain non-whitelisted and Administrator-only server functions.
 """
 
 import json
+import hashlib
 from datetime import datetime, time
 from zoneinfo import ZoneInfo
 
@@ -35,8 +36,16 @@ LEGACY_SUBJECTS = {"Approval reminder", "Approval escalation", "Approval expiry 
 
 def validate_context(context):
 	fields = {"kind", "revision", "step_key", "principal", "waiting_since", "stage"}
+	if isinstance(context, dict) and context.get("kind") == "approval_sla_v3":
+		fields.add("recipient_basis")
+		bases = context.get("recipient_basis")
+		allowed = {"principal", "board_vice", "hr_contact", "sector_contact", "requester"}
+		if (not isinstance(bases, list) or not bases or len(bases) > 6
+				or any(not isinstance(b, str) or len(b) > 160 or not (b in allowed or (b.startswith("delegation:") and len(b) > 11)) for b in bases)
+				or bases != sorted(set(bases))):
+			raise ValueError("Invalid reminder recipient authority")
 	if (not isinstance(context, dict) or set(context) != fields
-			or context["kind"] != "approval_sla_v2"
+			or context["kind"] not in ("approval_sla_v2", "approval_sla_v3")
 			or type(context["revision"]) is not int or context["revision"] < 1
 			or context["stage"] not in STAGES.values()
 			or any(not isinstance(context[k], str) or not context[k] for k in ("step_key", "principal", "waiting_since"))):
@@ -60,6 +69,8 @@ def delivery_reason(request, notice):
 		return ""
 	context = json.loads(raw)
 	validate_context(context)
+	if context["kind"] == "approval_sla_v2":
+		return "Legacy approval reminder recipient authority must be regenerated"
 	if not request or notice.reference_doctype != "Kandil Hiring Request":
 		return "Approval reminder reference no longer exists"
 	step = next((row for row in request.approval_steps if row.decision == "Pending"), None)
@@ -143,6 +154,13 @@ def _waiting_date(value):
 	return instant.astimezone(ZoneInfo("Africa/Cairo")).date()
 
 
+def notice_key(name, context, recipient):
+	# A corrected/restarted waiting date or changed frozen authority is a new
+	# instruction, even if the request revision and step key were preserved.
+	basis = hashlib.sha256(json.dumps(context, sort_keys=True).encode()).hexdigest()[:24]
+	return f"approval-sla:v3:{name}:{context['revision']}:{context['step_key']}:{context['stage']}:{recipient}:{basis}"
+
+
 def process_request(name):
 	"""Queue one locked request's highest due milestone; caller owns transaction."""
 	_server_guard()
@@ -167,39 +185,31 @@ def process_request(name):
 	stage = due_milestone(elapsed)
 	if not stage or current_date.weekday() in calendar.weekends or current_date in calendar.holidays:
 		return {"status": "Not due", "outbox": []}
-	recipients = {step.principal}
-	if stage in ("escalation", "expiry"):
-		settings = frappe.get_doc("Kandil Organization Settings", doc.company)
-		if not settings.hr_approver or not settings.sector_approver:
-			frappe.throw(_("Configure company HR and sector contacts before processing approval escalation."))
-		recipients = {settings.hr_approver, settings.sector_approver}
-	if stage == "warning":
-		recipients.add(doc.requested_by)
-	elif stage == "expiry":
-		recipients.update((step.principal, doc.requested_by))
-	# Global User lock order matches recruitment saves, preventing requester/team
-	# inversion deadlocks. enqueue reuses these locks and suppresses disabled users.
-	for user in sorted(recipients):
+	from kandil_hr.recruitment import reminder_recipients
+	plan = reminder_recipients.candidates(doc, step, stage)
+	# All authority users are locked together before eligibility checks/queueing.
+	for user in sorted(set(plan) | {s.principal for s in doc.approval_steps if s.principal}):
 		frappe.db.sql("SELECT name FROM `tabUser` WHERE name=%s FOR UPDATE", (user,))
+	recipients = {user: reminder_recipients.eligible(doc, step, user, bases) for user, bases in plan.items()}
+	recipients = {user: bases for user, bases in recipients.items() if bases}
 	# Fixed payload per key: elapsed/day and current translation must not change
-	# payload hashes on retry. Native catalogue supplies the translated labels.
+	# payload hashes on retry. Both language strings are fixed in each payload.
 	subject = {
-		"reminder": _("Approval reminder", lang="en"),
-		"escalation": _("Approval escalation", lang="en"),
-		"warning": _("Approval expiry warning", lang="en"),
-		"expiry": _("Approval deadline reached", lang="en"),
+		"reminder": "Approval reminder / تذكير بالاعتماد",
+		"escalation": "Approval escalation / تصعيد متابعة الاعتماد",
+		"warning": "Approval expiry warning / تنبيه اقتراب موعد الاعتماد",
+		"expiry": "Approval deadline reached / بلوغ موعد الاعتماد",
 	}[stage]
-	body = _("Request {0}: approval step {1} requires attention.", lang="en").format(doc.name, step.idx)
+	body = f"Request {doc.name}: approval step {step.idx} requires attention. / الطلب {doc.name}: خطوة الاعتماد {step.idx} تحتاج إلى متابعة."
 	if stage == "expiry":
-		body += " " + _(
-			"Automatic rejection is disabled; an authorized decision is still required.", lang="en"
-		)
-	context = dict(kind="approval_sla_v2", revision=int(doc.revision), step_key=step.step_key,
+		body += " Automatic rejection is disabled; an authorized decision is still required. / الرفض التلقائي معطل؛ ما زال القرار يتطلب اعتمادًا من صاحب الصلاحية."
+	context = dict(kind="approval_sla_v3", revision=int(doc.revision), step_key=step.step_key,
 		principal=step.principal, waiting_since=str(step.waiting_since), stage=stage)
 	queued = []
 	for user in sorted(recipients):
-		key = f"approval-sla:v2:{doc.name}:{doc.revision}:{step.step_key}:{stage}:{user}"
-		name = enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name, delivery_context=context)
+		recipient_context = context | {"recipient_basis": recipients[user]}
+		key = notice_key(doc.name, recipient_context, user)
+		name = enqueue(key, user, subject, body, "Kandil Hiring Request", doc.name, delivery_context=recipient_context)
 		recheck_calendar_deferred(name)
 		queued.append(name)
 	return {"status": stage, "step": step.step_key, "working_days": elapsed, "outbox": queued}
