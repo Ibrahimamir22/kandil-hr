@@ -46,6 +46,8 @@ def related_state(doc, operation, payload, result=None, previous=()):
 	if operation == "amend" and result and result.get("name") != doc.name:
 		requests.append(add(doc.doctype, result["name"]))
 	for request in requests:
+		# Preserve the requested position location at command time for historical scope.
+		add("Kandil Position", request.requested_position)
 		for line in request.lines:
 			add("Kandil Capacity", line.capacity)
 			add("Job Opening", line.job_opening)

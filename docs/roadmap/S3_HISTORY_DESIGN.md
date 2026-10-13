@@ -1,6 +1,6 @@
 # S3 remaining frozen-history implementation
 
-Inspected against the current source on 13 October 2026. This is the implementation contract for remaining work, not a claim that the history screens exist.
+Inspected against the current source on 13 October 2026. This remains the full implementation contract. The modern command before/after adapter and AR/EN review screen are now implemented in `portal/request_history.py` and `RequestHistory.tsx`; see [command-history checkpoint](S3_COMMAND_HISTORY_CHECKPOINT.md). Standalone immutable revision navigation, arbitrary cross-event comparisons and native legacy-history scope hardening are not yet complete.
 
 ## Current evidence and sources
 
@@ -23,3 +23,13 @@ Inspected against the current source on 13 October 2026. This is the implementat
 ## Required proof before S3 history closes
 
 Ordinary requester/manager/HR/Board and outside-scope sessions; changed organization policy after submission; HR quantity changes between approvals; return/revise/resubmit; approved corrections; hidden replacement employees; scope revocation; guessed history IDs; native resource/export denials where appropriate; stored bytes unchanged; AR/EN mobile/desktop comparison clarity. Missing captures, restricted records and empty history must be distinguishable. S3 remains in progress until these requirements and the integrated journey are verified.
+
+## Remaining after the command-history increment
+
+- Connect immutable Request Revision metadata and selected snapshot detail, with exact capture matching; distinguish multiple actions inside one revision. Do not fabricate missing pre-decision captures for old records.
+- Add a submitted-version versus selected-decision comparison across commands, plus amendment/revision links and all mapped correction/pending-quantity cases.
+- Audit and harden native Request Revision list/direct-read/export and nested submitted/reviewed snapshots. The new adapter filters its own output; this does not prove that existing native legacy endpoints meet historical-scope and restricted-reference requirements. Preserve positive authorized immutable-byte contracts where disclosure is safe.
+- Expand ordinary-session history coverage to delegated/CEO/Board decisions and retained evidence across revisions. Existing Board action tests remain separate from history-screen acceptance.
+- Preserve full frozen route rationale (rules/skipped levels/interests) through an explicitly reviewed projection; the current screen shows actual steps and the captured policy subset.
+
+New recruitment command envelopes also capture the requested Position alongside capacities. Old envelopes are never rewritten. Old missing location context is explicitly partial and requires current department-wide scope; narrow-branch readers cannot rely on today's location to infer historical authorization.

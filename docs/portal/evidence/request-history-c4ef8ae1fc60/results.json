@@ -1,0 +1,179 @@
+{
+  "status": "PASS",
+  "run_id": "c4ef8ae1fc60",
+  "checked_at": "2026-10-13T00:17:47.833Z",
+  "checks": [
+    {
+      "name": "en: request opens seven recorded commands",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old reviewed revision survives current revised request",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original title is rendered on both sides",
+      "status": "PASS"
+    },
+    {
+      "name": "en: old decision reason and reviewed step visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: original requested three versus HR proposal one",
+      "status": "PASS"
+    },
+    {
+      "name": "en: both recorded quantity tables are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "en: frozen policy is displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "en: history fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "en: all history comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary HR can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "en: ordinary manager can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider history list denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: outsider guessed event denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: authorized reader cannot mix another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "en: raw private audit access remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "en: bounded page and second page are usable",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: request opens seven recorded commands",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old reviewed revision survives current revised request",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original title is rendered on both sides",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: old decision reason and reviewed step visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: original requested three versus HR proposal one",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: both recorded quantity tables are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: frozen policy is displayed",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: history fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: all history comparison columns fit their containers",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary HR can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: ordinary manager can inspect authorized historical review",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider history list denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: outsider guessed event denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: authorized reader cannot mix another request event",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: raw private audit access remains denied",
+      "status": "PASS"
+    },
+    {
+      "name": "ar: bounded page and second page are usable",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation clears previously displayed history",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation denies exact historical event",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest history denied",
+      "status": "PASS"
+    },
+    {
+      "name": "No JS errors, server failures or external traffic",
+      "status": "PASS"
+    },
+    {
+      "name": "Source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "c4ef8ae1fc60",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/RequestHistory.tsx": "d857b5659b3d77f41ff1b8566d279f027044ce11923abc8ddcfbae9092192aad",
+    "frontend/portal/src/main.tsx": "988fa223ba1bfda93b19cd1a46cfb45f3a6a8546716ec7d17080171c077e8591",
+    "frontend/portal/src/portal.css": "62f3c7e33bf3711d215fca48b933a58add01d713aa5284ca6366fefd1ccaac26",
+    "kandil_hr/public/portal/portal.js": "d4cedcf94eb319cb763f68de5a8ae600147f2ca0561defb701ba4f24bc8d02b4",
+    "kandil_hr/portal/request_history.py": "09ff3e3ba19fe5d3debfd6f583018b65a635bde06b0eed7fda67af64579e5343",
+    "kandil_hr/portal/request_history_fixture.py": "ac025f898d29c07ec608f792a08f7d55f45ef9caa98ca077bca246035f3efda5",
+    "kandil_hr/recruitment/command_audit.py": "82873395755fbf2bda93430be2da9c767375fc639e0b556425b3469ef6d36631",
+    "kandil_hr/recruitment/privacy.py": "ef860d50ecff2e4a8fa31575fd5ac4b114ea82b7e5e9911c71866fd02d6b7aff",
+    "docs/portal/test_request_history.cjs": "e49e5103cdfe9c375e9592490b77dd39da716b5fa88c2774d525164b0f5425eb"
+  },
+  "limits": [
+    "Modern command before/after history only. Standalone legacy revisions, cross-event comparisons, native legacy history hardening and S3 acceptance remain open."
+  ]
+}

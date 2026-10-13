@@ -1,0 +1,18 @@
+{
+  "reviewed_at": "2026-10-13",
+  "result": "PASS",
+  "screenshots": {
+    "fields-ar.png": "64c7fa1a053cef3ccdd32160911676b1feebf251f8c087b9c7e7ed20b58bb236",
+    "snapshot-ar.png": "64141d2052128d2a38e482bc654190cc7ca4e507375076f4348e460d1ad9cfbf",
+    "snapshot-en.png": "fee07f82bc6639a11c4900f516284d4637c47ea0b43b5523ad77c7903d802b59"
+  },
+  "observations": [
+    "Arabic mobile field comparison now shows field, before and after columns together with wrapped synthetic identifiers.",
+    "Arabic and English quantity tables show all five columns, including approved amount; no internal horizontal overflow.",
+    "Captured principals, actors, decision notes and frozen policy remain readable; AR policy flags show نعم/لا and EN shows Yes/No."
+  ],
+  "capture_note": "Supplementary element screenshots hide the sticky topbar only during screenshot capture to avoid its overlay across scrolled element captures. Full-page captures retain the normal UI.",
+  "limits": [
+    "Visual inspection of these capture states only, not full accessibility or HR design acceptance."
+  ]
+}
