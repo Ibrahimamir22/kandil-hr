@@ -52,6 +52,13 @@ def authorize(request, operation, payload):
 @transactional_retry
 def create_application(name, opening_name, details, command_id, expected_version,
                        person=None, person_version=None, identity_reason='', profile=None):
+    return _create_application(name, opening_name, details, command_id, expected_version,
+                               person, person_version, identity_reason, profile)
+
+
+def _create_application(name, opening_name, details, command_id, expected_version,
+                        person=None, person_version=None, identity_reason='', profile=None):
+    # Internal composition point: callers own their whole-transaction retry.
     identity.guard()
     if isinstance(details, str) and len(details) > 4000:
         frappe.throw(_('Candidate details are too large.'))
@@ -60,6 +67,8 @@ def create_application(name, opening_name, details, command_id, expected_version
     if not isinstance(details, dict) or set(details) != keys:
         frappe.throw(_('Provide name, contacts and reviewed application source.'))
     data = {key: text(details[key], 140, key not in ('email_id', 'phone_number')) for key in keys}
+    if data['source_channel'].upper()=='TALENT_POOL' and not frappe.flags.get('kandil_pool_intake_effect'):
+        frappe.throw(_('Talent-pool attribution requires reviewed pool intake.'),frappe.PermissionError)
     if not data['email_id'] and len(re.sub(r'\D', '', data['phone_number'])) < 7:
         frappe.throw(_('Provide a valid contact phone or email.'))
     from kandil_hr.candidates.profile import normalize

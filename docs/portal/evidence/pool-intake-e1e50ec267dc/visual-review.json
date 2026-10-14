@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of four rendered Playwright captures",
+  "captures": [
+    {
+      "file": "pool-intake-preview-ar-mobile.png",
+      "sha256": "c0792c46465e399d2ba64f4af8f4cbdec69bc7d16596b418e6763ed2b5485b06"
+    },
+    {
+      "file": "pool-intake-preview-en.png",
+      "sha256": "bde371a2c45011ecaeb05836a40b7ef3fb5cd193aadb47063df2bd475c51e59d"
+    },
+    {
+      "file": "pool-intake-result-ar-mobile.png",
+      "sha256": "627df3b4d187191d401cbe8ae398b1f548dc51b8d634449e4c257bf85a26ac37"
+    },
+    {
+      "file": "pool-intake-result-en.png",
+      "sha256": "2a07c071bd2199677a3edf5ab3d413fdda5033f6370c446bbece3c3f7302a041"
+    }
+  ],
+  "observations": [
+    "English destination preview, review confirmation and result/history actions are readable.",
+    "Arabic mobile preview and result retain RTL alignment, wrapped details and usable actions within the viewport.",
+    "Synthetic names and vacancy titles are fixture content, not real company records."
+  ],
+  "limits": [
+    "Component visual review only; not accessibility certification or HR acceptance."
+  ]
+}

@@ -689,7 +689,7 @@
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
           "status": "in_progress",
-          "progress": "Exact-version APPLY notices/acceptance, pending-link revocation, private history and Screening gates are connected. Separate POOL policy, expiry and recruiter-recorded grant/withdrawal are connected. Reviewed membership add/update/remove and scoped search now enforce the exact active grant, native person/application permissions, current versions and immutable history; a new grant does not revive old membership. No policy/consent is seeded in preserved review. Matching, pool-to-vacancy intake, latest-application projection, public optional consent, data-subject identity checks, AI opt-out, retention/holds/export/erasure and uploads remain open. See S5_TALENT_POOL_CHECKPOINT.md.",
+          "progress": "Exact-version APPLY notices/acceptance, pending-link revocation, private history and Screening gates are connected. Separate POOL policy, expiry and recruiter-recorded grant/withdrawal are connected. Reviewed membership add/update/remove and scoped search now enforce the exact active grant, native person/application permissions, current versions and immutable history; a new grant does not revive old membership. No policy/consent is seeded in preserved review. Reviewed pool-to-vacancy intake and latest-visible-application projection are now connected with atomic provenance, native current-document permission checks and exact-retry protection. Matching, public optional consent, data-subject identity checks, AI opt-out, retention/holds/export/erasure and uploads remain open. See S5_POOL_INTAKE_CHECKPOINT.md.",
           "evidence": [
             "S5_PRIVACY_NOTICE_CHECKPOINT.md",
             "S5_CONSENT_SERVICE_CHECKPOINT.md",
@@ -697,7 +697,8 @@
             "S5_CONSENT_REVOCATION_CHECKPOINT.md",
             "S5_SCREENING_REOPENING_CHECKPOINT.md",
             "S5_POOL_CONSENT_CHECKPOINT.md",
-            "S5_TALENT_POOL_CHECKPOINT.md"
+            "S5_TALENT_POOL_CHECKPOINT.md",
+            "S5_POOL_INTAKE_CHECKPOINT.md"
           ]
         },
         {
@@ -716,8 +717,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Separate talent-pool policy, explicit expiry and recruiter-recorded grant/withdrawal history connected in AR/EN. 59 native, 30 connected browser and 40 preserved-review checks passed. APPLY consent and hiring records preserved. CAN-008/S5 remain partial.",
-      "checkpoint": "S5_POOL_CONSENT_CHECKPOINT.md"
+      "progress": "Reviewed pool-to-vacancy intake and latest permitted application projection connected in AR/EN. 19 final native, 28 connected browser and 46 preserved-review checks passed. Concurrency, withdrawal, native permissions and source/person/headcount preservation verified. CAN-008/S5 remain partial.",
+      "checkpoint": "S5_POOL_INTAKE_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1061,8 +1062,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Reviewed talent-pool membership and permission-filtered AR/EN search connected with immutable history and exact consent binding. 42 native, 29 connected browser and 46 preserved-review checks passed. CAN-008/S5 remain partial.",
-    "evidence": "S5_TALENT_POOL_CHECKPOINT.md",
-    "next": "Finish latest-application projection, matching and reviewed pool-to-open-vacancy intake. Complete private documents, sourcing/imports, cancellation/transfer consumers and data-subject/retention workflows. Preserve all 98 requirements and S5-S12 scope including HR/privacy, independent security, 1,000+ capacity, UAT and production gates."
+    "summary": "Reviewed pool-to-vacancy intake and latest permitted application projection connected in AR/EN. 19 final native, 28 connected browser and 46 preserved-review checks passed. Concurrency, withdrawal, native permissions and source/person/headcount preservation verified. CAN-008/S5 remain partial.",
+    "evidence": "S5_POOL_INTAKE_CHECKPOINT.md",
+    "next": "Complete private candidate documents and profile presentation, matching, sourcing/imports, cancellation/transfer consumers and data-subject/retention workflows. Preserve all 98 requirements and S5–S12 scope including HR/privacy, independent security, 1,000+ capacity, UAT and production gates."
   }
 }

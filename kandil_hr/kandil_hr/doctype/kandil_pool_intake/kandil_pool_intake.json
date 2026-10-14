@@ -1,0 +1,169 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Pool Intake",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "options": "Company",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "options": "Kandil Candidate Person",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "source_application",
+      "label": "Source Application",
+      "fieldtype": "Link",
+      "options": "Job Applicant",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "target_application",
+      "label": "Target Application",
+      "fieldtype": "Link",
+      "options": "Job Applicant",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "opening",
+      "label": "Destination Vacancy",
+      "fieldtype": "Link",
+      "options": "Job Opening",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "membership",
+      "label": "Reviewed Membership",
+      "fieldtype": "Link",
+      "options": "Kandil Talent Pool Event",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "consent_event",
+      "label": "Reviewed Pool Consent",
+      "fieldtype": "Link",
+      "options": "Kandil Pool Consent Event",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Recorded By",
+      "fieldtype": "Link",
+      "options": "User",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "activity",
+      "label": "Candidate Activity",
+      "fieldtype": "Link",
+      "options": "Kandil Candidate Activity",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "source_version",
+      "label": "Source Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "person_version",
+      "label": "Person Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "target_version",
+      "label": "Target Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "opening_version",
+      "label": "Opening Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "source_application",
+    "target_application",
+    "opening",
+    "membership",
+    "consent_event",
+    "actor",
+    "activity",
+    "reason",
+    "source_version",
+    "person_version",
+    "target_version",
+    "opening_version",
+    "command_key",
+    "signature",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

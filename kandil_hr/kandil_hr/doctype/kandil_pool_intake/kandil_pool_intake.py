@@ -1,0 +1,1 @@
+from kandil_hr.candidates.pool_intake import KandilPoolIntake

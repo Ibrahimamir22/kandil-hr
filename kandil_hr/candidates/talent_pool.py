@@ -171,10 +171,27 @@ def listing(search_text='',category='',tag='',start=0,page_length=20):
     if category:q=q.where(m.category==category)
     total=deepcopy(q).select(Count(m.name).as_('total')).run(as_dict=True)[0].total
     rows=(q.select(m.name.as_('event'),a.name.as_('application'),r.company,o.job_title,m.category,m.tags_json,m.note,m.creation,c.valid_until,
-        profile_field(p,'full_name').as_('full_name'),profile_field(p,'specialization').as_('specialization'),profile_field(p,'governorate').as_('governorate'))
+        p.name.as_('_person'),profile_field(p,'full_name').as_('full_name'),profile_field(p,'specialization').as_('specialization'),profile_field(p,'governorate').as_('governorate'))
         .orderby(m.creation,order=Order.desc).orderby(m.name).limit(limit).offset(offset).run(as_dict=True))
-    for row in rows:row['tags']=json.loads(row.pop('tags_json') or '[]')
+    last=latest_applications([row['_person'] for row in rows])
+    for row in rows:
+        row['tags']=json.loads(row.pop('tags_json') or '[]');row['latest_application']=last.get(row.pop('_person'))
     return dict(rows=rows,total=total,categories=facets,start=offset,page_length=limit,has_more=offset+limit<total,as_of=str(pool.today()))
+
+def latest_applications(people):
+    """One batch, latest creation within native permission scope, stable ID tie-break."""
+    if not people:return {}
+    from pypika.analytics import RowNumber
+    from kandil_hr.candidates.closure_history import active_decisions
+    q,a,o,r=candidates.base()
+    ranked=(q.select(a.custom_kandil_person.as_('person'),a.name.as_('application'),a.status,o.job_title,a.creation.as_('applied_at'),
+        RowNumber().over(a.custom_kandil_person).orderby(a.creation,order=Order.desc).orderby(a.name,order=Order.desc).as_('row_rank'))
+        .where(a.custom_kandil_person.isin(people)).as_('ranked_pool_applications'))
+    rows=frappe.qb.from_(ranked).select(ranked.star).where(ranked.row_rank==1).run(as_dict=True)
+    decisions=active_decisions([r.application for r in rows]);result={}
+    for row in rows:
+        person=row.pop('person');row.pop('row_rank');row['status']=decisions.get(row.application,row.status);result[person]=row
+    return result
 
 @frappe.whitelist(methods=['GET'])
 def history(application,start=0,page_length=5):
