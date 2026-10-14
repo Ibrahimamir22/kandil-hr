@@ -121,3 +121,5 @@
 /* Keep separate catalog decisions readable in either text direction. */
 .hr-list-editor .recovery-confirm{display:flex;gap:8px;align-items:flex-start;margin:12px 0}
 .hr-list-editor bdi,.hr-list-item bdi,.hr-list-history bdi{overflow-wrap:anywhere}
+
+.candidate-closure .recovery-confirm{display:flex;gap:8px;align-items:flex-start;margin:12px 0}.candidate-closure dd{white-space:pre-wrap;overflow-wrap:anywhere}

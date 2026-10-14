@@ -57,6 +57,7 @@ OPERATIONS = {
 			"candidate_profile_correct",
 			"candidate_activity_record",
 			"candidate_activity_void",
+			"candidate_close",
 			"hr_correction",
 			"void_joining",
 			"record_outcome",
@@ -136,6 +137,7 @@ RELATED_FIELDS = {
 		"custom_kandil_priority_pin",
 	),
 	"Kandil Candidate Person": (*COMMON, "identity_state"),
+	"Kandil Candidate Closure": (*COMMON, "application", "decision", "reason_code", "catalog_version", "message_status", "content_hash"),
 	"Kandil Candidate Activity": (*COMMON, "application", "person", "kind", "voids", "content_hash", "stage_from", "stage_to", "source_activity"),
 	"Kandil Candidate Profile Revision": (*COMMON, "person", "application", "content_hash", "before_version", "after_version"),
 	"Job Applicant": (

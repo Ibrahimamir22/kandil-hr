@@ -1,0 +1,166 @@
+{
+  "status": "PASS",
+  "run_id": "1b68d12fed69",
+  "checks": [
+    {
+      "name": "Closure requires explicit reviewed confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "Internal reason is never auto-copied to candidate draft",
+      "status": "PASS"
+    },
+    {
+      "name": "closure-form-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response commits a rejection with separate note and unsent message",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain closure freezes fields and retains exact retry",
+      "status": "PASS"
+    },
+    {
+      "name": "Reload recovery shows exact decision and separate original texts",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovery returns the original closure",
+      "status": "PASS"
+    },
+    {
+      "name": "Closed view explicitly preserves a pending unsent-message task",
+      "status": "PASS"
+    },
+    {
+      "name": "Native closure document read is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Native reopening bypass is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Withdrawal has no rejection-message draft input",
+      "status": "PASS"
+    },
+    {
+      "name": "withdrawal-form-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "withdrawal-result-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Portal preserves withdrawal as a distinct outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "Withdrawal does not create a rejection-message task",
+      "status": "PASS"
+    },
+    {
+      "name": "Withdrawal filter returns the actual closed application",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact-command retries create one closure",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing reviewed closures have one winner and one stale rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed catalog version cannot close the application",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-scope users cannot read closure notes",
+      "status": "PASS"
+    },
+    {
+      "name": "Closure preserves person identities and headcount",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot resume a prepared closure",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot replay a completed closure",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "1b68d12fed69",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "docs/portal/test_candidate_closure.cjs": "965f7c259f31acb71fbec8480294a0af5fe0a74c3b48c2b08d0bf533b912dea1",
+    "frontend/portal/src/CandidateClosure.tsx": "cd06a244099f3e0e44699fdb527ff180e2a1ad1feb595384cc1d3afcd64478bc",
+    "kandil_hr/candidates/closure.py": "c0d998da4605b1fa74cb1cb26a8d0232d7f28ca9dace7bdb616581de39e8cef0",
+    "kandil_hr/hooks.py": "7fec4d40e13d9c26bf7189c408b84e49ee794135f6aa3ed24a6e2e6031afb633",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_closure/kandil_candidate_closure.json": "43c941637c32401e1fb8ffdb20ed6c8eade25613c645c24c78e8786fcd9dc992",
+    "frontend/portal/src/CandidateActivities.tsx": "56018e8d6546142e0b122812a7928952148cbdac7ec50cf5dff52c13241b43e1",
+    "kandil_hr/candidates/activities.py": "ee98b8f23b302bf0aaa7c7d60c2a0ea07a7fc52551a7fbe6fa7d0bf742fa08ce",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "a7fd6e0eb56853155dce89e231fec5fa977c2621283762d54c16092b08157495",
+    "docs/portal/test_candidate_activities.cjs": "e23de554c04c8ac97059fe59c836f8ac7c9e037b57a3256023e573e0fb510b4f",
+    "docs/portal/test_candidate_activity_actions.cjs": "7045966a063eb9f4ab31322723f86ad76e7e18f83e4528db1f4fcf3b54bacc25",
+    "docs/portal/test_candidate_sessions.cjs": "e23b44d258dc5f0637145ac5c300dd3aa8c905a0fe8c5238270f5094f0879abe",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "992bfdbdaef5cc791f19a86efa285c76f039f332c04ef8ca3c9feeca87cf2189",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "98f852525065369e1c3e10d21052a87b569b6293e0984612a9137deaa059ec39",
+    "docs/portal/test_candidate_work.cjs": "87883a3d2d486c2a85da301705ef39d9c7226e345e3edb8ccde385cb8a1c6181",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "0a01fc8999aea7ec44c9d081f077750e9aed21e39c414da7526209c0dabad846",
+    "frontend/portal/src/CandidateRecovery.tsx": "3bd196b9b880b8b1980ca78e65da6fb96eecc4dd02d5aeb878bdff57f0226b7b",
+    "docs/portal/test_candidate_recovery_ui.cjs": "d49109bbd6a4721e4bf0cb706a52cb069f7b29d3954605d72708971a3b183fdb",
+    "kandil_hr/candidates/recovery.py": "58a72ec93213d24163778e70c786fcb69b7bba27f8754ea1adf295268f993016",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "e4cf211305a2d4784aa5859aeccfdad9e1394d6a0c023d76d507f15fbd38f0fc",
+    "docs/portal/test_candidate_recovery.cjs": "5ad35d1de88873f775703f8967945df970011449cc366dedc7f965f6d8a9088c",
+    "kandil_hr/portal/candidates.py": "566ebe1d4f847c07f4ff0f17d2aecc0bf757adfb74f980a8306ddb848efdf231",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "79ee30811649597a3b7920f6ef75bee8c054c537169325b72a10320b0a9f26c0",
+    "kandil_hr/foundation/command_audit.py": "4200056b970a32c797169f94b8d115507c46f099c5b480c3c1d747e6396cdfab",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "e31ce907e8ea030973343938a3290e4d61ffc2864f692a70fc3c5e80421b1670",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "0c17236f1980e8139ade8309043e0521fc1fbf1a7a1373f78c3e2933de9b1df9",
+    "frontend/portal/src/Candidates.tsx": "e1d25ed46523f4d3acc72116f7030194744f193bccdf2f54717a23790cfdca97",
+    "frontend/portal/src/main.tsx": "8469f75a5a2aaf14c7bad3e0474397462a6487632149d2dff296e674b4ed323c",
+    "frontend/portal/src/portal.css": "43b46363b0e8a952e376c5bdabc0d8e179718cb70fc830d23ceae59d6e9856b2",
+    "kandil_hr/public/portal/portal.js": "d07534f24702f881c2d9ed069098c2fc90c52d013c0f118d897a11ed87d7a237",
+    "docs/portal/test_candidates.cjs": "e9ccb6cf91dffd063038215f764084be1b4271ac2535d99d6c9221752c08498c"
+  },
+  "limits": [
+    "Early-stage rejection and withdrawal; live interview/offer cancellation, reopen and message-task completion remain pending. No external message is sent.",
+    "Synthetic tests do not prove independent security, sustained capacity or HR acceptance."
+  ]
+}

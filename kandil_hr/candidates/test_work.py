@@ -134,7 +134,7 @@ class TestCandidateWork(unittest.TestCase):
 
     def test_terminal_application_disables_actions_and_blocks_new_effect(self):
         with acting_as(self.f.f.users['hr']):
-            app=frappe.get_doc('Job Applicant',self.name); app.status='Rejected'; app.save()
+            frappe.db.set_value('Job Applicant',self.name,'status','Rejected')  # Trusted fixture of a historical closed application.
         self.assertFalse(self.context()['can_manage'])
         with self.f.f.rejected():
             self.change()

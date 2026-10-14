@@ -1,0 +1,17 @@
+{
+  "status": "reviewed",
+  "screenshots": [
+    "closure-form-en.png",
+    "withdrawal-form-ar.png",
+    "withdrawal-result-ar.png"
+  ],
+  "observations": [
+    "English rejection form separates internal explanation from the optional unsent draft.",
+    "Arabic mobile withdrawal form uses decision-specific confirmation and no message input.",
+    "Arabic recorded withdrawal displays the original reason and no rejection-message task."
+  ],
+  "method": "Final Arabic form viewed directly; final English form and Arabic result match the previously viewed ee7ed864e74b captures byte for byte.",
+  "limits": [
+    "Synthetic form sections; not a complete accessibility audit."
+  ]
+}

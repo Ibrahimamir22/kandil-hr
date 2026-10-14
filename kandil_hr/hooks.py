@@ -500,3 +500,11 @@ permission_query_conditions["Kandil Candidate Person"] = "kandil_hr.candidates.i
 
 # Erase expired transient candidate command payloads; preserve audit/receipts.
 scheduler_events.setdefault("hourly", []).append("kandil_hr.candidates.recovery.expire_pending")
+
+# Immutable closure decisions and native downstream guards.
+doc_events["Job Applicant"]["validate"].append("kandil_hr.candidates.closure.validate_applicant")
+for _dt in ("Job Offer", "Interview"):
+    for _event in ("validate", "before_update_after_submit"):
+        _events = doc_events.setdefault(_dt, {})
+        _old = _events.get(_event)
+        _events[_event] = ([_old] if isinstance(_old, str) else list(_old or [])) + ["kandil_hr.candidates.closure.validate_downstream"]

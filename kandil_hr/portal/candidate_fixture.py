@@ -81,7 +81,8 @@ def cleanup(run_id):
         data['candidate']['lease']=False;persist(fixture.path_for(run_id),data)
     if 'candidate' not in data:
         return fixture.cleanup(run_id)
-    with acting_as(data['users']['hr']['email']):
+    from kandil_hr.pilot.api import transition
+    with acting_as(data['users']['hr']['email']), transition():
         for name in frappe.get_all('Job Applicant',filters={'job_title':data['candidate']['opening']},pluck='name'):
             app=frappe.get_doc('Job Applicant',name)
             if app.status!='Rejected':app.status='Rejected';app.save()

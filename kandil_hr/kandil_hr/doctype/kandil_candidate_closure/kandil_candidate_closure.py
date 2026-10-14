@@ -1,0 +1,1 @@
+from kandil_hr.candidates.closure import KandilCandidateClosure

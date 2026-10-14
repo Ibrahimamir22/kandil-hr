@@ -16,7 +16,7 @@ from kandil_hr.portal.vacancies import permitted_names
 from kandil_hr.foundation.teams import candidate_opening_condition
 from kandil_hr.recruitment.vacancy_access import identity_labels
 
-STATES=('Open','Replied','Shortlisted','Rejected','Hold','Accepted')
+STATES=('Open','Replied','Shortlisted','Rejected','Hold','Accepted','Withdrawn')
 
 
 def access():
@@ -34,7 +34,11 @@ def base():
 def filters(q,a,o,r,search='',status='',opening='',person=''):
     if status:
         if status not in STATES: frappe.throw(_('Unknown candidate application status.'))
-        q=q.where(a.status==status)
+        closure=frappe.qb.DocType('Kandil Candidate Closure')
+        withdrawn=frappe.qb.from_(closure).select(closure.application).where(closure.decision=='Withdrawn')
+        if status=='Withdrawn':q=q.where(a.name.isin(withdrawn))
+        elif status=='Rejected':q=q.where((a.status=='Rejected')&a.name.notin(withdrawn))
+        else:q=q.where(a.status==status)
     if opening:q=q.where(o.name==bounded_text(opening))
     if person:q=q.where(a.custom_kandil_person==bounded_text(person))
     term=bounded_text(search)
@@ -57,7 +61,9 @@ def listing(search='',status='',opening='',person='',start=0,page_length=25):
     labels=identity_labels([x.recruiter for x in rows])
     from kandil_hr.candidates.search import labels as person_labels
     names=person_labels([x.person for x in rows])
+    closed={r.application:r.decision for r in frappe.get_all('Kandil Candidate Closure',filters={'application':['in',[r.name for r in rows]]},fields=['application','decision'])} if rows else {}
     for row in rows:
+        row['status']=closed.get(row.name,row.status)
         row['recruiter_label']=labels.get(row.pop('recruiter'),_('Unassigned or restricted'))
         row['person_name']=names.get(row.person)
     return dict(rows=rows,total=total,start=offset,page_length=limit,has_more=offset+limit<total,
@@ -78,7 +84,7 @@ def detail(name):
     opening=frappe.get_doc('Job Opening',app.job_title);request=frappe.get_doc('Kandil Hiring Request',opening.custom_kandil_request)
     labels=identity_labels([app.custom_kandil_responsible_user,app.custom_kandil_next_action_owner])
     result=dict(name=app.name,applicant_name=app.applicant_name,email_id=app.email_id,phone_number=app.phone_number,
-        status=app.status,modified=str(app.modified),person=app.custom_kandil_person,
+        status=frappe.db.get_value('Kandil Candidate Closure',{'application':app.name},'decision') or app.status,modified=str(app.modified),person=app.custom_kandil_person,
         source=app.custom_kandil_source_channel,source_detail=app.custom_kandil_source_detail,
         identity_origin=app.custom_kandil_identity_origin,opening=opening.name,job_title=opening.job_title,
         company=request.company,recruiter=labels.get(app.custom_kandil_responsible_user),

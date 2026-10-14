@@ -30,6 +30,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
   await p.locator('.candidate-activities[aria-busy="false"] h2').waitFor();
   check(lang+' connected activity panel loads without errors',await p.locator('.candidate-activities').count()===1&&await p.locator('.candidate-activities [role=alert]').count()===0);
+  await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
+  check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
   check(lang+' viewport and direction',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await p.locator('html').getAttribute('dir')===(lang==='ar'?'rtl':'ltr'));
   await p.locator('.candidate-work').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'review-work-'+lang+'.png')});await ctx.close();
  }

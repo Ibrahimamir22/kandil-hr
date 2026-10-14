@@ -1,5 +1,7 @@
 # قنديل · Kandil HR
 
+The [candidate closure checkpoint](docs/roadmap/S5_CLOSURE_CHECKPOINT.md) connects early-stage rejection/withdrawal, current reason lists, separate internal explanations and unsent drafts, immutable history and AR/EN recovery. **91 native, 90 workflow browser and 14 read-only review checks passed.** Review at **http://kandil-review.localhost:8112/hr-portal → Candidates → Close application**. Live interview/offer/referral integration, reopening, message completion and full S5/release gates remain open.
+
 The [editable HR lists checkpoint](docs/roadmap/S5_CATALOG_CHECKPOINT.md) adds seven company lists and configurable candidate activity types. **62 native, 90 workflow browser and 12 read-only review checks passed.** Only activity types are connected to their workflow; the other six lists explicitly identify pending consumers. Review at **http://kandil-review.localhost:8112/hr-portal → HR lists**. Full S5 and security/capacity/UAT/release gates remain open.
 
 The [combined contact and follow-up checkpoint](docs/roadmap/S5_ACTIVITY_ACTIONS_CHECKPOINT.md) connects one reviewed activity with an optional contact-stage change and keep/set/clear follow-up in Arabic/English. **79 backend checks, 96 workflow browser checks and 12 read-only review checks passed**; exact scope and evidence are in the checkpoint. Review at **http://kandil-review.localhost:8112/hr-portal** → **Candidates → Communication and notes → Record activity**. Full ACT-001/S5, editable catalogs, HR acceptance and security/capacity/release gates remain open.

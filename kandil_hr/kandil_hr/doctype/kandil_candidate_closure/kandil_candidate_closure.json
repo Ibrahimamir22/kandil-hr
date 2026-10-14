@@ -1,0 +1,128 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Closure",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "application",
+    "company",
+    "actor",
+    "decision",
+    "previous_status",
+    "reason_code",
+    "reason_label_ar",
+    "reason_label_en",
+    "catalog_version",
+    "internal_note",
+    "candidate_message",
+    "message_status",
+    "content_hash"
+  ],
+  "fields": [
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "unique": 1,
+      "search_index": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "decision",
+      "label": "Decision",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Rejected\nWithdrawn"
+    },
+    {
+      "fieldname": "previous_status",
+      "label": "Previous Status",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason_code",
+      "label": "Reason Code",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason_label_ar",
+      "label": "Reason Label Ar",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason_label_en",
+      "label": "Reason Label En",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "catalog_version",
+      "label": "Catalog Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "internal_note",
+      "label": "Internal Note",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Text"
+    },
+    {
+      "fieldname": "candidate_message",
+      "label": "Candidate Message",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Text"
+    },
+    {
+      "fieldname": "message_status",
+      "label": "Message Status",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Pending\nNot applicable"
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}
