@@ -195,6 +195,8 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		"candidate_activity_record",
 		"candidate_activity_void",
 		"candidate_close",
+		"candidate_screen",
+		"candidate_reopen",
 		"candidate_message_resolve",
 		"review",
 		"send_to_ceo",
@@ -223,6 +225,9 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	if operation == "candidate_message_resolve":
 		from kandil_hr.candidates.messages import authorize as authorize_message
 		authorize_message(doc, payload)
+	if operation in {"candidate_screen", "candidate_reopen"}:
+		from kandil_hr.candidates.stages import authorize as authorize_stage
+		authorize_stage(doc, payload, reopen=operation == "candidate_reopen")
 	if operation == "candidate_close":
 		from kandil_hr.candidates.work import authorize as authorize_closure
 		authorize_closure(doc, payload)

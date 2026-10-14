@@ -1,9 +1,7 @@
 """Append-only closure cycles and current-state projections.
 
-This checkpoint provides history reads, not permission to reopen a candidate.
-Reopening insertion deliberately remains disabled until the candidate-owned
-consent and reviewed leadership command can create the complete transaction.
-Tests insert synthetic event rows directly to exercise repeated cycles.
+Insertion is restricted to the reviewed consent-gated leadership command.
+Historical fixture rows remain storage evidence, not workflow acceptance.
 """
 import frappe
 from frappe import _
@@ -17,7 +15,10 @@ CLOSURE = 'Kandil Candidate Closure'
 
 class KandilCandidateReopening(Document):
     def validate(self):
-        frappe.throw(_('Reopening requires the candidate-consent and reviewed leadership workflow.'), frappe.PermissionError)
+        from kandil_hr.candidates import stages
+        stages.guard()
+        if not self.is_new() or not frappe.flags.get('kandil_candidate_stage_effect'):
+            frappe.throw(_('Reopening requires the candidate-consent and reviewed leadership workflow.'), frappe.PermissionError)
 
     def on_trash(self):
         frappe.throw(_('Candidate decision history cannot be deleted or renamed.'), frappe.PermissionError)

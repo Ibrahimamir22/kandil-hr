@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of rendered screenshots",
+  "files": {
+    "screening-form-en.png": "831232cf1f0a420f6694aae647fc4e00c03f8f772917b6ad2152428ddb257c19",
+    "reopening-form-ar-mobile.png": "c8b757a6079c531455797256183ee5275d8e951f174c3c84ee6acedc9198aa5b",
+    "screening-result-en.png": "347d22c73194d70b52f277fb84ddc72394757e8343d181511703ad5f48ad7b7c",
+    "reopening-history-en.png": "eee5da1411bf12235764f51cbd15430b51d5e52165cd0dadb813df35835637af"
+  },
+  "findings": [
+    "English Screening form and Arabic RTL mobile reopening form have separated reason, confirmation and action rows.",
+    "Final saved Screening panel is fully visible after waiting for settled layout.",
+    "Closure and reopening history preserves the prior reason, unsent draft and cancelled pending message state.",
+    "Microsecond timestamps remain a cosmetic follow-up."
+  ],
+  "limits": [
+    "Synthetic data only; not HR acceptance, independent security or accessibility certification."
+  ]
+}

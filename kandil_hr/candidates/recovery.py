@@ -15,7 +15,7 @@ from frappe.model.document import Document
 from frappe.utils.password import encrypt,decrypt
 from frappe.utils import now_datetime, get_datetime, add_to_date
 
-from kandil_hr.candidates import identity,intake,corrections,migration,work,activities,closure,messages
+from kandil_hr.candidates import identity,intake,corrections,migration,work,activities,closure,messages,stages
 from kandil_hr.pilot.api import transactional_retry
 from kandil_hr.portal.api import authenticated
 from kandil_hr.foundation.mutation_access import assert_current_request_scope
@@ -47,6 +47,8 @@ def assert_unexpired(doc):
         frappe.throw(_('This saved action has expired. Review existing application records before starting another request.'),CandidateRecoveryExpired)
 COMMON={'name','opening_name','expected_version','command_id'}
 SCHEMAS={
+    'screen':(COMMON|{'application','application_version','reason'},set()),
+    'reopen':(COMMON|{'application','application_version','reason','closure_name','closure_hash'},set()),
     'message':(COMMON|{'application','application_version','closure_name','closure_hash','outcome','channel','message_text','note'},set()),
     'closure':(COMMON|{'application','application_version','decision','reason_code','catalog_version','internal_note','candidate_message'},set()),
     'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason'}),
@@ -57,8 +59,8 @@ SCHEMAS={
     'owner':(COMMON|{'application','application_version','owner','reason'},set()),
     'followup':(COMMON|{'application','application_version','owner','reason','task','due'},set()),
 }
-OPERATIONS={'message':'candidate_message_resolve','closure':'candidate_close','activity':'candidate_activity_record','activity_void':'candidate_activity_void','intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
-HANDLERS={'message':messages.resolve,'closure':closure.close,'activity':activities.record,'activity_void':activities.void,'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
+OPERATIONS={'screen':'candidate_screen','reopen':'candidate_reopen','message':'candidate_message_resolve','closure':'candidate_close','activity':'candidate_activity_record','activity_void':'candidate_activity_void','intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
+HANDLERS={'screen':stages.screen,'reopen':stages.reopen,'message':messages.resolve,'closure':closure.close,'activity':activities.record,'activity_void':activities.void,'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
 
 
 @contextmanager
@@ -104,6 +106,10 @@ def payload(operation,value):
     for key in ('details','profile'):
         if key in value and not isinstance(value[key],(dict,str)):
             frappe.throw(_('Candidate details must be a JSON object.'))
+    if operation in ('screen','reopen'):
+        stages.validate_input(value['reason'])
+        if operation=='reopen':
+            intake.text(value['closure_name'],140);intake.text(value['closure_hash'],64)
     if operation=='message':
         intake.text(value['closure_name'],140);intake.text(value['closure_hash'],140)
         messages.validate_input(value['outcome'],value['channel'],value['message_text'],value['note'])
@@ -135,7 +141,8 @@ def authorize(operation,args):
     # scope. Company serialization keeps its domain/User order compatible here.
     assert_current_request_scope(request,required_roles=('Kandil Recruiter',))
     context=dict(args,opening=args['opening_name'])
-    if operation=='message':messages.authorize(request,dict(context,closure=args['closure_name']))
+    if operation in ('screen','reopen'):stages.authorize(request,context,reopen=operation=='reopen')
+    elif operation=='message':messages.authorize(request,dict(context,closure=args['closure_name']))
     elif operation in ('activity','activity_void'):activities.authorize(request,context)
     elif operation in ('owner','followup','closure'):work.authorize(request,context)
     elif operation=='correction':corrections.authorize(request,context)

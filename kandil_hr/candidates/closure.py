@@ -68,14 +68,14 @@ def existing(application, current=False):
     return active(application, current)
 
 
-def blockers(app, current=False):
+def blockers(app, current=False, include_closed=True):
     """Do not collapse accepted/joined or live interview/offer state into closure.
 
     Company serialization is shared by recruitment mutations. The read-only
     hint is not authorization; execute checks again under the command locks.
     """
     lock = ' FOR UPDATE' if current else ''
-    if app.status == 'Rejected' or existing(app.name, current):
+    if include_closed and (app.status == 'Rejected' or existing(app.name, current)):
         return 'already_closed'
     # HRMS validate() updates a linked Employee Referral without checking its
     # authority here. Source attribution/referral integration must own that

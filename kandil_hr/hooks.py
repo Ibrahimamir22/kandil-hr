@@ -511,3 +511,9 @@ for _dt in ("Job Offer", "Interview"):
 
 # Scope no-store/CSP/referrer protection to consent pages and APIs only.
 after_request = ["kandil_hr.privacy.portal.headers"]
+
+# Reviewed Screening and current candidate-owned consent for native downstream writes.
+doc_events["Job Applicant"]["validate"].append("kandil_hr.candidates.stages.validate_applicant")
+for _dt in ("Job Offer", "Interview"):
+    for _event in ("validate", "before_update_after_submit"):
+        doc_events[_dt][_event].append("kandil_hr.candidates.stages.validate_downstream")

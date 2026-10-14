@@ -63,6 +63,8 @@ def install():
 	from kandil_hr.recruitment.setup import install as install_recruitment
 
 	install_recruitment()
+	from kandil_hr.candidates.stages import install as install_screening
+	install_screening()
 	from kandil_hr.foundation.files import purge_protected_shares
 
 	purge_protected_shares()

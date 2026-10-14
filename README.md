@@ -1,5 +1,9 @@
 # قنديل · Kandil HR
 
+The [Screening and reopening checkpoint](docs/roadmap/S5_SCREENING_REOPENING_CHECKPOINT.md) connects a real Screening status, candidate-consent gates and reviewed leadership reopening with preserved decision history and safe recovery. **37 final native, 27 workflow browser and 36 preserved-review checks passed**, with earlier broader regression evidence documented separately. Review at **http://kandil-review.localhost:8112/hr-portal → Candidates**. S5 remains partial: withdrawal/reconsent/retention, sourcing, private documents and the remaining S6–S12 acceptance/release gates stay open.
+
+Earlier checkpoint summaries below describe their status at publication; the current checkpoint above supersedes their Screening/reopening next-step notes.
+
 The [consent revocation checkpoint](docs/roadmap/S5_CONSENT_REVOCATION_CHECKPOINT.md) adds reviewed pending-link revocation and private paginated AR/EN history. **46 native, 64 connected browser and 34 preserved-review checks passed.** Revocation preserves evidence and cannot erase accepted consent. Acceptance/revocation and replacement races were verified on synthetic data. Withdrawal/reconsent/retention, canonical Screening/reopening and all remaining S5–S12 acceptance/release gates remain open.
 
 The [connected candidate consent checkpoint](docs/roadmap/S5_CONSENT_PORTAL_CHECKPOINT.md) adds reviewed recruiter issuance/copy/replacement and a separate AR/EN candidate page, with exact notice/transfer acceptance, safe retries and a transport guard before Frappe body parsing. **49 native, 45 connected browser and 32 preserved-review checks passed.** The review site now shows the consent panel without seeding policy wording or candidate acceptance. Pending-link revocation is now implemented by the checkpoint above; withdrawal/retention, canonical Screening/reopening and all remaining S5–S12 gates remain open.

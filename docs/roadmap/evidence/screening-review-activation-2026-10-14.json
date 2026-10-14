@@ -1,0 +1,136 @@
+{
+  "checked_at": "2026-10-14T18:38:05.290791+00:00",
+  "before": {
+    "site": "kandil-review.localhost",
+    "tables": {
+      "Kandil Candidate Closure": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Reopening": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Message Resolution": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Job Applicant": {
+        "count": 4,
+        "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+      },
+      "Kandil Candidate Activity": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Capacity": {
+        "count": 1,
+        "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+      },
+      "Kandil Command Audit": {
+        "count": 9,
+        "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+      },
+      "Kandil Privacy Notice Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Invitation": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Acceptance": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Revocation": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Recovery": {
+        "count": 2,
+        "sha256": "4cd2dda5641d79a8071933254f675b276f0fe288f6351b8e0f520ba3319acc0b"
+      }
+    },
+    "application_unique": false,
+    "reopening_unique": true,
+    "status_options": [
+      "Open",
+      "Replied",
+      "Screening",
+      "Shortlisted",
+      "Rejected",
+      "Hold",
+      "Accepted"
+    ],
+    "screening_enabled": false
+  },
+  "after": {
+    "site": "kandil-review.localhost",
+    "tables": {
+      "Kandil Candidate Closure": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Reopening": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Message Resolution": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Job Applicant": {
+        "count": 4,
+        "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+      },
+      "Kandil Candidate Activity": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Capacity": {
+        "count": 1,
+        "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+      },
+      "Kandil Command Audit": {
+        "count": 9,
+        "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+      },
+      "Kandil Privacy Notice Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Invitation": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Acceptance": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Revocation": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Recovery": {
+        "count": 2,
+        "sha256": "4cd2dda5641d79a8071933254f675b276f0fe288f6351b8e0f520ba3319acc0b"
+      }
+    },
+    "application_unique": false,
+    "reopening_unique": true,
+    "status_options": [
+      "Open",
+      "Replied",
+      "Screening",
+      "Shortlisted",
+      "Rejected",
+      "Hold",
+      "Accepted"
+    ],
+    "screening_enabled": true
+  },
+  "business_records_unchanged": true,
+  "seeded_records": false,
+  "scope": "Preserved synthetic review site only"
+}

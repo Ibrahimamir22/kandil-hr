@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open. Closure-cycle history prerequisite now connected: immutable history pages, current-closure projections and historical message cancellations/outcomes; 79 native, 47 workflow browser and 26 read-only review checks passed. Synthetic storage cycles do not enable authorized reopening. Candidate-owned consent, canonical Screening and leadership command/recovery remain open.",
+          "progress": "Candidate workspace, follow-ups, activities, coded closure, manual message outcomes, templates and private decision history are connected. Canonical Screening and reviewed leadership reopening now preserve prior decisions and completed message outcomes, cancel pending rejection tasks and support exact encrypted recovery. See S5_SCREENING_REOPENING_CHECKPOINT.md. Private documents, downstream/referral/interview/offer handling, HR acceptance and full S5 remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -671,7 +671,8 @@
             "../portal/evidence/message-templates-77ef19f9d611/visual-review.json",
             "../portal/evidence/candidate-messages-8f5740558c7e/results.json",
             "../portal/evidence/review-work-1791950864256/results.json",
-            "S5_CLOSURE_HISTORY_CHECKPOINT.md"
+            "S5_CLOSURE_HISTORY_CHECKPOINT.md",
+            "S5_SCREENING_REOPENING_CHECKPOINT.md"
           ]
         },
         {
@@ -688,12 +689,13 @@
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
           "status": "in_progress",
-          "progress": "Connected exact-version AR/EN candidate acceptance now includes reviewed pending-link revocation and private paginated history. 46 native, 64 browser and 34 preserved-review checks passed; see S5_CONSENT_REVOCATION_CHECKPOINT.md. Revocation preserves evidence and cannot withdraw accepted consent. Schema changes preserved existing records on both synthetic sites. No legal wording or consent seeded in review. Withdrawal/reconsent/retention, purpose/talent-pool controls, self-service uploads, downstream consent gates and production privacy acceptance remain open.",
+          "progress": "Exact-version AR/EN notices, candidate-owned bearer acceptance, pending-link revocation and private history are connected. Screening/reopening and native protected-state/interview/offer hooks now require candidate-owned acceptance on explicitly enabled sites. Withdrawal/reconsent, retention/purpose/talent-pool, self-service uploads and production privacy acceptance remain open. No employer wording or candidate consent is seeded in review.",
           "evidence": [
             "S5_PRIVACY_NOTICE_CHECKPOINT.md",
             "S5_CONSENT_SERVICE_CHECKPOINT.md",
             "S5_CONSENT_PORTAL_CHECKPOINT.md",
-            "S5_CONSENT_REVOCATION_CHECKPOINT.md"
+            "S5_CONSENT_REVOCATION_CHECKPOINT.md",
+            "S5_SCREENING_REOPENING_CHECKPOINT.md"
           ]
         },
         {
@@ -712,8 +714,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Early-stage rejection and withdrawal are connected in AR/EN using current company reasons, immutable decisions, separate internal notes/unsent message drafts and exact recovery. Withdrawal has its own portal status/filter. 91 native, 90 workflow browser and 14 read-only review checks passed; see S5_CLOSURE_CHECKPOINT.md. Live downstream/referral handling, reopening, message completion, remaining S5 and all S6-S12/security/UAT/capacity gates remain open.",
-      "checkpoint": "S5_CLOSURE_CHECKPOINT.md"
+      "progress": "Canonical Screening and consent-gated leadership reopening connected in AR/EN. 37 final native, 27 workflow browser and 36 preserved-review checks passed. Immutable closure/message history and encrypted recovery verified; S5 and later gates remain partial.",
+      "checkpoint": "S5_SCREENING_REOPENING_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1057,8 +1059,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Pending consent-link revocation and private AR/EN history connected. 46 native, 64 browser and 34 preserved-review checks passed, including simultaneous acceptance/revocation, replacement and exact retries. S5/CAN-004 and all later release gates remain partial.",
-    "evidence": "S5_CONSENT_REVOCATION_CHECKPOINT.md",
-    "next": "Implement explicit consent eligibility/withdrawal and canonical Screening with reviewed leadership reopening; retain retention/purpose/talent-pool/upload, sourcing and all remaining S5–S12 requirements. HR/privacy, independent security, 1,000+ capacity, UAT and production gates remain open."
+    "summary": "Canonical Screening and consent-gated leadership reopening connected in AR/EN. 37 final native, 27 workflow browser and 36 preserved-review checks passed. Immutable closure/message history and encrypted recovery verified; S5 and later gates remain partial.",
+    "evidence": "S5_SCREENING_REOPENING_CHECKPOINT.md",
+    "next": "Complete consent withdrawal/reconsent and retention/purpose/talent-pool controls, private documents and sourcing/imports; retain all remaining S5-S12 work. HR/privacy acceptance, independent security, 1,000+ capacity, UAT and production gates remain open."
   }
 }

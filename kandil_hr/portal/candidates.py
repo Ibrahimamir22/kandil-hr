@@ -16,7 +16,7 @@ from kandil_hr.portal.vacancies import permitted_names
 from kandil_hr.foundation.teams import candidate_opening_condition
 from kandil_hr.recruitment.vacancy_access import identity_labels
 
-STATES=('Open','Replied','Shortlisted','Rejected','Hold','Accepted','Withdrawn')
+STATES=('Open','Replied','Screening','Shortlisted','Rejected','Hold','Accepted','Withdrawn')
 
 
 def access():

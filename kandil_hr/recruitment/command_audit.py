@@ -72,7 +72,7 @@ def related_state(doc, operation, payload, result=None, previous=()):
 			add("Kandil Candidate Person", app.get("custom_kandil_person"))
 		if operation == "candidate_profile_correct" and (result or {}).get("revision"):
 			add("Kandil Candidate Profile Revision", result["revision"])
-	if operation in ("candidate_activity_record", "candidate_activity_void", "candidate_close", "candidate_message_resolve"):
+	if operation in ("candidate_activity_record", "candidate_activity_void", "candidate_close", "candidate_message_resolve", "candidate_screen", "candidate_reopen"):
 		if payload.get("opening") not in opening_names or frappe.db.get_value("Job Applicant", payload["application"], "job_title") != payload["opening"]:
 			frappe.throw(_("Activity application does not belong to this request."), frappe.PermissionError)
 		add("Job Applicant", payload["application"])
@@ -88,6 +88,14 @@ def related_state(doc, operation, payload, result=None, previous=()):
 			resolution = add("Kandil Candidate Message Resolution", result["resolution"])
 			if resolution.closure != closure.name or resolution.application != payload["application"]:
 				frappe.throw(_("Message resolution belongs to another task."), frappe.PermissionError)
+	if operation == "candidate_reopen":
+		closed = add("Kandil Candidate Closure", payload["closure"])
+		if closed.application != payload["application"]:
+			frappe.throw(_("Closure belongs to another application."), frappe.PermissionError)
+		if (result or {}).get("reopening"):
+			event = add("Kandil Candidate Reopening", result["reopening"])
+			if event.closure != closed.name or event.application != payload["application"]:
+				frappe.throw(_("Reopening belongs to another application."), frappe.PermissionError)
 	if operation == "candidate_close" and (result or {}).get("closure"):
 		closure = add("Kandil Candidate Closure", result["closure"])
 		if closure.application != payload["application"]:
@@ -125,7 +133,7 @@ def related_state(doc, operation, payload, result=None, previous=()):
 	result = []
 	for (kind, _name), record in sorted(targets.items()):
 		value = request_state(record) if kind == "Kandil Hiring Request" else project_related(record)
-		if kind == "Job Applicant" and operation in ("candidate_activity_record", "candidate_activity_void", "candidate_close", "candidate_message_resolve"):
+		if kind == "Job Applicant" and operation in ("candidate_activity_record", "candidate_activity_void", "candidate_close", "candidate_message_resolve", "candidate_screen", "candidate_reopen"):
 			# Activity audits expose references and change fingerprints, not the
 			# candidate's free-text follow-up or accumulated ownership history.
 			for field in ("custom_kandil_next_action", "custom_kandil_ownership_reason", "custom_kandil_ownership_history"):
