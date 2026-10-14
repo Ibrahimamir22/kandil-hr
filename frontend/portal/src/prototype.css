@@ -8,3 +8,7 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 .sidebar-close{display:none}@media(max-width:760px){.sidebar{visibility:hidden}.sidebar.open{visibility:visible}.sidebar-close{display:inline-grid;position:absolute;top:27px;inset-inline-end:18px;width:30px;height:30px}.sidebar .brand{padding-inline-end:30px}}
+
+.privacy-notices .card-head,.privacy-notices .form-footer{flex-wrap:wrap;gap:12px}
+.privacy-notice-text{overflow-wrap:anywhere}
+.privacy-notice-editor textarea{min-height:140px}

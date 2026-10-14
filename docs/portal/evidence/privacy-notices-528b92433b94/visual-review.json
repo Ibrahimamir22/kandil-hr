@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "reviewed": [
+    "privacy-editor-en.png",
+    "privacy-published-en.png",
+    "privacy-published-ar.png"
+  ],
+  "observations": [
+    "English HR editor separates both language notices, transfer settings, publication and review confirmation.",
+    "Published notice and revision history show exact synthetic wording and a clear no-candidate-consent confirmation.",
+    "Arabic mobile view preserves direction for each language and email, wraps long literal markup, and exposes history without horizontal overflow."
+  ],
+  "limits": [
+    "Synthetic notice wording is not legal advice or approval.",
+    "Candidate-facing acceptance and public-link behavior are not part of these screenshots."
+  ]
+}

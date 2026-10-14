@@ -34,6 +34,11 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' template library is read-only for the personal recruiter',await p.locator('.message-templates [role=alert]').count()===0&&await p.getByRole('button',{name:lang==='en'?'New template':'قالب جديد',exact:true}).count()===0);
   check(lang+' template library viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Privacy notices':'إشعارات الخصوصية',exact:true}).click();await p.locator('.privacy-notices[aria-busy="false"] .current-privacy-notice').waitFor();
+  check(lang+' personal privacy notice is read-only and no legal text is seeded',await p.locator('.privacy-notices [role=alert]').count()===0&&await p.locator('.privacy-notice-editor').count()===0&&await p.locator('.privacy-notice-history').count()===0&&await p.locator('.current-privacy-notice').getByText(lang==='en'?'No published notice is available. This cannot be treated as consent from any candidate.':'لا يوجد إشعار منشور متاح. لا يمكن اعتبار ذلك موافقة من أي مرشح.',{exact:true}).isVisible());
+  check(lang+' privacy notice viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await p.screenshot({path:path.join(out,'review-privacy-notice-'+lang+'.png')});
+  if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);

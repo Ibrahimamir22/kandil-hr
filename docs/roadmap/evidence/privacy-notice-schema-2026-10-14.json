@@ -1,0 +1,155 @@
+{
+  "checked_at": "2026-10-14T04:43:14.834374+00:00",
+  "sites": [
+    {
+      "site": "kandil-parity.localhost",
+      "before": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 71,
+            "sha256": "718e4d5c9a77764bb566f3796d77c629ea2f6ad0ffd5adced7d21a151501667f"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 18,
+            "sha256": "475cf48daea6838cb0ecf631736301318a8d8bfedfda394bef9125ecc797666b"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 1618,
+            "sha256": "bcf8acdd40ab0f9fe01ef78cf619194ae470ad4d18431b89c2fb48fe3dbe7dbd"
+          },
+          "Kandil Candidate Activity": {
+            "count": 189,
+            "sha256": "3a6258edebcea210612a3f0a5fae03934edf15ec08101183c4da056874c141b7"
+          },
+          "Kandil Capacity": {
+            "count": 975,
+            "sha256": "f40f8dc2827ac45c853df740477dd56ddd50b3b7e4321cd139e74b7bd3a6f4b3"
+          },
+          "Kandil Command Audit": {
+            "count": 5665,
+            "sha256": "c1a0a370648907bc732f2a3dd7f56862e07f353aa817285414627b8f5049f4fb"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "after": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 71,
+            "sha256": "718e4d5c9a77764bb566f3796d77c629ea2f6ad0ffd5adced7d21a151501667f"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 18,
+            "sha256": "475cf48daea6838cb0ecf631736301318a8d8bfedfda394bef9125ecc797666b"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 1618,
+            "sha256": "bcf8acdd40ab0f9fe01ef78cf619194ae470ad4d18431b89c2fb48fe3dbe7dbd"
+          },
+          "Kandil Candidate Activity": {
+            "count": 189,
+            "sha256": "3a6258edebcea210612a3f0a5fae03934edf15ec08101183c4da056874c141b7"
+          },
+          "Kandil Capacity": {
+            "count": 975,
+            "sha256": "f40f8dc2827ac45c853df740477dd56ddd50b3b7e4321cd139e74b7bd3a6f4b3"
+          },
+          "Kandil Command Audit": {
+            "count": 5665,
+            "sha256": "c1a0a370648907bc732f2a3dd7f56862e07f353aa817285414627b8f5049f4fb"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "business_records_unchanged": true,
+      "notice_revisions": 0
+    },
+    {
+      "site": "kandil-review.localhost",
+      "before": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "after": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "business_records_unchanged": true,
+      "notice_revisions": 0
+    }
+  ]
+}

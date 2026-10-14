@@ -1,0 +1,1 @@
+from kandil_hr.privacy.notices import KandilPrivacyNoticeRevision

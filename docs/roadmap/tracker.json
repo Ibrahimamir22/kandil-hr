@@ -687,7 +687,11 @@
         {
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Versioned AR/EN company notice publishing is connected: current full-company HR authority, exact immutable wording, publish/unpublish, read-only recruiter access and reviewed retry. 30 native, 27 workflow browser and 30 review checks passed. This records no candidate consent. Candidate-owned link issuance/acceptance, expiry/replacement/replay boundaries, retention, withdrawal, talent-pool controls and self-service uploads remain open; production wording/privacy decisions require their own acceptance.",
+          "evidence": [
+            "S5_PRIVACY_NOTICE_CHECKPOINT.md"
+          ]
         },
         {
           "id": "S5-06",
@@ -1050,8 +1054,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Closure-cycle storage and AR/EN private history are connected; active candidate projections and message queues distinguish current, completed and cancelled tasks. Existing rows preserved on isolated schema upgrade. 79 native, 47 workflow browser and 26 read-only review checks passed. Reopening is still disabled; repeated-cycle evidence uses explicit synthetic storage fixtures, not candidate consent or real command acceptance.",
-    "evidence": "S5_CLOSURE_HISTORY_CHECKPOINT.md",
-    "next": "Implement candidate-owned versioned consent and public-link boundaries, then canonical Screening and the company-scoped reviewed reopening command with recovery; preserve the complete remaining S5-S12 scope and release gates."
+    "summary": "AR/EN privacy notice publishing and immutable exact-wording history are connected. Full-company HR authority, version/retry checks and recruiter draft restrictions verified in 30 native, 27 browser workflow and 30 read-only review checks. No legal wording seeded, no candidate consent recorded. CAN-004 remains partial.",
+    "evidence": "S5_PRIVACY_NOTICE_CHECKPOINT.md",
+    "next": "Implement candidate-owned consent links and acceptance bound to exact notice revisions, including expiry/replacement/retry/public boundaries; then canonical Screening and reviewed leadership reopening. Preserve remaining S5–S12 requirements and external acceptance/security/capacity/release gates."
   }
 }
