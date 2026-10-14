@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of rendered screenshots",
+  "files": {
+    "pool-policy-form-en.png": "39696a2a14edfc9aa8b83bb2f102e8b8babb2f983ed9a5881881463a26b91074",
+    "pool-grant-form-en.png": "ba75e0a0e56bf56ad155b16ea2af690307af6e2b972f34eb8a817f9522342f1f",
+    "pool-withdraw-form-ar-mobile.png": "293005befd24ee35cea207429996c73b7ae1c4fa96c372d5103e3cf53cb1c186",
+    "pool-withdraw-history-ar-mobile.png": "7579ff37e74d9e4d584e1d897709d8ef8a78c465a244ecbb205efdb7cde8d657"
+  },
+  "findings": [
+    "English policy and grant forms expose wording, explicit duration, choice evidence and review controls.",
+    "Arabic mobile withdrawal controls and labels fit the viewport with RTL flow.",
+    "History fragment retains the prior grant and later withdrawal; it is a bounded component crop, not a full-page capture.",
+    "Script-like synthetic policy wording is displayed as literal text."
+  ],
+  "limits": [
+    "Synthetic data only; no HR, legal, production security or complete accessibility acceptance."
+  ]
+}

@@ -1,5 +1,7 @@
 # قنديل · Kandil HR
 
+The [talent-pool consent checkpoint](docs/roadmap/S5_POOL_CONSENT_CHECKPOINT.md) adds separate HR-controlled bilingual pool policy and recruiter-recorded grant/withdrawal history with explicit expiry. **59 native, 30 connected browser and 40 preserved-review checks passed.** Pool withdrawal preserves APPLY consent and hiring history; pool consent never unlocks application Screening. Review under **Privacy notices → Talent-pool policy** and **Candidates → Talent-pool consent**. Hybrid pool search/matching, other privacy purposes, private documents, sourcing and all remaining S5–S12 gates remain open.
+
 The [Screening and reopening checkpoint](docs/roadmap/S5_SCREENING_REOPENING_CHECKPOINT.md) connects a real Screening status, candidate-consent gates and reviewed leadership reopening with preserved decision history and safe recovery. **37 final native, 27 workflow browser and 36 preserved-review checks passed**, with earlier broader regression evidence documented separately. Review at **http://kandil-review.localhost:8112/hr-portal → Candidates**. S5 remains partial: withdrawal/reconsent/retention, sourcing, private documents and the remaining S6–S12 acceptance/release gates stay open.
 
 Earlier checkpoint summaries below describe their status at publication; the current checkpoint above supersedes their Screening/reopening next-step notes.

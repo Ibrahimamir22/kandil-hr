@@ -36,6 +36,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Privacy notices':'إشعارات الخصوصية',exact:true}).click();await p.locator('.privacy-notices[aria-busy="false"] .current-privacy-notice').waitFor();
   check(lang+' personal privacy notice is read-only and no legal text is seeded',await p.locator('.privacy-notices [role=alert]').count()===0&&await p.locator('.privacy-notice-editor').count()===0&&await p.locator('.privacy-notice-history').count()===0&&await p.locator('.current-privacy-notice').getByText(lang==='en'?'No published notice is available. This cannot be treated as consent from any candidate.':'لا يوجد إشعار منشور متاح. لا يمكن اعتبار ذلك موافقة من أي مرشح.',{exact:true}).isVisible());
+  await p.locator('.pool-policy[aria-busy="false"] h2').waitFor();
+  check(lang+' pool policy has no seeded wording or retention and is read-only',await p.locator('.pool-policy form').count()===0&&await p.locator('.pool-policy [role=alert]').count()===0&&await p.locator('.pool-policy').getByText(lang==='en'?'No published talent-pool policy is available.':'لا توجد سياسة منشورة لقاعدة المرشحين.',{exact:true}).isVisible());
   check(lang+' privacy notice viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await p.screenshot({path:path.join(out,'review-privacy-notice-'+lang+'.png')});
   if(await menu.isVisible())await menu.click();
@@ -50,6 +52,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' consent history is empty and no revocation is invented',await p.locator('.consent-history').getByText(lang==='en'?'No links recorded for this application.':'لا توجد روابط مسجلة لهذا الطلب.',{exact:true}).isVisible()&&await p.locator('.consent-revoke').count()===0);
   await p.locator('.candidate-stages[aria-busy="false"] h2').waitFor();
   check(lang+' screening gate requires candidate consent without invented eligibility',await p.locator('.candidate-stages [role=alert]').count()===0&&await p.locator('.candidate-stages form').count()===0&&await p.locator('.candidate-stages').getByText(lang==='en'?'The candidate must accept the privacy notice before screening or reopening.':'يلزم أن يوافق المرشح بنفسه على إشعار الخصوصية قبل بدء الفحص أو إعادة الفتح.',{exact:true}).isVisible());
+  await p.locator('.candidate-pool[aria-busy="false"] h2').waitFor();
+  check(lang+' pool consent has no invented grant or policy',await p.locator('.candidate-pool [role=alert]').count()===0&&await p.locator('.candidate-pool').getByText(lang==='en'?'No pool consent':'لا توجد موافقة للقاعدة',{exact:true}).isVisible()&&await p.locator('.candidate-pool option[value="GRANT"]').count()===0);
   await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
   check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
   await p.locator('.candidate-decision-history[aria-busy="false"]').waitFor();

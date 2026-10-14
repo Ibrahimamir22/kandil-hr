@@ -1,5 +1,6 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {api,ApiError} from './api';
+import {PoolPolicy} from './PoolPolicy';
 import type {Tr} from './types';
 const endpoint='kandil_hr.privacy.notices.';
 type Notice={employer_ar:string;employer_en:string;contact_email:string;notice_ar:string;notice_en:string;transfer_required:boolean;transfer_ar:string;transfer_en:string;active:boolean};
@@ -40,5 +41,6 @@ export function PrivacyNotices({t}:{t:Tr}){
  {data&&!editor&&<section className="card section-gap current-privacy-notice"><div className="card-head"><h2>{t('الإشعار الحالي','Current notice')}</h2></div><div className="form-body">{data.notice?<NoticeText notice={data.notice} t={t}/>:<p>{t('لا يوجد إشعار منشور متاح. لا يمكن اعتبار ذلك موافقة من أي مرشح.','No published notice is available. This cannot be treated as consent from any candidate.')}</p>}</div></section>}
  {data?.can_edit&&!editor&&<section className="card section-gap privacy-notice-history"><div className="card-head"><h2>{t('سجل نسخ الإشعار','Notice revision history')}</h2></div><div className="form-body">{!history.length&&<p>{t('لم تُحفظ نسخ بعد.','No saved revisions yet.')}</p>}{history.map(r=><article key={r.name} className="section-gap"><h3>{t('نسخة ','Revision ')}<bdi>{r.sequence}</bdi></h3><p>{r.reason}</p><p>{r.actor_label||t('مستخدم خارج الصلاحيات','Restricted actor')} · <bdi dir="ltr">{r.creation.slice(0,19)}</bdi></p><button className="btn" disabled={locked} onClick={()=>void oldVersion(r.name)}>{t('عرض صياغة النسخة','View revision wording')}</button></article>)}</div><div className="form-footer"><button className="btn" disabled={locked||!start} onClick={()=>setStart(n=>Math.max(0,n-5))}>{t('نسخ أحدث','Newer revisions')}</button><button className="btn" disabled={locked||!more} onClick={()=>setStart(n=>n+5)}>{t('نسخ أقدم','Older revisions')}</button></div></section>}
  {snapshot&&<section className="card section-gap historical-privacy-notice"><div className="card-head"><h2>{t('صياغة محفوظة — نسخة ','Saved wording — revision ')}<bdi>{snapshot.sequence}</bdi></h2><button className="btn" onClick={()=>setSnapshot(null)} disabled={locked}>{t('إغلاق النسخة','Close revision')}</button></div><div className="form-body"><NoticeText notice={snapshot.notice} t={t}/></div></section>}
+ {company&&<PoolPolicy key={company} company={company} t={t}/>}
  </section>
 }

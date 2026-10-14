@@ -1,0 +1,99 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Pool Policy Revision",
+  "module": "Kandil HR",
+  "engine": "InnoDB",
+  "custom": 0,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company",
+      "search_index": 1
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_revision",
+      "label": "Previous Revision",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_json",
+      "label": "Content Json",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "JSON"
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "before_hash",
+      "label": "Before Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "sequence",
+    "previous_revision",
+    "content_json",
+    "content_hash",
+    "before_hash",
+    "actor",
+    "reason",
+    "command_key",
+    "signature"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

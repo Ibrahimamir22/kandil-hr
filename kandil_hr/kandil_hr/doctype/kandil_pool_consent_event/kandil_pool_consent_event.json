@@ -1,0 +1,156 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Pool Consent Event",
+  "module": "Kandil HR",
+  "engine": "InnoDB",
+  "custom": 0,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Job Applicant"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Recorded By",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_event",
+      "label": "Previous Event",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Pool Consent Event"
+    },
+    {
+      "fieldname": "decision",
+      "label": "Decision",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "GRANT\nWITHDRAW"
+    },
+    {
+      "fieldname": "policy_revision",
+      "label": "Policy Revision",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Pool Policy Revision"
+    },
+    {
+      "fieldname": "policy_hash",
+      "label": "Policy Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "valid_until",
+      "label": "Valid Until",
+      "fieldtype": "Date",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "channel",
+      "label": "Evidence Channel",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "PHONE\nEMAIL\nWHATSAPP\nIN_PERSON\nPAPER"
+    },
+    {
+      "fieldname": "evidence_note",
+      "label": "Recorded Evidence",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "evidence_kind",
+      "label": "Evidence Kind",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Recruiter record"
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "application",
+    "actor",
+    "sequence",
+    "previous_event",
+    "decision",
+    "policy_revision",
+    "policy_hash",
+    "valid_until",
+    "channel",
+    "evidence_note",
+    "evidence_kind",
+    "command_key",
+    "signature",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

@@ -689,13 +689,14 @@
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
           "status": "in_progress",
-          "progress": "Exact-version AR/EN notices, candidate-owned bearer acceptance, pending-link revocation and private history are connected. Screening/reopening and native protected-state/interview/offer hooks now require candidate-owned acceptance on explicitly enabled sites. Withdrawal/reconsent, retention/purpose/talent-pool, self-service uploads and production privacy acceptance remain open. No employer wording or candidate consent is seeded in review.",
+          "progress": "Exact-version APPLY notices/acceptance, pending-link revocation, private history and Screening gates are connected. Separate pool policy and recruiter-recorded grant/withdrawal events now provide explicit expiry and person/company eligibility with immutable history. No default retention or wording is seeded. Hybrid pool membership/search/matching, public pool consent, data-subject identity checks, retention/holds/export/erasure and uploads remain open. See S5_POOL_CONSENT_CHECKPOINT.md.",
           "evidence": [
             "S5_PRIVACY_NOTICE_CHECKPOINT.md",
             "S5_CONSENT_SERVICE_CHECKPOINT.md",
             "S5_CONSENT_PORTAL_CHECKPOINT.md",
             "S5_CONSENT_REVOCATION_CHECKPOINT.md",
-            "S5_SCREENING_REOPENING_CHECKPOINT.md"
+            "S5_SCREENING_REOPENING_CHECKPOINT.md",
+            "S5_POOL_CONSENT_CHECKPOINT.md"
           ]
         },
         {
@@ -714,8 +715,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Canonical Screening and consent-gated leadership reopening connected in AR/EN. 37 final native, 27 workflow browser and 36 preserved-review checks passed. Immutable closure/message history and encrypted recovery verified; S5 and later gates remain partial.",
-      "checkpoint": "S5_SCREENING_REOPENING_CHECKPOINT.md"
+      "progress": "Separate talent-pool policy, explicit expiry and recruiter-recorded grant/withdrawal history connected in AR/EN. 59 native, 30 connected browser and 40 preserved-review checks passed. APPLY consent and hiring records preserved. CAN-008/S5 remain partial.",
+      "checkpoint": "S5_POOL_CONSENT_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1059,8 +1060,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Canonical Screening and consent-gated leadership reopening connected in AR/EN. 37 final native, 27 workflow browser and 36 preserved-review checks passed. Immutable closure/message history and encrypted recovery verified; S5 and later gates remain partial.",
-    "evidence": "S5_SCREENING_REOPENING_CHECKPOINT.md",
-    "next": "Complete consent withdrawal/reconsent and retention/purpose/talent-pool controls, private documents and sourcing/imports; retain all remaining S5-S12 work. HR/privacy acceptance, independent security, 1,000+ capacity, UAT and production gates remain open."
+    "summary": "Separate talent-pool policy, explicit expiry and recruiter-recorded grant/withdrawal history connected in AR/EN. 59 native, 30 connected browser and 40 preserved-review checks passed. APPLY consent and hiring records preserved. CAN-008/S5 remain partial.",
+    "evidence": "S5_POOL_CONSENT_CHECKPOINT.md",
+    "next": "Connect hybrid pool membership/search/matching to current purpose eligibility; complete private documents, sourcing/imports and data-subject/retention workflows. Preserve full S5-S12 scope and HR/privacy, independent security, 1,000+ capacity, UAT and production gates."
   }
 }

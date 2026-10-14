@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "en connected follow-up queue loads with five bucket controls",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected message queue loads with four task filters",
+      "status": "PASS"
+    },
+    {
+      "name": "en message queue viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en template library is read-only for the personal recruiter",
+      "status": "PASS"
+    },
+    {
+      "name": "en template library viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal privacy notice is read-only and no legal text is seeded",
+      "status": "PASS"
+    },
+    {
+      "name": "en pool policy has no seeded wording or retention and is read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "en privacy notice viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal login and one connected work panel",
+      "status": "PASS"
+    },
+    {
+      "name": "en read-only work context loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected activity panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en consent panel shows no invented notice or candidate acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "en consent history is empty and no revocation is invented",
+      "status": "PASS"
+    },
+    {
+      "name": "en screening gate requires candidate consent without invented eligibility",
+      "status": "PASS"
+    },
+    {
+      "name": "en pool consent has no invented grant or policy",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected closure panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en decision history loads read-only without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en candidate template choices load without writes or errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en viewport and direction",
+      "status": "PASS"
+    },
+    {
+      "name": "ar connected follow-up queue loads with five bucket controls",
+      "status": "PASS"
+    },
+    {
+      "name": "ar connected message queue loads with four task filters",
+      "status": "PASS"
+    },
+    {
+      "name": "ar message queue viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar template library is read-only for the personal recruiter",
+      "status": "PASS"
+    },
+    {
+      "name": "ar template library viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar personal privacy notice is read-only and no legal text is seeded",
+      "status": "PASS"
+    },
+    {
+      "name": "ar pool policy has no seeded wording or retention and is read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "ar privacy notice viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "ar personal login and one connected work panel",
+      "status": "PASS"
+    },
+    {
+      "name": "ar read-only work context loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar connected activity panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar consent panel shows no invented notice or candidate acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "ar consent history is empty and no revocation is invented",
+      "status": "PASS"
+    },
+    {
+      "name": "ar screening gate requires candidate consent without invented eligibility",
+      "status": "PASS"
+    },
+    {
+      "name": "ar pool consent has no invented grant or policy",
+      "status": "PASS"
+    },
+    {
+      "name": "ar connected closure panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar decision history loads read-only without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar candidate template choices load without writes or errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar viewport and direction",
+      "status": "PASS"
+    },
+    {
+      "name": "Review business records preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "limits": [
+    "Read-only personal-role smoke check; mutation behavior is tested on the separate parity site. No production or capacity certification."
+  ]
+}
