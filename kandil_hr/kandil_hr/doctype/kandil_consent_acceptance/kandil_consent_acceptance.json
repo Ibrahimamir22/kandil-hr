@@ -1,0 +1,122 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Consent Acceptance",
+  "module": "Kandil HR",
+  "engine": "InnoDB",
+  "custom": 0,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company",
+      "search_index": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person",
+      "search_index": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "invitation",
+      "label": "Invitation",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Consent Invitation",
+      "unique": 1
+    },
+    {
+      "fieldname": "purpose",
+      "label": "Purpose",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "APPLY"
+    },
+    {
+      "fieldname": "subject_key",
+      "label": "Subject Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "notice_revision",
+      "label": "Notice Revision",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Privacy Notice Revision"
+    },
+    {
+      "fieldname": "notice_hash",
+      "label": "Notice Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "accepted_at",
+      "label": "Accepted At",
+      "fieldtype": "Datetime",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "transfer_accepted",
+      "label": "Transfer Accepted",
+      "fieldtype": "Check",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "acceptance_hash",
+      "label": "Acceptance Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "evidence_kind",
+      "label": "Evidence Kind",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Bearer link"
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "application",
+    "invitation",
+    "purpose",
+    "subject_key",
+    "notice_revision",
+    "notice_hash",
+    "accepted_at",
+    "transfer_accepted",
+    "acceptance_hash",
+    "evidence_kind"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

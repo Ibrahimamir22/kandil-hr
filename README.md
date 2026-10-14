@@ -1,6 +1,8 @@
 # قنديل · Kandil HR
 
-The latest [privacy notice checkpoint](docs/roadmap/S5_PRIVACY_NOTICE_CHECKPOINT.md) adds HR-controlled AR/EN wording, immutable revisions and recruiter read-only publication. **30 native, 27 workflow browser and 30 read-only review checks passed.** No legal text was seeded and no candidate consent was recorded. Candidate-owned links/acceptance, Screening/reopening and all remaining S5–S12 gates remain open.
+The [internal consent service checkpoint](docs/roadmap/S5_CONSENT_SERVICE_CHECKPOINT.md) adds immutable seven-day invitations and exact-version candidate bearer acceptance, with replacement, expiry, current authority and retry controls. **41 native checks passed: 25 consent tests plus 16 notice regressions.** No public consent endpoint or page is exposed yet, and no candidate status or capacity is changed. The public AR/EN journey, HTTP/logging/security boundaries, withdrawal/retention, Screening/reopening and remaining S5–S12 work stay open.
+
+The [privacy notice checkpoint](docs/roadmap/S5_PRIVACY_NOTICE_CHECKPOINT.md) adds HR-controlled AR/EN wording, immutable revisions and recruiter read-only publication. **30 native, 27 workflow browser and 30 read-only review checks passed.** No legal text was seeded and no candidate consent was recorded. Candidate-owned links/acceptance, Screening/reopening and all remaining S5–S12 gates remain open.
 
 The [closure-cycle history checkpoint](docs/roadmap/S5_CLOSURE_HISTORY_CHECKPOINT.md) adds private AR/EN decision history, current-versus-past closure projections and truthful cancelled/resolved message history. **79 native, 47 workflow browser and 26 read-only review checks passed.** The schema upgrade preserved existing synthetic-site records. **Reopening is not enabled:** candidate-owned consent, canonical Screening and the reviewed leadership command are next; repeated-cycle fixtures are storage tests only. S5 and all later acceptance/release gates remain open.
 

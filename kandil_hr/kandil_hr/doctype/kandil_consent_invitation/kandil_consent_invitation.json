@@ -1,0 +1,146 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Consent Invitation",
+  "module": "Kandil HR",
+  "engine": "InnoDB",
+  "custom": 0,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company",
+      "search_index": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person",
+      "search_index": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "request",
+      "label": "Request",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Hiring Request"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "purpose",
+      "label": "Purpose",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "APPLY"
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_invitation",
+      "label": "Previous Invitation",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "notice_revision",
+      "label": "Notice Revision",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Privacy Notice Revision"
+    },
+    {
+      "fieldname": "notice_hash",
+      "label": "Notice Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "expires_at",
+      "label": "Expires At",
+      "fieldtype": "Datetime",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "token_hash",
+      "label": "Token Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "application",
+    "request",
+    "actor",
+    "purpose",
+    "sequence",
+    "previous_invitation",
+    "notice_revision",
+    "notice_hash",
+    "expires_at",
+    "token_hash",
+    "command_key",
+    "signature",
+    "reason"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

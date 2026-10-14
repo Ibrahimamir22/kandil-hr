@@ -688,9 +688,10 @@
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
           "status": "in_progress",
-          "progress": "Versioned AR/EN company notice publishing is connected: current full-company HR authority, exact immutable wording, publish/unpublish, read-only recruiter access and reviewed retry. 30 native, 27 workflow browser and 30 review checks passed. This records no candidate consent. Candidate-owned link issuance/acceptance, expiry/replacement/replay boundaries, retention, withdrawal, talent-pool controls and self-service uploads remain open; production wording/privacy decisions require their own acceptance.",
+          "progress": "Connected versioned AR/EN company notice publishing is preserved. Internal consent service now issues immutable seven-day, exact-notice invitations, separately records Guest bearer acceptance, and checks replacement/expiry/retries/current authority across persons and applications. 25 focused service tests passed; final regression evidence is in S5_CONSENT_SERVICE_CHECKPOINT.md. No public API or candidate consent page is exposed yet. Public HTTP/logging/rate/origin controls, AR/EN journey, revocation/withdrawal/retention, talent pool, self-service uploads and production privacy acceptance remain open.",
           "evidence": [
-            "S5_PRIVACY_NOTICE_CHECKPOINT.md"
+            "S5_PRIVACY_NOTICE_CHECKPOINT.md",
+            "S5_CONSENT_SERVICE_CHECKPOINT.md"
           ]
         },
         {
