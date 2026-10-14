@@ -192,6 +192,8 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		"candidate_intake",
 		"candidate_identity_migrate",
 		"candidate_profile_correct",
+		"candidate_activity_record",
+		"candidate_activity_void",
 		"review",
 		"send_to_ceo",
 		"hr_correction",
@@ -216,6 +218,9 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		from kandil_hr.candidates.work import authorize as authorize_application_work
 		opening = frappe.db.get_value("Job Applicant", payload["application"], "job_title")
 		authorize_application_work(doc, dict(payload, opening=opening))
+	if operation in {"candidate_activity_record", "candidate_activity_void"}:
+		from kandil_hr.candidates.activities import authorize as authorize_activity
+		authorize_activity(doc, payload)
 	if operation in {"candidate_intake", "candidate_identity_migrate", "candidate_profile_correct"}:
 		from kandil_hr.candidates.intake import authorize
 		if operation == "candidate_profile_correct":

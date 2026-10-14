@@ -18,11 +18,12 @@ export async function recoveryRequest<T>(method:string,args:Record<string,unknow
  }
 }
 export const recoveryApi='kandil_hr.candidates.recovery.';
-export type CandidateOperation='intake'|'correction'|'migration'|'owner'|'followup';
+export type CandidateOperation='intake'|'correction'|'migration'|'owner'|'followup'|'activity'|'activity_void';
 export type CandidateAttempt={id:string;payload:Record<string,unknown>;recovery?:string};
 export type RecoveryRow={name:string;operation:CandidateOperation;status:'Pending'|'Completed'|'Acknowledged'|'Cancelled'|'Expired';created:string;expires_at:string};
 export function validCandidateResult(operation:CandidateOperation,value:unknown,args?:Record<string,unknown>):value is Record<string,unknown>{
  if(!value||typeof value!=='object')return false;const r=value as Record<string,unknown>;
+ if(operation==='activity'||operation==='activity_void'){if(r.application!==args?.application||typeof r.application_version!=='string'||!r.application_version||typeof r.activity!=='string'||!r.activity)return false;return operation==='activity'?r.kind===args?.kind&&r.voided===false:r.activity===args?.activity&&r.voided===true&&typeof r.void_activity==='string'&&!!r.void_activity}
  if(operation==='owner'||operation==='followup'){if(typeof r.application!=='string'||!r.application||typeof r.application_version!=='string'||!r.application_version||r.application!==args?.application)return false;return operation==='owner'?r.owner===args?.owner:r.next_action_owner===(String(args?.task||'').trim()?args?.owner:null)}
  const required=operation==='correction'?['application','person','person_version','revision']:['application','person','application_version','person_version'];
  if(required.some(k=>typeof r[k]!=='string'||!r[k]))return false;

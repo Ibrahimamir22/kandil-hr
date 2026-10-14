@@ -1,0 +1,1 @@
+from kandil_hr.candidates.activities import KandilCandidateActivity

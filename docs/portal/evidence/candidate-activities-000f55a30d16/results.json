@@ -1,0 +1,76 @@
+{
+  "status": "FAIL",
+  "run_id": "000f55a30d16",
+  "checks": [
+    {
+      "name": "New candidate starts with no activity history",
+      "status": "PASS"
+    },
+    {
+      "name": "Call requires outcome and explicit review",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary recruiter records call without changing application stage",
+      "status": "PASS"
+    },
+    {
+      "name": "Internal note renders as literal text",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup": {
+    "run_id": "000f55a30d16",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/CandidateActivities.tsx": "9ccc7824682605e5e7f1b50e683283f7532e3b8b663ed2da673ed5807d486e6a",
+    "kandil_hr/candidates/activities.py": "cb2508e0c099aa13a46389cb36c001fc5736b60daae97baebe66ee576d5d5ca1",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "f82f8b03c15545ecffa58c2767889fce967413fac119a5767cc0c02ad270909b",
+    "docs/portal/test_candidate_activities.cjs": "8191ff1e314125c33e4bd45fd39e6a4f52238ed3b2851d5b1d9536e635c5b638",
+    "docs/portal/test_candidate_sessions.cjs": "e23b44d258dc5f0637145ac5c300dd3aa8c905a0fe8c5238270f5094f0879abe",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "155440a748f51f1165e7c5552d7349716bf7bf5432c57057d08125745ea5b056",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "61ecf768ad2282b57dafd7f93095c0f7e2527e62eb8f9eac95aab25d99987c51",
+    "docs/portal/test_candidate_work.cjs": "87883a3d2d486c2a85da301705ef39d9c7226e345e3edb8ccde385cb8a1c6181",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "9996bd6a3d2794508316dba05d652e4483fa2b0adf8041564887ab02f2fa8042",
+    "frontend/portal/src/CandidateRecovery.tsx": "d8c357e5c6ad6bfdbf9915831c1f4ca4a9258bd3b0e9b914070dc5d948667f9a",
+    "docs/portal/test_candidate_recovery_ui.cjs": "d49109bbd6a4721e4bf0cb706a52cb069f7b29d3954605d72708971a3b183fdb",
+    "kandil_hr/candidates/recovery.py": "25f663a3d7aec78168fbc92554c7069038c2bf8a69600ac47d89bee203d8a428",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "298c95986da076f52a337e0418ab9d70b6f2a43dcf334b84734fc82218dbb483",
+    "docs/portal/test_candidate_recovery.cjs": "5ad35d1de88873f775703f8967945df970011449cc366dedc7f965f6d8a9088c",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "e9fdc89456de2b910cba20633c4050e1a38d4c4778b9aca1ac63c7d0ec31241f",
+    "kandil_hr/foundation/command_audit.py": "5b3179fe4ce79f9d48f2ff06fc081d02992e57a6eebb986a15666b113f59f51c",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "c140b3e142db77dd4384f1aa969f29d14791465b180b877e6aa2c915b245f574",
+    "frontend/portal/src/Candidates.tsx": "b096c923645b4b78f1eca58da56885ae739313c889d8190f98f494c7fe2d2e3b",
+    "frontend/portal/src/main.tsx": "86730d33a2a2fb671c1d13b371525e9eb67efcfe8e26d8150b3d19b79d7458a2",
+    "frontend/portal/src/portal.css": "4b6c29e56d61f145ea6b1b5fa922a2260905d2a7f5ac8ce099ff781c1d7a459f",
+    "kandil_hr/public/portal/portal.js": "749bc202bef629e9553e705373e6a9f21c203c40360cdae1a41bb97cdd7ac73a",
+    "docs/portal/test_candidates.cjs": "e9ccb6cf91dffd063038215f764084be1b4271ac2535d99d6c9221752c08498c"
+  },
+  "limits": [
+    "Synthetic manual activity records and reasoned voids only; editable type catalog, combined follow-up/contact-stage actions, automated communications and full S5 acceptance remain open.",
+    "No production security, sustained capacity or HR acceptance implied."
+  ]
+}

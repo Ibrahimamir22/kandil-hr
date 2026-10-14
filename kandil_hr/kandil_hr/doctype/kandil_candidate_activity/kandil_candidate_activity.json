@@ -1,0 +1,106 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Activity",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "application",
+    "person",
+    "company",
+    "actor",
+    "recorded_at",
+    "kind",
+    "outcome",
+    "note",
+    "voids",
+    "content_hash"
+  ],
+  "fields": [
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person at recording",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Candidate Person",
+      "search_index": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company",
+      "search_index": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Recorded by",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "recorded_at",
+      "label": "Recorded at Cairo",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "kind",
+      "label": "Activity type",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "CALL\nWHATSAPP\nEMAIL\nMEETING\nNOTE\nVOID\nSYSTEM\nSTAGE"
+    },
+    {
+      "fieldname": "outcome",
+      "label": "Call outcome",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "note",
+      "label": "Internal note or void reason",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Text"
+    },
+    {
+      "fieldname": "voids",
+      "label": "Original activity",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Candidate Activity",
+      "unique": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

@@ -72,6 +72,14 @@ def related_state(doc, operation, payload, result=None, previous=()):
 			add("Kandil Candidate Person", app.get("custom_kandil_person"))
 		if operation == "candidate_profile_correct" and (result or {}).get("revision"):
 			add("Kandil Candidate Profile Revision", result["revision"])
+	if operation in ("candidate_activity_record", "candidate_activity_void"):
+		if payload.get("opening") not in opening_names or frappe.db.get_value("Job Applicant", payload["application"], "job_title") != payload["opening"]:
+			frappe.throw(_("Activity application does not belong to this request."), frappe.PermissionError)
+		add("Job Applicant", payload["application"])
+		for name in {payload.get("activity"), (result or {}).get("activity"), (result or {}).get("void_activity")} - {None, ""}:
+			if frappe.db.get_value("Kandil Candidate Activity", name, "application") != payload["application"]:
+				frappe.throw(_("Activity belongs to another application."), frappe.PermissionError)
+			add("Kandil Candidate Activity", name)
 	if operation in ("application_owner", "application_task"):
 		if frappe.db.get_value("Job Applicant", payload["application"], "job_title") not in opening_names:
 			frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)

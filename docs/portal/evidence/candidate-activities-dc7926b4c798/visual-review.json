@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "reviewed": [
+    "English desktop activity history",
+    "Arabic mobile record form",
+    "Arabic mobile history with reasoned voids"
+  ],
+  "findings": [
+    "Original note and cancellation reason remain visibly distinct.",
+    "Arabic cancellation metadata stacks vertically without narrow columns or clipped timestamps.",
+    "Localized dates are labelled as Cairo time.",
+    "Inputs, review checkbox, actions and pagination fit the mobile panel."
+  ],
+  "capture_note": "Element screenshots hide the fixed topbar only during capture so it does not obscure the long panel. Viewport-width and direction checks run against the actual page.",
+  "limits": [
+    "Manual visual review of three synthetic states; not a full accessibility, language or HR acceptance audit."
+  ],
+  "sha256": {
+    "activity-history-ar.png": "e694a2a15fd654da05aec7719578ec79ffc73a1c9f5f6ded1f354440ad6efce8",
+    "activity-form-ar.png": "dcaca8b0ff13f513fc96b4e0005ed31e64ccc67f02dbedbc7081d7a3e33d0c03",
+    "activity-history-en.png": "ddb532b3faa7250831b28d32375779780d242d03793ce79967128eaba5f31a2d"
+  }
+}

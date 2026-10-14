@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Scheduled/fresh candidate follow-up queue is connected in AR/EN: my actions versus current permitted scope, Cairo overdue/today/upcoming/new buckets, exact counts and bounded pages, literal/current-profile search and real candidate-detail actions. 11 queue native and 19 affected candidate/work native checks passed; 21 queue browser checks passed. Full activity/rejection and duplicate/knockout/ad-close tasks, recruiter-wide MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
+          "progress": "Manual call/discussion history and reasoned voids are connected in AR/EN. Entries preserve literal notes and hashes, original records, current-scope person history, private exact-command recovery and author/configured-HR authority. 18 activity native checks, 33 affected native regressions, 31 final activity browser checks, 42 existing recovery browser checks and 12 read-only review checks passed. Editable activity catalogs, combined follow-up/stage actions, coded rejection/communications, duplicate/knockout/ad-close tasks, MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -638,7 +638,14 @@
             "evidence/s2-regression-72e370b89c56.json",
             "../portal/evidence/candidate-queue-69a8767eab2a/results.json",
             "../portal/evidence/candidate-work-660a1e704b5e/results.json",
-            "../portal/evidence/review-work-1791942459894/results.json"
+            "../portal/evidence/review-work-1791942459894/results.json",
+            "S5_ACTIVITY_CHECKPOINT.md",
+            "evidence/s2-regression-acaf812d6c59.json",
+            "evidence/s2-regression-5292aac80a28.json",
+            "../portal/evidence/candidate-activities-dc7926b4c798/results.json",
+            "../portal/evidence/candidate-activities-dc7926b4c798/visual-review.json",
+            "../portal/evidence/recovery-ui-ecc15435e51d/results.json",
+            "../portal/evidence/review-work-1791944124421/results.json"
           ]
         },
         {
@@ -1017,8 +1024,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Scheduled/fresh candidate follow-up queue is connected in AR/EN: my actions versus current permitted scope, Cairo overdue/today/upcoming/new buckets, exact counts and bounded pages, literal/current-profile search and real candidate-detail actions. 11 queue native and 19 affected candidate/work native checks passed; 21 queue browser checks passed. Full activity/rejection and duplicate/knockout/ad-close tasks, recruiter-wide MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
-    "evidence": "S5_FOLLOWUP_QUEUE_CHECKPOINT.md",
-    "next": "Continue immutable call/discussion activities and explicit voiding, coded rejection/messages and related task categories. Preserve recruiter-wide MOVE_ALL and the remaining sourcing, import, identity/privacy and S6-S12 scope."
+    "summary": "Manual call/discussion history and reasoned voids are connected in AR/EN. Entries preserve literal notes and hashes, original records, current-scope person history, private exact-command recovery and author/configured-HR authority. 18 activity native checks, 33 affected native regressions, 31 final activity browser checks, 42 existing recovery browser checks and 12 read-only review checks passed. Editable activity catalogs, combined follow-up/stage actions, coded rejection/communications, duplicate/knockout/ad-close tasks, MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
+    "evidence": "S5_ACTIVITY_CHECKPOINT.md",
+    "next": "Finish configurable activity types and combined contact-stage/follow-up behavior, coded rejection/communications and related tasks. Preserve the remaining sourcing/import/privacy, recruiter-wide MOVE_ALL and S6-S12 scope."
   }
 }

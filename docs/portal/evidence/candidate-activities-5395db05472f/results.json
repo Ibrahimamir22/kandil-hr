@@ -1,0 +1,140 @@
+{
+  "status": "FAIL",
+  "run_id": "5395db05472f",
+  "checks": [
+    {
+      "name": "New candidate starts with no activity history",
+      "status": "PASS"
+    },
+    {
+      "name": "Call requires outcome and explicit review",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary recruiter records call without changing application stage",
+      "status": "PASS"
+    },
+    {
+      "name": "Internal note renders as literal text",
+      "status": "PASS"
+    },
+    {
+      "name": "Voiding requires reason and review",
+      "status": "PASS"
+    },
+    {
+      "name": "Void preserves original text and records reason once",
+      "status": "PASS"
+    },
+    {
+      "name": "Original and cancellation are both visible",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-history-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost reply retains frozen original input",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact retry creates no duplicate",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost email response is observed after the event committed",
+      "status": "PASS"
+    },
+    {
+      "name": "Reloaded inbox displays saved activity type and internal note",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox recovery confirms same activity",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-form-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic HR meeting is recorded through ordinary permissions",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter cannot void another author activity",
+      "status": "PASS"
+    },
+    {
+      "name": "Server denies forged other-author void",
+      "status": "PASS"
+    },
+    {
+      "name": "Configured HR can void a recruiter activity",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-history-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact replay returns one identical activity",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup": {
+    "run_id": "5395db05472f",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/CandidateActivities.tsx": "c6b3b3fb14baaff344c45b3878e2d905ab1504ef76d44de302b8a93e9a5788a3",
+    "kandil_hr/candidates/activities.py": "cb2508e0c099aa13a46389cb36c001fc5736b60daae97baebe66ee576d5d5ca1",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "48cb6647553c4c5b325b9c97844953556ae087d406bf047c8517cabe2a68f731",
+    "docs/portal/test_candidate_activities.cjs": "17cd39efe315bfde72b332dcccd44e894ea44d4c651a46f4b8879b9c0c7373a2",
+    "docs/portal/test_candidate_sessions.cjs": "e23b44d258dc5f0637145ac5c300dd3aa8c905a0fe8c5238270f5094f0879abe",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "155440a748f51f1165e7c5552d7349716bf7bf5432c57057d08125745ea5b056",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "61ecf768ad2282b57dafd7f93095c0f7e2527e62eb8f9eac95aab25d99987c51",
+    "docs/portal/test_candidate_work.cjs": "87883a3d2d486c2a85da301705ef39d9c7226e345e3edb8ccde385cb8a1c6181",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "9996bd6a3d2794508316dba05d652e4483fa2b0adf8041564887ab02f2fa8042",
+    "frontend/portal/src/CandidateRecovery.tsx": "d8c357e5c6ad6bfdbf9915831c1f4ca4a9258bd3b0e9b914070dc5d948667f9a",
+    "docs/portal/test_candidate_recovery_ui.cjs": "d49109bbd6a4721e4bf0cb706a52cb069f7b29d3954605d72708971a3b183fdb",
+    "kandil_hr/candidates/recovery.py": "25f663a3d7aec78168fbc92554c7069038c2bf8a69600ac47d89bee203d8a428",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "298c95986da076f52a337e0418ab9d70b6f2a43dcf334b84734fc82218dbb483",
+    "docs/portal/test_candidate_recovery.cjs": "5ad35d1de88873f775703f8967945df970011449cc366dedc7f965f6d8a9088c",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "e9fdc89456de2b910cba20633c4050e1a38d4c4778b9aca1ac63c7d0ec31241f",
+    "kandil_hr/foundation/command_audit.py": "5b3179fe4ce79f9d48f2ff06fc081d02992e57a6eebb986a15666b113f59f51c",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "c140b3e142db77dd4384f1aa969f29d14791465b180b877e6aa2c915b245f574",
+    "frontend/portal/src/Candidates.tsx": "b096c923645b4b78f1eca58da56885ae739313c889d8190f98f494c7fe2d2e3b",
+    "frontend/portal/src/main.tsx": "86730d33a2a2fb671c1d13b371525e9eb67efcfe8e26d8150b3d19b79d7458a2",
+    "frontend/portal/src/portal.css": "4b6c29e56d61f145ea6b1b5fa922a2260905d2a7f5ac8ce099ff781c1d7a459f",
+    "kandil_hr/public/portal/portal.js": "f2e732bb988d82476510d9c59f4130397eaca5d730a9b0efd9207fa73c0b66bc",
+    "docs/portal/test_candidates.cjs": "e9ccb6cf91dffd063038215f764084be1b4271ac2535d99d6c9221752c08498c"
+  },
+  "limits": [
+    "Synthetic manual activity records and reasoned voids only; editable type catalog, combined follow-up/contact-stage actions, automated communications and full S5 acceptance remain open.",
+    "No production security, sustained capacity or HR acceptance implied."
+  ]
+}

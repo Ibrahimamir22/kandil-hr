@@ -1,0 +1,101 @@
+/* Ordinary-role activity recording, voids and exact recovery; synthetic only. */
+const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto'),assert=require('node:assert/strict');
+const {execFileSync}=require('node:child_process');
+const {isDeepStrictEqual}=require('node:util');
+const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const app=path.resolve(__dirname,'../..'),dev=path.resolve(app,'../../../..'),run=crypto.randomBytes(6).toString('hex'),out=path.join(__dirname,'evidence','candidate-activities-'+run);
+fs.mkdirSync(out,{recursive:true});const manifest=path.resolve(app,'../../sites/kandil-parity.localhost/private',`kandil-portal-${run}.json`);
+const files=['frontend/portal/src/CandidateActivities.tsx','kandil_hr/candidates/activities.py','kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json','docs/portal/test_candidate_activities.cjs','docs/portal/test_candidate_sessions.cjs','kandil_hr/portal/recovery_fixture.py','frontend/portal/src/CandidateWork.tsx','kandil_hr/candidates/work.py','kandil_hr/recruitment/ownership.py','docs/portal/test_candidate_work.cjs','frontend/portal/src/api.ts','frontend/portal/src/candidateCommands.ts','frontend/portal/src/CandidateRecovery.tsx','docs/portal/test_candidate_recovery_ui.cjs','kandil_hr/candidates/recovery.py','kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json','docs/portal/test_candidate_recovery.cjs','kandil_hr/portal/candidates.py','kandil_hr/candidates/profile.py','kandil_hr/candidates/search.py','kandil_hr/candidates/migration.py','frontend/portal/src/CandidateMigration.tsx','kandil_hr/candidates/corrections.py','kandil_hr/recruitment/command_audit.py','kandil_hr/foundation/command_audit.py','frontend/portal/src/CandidateProfile.tsx','kandil_hr/candidates/identity.py','kandil_hr/candidates/intake.py','kandil_hr/portal/candidate_fixture.py','kandil_hr/portal/api.py','kandil_hr/pilot/extensions.py','kandil_hr/recruitment/api.py','frontend/portal/src/Candidates.tsx','frontend/portal/src/main.tsx','frontend/portal/src/portal.css','kandil_hr/public/portal/portal.js','docs/portal/test_candidates.cjs'];
+const hashes=()=>Object.fromEntries(files.map(f=>[f,crypto.createHash('sha256').update(fs.readFileSync(path.join(app,f))).digest('hex')]));const beforeSource=hashes();
+let data,browser,page,cleanup;const checks=[],errors=[],failures=[],external=[];
+function bench(action,args={}){try{const raw=execFileSync('docker',['compose','exec','-T','-w','/workspace/frappe-bench','parity-web','bench','--site','kandil-parity.localhost','execute','kandil_hr.portal.'+(['age_recovery','expire_recovery','expire_sessions'].includes(action)?'recovery_fixture.':'candidate_fixture.')+action,'--kwargs',JSON.stringify({run_id:run,...args})],{cwd:dev,encoding:'utf8',timeout:240000,stdio:['ignore','pipe','pipe']});return JSON.parse(raw.split('\n').filter(x=>x.startsWith('{')).at(-1))}catch(e){fs.writeFileSync(`/tmp/kandil-candidates-${run}-${action}.txt`,String(e.stdout||'')+'\n'+String(e.stderr||''),{mode:0o600});throw Error('Private fixture '+action+' failed')}}
+function restart(){execFileSync('docker',['compose','restart','parity-web'],{cwd:dev,stdio:'pipe'});execFileSync('curl',['--retry','8','--retry-all-errors','--retry-delay','1','--retry-connrefused','--max-time','5','-fs','http://localhost:8102/hr-portal'],{stdio:'pipe'})}
+function check(name,value){assert.ok(value,name);checks.push({name,status:'PASS'});console.log('PASS',name)}
+async function language(p,lang){const button=p.getByRole('button',{name:lang==='en'?'English':'العربية',exact:true});if(await button.count())await button.click()}
+async function login(role,lang='en',noStorage=false){const c=await browser.newContext({viewport:lang==='ar'?{width:390,height:844}:{width:1440,height:1000}});if(noStorage)await c.addInitScript(()=>{for(const key of ['localStorage','sessionStorage'])Object.defineProperty(window,key,{get(){throw new Error('Storage unavailable')},configurable:true})});const p=await c.newPage();page=p;p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=500)failures.push(r.status())});p.on('request',r=>{if(!r.url().startsWith('http://localhost:8102/')&&!r.url().startsWith('data:'))external.push(new URL(r.url()).origin)});await p.goto('http://localhost:8102/hr-portal');await p.locator('input[name=usr]').waitFor();await language(p,lang);await p.locator('input[name=usr]').fill(data.users[role].email);await p.locator('input[name=pwd]').fill(data.users[role].password);await p.locator('.login-submit').click();await p.locator('main.content[aria-busy="false"]').waitFor();return p}
+async function nav(p,lang='en'){if(!await p.locator('.nav').isVisible())await p.getByRole('button',{name:/Open navigation|فتح القائمة/}).click();await p.locator('.nav').getByRole('link',{name:lang==='ar'?'المرشحون':'Candidates',exact:true}).click();await p.locator('.candidates[aria-busy="false"] .candidate-pagination').waitFor();await p.waitForFunction(()=>document.getAnimations().every(a=>a.playState!=='running'))}
+async function call(p,method,args={},verb='GET'){return p.evaluate(async({method,args,verb})=>{const b=await (await fetch('/api/method/kandil_hr.portal.api.bootstrap')).json();const response=await fetch('/api/method/'+method+(verb==='GET'?'?'+new URLSearchParams(args):''),{method:verb,headers:{'Content-Type':'application/json','X-Frappe-CSRF-Token':b.message.csrf_token},...(verb==='POST'?{body:JSON.stringify(args)}:{})});const body=await response.json();return {status:response.status,body:body.message,type:body.exc_type}}, {method,args,verb})}
+async function shot(p,name){await p.waitForFunction(()=>document.getAnimations().every(a=>a.playState!=='running'));check(name+': viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await p.evaluate(()=>window.scrollTo(0,0));await p.locator('.candidate-activities').screenshot({path:path.join(out,name+'.png'),style:'.topbar{visibility:hidden!important}'})}
+
+
+async function recoveryNav(p,lang='en'){
+ await p.waitForFunction(()=>document.getAnimations().every(a=>a.playState!=='running'));
+ const menu=p.getByRole('button',{name:/Open navigation|فتح القائمة/});if(await menu.isVisible()&&!await p.locator('aside.sidebar').evaluate(el=>el.classList.contains('open')))await menu.click();
+ await p.locator('.nav').getByRole('link',{name:lang==='ar'?'إجراءات غير مكتملة':'Unfinished actions',exact:true}).click();await p.locator('.candidate-recovery[aria-busy="false"]').waitFor();
+ const back=p.getByRole('button',{name:lang==='ar'?'رجوع للقائمة':'Back to inbox',exact:true});if(await back.count()){await back.click();await p.locator('.candidate-recovery[aria-busy="false"]').waitFor()}
+ await p.getByRole('button',{name:lang==='ar'?'تحديث القائمة':'Refresh inbox',exact:true}).click();await p.locator('.candidate-recovery[aria-busy="false"]').waitFor();
+}
+async function openWork(p,application=data.candidate.existing.application,lang='en'){
+ await nav(p,lang);const back=p.getByRole('button',{name:lang==='ar'?'رجوع للمرشحين':'Back to candidates',exact:true});if(await back.count())await back.click();await p.getByLabel(lang==='ar'?'البحث عن مرشح':'Search candidates',{exact:true}).fill(application);await p.getByRole('button',{name:lang==='ar'?'بحث':'Search',exact:true}).click();await p.locator('.candidates[aria-busy="false"]').waitFor();await p.locator('.candidate-row').filter({hasText:application}).click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
+}
+const execRoute='**/api/method/kandil_hr.candidates.recovery.execute';
+async function history(p){const r=await call(p,'kandil_hr.candidates.activities.listing',{name:data.candidate.existing.application,page_length:100});assert.equal(r.status,200);return r.body}
+async function openActivities(p,lang='en'){await openWork(p,data.candidate.existing.application,lang);await p.locator('.candidate-activities[aria-busy="false"] h2').waitFor()}
+async function loadedAction(p,action){const [response]=await Promise.all([p.waitForResponse(r=>r.url().includes('kandil_hr.candidates.activities.listing')),action()]);await response.finished();await p.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));await p.locator('.candidate-activities[aria-busy="false"]').waitFor()}
+async function form(p,kind='NOTE',note='Synthetic reviewed conversation',lang='en'){
+ const area=p.locator('.candidate-activities');await area.getByRole('button',{name:lang==='ar'?'تسجيل نشاط':'Record activity',exact:true}).click();const f=area.locator('form');
+ await f.getByLabel(lang==='ar'?'نوع النشاط':'Activity type',{exact:true}).selectOption(kind);
+ if(kind==='CALL')await f.getByLabel(lang==='ar'?'نتيجة المكالمة':'Call outcome',{exact:true}).selectOption('REACHED');
+ await f.getByLabel(lang==='ar'?'الملاحظة الداخلية':'Internal note',{exact:true}).fill(note);await f.getByRole('checkbox').check();return f;
+}
+async function commandArgs(p,changes={}){const h=await history(p);return {name:h.request,opening_name:h.opening,application:h.application,application_version:h.application_version,expected_version:h.expected_version,command_id:crypto.randomUUID(),kind:'NOTE',outcome:'',note:'Concurrent activity',...changes}}
+async function prepared(p,operation,args){const r=await call(p,'kandil_hr.candidates.recovery.prepare',{operation,arguments:args},'POST');assert.equal(r.status,200);return r.body}
+async function execute(p,saved){return call(p,'kandil_hr.candidates.recovery.execute',{name:saved.name},'POST')}
+async function closeCommand(p,saved,success=true){const r=await call(p,'kandil_hr.candidates.recovery.'+(success?'acknowledge':'cancel'),{name:saved.name},'POST');assert.equal(r.status,200)}
+(async()=>{
+ try{
+ bench('prepare');data=JSON.parse(fs.readFileSync(manifest,'utf8'));bench('enable');restart();const baseline=bench('snapshot');
+ browser=await chromium.launch({headless:true,executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',args:['--no-sandbox']});
+ const p=await login('recruiter');await openActivities(p);let area=p.locator('.candidate-activities');
+ check('New candidate starts with no activity history',(await history(p)).total===0);
+ await area.getByRole('button',{name:'Record activity',exact:true}).click();let f=area.locator('form');
+ check('Call requires outcome and explicit review',await f.getByRole('button',{name:'Save activity',exact:true}).isDisabled());
+ await f.getByLabel('Call outcome',{exact:true}).selectOption('NO_ANSWER');await f.getByRole('checkbox').check();
+ await loadedAction(p,()=>f.getByRole('button',{name:'Save activity',exact:true}).click());
+ check('Ordinary recruiter records call without changing application stage',(await history(p)).rows[0].outcome==='NO_ANSWER'&&JSON.stringify(baseline)===JSON.stringify(bench('snapshot')));
+ const literal='<img src=x onerror=alert(1)> ملاحظة داخلية';f=await form(p,'NOTE',literal);
+ await loadedAction(p,()=>f.getByRole('button',{name:'Save activity',exact:true}).click());
+ check('Internal note renders as literal text',await area.locator('.activity-note').filter({hasText:literal}).count()===1&&await area.locator('img').count()===0);
+ const original=(await history(p)).rows[0];let entry=area.locator('.activity-entry').filter({hasText:literal});await entry.getByRole('button',{name:'Void this activity',exact:true}).click();f=area.locator('form');
+ check('Voiding requires reason and review',await f.getByRole('button',{name:'Confirm void',exact:true}).isDisabled());
+ await f.getByLabel('Activity void reason',{exact:true}).fill('Logged against wrong discussion');await f.getByRole('checkbox').check();await loadedAction(p,()=>f.getByRole('button',{name:'Confirm void',exact:true}).click());
+ let h=await history(p),voided=h.rows.find(r=>r.name===original.name);
+ check('Void preserves original text and records reason once',h.total===2&&voided.note===literal&&voided.void_reason==='Logged against wrong discussion'&&!voided.can_void);
+ check('Original and cancellation are both visible',await area.locator('.activity-void').count()===1&&await area.locator('.activity-note').filter({hasText:literal}).count()===1);
+ await shot(p,'activity-history-en');
+ f=await form(p,'WHATSAPP','Synthetic WhatsApp conversation');let intercepted=0;
+ await p.route(execRoute,async route=>{intercepted++;await route.fetch();await route.abort('failed')});await f.getByRole('button',{name:'Save activity',exact:true}).click();await f.getByRole('button',{name:'Retry same action',exact:true}).waitFor();await area.locator('[role=alert]').waitFor();
+ check('Lost reply retains frozen original input',await f.getByLabel('Internal note',{exact:true}).isDisabled()&&await f.getByLabel('Activity type',{exact:true}).isDisabled()&&(await history(p)).total===3&&intercepted===1);
+ await p.unroute(execRoute);await loadedAction(p,()=>f.getByRole('button',{name:'Retry same action',exact:true}).click());check('Exact retry creates no duplicate',(await history(p)).total===3);
+ f=await form(p,'EMAIL','Saved email conversation for inbox review');await p.route(execRoute,async route=>{await route.fetch();await route.abort('failed')});await f.getByRole('button',{name:'Save activity',exact:true}).click();await f.getByRole('button',{name:'Retry same action',exact:true}).waitFor();await area.locator('[role=alert]').waitFor();await p.unroute(execRoute);check('Lost email response is observed after the event committed',(await history(p)).total===4);
+ await p.reload();await p.locator('main.content[aria-busy="false"]').waitFor();await language(p,'en');await recoveryNav(p);await p.locator('.candidate-recovery .candidate-row').click();await p.locator('.candidate-recovery[aria-busy="false"] h2').waitFor();
+ check('Reloaded inbox displays saved activity type and internal note',await p.getByRole('heading',{name:'Record activity',exact:true}).isVisible()&&(await p.locator('.candidate-recovery').innerText()).includes('Saved email conversation for inbox review'));
+ await p.getByRole('button',{name:'Recover result',exact:true}).click();await p.getByRole('heading',{name:'Result confirmed',exact:true}).waitFor();check('Inbox recovery confirms same activity',(await history(p)).total===4);await p.getByRole('button',{name:'Done — close action',exact:true}).click();await p.getByText('No actions need recovery.',{exact:true}).waitFor();
+ const ar=await login('hr','ar');await openActivities(ar,'ar');const arArea=ar.locator('.candidate-activities');f=await form(ar,'MEETING','مناقشة موعد المقابلة بعد الوردية','ar');await shot(ar,'activity-form-ar');await loadedAction(ar,()=>f.getByRole('button',{name:'حفظ النشاط',exact:true}).click());
+ check('Arabic cancellation details stack vertically',await arArea.locator('.activity-void').first().evaluate(el=>getComputedStyle(el).display==='block'));
+ check('Arabic HR meeting is recorded through ordinary permissions',(await history(ar)).rows.some(r=>r.kind==='MEETING'&&r.note==='مناقشة موعد المقابلة بعد الوردية'));
+ await openActivities(p);check('Recruiter cannot void another author activity',!(await history(p)).rows.find(r=>r.kind==='MEETING').can_void);
+ const meeting=(await history(p)).rows.find(r=>r.kind==='MEETING');const invalid=await commandArgs(p,{activity:meeting.name,reason:'Unauthorized cancellation'});for(const k of ['kind','outcome','note'])delete invalid[k];
+ const denied=await call(p,'kandil_hr.candidates.activities.void',invalid,'POST');check('Server denies forged other-author void',denied.status===403);
+ const first=(await history(ar)).rows.find(r=>r.kind==='CALL');const hrVoid=await commandArgs(ar,{activity:first.name,reason:'تسجيل غير صحيح بعد مراجعة الموارد البشرية'});for(const k of ['kind','outcome','note'])delete hrVoid[k];
+ const hv=await prepared(ar,'activity_void',hrVoid);const vr=await execute(ar,hv);check('Configured HR can void a recruiter activity',vr.status===200&&vr.body.result.voided===true);await closeCommand(ar,hv);
+ await loadedAction(ar,()=>arArea.getByRole('button',{name:'تحديث السجل',exact:true}).click());await shot(ar,'activity-history-ar');
+ const beforeRace=(await history(p)).total,saved=await prepared(p,'activity',await commandArgs(p));const race=await Promise.all([execute(p,saved),execute(p,saved)]);
+ check('Concurrent exact replay returns one identical activity',race.every(x=>x.status===200)&&isDeepStrictEqual(race[0].body,race[1].body)&&(await history(p)).total===beforeRace+1);await closeCommand(p,saved);
+ const originalRace=race[0].body.result.activity;const voidArgs=await commandArgs(p,{activity:originalRace,reason:'Concurrent correction'});for(const k of ['kind','outcome','note'])delete voidArgs[k];
+ const left=await prepared(p,'activity_void',voidArgs),right=await prepared(p,'activity_void',{...voidArgs,command_id:crypto.randomUUID()});const competing=await Promise.all([execute(p,left),execute(p,right)]);
+ check('Competing voids preserve exactly one cancellation',competing.filter(x=>x.status===200).length===1&&competing.filter(x=>x.type==='ValidationError').length===1&&(await history(p)).total===beforeRace+1);
+ for(const [i,s] of [left,right].entries())await closeCommand(p,s,competing[i].status===200);
+ const appendArgs=await commandArgs(p);const appendA=await prepared(p,'activity',appendArgs),appendB=await prepared(p,'activity',{...appendArgs,command_id:crypto.randomUUID(),note:'Independent simultaneous discussion'});
+ const appended=await Promise.all([execute(p,appendA),execute(p,appendB)]);
+ check('Independent concurrent records both survive without overwriting',appended.every(x=>x.status===200)&&appended[0].body.result.activity!==appended[1].body.result.activity&&(await history(p)).total===beforeRace+3);
+ await closeCommand(p,appendA);await closeCommand(p,appendB);
+ await openActivities(p);area=p.locator('.candidate-activities');check('History is paginated at five entries',await area.locator('.activity-entry').count()===5);await loadedAction(p,()=>area.getByRole('button',{name:'Next',exact:true}).click());check('Second page contains remaining entries',await area.locator('.activity-entry').count()===3);
+ const native=await call(p,'frappe.client.get',{doctype:'Kandil Candidate Activity',name:original.name});check('Native document endpoint cannot expose activity notes',native.status===403);
+ check('Activities leave identity and capacity unchanged',JSON.stringify(baseline)===JSON.stringify(bench('snapshot')));
+ bench('revoke');check('Revoked recruiter cannot read activity history',(await call(p,'kandil_hr.candidates.activities.listing',{name:data.candidate.existing.application})).status===403);
+ await loadedAction(p,()=>area.getByRole('button',{name:'Refresh activities',exact:true}).click());check('Failed refresh clears previously visible private notes',await area.locator('.activity-entry').count()===0&&await area.locator('[role=alert]').count()===1);
+ check('No browser errors, server 5xx or external requests',!errors.length&&!failures.length&&!external.length);check('Tested sources unchanged',JSON.stringify(beforeSource)===JSON.stringify(hashes()));
+ }catch(e){if(page)await page.screenshot({path:path.join(out,'failure.png'),fullPage:true}).catch(()=>{});fs.writeFileSync(`/tmp/kandil-candidate-activities-${run}.txt`,String(e.stack||e),{mode:0o600});checks.push({name:String(e.message).split('\n')[0],status:'FAIL'});console.log('FAIL',String(e.message).split('\n')[0]);process.exitCode=1}
+ finally{await browser?.close();if(fs.existsSync(manifest)){try{cleanup=bench('cleanup');restart()}catch(e){cleanup={error:String(e.message)};process.exitCode=1}}const result={status:process.exitCode?'FAIL':'PASS',run_id:run,checks,cleanup,errors,server_failures:failures,external,source_hashes:beforeSource,limits:['Synthetic manual activity records and reasoned voids only; editable type catalog, combined follow-up/contact-stage actions, automated communications and full S5 acceptance remain open.','No production security, sustained capacity or HR acceptance implied.']};fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(result,null,2));console.log(JSON.stringify({status:result.status,run_id:run,checks:checks.length,evidence:out}))}
+})();

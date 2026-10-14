@@ -15,7 +15,7 @@ from frappe.model.document import Document
 from frappe.utils.password import encrypt,decrypt
 from frappe.utils import now_datetime, get_datetime, add_to_date
 
-from kandil_hr.candidates import identity,intake,corrections,migration,work
+from kandil_hr.candidates import identity,intake,corrections,migration,work,activities
 from kandil_hr.pilot.api import transactional_retry
 from kandil_hr.portal.api import authenticated
 from kandil_hr.foundation.mutation_access import assert_current_request_scope
@@ -50,11 +50,13 @@ SCHEMAS={
     'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason'}),
     'correction':(COMMON|{'application','person','person_version','profile','reason'},set()),
     'migration':(COMMON|{'application','application_version','preview_hash','reason'},set()),
+    'activity':(COMMON|{'application','application_version','kind','outcome','note'},set()),
+    'activity_void':(COMMON|{'application','application_version','activity','reason'},set()),
     'owner':(COMMON|{'application','application_version','owner','reason'},set()),
     'followup':(COMMON|{'application','application_version','owner','reason','task','due'},set()),
 }
-OPERATIONS={'intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
-HANDLERS={'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
+OPERATIONS={'activity':'candidate_activity_record','activity_void':'candidate_activity_void','intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
+HANDLERS={'activity':activities.record,'activity_void':activities.void,'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
 
 
 @contextmanager
@@ -100,6 +102,8 @@ def payload(operation,value):
     for key in ('details','profile'):
         if key in value and not isinstance(value[key],(dict,str)):
             frappe.throw(_('Candidate details must be a JSON object.'))
+    if operation=='activity':activities.validate_entry(value['kind'],value['outcome'],value['note'])
+    if operation=='activity_void':intake.text(value['activity'],140)
     if operation in ('owner','followup'):
         intake.text(value['owner'],140,operation=='owner' or bool(value.get('task')))
         if operation=='followup':
@@ -122,7 +126,8 @@ def authorize(operation,args):
     # scope. Company serialization keeps its domain/User order compatible here.
     assert_current_request_scope(request,required_roles=('Kandil Recruiter',))
     context=dict(args,opening=args['opening_name'])
-    if operation in ('owner','followup'):work.authorize(request,context)
+    if operation in ('activity','activity_void'):activities.authorize(request,context)
+    elif operation in ('owner','followup'):work.authorize(request,context)
     elif operation=='correction':corrections.authorize(request,context)
     else:intake.authorize(request,OPERATIONS[operation],context)
     return request
