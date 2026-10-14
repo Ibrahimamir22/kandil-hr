@@ -162,7 +162,9 @@ def issue(application, expected_invitation, notice_revision, reason, command_id)
     if prior:
         if prior.signature != signature:
             frappe.throw(_('This command was already used for different consent-link details.'))
-        return receipt(frappe.get_doc(INVITATION, prior.name))
+        # A waiting transaction may retain an older consistent-read snapshot.
+        # Load the receipt with a current read after finding its locked key.
+        return receipt(frappe.get_doc(INVITATION, prior.name, for_update=True))
     live_context(request, opening, app, person)
     if acceptance(request.company, person.name):
         frappe.throw(_('This person already has candidate-owned APPLY consent evidence.'))

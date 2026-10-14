@@ -1,0 +1,5 @@
+# Overlay on the existing Kandil_HR_Dev/compose.yaml; only parity-web changes.
+# docker compose -f /absolute/Kandil_HR_Dev/compose.yaml -f /absolute/kandil_hr/deployment/consent.parity.compose.yaml up -d --no-deps parity-web
+services:
+  parity-web:
+    command: [bash, -c, "node apps/frappe/socketio.js & exec env/bin/python -m kandil_hr.privacy.serve --site kandil-parity.localhost"]

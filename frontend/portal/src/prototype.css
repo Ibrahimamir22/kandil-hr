@@ -12,3 +12,4 @@
 .privacy-notices .card-head,.privacy-notices .form-footer{flex-wrap:wrap;gap:12px}
 .privacy-notice-text{overflow-wrap:anywhere}
 .privacy-notice-editor textarea{min-height:140px}
+.candidate-consent{padding:20px}.candidate-consent .card-head{flex-wrap:wrap;gap:12px}.candidate-consent form{display:grid;gap:16px;margin-top:18px}.candidate-consent .checkbox-label{display:flex;align-items:flex-start;gap:10px}.candidate-consent .checkbox-label input{flex-shrink:0;margin-top:5px}.candidate-consent p{overflow-wrap:anywhere}.consent-notice-review{padding:16px;background:var(--paper,#f7f5f2);border-radius:12px}.consent-notice-review summary{cursor:pointer}.candidate-consent button{white-space:normal}

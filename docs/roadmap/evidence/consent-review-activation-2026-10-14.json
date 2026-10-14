@@ -1,0 +1,184 @@
+{
+  "checked_at": "2026-10-14T17:51:25.080599+00:00",
+  "before": {
+    "site": "kandil-review.localhost",
+    "tables": {
+      "Company": {
+        "count": 1,
+        "sha256": "182199169e664906cab349d988a47f0eae40e6eb19109ff8f0770e7f7b8679a4"
+      },
+      "Kandil Hiring Request": {
+        "count": 3,
+        "sha256": "deaf84e9b01ed54f9e02e457045af98b929144c81de088be9dbafbb7c8a13e06"
+      },
+      "Kandil Capacity": {
+        "count": 1,
+        "sha256": "1f854b68e7cf1a6fb3f88c22dfcb4a4675a1d2f337510682b5f0dd4ac0cc30dc"
+      },
+      "Job Opening": {
+        "count": 1,
+        "sha256": "47e1c5afcfb822c41f6c68ff8c7e7f9416d116a81abe5c4b5506fa7a9da793b0"
+      },
+      "Kandil Candidate Person": {
+        "count": 3,
+        "sha256": "22660ecfb6d1a243763f85eb515e02154b34c0ba8814b87869e810b056487028"
+      },
+      "Job Applicant": {
+        "count": 4,
+        "sha256": "c67f8b6773582564ac485556841c053b5f4dd151da8995c6110695db649d286b"
+      },
+      "Kandil Candidate Recovery": {
+        "count": 2,
+        "sha256": "696dc2660d09c098fc6850018a3732552e5267bf33c5285e0555824cb73442eb"
+      },
+      "Kandil Access Grant": {
+        "count": 4,
+        "sha256": "8a13bc536c73407c6fae63ee4a8f710cb34cda3c8b1896443e7211cdc30f1222"
+      },
+      "Kandil Position": {
+        "count": 2,
+        "sha256": "0b30f77d76bd801ef1918994127bccf38df76915376225c24ac30d6cf42664e3"
+      },
+      "Kandil Position Assignment": {
+        "count": 1,
+        "sha256": "c4c5670c78b3483fff6c411b2969ee7782702da697cebd9e24f95763d5ef1f08"
+      },
+      "Kandil Command Audit": {
+        "count": 9,
+        "sha256": "c3a34ecdea96b3030461308b9e928d5fae7282eac96035e06b7211a971054df8"
+      },
+      "Kandil Candidate Activity": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil HR List Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Closure": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Message Resolution": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Message Template Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Reopening": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Privacy Notice Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Invitation": null,
+      "Kandil Consent Acceptance": null
+    },
+    "candidate_mode": true,
+    "tests_disabled": true,
+    "email_muted": true,
+    "scheduler_paused": true,
+    "companies_synthetic": true,
+    "personal_enabled": true
+  },
+  "after": {
+    "site": "kandil-review.localhost",
+    "tables": {
+      "Company": {
+        "count": 1,
+        "sha256": "182199169e664906cab349d988a47f0eae40e6eb19109ff8f0770e7f7b8679a4"
+      },
+      "Kandil Hiring Request": {
+        "count": 3,
+        "sha256": "deaf84e9b01ed54f9e02e457045af98b929144c81de088be9dbafbb7c8a13e06"
+      },
+      "Kandil Capacity": {
+        "count": 1,
+        "sha256": "1f854b68e7cf1a6fb3f88c22dfcb4a4675a1d2f337510682b5f0dd4ac0cc30dc"
+      },
+      "Job Opening": {
+        "count": 1,
+        "sha256": "47e1c5afcfb822c41f6c68ff8c7e7f9416d116a81abe5c4b5506fa7a9da793b0"
+      },
+      "Kandil Candidate Person": {
+        "count": 3,
+        "sha256": "22660ecfb6d1a243763f85eb515e02154b34c0ba8814b87869e810b056487028"
+      },
+      "Job Applicant": {
+        "count": 4,
+        "sha256": "c67f8b6773582564ac485556841c053b5f4dd151da8995c6110695db649d286b"
+      },
+      "Kandil Candidate Recovery": {
+        "count": 2,
+        "sha256": "696dc2660d09c098fc6850018a3732552e5267bf33c5285e0555824cb73442eb"
+      },
+      "Kandil Access Grant": {
+        "count": 4,
+        "sha256": "8a13bc536c73407c6fae63ee4a8f710cb34cda3c8b1896443e7211cdc30f1222"
+      },
+      "Kandil Position": {
+        "count": 2,
+        "sha256": "0b30f77d76bd801ef1918994127bccf38df76915376225c24ac30d6cf42664e3"
+      },
+      "Kandil Position Assignment": {
+        "count": 1,
+        "sha256": "c4c5670c78b3483fff6c411b2969ee7782702da697cebd9e24f95763d5ef1f08"
+      },
+      "Kandil Command Audit": {
+        "count": 9,
+        "sha256": "c3a34ecdea96b3030461308b9e928d5fae7282eac96035e06b7211a971054df8"
+      },
+      "Kandil Candidate Activity": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil HR List Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Closure": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Message Resolution": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Message Template Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Candidate Reopening": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Privacy Notice Revision": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Invitation": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "Kandil Consent Acceptance": {
+        "count": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      }
+    },
+    "candidate_mode": true,
+    "tests_disabled": true,
+    "email_muted": true,
+    "scheduler_paused": true,
+    "companies_synthetic": true,
+    "personal_enabled": true
+  },
+  "activation": {
+    "consent_review_enabled": true,
+    "business_records_unchanged": true,
+    "notices_seeded": false
+  }
+}

@@ -182,6 +182,12 @@ def inspect():
                      frappe.get_all(doctype, pluck='name', order_by='name asc')]
         tables[doctype] = dict(count=len(documents), sha256=hashlib.sha256(
             json.dumps(documents, sort_keys=True, default=str).encode()).hexdigest())
+    for doctype in ('Kandil Consent Invitation','Kandil Consent Acceptance'):
+        if not frappe.db.table_exists(doctype):
+            tables[doctype]=None
+        else:
+            documents=frappe.get_all(doctype,fields=['*'],order_by='name asc',limit_page_length=0)
+            tables[doctype]=dict(count=len(documents),sha256=hashlib.sha256(json.dumps(documents,sort_keys=True,default=str).encode()).hexdigest())
     return dict(site=SITE, tables=tables, candidate_mode=bool(frappe.conf.get('kandil_candidate_identity_enabled')),
                 tests_disabled=not bool(frappe.conf.get('allow_tests')), email_muted=bool(frappe.conf.get('mute_emails')),
                 scheduler_paused=bool(frappe.conf.get('pause_scheduler')),
@@ -230,3 +236,19 @@ def repair_prepared_example():
     os.replace(temporary, path)
     return dict(changed=True, original_cancelled=True, replacement_pending=True,
                 business_rows_unchanged=True, original_reviewed_version_preserved=True)
+
+
+def enable_consent_review():
+    """Opt-in only for the preserved synthetic review site; no notice/data seed."""
+    guard()
+    if frappe.get_system_settings('enable_telemetry'):
+        raise RuntimeError('Consent review requires telemetry disabled')
+    for doctype in ('Kandil Consent Invitation','Kandil Consent Acceptance'):
+        if not frappe.db.table_exists(doctype):
+            raise RuntimeError('Install consent schema first')
+    before=inspect()
+    update_site_config('kandil_candidate_consent_enabled',1)
+    after=inspect()
+    if before != after:
+        raise RuntimeError('Review business state changed unexpectedly')
+    return dict(consent_review_enabled=True,business_records_unchanged=True,notices_seeded=False)

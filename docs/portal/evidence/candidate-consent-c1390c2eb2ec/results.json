@@ -1,0 +1,273 @@
+{
+  "status": "PASS",
+  "run_id": "c1390c2eb2ec",
+  "checks": [
+    {
+      "name": "No issue action without a published company notice",
+      "status": "PASS"
+    },
+    {
+      "name": "Issuance requires explicit notice review",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain issuance freezes reviewed payload",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact issuance retry creates one invitation and no acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "consent-recruiter-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Copy uses only a URL fragment",
+      "status": "PASS"
+    },
+    {
+      "name": "Candidate page is no-store and disallows framing",
+      "status": "PASS"
+    },
+    {
+      "name": "Fragment removed and capability never rendered in page",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic exact notice and literal markup are safe",
+      "status": "PASS"
+    },
+    {
+      "name": "consent-candidate-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "consent-candidate-en-desktop: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "English wording is exact and rendered as text",
+      "status": "PASS"
+    },
+    {
+      "name": "consent-candidate-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Unchecked choices record no consent",
+      "status": "PASS"
+    },
+    {
+      "name": "Separate required transfer choice cannot be inferred",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain candidate submission freezes choices",
+      "status": "PASS"
+    },
+    {
+      "name": "Guest exact retry records one immutable acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "consent-confirmed-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter sees acceptance without a new stage or link button",
+      "status": "PASS"
+    },
+    {
+      "name": "Staff sessions cannot use the candidate acceptance path",
+      "status": "PASS"
+    },
+    {
+      "name": "Expired bearer preview is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Replacement enables only the new link",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent identical issuance creates one invitation",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent acceptance creates exactly one record",
+      "status": "PASS"
+    },
+    {
+      "name": "Acceptance versus replacement has one coherent outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed wording invalidates pending invitations",
+      "status": "PASS"
+    },
+    {
+      "name": "Replacement uses the newly published wording",
+      "status": "PASS"
+    },
+    {
+      "name": "Unpublished notice cannot be accepted",
+      "status": "PASS"
+    },
+    {
+      "name": "Unexpected server failure returns a generic retry without disclosure",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed request leaves invitation usable",
+      "status": "PASS"
+    },
+    {
+      "name": "Rate limit rejects before recording acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "Wrong format and malformed JSON are rejected before parsing",
+      "status": "PASS"
+    },
+    {
+      "name": "Oversized bearer bodies are rejected before parsing",
+      "status": "PASS"
+    },
+    {
+      "name": "Cross-origin requests are rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Missing Origin is rejected",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown bearer and injected application argument are denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Authenticated issuer endpoint requires login",
+      "status": "PASS"
+    },
+    {
+      "name": "Another recruiter cannot reveal someone else’s invitation",
+      "status": "PASS"
+    },
+    {
+      "name": "Native invitation and acceptance records remain private",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked issuer cannot replay or reveal",
+      "status": "PASS"
+    },
+    {
+      "name": "Candidate and capacity snapshots remain unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Raw capabilities absent from logs error records receipts and monitor",
+      "status": "PASS"
+    },
+    {
+      "name": "Raw capabilities absent from server console logs",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "c1390c2eb2ec",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "consent_lease_restored": true
+  },
+  "errors": [],
+  "unexpected_staff_server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/privacy/portal.py": "8afc3b29a7a16aa2a341be4679a025cf832bb9373bc16398e4da8c4966d79589",
+    "kandil_hr/privacy/wsgi.py": "ef97deb8a84345fb17d931677d8e169d30c011c1806636ca2a2e99314551ab93",
+    "kandil_hr/privacy/serve.py": "2a7e1e45273815f117f01b0e9286c05221a2bd0947fa20d0308397cce81dd886",
+    "kandil_hr/privacy/consent.py": "8190b573c0005fb73ce238224604c15f51db012aba80f9e1bb4da4223e432d61",
+    "kandil_hr/portal/consent_fixture.py": "caf676e050992f8996424ec5c9d53c28155d55f089116e8a5b6f323961fcf4f8",
+    "kandil_hr/public/consent/candidate.js": "69fb7c5546cbb341332f43b619a1376413eb95f983a4f9e598c2b9a4709d901f",
+    "kandil_hr/public/consent/candidate.css": "da8e4d2b6be8af48350e970d25e9b5c8d68ae0f6520a0605bdf0d23b552d6081",
+    "kandil_hr/www/candidate-consent.html": "ed8a658add7231f3ff9b999ca0d3813a2e4aa2b62472a6ee1ccecc4ee6dd5726",
+    "kandil_hr/www/candidate_consent.py": "60c3807eb4bc85648726935dacf2067570f25950986f8d78362a23b1a689362a",
+    "frontend/portal/src/CandidateConsent.tsx": "a76a57df59be12144b827b60f3c39f8d5b68b95df887a6116142479d8224c061",
+    "docs/portal/test_candidate_consent.cjs": "7c6f895fbe1f7216defd364b57f5025549451168ea20a1114a0a13fbcee17990",
+    "deployment/consent.parity.compose.yaml": "c03eb35396df7f4ecc0db3750ec943043fc68c78ff47cb107553909c322e4087",
+    "docs/portal/test_privacy_notices.cjs": "bf07e3cf0c3ba771a2ea1eda21a2a159746f7433937cfbe54f48ed821ba151f3",
+    "frontend/portal/src/PrivacyNotices.tsx": "4d89eb4cd2324f1ecda17f159b864514037955d070dedb37d8592532170e42e4",
+    "frontend/portal/src/main.tsx": "4e634f16786f40ffb5affb439f723b69a7fcb23fb7e3a5b899818d1993054d90",
+    "frontend/portal/src/prototype.css": "159c3a8dfe890c55845e81b64234fd996c9225fda30e0978803fb98489a1c38b",
+    "kandil_hr/privacy/notices.py": "7cebc3e06ced420e71d907735a5c4018b1dc5472d6735d2c653b63dab31cccc6",
+    "kandil_hr/kandil_hr/doctype/kandil_privacy_notice_revision/kandil_privacy_notice_revision.json": "949e5051242957729fbaaa8fcf580afa7a51fad067d70f18fe9e55cc2094eefc",
+    "docs/portal/test_message_templates.cjs": "633c202495566cc91df2ff90231711eefdcfdc0b3fbd0dea9b5ac2498a10bb02",
+    "frontend/portal/src/MessageTemplates.tsx": "3a86c99665f1af31fb8faa17c2878d3112032d795fe3c9f54849fef94d0a564d",
+    "kandil_hr/communications/templates.py": "829c866f86496d0d237a02943d21abdcb4a5d32ed6ee0834d2a92476da67ce5a",
+    "kandil_hr/communications/template_starters_v1.json": "e0702c45d57e8768751489ce11afd4572b936ff05a780d23ee0e78909b99d5ac",
+    "kandil_hr/kandil_hr/doctype/kandil_message_template_revision/kandil_message_template_revision.json": "375cbe6397a28200d5f4fa940e3158d0548eede8e1baad3460ec74161bac6ef0",
+    "docs/portal/test_candidate_messages.cjs": "89727e5653e1a3b3c56cf4e8d726999d7d89d160011b9fe9b7f06f78da00d5e7",
+    "frontend/portal/src/CandidateMessages.tsx": "2ec9049ab04a91034f80614b113d512a410e2c298fd7a4a25ffd1cba84320d05",
+    "kandil_hr/candidates/messages.py": "5d2a48786ef407f18385e4ced0fa069d67ee4d9d3e5176b0a8506c41d1ecec9e",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_message_resolution/kandil_candidate_message_resolution.json": "84d1bb619c02dfab37c38957ec142f32b8bea0b1b9256d82f9d79e63eb6e7d72",
+    "docs/portal/test_candidate_closure.cjs": "1cb6fba8d02d9769b9026c3899f6858c885c60e78e59837ccafc5da4b53698a0",
+    "frontend/portal/src/CandidateClosure.tsx": "3d8f4ac442110512879e179be6033d419bf591a5145f517887f6972bde577de1",
+    "kandil_hr/candidates/closure.py": "8074fec2451de1775de09841583c52dadb2b0b3186a70c706a6e4a3a5138665b",
+    "kandil_hr/hooks.py": "c0035646b2d96bd07606ba490ae72f2cea2346e7f9462e03011aceb3cbf20f1c",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_closure/kandil_candidate_closure.json": "da954990b36447d86a237d4ce1981c7dc99e71ce8f99297b6534cbf3d3ca6cb1",
+    "frontend/portal/src/CandidateActivities.tsx": "339bf716f3fa8afa7300a7f0f3d5f96cc2e9adc4906410b15be91524b5acde0d",
+    "kandil_hr/candidates/activities.py": "14b2b9ff35710009f1eb5daa415df7c68ac863e1ab52e53f5cdeb4af9085d78f",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "35138c1b68daaa4d63e143d65f2f08da9bfb2ab288962c4815f3335fb07d0087",
+    "docs/portal/test_candidate_activities.cjs": "db057597c96725317a85160a131f160e13ea183c010ad9b312ba3b15a9621eb0",
+    "docs/portal/test_candidate_activity_actions.cjs": "1fc3947207d61f2ed2452aa48f7fed0663f113dd973f096826237cbbb0dbd259",
+    "docs/portal/test_candidate_sessions.cjs": "2c7a7ac894be83d58f01cd5d827a3fc503af2942dacc7b87c92e8fcccb29b03d",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "992bfdbdaef5cc791f19a86efa285c76f039f332c04ef8ca3c9feeca87cf2189",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "98f852525065369e1c3e10d21052a87b569b6293e0984612a9137deaa059ec39",
+    "docs/portal/test_candidate_work.cjs": "5a34af8ae94445fe68d29fcba77445ec9b12c3849e731a5a56dbfb13f057e12e",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "935da35c133a4987874b48778d444b69439fc077ed33e63134922f3ab42c4a76",
+    "frontend/portal/src/CandidateRecovery.tsx": "a2b5dea56cb16620ca8a60ae2275a0425dbc5b3a3954e0062f44d80bebcf1b7d",
+    "docs/portal/test_candidate_recovery_ui.cjs": "5db97d88d30ffacd5fd510b3ebdb6bbdfff68fff1f8de13b197ad34f441f75a7",
+    "kandil_hr/candidates/recovery.py": "104ddae720d4abb8fdc16be1601a775351db04d2534008168af7d96401097a8c",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "8f8ab322546b2f28656053cf0f2bcb70063afe225647211df071ee30ffaa9185",
+    "docs/portal/test_candidate_recovery.cjs": "bdf62184ecd9e8e945fc5bc0ca51450088bf052e5c0825c3a76552c2c3c94c6e",
+    "kandil_hr/portal/candidates.py": "b8992f3b42c2ee88bb9709ec5a57e05ef668ca1951fdc935a666c64c4720fafe",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "656f693da949fe149f88a6278163abd185818d0555eeff3a1f7504b9fc1aa9e0",
+    "kandil_hr/foundation/command_audit.py": "308d59cf4bb3e6c586a4c5e338001d2466d5faae68c62266cae2515946d02ef0",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "e31ce907e8ea030973343938a3290e4d61ffc2864f692a70fc3c5e80421b1670",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "b1ad5becc141d1aba9bdf71386a4d6acc1328c24cfff7d550fa28e4fa0252d1b",
+    "frontend/portal/src/Candidates.tsx": "4cb8a28a356ce9b63aeeb8d69695f0e905bccef0a0d2b251ae6117cf46f77bb4",
+    "frontend/portal/src/portal.css": "27cccc010854468b733b19c04a42ff6c40901217a07c4fbf678f6627eabe3d0c",
+    "kandil_hr/public/portal/portal.js": "a9c490329d53861064ab4e4ef934240f4e640eefa9e89a1d0ba36f2b877d1c73",
+    "docs/portal/test_candidates.cjs": "62a795207710392b213c240f22a2c1fdf9b4d27b1c1d096e803b526a9d697c88"
+  },
+  "limits": [
+    "Synthetic local bearer acceptance, not independently verified identity or legal approval.",
+    "Independent production security, proxy/log configuration, withdrawal/retention and capacity remain open."
+  ]
+}

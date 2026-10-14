@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "reviewed_images": [
+    "consent-recruiter-en.png",
+    "consent-candidate-ar.png",
+    "consent-candidate-en-desktop.png",
+    "consent-confirmed-en.png"
+  ],
+  "observations": [
+    "Recruiter review and replacement controls are readable.",
+    "Arabic RTL mobile notice and explicit choices fit the viewport.",
+    "English desktop wording is literal text, with no executed markup.",
+    "Confirmation is clear and does not imply verified identity."
+  ],
+  "limits": [
+    "Synthetic wording only. Timestamp formatting still displays server precision. HR wording and production accessibility review remain open."
+  ]
+}

@@ -508,3 +508,6 @@ for _dt in ("Job Offer", "Interview"):
         _events = doc_events.setdefault(_dt, {})
         _old = _events.get(_event)
         _events[_event] = ([_old] if isinstance(_old, str) else list(_old or [])) + ["kandil_hr.candidates.closure.validate_downstream"]
+
+# Scope no-store/CSP/referrer protection to consent pages and APIs only.
+after_request = ["kandil_hr.privacy.portal.headers"]

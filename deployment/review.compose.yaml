@@ -28,7 +28,7 @@ services:
     platform: linux/arm64
     init: true
     working_dir: /workspace/frappe-bench
-    command: [bash, -c, "test -f sites/kandil-review.localhost/private/kandil-review-ready.json && exec bench --site kandil-review.localhost serve --port 8000 --noreload"]
+    command: [bash, -c, "test -f sites/kandil-review.localhost/private/kandil-review-ready.json && exec env/bin/python -m kandil_hr.privacy.serve --site kandil-review.localhost"]
     environment:
       FRAPPE_BIND_ADDR: 0.0.0.0
       DEV_SERVER: '1'
