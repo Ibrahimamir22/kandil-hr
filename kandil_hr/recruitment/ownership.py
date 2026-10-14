@@ -236,15 +236,15 @@ def application_command(name, operation, command_id, expected_version, applicati
 			frappe.throw(
 				_("This application changed. Reload before assigning it."), frappe.TimestampMismatchError
 			)
-		if (
-			request.status != "Approved"
-			or opening.custom_kandil_vacancy_state not in ACTIVE
-			or not live(app, current=True)
-		):
-			frappe.throw(_("Only an active application can be assigned."))
+		assert_active_application(app, opening, request)
 		return handler(app, opening, request)
 
 	return command(request_name, operation, command_id, expected_version, payload, act)
+
+
+def assert_active_application(app, opening, request):
+	if request.status != "Approved" or opening.custom_kandil_vacancy_state not in ACTIVE or not live(app, current=True):
+		frappe.throw(_("Only an active application can be assigned."))
 
 
 def reason_text(reason):
@@ -278,11 +278,7 @@ def assign_application(name, owner, reason, command_id, expected_version, applic
 	)
 
 
-@frappe.whitelist(methods=["POST"])
-@transactional_retry
-def set_next_action(name, task, due, owner, reason, command_id, expected_version, application_version):
-	guard()
-	reason = reason_text(reason)
+def validate_followup_values(task, due):
 	if not isinstance(task, str) or len(task) > 1000:
 		frappe.throw(_("A next action must contain at most 1000 characters."))
 	if task.strip():
@@ -294,6 +290,16 @@ def set_next_action(name, task, due, owner, reason, command_id, expected_version
 			frappe.throw(_("Choose a valid follow-up date."))
 	else:
 		due = None
+
+	return due
+
+
+@frappe.whitelist(methods=["POST"])
+@transactional_retry
+def set_next_action(name, task, due, owner, reason, command_id, expected_version, application_version):
+	guard()
+	reason = reason_text(reason)
+	due = validate_followup_values(task, due)
 
 	def act(app, opening, request):
 		if task.strip():

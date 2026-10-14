@@ -77,9 +77,10 @@ def can_void(event,request):
         or frappe.session.user==frappe.db.get_value('Kandil Organization Settings',request.company,'hr_approver'))
 
 
-def append(app,request,kind,outcome,note,voids=None):
+def append(app,request,kind,outcome,note,voids=None,stage=None):
     values=dict(application=app.name,person=app.custom_kandil_person or None,company=request.company,
         actor=frappe.session.user,recorded_at=now_cairo().isoformat(),kind=kind,outcome=outcome,note=note,voids=voids)
+    if stage:values.update(stage)
     with effect():
         return frappe.get_doc(dict(doctype=DT,**values,content_hash=digest(values))).insert(ignore_permissions=True)
 
@@ -93,16 +94,55 @@ def reviewed(app,version):
         frappe.throw(_('Application changed. Refresh it before recording this action.'),frappe.TimestampMismatchError)
 
 
+def transition_input(move_to_contacted=False,next_action=None):
+    from kandil_hr.recruitment import ownership
+    if not isinstance(move_to_contacted,bool):frappe.throw(_('Choose whether to mark this contact.'))
+    if next_action is None:return move_to_contacted,None
+    if not isinstance(next_action,dict) or next_action.get('mode') not in ('set','clear'):
+        frappe.throw(_('Choose a valid follow-up change.'))
+    if next_action['mode']=='clear':
+        if set(next_action)!={'mode'}:frappe.throw(_('Clearing a follow-up must not include replacement values.'))
+        return move_to_contacted,dict(mode='clear')
+    if set(next_action)!={'mode','task','due','owner'}:frappe.throw(_('Provide the follow-up, date and responsible recruiter.'))
+    task=text(next_action['task'],1000);due=ownership.validate_followup_values(task,next_action['due'])
+    return move_to_contacted,dict(mode='set',task=task,due=due,owner=text(next_action['owner'],140))
+
+
 @frappe.whitelist(methods=['POST'])
 @transactional_retry
-def record(name,opening_name,application,application_version,kind,outcome,note,command_id,expected_version):
+def record(name,opening_name,application,application_version,kind,outcome,note,command_id,expected_version,
+           move_to_contacted=False,next_action=None):
     identity.guard();note=validate_entry(kind,outcome,note)
+    move,next_action=transition_input(move_to_contacted,next_action)
     payload=dict(opening=text(opening_name,140),application=text(application,140),application_version=text(application_version,140),
         kind=kind,outcome=outcome,note_hash=digest(note))
+    # Preserve the signature of previously saved plain-activity receipts.
+    if move or next_action is not None:payload.update(move_to_contacted=move,next_action_hash=digest(next_action))
     def act(request):
+        from kandil_hr.recruitment import ownership
         app=authorize(request,payload);reviewed(app,application_version)
+        opening=frappe.get_doc('Job Opening',app.job_title,for_update=True)
+        reached=kind!='NOTE' and (kind!='CALL' or outcome in ('REACHED','CALL_BACK'))
+        moved=bool(move and reached and app.status=='Open')
+        if moved or next_action is not None:ownership.assert_active_application(app,opening,request)
+        if next_action is not None:
+            ownership.authorize_application(app,opening,request)
+            if next_action['mode']=='set':ownership.require_owner(next_action['owner'],opening,request)
         event=append(app,request,kind,outcome,note)
-        return dict(application=app.name,application_version=str(app.modified),activity=event.name,kind=kind,voided=False)
+        if moved:app.status='Replied'
+        if next_action is not None:
+            clear=next_action['mode']=='clear'
+            # Internal effect under this single command transaction. Never invoke
+            # a nested transaction-retry decorator after an activity was written.
+            ownership.store(app,app.custom_kandil_responsible_user,'Updated with a recorded candidate activity.',
+                'Next action updated',next_owner='' if clear else next_action['owner'],
+                task='' if clear else next_action['task'],due=None if clear else next_action['due'])
+        stage_event=None
+        if moved:
+            if next_action is None:app.save(ignore_permissions=True)
+            stage_event=append(app,request,'STAGE','','',stage=dict(stage_from='Open',stage_to='Replied',source_activity=event.name))
+        return dict(application=app.name,application_version=str(app.modified),activity=event.name,kind=kind,voided=False,
+            moved=moved,stage_activity=stage_event.name if stage_event else None,followup_applied=next_action is not None)
     return command(name,'candidate_activity_record',command_id,expected_version,payload,act)
 
 
@@ -137,13 +177,20 @@ def listing(name,start=0,page_length=10):
     q=frappe.qb.from_(event).where((event.kind!='VOID')&event.application.isin(readable.select(a.name)))
     total=deepcopy(q).select(Count(event.name).as_('total')).run(as_dict=True)[0].total
     rows=(q.left_join(cancel).on(cancel.voids==event.name).select(event.name,event.application,event.kind,event.outcome,event.note,
-        event.actor,event.recorded_at,cancel.name.as_('void_activity'),cancel.actor.as_('void_actor'),cancel.note.as_('void_reason'),cancel.recorded_at.as_('void_at'))
+        event.actor,event.recorded_at,event.stage_from,event.stage_to,event.source_activity,cancel.name.as_('void_activity'),cancel.actor.as_('void_actor'),cancel.note.as_('void_reason'),cancel.recorded_at.as_('void_at'))
         .orderby(event.creation,order=Order.desc).orderby(event.name,order=Order.desc).limit(limit).offset(offset).run(as_dict=True))
     labels=identity_labels([row.get(k) for row in rows for k in ('actor','void_actor')])
     for row in rows:
         row['can_void']=bool(can_record and row.application==app.name and not row.void_activity and can_void(row,request))
         row['actor_label']=labels.get(row.pop('actor'));row['void_actor_label']=labels.get(row.pop('void_actor'))
         row['other_application']=row.application!=app.name
+    from kandil_hr.recruitment import ownership
+    hints=ownership.actions(app.name)
+    can_followup=bool(can_record and hints.get('can_manage'))
+    owners=hints.get('owners',[]) if can_followup else []
+    next_owner=app.custom_kandil_next_action_owner or app.custom_kandil_responsible_user
     return dict(application=app.name,application_version=str(app.modified),request=request.name,opening=app.job_title,
         expected_version=str(request.modified),can_record=can_record,types=TYPES,outcomes=OUTCOMES,
+        status=app.status,can_followup=can_followup,owners=owners,
+        next_action=dict(task=app.custom_kandil_next_action or '',due=app.custom_kandil_next_action_due,owner=next_owner if next_owner in {r['user'] for r in owners} else None),
         rows=rows,total=total,start=offset,has_more=offset+limit<total)

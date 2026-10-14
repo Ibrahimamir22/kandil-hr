@@ -16,7 +16,10 @@
     "outcome",
     "note",
     "voids",
-    "content_hash"
+    "content_hash",
+    "stage_from",
+    "stage_to",
+    "source_activity"
   ],
   "fields": [
     {
@@ -99,6 +102,27 @@
       "fieldtype": "Data",
       "read_only": 1,
       "reqd": 1
+    },
+    {
+      "fieldname": "stage_from",
+      "label": "Previous stage",
+      "fieldtype": "Data",
+      "options": null,
+      "read_only": 1
+    },
+    {
+      "fieldname": "stage_to",
+      "label": "New stage",
+      "fieldtype": "Data",
+      "options": null,
+      "read_only": 1
+    },
+    {
+      "fieldname": "source_activity",
+      "label": "Contact activity",
+      "fieldtype": "Link",
+      "options": "Kandil Candidate Activity",
+      "read_only": 1
     }
   ],
   "permissions": [],

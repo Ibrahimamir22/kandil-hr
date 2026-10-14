@@ -50,7 +50,7 @@ SCHEMAS={
     'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason'}),
     'correction':(COMMON|{'application','person','person_version','profile','reason'},set()),
     'migration':(COMMON|{'application','application_version','preview_hash','reason'},set()),
-    'activity':(COMMON|{'application','application_version','kind','outcome','note'},set()),
+    'activity':(COMMON|{'application','application_version','kind','outcome','note'},{'move_to_contacted','next_action'}),
     'activity_void':(COMMON|{'application','application_version','activity','reason'},set()),
     'owner':(COMMON|{'application','application_version','owner','reason'},set()),
     'followup':(COMMON|{'application','application_version','owner','reason','task','due'},set()),
@@ -102,7 +102,9 @@ def payload(operation,value):
     for key in ('details','profile'):
         if key in value and not isinstance(value[key],(dict,str)):
             frappe.throw(_('Candidate details must be a JSON object.'))
-    if operation=='activity':activities.validate_entry(value['kind'],value['outcome'],value['note'])
+    if operation=='activity':
+        activities.validate_entry(value['kind'],value['outcome'],value['note'])
+        activities.transition_input(value.get('move_to_contacted',False),value.get('next_action'))
     if operation=='activity_void':intake.text(value['activity'],140)
     if operation in ('owner','followup'):
         intake.text(value['owner'],140,operation=='owner' or bool(value.get('task')))

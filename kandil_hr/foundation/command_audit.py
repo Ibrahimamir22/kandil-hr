@@ -136,7 +136,7 @@ RELATED_FIELDS = {
 		"custom_kandil_priority_pin",
 	),
 	"Kandil Candidate Person": (*COMMON, "identity_state"),
-	"Kandil Candidate Activity": (*COMMON, "application", "person", "kind", "voids", "content_hash"),
+	"Kandil Candidate Activity": (*COMMON, "application", "person", "kind", "voids", "content_hash", "stage_from", "stage_to", "source_activity"),
 	"Kandil Candidate Profile Revision": (*COMMON, "person", "application", "content_hash", "before_version", "after_version"),
 	"Job Applicant": (
 		*COMMON,

@@ -76,7 +76,7 @@ def related_state(doc, operation, payload, result=None, previous=()):
 		if payload.get("opening") not in opening_names or frappe.db.get_value("Job Applicant", payload["application"], "job_title") != payload["opening"]:
 			frappe.throw(_("Activity application does not belong to this request."), frappe.PermissionError)
 		add("Job Applicant", payload["application"])
-		for name in {payload.get("activity"), (result or {}).get("activity"), (result or {}).get("void_activity")} - {None, ""}:
+		for name in {payload.get("activity"), (result or {}).get("activity"), (result or {}).get("void_activity"), (result or {}).get("stage_activity")} - {None, ""}:
 			if frappe.db.get_value("Kandil Candidate Activity", name, "application") != payload["application"]:
 				frappe.throw(_("Activity belongs to another application."), frappe.PermissionError)
 			add("Kandil Candidate Activity", name)
@@ -110,10 +110,16 @@ def related_state(doc, operation, payload, result=None, previous=()):
 	# A relocation may remove its old line: retain that target's resulting state.
 	for row in previous:
 		add(row["doctype"], row["name"])
-	return [
-		request_state(record) if kind == "Kandil Hiring Request" else project_related(record)
-		for (kind, _name), record in sorted(targets.items())
-	]
+	result = []
+	for (kind, _name), record in sorted(targets.items()):
+		value = request_state(record) if kind == "Kandil Hiring Request" else project_related(record)
+		if kind == "Job Applicant" and operation in ("candidate_activity_record", "candidate_activity_void"):
+			# Activity audits expose references and change fingerprints, not the
+			# candidate's free-text follow-up or accumulated ownership history.
+			for field in ("custom_kandil_next_action", "custom_kandil_ownership_reason", "custom_kandil_ownership_history"):
+				value[field] = "sha256:" + hashlib.sha256(str(value.get(field) or "").encode()).hexdigest()
+		result.append(value)
+	return result
 
 
 def frozen_authority(doc, operation):

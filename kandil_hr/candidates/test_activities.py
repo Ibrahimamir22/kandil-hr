@@ -47,7 +47,8 @@ class TestCandidateActivities(unittest.TestCase):
         for outcome in activities.OUTCOMES[1:]:self.call(outcome=outcome)
         data=self.history();self.assertEqual(data['total'],9)
         self.assertTrue(data['can_record']);self.assertTrue(all(row['can_void'] for row in data['rows']))
-        self.assertNotIn('@example.invalid',json.dumps(data))
+        self.assertNotIn('@example.invalid',json.dumps(data['rows']))
+        self.assertEqual({row['user'] for row in data['owners']},{self.f.f.users[k] for k in ('hr','manager')})
         self.assertTrue(all(row['recorded_at'].endswith('+03:00') or row['recorded_at'].endswith('+02:00') for row in data['rows']))
 
     def test_plain_text_is_preserved_and_content_hash_matches_saved_fields(self):
@@ -199,6 +200,106 @@ class TestCandidateActivities(unittest.TestCase):
         self.f.f.call('hr',vacancies.assign_team,self.f.request,opening_name=self.f.opening,lead=self.f.f.users['hr'],members=[],reason='Revoke recovery access')
         for method in ('inspect','execute','acknowledge'):
             with acting_as(self.f.f.users['manager']),self.f.f.rejected(frappe.PermissionError):getattr(recovery,method)(saved['name'])
+
+    def followup(self, **changes):
+        return dict(mode='set',task='PRIVATE_FOLLOWUP_CALL',due='2027-01-05',owner=self.f.f.users['hr'],**changes)
+
+    def application_state(self):
+        app=frappe.get_doc('Job Applicant',self.name)
+        return {k:app.get(k) for k in ('status','modified','custom_kandil_responsible_user','custom_kandil_next_action',
+            'custom_kandil_next_action_due','custom_kandil_next_action_owner','custom_kandil_ownership_history')}
+
+    def test_compound_contact_followup_stage_and_receipt_are_one_action(self):
+        before=self.application_state();args=self.args(move_to_contacted=True,next_action=self.followup())
+        result=self.call(args=args);after=self.application_state();stage=frappe.get_doc(activities.DT,result['stage_activity'])
+        self.assertEqual(after['status'],'Replied');self.assertEqual(after['custom_kandil_next_action'],'PRIVATE_FOLLOWUP_CALL')
+        self.assertEqual(after['custom_kandil_next_action_owner'],self.f.f.users['hr'])
+        self.assertEqual(after['custom_kandil_responsible_user'],before['custom_kandil_responsible_user'])
+        self.assertEqual(str(after['modified']),result['application_version']);self.assertTrue(result['moved'] and result['followup_applied'])
+        self.assertEqual((stage.stage_from,stage.stage_to,stage.source_activity),('Open','Replied',result['activity']))
+        keys=('application','person','company','actor','recorded_at','kind','outcome','note','voids','stage_from','stage_to','source_activity')
+        self.assertEqual(stage.content_hash,activities.digest({k:stage.get(k) for k in keys}))
+        counts=self.counts();self.assertEqual(result,self.call(args=args));self.assertEqual(counts,self.counts())
+        self.assertEqual(after,self.application_state())
+        audits=frappe.get_all('Kandil Command Audit',filters={'target_name':self.f.request,'operation':'candidate_activity_record'},fields=['*'])
+        raw=frappe.as_json(audits);self.assertNotIn('PRIVATE_FOLLOWUP_CALL',raw);self.assertNotIn(args['note'],raw)
+        self.assertIn(stage.name,raw);self.assertFalse(next(r for r in self.history()['rows'] if r['kind']=='STAGE')['can_void'])
+
+    def test_failed_contact_and_notes_do_not_advance_stage(self):
+        for outcome in ('NO_ANSWER','BUSY','WRONG_NUMBER'):
+            result=self.call(move_to_contacted=True,outcome=outcome);self.assertFalse(result['moved']);self.assertIsNone(result['stage_activity'])
+        self.assertFalse(self.call(kind='NOTE',outcome='',move_to_contacted=True)['moved'])
+        self.assertEqual(self.application_state()['status'],'Open')
+        self.assertTrue(self.call(move_to_contacted=True,outcome='CALL_BACK')['moved'])
+
+    def test_contact_does_not_overwrite_a_later_stage_or_existing_followup(self):
+        self.call(next_action=self.followup());before=self.application_state()
+        # Existing HRMS selection state, prepared by trusted fixture only.
+        frappe.db.set_value('Job Applicant',self.name,'status','Accepted')
+        result=self.call(move_to_contacted=True,kind='EMAIL',outcome='')
+        after=self.application_state();self.assertFalse(result['moved']);self.assertEqual(after['status'],'Accepted')
+        for field in ('custom_kandil_next_action','custom_kandil_next_action_due','custom_kandil_next_action_owner','custom_kandil_ownership_history'):
+            self.assertEqual(before[field],after[field])
+
+    def test_clear_followup_preserves_owner_and_void_does_not_undo_changes(self):
+        first=self.call(move_to_contacted=True,next_action=self.followup());before=self.application_state()
+        self.call('void',args=self.void_args(first['activity']));self.assertEqual(before,self.application_state())
+        clear=self.call(next_action=dict(mode='clear'));after=self.application_state()
+        self.assertTrue(clear['followup_applied']);self.assertEqual(after['status'],'Replied')
+        self.assertFalse(after['custom_kandil_next_action'] or after['custom_kandil_next_action_due'] or after['custom_kandil_next_action_owner'])
+        self.assertEqual(before['custom_kandil_responsible_user'],after['custom_kandil_responsible_user'])
+
+    def test_invalid_compound_input_has_no_partial_effect(self):
+        invalid=[dict(move_to_contacted='true'),dict(next_action=[]),dict(next_action={'mode':'keep'}),
+            dict(next_action={'mode':'clear','task':'hidden'}),dict(next_action={'mode':'set'}),
+            *[dict(next_action=dict(self.followup(),due=d)) for d in ('','2027-02-30','2027-2-1',None)],
+            dict(next_action=dict(self.followup(),task='  ')),dict(next_action=dict(self.followup(),task='x'*1001))]
+        before=self.application_state();counts=self.counts()
+        for kwargs in invalid:
+            with self.assertRaises(frappe.ValidationError):self.call(**kwargs)
+        self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
+        with self.assertRaises(frappe.PermissionError):self.call(move_to_contacted=True,next_action=dict(self.followup(),owner=self.f.f.users['requester']))
+        self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
+
+    def test_activity_permission_does_not_grant_followup_ownership(self):
+        from kandil_hr.recruitment import ownership
+        app=frappe.get_doc('Job Applicant',self.name)
+        with acting_as(self.f.f.users['manager']):
+            ownership.assign_application(name=self.name,owner=self.f.f.users['hr'],reason='Synthetic handoff',command_id=uuid.uuid4().hex,
+                expected_version=str(self.f.f.load(self.f.request).modified),application_version=str(app.modified))
+        self.assertTrue(self.history()['can_record']);self.assertFalse(self.history()['can_followup'])
+        before=self.application_state();counts=self.counts()
+        for change in (self.followup(),dict(mode='clear')):
+            with self.assertRaises(frappe.PermissionError):self.call(move_to_contacted=True,next_action=change)
+        self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
+        self.assertTrue(self.call(move_to_contacted=True)['moved'])
+
+    def test_compound_audit_or_stage_failure_rolls_back_without_test_savepoint(self):
+        before=self.application_state();counts=self.counts();original=activities.append
+        def fail_stage(*args,**kwargs):
+            if args[2]=='STAGE':raise RuntimeError('Synthetic stage failure')
+            return original(*args,**kwargs)
+        for target,effect in [('kandil_hr.foundation.command_audit.record_command',RuntimeError('Synthetic audit failure')),
+                              ('kandil_hr.candidates.activities.append',fail_stage)]:
+            with patch(target,side_effect=effect),self.assertRaises(RuntimeError):
+                self.call(move_to_contacted=True,next_action=self.followup())
+            self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
+
+    def test_closed_vacancy_denies_compound_but_allows_historical_note(self):
+        frappe.db.set_value('Job Opening',self.f.opening,'custom_kandil_vacancy_state','Closed')
+        before=self.application_state();counts=self.counts()
+        with self.assertRaises(frappe.ValidationError):self.call(move_to_contacted=True,next_action=self.followup())
+        self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
+        self.call(kind='NOTE',outcome='')
+
+    def test_compound_recovery_is_exact_and_stale_second_action_fails(self):
+        args=self.args(move_to_contacted=True,next_action=self.followup());stale=dict(args,command_id=uuid.uuid4().hex)
+        with acting_as(self.f.f.users['manager']):
+            saved=recovery.prepare('activity',args);self.assertEqual(recovery.inspect(saved['name'])['arguments'],args)
+            result=recovery.execute(saved['name']);before=self.application_state();counts=self.counts()
+            self.assertEqual(result,recovery.execute(saved['name']))
+        with self.assertRaises(frappe.TimestampMismatchError):self.call(args=stale)
+        self.assertEqual(before,self.application_state());self.assertEqual(counts,self.counts())
 
     def test_disabled_feature_preserves_read_history_and_denies_new_effect(self):
         self.call()

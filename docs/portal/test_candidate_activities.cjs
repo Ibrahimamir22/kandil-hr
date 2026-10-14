@@ -36,7 +36,7 @@ async function form(p,kind='NOTE',note='Synthetic reviewed conversation',lang='e
  const area=p.locator('.candidate-activities');await area.getByRole('button',{name:lang==='ar'?'تسجيل نشاط':'Record activity',exact:true}).click();const f=area.locator('form');
  await f.getByLabel(lang==='ar'?'نوع النشاط':'Activity type',{exact:true}).selectOption(kind);
  if(kind==='CALL')await f.getByLabel(lang==='ar'?'نتيجة المكالمة':'Call outcome',{exact:true}).selectOption('REACHED');
- await f.getByLabel(lang==='ar'?'الملاحظة الداخلية':'Internal note',{exact:true}).fill(note);await f.getByRole('checkbox').check();return f;
+ await f.getByLabel(lang==='ar'?'الملاحظة الداخلية':'Internal note',{exact:true}).fill(note);await f.getByRole('checkbox',{name:/I reviewed the activity|راجعت النشاط/}).check();return f;
 }
 async function commandArgs(p,changes={}){const h=await history(p);return {name:h.request,opening_name:h.opening,application:h.application,application_version:h.application_version,expected_version:h.expected_version,command_id:crypto.randomUUID(),kind:'NOTE',outcome:'',note:'Concurrent activity',...changes}}
 async function prepared(p,operation,args){const r=await call(p,'kandil_hr.candidates.recovery.prepare',{operation,arguments:args},'POST');assert.equal(r.status,200);return r.body}
@@ -50,7 +50,7 @@ async function closeCommand(p,saved,success=true){const r=await call(p,'kandil_h
  check('New candidate starts with no activity history',(await history(p)).total===0);
  await area.getByRole('button',{name:'Record activity',exact:true}).click();let f=area.locator('form');
  check('Call requires outcome and explicit review',await f.getByRole('button',{name:'Save activity',exact:true}).isDisabled());
- await f.getByLabel('Call outcome',{exact:true}).selectOption('NO_ANSWER');await f.getByRole('checkbox').check();
+ await f.getByLabel('Call outcome',{exact:true}).selectOption('NO_ANSWER');await f.getByRole('checkbox',{name:/I reviewed the activity|راجعت النشاط/}).check();
  await loadedAction(p,()=>f.getByRole('button',{name:'Save activity',exact:true}).click());
  check('Ordinary recruiter records call without changing application stage',(await history(p)).rows[0].outcome==='NO_ANSWER'&&JSON.stringify(baseline)===JSON.stringify(bench('snapshot')));
  const literal='<img src=x onerror=alert(1)> ملاحظة داخلية';f=await form(p,'NOTE',literal);
@@ -58,7 +58,7 @@ async function closeCommand(p,saved,success=true){const r=await call(p,'kandil_h
  check('Internal note renders as literal text',await area.locator('.activity-note').filter({hasText:literal}).count()===1&&await area.locator('img').count()===0);
  const original=(await history(p)).rows[0];let entry=area.locator('.activity-entry').filter({hasText:literal});await entry.getByRole('button',{name:'Void this activity',exact:true}).click();f=area.locator('form');
  check('Voiding requires reason and review',await f.getByRole('button',{name:'Confirm void',exact:true}).isDisabled());
- await f.getByLabel('Activity void reason',{exact:true}).fill('Logged against wrong discussion');await f.getByRole('checkbox').check();await loadedAction(p,()=>f.getByRole('button',{name:'Confirm void',exact:true}).click());
+ await f.getByLabel('Activity void reason',{exact:true}).fill('Logged against wrong discussion');await f.getByRole('checkbox',{name:/I reviewed the activity|راجعت النشاط/}).check();await loadedAction(p,()=>f.getByRole('button',{name:'Confirm void',exact:true}).click());
  let h=await history(p),voided=h.rows.find(r=>r.name===original.name);
  check('Void preserves original text and records reason once',h.total===2&&voided.note===literal&&voided.void_reason==='Logged against wrong discussion'&&!voided.can_void);
  check('Original and cancellation are both visible',await area.locator('.activity-void').count()===1&&await area.locator('.activity-note').filter({hasText:literal}).count()===1);

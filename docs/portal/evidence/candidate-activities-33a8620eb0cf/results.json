@@ -1,0 +1,184 @@
+{
+  "status": "PASS",
+  "run_id": "33a8620eb0cf",
+  "checks": [
+    {
+      "name": "New candidate starts with no activity history",
+      "status": "PASS"
+    },
+    {
+      "name": "Call requires outcome and explicit review",
+      "status": "PASS"
+    },
+    {
+      "name": "Ordinary recruiter records call without changing application stage",
+      "status": "PASS"
+    },
+    {
+      "name": "Internal note renders as literal text",
+      "status": "PASS"
+    },
+    {
+      "name": "Voiding requires reason and review",
+      "status": "PASS"
+    },
+    {
+      "name": "Void preserves original text and records reason once",
+      "status": "PASS"
+    },
+    {
+      "name": "Original and cancellation are both visible",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-history-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost reply retains frozen original input",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact retry creates no duplicate",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost email response is observed after the event committed",
+      "status": "PASS"
+    },
+    {
+      "name": "Reloaded inbox displays saved activity type and internal note",
+      "status": "PASS"
+    },
+    {
+      "name": "Inbox recovery confirms same activity",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-form-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic cancellation details stack vertically",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic HR meeting is recorded through ordinary permissions",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter cannot void another author activity",
+      "status": "PASS"
+    },
+    {
+      "name": "Server denies forged other-author void",
+      "status": "PASS"
+    },
+    {
+      "name": "Configured HR can void a recruiter activity",
+      "status": "PASS"
+    },
+    {
+      "name": "activity-history-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact replay returns one identical activity",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing voids preserve exactly one cancellation",
+      "status": "PASS"
+    },
+    {
+      "name": "Independent concurrent records both survive without overwriting",
+      "status": "PASS"
+    },
+    {
+      "name": "History is paginated at five entries",
+      "status": "PASS"
+    },
+    {
+      "name": "Second page contains remaining entries",
+      "status": "PASS"
+    },
+    {
+      "name": "Native document endpoint cannot expose activity notes",
+      "status": "PASS"
+    },
+    {
+      "name": "Activities leave identity and capacity unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot read activity history",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed refresh clears previously visible private notes",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "33a8620eb0cf",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "frontend/portal/src/CandidateActivities.tsx": "85c1a35cbaea032730fd9cd06df5db6f7d7e290db0406e27c8f71e3a4a1f750b",
+    "kandil_hr/candidates/activities.py": "42f932022017297fb86020dbe9a9a9c39e2a0fa1b6fe47f95e4a66acb62d4699",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "0a8c65309e26a9e5888cf2758918dfdb08295801aefbfa5dbb9052142f1d742f",
+    "docs/portal/test_candidate_activities.cjs": "e23de554c04c8ac97059fe59c836f8ac7c9e037b57a3256023e573e0fb510b4f",
+    "docs/portal/test_candidate_sessions.cjs": "e23b44d258dc5f0637145ac5c300dd3aa8c905a0fe8c5238270f5094f0879abe",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "992bfdbdaef5cc791f19a86efa285c76f039f332c04ef8ca3c9feeca87cf2189",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "98f852525065369e1c3e10d21052a87b569b6293e0984612a9137deaa059ec39",
+    "docs/portal/test_candidate_work.cjs": "87883a3d2d486c2a85da301705ef39d9c7226e345e3edb8ccde385cb8a1c6181",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "854f2ca023819f017e4c2a76be21b334f4cd583b0ace231238bdff91ee1adfd0",
+    "frontend/portal/src/CandidateRecovery.tsx": "2d1c3af0d7045376e7ee34d98ecb74343feb14f332f876f1aaa3e1fc0d2972dd",
+    "docs/portal/test_candidate_recovery_ui.cjs": "d49109bbd6a4721e4bf0cb706a52cb069f7b29d3954605d72708971a3b183fdb",
+    "kandil_hr/candidates/recovery.py": "20852878b9fc4c115e3cb8812ba7c019fe030145cdd6a901f71953ec55b5e87c",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "298c95986da076f52a337e0418ab9d70b6f2a43dcf334b84734fc82218dbb483",
+    "docs/portal/test_candidate_recovery.cjs": "5ad35d1de88873f775703f8967945df970011449cc366dedc7f965f6d8a9088c",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "9460a3a546232cdcba4d622c668c753fe6bc11c3886fe6986281e9633d2e5b35",
+    "kandil_hr/foundation/command_audit.py": "54505e5a757e2155dd23b1ba82c942f146dbaab10f4f08dc94926bda0030fba5",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "c140b3e142db77dd4384f1aa969f29d14791465b180b877e6aa2c915b245f574",
+    "frontend/portal/src/Candidates.tsx": "b096c923645b4b78f1eca58da56885ae739313c889d8190f98f494c7fe2d2e3b",
+    "frontend/portal/src/main.tsx": "86730d33a2a2fb671c1d13b371525e9eb67efcfe8e26d8150b3d19b79d7458a2",
+    "frontend/portal/src/portal.css": "4b6c29e56d61f145ea6b1b5fa922a2260905d2a7f5ac8ce099ff781c1d7a459f",
+    "kandil_hr/public/portal/portal.js": "aaa5f4b8f0dc8af29384101cbcd9b9c03017a1c5a231589837c30f3cf003fb3e",
+    "docs/portal/test_candidates.cjs": "e9ccb6cf91dffd063038215f764084be1b4271ac2535d99d6c9221752c08498c"
+  },
+  "limits": [
+    "Synthetic manual activity records and reasoned voids only; editable type catalog, combined follow-up/contact-stage actions, automated communications and full S5 acceptance remain open.",
+    "No production security, sustained capacity or HR acceptance implied."
+  ]
+}

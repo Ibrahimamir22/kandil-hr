@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of actual browser captures",
+  "captures": [
+    {
+      "file": "compound-form-en.png",
+      "result": "Readable English form, explicit contact choice, task/date/owner inputs, review and save controls; no overlap."
+    },
+    {
+      "file": "compound-clear-ar.png",
+      "result": "Arabic mobile RTL labels, clear confirmation, stage entry and void details fit the viewport with readable wrapping."
+    }
+  ],
+  "limits": [
+    "Fixed topbar hidden only during section screenshot capture.",
+    "Does not certify all portal pages or full HR wording acceptance."
+  ]
+}
