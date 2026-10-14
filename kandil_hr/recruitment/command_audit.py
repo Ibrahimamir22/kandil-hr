@@ -70,6 +70,9 @@ def related_state(doc, operation, payload, result=None, previous=()):
 				frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)
 			app = add("Job Applicant", applicant)
 			add("Kandil Candidate Person", app.get("custom_kandil_person"))
+			if operation == "candidate_intake" and payload.get("agency"):
+				submission = frappe.db.get_value("Kandil Agency Submission", {"application":applicant}, "name", for_update=True)
+				add("Kandil Agency Submission", submission)
 		if operation == "candidate_profile_correct" and (result or {}).get("revision"):
 			add("Kandil Candidate Profile Revision", result["revision"])
 	if operation in ("candidate_activity_record", "candidate_activity_void", "candidate_close", "candidate_message_resolve", "candidate_screen", "candidate_reopen", "candidate_source_correct"):

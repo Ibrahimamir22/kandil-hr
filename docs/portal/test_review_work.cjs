@@ -49,6 +49,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
+  await p.locator('.candidate-agency[aria-busy="false"] h2').waitFor();
+  check(lang+' agency panel has no invented submission',await p.locator('.candidate-agency [role=alert]').count()===0&&await p.locator('.candidate-agency').getByText(lang==='en'?'No agency submission recorded for this application.':'لا يوجد تقديم موثق من مكتب على هذا الطلب.',{exact:true}).isVisible());
   await p.locator('.candidate-source[aria-busy="false"] h2').waitFor();
   check(lang+' source attribution and history load without inventing a correction',await p.locator('.candidate-source [role=alert]').count()===0&&await p.locator('.source-correction-history article').count()===0);
   check(lang+' source attribution viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
@@ -81,7 +83,10 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.getByRole('button',{name:lang==='en'?'New application':'إضافة طلب ترشح',exact:true}).click();await p.locator('.candidate-intake .candidate-row').first().click();
   const source=p.getByLabel(lang==='en'?'Source channel':'مصدر الترشح',{exact:true});await source.locator('option[value="EMAIL"]').waitFor({state:'attached'});
   check(lang+' personal intake uses controlled source selection',await source.evaluate(el=>el.tagName)==='SELECT'&&await source.locator('option[value="EMAIL"]').count()===1);
-  check(lang+' dedicated source workflows cannot be bypassed in review form',await source.locator('option[value="AGENCY"]').evaluate(el=>el.disabled)&&await source.locator('option[value="TALENT_POOL"]').evaluate(el=>el.disabled));
+  check(lang+' pool cannot bypass its dedicated workflow',await source.locator('option[value="TALENT_POOL"]').evaluate(el=>el.disabled));
+  await source.selectOption('AGENCY');
+  check(lang+' agency source requires explicit agency terms and catalogue is empty',await p.locator('.agency-intake select[required]').count()===1&&await p.locator('.agency-intake select option').count()===1);
+
   await ctx.close();
  }
  check('Review business records preserved',JSON.stringify(before)===JSON.stringify(snapshot()));

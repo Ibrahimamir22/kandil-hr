@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "run_id": "b9a59f67a6ad",
+  "checks": [
+    {
+      "name": "Catalogue starts empty",
+      "status": "PASS"
+    },
+    {
+      "name": "agency-editor-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain catalogue save freezes fields",
+      "status": "PASS"
+    },
+    {
+      "name": "Agency exact retry stores one revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter sees terms but cannot edit or access contacts",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot enumerate agency terms",
+      "status": "PASS"
+    },
+    {
+      "name": "Agency source requires exact agency choice",
+      "status": "PASS"
+    },
+    {
+      "name": "agency-intake-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Agency intake creates one actual application",
+      "status": "PASS"
+    },
+    {
+      "name": "Submission snapshots terms and ownership period",
+      "status": "PASS"
+    },
+    {
+      "name": "Agency application cannot use generic source correction",
+      "status": "PASS"
+    },
+    {
+      "name": "agency-submission-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Catalogue edit preserves submitted terms",
+      "status": "PASS"
+    },
+    {
+      "name": "Native agency evidence remains private",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent agency edits have one winner and stale rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact agency retry returns one revision",
+      "status": "PASS"
+    },
+    {
+      "name": "agency-editor-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "agency-submission-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Inactive agency absent from new choices but historical terms retained",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing records and capacity preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked HR cannot replay agency change",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "b9a59f67a6ad",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/agencies.py": "4c0642281bf82870bcf70d5fd5917177d6fbb3277fdb85aa533a4c5ec4306be7",
+    "kandil_hr/sourcing/test_agencies.py": "e215d5611b16989367911784e2994af2f77c0f319e91abf5fe5de18d0d596af5",
+    "kandil_hr/sourcing/sources.py": "67d4197f3b74a8ae44d2a204d547d1ee79b96ae4ef98287e5826ac6d2b739912",
+    "kandil_hr/candidates/intake.py": "64369417b86a3be91064eb22e5770493c545f7687d7fb5719ec778cadda60fb7",
+    "kandil_hr/candidates/recovery.py": "3ea3bc53977926a05f31d27591932ab0d5ebced679d3e1165fba10425300c5a8",
+    "kandil_hr/recruitment/command_audit.py": "10861313bde7cd26b04dff04a6302222ed7b1c2c28e8b36391ab7d0a904c0586",
+    "kandil_hr/foundation/command_audit.py": "dd031ab1f0ab4a01e80288b32837e318af9b4f41e8abe516d2705b2afacb08c1",
+    "frontend/portal/src/Agencies.tsx": "3207d398a85356c7ee1aa9e59bfaf60f48b646f48fefdff6a7d7a686429b5358",
+    "frontend/portal/src/Candidates.tsx": "4bfd1d5784f2a2ac40dd3cfb010248af704cd58d5e70a69722d5a827ace5ee5e",
+    "frontend/portal/src/CandidateRecovery.tsx": "c8a898731f99ce36776cb0e102694b07fc5df1505f9d1ed09dac3cb537748e25",
+    "frontend/portal/src/portal.css": "81794e3c91ef12a68b542badf7069cc49315c9fb2bf2d9846cd5bac84c4809a7",
+    "frontend/portal/src/main.tsx": "db7131de8330462b06800a1e8f0f229bdc5863af39ab83cc07883776d9c31786",
+    "kandil_hr/public/portal/portal.js": "87c0612609bcc1341c79280048ba2a86fe727b54af4f32486883eca265d2166a",
+    "docs/portal/test_agencies.cjs": "d080f2842a0f77f4c55aba71925d89f0a4e0c30493be32fb1729e715749aa52e"
+  },
+  "limits": [
+    "Synthetic agency terms and intake only. No payment, contract signing or commercial-policy approval.",
+    "Referrals, agency reassignment/disputes, independent security, sustained capacity and HR/production acceptance remain open."
+  ]
+}

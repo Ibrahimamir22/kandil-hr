@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of final rendered Playwright captures",
+  "captures": [
+    {
+      "file": "agency-editor-en.png",
+      "sha256": "7b30a24a7038b26c128c53cdcaea22fd62fab6f5c19f29ce09b40753840bd67d"
+    },
+    {
+      "file": "agency-intake-en.png",
+      "sha256": "ff70c4c6bb2d94d505d8f53186d0129ba9a3576893e4e1e8c10d15f13d0e1d5e"
+    },
+    {
+      "file": "agency-submission-en.png",
+      "sha256": "577653155b21cbb26409c0a2881b22bd7b64ec0b19d583a8992bba62abed04f4"
+    },
+    {
+      "file": "agency-editor-ar-mobile.png",
+      "sha256": "70eb747a62ffced00a00fc3ea47790f46b36955a00312fd4c386a22e82bbc2b6"
+    },
+    {
+      "file": "agency-submission-ar-mobile.png",
+      "sha256": "fced8f7ea844be72f1545494c7da344e86a73ce2de3c3dc5f7f97630fb99e699"
+    }
+  ],
+  "observations": [
+    "English agency terms and selection readable with explicit confirmation",
+    "Arabic mobile editor stacks fields with RTL labels and visible save/cancel controls",
+    "Immutable Arabic application terms show original fee and inclusive ownership dates",
+    "No visible clipped labels or horizontal overflow in inspected captures"
+  ],
+  "limits": [
+    "No accessibility certification or HR terminology approval",
+    "Catalogue and terms are synthetic test data"
+  ]
+}

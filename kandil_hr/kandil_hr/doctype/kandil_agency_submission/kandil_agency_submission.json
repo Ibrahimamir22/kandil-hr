@@ -1,0 +1,90 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Agency Submission",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "unique": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "agency_code",
+      "label": "Agency Code",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "agency_version",
+      "label": "Agency Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "terms_json",
+      "label": "Terms Json",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "ownership_from",
+      "label": "Ownership From",
+      "fieldtype": "Date",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "ownership_until",
+      "label": "Ownership Until",
+      "fieldtype": "Date",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "application",
+    "person",
+    "content_hash",
+    "agency_code",
+    "agency_version",
+    "terms_json",
+    "ownership_from",
+    "ownership_until"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

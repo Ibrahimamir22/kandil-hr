@@ -130,3 +130,5 @@
 
 /* Reviewed source correction: readable confirmation and history on AR/EN mobile. */
 .candidate-source .source-correction-form{display:grid;gap:18px;margin-block:22px}.candidate-source .source-correction-form>.btn{justify-self:start}.candidate-source .recovery-confirm{display:flex;align-items:flex-start;gap:10px;line-height:1.7}.candidate-source .recovery-confirm input{flex:0 0 auto;margin-top:5px}.candidate-source .source-correction-history{margin-top:26px}.candidate-source .source-correction-history p{overflow-wrap:anywhere;margin-block:8px}.candidate-source .card-head{flex-wrap:wrap;gap:12px}
+
+.agency-terms{margin-block:14px}.agency-terms p{margin-block:8px;overflow-wrap:anywhere}.agency-editor .field{margin-block:10px}.agency-intake{background:var(--bg);margin-block:18px;border-radius:10px}.agency-history article{padding-block:12px;border-bottom:1px solid var(--line)}

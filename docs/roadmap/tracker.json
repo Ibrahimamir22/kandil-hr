@@ -679,7 +679,7 @@
           "id": "S5-03",
           "description": "Add sourcing channels, ads/apply links, referrals, agencies and subscription-credit records.",
           "status": "in_progress",
-          "progress": "Controlled source catalogue, immutable intake snapshots and reasoned ordinary-source corrections with historical outcome locks are implemented. Dedicated referral/agency/internal/pool attribution changes, person-wide original source, ads/apply links and subscription-credit workflows remain unfinished.",
+          "progress": "Controlled sources, immutable intake snapshots, reasoned ordinary-source corrections and historical outcome locks are implemented. Agency catalogue/terms and atomic agency intake now enforce person-wide ownership and preserve original agreements. Referrals, dedicated attribution changes/disputes, person-wide original source, ads/apply links and subscription-credit workflows remain unfinished.",
           "evidence": [
             "S5_SOURCE_CATALOG_CHECKPOINT.md",
             "evidence/s2-regression-990223b8e4ee.json",
@@ -690,7 +690,13 @@
             "evidence/s2-regression-18cadef92a7a.json",
             "../portal/evidence/source-corrections-e5fe0fced123/results.json",
             "../portal/evidence/source-corrections-e5fe0fced123/visual-review.json",
-            "../portal/evidence/review-work-1792008347208/results.json"
+            "../portal/evidence/review-work-1792008347208/results.json",
+            "S5_AGENCIES_CHECKPOINT.md",
+            "evidence/agencies-schema-2026-10-14.json",
+            "evidence/s2-regression-f0e595fae5ae.json",
+            "../portal/evidence/agencies-7c0043b674f9/results.json",
+            "../portal/evidence/agencies-7c0043b674f9/visual-review.json",
+            "../portal/evidence/review-work-1792009027829/results.json"
           ]
         },
         {
@@ -730,8 +736,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Reviewed bilingual application-source corrections preserve original intake and immutable before/after history. Historical closure permanently locks attribution even after reopening. 57 native, 26 connected browser and 58 preserved-review checks passed; source/closure races and revoked-access denial verified. SRC-001/SRC-003 and S5 remain partial.",
-      "checkpoint": "S5_SOURCE_CORRECTIONS_CHECKPOINT.md"
+      "progress": "Bilingual agency catalogue, private HR contact fields, exact terms selection and immutable submission snapshots are connected. Person-wide ownership checks reject concurrent competing agency submissions. 57 native, 27 browser and 62 preserved-review checks passed. Full SRC-003/S5 acceptance remains open.",
+      "checkpoint": "S5_AGENCIES_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1075,8 +1081,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Reviewed bilingual application-source corrections preserve original intake and immutable before/after history. Historical closure permanently locks attribution even after reopening. 57 native, 26 connected browser and 58 preserved-review checks passed; source/closure races and revoked-access denial verified. SRC-001/SRC-003 and S5 remain partial.",
-    "evidence": "S5_SOURCE_CORRECTIONS_CHECKPOINT.md",
-    "next": "Complete remaining sourcing/referral/agency/advertisement/credit workflows, private documents, matching/imports, cancellation/transfer consumers and privacy/retention work. Preserve all 98 requirements and all S6–S12 gates: HR acceptance, independent security, 1,000+ capacity, UAT and production rollout."
+    "summary": "Bilingual agency catalogue, private HR contact fields, exact terms selection and immutable submission snapshots are connected. Person-wide ownership checks reject concurrent competing agency submissions. 57 native, 27 browser and 62 preserved-review checks passed. Full SRC-003/S5 acceptance remains open.",
+    "evidence": "S5_AGENCIES_CHECKPOINT.md",
+    "next": "Complete dedicated referrals, remaining attribution changes, advertisements/apply links and credit workflows, private documents/imports and privacy/retention. Preserve all 98 requirements and all S6–S12 HR, security, capacity, UAT and production gates."
   }
 }
