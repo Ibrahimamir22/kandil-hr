@@ -1,0 +1,412 @@
+{
+  "reference": "kandil-recruitment-portal@7824be2 Setup.gs reasons / Admin.gs LIST_PROCESSES_",
+  "processes": {
+    "REQUEST_REJECT": [
+      "أسباب رفض طلب التوظيف",
+      "Hiring request rejection"
+    ],
+    "REQUEST_RETURN": [
+      "أسباب إرجاع الطلب للتعديل",
+      "Hiring request return"
+    ],
+    "CANDIDATE_REJECT": [
+      "أسباب رفض المرشح",
+      "Candidate rejection"
+    ],
+    "CANDIDATE_WITHDRAW": [
+      "أسباب انسحاب المرشح",
+      "Candidate withdrawal"
+    ],
+    "EMPLOYEE_EXIT": [
+      "أسباب نهاية الخدمة",
+      "Employee exit"
+    ],
+    "ACTIVITY_TYPE": [
+      "أنواع أنشطة المرشحين",
+      "Candidate activity types"
+    ],
+    "HIRING_RESTRICTION": [
+      "أسباب قيود إعادة التعيين",
+      "Rehiring restrictions"
+    ]
+  },
+  "items": {
+    "REQUEST_REJECT": [
+      {
+        "code": "NOT_JUSTIFIED",
+        "label_ar": "المبرر غير كافي",
+        "label_en": "Insufficient justification",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "NO_BUDGET",
+        "label_ar": "لا توجد ميزانية",
+        "label_en": "No budget",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "STRUCTURE_CHANGE_NEEDED",
+        "label_ar": "يحتاج تعديل هيكلي",
+        "label_en": "Structural change needed",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 40
+      }
+    ],
+    "REQUEST_RETURN": [
+      {
+        "code": "CLARIFY_JUSTIFICATION",
+        "label_ar": "توضيح المبرر",
+        "label_en": "Clarify justification",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "ADJUST_HC",
+        "label_ar": "مراجعة العدد",
+        "label_en": "Adjust headcount",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "REQUIREMENTS",
+        "label_ar": "مراجعة المتطلبات",
+        "label_en": "Review requirements",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 40
+      }
+    ],
+    "CANDIDATE_REJECT": [
+      {
+        "code": "NOT_QUALIFIED",
+        "label_ar": "المؤهل أو التخصص غير مطابق",
+        "label_en": "Qualification does not match",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "EXPERIENCE",
+        "label_ar": "الخبرة غير كافية أو غير مناسبة",
+        "label_en": "Experience not sufficient",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "SALARY_GAP",
+        "label_ar": "المرتب المتوقع أعلى من المتاح",
+        "label_en": "Expected salary above range",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "LOCATION",
+        "label_ar": "مكان السكن بعيد عن موقع العمل",
+        "label_en": "Lives too far from the work location",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 40
+      },
+      {
+        "code": "NO_RESPONSE",
+        "label_ar": "لم يرد بعد أكثر من محاولة تواصل",
+        "label_en": "No response after several attempts",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 50
+      },
+      {
+        "code": "SCREENING",
+        "label_ar": "لم يجتز الفرز المبدئي",
+        "label_en": "Did not pass initial screening",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 60
+      },
+      {
+        "code": "POSITION_FILLED",
+        "label_ar": "الشاغر اكتمل",
+        "label_en": "Vacancy already filled",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 70
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 80
+      },
+      {
+        "code": "VACANCY_CANCELLED",
+        "label_ar": "الشاغر اتلغى",
+        "label_en": "Vacancy cancelled",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 90
+      }
+    ],
+    "CANDIDATE_WITHDRAW": [
+      {
+        "code": "OTHER_OFFER",
+        "label_ar": "قبل عرض تاني",
+        "label_en": "Accepted another offer",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "SALARY",
+        "label_ar": "المرتب غير مناسب له",
+        "label_en": "Salary not acceptable",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "LOCATION",
+        "label_ar": "مكان العمل غير مناسب له",
+        "label_en": "Work location not suitable",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "NOT_INTERESTED",
+        "label_ar": "غير مهتم بالوظيفة",
+        "label_en": "Not interested",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 40
+      },
+      {
+        "code": "PERSONAL",
+        "label_ar": "ظروف شخصية",
+        "label_en": "Personal reasons",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 50
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 60
+      },
+      {
+        "code": "TRANSFERRED",
+        "label_ar": "اتنقل لشاغر تاني",
+        "label_en": "Moved to another vacancy",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 70
+      },
+      {
+        "code": "DATA_DELETED",
+        "label_ar": "اتحذفت بياناته بطلبه",
+        "label_en": "Data deleted at the person's request",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 80
+      },
+      {
+        "code": "DID_NOT_JOIN",
+        "label_ar": "قبل العرض وماستلمش",
+        "label_en": "Accepted the offer but did not join",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 90
+      },
+      {
+        "code": "DUPLICATE",
+        "label_ar": "طلب مكرر لنفس الشاغر",
+        "label_en": "Duplicate application for the same vacancy",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 100
+      }
+    ],
+    "EMPLOYEE_EXIT": [
+      {
+        "code": "RESIGNATION",
+        "label_ar": "استقالة",
+        "label_en": "Resignation",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "TERMINATION",
+        "label_ar": "إنهاء خدمة من الشركة",
+        "label_en": "Termination",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "CONTRACT_END",
+        "label_ar": "انتهاء العقد وعدم التجديد",
+        "label_en": "Contract ended",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "ABSENCE",
+        "label_ar": "انقطاع عن العمل",
+        "label_en": "Job abandonment",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 40
+      },
+      {
+        "code": "RETIREMENT",
+        "label_ar": "بلوغ سن المعاش",
+        "label_en": "Retirement",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 50
+      },
+      {
+        "code": "DEATH",
+        "label_ar": "وفاة",
+        "label_en": "Death",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 60
+      },
+      {
+        "code": "TRANSFER_GROUP",
+        "label_ar": "نقل لشركة تانية في المجموعة",
+        "label_en": "Transfer to a group company",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 70
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 80
+      }
+    ],
+    "ACTIVITY_TYPE": [
+      {
+        "code": "CALL",
+        "label_ar": "مكالمة",
+        "label_en": "Call",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "WHATSAPP",
+        "label_ar": "واتساب",
+        "label_en": "WhatsApp",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "EMAIL",
+        "label_ar": "إيميل",
+        "label_en": "Email",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "MEETING",
+        "label_ar": "مقابلة / لقاء",
+        "label_en": "Meeting",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 40
+      },
+      {
+        "code": "NOTE",
+        "label_ar": "ملاحظة",
+        "label_en": "Note",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 50
+      }
+    ],
+    "HIRING_RESTRICTION": [
+      {
+        "code": "MISCONDUCT",
+        "label_ar": "فصل تأديبي / مخالفة جسيمة",
+        "label_en": "Disciplinary dismissal / gross misconduct",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 10
+      },
+      {
+        "code": "DISHONESTY",
+        "label_ar": "خيانة أمانة",
+        "label_en": "Breach of trust",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 20
+      },
+      {
+        "code": "ABANDONMENT",
+        "label_ar": "انقطاع عن العمل من غير إخطار",
+        "label_en": "Job abandonment without notice",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 30
+      },
+      {
+        "code": "PERFORMANCE",
+        "label_ar": "أداء ضعيف موثّق",
+        "label_en": "Documented poor performance",
+        "requires_note": false,
+        "active": true,
+        "sort_order": 40
+      },
+      {
+        "code": "OTHER",
+        "label_ar": "أخرى",
+        "label_en": "Other",
+        "requires_note": true,
+        "active": true,
+        "sort_order": 50
+      }
+    ]
+  },
+  "notes": [
+    "DUPLICATE is protected by Admin.gs and written by Candidates.gs merge handling but missing from Setup.gs seeds; included explicitly here."
+  ]
+}

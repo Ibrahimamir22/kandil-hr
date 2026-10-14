@@ -57,7 +57,8 @@ class TestCandidateActivities(unittest.TestCase):
         event=frappe.get_doc(activities.DT,first['activity'])
         self.assertEqual(event.note,note)
         keys=('application','person','company','actor','recorded_at','kind','outcome','note','voids')
-        self.assertEqual(event.content_hash,activities.digest({k:event.get(k) for k in keys}))
+        label_keys=('kind_label_ar','kind_label_en','catalog_version')
+        self.assertEqual(event.content_hash,activities.digest({k:event.get(k) for k in keys+label_keys}))
         reason='<script>void_reason</script> reviewed reason'
         result=self.call('void',args=self.void_args(event.name,reason=reason))
         cancel=frappe.get_doc(activities.DT,result['void_activity'])

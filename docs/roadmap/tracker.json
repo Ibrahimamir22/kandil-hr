@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Combined contact, optional new-to-contacted stage change and keep/set/clear follow-up are connected in AR/EN as one atomic reviewed command. 79 backend checks and 96 workflow browser checks passed, with 12 read-only personal review checks; see S5_ACTIVITY_ACTIONS_CHECKPOINT.md for scope and evidence. Editable catalogs, rejection/communications, remaining candidate work and S6-S12/security/UAT/capacity gates remain open.",
+          "progress": "Seven company HR lists and configurable candidate activity types are connected in AR/EN, with immutable revision history and current-authority retry checks. Only activity types are consumed by workflows; six reason-list consumers remain pending and are labeled in the UI. 62 native, 90 workflow browser and 12 read-only review checks passed. Full S5 and S6-S12/security/UAT/capacity gates remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -653,7 +653,8 @@
             "../portal/evidence/review-work-1791945280350/results.json",
             "../portal/evidence/candidate-activities-33a8620eb0cf/results.json",
             "evidence/s2-regression-71c5788fabff.json",
-            "../portal/evidence/recovery-ui-d1ace11682e3/results.json"
+            "../portal/evidence/recovery-ui-d1ace11682e3/results.json",
+            "S5_CATALOG_CHECKPOINT.md"
           ]
         },
         {
@@ -687,8 +688,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Combined contact, optional new-to-contacted stage change and keep/set/clear follow-up are connected in AR/EN as one atomic reviewed command. 79 backend checks and 96 workflow browser checks passed, with 12 read-only personal review checks; see S5_ACTIVITY_ACTIONS_CHECKPOINT.md for scope and evidence. Editable catalogs, rejection/communications, remaining candidate work and S6-S12/security/UAT/capacity gates remain open.",
-      "checkpoint": "S5_ACTIVITY_ACTIONS_CHECKPOINT.md"
+      "progress": "Seven company HR lists and configurable candidate activity types are connected in AR/EN, with immutable revision history and current-authority retry checks. Only activity types are consumed by workflows; six reason-list consumers remain pending and are labeled in the UI. 62 native, 90 workflow browser and 12 read-only review checks passed. Full S5 and S6-S12/security/UAT/capacity gates remain open.",
+      "checkpoint": "S5_CATALOG_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1032,8 +1033,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Combined contact, optional new-to-contacted stage change and keep/set/clear follow-up are connected in AR/EN as one atomic reviewed command. 79 backend checks and 96 workflow browser checks passed, with 12 read-only personal review checks; see S5_ACTIVITY_ACTIONS_CHECKPOINT.md for scope and evidence. Editable catalogs, rejection/communications, remaining candidate work and S6-S12/security/UAT/capacity gates remain open.",
-    "evidence": "S5_ACTIVITY_ACTIONS_CHECKPOINT.md",
-    "next": "Implement configurable activity/reason catalogs and coded rejection/communications, then remaining candidate/source/privacy workflows. Preserve recruiter-wide MOVE_ALL and all S6-S12 requirements and acceptance gates."
+    "summary": "Seven company HR lists and configurable candidate activity types are connected in AR/EN, with immutable revision history and current-authority retry checks. Only activity types are consumed by workflows; six reason-list consumers remain pending and are labeled in the UI. 62 native, 90 workflow browser and 12 read-only review checks passed. Full S5 and S6-S12/security/UAT/capacity gates remain open.",
+    "evidence": "S5_CATALOG_CHECKPOINT.md",
+    "next": "Implement coded candidate rejection/withdrawal and separate internal reasons from candidate messages, then remaining S5 and S6-S12 work and acceptance gates."
   }
 }

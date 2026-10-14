@@ -117,3 +117,7 @@
 .candidate-work .card-head{flex-wrap:wrap;gap:1rem}.candidate-work-form .field{margin-block:1rem}.candidate-work select{max-width:100%}.candidate-work-history p,.candidate-work-history dd{overflow-wrap:anywhere}
 
 .followup-counts{display:flex;gap:10px;flex-wrap:wrap;margin-block:16px}.followup-row{overflow-wrap:anywhere}.followup-row>span:first-child{min-width:0}.followup-row>span>span{display:block;margin-block:8px}
+
+/* Keep separate catalog decisions readable in either text direction. */
+.hr-list-editor .recovery-confirm{display:flex;gap:8px;align-items:flex-start;margin:12px 0}
+.hr-list-editor bdi,.hr-list-item bdi,.hr-list-history bdi{overflow-wrap:anywhere}

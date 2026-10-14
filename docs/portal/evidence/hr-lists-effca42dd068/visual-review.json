@@ -1,0 +1,16 @@
+{
+  "status": "reviewed",
+  "screenshots": [
+    "catalog-create-en.png",
+    "catalog-edit-ar.png",
+    "catalog-history-ar.png"
+  ],
+  "observations": [
+    "English create fields and confirmation are readable and separated.",
+    "Arabic mobile edit/history retains RTL ordering, readable labels and wrapping codes.",
+    "Earlier checkbox spacing issue was corrected before final captures."
+  ],
+  "limits": [
+    "Captured synthetic workflow sections; not a complete accessibility or device audit."
+  ]
+}

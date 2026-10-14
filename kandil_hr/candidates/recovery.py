@@ -50,7 +50,7 @@ SCHEMAS={
     'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason'}),
     'correction':(COMMON|{'application','person','person_version','profile','reason'},set()),
     'migration':(COMMON|{'application','application_version','preview_hash','reason'},set()),
-    'activity':(COMMON|{'application','application_version','kind','outcome','note'},{'move_to_contacted','next_action'}),
+    'activity':(COMMON|{'application','application_version','kind','outcome','note'},{'move_to_contacted','next_action','catalog_version'}),
     'activity_void':(COMMON|{'application','application_version','activity','reason'},set()),
     'owner':(COMMON|{'application','application_version','owner','reason'},set()),
     'followup':(COMMON|{'application','application_version','owner','reason','task','due'},set()),
@@ -103,7 +103,8 @@ def payload(operation,value):
         if key in value and not isinstance(value[key],(dict,str)):
             frappe.throw(_('Candidate details must be a JSON object.'))
     if operation=='activity':
-        activities.validate_entry(value['kind'],value['outcome'],value['note'])
+        activities.validate_entry(value['kind'],value['outcome'],value['note'],definition={'requires_note':False})
+        if value.get('catalog_version') is not None:intake.text(value['catalog_version'],140)
         activities.transition_input(value.get('move_to_contacted',False),value.get('next_action'))
     if operation=='activity_void':intake.text(value['activity'],140)
     if operation in ('owner','followup'):
@@ -180,9 +181,15 @@ def prepare(operation,arguments):
 @transactional_retry
 def inspect(name):
     # POST because authorization takes current locks; never a public cacheable GET.
-    guard();doc=owned(name);args=decode(doc);authorize(doc.operation,args)
+    guard();doc=owned(name);args=decode(doc);request=authorize(doc.operation,args)
     doc=owned(name,lock=True);args=decode(doc)
-    return dict(**projection(doc),arguments=args)
+    extra={}
+    if doc.operation=='activity' and args.get('catalog_version'):
+        from kandil_hr.catalogs import api as catalog
+        items=catalog.at_version(request.company,'ACTIVITY_TYPE',args['catalog_version'])
+        item=next((r for r in items if r['code']==args['kind']),None)
+        if item:extra['activity_type']=dict(label_ar=item['label_ar'],label_en=item['label_en'])
+    return dict(**projection(doc),arguments=args,**extra)
 
 
 @frappe.whitelist(methods=['POST'])

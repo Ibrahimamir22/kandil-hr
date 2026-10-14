@@ -19,7 +19,10 @@
     "content_hash",
     "stage_from",
     "stage_to",
-    "source_activity"
+    "source_activity",
+    "kind_label_ar",
+    "kind_label_en",
+    "catalog_version"
   ],
   "fields": [
     {
@@ -67,10 +70,9 @@
     {
       "fieldname": "kind",
       "label": "Activity type",
-      "fieldtype": "Select",
+      "fieldtype": "Data",
       "read_only": 1,
-      "reqd": 1,
-      "options": "CALL\nWHATSAPP\nEMAIL\nMEETING\nNOTE\nVOID\nSYSTEM\nSTAGE"
+      "reqd": 1
     },
     {
       "fieldname": "outcome",
@@ -122,6 +124,24 @@
       "label": "Contact activity",
       "fieldtype": "Link",
       "options": "Kandil Candidate Activity",
+      "read_only": 1
+    },
+    {
+      "fieldname": "kind_label_ar",
+      "label": "Kind Label Ar",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "kind_label_en",
+      "label": "Kind Label En",
+      "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "catalog_version",
+      "label": "Catalog Version",
+      "fieldtype": "Data",
       "read_only": 1
     }
   ],

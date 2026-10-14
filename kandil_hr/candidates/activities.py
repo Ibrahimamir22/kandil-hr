@@ -7,6 +7,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 import hashlib
 import json
+import re
 import uuid
 
 import frappe
@@ -53,13 +54,13 @@ def digest(value):
     return hashlib.sha256(json.dumps(value,sort_keys=True,ensure_ascii=False,default=str).encode()).hexdigest()
 
 
-def validate_entry(kind,outcome,note):
-    if not isinstance(kind,str) or not isinstance(outcome,str) or kind not in TYPES or (outcome and outcome not in OUTCOMES):
+def validate_entry(kind,outcome,note,definition=None):
+    if not isinstance(kind,str) or not isinstance(outcome,str) or not re.fullmatch(r'[A-Z][A-Z0-9_]{0,79}',kind) or kind in ('SYSTEM','STAGE','VOID','MESSAGE') or (outcome and outcome not in OUTCOMES):
         frappe.throw(_('Choose a valid activity type and call outcome.'))
     if kind=='CALL' and not outcome:frappe.throw(_('Choose the call outcome.'))
     if kind!='CALL' and outcome:frappe.throw(_('Call outcomes apply only to calls.'))
     note=text(note,2000,False)
-    if kind in ('MEETING','NOTE') and len(note)<3:frappe.throw(_('Describe the discussion or note.'))
+    if (definition['requires_note'] if definition is not None else kind in ('MEETING','NOTE')) and len(note)<3:frappe.throw(_('Describe the discussion or note.'))
     return note
 
 
@@ -73,14 +74,15 @@ def authorize(request,payload):
 
 
 def can_void(event,request):
-    return event.kind in TYPES and (frappe.session.user in ('Administrator',event.actor)
+    return event.kind not in ('SYSTEM','STAGE','VOID','MESSAGE') and (frappe.session.user in ('Administrator',event.actor)
         or frappe.session.user==frappe.db.get_value('Kandil Organization Settings',request.company,'hr_approver'))
 
 
-def append(app,request,kind,outcome,note,voids=None,stage=None):
+def append(app,request,kind,outcome,note,voids=None,stage=None,labels=None):
     values=dict(application=app.name,person=app.custom_kandil_person or None,company=request.company,
         actor=frappe.session.user,recorded_at=now_cairo().isoformat(),kind=kind,outcome=outcome,note=note,voids=voids)
     if stage:values.update(stage)
+    if labels:values.update(labels)
     with effect():
         return frappe.get_doc(dict(doctype=DT,**values,content_hash=digest(values))).insert(ignore_permissions=True)
 
@@ -111,16 +113,25 @@ def transition_input(move_to_contacted=False,next_action=None):
 @frappe.whitelist(methods=['POST'])
 @transactional_retry
 def record(name,opening_name,application,application_version,kind,outcome,note,command_id,expected_version,
-           move_to_contacted=False,next_action=None):
-    identity.guard();note=validate_entry(kind,outcome,note)
+           move_to_contacted=False,next_action=None,catalog_version=None):
+    identity.guard();note=text(note,2000,False);validate_entry(kind,outcome,note,definition={'requires_note':False})
+    if catalog_version is not None:catalog_version=text(catalog_version,140)
     move,next_action=transition_input(move_to_contacted,next_action)
     payload=dict(opening=text(opening_name,140),application=text(application,140),application_version=text(application_version,140),
         kind=kind,outcome=outcome,note_hash=digest(note))
     # Preserve the signature of previously saved plain-activity receipts.
     if move or next_action is not None:payload.update(move_to_contacted=move,next_action_hash=digest(next_action))
+    if catalog_version is not None:payload['catalog_version']=catalog_version
     def act(request):
         from kandil_hr.recruitment import ownership
         app=authorize(request,payload);reviewed(app,application_version)
+        from kandil_hr.catalogs import api as catalog
+        configured=catalog.state(request.company,'ACTIVITY_TYPE',current=True)
+        if catalog_version is not None and configured['version']!=catalog_version:
+            frappe.throw(_('Activity types changed. Refresh and review the activity.'),frappe.TimestampMismatchError)
+        definition=next((r for r in configured['items'] if r['code']==kind and r['active']),None)
+        if definition is None:frappe.throw(_('This activity type is inactive or unavailable.'))
+        validate_entry(kind,outcome,note,definition)
         opening=frappe.get_doc('Job Opening',app.job_title,for_update=True)
         reached=kind!='NOTE' and (kind!='CALL' or outcome in ('REACHED','CALL_BACK'))
         moved=bool(move and reached and app.status=='Open')
@@ -128,7 +139,7 @@ def record(name,opening_name,application,application_version,kind,outcome,note,c
         if next_action is not None:
             ownership.authorize_application(app,opening,request)
             if next_action['mode']=='set':ownership.require_owner(next_action['owner'],opening,request)
-        event=append(app,request,kind,outcome,note)
+        event=append(app,request,kind,outcome,note,labels=dict(kind_label_ar=definition['label_ar'],kind_label_en=definition['label_en'],catalog_version=configured['version']))
         if moved:app.status='Replied'
         if next_action is not None:
             clear=next_action['mode']=='clear'
@@ -177,7 +188,7 @@ def listing(name,start=0,page_length=10):
     q=frappe.qb.from_(event).where((event.kind!='VOID')&event.application.isin(readable.select(a.name)))
     total=deepcopy(q).select(Count(event.name).as_('total')).run(as_dict=True)[0].total
     rows=(q.left_join(cancel).on(cancel.voids==event.name).select(event.name,event.application,event.kind,event.outcome,event.note,
-        event.actor,event.recorded_at,event.stage_from,event.stage_to,event.source_activity,cancel.name.as_('void_activity'),cancel.actor.as_('void_actor'),cancel.note.as_('void_reason'),cancel.recorded_at.as_('void_at'))
+        event.actor,event.recorded_at,event.stage_from,event.stage_to,event.source_activity,event.kind_label_ar,event.kind_label_en,event.catalog_version,cancel.name.as_('void_activity'),cancel.actor.as_('void_actor'),cancel.note.as_('void_reason'),cancel.recorded_at.as_('void_at'))
         .orderby(event.creation,order=Order.desc).orderby(event.name,order=Order.desc).limit(limit).offset(offset).run(as_dict=True))
     labels=identity_labels([row.get(k) for row in rows for k in ('actor','void_actor')])
     for row in rows:
@@ -185,12 +196,15 @@ def listing(name,start=0,page_length=10):
         row['actor_label']=labels.get(row.pop('actor'));row['void_actor_label']=labels.get(row.pop('void_actor'))
         row['other_application']=row.application!=app.name
     from kandil_hr.recruitment import ownership
+    from kandil_hr.catalogs import api as catalog
+    configured=catalog.state(request.company,'ACTIVITY_TYPE')
+    definitions=sorted([r for r in configured['items'] if r['active']],key=lambda r:(r['sort_order'],r['code']))
     hints=ownership.actions(app.name)
     can_followup=bool(can_record and hints.get('can_manage'))
     owners=hints.get('owners',[]) if can_followup else []
     next_owner=app.custom_kandil_next_action_owner or app.custom_kandil_responsible_user
     return dict(application=app.name,application_version=str(app.modified),request=request.name,opening=app.job_title,
-        expected_version=str(request.modified),can_record=can_record,types=TYPES,outcomes=OUTCOMES,
+        expected_version=str(request.modified),can_record=can_record,types=[r['code'] for r in definitions],type_definitions=definitions,catalog_version=configured['version'],outcomes=OUTCOMES,
         status=app.status,can_followup=can_followup,owners=owners,
         next_action=dict(task=app.custom_kandil_next_action or '',due=app.custom_kandil_next_action_due,owner=next_owner if next_owner in {r['user'] for r in owners} else None),
         rows=rows,total=total,start=offset,has_more=offset+limit<total)
