@@ -679,13 +679,18 @@
           "id": "S5-03",
           "description": "Add sourcing channels, ads/apply links, referrals, agencies and subscription-credit records.",
           "status": "in_progress",
-          "progress": "Controlled source catalogue and immutable source/sub-source snapshots implemented for opted-in manual and reviewed pool intake. Dedicated referrals/agencies/internal consumers, advertisements/apply links and subscription-credit workflows remain unfinished.",
+          "progress": "Controlled source catalogue, immutable intake snapshots and reasoned ordinary-source corrections with historical outcome locks are implemented. Dedicated referral/agency/internal/pool attribution changes, person-wide original source, ads/apply links and subscription-credit workflows remain unfinished.",
           "evidence": [
             "S5_SOURCE_CATALOG_CHECKPOINT.md",
             "evidence/s2-regression-990223b8e4ee.json",
             "../portal/evidence/sources-8324e00b64c4/results.json",
             "../portal/evidence/sources-8324e00b64c4/visual-review.json",
-            "../portal/evidence/review-work-1792007434810/results.json"
+            "../portal/evidence/review-work-1792007434810/results.json",
+            "S5_SOURCE_CORRECTIONS_CHECKPOINT.md",
+            "evidence/s2-regression-18cadef92a7a.json",
+            "../portal/evidence/source-corrections-e5fe0fced123/results.json",
+            "../portal/evidence/source-corrections-e5fe0fced123/visual-review.json",
+            "../portal/evidence/review-work-1792008347208/results.json"
           ]
         },
         {
@@ -725,8 +730,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Controlled bilingual recruitment-source catalogue and immutable application attribution connected. 52 native, 24 connected browser and 54 preserved-review checks passed. Stale edits, exact retries, authority revocation and dedicated-source bypasses were tested. SRC-001/S5-03 and S5 remain partial.",
-      "checkpoint": "S5_SOURCE_CATALOG_CHECKPOINT.md"
+      "progress": "Reviewed bilingual application-source corrections preserve original intake and immutable before/after history. Historical closure permanently locks attribution even after reopening. 57 native, 26 connected browser and 58 preserved-review checks passed; source/closure races and revoked-access denial verified. SRC-001/SRC-003 and S5 remain partial.",
+      "checkpoint": "S5_SOURCE_CORRECTIONS_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1070,8 +1075,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Controlled bilingual recruitment-source catalogue and immutable application attribution connected. 52 native, 24 connected browser and 54 preserved-review checks passed. Stale edits, exact retries, authority revocation and dedicated-source bypasses were tested. SRC-001/S5-03 and S5 remain partial.",
-    "evidence": "S5_SOURCE_CATALOG_CHECKPOINT.md",
+    "summary": "Reviewed bilingual application-source corrections preserve original intake and immutable before/after history. Historical closure permanently locks attribution even after reopening. 57 native, 26 connected browser and 58 preserved-review checks passed; source/closure races and revoked-access denial verified. SRC-001/SRC-003 and S5 remain partial.",
+    "evidence": "S5_SOURCE_CORRECTIONS_CHECKPOINT.md",
     "next": "Complete remaining sourcing/referral/agency/advertisement/credit workflows, private documents, matching/imports, cancellation/transfer consumers and privacy/retention work. Preserve all 98 requirements and all S6–S12 gates: HR acceptance, independent security, 1,000+ capacity, UAT and production rollout."
   }
 }

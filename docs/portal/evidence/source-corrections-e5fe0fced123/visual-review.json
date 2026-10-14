@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "reviewed_on": "2026-10-14",
+  "method": "Manual inspection of final rendered captures",
+  "captures": [
+    {
+      "file": "source-correction-en.png",
+      "sha256": "ba28db35a80341d64d3430db4f2ac02a2effd2f87393bf0460e30b262cbc215d"
+    },
+    {
+      "file": "source-correction-ar-mobile.png",
+      "sha256": "edbaf83f85b33ff0b0f1cd44184af30e8e9803abdfd991d7417c19246fba7d2b"
+    },
+    {
+      "file": "source-correction-history-ar-mobile.png",
+      "sha256": "71ab4c6a1901ab25c27615d45224f4fd4dfd15116b000500e43e4b12623fb9ed"
+    },
+    {
+      "file": "source-locked-en.png",
+      "sha256": "b7492ccd5fedd8790bddb554c780a7746bbc55c5fc8345aef1f77c4b009e9f5e"
+    }
+  ],
+  "observations": [
+    "English source/original comparison and reviewed action are readable.",
+    "Arabic mobile form separates confirmation from submit and fits the viewport.",
+    "History uses explicit before/after labels and wraps mixed-language values.",
+    "The closed state shows history and lock notice with no correction form."
+  ],
+  "limits": [
+    "Synthetic engineering visual review only; not independent accessibility or HR acceptance."
+  ]
+}

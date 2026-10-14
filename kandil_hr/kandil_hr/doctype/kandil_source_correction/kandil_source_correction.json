@@ -1,0 +1,106 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Source Correction",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant"
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_revision",
+      "label": "Previous Revision",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "before_hash",
+      "label": "Before Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "before_json",
+      "label": "Before Json",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "after_json",
+      "label": "After Json",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "application",
+    "person",
+    "actor",
+    "sequence",
+    "reason",
+    "previous_revision",
+    "before_hash",
+    "before_json",
+    "after_json",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

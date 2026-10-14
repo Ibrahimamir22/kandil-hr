@@ -127,3 +127,6 @@
 .candidate-message-task .recovery-confirm{display:flex;gap:8px;align-items:flex-start;margin:12px 0}.candidate-message-task dd,.candidate-message-task .message-draft{white-space:pre-wrap;overflow-wrap:anywhere}.candidate-message-queue .badge{white-space:normal}
 
 .message-templates .recovery-confirm,.candidate-template-composer .recovery-confirm{display:flex;align-items:flex-start;gap:10px;margin:14px 0}.message-templates .recovery-confirm input,.candidate-template-composer .recovery-confirm input{width:auto;flex:0 0 auto;margin-top:4px}.message-templates .message-draft,.candidate-template-composer .message-draft{white-space:pre-wrap;overflow-wrap:anywhere}.template-preview bdi{overflow-wrap:anywhere}
+
+/* Reviewed source correction: readable confirmation and history on AR/EN mobile. */
+.candidate-source .source-correction-form{display:grid;gap:18px;margin-block:22px}.candidate-source .source-correction-form>.btn{justify-self:start}.candidate-source .recovery-confirm{display:flex;align-items:flex-start;gap:10px;line-height:1.7}.candidate-source .recovery-confirm input{flex:0 0 auto;margin-top:5px}.candidate-source .source-correction-history{margin-top:26px}.candidate-source .source-correction-history p{overflow-wrap:anywhere;margin-block:8px}.candidate-source .card-head{flex-wrap:wrap;gap:12px}

@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "run_id": "e5fe0fced123",
+  "checks": [
+    {
+      "name": "Current and original source are visible",
+      "status": "PASS"
+    },
+    {
+      "name": "source-correction-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response freezes reviewed correction",
+      "status": "PASS"
+    },
+    {
+      "name": "Actual browser correction preserves original and stores one revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Detail projects the corrected source",
+      "status": "PASS"
+    },
+    {
+      "name": "Dedicated target denied by server",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot read or correct attribution",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing corrections have one winner and one stale rejection",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact retry creates one revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Native source revision is not exposed",
+      "status": "PASS"
+    },
+    {
+      "name": "Native source writes cannot bypass correction",
+      "status": "PASS"
+    },
+    {
+      "name": "Changed catalogue rejects stale source selection",
+      "status": "PASS"
+    },
+    {
+      "name": "source-correction-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic mobile correction stores current and keeps original",
+      "status": "PASS"
+    },
+    {
+      "name": "source-correction-history-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Reviewed rejection succeeds",
+      "status": "PASS"
+    },
+    {
+      "name": "Outcome locks new source corrections",
+      "status": "PASS"
+    },
+    {
+      "name": "Exact receipt survives later closure",
+      "status": "PASS"
+    },
+    {
+      "name": "Closed application hides correction form",
+      "status": "PASS"
+    },
+    {
+      "name": "source-locked-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Correction and closure serialize with stale loser",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent outcome ends with locked source",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing records and headcount preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot read history or replay completed correction",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "e5fe0fced123",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/attribution.py": "f14b48c55c6ff189f02584622661188f986787acbb90725f7458f305a51d31c9",
+    "kandil_hr/sourcing/test_attribution.py": "70b8eec3f699e27aa5a692ee3a7441329aedfeec8660f530f2d6362818719902",
+    "kandil_hr/sourcing/sources.py": "5766de7abf5d722caa7588275e7d38010cd5bfef7c70086215792e8b7f157a1b",
+    "kandil_hr/candidates/recovery.py": "1bf2265afe00e699e1d7fb1d6c48708b7e8933548e24730a14c243d6539e975b",
+    "kandil_hr/recruitment/api.py": "04d91302636f5fe7fa1bc794e63c263ea57c4c93917935d1df7e0e8066089da9",
+    "kandil_hr/recruitment/command_audit.py": "97e17b7d56b017a13a2e674cdb86cc309336699aaf969c6eefec2330c7db5cbf",
+    "kandil_hr/foundation/command_audit.py": "67213f8c22806257b7cbf7d228a7633374c3e790bcffb9593fa21f345f601b24",
+    "frontend/portal/src/CandidateSource.tsx": "c40b582e0e403f1f31c4074c8f31be9dff52dc3e082d8d28fafc1bb3cc7c8e21",
+    "frontend/portal/src/portal.css": "5169fe5fa282b8d561572b830c1d18055638b4782c1278b1a7d15d012fb64aaa",
+    "frontend/portal/src/Candidates.tsx": "6cd59329eb90572d7d5f52b98cc7654f3491611b26d877a12c876f103ea962ae",
+    "frontend/portal/src/candidateCommands.ts": "9c54d96ff5765f29990eddfa19fb88e1834b46f75e72965ab1a813b83bdb9693",
+    "frontend/portal/src/CandidateRecovery.tsx": "9aff5c7b942dac568fa022fafc1620c09aa16fdafe7462340e1650cc46fa16d0",
+    "kandil_hr/public/portal/portal.js": "83682a530d571409b0e371bfddcdfc10dea4008e12d6c39048a6e9457270c72c",
+    "docs/portal/test_source_corrections.cjs": "33ad0702d1c1e90d503565ecef73ed7b36e6f3c0d46c81b10517c28316d0088c"
+  },
+  "limits": [
+    "Ordinary-source corrections and outcome locks only; dedicated referral/agency/internal/pool changes remain separate work.",
+    "Synthetic verification does not prove independent security, sustained capacity, HR acceptance or production readiness."
+  ]
+}

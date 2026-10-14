@@ -182,6 +182,9 @@ def capture(app,company,selection):
 def application_snapshot(app):
     # Caller must authorize the application; never serve arbitrary source rows.
     app.check_permission('read')
+    from kandil_hr.sourcing.attribution import effective_snapshot
+    corrected=effective_snapshot(app)
+    if corrected:return corrected
     row=frappe.db.get_value(ATTRIBUTION,{'application':app.name},['source_version','source_json','sub_source'],as_dict=True)
     return dict(version=row.source_version,source=json.loads(row.source_json),sub_source=row.sub_source) if row else None
 

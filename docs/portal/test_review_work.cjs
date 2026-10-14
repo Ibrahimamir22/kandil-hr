@@ -49,6 +49,9 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
+  await p.locator('.candidate-source[aria-busy="false"] h2').waitFor();
+  check(lang+' source attribution and history load without inventing a correction',await p.locator('.candidate-source [role=alert]').count()===0&&await p.locator('.source-correction-history article').count()===0);
+  check(lang+' source attribution viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await p.locator('.candidate-activities[aria-busy="false"] h2').waitFor();
   check(lang+' connected activity panel loads without errors',await p.locator('.candidate-activities').count()===1&&await p.locator('.candidate-activities [role=alert]').count()===0);
   await p.locator('.candidate-consent[aria-busy="false"] h2').waitFor();

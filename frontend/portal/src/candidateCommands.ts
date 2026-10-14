@@ -18,11 +18,12 @@ export async function recoveryRequest<T>(method:string,args:Record<string,unknow
  }
 }
 export const recoveryApi='kandil_hr.candidates.recovery.';
-export type CandidateOperation='screen'|'reopen'|'message'|'closure'|'intake'|'correction'|'migration'|'owner'|'followup'|'activity'|'activity_void';
+export type CandidateOperation='source'|'screen'|'reopen'|'message'|'closure'|'intake'|'correction'|'migration'|'owner'|'followup'|'activity'|'activity_void';
 export type CandidateAttempt={id:string;payload:Record<string,unknown>;recovery?:string};
 export type RecoveryRow={name:string;operation:CandidateOperation;status:'Pending'|'Completed'|'Acknowledged'|'Cancelled'|'Expired';created:string;expires_at:string};
 export function validCandidateResult(operation:CandidateOperation,value:unknown,args?:Record<string,unknown>):value is Record<string,unknown>{
  if(!value||typeof value!=='object')return false;const r=value as Record<string,unknown>;
+ if(operation==='source')return r.application===args?.application&&typeof r.application_version==='string'&&!!r.application_version&&typeof r.revision==='string'&&!!r.revision&&r.source_code===args?.source_code&&typeof r.activity==='string'&&!!r.activity;
  if(operation==='screen'||operation==='reopen')return r.application===args?.application&&typeof r.application_version==='string'&&!!r.application_version&&r.stage==='Screening'&&typeof r.activity==='string'&&!!r.activity&&typeof r.consent_evidence==='string'&&!!r.consent_evidence&&r.sent===false&&(operation==='screen'?r.reopening===null&&r.closure===null:typeof r.reopening==='string'&&!!r.reopening&&r.closure===args?.closure_name);
  if(operation==='message')return r.application===args?.application&&typeof r.application_version==='string'&&!!r.application_version&&r.closure===args?.closure_name&&typeof r.resolution==='string'&&!!r.resolution&&typeof r.activity==='string'&&!!r.activity&&r.outcome===args?.outcome&&r.provider_verified===false&&r.sent_by_system===false;
  if(operation==='closure')return r.application===args?.application&&typeof r.application_version==='string'&&!!r.application_version&&typeof r.closure==='string'&&!!r.closure&&typeof r.activity==='string'&&!!r.activity&&r.decision===args?.decision&&r.message_status===(args?.decision==='Rejected'?'Pending':'Not applicable')&&r.sent===false;

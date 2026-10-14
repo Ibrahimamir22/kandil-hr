@@ -11,6 +11,7 @@ APP = Path(__file__).resolve().parents[2]
 DEV = APP.parents[3]
 SUITES = (
     'kandil_hr.sourcing.test_sources.run',
+    'kandil_hr.sourcing.test_attribution.run',
     'kandil_hr.candidates.test_pool_intake.run',
     'kandil_hr.candidates.test_talent_pool.run',
     'kandil_hr.candidates.test_stages.run',

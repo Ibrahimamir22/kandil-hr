@@ -55,6 +55,7 @@ OPERATIONS = {
 			"candidate_intake",
 			"candidate_identity_migrate",
 			"candidate_profile_correct",
+			"candidate_source_correct",
 			"candidate_activity_record",
 			"candidate_activity_void",
 			"candidate_close",
@@ -143,6 +144,7 @@ RELATED_FIELDS = {
 	"Kandil Candidate Message Resolution": (*COMMON, "closure", "application", "outcome", "channel", "provider_verified", "sent_by_system", "content_hash"),
 	"Kandil Candidate Reopening": (*COMMON, "closure", "application", "target_stage", "closure_hash", "consent_evidence", "content_hash"),
 	"Kandil Candidate Closure": (*COMMON, "application", "decision", "reason_code", "catalog_version", "message_status", "content_hash"),
+	"Kandil Source Correction": (*COMMON, "application", "person", "sequence", "previous_revision", "before_hash", "content_hash"),
 	"Kandil Candidate Activity": (*COMMON, "application", "person", "kind", "voids", "content_hash", "stage_from", "stage_to", "source_activity", "message_resolution"),
 	"Kandil Candidate Profile Revision": (*COMMON, "person", "application", "content_hash", "before_version", "after_version"),
 	"Job Applicant": (
