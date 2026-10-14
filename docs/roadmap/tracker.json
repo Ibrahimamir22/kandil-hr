@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open.",
+          "progress": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open. Closure-cycle history prerequisite now connected: immutable history pages, current-closure projections and historical message cancellations/outcomes; 79 native, 47 workflow browser and 26 read-only review checks passed. Synthetic storage cycles do not enable authorized reopening. Candidate-owned consent, canonical Screening and leadership command/recovery remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -670,7 +670,8 @@
             "../portal/evidence/message-templates-77ef19f9d611/results.json",
             "../portal/evidence/message-templates-77ef19f9d611/visual-review.json",
             "../portal/evidence/candidate-messages-8f5740558c7e/results.json",
-            "../portal/evidence/review-work-1791950864256/results.json"
+            "../portal/evidence/review-work-1791950864256/results.json",
+            "S5_CLOSURE_HISTORY_CHECKPOINT.md"
           ]
         },
         {
@@ -1049,8 +1050,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open.",
-    "evidence": "S5_TEMPLATE_CHECKPOINT.md",
-    "next": "Implement reviewed reopening/history cycles and downstream interview/offer/referral closure integration; retain template consumers and full remaining S5-S12 scope and release gates."
+    "summary": "Closure-cycle storage and AR/EN private history are connected; active candidate projections and message queues distinguish current, completed and cancelled tasks. Existing rows preserved on isolated schema upgrade. 79 native, 47 workflow browser and 26 read-only review checks passed. Reopening is still disabled; repeated-cycle evidence uses explicit synthetic storage fixtures, not candidate consent or real command acceptance.",
+    "evidence": "S5_CLOSURE_HISTORY_CHECKPOINT.md",
+    "next": "Implement candidate-owned versioned consent and public-link boundaries, then canonical Screening and the company-scoped reviewed reopening command with recovery; preserve the complete remaining S5-S12 scope and release gates."
   }
 }

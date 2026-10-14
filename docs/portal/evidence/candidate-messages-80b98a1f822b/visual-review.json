@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "reviewed": [
+    "decision-history-en.png",
+    "decision-history-ar.png",
+    "cancelled-message-queue-ar.png"
+  ],
+  "observations": [
+    "English current and past decisions are distinct; original notes and message-task outcomes remain separate.",
+    "Arabic 390px history presents RTL text and isolated date/time values with usable pagination and no horizontal overflow.",
+    "Arabic cancelled queue displays five distinct closure cycles for one application with closure dates and no sending claims."
+  ],
+  "limits": [
+    "Direct synthetic storage fixtures illustrate history; no candidate-owned consent or authorized reopen UI is implemented.",
+    "This is visual inspection of three captured states, not full accessibility or HR acceptance."
+  ]
+}

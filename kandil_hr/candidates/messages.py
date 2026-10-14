@@ -74,7 +74,7 @@ def resolve(name,opening_name,application,application_version,closure_name,closu
     def act(request):
         app,task=authorize(request,payload);activities.reviewed(app,application_version)
         if task.content_hash!=closure_hash:frappe.throw(_('The reviewed closure does not match this task.'),frappe.TimestampMismatchError)
-        if app.status!='Rejected' or task.decision!='Rejected' or task.message_status!='Pending':
+        if app.status!='Rejected' or task.decision!='Rejected' or task.message_status!='Pending' or closure.existing(app.name,current=True)!=task.name:
             frappe.throw(_('This application has no pending rejection-message task.'))
         if resolution(task.name,current=True):frappe.throw(_('The message task is already resolved. Refresh its history.'))
         values=dict(closure=task.name,application=app.name,company=request.company,actor=frappe.session.user,
@@ -116,15 +116,28 @@ def queue(status='pending',search='',start=0,page_length=20):
     from kandil_hr.portal.organization import paging
     from kandil_hr.candidates.search import labels
     candidates.access();offset,limit=paging(start,page_length)
-    if status not in ('pending','resolved','all'):frappe.throw(_('Choose a valid message-task filter.'))
+    if status not in ('pending','resolved','cancelled','all'):frappe.throw(_('Choose a valid message-task filter.'))
     q,a,o,r=candidates.base();q=candidates.filters(q,a,o,r,search=search)
     c=frappe.qb.DocType(closure.DT);m=frappe.qb.DocType(DT)
-    q=q.join(c).on(c.application==a.name).left_join(m).on(m.closure==c.name).where((c.decision=='Rejected')&(a.status=='Rejected'))
-    pending=m.name.isnull();resolved=m.name.isnotnull()
-    counts=deepcopy(q).select(Count(c.name).as_('all'),Sum(Case().when(pending,1).else_(0)).as_('pending'),Sum(Case().when(resolved,1).else_(0)).as_('resolved')).run(as_dict=True)[0]
-    counts={key:int(counts.get(key) or 0) for key in ('all','pending','resolved')}
-    if status!='all':q=q.where(pending if status=='pending' else resolved)
-    rows=(q.select(a.name,a.applicant_name,a.custom_kandil_person.as_('person'),o.job_title,r.company,c.creation.as_('closed_at'),m.outcome)
+    q=q.join(c).on(c.application==a.name).left_join(m).on(m.closure==c.name).where(c.decision=='Rejected')
+    from kandil_hr.candidates.closure_history import DT as reopening_type
+    if frappe.db.table_exists(reopening_type):
+        reopened=frappe.qb.DocType(reopening_type)
+        q=q.left_join(reopened).on(reopened.closure==c.name)
+        cancelled=m.name.isnull()&reopened.name.isnotnull()
+        pending=m.name.isnull()&reopened.name.isnull()&(a.status=='Rejected')
+    else:
+        cancelled=m.name.isnull()&m.name.isnotnull()
+        pending=m.name.isnull()&(a.status=='Rejected')
+    resolved=m.name.isnotnull()
+    # A historical result stays visible after reopening; a pending task is
+    # cancelled by the reopening event, never a fabricated human resolution.
+    conditions={'pending':pending,'resolved':resolved,'cancelled':cancelled}
+    q=q.where(pending|resolved|cancelled)
+    counts=deepcopy(q).select(Count(c.name).as_('all'),*[Sum(Case().when(condition,1).else_(0)).as_(key) for key,condition in conditions.items()]).run(as_dict=True)[0]
+    counts={key:int(counts.get(key) or 0) for key in ('all',*conditions)}
+    if status!='all':q=q.where(conditions[status])
+    rows=(q.select(a.name,c.name.as_('closure'),a.applicant_name,a.custom_kandil_person.as_('person'),o.job_title,r.company,c.creation.as_('closed_at'),Case().when(cancelled,'CANCELLED').else_(m.outcome).as_('outcome'))
         .orderby(c.creation).orderby(c.name).limit(limit).offset(offset).run(as_dict=True))
     names=labels([x.person for x in rows])
     for row in rows:row['person_name']=names.get(row.pop('person'))

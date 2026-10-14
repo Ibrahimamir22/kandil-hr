@@ -127,7 +127,7 @@ class TestCandidateMessages(unittest.TestCase):
         for i in range(3):self.close(self.f.create()['application'])
         self.call()
         with acting_as(self.f.f.users['manager']):
-            pending=messages.queue(page_length=2);self.assertEqual(pending['counts'],dict(all=4,pending=3,resolved=1));self.assertEqual(len(pending['rows']),2);self.assertTrue(pending['has_more'])
+            pending=messages.queue(page_length=2);self.assertEqual(pending['counts'],dict(all=4,pending=3,resolved=1,cancelled=0));self.assertEqual(len(pending['rows']),2);self.assertTrue(pending['has_more'])
             second=messages.queue(start=2,page_length=2);self.assertEqual(len(second['rows']),1);self.assertFalse(second['has_more'])
             result=messages.queue(status='resolved',search=self.name);self.assertEqual(result['total'],1);self.assertEqual(result['rows'][0]['outcome'],'MANUAL_SENT')
             raw=frappe.as_json(pending);self.assertNotIn('Private rejection explanation',raw);self.assertNotIn('Draft for candidate',raw)

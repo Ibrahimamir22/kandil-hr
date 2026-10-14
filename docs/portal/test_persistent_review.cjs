@@ -48,14 +48,14 @@ async function shot(p,name){await p.waitForFunction(()=>document.getAnimations()
  const boot=await call(p,'kandil_hr.portal.api.bootstrap');
  check('Personal account is scoped recruiter/requester, not migration approver',boot.body.user.id===data.users.personal.email&&boot.body.can_read_candidates&&boot.body.can_create&&!boot.body.can_review_candidate_migration);
  const overview=await call(p,'kandil_hr.portal.api.overview');check('Draft, pending and approved requests are available',overview.body.requests.length===3&&overview.body.vacancies.length===1);
- await shot(p,'review-dashboard-en');await nav(p,'Candidates');await p.locator('.candidates[aria-busy="false"] .candidate-pagination').waitFor();
+ await shot(p,'review-dashboard-en');await nav(p,'Candidates');await p.locator('.candidates[aria-busy="false"] > section:has(> .candidate-list) > .candidate-pagination').waitFor();
  check('Candidate intake is enabled with four persistent examples',await p.getByRole('button',{name:'New application',exact:true}).isEnabled()&&await p.locator('.candidate-list .candidate-row').count()===4);
  await shot(p,'review-candidates-en');
  await p.locator('.candidate-row').filter({hasText:'Omar · Synthetic candidate'}).click();await p.getByRole('heading',{name:'Person profile',exact:true}).waitFor();
  check('Native person profile is available through the custom UI',await p.locator('.candidate-details').count()>=2);
  await nav(p,'Unfinished actions');await p.locator('.candidate-recovery[aria-busy="false"] .candidate-row').waitFor();await p.locator('.candidate-recovery .candidate-row').click();
  await p.getByRole('button',{name:'Resume saved action',exact:true}).waitFor();check('Prepared example needs explicit review before execution',await p.getByRole('button',{name:'Resume saved action',exact:true}).isDisabled());await shot(p,'review-recovery-en');
- const ar=await login('personal','ar');await nav(ar,'المرشحون');await ar.locator('.candidates[aria-busy="false"] .candidate-pagination').waitFor();
+ const ar=await login('personal','ar');await nav(ar,'المرشحون');await ar.locator('.candidates[aria-busy="false"] > section:has(> .candidate-list) > .candidate-pagination').waitFor();
  check('Arabic uses RTL with enabled intake',await ar.locator('html').getAttribute('dir')==='rtl'&&await ar.getByRole('button',{name:'إضافة طلب ترشح',exact:true}).isEnabled());await shot(ar,'review-candidates-ar');
  const hr=await login('hr');check('Configured HR can review the legacy example',(await call(hr,'kandil_hr.portal.api.bootstrap')).body.can_review_candidate_migration);
  const outsider=await login('outsider');check('Out-of-scope user cannot read candidate directory or guessed application',await outsider.locator('.nav').getByRole('link',{name:'Candidates',exact:true}).count()===0&&(await call(outsider,'kandil_hr.portal.candidates.listing')).status===403&&(await call(outsider,'kandil_hr.portal.candidates.detail',{name:data.applications[0].application})).status===403);

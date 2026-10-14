@@ -177,7 +177,7 @@ def inspect():
     for doctype in ('Company', 'Kandil Hiring Request', 'Kandil Capacity', 'Job Opening',
                     'Kandil Candidate Person', 'Job Applicant', 'Kandil Candidate Recovery',
                     'Kandil Access Grant', 'Kandil Position', 'Kandil Position Assignment',
-                    'Kandil Command Audit', 'Kandil Candidate Activity', 'Kandil HR List Revision', 'Kandil Candidate Closure', 'Kandil Candidate Message Resolution', 'Kandil Message Template Revision'):
+                    'Kandil Command Audit', 'Kandil Candidate Activity', 'Kandil HR List Revision', 'Kandil Candidate Closure', 'Kandil Candidate Message Resolution', 'Kandil Message Template Revision', 'Kandil Candidate Reopening'):
         documents = [frappe.get_doc(doctype, name).as_dict() for name in
                      frappe.get_all(doctype, pluck='name', order_by='name asc')]
         tables[doctype] = dict(count=len(documents), sha256=hashlib.sha256(

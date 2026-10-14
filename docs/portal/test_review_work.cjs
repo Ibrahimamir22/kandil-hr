@@ -26,7 +26,7 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.screenshot({path:path.join(out,'review-queue-'+lang+'.png')});
   if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Rejection messages':'رسائل الاعتذار',exact:true}).click();await p.locator('.candidate-message-queue[aria-busy="false"] .candidate-pagination').waitFor();
-  check(lang+' connected message queue loads with three task filters',await p.locator('.candidate-message-queue [role=alert]').count()===0&&await p.locator('.candidate-message-queue .followup-counts button').count()===3);
+  check(lang+' connected message queue loads with four task filters',await p.locator('.candidate-message-queue [role=alert]').count()===0&&await p.locator('.candidate-message-queue .followup-counts button').count()===4);
   check(lang+' message queue viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await p.screenshot({path:path.join(out,'review-message-queue-'+lang+'.png')});
   if(await menu.isVisible())await menu.click();
@@ -41,6 +41,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' connected activity panel loads without errors',await p.locator('.candidate-activities').count()===1&&await p.locator('.candidate-activities [role=alert]').count()===0);
   await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
   check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
+  await p.locator('.candidate-decision-history[aria-busy="false"]').waitFor();
+  check(lang+' decision history loads read-only without errors',await p.locator('.candidate-decision-history [role=alert]').count()===0);
   await p.locator('.candidate-template-composer[aria-busy="false"]').waitFor();
   check(lang+' candidate template choices load without writes or errors',await p.locator('.candidate-template-composer [role=alert]').count()===0);
   check(lang+' viewport and direction',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await p.locator('html').getAttribute('dir')===(lang==='ar'?'rtl':'ltr'));

@@ -1,0 +1,6 @@
+locator.screenshot: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('.candidate-message-task')[22m
+
+    at shot (/Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:18:306)
+    at async /Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:99:2

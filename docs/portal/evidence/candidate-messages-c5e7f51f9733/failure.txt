@@ -1,0 +1,10 @@
+locator.waitFor: Error: strict mode violation: locator('.candidates[aria-busy="false"] .candidate-pagination') resolved to 2 elements:
+    1) <div class="form-footer candidate-pagination">…</div> aka getByText('–1 / 1PreviousNext').first()
+    2) <div class="form-footer candidate-pagination">…</div> aka getByText('–1 / 1PreviousNext').nth(1)
+
+Call log:
+[2m  - waiting for locator('.candidates[aria-busy="false"] .candidate-pagination') to be visible[22m
+
+    at nav (/Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:16:322)
+    at async openWork (/Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:29:2)
+    at async /Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:89:2

@@ -40,6 +40,9 @@ class KandilCandidateClosure(Document):
         identity.guard()
         if not self.is_new() or not frappe.flags.get('kandil_candidate_closure_effect'):
             frappe.throw(_('Use the reviewed closure command; closure records are immutable.'), frappe.PermissionError)
+        lock_application(self.application)
+        if existing(self.application, current=True):
+            frappe.throw(_('This application already has an active closure.'))
 
     def on_trash(self):
         frappe.throw(_('Closure history cannot be deleted or renamed.'), frappe.PermissionError)
@@ -61,7 +64,8 @@ def validate_input(decision, reason_code, catalog_version, internal_note, candid
 
 
 def existing(application, current=False):
-    return frappe.db.get_value(DT, {'application': application}, 'name', for_update=current)
+    from kandil_hr.candidates.closure_history import active
+    return active(application, current)
 
 
 def blockers(app, current=False):

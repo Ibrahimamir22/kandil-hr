@@ -1,0 +1,94 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Reopening",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "field_order": [
+    "closure",
+    "application",
+    "company",
+    "actor",
+    "reason",
+    "target_stage",
+    "closure_hash",
+    "consent_evidence",
+    "content_hash"
+  ],
+  "fields": [
+    {
+      "fieldname": "closure",
+      "label": "Closure",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Closure",
+      "unique": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Text"
+    },
+    {
+      "fieldname": "target_stage",
+      "label": "Target Stage",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Screening"
+    },
+    {
+      "fieldname": "closure_hash",
+      "label": "Closure Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "consent_evidence",
+      "label": "Consent Evidence",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}
