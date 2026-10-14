@@ -1,0 +1,213 @@
+{
+  "checked_at": "2026-10-14T18:03:45.048800+00:00",
+  "sites": [
+    {
+      "site": "kandil-parity.localhost",
+      "before": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 71,
+            "sha256": "718e4d5c9a77764bb566f3796d77c629ea2f6ad0ffd5adced7d21a151501667f"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 18,
+            "sha256": "475cf48daea6838cb0ecf631736301318a8d8bfedfda394bef9125ecc797666b"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 1772,
+            "sha256": "a68caa26c7c6a39c24bb28e74eb985493ee268fce1efee85cc85807d3d4b61cc"
+          },
+          "Kandil Candidate Activity": {
+            "count": 189,
+            "sha256": "3a6258edebcea210612a3f0a5fae03934edf15ec08101183c4da056874c141b7"
+          },
+          "Kandil Capacity": {
+            "count": 996,
+            "sha256": "ec97d1a028c7fe08155a8a69fbce77a0634cd10fff3757caa3f9b694f02d94bd"
+          },
+          "Kandil Command Audit": {
+            "count": 5854,
+            "sha256": "38e003fb3533a9ec5af76dd8241384a0614d39dd289842d0381d143cb267296b"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 13,
+            "sha256": "08fe0192b612af41e4935e7a216200e1143d0b844178e1d35a4b7decae583112"
+          },
+          "Kandil Consent Invitation": {
+            "count": 20,
+            "sha256": "58f2ab0851d2da61509a5f0572a4784364467a92cd7d1f19d4fa604dd4ab55e7"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 6,
+            "sha256": "be08111da10c28a620c72ced2d964c4a24fe9d28b66c82eebb29272ce71c6029"
+          },
+          "Kandil Consent Revocation": null
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "after": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 71,
+            "sha256": "718e4d5c9a77764bb566f3796d77c629ea2f6ad0ffd5adced7d21a151501667f"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 18,
+            "sha256": "475cf48daea6838cb0ecf631736301318a8d8bfedfda394bef9125ecc797666b"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 1772,
+            "sha256": "a68caa26c7c6a39c24bb28e74eb985493ee268fce1efee85cc85807d3d4b61cc"
+          },
+          "Kandil Candidate Activity": {
+            "count": 189,
+            "sha256": "3a6258edebcea210612a3f0a5fae03934edf15ec08101183c4da056874c141b7"
+          },
+          "Kandil Capacity": {
+            "count": 996,
+            "sha256": "ec97d1a028c7fe08155a8a69fbce77a0634cd10fff3757caa3f9b694f02d94bd"
+          },
+          "Kandil Command Audit": {
+            "count": 5854,
+            "sha256": "38e003fb3533a9ec5af76dd8241384a0614d39dd289842d0381d143cb267296b"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 13,
+            "sha256": "08fe0192b612af41e4935e7a216200e1143d0b844178e1d35a4b7decae583112"
+          },
+          "Kandil Consent Invitation": {
+            "count": 20,
+            "sha256": "58f2ab0851d2da61509a5f0572a4784364467a92cd7d1f19d4fa604dd4ab55e7"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 6,
+            "sha256": "be08111da10c28a620c72ced2d964c4a24fe9d28b66c82eebb29272ce71c6029"
+          },
+          "Kandil Consent Revocation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "existing_records_unchanged": true,
+      "no_records_seeded": true
+    },
+    {
+      "site": "kandil-review.localhost",
+      "before": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Invitation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Revocation": null
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "after": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Invitation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Revocation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true
+      },
+      "existing_records_unchanged": true,
+      "no_records_seeded": true
+    }
+  ]
+}

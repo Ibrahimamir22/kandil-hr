@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of rendered screenshots",
+  "files": {
+    "consent-revoke-form-en.png": "bebfea5d155e3db6c7dfb17daacba2d67194254b25c15b81286a38c2a81215e6",
+    "consent-revoke-form-ar-mobile.png": "fc3723d153a27e844bf00bb809ccc7a0dc4868ad727dea5db42d0e12bfcbc053",
+    "consent-revoked-en.png": "a09f79899d05935b94e6a1c9c35689b7eaf45a2ae2445bfa8696994205952292",
+    "consent-revoked-ar-mobile.png": "b174db459ae1065b1792fb2358298bfbfc20b1cc10940c26566f2c386dce21a4"
+  },
+  "findings": [
+    "English desktop and Arabic RTL mobile form, review checkbox and action fit the available width.",
+    "Revoked status and history retain actor, reason and timestamps; no raw capability rendered.",
+    "Success confirmation follows the selected language.",
+    "Microsecond timestamps remain a cosmetic follow-up."
+  ],
+  "limits": [
+    "Synthetic data only; not HR acceptance, independent security or accessibility certification."
+  ]
+}

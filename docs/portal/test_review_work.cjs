@@ -46,6 +46,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' connected activity panel loads without errors',await p.locator('.candidate-activities').count()===1&&await p.locator('.candidate-activities [role=alert]').count()===0);
   await p.locator('.candidate-consent[aria-busy="false"] h2').waitFor();
   check(lang+' consent panel shows no invented notice or candidate acceptance',await p.locator('.candidate-consent [role=alert]').count()===0&&await p.locator('.candidate-consent').getByText(lang==='en'?'No link issued':'لم يُصدر رابط',{exact:true}).isVisible()&&await p.locator('.candidate-consent form').count()===0);
+  await p.locator('.consent-history[aria-busy="false"]').waitFor();
+  check(lang+' consent history is empty and no revocation is invented',await p.locator('.consent-history').getByText(lang==='en'?'No links recorded for this application.':'لا توجد روابط مسجلة لهذا الطلب.',{exact:true}).isVisible()&&await p.locator('.consent-revoke').count()===0);
   await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
   check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
   await p.locator('.candidate-decision-history[aria-busy="false"]').waitFor();

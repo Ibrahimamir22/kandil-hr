@@ -118,9 +118,12 @@ def context(application):
     current = consent.latest(request.company,person.name)
     record = consent.acceptance(request.company,person.name)
     notice = notices.published(request.company,current=True)
+    revoked = consent.revocation(current.name) if current else None
     state = 'none'
     if record:
         state='accepted'
+    elif revoked:
+        state='revoked'
     elif current:
         state='pending'
         if get_datetime(current.expires_at) <= now_datetime(): state='expired'
@@ -128,6 +131,7 @@ def context(application):
     live = request.status == 'Approved' and opening.custom_kandil_vacancy_state in ('Open','Partially Filled')
     return dict(enabled=True,state=state,expected_invitation=current.name if current else '',
         notice=notice,expires_at=str(current.expires_at) if current else None,
+        can_revoke=bool(current and not record and not revoked and current.application==app.name and consent.revocation_authority(request,current)),
         can_issue=bool(notice and live and not record),
         can_reveal=bool(state=='pending' and live and current.actor==frappe.session.user and current.application==app.name),
         accepted_at=str(record.accepted_at) if record else None,
@@ -147,3 +151,41 @@ def issue(application, expected_invitation, notice_revision, reason, command_id)
 def reveal(application, invitation):
     guard()
     return dict(token=consent.reveal(application,invitation))
+
+
+@frappe.whitelist(methods=['POST'])
+@transactional_retry
+def revoke(application,invitation,reason,command_id):
+    guard()
+    return consent.revoke(application,invitation,reason,command_id)
+
+
+@frappe.whitelist(methods=['GET'])
+def history(application,start=0,page_length=5):
+    """Only the selected, currently authorized application's invitation history."""
+    from kandil_hr.portal.organization import paging
+    from kandil_hr.recruitment.vacancy_access import identity_labels
+    guard()
+    request,_,app,person=consent.authorize(application)
+    offset,limit=paging(start,page_length)
+    # Locking reads observe invitations committed while authorize waited on Company.
+    rows=frappe.db.sql("""SELECT name, sequence, actor, reason, creation, expires_at, notice_revision
+        FROM `tabKandil Consent Invitation` WHERE application=%s AND company=%s
+        ORDER BY sequence DESC LIMIT %s OFFSET %s FOR UPDATE""",
+        (app.name,request.company,limit+1,offset),as_dict=True)
+    more=len(rows)>limit;rows=rows[:limit]
+    current=consent.latest(request.company,person.name)
+    accepted=consent.acceptance(request.company,person.name)
+    notice=notices.published(request.company,current=True)
+    revoked={r.name:event for r in rows if (event:=consent.revocation(r.name))}
+    labels=identity_labels([r.actor for r in rows]+[r.actor for r in revoked.values()])
+    result=[]
+    for row in rows:
+        event=revoked.get(row.name)
+        state=('accepted' if accepted and accepted.invitation==row.name else 'revoked' if event
+            else 'replaced' if not current or current.name!=row.name else 'expired' if get_datetime(row.expires_at)<=now_datetime()
+            else 'notice_changed' if not notice or notice['version']!=row.notice_revision else 'pending')
+        result.append(dict(sequence=row.sequence,issued_at=str(row.creation),expires_at=str(row.expires_at),
+            issuer_label=labels.get(row.actor),issue_reason=row.reason,notice_revision=row.notice_revision,state=state,
+            revocation=dict(actor_label=labels.get(event.actor),reason=event.reason,at=str(event.creation)) if event else None))
+    return dict(rows=result,start=offset,has_more=more)

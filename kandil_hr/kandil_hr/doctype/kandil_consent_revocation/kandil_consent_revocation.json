@@ -1,0 +1,97 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Consent Revocation",
+  "module": "Kandil HR",
+  "engine": "InnoDB",
+  "custom": 0,
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company",
+      "search_index": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person",
+      "search_index": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "invitation",
+      "label": "Invitation",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Consent Invitation",
+      "unique": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "notice_revision",
+      "label": "Notice Revision",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Privacy Notice Revision"
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "application",
+    "invitation",
+    "actor",
+    "reason",
+    "command_key",
+    "signature",
+    "notice_revision"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

@@ -1,13 +1,14 @@
-"""Internal candidate-owned APPLY consent service; no HTTP methods exposed yet.
+"""Candidate-owned APPLY consent service; HTTP access uses the guarded adapter.
 
 Invitation issuance is not consent. A bearer response proves possession of a link,
-not verified civil identity. The next HTTP adapter must bound/rate-limit requests,
-redact credentials from framework error capture and supply a separate public UI.
+not verified civil identity. The privacy.portal adapter bounds/rate-limits requests, clears credentials from
+framework request capture and serves the separate public UI.
 These functions do not send messages, commit transactions or advance a candidate.
 """
 from contextlib import contextmanager
 import hashlib
 import hmac
+import json
 import re
 import uuid
 
@@ -26,6 +27,7 @@ from kandil_hr.privacy import notices
 
 INVITATION = 'Kandil Consent Invitation'
 ACCEPTANCE = 'Kandil Consent Acceptance'
+REVOCATION = 'Kandil Consent Revocation'
 PURPOSE = 'APPLY'
 LIFETIME_DAYS = 7
 
@@ -42,7 +44,7 @@ def effect():
 
 class ImmutableConsentRecord(Document):
     def autoname(self):
-        self.name = 'KCI-' + uuid.uuid4().hex if self.doctype == INVITATION else 'KCA-' + uuid.uuid4().hex
+        self.name = {INVITATION:'KCI-',ACCEPTANCE:'KCA-',REVOCATION:'KCR-'}[self.doctype] + uuid.uuid4().hex
 
     def validate(self):
         identity.guard()
@@ -61,6 +63,10 @@ class KandilConsentInvitation(ImmutableConsentRecord):
 
 
 class KandilConsentAcceptance(ImmutableConsentRecord):
+    pass
+
+
+class KandilConsentRevocation(ImmutableConsentRecord):
     pass
 
 
@@ -194,7 +200,7 @@ def receipt(doc):
 def pending(doc):
     current = latest(doc.company, doc.person)
     notice = notices.published(doc.company, current=True)
-    if (not current or current.name != doc.name or get_datetime(doc.expires_at) <= now_datetime()
+    if (revocation(doc.name) or not current or current.name != doc.name or get_datetime(doc.expires_at) <= now_datetime()
             or not notice or notice['version'] != doc.notice_revision or notice['content_hash'] != doc.notice_hash):
         unavailable()
     request = frappe.get_doc('Kandil Hiring Request', doc.request, for_update=True)
@@ -208,7 +214,7 @@ def pending(doc):
 
 
 def reveal(application, invitation):
-    """Original issuer with current scope only; future HTTP response must be no-store."""
+    """Original issuer with current scope only; HTTP adapter returns no-store."""
     request, _, _, person = authorize(application)
     doc = frappe.get_doc(INVITATION, text(invitation, 140), for_update=True)
     if (doc.application != application or doc.company != request.company or doc.person != person.name
@@ -251,7 +257,7 @@ def preview(token):
 
 
 def accept(token, notice_revision, notice_hash, accepted, transfer_accepted):
-    """Single-use, exact-version response; private/internal until HTTP adapter is tested."""
+    """Single-use, exact-version response; exposed only through the guarded adapter."""
     if type(accepted) is not bool or not accepted or type(transfer_accepted) is not bool:
         unavailable()
     if not isinstance(notice_revision, str) or len(notice_revision) > 140 or not isinstance(notice_hash, str) or len(notice_hash) != 64:
@@ -273,3 +279,61 @@ def accept(token, notice_revision, notice_hash, accepted, transfer_accepted):
             notice_revision=doc.notice_revision, notice_hash=doc.notice_hash, accepted_at=now_datetime(),
             transfer_accepted=int(transfer_accepted), acceptance_hash=signature, evidence_kind='Bearer link')).insert(ignore_permissions=True)
         return dict(status='accepted')
+
+
+def revocation(invitation):
+    return frappe.db.get_value(REVOCATION,{'invitation':invitation},
+        ['name','actor','reason','creation'],as_dict=True,for_update=True)
+
+
+def revocation_authority(request, invitation):
+    """Current issuer or configured HR/sector leadership; never native read grants."""
+    from kandil_hr.foundation.mutation_access import current_identity
+    roles=current_identity(frappe.session.user)
+    if frappe.session.user=='Administrator':return True
+    if 'Kandil Recruiter' not in roles:return False
+    settings=frappe.get_doc('Kandil Organization Settings',request.company,for_update=True)
+    return bool(invitation.actor==frappe.session.user or settings.hr_approver==frappe.session.user
+        or (settings.sector_approver==frappe.session.user and 'Kandil Sector Approver' in roles))
+
+
+def revoke(application, invitation, reason, command_id):
+    """Disable a current unaccepted link without replacement or consent withdrawal."""
+    application=text(application,140);invitation=text(invitation,140)
+    reason=text(reason,1000);command_id=text(command_id,100)
+    if len(reason)<3:frappe.throw(_('Explain why this invitation must be revoked.'))
+    request,opening,app,person=authorize(application)
+    doc=frappe.get_doc(INVITATION,invitation,for_update=True)
+    if (doc.application!=app.name or doc.company!=request.company or doc.person!=person.name
+            or not revocation_authority(request,doc)):
+        frappe.throw(_('Only the current issuer or recruitment leadership may revoke this link.'),frappe.PermissionError)
+    key=digest([request.company,frappe.session.user,command_id])
+    signature=digest([application,invitation,reason])
+    prior=frappe.db.get_value(REVOCATION,{'command_key':key},['name','signature'],as_dict=True,for_update=True)
+    if prior:
+        if prior.signature!=signature:frappe.throw(_('This revocation command was used with different details.'))
+        return dict(invitation=invitation,revocation=prior.name,consent_withdrawn=False)
+    if acceptance(doc.company,doc.person):
+        frappe.throw(_('Acceptance is already recorded. Revoking a pending link cannot withdraw consent.'))
+    current=latest(doc.company,doc.person)
+    if not current or current.name!=invitation:
+        frappe.throw(_('This invitation was replaced. Refresh before revoking the current link.'),frappe.TimestampMismatchError)
+    if revocation(invitation):
+        frappe.throw(_('This invitation is already revoked. Refresh its history.'))
+    with atomic(),effect():
+        event=frappe.get_doc(dict(doctype=REVOCATION,company=doc.company,person=doc.person,
+            application=app.name,invitation=doc.name,actor=frappe.session.user,reason=reason,
+            command_key=key,signature=signature,notice_revision=doc.notice_revision)).insert(ignore_permissions=True)
+        return dict(invitation=invitation,revocation=event.name,consent_withdrawn=False)
+
+
+def schema_proof():
+    """CLI-only muted synthetic sites; hashes rather than record payloads."""
+    from kandil_hr.candidates.closure_history import schema_proof as foundation_proof
+    proof=foundation_proof()  # Enforces exact site, Administrator, CLI and muted/test gates.
+    for dt in (notices.DT,INVITATION,ACCEPTANCE,REVOCATION):
+        if not frappe.db.table_exists(dt):proof['tables'][dt]=None
+        else:
+            rows=frappe.get_all(dt,fields=['*'],order_by='name asc',limit_page_length=0)
+            proof['tables'][dt]=dict(count=len(rows),sha256=hashlib.sha256(json.dumps(rows,sort_keys=True,default=str).encode()).hexdigest())
+    return proof

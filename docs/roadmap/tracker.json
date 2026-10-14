@@ -688,11 +688,12 @@
           "id": "S5-05",
           "description": "Build consent/version/retention controls, talent pool and scoped candidate self-service uploads.",
           "status": "in_progress",
-          "progress": "Connected recruiter issuance/copy/replacement and separate AR/EN candidate acceptance are implemented over immutable exact-version evidence. 49 native, 45 browser and 32 read-only review checks passed; evidence is recorded in S5_CONSENT_PORTAL_CHECKPOINT.md. Privacy notice publication remains HR-controlled. No real policy or consent is seeded and no candidate status/capacity changes. Explicit emergency revocation, withdrawal/reconsent/retention, talent-pool controls, self-service uploads and production privacy acceptance remain open.",
+          "progress": "Connected exact-version AR/EN candidate acceptance now includes reviewed pending-link revocation and private paginated history. 46 native, 64 browser and 34 preserved-review checks passed; see S5_CONSENT_REVOCATION_CHECKPOINT.md. Revocation preserves evidence and cannot withdraw accepted consent. Schema changes preserved existing records on both synthetic sites. No legal wording or consent seeded in review. Withdrawal/reconsent/retention, purpose/talent-pool controls, self-service uploads, downstream consent gates and production privacy acceptance remain open.",
           "evidence": [
             "S5_PRIVACY_NOTICE_CHECKPOINT.md",
             "S5_CONSENT_SERVICE_CHECKPOINT.md",
-            "S5_CONSENT_PORTAL_CHECKPOINT.md"
+            "S5_CONSENT_PORTAL_CHECKPOINT.md",
+            "S5_CONSENT_REVOCATION_CHECKPOINT.md"
           ]
         },
         {
@@ -1056,8 +1057,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "AR/EN privacy notice publishing and immutable exact-wording history are connected. Full-company HR authority, version/retry checks and recruiter draft restrictions verified in 30 native, 27 browser workflow and 30 read-only review checks. No legal wording seeded, no candidate consent recorded. CAN-004 remains partial.",
-    "evidence": "S5_PRIVACY_NOTICE_CHECKPOINT.md",
-    "next": "Implement candidate-owned consent links and acceptance bound to exact notice revisions, including expiry/replacement/retry/public boundaries; then canonical Screening and reviewed leadership reopening. Preserve remaining S5–S12 requirements and external acceptance/security/capacity/release gates."
+    "summary": "Pending consent-link revocation and private AR/EN history connected. 46 native, 64 browser and 34 preserved-review checks passed, including simultaneous acceptance/revocation, replacement and exact retries. S5/CAN-004 and all later release gates remain partial.",
+    "evidence": "S5_CONSENT_REVOCATION_CHECKPOINT.md",
+    "next": "Implement explicit consent eligibility/withdrawal and canonical Screening with reviewed leadership reopening; retain retention/purpose/talent-pool/upload, sourcing and all remaining S5–S12 requirements. HR/privacy, independent security, 1,000+ capacity, UAT and production gates remain open."
   }
 }
