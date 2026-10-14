@@ -1,0 +1,121 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Candidate Message Resolution",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "autoname": "",
+  "allow_rename": 0,
+  "field_order": [
+    "closure",
+    "application",
+    "company",
+    "actor",
+    "outcome",
+    "channel",
+    "message_text",
+    "note",
+    "closure_hash",
+    "content_hash",
+    "provider_verified",
+    "sent_by_system"
+  ],
+  "fields": [
+    {
+      "fieldname": "closure",
+      "label": "Closure",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Closure",
+      "search_index": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "search_index": 1
+    },
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "outcome",
+      "label": "Outcome",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "MANUAL_SENT\nNOT_NEEDED"
+    },
+    {
+      "fieldname": "channel",
+      "label": "Channel",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "message_text",
+      "label": "Message Text",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Text"
+    },
+    {
+      "fieldname": "note",
+      "label": "Note",
+      "fieldtype": "Code",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Text"
+    },
+    {
+      "fieldname": "closure_hash",
+      "label": "Closure Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "provider_verified",
+      "label": "Provider Verified",
+      "fieldtype": "Check",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "sent_by_system",
+      "label": "Sent By System",
+      "fieldtype": "Check",
+      "read_only": 1,
+      "reqd": 0
+    }
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

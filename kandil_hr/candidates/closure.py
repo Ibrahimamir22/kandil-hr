@@ -154,6 +154,9 @@ def context(name):
         doc = frappe.get_doc(DT, record_name)
         record = {k:doc.get(k) for k in ('name','decision','reason_code','reason_label_ar','reason_label_en','internal_note','candidate_message','message_status','creation')}
         record['actor_label'] = identity_labels([doc.actor]).get(doc.actor)
+        from kandil_hr.candidates.messages import resolution
+        done=resolution(doc.name)
+        if done:record['message_status']=done.outcome
     blocked = blockers(app)
     can_close = bool(identity.enabled() and app.has_permission('write') and request_scope(request,frappe.session.user,'manage') and not blocked)
     return dict(application=app.name, application_version=str(app.modified), request=request.name,

@@ -22,7 +22,8 @@
     "source_activity",
     "kind_label_ar",
     "kind_label_en",
-    "catalog_version"
+    "catalog_version",
+    "message_resolution"
   ],
   "fields": [
     {
@@ -142,6 +143,13 @@
       "fieldname": "catalog_version",
       "label": "Catalog Version",
       "fieldtype": "Data",
+      "read_only": 1
+    },
+    {
+      "fieldname": "message_resolution",
+      "label": "Message Resolution",
+      "fieldtype": "Link",
+      "options": "Kandil Candidate Message Resolution",
       "read_only": 1
     }
   ],

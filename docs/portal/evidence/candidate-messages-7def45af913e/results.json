@@ -1,0 +1,194 @@
+{
+  "status": "PASS",
+  "run_id": "7def45af913e",
+  "checks": [
+    {
+      "name": "Scoped queue shows five pending tasks with no private message or reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Queue pagination preserves all five unique tasks",
+      "status": "PASS"
+    },
+    {
+      "name": "Queue search isolates the requested application",
+      "status": "PASS"
+    },
+    {
+      "name": "Recording a manual send requires explicit confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "Candidate draft is separate from internal closure reason",
+      "status": "PASS"
+    },
+    {
+      "name": "Copy only copies the draft and leaves task pending",
+      "status": "PASS"
+    },
+    {
+      "name": "Clipboard denial retains a readable draft and pending task",
+      "status": "PASS"
+    },
+    {
+      "name": "message-form-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response commits only a human report with no delivery claim",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain save freezes original message and exact retry",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovery preserves exact outcome, sent-text report and internal note",
+      "status": "PASS"
+    },
+    {
+      "name": "Recovery returns the existing resolution",
+      "status": "PASS"
+    },
+    {
+      "name": "Recorded result explicitly disclaims provider verification and system sending",
+      "status": "PASS"
+    },
+    {
+      "name": "message-result-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Native resolution read is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Not-needed hides delivery text and requires a reason",
+      "status": "PASS"
+    },
+    {
+      "name": "message-form-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "message-result-ar: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic not-needed saves reason without a message or channel",
+      "status": "PASS"
+    },
+    {
+      "name": "Message activity cannot be voided and uses Arabic labels",
+      "status": "PASS"
+    },
+    {
+      "name": "Resolved Arabic queue shows both recorded outcomes",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact retries return one immutable resolution",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing outcomes produce one winner and do not overwrite history",
+      "status": "PASS"
+    },
+    {
+      "name": "Cross-application task substitution is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-scope context is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Message tasks preserve application records, identities and capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot resume message outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter cannot replay completed outcome",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked recruiter queue has no tasks",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested sources unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "7def45af913e",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "docs/portal/test_candidate_messages.cjs": "0846138891de42ffe03eb6a90ff15cf0f824834103602bfff46a2f6d3c1bf515",
+    "frontend/portal/src/CandidateMessages.tsx": "8159cb70dec495e0cd6af9455d5685af4b061762191c7387f5eeb8008af15de6",
+    "kandil_hr/candidates/messages.py": "b63fb5523529d11a1fca9c47967d9382ae3d7957c0d596cc971b90a6df8eed33",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_message_resolution/kandil_candidate_message_resolution.json": "84d1bb619c02dfab37c38957ec142f32b8bea0b1b9256d82f9d79e63eb6e7d72",
+    "docs/portal/test_candidate_closure.cjs": "93e8e8297c834940ec776d99ceb0f46feef2bb34790873b53cea7dd4229606b6",
+    "frontend/portal/src/CandidateClosure.tsx": "3d8f4ac442110512879e179be6033d419bf591a5145f517887f6972bde577de1",
+    "kandil_hr/candidates/closure.py": "951ab37c28ff3652ea03b8169e81764deca355e24b196711450252e77d50d431",
+    "kandil_hr/hooks.py": "7fec4d40e13d9c26bf7189c408b84e49ee794135f6aa3ed24a6e2e6031afb633",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_closure/kandil_candidate_closure.json": "43c941637c32401e1fb8ffdb20ed6c8eade25613c645c24c78e8786fcd9dc992",
+    "frontend/portal/src/CandidateActivities.tsx": "339bf716f3fa8afa7300a7f0f3d5f96cc2e9adc4906410b15be91524b5acde0d",
+    "kandil_hr/candidates/activities.py": "14b2b9ff35710009f1eb5daa415df7c68ac863e1ab52e53f5cdeb4af9085d78f",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "35138c1b68daaa4d63e143d65f2f08da9bfb2ab288962c4815f3335fb07d0087",
+    "docs/portal/test_candidate_activities.cjs": "e23de554c04c8ac97059fe59c836f8ac7c9e037b57a3256023e573e0fb510b4f",
+    "docs/portal/test_candidate_activity_actions.cjs": "7045966a063eb9f4ab31322723f86ad76e7e18f83e4528db1f4fcf3b54bacc25",
+    "docs/portal/test_candidate_sessions.cjs": "e23b44d258dc5f0637145ac5c300dd3aa8c905a0fe8c5238270f5094f0879abe",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "992bfdbdaef5cc791f19a86efa285c76f039f332c04ef8ca3c9feeca87cf2189",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "98f852525065369e1c3e10d21052a87b569b6293e0984612a9137deaa059ec39",
+    "docs/portal/test_candidate_work.cjs": "87883a3d2d486c2a85da301705ef39d9c7226e345e3edb8ccde385cb8a1c6181",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "935da35c133a4987874b48778d444b69439fc077ed33e63134922f3ab42c4a76",
+    "frontend/portal/src/CandidateRecovery.tsx": "a2b5dea56cb16620ca8a60ae2275a0425dbc5b3a3954e0062f44d80bebcf1b7d",
+    "docs/portal/test_candidate_recovery_ui.cjs": "d49109bbd6a4721e4bf0cb706a52cb069f7b29d3954605d72708971a3b183fdb",
+    "kandil_hr/candidates/recovery.py": "104ddae720d4abb8fdc16be1601a775351db04d2534008168af7d96401097a8c",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "8f8ab322546b2f28656053cf0f2bcb70063afe225647211df071ee30ffaa9185",
+    "docs/portal/test_candidate_recovery.cjs": "5ad35d1de88873f775703f8967945df970011449cc366dedc7f965f6d8a9088c",
+    "kandil_hr/portal/candidates.py": "566ebe1d4f847c07f4ff0f17d2aecc0bf757adfb74f980a8306ddb848efdf231",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "656f693da949fe149f88a6278163abd185818d0555eeff3a1f7504b9fc1aa9e0",
+    "kandil_hr/foundation/command_audit.py": "308d59cf4bb3e6c586a4c5e338001d2466d5faae68c62266cae2515946d02ef0",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "e31ce907e8ea030973343938a3290e4d61ffc2864f692a70fc3c5e80421b1670",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "b1ad5becc141d1aba9bdf71386a4d6acc1328c24cfff7d550fa28e4fa0252d1b",
+    "frontend/portal/src/Candidates.tsx": "82905a4675af34653263a5941ffcff70acc182ab7da213ea638e001238a4d729",
+    "frontend/portal/src/main.tsx": "2baef58d982bd5e4cf613c5d627bcb27cfe7e54ac106e399cd68a6b22a5cbd65",
+    "frontend/portal/src/portal.css": "1f8f93aa9a684fc562bd97b35f30c7d8ba8ad2967b64453ab88c284655844e75",
+    "kandil_hr/public/portal/portal.js": "8989f9405d082d2c1f836cfb52359db80d95e2a54a3df1fe965f8e7356d88c4d",
+    "docs/portal/test_candidates.cjs": "e9ccb6cf91dffd063038215f764084be1b4271ac2535d99d6c9221752c08498c"
+  },
+  "limits": [
+    "Manual message reports and not-needed outcomes only; no provider transmission or verification. Clipboard is stubbed without altering the OS clipboard.",
+    "Synthetic tests do not prove independent security, sustained capacity or HR acceptance."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-14",
+  "method": "Direct visual inspection of final Playwright screenshots",
+  "files": {
+    "message-form-en.png": "366d7fe3459d8178138413b44c236581f60d7f918aed60640ff93b982415819d",
+    "message-result-en.png": "0d431967f2578aef9c5187451b1ae1e86800944b9a2151ba08063a2fb3244c25",
+    "message-form-ar.png": "a984210e048680420ee1aa4575372e29292682e904769d42cbc431d4a0ef7551",
+    "message-result-ar.png": "4513f6ed40fe159f2e0d1d958c8f96335da2fefad0959ad96d63f4c73316e44b",
+    "message-queue-ar.png": "d96d3e7ff2ef2e392df5f7ece39882c3654159b86bc0ef1214e50dddd99a1d48"
+  },
+  "observations": [
+    "English manual-report form/result keep draft, actual reported text and internal note separate; confirmation and no-provider-delivery notice readable.",
+    "Arabic 390px form and result fit; English draft punctuation uses automatic direction and recorded timestamp stays left-to-right.",
+    "Arabic resolved queue inspected after navigation animation settled; search, filters, counts and outcome badges fit."
+  ],
+  "limits": [
+    "Screenshots show synthetic data, not HR design acceptance or exhaustive device coverage.",
+    "English form deliberately shows the clipboard-denied fallback; clipboard was stubbed, not changed on the operating system."
+  ]
+}

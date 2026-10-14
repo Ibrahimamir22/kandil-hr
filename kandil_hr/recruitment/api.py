@@ -195,6 +195,7 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		"candidate_activity_record",
 		"candidate_activity_void",
 		"candidate_close",
+		"candidate_message_resolve",
 		"review",
 		"send_to_ceo",
 		"hr_correction",
@@ -219,6 +220,9 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		from kandil_hr.candidates.work import authorize as authorize_application_work
 		opening = frappe.db.get_value("Job Applicant", payload["application"], "job_title")
 		authorize_application_work(doc, dict(payload, opening=opening))
+	if operation == "candidate_message_resolve":
+		from kandil_hr.candidates.messages import authorize as authorize_message
+		authorize_message(doc, payload)
 	if operation == "candidate_close":
 		from kandil_hr.candidates.work import authorize as authorize_closure
 		authorize_closure(doc, payload)

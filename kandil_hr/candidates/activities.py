@@ -78,11 +78,12 @@ def can_void(event,request):
         or frappe.session.user==frappe.db.get_value('Kandil Organization Settings',request.company,'hr_approver'))
 
 
-def append(app,request,kind,outcome,note,voids=None,stage=None,labels=None):
+def append(app,request,kind,outcome,note,voids=None,stage=None,labels=None,links=None):
     values=dict(application=app.name,person=app.custom_kandil_person or None,company=request.company,
         actor=frappe.session.user,recorded_at=now_cairo().isoformat(),kind=kind,outcome=outcome,note=note,voids=voids)
     if stage:values.update(stage)
     if labels:values.update(labels)
+    if links:values.update(links)
     with effect():
         return frappe.get_doc(dict(doctype=DT,**values,content_hash=digest(values))).insert(ignore_permissions=True)
 

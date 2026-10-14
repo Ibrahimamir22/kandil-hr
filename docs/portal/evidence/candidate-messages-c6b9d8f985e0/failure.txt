@@ -1,0 +1,11 @@
+locator.waitFor: Error: strict mode violation: locator('.candidate-message-queue[aria-busy="false"] .candidate-row') resolved to 5 elements:
+    1) <button class="candidate-row">…</button> aka getByRole('button', { name: 'Synthetic candidate 00' })
+    2) <button class="candidate-row">…</button> aka getByRole('button', { name: 'Synthetic candidate 01' })
+    3) <button class="candidate-row">…</button> aka getByRole('button', { name: 'Synthetic candidate 02' })
+    4) <button class="candidate-row">…</button> aka getByRole('button', { name: 'Synthetic candidate 03' })
+    5) <button class="candidate-row">…</button> aka getByRole('button', { name: 'Synthetic candidate 04' })
+
+Call log:
+[2m  - waiting for locator('.candidate-message-queue[aria-busy="false"] .candidate-row') to be visible[22m
+
+    at /Users/ibrahimamir/Documents/Businesses/Kandil/06_Prototypes/Kandil_HR_Dev/development/frappe-bench/apps/kandil_hr/docs/portal/test_candidate_messages.cjs:67:265

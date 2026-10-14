@@ -25,6 +25,11 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' connected follow-up queue loads with five bucket controls',await p.locator('.candidate-queue [role=alert]').count()===0&&await p.locator('.followup-counts button').count()===5);
   await p.screenshot({path:path.join(out,'review-queue-'+lang+'.png')});
   if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Rejection messages':'رسائل الاعتذار',exact:true}).click();await p.locator('.candidate-message-queue[aria-busy="false"] .candidate-pagination').waitFor();
+  check(lang+' connected message queue loads with three task filters',await p.locator('.candidate-message-queue [role=alert]').count()===0&&await p.locator('.candidate-message-queue .followup-counts button').count()===3);
+  check(lang+' message queue viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await p.screenshot({path:path.join(out,'review-message-queue-'+lang+'.png')});
+  if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);

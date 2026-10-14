@@ -1,0 +1,1 @@
+from kandil_hr.candidates.messages import KandilCandidateMessageResolution
