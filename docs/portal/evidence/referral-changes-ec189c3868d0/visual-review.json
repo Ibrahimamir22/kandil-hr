@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of six final rendered screenshots",
+  "screenshots": {
+    "referral-decision-SET-en.png": "e71f50b1563c6a25033d605d7bf306adcf0a8989e4a3d2969e5e77b2d39e4e70",
+    "referral-decision-BONUS-en.png": "a14a8ac012dc200cee34dbff3dd28dc77668a92810400d1f7dea212a7c626916",
+    "referral-decision-VOID-ar.png": "1ebf6b4eb7243b571cd7ff022ec5c7fd6cd07216fa7db154297f67589965aeeb",
+    "referral-history-ar.png": "2f2b94ee83d6013b2b3f03e185438da7df5e97a086983f16abe0b7fa353c4ef0",
+    "referral-register-en.png": "c6f9d9923e173d26fafd592dbbfe4df7bf68f593a610a417327a6d6231ce80d8",
+    "referral-register-ar.png": "abbbf61f637a6ea5588f76bd0cfd506a6e73e7c188116c0d225b1198c645af1d"
+  },
+  "findings": [
+    "English referral and bonus forms have separate review, confirmation and submit rows.",
+    "Arabic mobile confirmation wraps above its submit button without overlap.",
+    "Arabic before/after history and English filtered/Arabic empty register are readable within viewport.",
+    "Payment reporting remains explicitly unverified."
+  ],
+  "limits": [
+    "Synthetic layouts only; no independent accessibility audit or HR terminology acceptance."
+  ]
+}

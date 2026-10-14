@@ -1,0 +1,124 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Referral Revision",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Job Applicant"
+    },
+    {
+      "fieldname": "opening",
+      "label": "Opening",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Job Opening"
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "previous_revision",
+      "label": "Previous Revision",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "before_hash",
+      "label": "Before Hash",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "before_json",
+      "label": "Before Json",
+      "fieldtype": "Long Text",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "after_json",
+      "label": "After Json",
+      "fieldtype": "Long Text",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "action",
+      "label": "Action",
+      "fieldtype": "Select",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "SET\nVOID\nBONUS"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "reqd": 1,
+      "read_only": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "reqd": 1,
+      "read_only": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "read_only": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "application",
+    "opening",
+    "person",
+    "sequence",
+    "previous_revision",
+    "before_hash",
+    "before_json",
+    "after_json",
+    "action",
+    "actor",
+    "reason",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

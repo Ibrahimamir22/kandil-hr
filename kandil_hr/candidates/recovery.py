@@ -47,6 +47,7 @@ def assert_unexpired(doc):
         frappe.throw(_('This saved action has expired. Review existing application records before starting another request.'),CandidateRecoveryExpired)
 COMMON={'name','opening_name','expected_version','command_id'}
 SCHEMAS={
+    'referral':(COMMON|{'application','application_version','referral_version','action','reason'},{'referral','bonus_status'}),
     'source':(COMMON|{'application','application_version','attribution_version','source_code','source_version','sub_source','reason'},set()),
     'screen':(COMMON|{'application','application_version','reason'},set()),
     'reopen':(COMMON|{'application','application_version','reason','closure_name','closure_hash'},set()),
@@ -60,12 +61,16 @@ SCHEMAS={
     'owner':(COMMON|{'application','application_version','owner','reason'},set()),
     'followup':(COMMON|{'application','application_version','owner','reason','task','due'},set()),
 }
-OPERATIONS={'source':'candidate_source_correct','screen':'candidate_screen','reopen':'candidate_reopen','message':'candidate_message_resolve','closure':'candidate_close','activity':'candidate_activity_record','activity_void':'candidate_activity_void','intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
+OPERATIONS={'referral':'candidate_referral_change','source':'candidate_source_correct','screen':'candidate_screen','reopen':'candidate_reopen','message':'candidate_message_resolve','closure':'candidate_close','activity':'candidate_activity_record','activity_void':'candidate_activity_void','intake':'candidate_intake','correction':'candidate_profile_correct','migration':'candidate_identity_migrate','owner':'application_owner','followup':'application_task'}
 def correct_source(**args):
     from kandil_hr.sourcing.attribution import correct
     return correct(**args)
 
-HANDLERS={'source':correct_source,'screen':stages.screen,'reopen':stages.reopen,'message':messages.resolve,'closure':closure.close,'activity':activities.record,'activity_void':activities.void,'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
+def change_referral(**args):
+    from kandil_hr.sourcing.referral_changes import change
+    return change(**args)
+
+HANDLERS={'referral':change_referral,'source':correct_source,'screen':stages.screen,'reopen':stages.reopen,'message':messages.resolve,'closure':closure.close,'activity':activities.record,'activity_void':activities.void,'intake':intake.create_application,'correction':corrections.correct,'migration':migration.apply_review,'owner':work.change_owner,'followup':work.set_followup}
 
 
 @contextmanager
@@ -111,6 +116,10 @@ def payload(operation,value):
     for key in ('details','profile'):
         if key in value and not isinstance(value[key],(dict,str)):
             frappe.throw(_('Candidate details must be a JSON object.'))
+    if operation=='referral':
+        from kandil_hr.sourcing.referral_changes import inputs
+        inputs(value['action'],value.get('referral'),value.get('bonus_status',''),value['reason'])
+        intake.text(value['referral_version'],140)
     if operation=='source':
         from kandil_hr.sourcing.attribution import validate_input
         validate_input(value['source_code'],value['source_version'],value['sub_source'],value['reason'])
@@ -150,7 +159,10 @@ def authorize(operation,args):
     # scope. Company serialization keeps its domain/User order compatible here.
     assert_current_request_scope(request,required_roles=('Kandil Recruiter',))
     context=dict(args,opening=args['opening_name'])
-    if operation=='source':
+    if operation=='referral':
+        from kandil_hr.sourcing.referral_changes import authorize as authorize_referral
+        authorize_referral(request,context,bonus=args['action']=='BONUS')
+    elif operation=='source':
         from kandil_hr.sourcing.attribution import authorize as authorize_source
         authorize_source(request,context)
     elif operation in ('screen','reopen'):stages.authorize(request,context,reopen=operation=='reopen')

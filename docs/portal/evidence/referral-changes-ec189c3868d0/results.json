@@ -1,0 +1,171 @@
+{
+  "status": "PASS",
+  "run_id": "ec189c3868d0",
+  "checks": [
+    {
+      "name": "en referral prevents confirmation without an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "referrer-picker-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain referral intake freezes employee choice",
+      "status": "PASS"
+    },
+    {
+      "name": "en referral creates exactly one application",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-snapshot-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter UI offers no bonus decision",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-decision-SET-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain change freezes reviewed choice",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response retry records exactly one reviewed change",
+      "status": "PASS"
+    },
+    {
+      "name": "Original intake snapshot remains unchanged",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter cannot bypass HR bonus UI",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot read referral history",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider register reveals no referrals",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-decision-BONUS-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "HR reported payment is explicit and unverified",
+      "status": "PASS"
+    },
+    {
+      "name": "Register filters current HR decisions",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-register-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Register opens the permitted application",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing bonus decisions commit one and reject stale review",
+      "status": "PASS"
+    },
+    {
+      "name": "Race adds one history entry",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked HR cannot replay completed decision",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-decision-VOID-ar fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Influencing void clears current referral without deleting history",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-history-ar fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Voided referral leaves active register",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-register-ar fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Closure and correction race keeps a committed closure",
+      "status": "PASS"
+    },
+    {
+      "name": "Recorded outcome locks all later attribution",
+      "status": "PASS"
+    },
+    {
+      "name": "Locked attribution rejects void",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing records and capacity preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "No page errors server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "ec189c3868d0",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true,
+    "referral_employees_inactive": 2
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/referrals.py": "c6cfe32775c42acf759bf8eb2e17e8448a036d6d6a949df6b14e9e7f2a466b15",
+    "kandil_hr/sourcing/test_referrals.py": "0ddaf2d6fc9f54eb68ceaab9bd71049d759692ca4e0c7f2407dd9cc238c5bfba",
+    "kandil_hr/portal/referral_fixture.py": "e29ee062f05133cca52464cc00de7a005804ca1d3f186c6c598c7c53711715ba",
+    "kandil_hr/candidates/intake.py": "142c79ea7639978f2c340e76816d6c6ca776916911d7a238045697f51d3b0a28",
+    "kandil_hr/candidates/recovery.py": "2dcb2dafa036037c37e9c679c1e955601e382c033b930523ac576942340730d3",
+    "kandil_hr/recruitment/command_audit.py": "885b85d36628cf60fb099a15c62e3e3178f103ca7046351df9fb424bee9e743f",
+    "kandil_hr/foundation/command_audit.py": "f79a60d9efe26b47495b4af1d80efcf23274df7da0503f04d2333f609b93cabf",
+    "kandil_hr/sourcing/sources.py": "48da11b678bd24de458829932c0295dc8019f5cd8d957ed757e99f1468b8503b",
+    "frontend/portal/src/Referrals.tsx": "002724363ead6c05c7cb5d07691f047999c9c5a1efc6fea35a073a68e62da30d",
+    "frontend/portal/src/Candidates.tsx": "45b432a5ada089db38db2c01323f7eb2ecde824c6b774fa58b73ec9ddb5e5324",
+    "frontend/portal/src/CandidateRecovery.tsx": "7b6682190b13d308e2a9320e0b53bbd4d9306fb51919974f3810287976792d1f",
+    "kandil_hr/public/portal/portal.js": "9b986a3e7c5f1d90ed118fbb791f375e1749ff25abad9e53392dc04af6c99fc8",
+    "docs/portal/test_referral_changes.cjs": "0991162f12dc15748ad4df6a970298d7d2d2c83a38adc5ffb4fe18151d06c46b",
+    "kandil_hr/sourcing/referral_changes.py": "ff92113f44bb67ea7625e434da3f745a6735ddab5046ffd971f9fc3abc95cdb2",
+    "frontend/portal/src/ReferralManagement.tsx": "070a1c9af7b54440f8e24bf52995d7316a947d3740cd57dbd3cd34f2de068e33",
+    "frontend/portal/src/candidateCommands.ts": "eda6ac34763a562820b67dacbeac6cf9c46a68d009635aa3eabadb0b47f92ae0",
+    "frontend/portal/src/main.tsx": "0a038476ffc4436bd4abb4db2c9bf74e820a10a40064250d0963044686611524",
+    "frontend/portal/src/portal.css": "f43f1b533f3946bd4fe1943bf00c69266ceb83d9eaa108da30c0a661b22bd4b8"
+  },
+  "limits": [
+    "Synthetic referral correction, HR bonus report and register evidence; no payment execution or verification.",
+    "Dedicated primary-source removal, HR acceptance and independent security/capacity/production gates remain open."
+  ]
+}

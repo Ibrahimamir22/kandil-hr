@@ -1,0 +1,445 @@
+{
+  "checked_at": "2026-10-14T20:37:28.041728+00:00",
+  "sites": [
+    {
+      "site": "kandil-parity.localhost",
+      "before": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 83,
+            "sha256": "f2dadbc6a571ea4d8ee5df290e745081bf62981acd9625fc0074affff4ad271c"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 27,
+            "sha256": "c0857c7fe38b18216a3f8ab36ba5c17020e63287d5ababbfb8629986c6495d21"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 2350,
+            "sha256": "29cd38b422060601649c6bdc858a989b75d382da53217b44f53b90522c327bb2"
+          },
+          "Kandil Candidate Activity": {
+            "count": 285,
+            "sha256": "8e22d7fc8a0ac5d924b9189e4e77fcd1bc32c1070438706b75dd1c8fd1824a29"
+          },
+          "Kandil Capacity": {
+            "count": 1071,
+            "sha256": "5c3602d4d9fcc1bd60bf697e05f2883c7a7b4fa8e662edd7b4676dfa603699c2"
+          },
+          "Kandil Command Audit": {
+            "count": 6647,
+            "sha256": "fd3b6747f3c9af66256a68b1c074cb4f84b2fbda4a8c71f527122f91f726ff2b"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 33,
+            "sha256": "51b04bfa17175c900e366604877d995f68338335cdac365d52ed7588a9bb8908"
+          },
+          "Kandil Consent Invitation": {
+            "count": 90,
+            "sha256": "4078b84618aef1584052cf16b4964d28b15455c08758fcaae33ef3e2c1597393"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 34,
+            "sha256": "3e811cf3a2f415e8f6f8e5e85bca6a491e1ef973cf7cba66a0d79df749628aa0"
+          },
+          "Kandil Consent Revocation": {
+            "count": 3,
+            "sha256": "dc5d3b82e30b0dddeb9a7cfbea801fe8678e72ad9bcea608ac5e7bffcad642d0"
+          },
+          "Kandil Candidate Recovery": {
+            "count": 319,
+            "sha256": "196a766b9c82e4c8164df2fb296be01380c984182ebfa0c898b47e0fc669b306"
+          },
+          "Kandil Pool Policy Revision": {
+            "count": 9,
+            "sha256": "d3394ed5796aa70ede19d8e9b3bd1a3753b99b11db1e7f34718999bf2800322f"
+          },
+          "Kandil Pool Consent Event": {
+            "count": 85,
+            "sha256": "35db07ade669106f672337292d3359660c8fb7a0b02bf1b7bb3c2de5aa97093b"
+          },
+          "Kandil Talent Pool Event": {
+            "count": 43,
+            "sha256": "aa4cf3da229df9e949a7b2226a5365404c53b98f28ca6d42a8bb2ef87b25d578"
+          },
+          "Kandil Pool Intake": {
+            "count": 17,
+            "sha256": "577fd3c57cf3f4f853726740c90910330c1852a9da6507f316dcd663ff5de4ae"
+          },
+          "Kandil Source Revision": {
+            "count": 8,
+            "sha256": "88211351c4afec8a62894e504af037852cee769288b2a6944faa33f862c28edc"
+          },
+          "Kandil Application Source": {
+            "count": 11,
+            "sha256": "c04d8c8c0d95269c1b752ea903480007e12a61b03c93b6dd31612499089122cb"
+          },
+          "Kandil Source Correction": {
+            "count": 9,
+            "sha256": "d9d5bf7d2fceef27e7126b6c6a9296b05f726f6c25cc6e1c25065a3480cbdd29"
+          },
+          "Kandil Agency Revision": {
+            "count": 13,
+            "sha256": "b7e83af3f442117256efd1f86fd17262b3c3f4fbcb6c7192b55ea7b2b5380dbd"
+          },
+          "Kandil Agency Submission": {
+            "count": 3,
+            "sha256": "fea4700217091ea7ce9f30c6b0a1111b65ab8c2a8ee2420fef05784870861919"
+          },
+          "Kandil Referral Submission": {
+            "count": 4,
+            "sha256": "d95c8ae6fd958611f7365dd91a12cd222b17a9168ccbe25b5ad29bda0c873c4b"
+          },
+          "Kandil Referral Revision": null
+        },
+        "application_unique": false,
+        "reopening_unique": true,
+        "status_options": [
+          "Open",
+          "Replied",
+          "Screening",
+          "Shortlisted",
+          "Rejected",
+          "Hold",
+          "Accepted"
+        ],
+        "screening_enabled": false
+      },
+      "after": {
+        "site": "kandil-parity.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 83,
+            "sha256": "f2dadbc6a571ea4d8ee5df290e745081bf62981acd9625fc0074affff4ad271c"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 27,
+            "sha256": "c0857c7fe38b18216a3f8ab36ba5c17020e63287d5ababbfb8629986c6495d21"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 24,
+            "sha256": "f237f95a7a3043005175e1a7f52c766787ab19ba5d4c5f1b77c7ec665b942cee"
+          },
+          "Job Applicant": {
+            "count": 2350,
+            "sha256": "29cd38b422060601649c6bdc858a989b75d382da53217b44f53b90522c327bb2"
+          },
+          "Kandil Candidate Activity": {
+            "count": 285,
+            "sha256": "8e22d7fc8a0ac5d924b9189e4e77fcd1bc32c1070438706b75dd1c8fd1824a29"
+          },
+          "Kandil Capacity": {
+            "count": 1071,
+            "sha256": "5c3602d4d9fcc1bd60bf697e05f2883c7a7b4fa8e662edd7b4676dfa603699c2"
+          },
+          "Kandil Command Audit": {
+            "count": 6647,
+            "sha256": "fd3b6747f3c9af66256a68b1c074cb4f84b2fbda4a8c71f527122f91f726ff2b"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 33,
+            "sha256": "51b04bfa17175c900e366604877d995f68338335cdac365d52ed7588a9bb8908"
+          },
+          "Kandil Consent Invitation": {
+            "count": 90,
+            "sha256": "4078b84618aef1584052cf16b4964d28b15455c08758fcaae33ef3e2c1597393"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 34,
+            "sha256": "3e811cf3a2f415e8f6f8e5e85bca6a491e1ef973cf7cba66a0d79df749628aa0"
+          },
+          "Kandil Consent Revocation": {
+            "count": 3,
+            "sha256": "dc5d3b82e30b0dddeb9a7cfbea801fe8678e72ad9bcea608ac5e7bffcad642d0"
+          },
+          "Kandil Candidate Recovery": {
+            "count": 319,
+            "sha256": "196a766b9c82e4c8164df2fb296be01380c984182ebfa0c898b47e0fc669b306"
+          },
+          "Kandil Pool Policy Revision": {
+            "count": 9,
+            "sha256": "d3394ed5796aa70ede19d8e9b3bd1a3753b99b11db1e7f34718999bf2800322f"
+          },
+          "Kandil Pool Consent Event": {
+            "count": 85,
+            "sha256": "35db07ade669106f672337292d3359660c8fb7a0b02bf1b7bb3c2de5aa97093b"
+          },
+          "Kandil Talent Pool Event": {
+            "count": 43,
+            "sha256": "aa4cf3da229df9e949a7b2226a5365404c53b98f28ca6d42a8bb2ef87b25d578"
+          },
+          "Kandil Pool Intake": {
+            "count": 17,
+            "sha256": "577fd3c57cf3f4f853726740c90910330c1852a9da6507f316dcd663ff5de4ae"
+          },
+          "Kandil Source Revision": {
+            "count": 8,
+            "sha256": "88211351c4afec8a62894e504af037852cee769288b2a6944faa33f862c28edc"
+          },
+          "Kandil Application Source": {
+            "count": 11,
+            "sha256": "c04d8c8c0d95269c1b752ea903480007e12a61b03c93b6dd31612499089122cb"
+          },
+          "Kandil Source Correction": {
+            "count": 9,
+            "sha256": "d9d5bf7d2fceef27e7126b6c6a9296b05f726f6c25cc6e1c25065a3480cbdd29"
+          },
+          "Kandil Agency Revision": {
+            "count": 13,
+            "sha256": "b7e83af3f442117256efd1f86fd17262b3c3f4fbcb6c7192b55ea7b2b5380dbd"
+          },
+          "Kandil Agency Submission": {
+            "count": 3,
+            "sha256": "fea4700217091ea7ce9f30c6b0a1111b65ab8c2a8ee2420fef05784870861919"
+          },
+          "Kandil Referral Submission": {
+            "count": 4,
+            "sha256": "d95c8ae6fd958611f7365dd91a12cd222b17a9168ccbe25b5ad29bda0c873c4b"
+          },
+          "Kandil Referral Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true,
+        "status_options": [
+          "Open",
+          "Replied",
+          "Screening",
+          "Shortlisted",
+          "Rejected",
+          "Hold",
+          "Accepted"
+        ],
+        "screening_enabled": false
+      },
+      "business_records_unchanged": true,
+      "repeat_unchanged": true
+    },
+    {
+      "site": "kandil-review.localhost",
+      "before": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Invitation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Revocation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Recovery": {
+            "count": 2,
+            "sha256": "4cd2dda5641d79a8071933254f675b276f0fe288f6351b8e0f520ba3319acc0b"
+          },
+          "Kandil Pool Policy Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Pool Consent Event": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Talent Pool Event": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Pool Intake": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Source Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Application Source": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Source Correction": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Agency Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Agency Submission": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Referral Submission": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Referral Revision": null
+        },
+        "application_unique": false,
+        "reopening_unique": true,
+        "status_options": [
+          "Open",
+          "Replied",
+          "Screening",
+          "Shortlisted",
+          "Rejected",
+          "Hold",
+          "Accepted"
+        ],
+        "screening_enabled": true
+      },
+      "after": {
+        "site": "kandil-review.localhost",
+        "tables": {
+          "Kandil Candidate Closure": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Reopening": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Message Resolution": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Job Applicant": {
+            "count": 4,
+            "sha256": "c4a20c6397964a37b00c965f0e2143d85570e901112346c859a547325ec8b0ad"
+          },
+          "Kandil Candidate Activity": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Capacity": {
+            "count": 1,
+            "sha256": "cd5d8a184083d2010599984d523fa38a18a4fdc7f2c87b605798ae0b473744b2"
+          },
+          "Kandil Command Audit": {
+            "count": 9,
+            "sha256": "4e9c9e2d8633141bbb549870e9cce77003395887bf9d961897eca58d4321f612"
+          },
+          "Kandil Privacy Notice Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Invitation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Acceptance": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Consent Revocation": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Candidate Recovery": {
+            "count": 2,
+            "sha256": "4cd2dda5641d79a8071933254f675b276f0fe288f6351b8e0f520ba3319acc0b"
+          },
+          "Kandil Pool Policy Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Pool Consent Event": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Talent Pool Event": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Pool Intake": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Source Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Application Source": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Source Correction": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Agency Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Agency Submission": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Referral Submission": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          },
+          "Kandil Referral Revision": {
+            "count": 0,
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+          }
+        },
+        "application_unique": false,
+        "reopening_unique": true,
+        "status_options": [
+          "Open",
+          "Replied",
+          "Screening",
+          "Shortlisted",
+          "Rejected",
+          "Hold",
+          "Accepted"
+        ],
+        "screening_enabled": true
+      },
+      "business_records_unchanged": true,
+      "repeat_unchanged": true
+    }
+  ]
+}

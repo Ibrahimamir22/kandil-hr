@@ -48,7 +48,7 @@
       "fieldtype": "Select",
       "read_only": 1,
       "reqd": 1,
-      "options": "intake\ncorrection\nmigration\nowner\nfollowup\nactivity\nactivity_void\nclosure\nmessage\nscreen\nreopen\nsource"
+      "options": "intake\ncorrection\nmigration\nowner\nfollowup\nactivity\nactivity_void\nclosure\nmessage\nscreen\nreopen\nsource\nreferral"
     },
     {
       "fieldname": "payload_hash",

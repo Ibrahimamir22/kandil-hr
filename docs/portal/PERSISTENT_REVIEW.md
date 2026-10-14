@@ -79,3 +79,13 @@ Open a row to inspect the actual application and its responsibility/follow-up hi
 - Scope is the implemented recruitment/candidate increment. Full profiles, private files, consent, rejection/duplicate/knockout/ad-close task categories and activity/rejection workflows, sourcing/imports, interviews, offers, joining/lifecycle and reporting remain tracked in S5–S12.
 - The shared development filesystem, HTTP loopback server and local credentials are not a production security boundary. MFA/session policy, independent security assessment, real-role HR UAT, 1,000+ capacity proof, backup/operations and production release remain open.
 - The organization policy remains HR + CEO approval for individual position changes. This review setup does not weaken that route or claim all organization acceptance is complete.
+
+## Referral decisions and register (14 October increment)
+
+Use **Employee referrals / ترشيحات الموظفين** for the active, permission-filtered register. An empty register on the preserved review site is expected; no referrals or bonus decisions are invented during provisioning.
+
+For a synthetic candidate, open **Current referral and bonus decisions / الترشيح الحالي وقرارات المكافأة**. Before a recorded outcome, an authorized recruiter can add/correct a referral or void an influencing referral. Review the selected employee, relationship and reason before confirming. The original intake snapshot and dated before/after history remain visible. Primary-referral removal requires the still-pending dedicated source-change workflow.
+
+Only the separate configured HR test role can record bonus decisions. Ibrahim's personal recruiter/requester account is intentionally not elevated to HR. PAID records a human payment report, not a payment or verified bank result. A recorded candidate outcome permanently blocks attribution edits while HR bonus follow-up remains possible. If a reply is lost, retry the same action or use **Unfinished actions**; do not create a replacement command.
+
+Do not use real candidate, employee, payroll or bank information in these local tests. Full acceptance and 1,000+ account capacity/security gates remain pending.

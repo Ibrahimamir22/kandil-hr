@@ -53,6 +53,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.locator('.candidate-referral[aria-busy="false"] h2').waitFor();
   check(lang+' referral panel has no invented employee or bonus decision',await p.locator('.candidate-referral [role=alert]').count()===0&&await p.locator('.candidate-referral').getByText(lang==='en'?'No employee referral recorded for this application.':'لا يوجد ترشيح موظف موثق لهذا الطلب.',{exact:true}).isVisible());
   check(lang+' agency panel has no invented submission',await p.locator('.candidate-agency [role=alert]').count()===0&&await p.locator('.candidate-agency').getByText(lang==='en'?'No agency submission recorded for this application.':'لا يوجد تقديم موثق من مكتب على هذا الطلب.',{exact:true}).isVisible());
+  await p.locator('.referral-management[aria-busy="false"] h2').waitFor();
+  check(lang+' current referral loads without invented decisions or HR bonus authority',await p.locator('.referral-management [role=alert]').count()===0&&await p.locator('.referral-history article').count()===0&&await p.locator('.referral-management option[value="BONUS"]').count()===0);
   await p.locator('.candidate-source[aria-busy="false"] h2').waitFor();
   check(lang+' source attribution and history load without inventing a correction',await p.locator('.candidate-source [role=alert]').count()===0&&await p.locator('.source-correction-history article').count()===0);
   check(lang+' source attribution viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
@@ -89,6 +91,10 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await source.selectOption('AGENCY');
   check(lang+' agency source requires explicit agency terms and catalogue is empty',await p.locator('.agency-intake select[required]').count()===1&&await p.locator('.agency-intake select option').count()===1);
 
+  if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Employee referrals':'ترشيحات الموظفين',exact:true}).click();await p.locator('.referral-register[aria-busy="false"]').waitFor();
+  check(lang+' referral register loads empty without fabricated claims',await p.locator('.referral-register [role=alert]').count()===0&&await p.locator('.referral-register .candidate-row').count()===0);
+  check(lang+' referral register viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await ctx.close();
  }
  check('Review business records preserved',JSON.stringify(before)===JSON.stringify(snapshot()));

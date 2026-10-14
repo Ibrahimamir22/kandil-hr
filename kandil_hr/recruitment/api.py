@@ -193,6 +193,8 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 		"candidate_identity_migrate",
 		"candidate_profile_correct",
 		"candidate_source_correct",
+		"candidate_referral_change",
+		"candidate_referral_bonus",
 		"candidate_activity_record",
 		"candidate_activity_void",
 		"candidate_close",
@@ -229,6 +231,9 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	if operation in {"candidate_screen", "candidate_reopen"}:
 		from kandil_hr.candidates.stages import authorize as authorize_stage
 		authorize_stage(doc, payload, reopen=operation == "candidate_reopen")
+	if operation in {"candidate_referral_change", "candidate_referral_bonus"}:
+		from kandil_hr.sourcing.referral_changes import authorize as authorize_referral
+		authorize_referral(doc, payload, bonus=operation == "candidate_referral_bonus")
 	if operation == "candidate_source_correct":
 		from kandil_hr.sourcing.attribution import authorize as authorize_source
 		authorize_source(doc, payload)

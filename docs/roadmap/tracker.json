@@ -679,7 +679,7 @@
           "id": "S5-03",
           "description": "Add sourcing channels, ads/apply links, referrals, agencies and subscription-credit records.",
           "status": "in_progress",
-          "progress": "Controlled sources, original source snapshots, outcome locks and agency terms/ownership are implemented. Initial primary/influencing employee referral intake now preserves employee evidence and rejects competing first-referrer claims. Referral replacement/voids and bonus decisions/register, complete internal identity, dedicated attribution changes/disputes, person-wide original source, ads/apply links and subscription credits remain unfinished.",
+          "progress": "Controlled sources, snapshots/outcome locks, agency terms/ownership and initial referrals are connected. Reviewed referral changes, influencing voids, immutable bonus history, HR-only decisions and scoped active register now pass 65 native, 32 browser and 70 preserved-review checks. Dedicated source/agency transitions, complete internal identity, person-wide original source, ads/apply links, subscription credits and HR acceptance remain unfinished.",
           "evidence": [
             "S5_SOURCE_CATALOG_CHECKPOINT.md",
             "evidence/s2-regression-990223b8e4ee.json",
@@ -702,7 +702,13 @@
             "evidence/s2-regression-0a6f4e617c9b.json",
             "../portal/evidence/referrals-54570a10c5b0/results.json",
             "../portal/evidence/referrals-54570a10c5b0/visual-review.json",
-            "../portal/evidence/review-work-1792009646047/results.json"
+            "../portal/evidence/review-work-1792009646047/results.json",
+            "S5_REFERRAL_DECISIONS_CHECKPOINT.md",
+            "evidence/referral-changes-schema-2026-10-14.json",
+            "evidence/s2-regression-29125fc0960c.json",
+            "../portal/evidence/referral-changes-ec189c3868d0/results.json",
+            "../portal/evidence/referral-changes-ec189c3868d0/visual-review.json",
+            "../portal/evidence/review-work-1792010702410/results.json"
           ]
         },
         {
@@ -1087,8 +1093,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "AR/EN initial referral intake now records an active employee or explicitly unverified empty-register name, preserves original attribution, checks competing referrers and provides initial review classifications without payment. 63 native, 21 browser and 64 preserved-review checks passed. SRC-003/S5 remain partial.",
-    "evidence": "S5_REFERRAL_INTAKE_CHECKPOINT.md",
-    "next": "Complete reviewed referral changes/voids and HR bonus decision history/register. Continue dedicated source changes, advertisements/apply links, credits, private documents/imports and privacy/retention, preserving all 98 requirements and all S6–S12 release gates."
+    "summary": "AR/EN reviewed referral changes, influencing voids, immutable bonus history and a scoped active register are connected. HR-only PAID is explicitly an unverified human report, never a payment. 65 native, 32 final browser and 70 preserved-review checks passed; SRC-003/S5 remain partial.",
+    "evidence": "S5_REFERRAL_DECISIONS_CHECKPOINT.md",
+    "next": "Complete dedicated source transitions, primary/influencing reclassification and agency changes/disputes; retain full sourcing/register detail and internal-identity requirements. Continue ads/apply links, credits, documents/imports, privacy/retention and all S6–S12 gates."
   }
 }

@@ -1,0 +1,13 @@
+{
+  "status": "REVISED",
+  "reviewed": [
+    "referral-decision-SET-en.png",
+    "referral-decision-BONUS-en.png",
+    "referral-register-en.png",
+    "referral-decision-VOID-ar.png",
+    "referral-history-ar.png",
+    "referral-register-ar.png"
+  ],
+  "finding": "Workflow captures were readable and viewport checks passed, but Arabic confirmation text flowed around the inline submit button. Added a grid form layout, separate button row and block proposed-change summary. Final browser run and captures supersede these layouts.",
+  "method": "Manual visual inspection of rendered evidence; not accessibility or HR acceptance certification."
+}

@@ -98,7 +98,7 @@ def selected(company, value):
                 identity_basis='employee_register' if employee_id else 'empty_register_name_only')
 
 
-def check_person(company, opening, person, selection):
+def check_person(company, opening, person, selection, exclude=''):
     # The existing Employee -> Job Applicant -> Person relation is authoritative.
     # Missing links are not resolved by phone/name matching.
     employees = frappe.db.sql('''SELECT e.name,e.status FROM `tabEmployee` e
@@ -107,15 +107,14 @@ def check_person(company, opening, person, selection):
     if selection['employee'] and any(e.name == selection['employee'] for e in employees):
         frappe.throw(_('An employee cannot refer themselves.'), frappe.PermissionError)
     key = selection['employee'] or sources.normalized_label(selection['employee_name'])
-    prior = frappe.db.sql('''SELECT referrer_key FROM `tabKandil Referral Submission`
-        WHERE company=%s AND opening=%s AND person=%s FOR UPDATE''', (company, opening, person), as_dict=True)
-    if any(r.referrer_key != key for r in prior):
+    from kandil_hr.sourcing.referral_changes import claims
+    if any(key != previous for previous in claims(company, opening, person, exclude)):
         frappe.throw(_('An earlier referral for this person and vacancy requires HR review.'), frappe.PermissionError)
     return any(e.status == 'Active' for e in employees)
 
 
-def capture(app, company, selection, primary):
-    internal = check_person(company, app.job_title, app.custom_kandil_person, selection)
+def classify(app, company, selection, primary, exclude=''):
+    internal = check_person(company, app.job_title, app.custom_kandil_person, selection, exclude)
     since = now_cairo().date() - timedelta(days=selection['policy']['prior_days'])
     known = bool(frappe.db.sql('''SELECT a.name FROM `tabJob Applicant` a
         INNER JOIN `tabJob Opening` o ON o.name=a.job_title
@@ -128,6 +127,11 @@ def capture(app, company, selection, primary):
     snapshot = dict(selection, kind='PRIMARY' if primary else 'INFLUENCING',
                     bonus_status=status, eligibility_reason=reason,
                     internal_identity='linked_active_employee' if internal else 'no_linked_active_employee')
+    return snapshot
+
+
+def capture(app, company, selection, primary):
+    snapshot = classify(app, company, selection, primary)
     values = dict(company=company, application=app.name, opening=app.job_title, person=app.custom_kandil_person,
                   employee=selection['employee'] or None,
                   referrer_key=selection['employee'] or sources.normalized_label(selection['employee_name']),
