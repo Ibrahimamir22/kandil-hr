@@ -1,0 +1,51 @@
+{
+  "status": "FAIL",
+  "run_id": "4fd9c70c543c",
+  "checks": [
+    {
+      "name": "My queue uses Cairo date with exact totals beyond first page",
+      "status": "PASS"
+    },
+    {
+      "name": "Overdue actions precede today and upcoming",
+      "status": "PASS"
+    },
+    {
+      "name": "Second page has remaining two rows without repeats",
+      "status": "FAIL"
+    }
+  ],
+  "cleanup": {
+    "run_id": "4fd9c70c543c",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/candidates/queue.py": "83242b506b1723696fdd897bd4b66a8d6c3dd301e9a21aeacf268e811803a5b0",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/portal/vacancies.py": "336cb6de3b2cea8716d7ec087434ac6411cc82c453e4eae955aa758853a54717",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/portal/queue_fixture.py": "e514cd8f6b56e281682c3fa5077005704fe5f5d6ae2a56d634e96b5e1ed7624c",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "61ecf768ad2282b57dafd7f93095c0f7e2527e62eb8f9eac95aab25d99987c51",
+    "frontend/portal/src/CandidateQueue.tsx": "e2649e3ac816b9754f8801da3df1d5f0f70d5f6a57e55c65b7ce36fa5337434e",
+    "frontend/portal/src/main.tsx": "86730d33a2a2fb671c1d13b371525e9eb67efcfe8e26d8150b3d19b79d7458a2",
+    "frontend/portal/src/CandidateWork.tsx": "155440a748f51f1165e7c5552d7349716bf7bf5432c57057d08125745ea5b056",
+    "frontend/portal/src/portal.css": "4b6c29e56d61f145ea6b1b5fa922a2260905d2a7f5ac8ce099ff781c1d7a459f",
+    "kandil_hr/public/portal/portal.js": "0f3faa17fe4fb2440998e5c236229c1285ee9d48db4c404b84581f44e40bc58c",
+    "docs/portal/test_candidate_queue.cjs": "aff67f64dc4626f289bd2f5f43edec7cace1a6e613bd86f1d88aced3920866bd"
+  },
+  "limits": [
+    "Scheduled follow-up and fresh-application queue only; rejection messages, duplicate/knockout/ad-close tasks and full S5 acceptance remain open.",
+    "Synthetic local roles and data; no production, HR acceptance or 1000-user certification."
+  ]
+}

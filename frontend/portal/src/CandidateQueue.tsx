@@ -1,0 +1,29 @@
+import React, {useEffect, useState} from 'react';
+import {api, ApiError} from './api';
+import type {Tr} from './types';
+
+type Bucket='all'|'overdue'|'today'|'upcoming'|'unplanned';
+type Row={name:string;applicant_name:string;person_name:string|null;job_title:string;company:string;status:string;task:string|null;due:string|null;owner_label:string|null;next_owner_label:string|null;bucket:Bucket;vacancy_state:string};
+type Page={rows:Row[];counts:Record<Bucket,number>;total:number;start:number;page_length:number;has_more:boolean;as_of:string};
+const buckets:Record<Bucket,[string,string]>={all:['كل المتابعات','All follow-ups'],overdue:['متأخرة','Overdue'],today:['اليوم','Today'],upcoming:['قادمة','Upcoming'],unplanned:['جديدة بدون متابعة','New without follow-up']};
+const states:Record<string,[string,string]>={Open:['جديد','Open'],Replied:['تم التواصل','Replied'],Shortlisted:['قائمة مختصرة','Shortlisted'],Rejected:['مرفوض','Rejected'],Hold:['معلق','Hold'],Accepted:['مقبول','Accepted']};
+export function CandidateQueue({t,onOpen}:{t:Tr;onOpen:(name:string)=>void}){
+ const [mode,setMode]=useState('mine'),[bucket,setBucket]=useState<Bucket>('all'),[search,setSearch]=useState(''),[term,setTerm]=useState(''),[start,setStart]=useState(0),[revision,setRevision]=useState(0),[page,setPage]=useState<Page|null>(null),[busy,setBusy]=useState(true),[error,setError]=useState('');
+ useEffect(()=>{let live=true;setBusy(true);setPage(null);setError('');api<Page>('kandil_hr.candidates.queue.listing',{mode,bucket,search:term,start,page_length:20}).then(value=>{if(live)setPage(value)}).catch(e=>{if(live)setError(e instanceof ApiError&&[401,403].includes(e.status)?t('القائمة غير متاحة ضمن صلاحياتك الحالية.','The queue is unavailable in your current permissions.'):t('تعذر تحميل المتابعات. أعد المحاولة.','Could not load follow-ups. Please retry.'))}).finally(()=>{if(live)setBusy(false)});return()=>{live=false}},[mode,bucket,term,start,revision]);
+ return <section className="candidate-queue" aria-busy={busy}>
+  <div className="page-heading"><div><h1>{t('متابعة المرشحين','Candidate follow-ups')}</h1><p>{t('ابدأ بالمتأخر، ثم متابعة اليوم. افتح طلب المرشح لتحديث المسؤول أو الخطوة التالية.','Start with overdue work, then today’s follow-ups. Open an application to update responsibility or the next action.')}</p></div><button className="btn" disabled={busy} onClick={()=>setRevision(n=>n+1)}>{t('تحديث القائمة','Refresh queue')}</button></div>
+  <form className="card candidate-filters" onSubmit={e=>{e.preventDefault();setStart(0);setTerm(search);setRevision(n=>n+1)}}>
+   <label className="field">{t('نطاق المتابعة','Work scope')}<select aria-label={t('نطاق المتابعة','Work scope')} value={mode} onChange={e=>{setMode(e.target.value);setStart(0)}}><option value="mine">{t('متابعاتي والجديد غير المسند','My actions and unassigned new applications')}</option><option value="scope">{t('كل المتابعات المتاحة لصلاحياتي','All follow-ups within my permissions')}</option></select></label>
+   <label className="field">{t('توقيت المتابعة','Due filter')}<select aria-label={t('توقيت المتابعة','Due filter')} value={bucket} onChange={e=>{setBucket(e.target.value as Bucket);setStart(0)}}>{Object.entries(buckets).map(([key,words])=><option key={key} value={key}>{t(...words)}</option>)}</select></label>
+   <label className="field">{t('البحث عن مرشح','Search candidates')}<input value={search} maxLength={140} onChange={e=>setSearch(e.target.value)}/></label><button className="btn primary">{t('بحث','Search')}</button>
+  </form>
+  {error&&<div role="alert" className="alert error">{error}<button className="btn" onClick={()=>setRevision(n=>n+1)}>{t('إعادة المحاولة','Retry')}</button></div>}
+  {busy&&<p role="status">{t('جارٍ تحميل المتابعات…','Loading follow-ups…')}</p>}
+  {page&&<>
+   <p className="small muted">{t('التاريخ حسب القاهرة: ','Cairo date: ')}<bdi>{page.as_of}</bdi> · {t('الأعداد تشمل كل النتائج في النطاق والبحث المختارين.','Counts cover all results for the selected scope and search.')}</p>
+   <div className="followup-counts">{Object.entries(buckets).map(([key,words])=><button key={key} className={'btn '+(bucket===key?'primary':'')} aria-pressed={bucket===key} onClick={()=>{setBucket(key as Bucket);setStart(0)}}>{t(...words)} <strong>{page.counts[key as Bucket]}</strong></button>)}</div>
+   <section className="card section-gap"><div className="card-head"><h2>{t(...buckets[bucket])} ({page.total})</h2></div><div className="candidate-list">{page.rows.length?page.rows.map(row=><button key={row.name} className="candidate-row followup-row" onClick={()=>onOpen(row.name)}><span><strong>{row.person_name||row.applicant_name}</strong><small>{row.job_title} · {row.company}</small><small><bdi>{row.name}</bdi></small><span>{row.task||t('حدد أول خطوة تالية لهذا الطلب.','Set the first next action for this application.')}</span><small>{t('مسؤول الطلب: ','Application owner: ')}{row.owner_label||t('غير مسند أو خارج الصلاحيات','Unassigned or restricted')}</small><small>{t('مسؤول المتابعة: ','Follow-up owner: ')}{row.next_owner_label||t('غير مسند أو خارج الصلاحيات','Unassigned or restricted')}</small></span><span><span className={'badge '+(row.bucket==='overdue'?'danger':'')}>{t(...buckets[row.bucket])}</span><small><bdi>{row.due||'—'}</bdi></small><small>{t(...(states[row.status]||[row.status,row.status]))}</small></span></button>):<p className="empty">{t('لا توجد متابعات مطابقة ضمن صلاحياتك.','No matching follow-ups within your permissions.')}</p>}</div>
+   <div className="form-footer candidate-pagination"><span>{page.total?Math.min(start+1,page.total):0}–{Math.min(start+20,page.total)} / {page.total}</span><div className="candidate-actions"><button className="btn" disabled={!start} onClick={()=>setStart(n=>Math.max(0,n-20))}>{t('السابق','Previous')}</button><button className="btn" disabled={!page.has_more} onClick={()=>setStart(n=>n+20)}>{t('التالي','Next')}</button></div></div></section>
+  </>}
+ </section>
+}

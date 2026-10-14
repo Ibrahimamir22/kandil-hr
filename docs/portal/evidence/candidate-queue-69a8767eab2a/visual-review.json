@@ -1,0 +1,14 @@
+{
+  "status": "REVIEWED",
+  "images": [
+    "candidate-queue-en.png",
+    "candidate-queue-ar.png"
+  ],
+  "observations": [
+    "English desktop filters, complete bucket counts, candidate rows and independent owner labels are visible and readable.",
+    "Arabic mobile is RTL; filters stack, bucket controls wrap without horizontal overflow, and the first candidate card follows the totals. Synthetic user-authored names and task text retain their source language."
+  ],
+  "limits": [
+    "Viewport captures and scoped interaction checks; full accessibility audit and HR terminology acceptance remain open."
+  ]
+}

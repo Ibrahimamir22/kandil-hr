@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
+          "progress": "Person/application separation, basic recruiter intake, reasoned profile corrections, current/historical search, reviewed single-record legacy linking and durable recovery are connected and available in persistent synthetic review. Full profiles, former/internal candidate linking, full fuzzy/restricted identity review and integrated HR/privacy acceptance remain open; ownership/follow-up work is tracked in S5-02.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
+          "progress": "Scheduled/fresh candidate follow-up queue is connected in AR/EN: my actions versus current permitted scope, Cairo overdue/today/upcoming/new buckets, exact counts and bounded pages, literal/current-profile search and real candidate-detail actions. 11 queue native and 19 affected candidate/work native checks passed; 21 queue browser checks passed. Full activity/rejection and duplicate/knockout/ad-close tasks, recruiter-wide MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -632,7 +632,13 @@
             "../portal/evidence/candidate-work-36ef7453b067/results.json",
             "../portal/evidence/recovery-ui-d9f46c3ed6bf/results.json",
             "evidence/candidate-work-review-update-2026-10-14.json",
-            "../portal/evidence/review-work-1791941562846/results.json"
+            "../portal/evidence/review-work-1791941562846/results.json",
+            "S5_FOLLOWUP_QUEUE_CHECKPOINT.md",
+            "evidence/s2-regression-673c3f5f1c19.json",
+            "evidence/s2-regression-72e370b89c56.json",
+            "../portal/evidence/candidate-queue-69a8767eab2a/results.json",
+            "../portal/evidence/candidate-work-660a1e704b5e/results.json",
+            "../portal/evidence/review-work-1791942459894/results.json"
           ]
         },
         {
@@ -666,8 +672,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
-      "checkpoint": "S5_CANDIDATE_WORK_CHECKPOINT.md"
+      "progress": "Scheduled/fresh candidate follow-up queue is connected in AR/EN: my actions versus current permitted scope, Cairo overdue/today/upcoming/new buckets, exact counts and bounded pages, literal/current-profile search and real candidate-detail actions. 11 queue native and 19 affected candidate/work native checks passed; 21 queue browser checks passed. Full activity/rejection and duplicate/knockout/ad-close tasks, recruiter-wide MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
+      "checkpoint": "S5_FOLLOWUP_QUEUE_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1011,8 +1017,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
-    "evidence": "S5_CANDIDATE_WORK_CHECKPOINT.md",
-    "next": "Build the cross-application follow-up queue, immutable activity entries/voiding and coded rejection flows, then recruiter-wide MOVE_ALL. Preserve remaining profile, sourcing, file, consent and S6-S12 scope."
+    "summary": "Scheduled/fresh candidate follow-up queue is connected in AR/EN: my actions versus current permitted scope, Cairo overdue/today/upcoming/new buckets, exact counts and bounded pages, literal/current-profile search and real candidate-detail actions. 11 queue native and 19 affected candidate/work native checks passed; 21 queue browser checks passed. Full activity/rejection and duplicate/knockout/ad-close tasks, recruiter-wide MOVE_ALL and the remaining S5-S12/security/UAT/capacity gates remain open.",
+    "evidence": "S5_FOLLOWUP_QUEUE_CHECKPOINT.md",
+    "next": "Continue immutable call/discussion activities and explicit voiding, coded rejection/messages and related task categories. Preserve recruiter-wide MOVE_ALL and the remaining sourcing, import, identity/privacy and S6-S12 scope."
   }
 }

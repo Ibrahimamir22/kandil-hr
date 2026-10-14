@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "name": "en connected follow-up queue loads with five bucket controls",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal login and one connected work panel",
+      "status": "PASS"
+    },
+    {
+      "name": "en read-only work context loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en viewport and direction",
+      "status": "PASS"
+    },
+    {
+      "name": "ar connected follow-up queue loads with five bucket controls",
+      "status": "PASS"
+    },
+    {
+      "name": "ar personal login and one connected work panel",
+      "status": "PASS"
+    },
+    {
+      "name": "ar read-only work context loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "ar viewport and direction",
+      "status": "PASS"
+    },
+    {
+      "name": "Review business records preserved",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "limits": [
+    "Read-only personal-role smoke check; mutation behavior is tested on the separate parity site. No production or capacity certification."
+  ]
+}

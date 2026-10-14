@@ -115,3 +115,5 @@
 .candidate-recovery .recovery-result{display:block}
 
 .candidate-work .card-head{flex-wrap:wrap;gap:1rem}.candidate-work-form .field{margin-block:1rem}.candidate-work select{max-width:100%}.candidate-work-history p,.candidate-work-history dd{overflow-wrap:anywhere}
+
+.followup-counts{display:flex;gap:10px;flex-wrap:wrap;margin-block:16px}.followup-row{overflow-wrap:anywhere}.followup-row>span:first-child{min-width:0}.followup-row>span>span{display:block;margin-block:8px}

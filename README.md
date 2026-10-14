@@ -1,6 +1,6 @@
 # قنديل · Kandil HR
 
-The [candidate ownership and follow-up checkpoint](docs/roadmap/S5_CANDIDATE_WORK_CHECKPOINT.md) adds individual recruiter handoffs, separately owned dated actions, change history and lost-response recovery in AR/EN. **52 distinct native checks, a 20-check affected rerun, 26 final work-browser checks and 42 recovery regression checks passed.** Full S5 and release acceptance remain open. Test through **http://kandil-review.localhost:8112/hr-portal**; see the [walkthrough](docs/portal/PERSISTENT_REVIEW.md).
+The [candidate follow-up queue checkpoint](docs/roadmap/S5_FOLLOWUP_QUEUE_CHECKPOINT.md) connects overdue, today, upcoming and new-without-follow-up work in Arabic/English. Counts and pages use current candidate permissions; each row opens the existing candidate actions. **11 new native checks, 19 affected native checks and 21 queue browser checks passed.** Review at **http://kandil-review.localhost:8112/hr-portal** → **Candidate follow-ups / متابعة المرشحين**. Full S5, HR acceptance and security/capacity/release gates remain open.
 
 The [persistent review checkpoint](docs/roadmap/S5_PERSISTENT_REVIEW_CHECKPOINT.md) enables candidate review at **http://kandil-review.localhost:8112/hr-portal** with stable synthetic examples, a dedicated database/Redis and the existing personal login. **22 review checks and 63 independent candidate regression checks passed**; test cleanup preserved the review records, settings and session. Background workers/scheduler remain stopped here. Full S5 and release gates remain open.
 

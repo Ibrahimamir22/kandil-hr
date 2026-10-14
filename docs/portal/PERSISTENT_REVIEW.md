@@ -67,9 +67,15 @@ This is a development-bench extension, not a standalone clean install on an arbi
 
 The dedicated web process selects the review site explicitly. There are no shared workers or queue flushing operations. The 8100 company-data site and 8101 older pilot are not modified by this setup.
 
+## متابعة المرشحين / Follow-up queue
+
+Choose **Candidate follow-ups / متابعة المرشحين**. Start with your actions, or select all follow-ups within your permissions. Filter overdue, today, upcoming or new applications without a follow-up; counts cover the selected scope and search rather than only the visible page. Dates use Cairo time.
+
+Open a row to inspect the actual application and its responsibility/follow-up history. Save through that detail screen, then return to the queue to see the changed task. The default view follows the next-action owner when set; being able to read a task does not grant authority to change it. Existing demo records may have no scheduled action yet, so the new-without-follow-up bucket is a useful starting point. Do not enter real candidate information.
+
 ## Current limits
 
 - Outgoing email is muted. Scheduler and background workers are deliberately stopped; scheduled reminders, outbox delivery and automatic expiry cleanup are not running here. Their separate engineering rehearsals do not mean background delivery is active on this review site. Synchronous expiry checks still prevent an expired recovery from executing.
-- Scope is the implemented recruitment/candidate increment. Full profiles, private files, consent, the full follow-up queue and activity/rejection workflows, sourcing/imports, interviews, offers, joining/lifecycle and reporting remain tracked in S5–S12.
+- Scope is the implemented recruitment/candidate increment. Full profiles, private files, consent, rejection/duplicate/knockout/ad-close task categories and activity/rejection workflows, sourcing/imports, interviews, offers, joining/lifecycle and reporting remain tracked in S5–S12.
 - The shared development filesystem, HTTP loopback server and local credentials are not a production security boundary. MFA/session policy, independent security assessment, real-role HR UAT, 1,000+ capacity proof, backup/operations and production release remain open.
 - The organization policy remains HR + CEO approval for individual position changes. This review setup does not weaken that route or claim all organization acceptance is complete.

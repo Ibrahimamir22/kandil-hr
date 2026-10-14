@@ -1,0 +1,15 @@
+{
+  "status": "FAIL",
+  "run_id": "d74f44e8b272",
+  "reason": "Harness waitForResponse rejected before awaited because filter interaction did not dispatch. Node exited; exact terminal cohort manually retired before any new run.",
+  "checks_completed": 3,
+  "cleanup": {
+    "run_id": "d74f44e8b272",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "manual_cleanup": true
+}

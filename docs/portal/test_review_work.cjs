@@ -21,6 +21,10 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   const language=p.getByRole('button',{name:lang==='en'?'English':'العربية',exact:true});if(await language.count())await language.click();
   await p.locator('input[name=usr]').fill(data.users.personal.email);await p.locator('input[name=pwd]').fill(data.users.personal.password);await p.locator('.login-submit').click();await p.locator('main.content[aria-busy="false"]').waitFor();
   const menu=p.getByRole('button',{name:/Open navigation|فتح القائمة/});if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidate follow-ups':'متابعة المرشحين',exact:true}).click();await p.locator('.candidate-queue[aria-busy="false"] .candidate-pagination').waitFor();
+  check(lang+' connected follow-up queue loads with five bucket controls',await p.locator('.candidate-queue [role=alert]').count()===0&&await p.locator('.followup-counts button').count()===5);
+  await p.screenshot({path:path.join(out,'review-queue-'+lang+'.png')});
+  if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);

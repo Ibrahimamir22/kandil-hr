@@ -1,0 +1,123 @@
+{
+  "status": "PASS",
+  "run_id": "69a8767eab2a",
+  "checks": [
+    {
+      "name": "My queue uses Cairo date with exact totals beyond first page",
+      "status": "PASS"
+    },
+    {
+      "name": "Overdue actions precede today and upcoming",
+      "status": "PASS"
+    },
+    {
+      "name": "Second page has remaining two rows without repeats",
+      "status": "PASS"
+    },
+    {
+      "name": "Changing bucket resets pagination and excludes another follow-up owner",
+      "status": "PASS"
+    },
+    {
+      "name": "Permitted team scope includes separately owned task",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate-queue-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Search filters rows and exact summary totals",
+      "status": "PASS"
+    },
+    {
+      "name": "Literal search cannot expand candidate scope",
+      "status": "PASS"
+    },
+    {
+      "name": "Late old response cannot replace newer filtered work",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed refresh removes stale private rows",
+      "status": "PASS"
+    },
+    {
+      "name": "Read retry restores the queue",
+      "status": "PASS"
+    },
+    {
+      "name": "Queue opens the real candidate work screen",
+      "status": "PASS"
+    },
+    {
+      "name": "Saved clear updates queue buckets without creating a candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic queue starts with own task and existing owned legacy candidate",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic scoped fresh queue has exact updated count",
+      "status": "PASS"
+    },
+    {
+      "name": "candidate-queue-ar fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Non-recruiter has no queue navigation and API is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation removes rows and all aggregate counts",
+      "status": "PASS"
+    },
+    {
+      "name": "Read queue and connected follow-up preserve capacity and identity counts",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors, server 5xx or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Sources unchanged during browser run",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "69a8767eab2a",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/candidates/queue.py": "83242b506b1723696fdd897bd4b66a8d6c3dd301e9a21aeacf268e811803a5b0",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/portal/candidates.py": "28aa3c1e60784c195e00f25ff82f10745d955e28b5a53c5eb84418c2d0f1a07a",
+    "kandil_hr/portal/vacancies.py": "336cb6de3b2cea8716d7ec087434ac6411cc82c453e4eae955aa758853a54717",
+    "kandil_hr/foundation/teams.py": "fcdeeddaa0c32a198608b013e8528bd502f24302b0271221a20f1c134a118ab6",
+    "kandil_hr/foundation/clock.py": "1df7f80655629da5d0071805ca76b57fdf3de5acb8847cf2bb7d51725dd708fc",
+    "kandil_hr/portal/queue_fixture.py": "e514cd8f6b56e281682c3fa5077005704fe5f5d6ae2a56d634e96b5e1ed7624c",
+    "kandil_hr/portal/candidate_fixture.py": "94687841f6b04f34f1f67b0326a3667bc95bc2cc78ec5c0584eb055410dbfd3f",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "61ecf768ad2282b57dafd7f93095c0f7e2527e62eb8f9eac95aab25d99987c51",
+    "frontend/portal/src/CandidateQueue.tsx": "6767203f1d8be826a0334d9ea3a4c3dfa582bbebba74f21bc8821b28cb0f8f67",
+    "frontend/portal/src/main.tsx": "86730d33a2a2fb671c1d13b371525e9eb67efcfe8e26d8150b3d19b79d7458a2",
+    "frontend/portal/src/CandidateWork.tsx": "155440a748f51f1165e7c5552d7349716bf7bf5432c57057d08125745ea5b056",
+    "frontend/portal/src/portal.css": "4b6c29e56d61f145ea6b1b5fa922a2260905d2a7f5ac8ce099ff781c1d7a459f",
+    "kandil_hr/public/portal/portal.js": "a92c173a2caa2b14f39e3c2f28da63a86d72d5e5744e7927354708b0dc9868d4",
+    "docs/portal/test_candidate_queue.cjs": "35436d6f7db6ecb6d1f2800f7721b3980cfc524b89134aea2e22c4c460a06e5a"
+  },
+  "limits": [
+    "Scheduled follow-up and fresh-application queue only; rejection messages, duplicate/knockout/ad-close tasks and full S5 acceptance remain open.",
+    "Synthetic local roles and data; no production, HR acceptance or 1000-user certification."
+  ]
+}

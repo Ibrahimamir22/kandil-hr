@@ -1,0 +1,7 @@
+{
+  "path": "kandil_hr/portal/queue_fixture.py",
+  "before_sha256": "e514cd8f6b56e281682c3fa5077005704fe5f5d6ae2a56d634e96b5e1ed7624c",
+  "after_sha256": "7d599ff5ea084bbb19b7e78cc7dc77399f848b31e0f77141353431690229618b",
+  "change": "Remove trailing blank line only after browser evidence; Python AST unchanged.",
+  "ast_unchanged": true
+}
