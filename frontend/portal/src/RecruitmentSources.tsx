@@ -1,7 +1,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import {api,ApiError} from './api';
 import type {Tr} from './types';
-export type SourceItem={code:string;label_ar:string;label_en:string;kind:string;has_link:boolean;uses_credits:boolean;active:boolean;sort_order:number;locked?:boolean;manual_allowed?:boolean;agency_intake_allowed?:boolean};
+export type SourceItem={code:string;label_ar:string;label_en:string;kind:string;has_link:boolean;uses_credits:boolean;active:boolean;sort_order:number;locked?:boolean;manual_allowed?:boolean;referral_intake_allowed?:boolean;agency_intake_allowed?:boolean};
 export type SourceOptions={enabled:boolean;version:string|null;items:SourceItem[]};
 const P='kandil_hr.sourcing.sources.';
 const kinds:Record<string,[string,string]>={JOB_BOARD:['منصة وظائف','Job board'],SOCIAL:['تواصل اجتماعي','Social'],MESSAGING:['مراسلات','Messaging'],DIRECT:['مباشر','Direct'],REFERRAL:['ترشيح موظف','Referral'],AGENCY:['مكتب توظيف','Agency'],INTERNAL:['داخلي','Internal'],POOL:['قاعدة المرشحين','Talent pool'],OTHER:['أخرى','Other']};

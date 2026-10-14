@@ -1,0 +1,93 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Referral Submission",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "unique": 1
+    },
+    {
+      "fieldname": "opening",
+      "label": "Opening",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Opening"
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "employee",
+      "label": "Employee",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Employee"
+    },
+    {
+      "fieldname": "referrer_key",
+      "label": "Referrer Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "snapshot_json",
+      "label": "Snapshot Json",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "actor",
+      "label": "Actor",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "application",
+    "opening",
+    "person",
+    "employee",
+    "referrer_key",
+    "snapshot_json",
+    "actor",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

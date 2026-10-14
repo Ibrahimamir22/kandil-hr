@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of final rendered browser captures",
+  "captures": [
+    {
+      "file": "referrer-picker-en.png",
+      "sha256": "7d78cc548b39761e20fb7e71f455dfdabe8e56fc342681aa6fcc409a93b5e7dc"
+    },
+    {
+      "file": "referral-snapshot-en.png",
+      "sha256": "8799ae3af27df5373058f088da8b58a4f64b2333dc5c552e2b53bfc2108a03aa"
+    },
+    {
+      "file": "referrer-picker-ar.png",
+      "sha256": "6e935ab5614207b1fdda70e95c9dd14c9ed31d1d87a90b947b6311ddb47e22e6"
+    },
+    {
+      "file": "referral-snapshot-ar.png",
+      "sha256": "f6fabd7d35d1f9a490618ab3328baaf32c65bd56c46158b87118f42ed2943a51"
+    }
+  ],
+  "observations": [
+    "Selected employee code/name and relationship are visible in English desktop and Arabic mobile",
+    "Arabic direction and labels render; long synthetic names wrap without horizontal overflow",
+    "Initial primary/influencing classifications are readable and no bonus payment is implied"
+  ],
+  "limits": [
+    "Initial intake only; referral replacement and bonus decision UI remain pending",
+    "No accessibility or HR terminology certification"
+  ]
+}

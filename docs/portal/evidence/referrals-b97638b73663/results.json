@@ -1,0 +1,72 @@
+{
+  "status": "FAIL",
+  "run_id": "b97638b73663",
+  "checks": [
+    {
+      "name": "Employee lookup exposes only two minimal active records",
+      "status": "PASS"
+    },
+    {
+      "name": "Outsider cannot enumerate referral employees",
+      "status": "PASS"
+    },
+    {
+      "name": "en referral prevents confirmation without an employee",
+      "status": "PASS"
+    },
+    {
+      "name": "referrer-picker-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain referral intake freezes employee choice",
+      "status": "PASS"
+    },
+    {
+      "name": "en referral creates exactly one application",
+      "status": "PASS"
+    },
+    {
+      "name": "referral-snapshot-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Primary referral retains selected employee and pending decision",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "b97638b73663",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true,
+    "referral_employees_inactive": 2
+  },
+  "errors": [],
+  "server_failures": [
+    500
+  ],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/referrals.py": "b440e1c609e897ae1adb0f7fb947b8863d3cdb0501f96bcb4d30ace82ac7d3f9",
+    "kandil_hr/sourcing/test_referrals.py": "0ddaf2d6fc9f54eb68ceaab9bd71049d759692ca4e0c7f2407dd9cc238c5bfba",
+    "kandil_hr/portal/referral_fixture.py": "e29ee062f05133cca52464cc00de7a005804ca1d3f186c6c598c7c53711715ba",
+    "kandil_hr/candidates/intake.py": "142c79ea7639978f2c340e76816d6c6ca776916911d7a238045697f51d3b0a28",
+    "kandil_hr/candidates/recovery.py": "a4be3b8f32da675a858e99ee00e18acc72a5a04c0be3ecb802e6b7ebb9e8c28f",
+    "kandil_hr/recruitment/command_audit.py": "e69683bf39a4b384b920822a6f4ae1d27d7cf16342869fbf779f23b8d41e669b",
+    "kandil_hr/foundation/command_audit.py": "62a99e23d5b9dc73b5f780e33f721b4c1fb0c1e9595d971e19fa9c572332cb39",
+    "kandil_hr/sourcing/sources.py": "48da11b678bd24de458829932c0295dc8019f5cd8d957ed757e99f1468b8503b",
+    "frontend/portal/src/Referrals.tsx": "982ef67f37318b2bd7a4b0010b9e3c8a99fe7f8e456159483a50d4eb19e93dfd",
+    "frontend/portal/src/Candidates.tsx": "b4df0db8678bc6e10fe18140509dcd6d95172e7704759cbb216df8006787918c",
+    "frontend/portal/src/CandidateRecovery.tsx": "9de93f66c697d7149fa48ed9506076ae87752aa7b2206db6f7e8086af4071f1e",
+    "kandil_hr/public/portal/portal.js": "6b5ba2055139add09faab2dce6da218a76644ff3696da7c22edef4b2ffd86090",
+    "docs/portal/test_referrals.cjs": "d4fc9f0fd9d7c7db257a3cc1753b5380ab8b7f700af6c9da7e6251eaada4471f"
+  },
+  "limits": [
+    "Synthetic initial referral intake only; no bonus approval or payment.",
+    "Referral replacement, full internal identity, HR acceptance and security/capacity/production gates remain open."
+  ]
+}

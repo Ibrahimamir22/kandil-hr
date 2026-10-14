@@ -12,6 +12,7 @@ DEV = APP.parents[3]
 SUITES = (
     'kandil_hr.sourcing.test_sources.run',
     'kandil_hr.sourcing.test_agencies.run',
+    'kandil_hr.sourcing.test_referrals.run',
     'kandil_hr.sourcing.test_attribution.run',
     'kandil_hr.candidates.test_pool_intake.run',
     'kandil_hr.candidates.test_talent_pool.run',

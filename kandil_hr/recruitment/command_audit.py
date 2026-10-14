@@ -69,6 +69,9 @@ def related_state(doc, operation, payload, result=None, previous=()):
 			if frappe.db.get_value("Job Applicant", applicant, "job_title") not in opening_names:
 				frappe.throw(_("The application does not belong to this request."), frappe.PermissionError)
 			app = add("Job Applicant", applicant)
+			if operation == "candidate_intake" and payload.get("referral_hash"):
+				referral = frappe.db.get_value("Kandil Referral Submission", {"application":applicant}, "name", for_update=True)
+				add("Kandil Referral Submission", referral)
 			add("Kandil Candidate Person", app.get("custom_kandil_person"))
 			if operation == "candidate_intake" and payload.get("agency"):
 				submission = frappe.db.get_value("Kandil Agency Submission", {"application":applicant}, "name", for_update=True)

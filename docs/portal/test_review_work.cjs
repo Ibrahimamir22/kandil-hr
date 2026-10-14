@@ -50,6 +50,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
   await p.locator('.candidate-agency[aria-busy="false"] h2').waitFor();
+  await p.locator('.candidate-referral[aria-busy="false"] h2').waitFor();
+  check(lang+' referral panel has no invented employee or bonus decision',await p.locator('.candidate-referral [role=alert]').count()===0&&await p.locator('.candidate-referral').getByText(lang==='en'?'No employee referral recorded for this application.':'لا يوجد ترشيح موظف موثق لهذا الطلب.',{exact:true}).isVisible());
   check(lang+' agency panel has no invented submission',await p.locator('.candidate-agency [role=alert]').count()===0&&await p.locator('.candidate-agency').getByText(lang==='en'?'No agency submission recorded for this application.':'لا يوجد تقديم موثق من مكتب على هذا الطلب.',{exact:true}).isVisible());
   await p.locator('.candidate-source[aria-busy="false"] h2').waitFor();
   check(lang+' source attribution and history load without inventing a correction',await p.locator('.candidate-source [role=alert]').count()===0&&await p.locator('.source-correction-history article').count()===0);

@@ -52,7 +52,7 @@ SCHEMAS={
     'reopen':(COMMON|{'application','application_version','reason','closure_name','closure_hash'},set()),
     'message':(COMMON|{'application','application_version','closure_name','closure_hash','outcome','channel','message_text','note'},set()),
     'closure':(COMMON|{'application','application_version','decision','reason_code','catalog_version','internal_note','candidate_message'},set()),
-    'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason','source_version','agency'}),
+    'intake':(COMMON|{'details'},{'profile','person','person_version','identity_reason','source_version','agency','referral'}),
     'correction':(COMMON|{'application','person','person_version','profile','reason'},set()),
     'migration':(COMMON|{'application','application_version','preview_hash','reason'},set()),
     'activity':(COMMON|{'application','application_version','kind','outcome','note'},{'move_to_contacted','next_action','catalog_version'}),

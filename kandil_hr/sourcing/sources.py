@@ -145,10 +145,10 @@ def options(company):
     company=text(company,140);authorize(company)
     if not enabled():return dict(enabled=False,version=None,items=[])
     value=state(company)
-    return dict(enabled=True,version=value['version'],items=[dict(r,manual_allowed=r['kind'] not in ('REFERRAL','AGENCY','INTERNAL','POOL'),agency_intake_allowed=r['kind']=='AGENCY') for r in value['items'] if r['active']])
+    return dict(enabled=True,version=value['version'],items=[dict(r,manual_allowed=r['kind'] not in ('REFERRAL','AGENCY','INTERNAL','POOL'),agency_intake_allowed=r['kind']=='AGENCY',referral_intake_allowed=r['kind']=='REFERRAL') for r in value['items'] if r['active']])
 
 
-def selected(company,code,version,agency_intake=False):
+def selected(company,code,version,agency_intake=False,referral_intake=False):
     """Called inside the intake's Company/authority locks, only for new writes."""
     value=state(company,current=True)
     internal=bool(frappe.flags.get('kandil_pool_intake_effect'))
@@ -156,7 +156,7 @@ def selected(company,code,version,agency_intake=False):
         frappe.throw(_('The source list changed. Reload and review the source.'),frappe.TimestampMismatchError)
     item=next((r for r in value['items'] if r['code']==code and r['active']),None)
     if not item:frappe.throw(_('Choose an active recruitment source.'))
-    if item['kind'] in ('REFERRAL','AGENCY','INTERNAL','POOL') and not ((internal and code=='TALENT_POOL' and item['kind']=='POOL') or (agency_intake and item['kind']=='AGENCY')):
+    if item['kind'] in ('REFERRAL','AGENCY','INTERNAL','POOL') and not ((internal and code=='TALENT_POOL' and item['kind']=='POOL') or (agency_intake and item['kind']=='AGENCY') or (referral_intake and item['kind']=='REFERRAL')):
         frappe.throw(_('This source requires its dedicated attribution workflow; ordinary intake cannot substitute for it.'),frappe.PermissionError)
     return dict(version=value['version'],item=item)
 

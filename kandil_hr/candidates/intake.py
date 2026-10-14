@@ -51,13 +51,13 @@ def authorize(request, operation, payload):
 @frappe.whitelist(methods=['POST'])
 @transactional_retry
 def create_application(name, opening_name, details, command_id, expected_version,
-                       person=None, person_version=None, identity_reason='', profile=None, source_version=None, agency=None):
+                       person=None, person_version=None, identity_reason='', profile=None, source_version=None, agency=None, referral=None):
     return _create_application(name, opening_name, details, command_id, expected_version,
-                               person, person_version, identity_reason, profile, source_version, agency)
+                               person, person_version, identity_reason, profile, source_version, agency, referral)
 
 
 def _create_application(name, opening_name, details, command_id, expected_version,
-                        person=None, person_version=None, identity_reason='', profile=None, source_version=None, agency=None):
+                        person=None, person_version=None, identity_reason='', profile=None, source_version=None, agency=None, referral=None):
     # Internal composition point: callers own their whole-transaction retry.
     identity.guard()
     if isinstance(details, str) and len(details) > 4000:
@@ -95,10 +95,15 @@ def _create_application(name, opening_name, details, command_id, expected_versio
         if not isinstance(agency,dict) or set(agency)!={'code','version'}:frappe.throw(_('Review the agency and its exact terms revision.'))
         payload['agency']={k:text(v,140) for k,v in agency.items()}
 
+    if referral is not None:
+        if not isinstance(referral,dict):frappe.throw(_('Review the referring employee.'))
+        payload['referral_hash']=hashlib.sha256(dump(referral).encode()).hexdigest()
+
     def act(request):
-        from kandil_hr.sourcing import sources,agencies
+        from kandil_hr.sourcing import sources,agencies,referrals
+        selected_referral=referrals.selected(request.company,referral) if referral is not None else None
         selected_agency=agencies.selected(request.company,agency) if agency is not None else None
-        selection=sources.selected(request.company,data['source_channel'],source_version,agency_intake=bool(selected_agency)) if sources.enabled() or source_version is not None else None
+        selection=sources.selected(request.company,data['source_channel'],source_version,agency_intake=bool(selected_agency),referral_intake=bool(selected_referral)) if sources.enabled() or source_version is not None else None
         if selected_agency and (not selection or selection['item']['kind']!='AGENCY'):
             frappe.throw(_('Agency terms require an agency source.'))
         from kandil_hr.pilot.extensions import pilot_opening
@@ -107,6 +112,7 @@ def _create_application(name, opening_name, details, command_id, expected_versio
         if person and get_datetime(candidate.modified) != get_datetime(person_version):
             frappe.throw(_('Candidate identity changed. Review it again.'), frappe.TimestampMismatchError)
         if selected_agency:agencies.require_ownership(request.company,candidate.name,selected_agency['terms']['code'])
+        if selected_referral:referrals.check_person(request.company,opening_name,candidate.name,selected_referral)
         with identity.effect():
             app = frappe.get_doc(dict(doctype='Job Applicant', job_title=opening_name,
                 applicant_name=data['applicant_name'], email_id=data['email_id'] or None,
@@ -116,6 +122,7 @@ def _create_application(name, opening_name, details, command_id, expected_versio
                 custom_kandil_source_detail=data['source_detail'])).insert()
         if selection:sources.capture(app,request.company,selection)
         if selected_agency:agencies.capture(app,request.company,selected_agency)
+        if selected_referral:referrals.capture(app,request.company,selected_referral,selection['item']['kind']=='REFERRAL')
         return dict(application=app.name, person=candidate.name, application_version=str(app.modified),
                     person_version=str(candidate.modified))
 
