@@ -1,0 +1,155 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Talent Pool Event",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "application",
+      "label": "Source Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "Job Applicant"
+    },
+    {
+      "fieldname": "actor",
+      "label": "Recorded By",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "search_index": 1,
+      "options": "User"
+    },
+    {
+      "fieldname": "sequence",
+      "label": "Sequence",
+      "fieldtype": "Int",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "previous_event",
+      "label": "Previous Event",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Talent Pool Event"
+    },
+    {
+      "fieldname": "action",
+      "label": "Action",
+      "fieldtype": "Select",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "PUT\nREMOVE"
+    },
+    {
+      "fieldname": "category",
+      "label": "Job Family",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "tags_json",
+      "label": "Tags",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "note",
+      "label": "Internal Pool Note",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 0
+    },
+    {
+      "fieldname": "reason",
+      "label": "Reason",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "consent_event",
+      "label": "Pool Consent",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 0,
+      "options": "Kandil Pool Consent Event"
+    },
+    {
+      "fieldname": "activity",
+      "label": "Candidate Activity",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Activity"
+    },
+    {
+      "fieldname": "command_key",
+      "label": "Command Key",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1,
+      "unique": 1
+    },
+    {
+      "fieldname": "signature",
+      "label": "Signature",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "person",
+    "application",
+    "actor",
+    "sequence",
+    "previous_event",
+    "action",
+    "category",
+    "tags_json",
+    "note",
+    "reason",
+    "consent_event",
+    "activity",
+    "command_key",
+    "signature",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

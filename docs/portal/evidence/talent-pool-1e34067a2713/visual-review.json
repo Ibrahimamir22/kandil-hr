@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "method": "Manual inspection of four rendered Playwright captures",
+  "captures": [
+    {
+      "file": "membership-add-en.png",
+      "sha256": "6b98f935ce6b16c65470433ab7003716ef74f0a3c92ee5dc6d1ae551584e68d1"
+    },
+    {
+      "file": "membership-remove-ar-mobile.png",
+      "sha256": "4e7a1cb827078dbf4f4671ced748630df3f347f37990b3a09effa9329d13c7b5"
+    },
+    {
+      "file": "pool-search-ar-mobile.png",
+      "sha256": "813b543cbc8a376520f7e71ac0dbb9af7838841e36e42a9b6aa267fd8fcc339d"
+    },
+    {
+      "file": "pool-search-en.png",
+      "sha256": "ba6e1a40e96f7c0a9b67049c1478fd937c3025edd4edc56e77ae5b38855f2a37"
+    }
+  ],
+  "observations": [
+    "English membership form and search results are readable with visible labels and actions.",
+    "Arabic mobile membership removal and history retain RTL alignment and readable wrapped text.",
+    "Arabic mobile search filters, result cards and pagination fit the viewport.",
+    "Synthetic test names and vacancy labels are not production content."
+  ],
+  "limits": [
+    "Component captures; not full accessibility certification or human HR acceptance."
+  ]
+}

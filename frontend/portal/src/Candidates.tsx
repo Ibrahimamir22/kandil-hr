@@ -1,3 +1,4 @@
+import {CandidateMembership} from './TalentPool';
 import {CandidatePool} from './CandidatePool';
 import {CandidateStages} from './CandidateStages';
 import {CandidateConsent} from './CandidateConsent';
@@ -39,6 +40,7 @@ export function Candidates({t,canReviewMigration=false,initialApplication=''}:{t
  {detail&&<CandidateActivities key={`activity:${detail.application.name}:${detail.application.modified}`} name={detail.application.name} t={t} changed={()=>setRevision(n=>n+1)} onOpen={open}/>}
  {detail?.person&&<CandidateConsent key={`consent:${detail.application.name}`} name={detail.application.name} t={t}/>}
  {detail?.person&&<CandidateStages key={`stages:${detail.application.name}:${revision}`} name={detail.application.name} t={t} changed={()=>setRevision(n=>n+1)}/>}
+ {detail?.person&&<CandidateMembership key={`membership:${detail.application.name}:${revision}`} name={detail.application.name} t={t}/>}
  {detail?.person&&<CandidatePool key={`pool:${detail.application.name}:${revision}`} name={detail.application.name} t={t}/>}
  {detail&&<CandidateClosure key={`closure:${detail.application.name}:${detail.application.modified}`} name={detail.application.name} t={t} changed={()=>setRevision(n=>n+1)}/>}
  {detail&&<CandidateDecisionHistory key={`decision-history:${detail.application.name}:${revision}`} name={detail.application.name} t={t}/>}

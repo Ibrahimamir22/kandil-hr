@@ -54,6 +54,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' screening gate requires candidate consent without invented eligibility',await p.locator('.candidate-stages [role=alert]').count()===0&&await p.locator('.candidate-stages form').count()===0&&await p.locator('.candidate-stages').getByText(lang==='en'?'The candidate must accept the privacy notice before screening or reopening.':'يلزم أن يوافق المرشح بنفسه على إشعار الخصوصية قبل بدء الفحص أو إعادة الفتح.',{exact:true}).isVisible());
   await p.locator('.candidate-pool[aria-busy="false"] h2').waitFor();
   check(lang+' pool consent has no invented grant or policy',await p.locator('.candidate-pool [role=alert]').count()===0&&await p.locator('.candidate-pool').getByText(lang==='en'?'No pool consent':'لا توجد موافقة للقاعدة',{exact:true}).isVisible()&&await p.locator('.candidate-pool option[value="GRANT"]').count()===0);
+  await p.locator('.candidate-membership[aria-busy="false"] h2').waitFor();
+  check(lang+' membership is empty without invented consent',await p.locator('.candidate-membership [role=alert]').count()===0&&await p.locator('.candidate-membership form').count()===0&&await p.locator('.candidate-membership').getByText(lang==='en'?'Not in the pool':'غير مضاف للقاعدة',{exact:true}).isVisible());
   await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
   check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
   await p.locator('.candidate-decision-history[aria-busy="false"]').waitFor();
@@ -61,7 +63,12 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.locator('.candidate-template-composer[aria-busy="false"]').waitFor();
   check(lang+' candidate template choices load without writes or errors',await p.locator('.candidate-template-composer [role=alert]').count()===0);
   check(lang+' viewport and direction',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await p.locator('html').getAttribute('dir')===(lang==='ar'?'rtl':'ltr'));
-  await p.locator('.candidate-work').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'review-work-'+lang+'.png')});await ctx.close();
+  await p.locator('.candidate-work').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'review-work-'+lang+'.png')});
+  if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Talent pool':'قاعدة المرشحين',exact:true}).click();await p.locator('.talent-pool[aria-busy="false"] h2').waitFor();
+  check(lang+' connected pool has no invented memberships',await p.locator('.talent-pool [role=alert]').count()===0&&await p.locator('.talent-pool .candidate-row').count()===0&&await p.locator('.talent-pool .empty').isVisible());
+  check(lang+' pool viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await ctx.close();
  }
  check('Review business records preserved',JSON.stringify(before)===JSON.stringify(snapshot()));
  check('No browser errors, server 5xx or external requests',!errors.length&&!failures.length&&!external.length);

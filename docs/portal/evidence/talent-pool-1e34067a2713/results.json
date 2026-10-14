@@ -1,0 +1,228 @@
+{
+  "status": "PASS",
+  "run_id": "1e34067a2713",
+  "checks": [
+    {
+      "name": "Membership is empty without invented consent",
+      "status": "PASS"
+    },
+    {
+      "name": "Direct membership cannot bypass consent",
+      "status": "PASS"
+    },
+    {
+      "name": "Consent alone does not create pool rows",
+      "status": "PASS"
+    },
+    {
+      "name": "Suggested tags are editable before saving",
+      "status": "PASS"
+    },
+    {
+      "name": "Membership save requires confirmation",
+      "status": "PASS"
+    },
+    {
+      "name": "membership-add-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown membership outcome freezes reviewed fields",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response exact retry creates one event",
+      "status": "PASS"
+    },
+    {
+      "name": "Membership note remains text",
+      "status": "PASS"
+    },
+    {
+      "name": "pool-search-en: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic tag search returns visible membership",
+      "status": "PASS"
+    },
+    {
+      "name": "Pool row opens connected source application",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent identical membership command creates one event",
+      "status": "PASS"
+    },
+    {
+      "name": "Competing update and removal cannot both commit",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent withdrawal always removes pool eligibility",
+      "status": "PASS"
+    },
+    {
+      "name": "Renewing consent does not revive old membership",
+      "status": "PASS"
+    },
+    {
+      "name": "Explicit review re-adds membership after new grant",
+      "status": "PASS"
+    },
+    {
+      "name": "membership-remove-ar-mobile: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Arabic removal hides membership while preserving consent",
+      "status": "PASS"
+    },
+    {
+      "name": "pool-search-ar-mobile: viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "Native membership event read is denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Requester without recruitment role cannot list pool rows or counts",
+      "status": "PASS"
+    },
+    {
+      "name": "Out-of-company membership detail denied",
+      "status": "PASS"
+    },
+    {
+      "name": "Literal wildcard search cannot enumerate pool",
+      "status": "PASS"
+    },
+    {
+      "name": "Scoped totals facets and pagination agree",
+      "status": "PASS"
+    },
+    {
+      "name": "Revocation hides pool and rejects old command replay",
+      "status": "PASS"
+    },
+    {
+      "name": "Membership changes preserve applications people and capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors unexpected server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "1e34067a2713",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "consent_lease_restored": true,
+    "screening_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/candidates/talent_pool.py": "071de02e077f07d90b53a0edd0f1759a4ef4fc67c484fa47811168a5b18af007",
+    "kandil_hr/candidates/test_talent_pool.py": "637ad6d0d066b4ad34064206dc08a48ebe894554869ec8706d595fb864fc5316",
+    "frontend/portal/src/TalentPool.tsx": "0bffd0bb7f718cd392943884c3a87b0e2214c799253d05be5aeb12d5605302cd",
+    "docs/portal/test_talent_pool.cjs": "67892c0f5a4523d4b8f8ecf2bf1cfbd9be8947f2ed6d9e899cf996acd5df3abf",
+    "kandil_hr/privacy/pool.py": "f474461a3c1d3e581ba17c7e870d4a4e19ad4438d6c5f7fcacb2aea9df22b618",
+    "kandil_hr/privacy/pool_policy.py": "d371644593381b165b82f79379467ff2cc8935f153943986e7fb92e68043c7cf",
+    "kandil_hr/privacy/test_pool.py": "d229764d17cadc48d062a103ba68078f6aea6a47c2164e80dd511e1a3763ea14",
+    "frontend/portal/src/PoolPolicy.tsx": "e91234e5843a598961183dc6fca6cc69f7369435416a5168a446ba12b916f82d",
+    "frontend/portal/src/CandidatePool.tsx": "b48ba4fde7a9aa08eedab5e98b6a020c4b65df31b81955eeb7ef6f8bd13e64c3",
+    "frontend/portal/src/PrivacyNotices.tsx": "1d3e6f4eae732d440610a5c311b1d8d06467939c26b42c11aec3e15f330a3d93",
+    "docs/portal/test_candidate_pool.cjs": "3ea7824e3e4e9d90afadfab12e738dcc43b0996cede2ddb4288ba82f9d71b2fc",
+    "kandil_hr/candidates/stages.py": "f1e10ee341f66617370ec8cf8e1858f0a864a98b0ddd89be3baa0ae9e242e42d",
+    "kandil_hr/candidates/test_stages.py": "e77522494f42703283c785a0e1c16df99257a626aac75b8d46466fc8af3d30f0",
+    "kandil_hr/portal/stage_fixture.py": "1025ebd0ff1edffb42f641f419b238ebcd8f3d7bfe0f45a542ba2b7efeb03cc7",
+    "frontend/portal/src/CandidateStages.tsx": "0a617cba3832f6791f6226d64f10d2b5fa12c51e6980179064ebe7d808780217",
+    "kandil_hr/candidates/closure_history.py": "5af796f97b4041e72843baa704b5ac87100d912278f75fbb40b1e7729a526719",
+    "kandil_hr/foundation/command_audit.py": "564653fbedccc2feca953ce3bca0a27d051bfcc20f4bd96344a6580f3dc91f6f",
+    "docs/portal/test_candidate_stages.cjs": "b7ff4ebc508ca411c93700b7b85bbf3f250218f09fd40c8d9d082ec38e1c80aa",
+    "kandil_hr/privacy/test_revocation.py": "226197aea739f925c6c19c94e4eefe2031c33f661100b1437778311b42c3e349",
+    "kandil_hr/kandil_hr/doctype/kandil_consent_revocation/kandil_consent_revocation.json": "c7e26c9fc4d014da85ed0873ad946dc5a2c5110fcc6af24404dec1b2e200e212",
+    "kandil_hr/privacy/portal.py": "7fd915f899409c847ab7cfd735aaad443d12a9f7603a73147067f056c8c6c642",
+    "kandil_hr/privacy/wsgi.py": "ef97deb8a84345fb17d931677d8e169d30c011c1806636ca2a2e99314551ab93",
+    "kandil_hr/privacy/serve.py": "2a7e1e45273815f117f01b0e9286c05221a2bd0947fa20d0308397cce81dd886",
+    "kandil_hr/privacy/consent.py": "3060d85075b5df26ec299c25d0a8504f97848397a8b622612049952e0fe28742",
+    "kandil_hr/portal/consent_fixture.py": "caf676e050992f8996424ec5c9d53c28155d55f089116e8a5b6f323961fcf4f8",
+    "kandil_hr/public/consent/candidate.js": "69fb7c5546cbb341332f43b619a1376413eb95f983a4f9e598c2b9a4709d901f",
+    "kandil_hr/public/consent/candidate.css": "da8e4d2b6be8af48350e970d25e9b5c8d68ae0f6520a0605bdf0d23b552d6081",
+    "kandil_hr/www/candidate-consent.html": "ed8a658add7231f3ff9b999ca0d3813a2e4aa2b62472a6ee1ccecc4ee6dd5726",
+    "kandil_hr/www/candidate_consent.py": "60c3807eb4bc85648726935dacf2067570f25950986f8d78362a23b1a689362a",
+    "frontend/portal/src/CandidateConsent.tsx": "7a6a497e758413ac88822caac9d3ca48da3c9e2a7cb0770ef3500b2f89eb8488",
+    "docs/portal/test_candidate_consent.cjs": "221ed9804e7d5776d7ad9be2b70ae3515aa7a132abd71b0c14001e62cd82f17f",
+    "deployment/consent.parity.compose.yaml": "c03eb35396df7f4ecc0db3750ec943043fc68c78ff47cb107553909c322e4087",
+    "docs/portal/test_privacy_notices.cjs": "bf07e3cf0c3ba771a2ea1eda21a2a159746f7433937cfbe54f48ed821ba151f3",
+    "frontend/portal/src/main.tsx": "a0c7499e8e565d608d5717f661d8bd647a812728fde1d266552d73e08bf102da",
+    "frontend/portal/src/prototype.css": "ec49353ec471268f0f6783307d1eeb55647077cde94de763b36d297d01c83ce7",
+    "kandil_hr/privacy/notices.py": "7cebc3e06ced420e71d907735a5c4018b1dc5472d6735d2c653b63dab31cccc6",
+    "kandil_hr/kandil_hr/doctype/kandil_privacy_notice_revision/kandil_privacy_notice_revision.json": "949e5051242957729fbaaa8fcf580afa7a51fad067d70f18fe9e55cc2094eefc",
+    "docs/portal/test_message_templates.cjs": "633c202495566cc91df2ff90231711eefdcfdc0b3fbd0dea9b5ac2498a10bb02",
+    "frontend/portal/src/MessageTemplates.tsx": "3a86c99665f1af31fb8faa17c2878d3112032d795fe3c9f54849fef94d0a564d",
+    "kandil_hr/communications/templates.py": "829c866f86496d0d237a02943d21abdcb4a5d32ed6ee0834d2a92476da67ce5a",
+    "kandil_hr/communications/template_starters_v1.json": "e0702c45d57e8768751489ce11afd4572b936ff05a780d23ee0e78909b99d5ac",
+    "kandil_hr/kandil_hr/doctype/kandil_message_template_revision/kandil_message_template_revision.json": "375cbe6397a28200d5f4fa940e3158d0548eede8e1baad3460ec74161bac6ef0",
+    "docs/portal/test_candidate_messages.cjs": "89727e5653e1a3b3c56cf4e8d726999d7d89d160011b9fe9b7f06f78da00d5e7",
+    "frontend/portal/src/CandidateMessages.tsx": "2ec9049ab04a91034f80614b113d512a410e2c298fd7a4a25ffd1cba84320d05",
+    "kandil_hr/candidates/messages.py": "5d2a48786ef407f18385e4ced0fa069d67ee4d9d3e5176b0a8506c41d1ecec9e",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_message_resolution/kandil_candidate_message_resolution.json": "84d1bb619c02dfab37c38957ec142f32b8bea0b1b9256d82f9d79e63eb6e7d72",
+    "docs/portal/test_candidate_closure.cjs": "1cb6fba8d02d9769b9026c3899f6858c885c60e78e59837ccafc5da4b53698a0",
+    "frontend/portal/src/CandidateClosure.tsx": "3d8f4ac442110512879e179be6033d419bf591a5145f517887f6972bde577de1",
+    "kandil_hr/candidates/closure.py": "fe65ab1762492adf6ba770bac8cb0a7ec4c79df94553480b2df5f1335e13702b",
+    "kandil_hr/hooks.py": "b473f37adbbf9b214e2f824636c2f95758cb0fa13b70c85af655c6f0331becac",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_closure/kandil_candidate_closure.json": "da954990b36447d86a237d4ce1981c7dc99e71ce8f99297b6534cbf3d3ca6cb1",
+    "frontend/portal/src/CandidateActivities.tsx": "339bf716f3fa8afa7300a7f0f3d5f96cc2e9adc4906410b15be91524b5acde0d",
+    "kandil_hr/candidates/activities.py": "14b2b9ff35710009f1eb5daa415df7c68ac863e1ab52e53f5cdeb4af9085d78f",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_activity/kandil_candidate_activity.json": "35138c1b68daaa4d63e143d65f2f08da9bfb2ab288962c4815f3335fb07d0087",
+    "docs/portal/test_candidate_activities.cjs": "db057597c96725317a85160a131f160e13ea183c010ad9b312ba3b15a9621eb0",
+    "docs/portal/test_candidate_activity_actions.cjs": "1fc3947207d61f2ed2452aa48f7fed0663f113dd973f096826237cbbb0dbd259",
+    "docs/portal/test_candidate_sessions.cjs": "2c7a7ac894be83d58f01cd5d827a3fc503af2942dacc7b87c92e8fcccb29b03d",
+    "kandil_hr/portal/recovery_fixture.py": "b66e95623d2b429a20c44be2f9c9ec7eca131b8ff8056c67378c704a9062ffb2",
+    "frontend/portal/src/CandidateWork.tsx": "992bfdbdaef5cc791f19a86efa285c76f039f332c04ef8ca3c9feeca87cf2189",
+    "kandil_hr/candidates/work.py": "567323b124f62f8950f98a63b01c97a043dae01554564e0521e18bbe04476b86",
+    "kandil_hr/recruitment/ownership.py": "98f852525065369e1c3e10d21052a87b569b6293e0984612a9137deaa059ec39",
+    "docs/portal/test_candidate_work.cjs": "5a34af8ae94445fe68d29fcba77445ec9b12c3849e731a5a56dbfb13f057e12e",
+    "frontend/portal/src/api.ts": "59d8b2a3d09b7b480665d27e270de8f405d552df58b033a17448ed3cd767f9d2",
+    "frontend/portal/src/candidateCommands.ts": "bbc40b0eb6a7802d74df9870b316d2e197dea0314e8bd3354e7c08847fab5550",
+    "frontend/portal/src/CandidateRecovery.tsx": "a566da489ed1addb1671f12b8a5ee4322a263ecc6dab9183efd17b5cb4860196",
+    "docs/portal/test_candidate_recovery_ui.cjs": "5db97d88d30ffacd5fd510b3ebdb6bbdfff68fff1f8de13b197ad34f441f75a7",
+    "kandil_hr/candidates/recovery.py": "108853281e50bd689829318a6fedbb4f9876876702f56259385d79b02db8da2c",
+    "kandil_hr/kandil_hr/doctype/kandil_candidate_recovery/kandil_candidate_recovery.json": "6cf7118d390cfae47c1b228dfd071aea901787a0da39fbb4aad739adfc8fe11e",
+    "docs/portal/test_candidate_recovery.cjs": "bdf62184ecd9e8e945fc5bc0ca51450088bf052e5c0825c3a76552c2c3c94c6e",
+    "kandil_hr/portal/candidates.py": "79274c6a97a48b2e35ca243ba86351fc6fa59a6d353dad0eca8f8933117352e9",
+    "kandil_hr/candidates/profile.py": "d99c24232c37377fa71266abbe1d8e340b8cb307ca7531ac4923f59262cdcb48",
+    "kandil_hr/candidates/search.py": "5491862660e3817b70fc93bdda12c4594d9db0218b7e9426126a726992cb1b5a",
+    "kandil_hr/candidates/migration.py": "930897ca30bbd937f4e84a288023d64353af5e0458dc27c232d207e25e24513d",
+    "frontend/portal/src/CandidateMigration.tsx": "78a7c41e6a7c2aefd9615e5999bf598bd2c5ae3ddfcebc77c4f63c3d8ccf1e54",
+    "kandil_hr/candidates/corrections.py": "c52e1dfdf93dae3c6c49d3a4b01d2512b1d6cba58bdc6c1fbc9475bfdd7fc3da",
+    "kandil_hr/recruitment/command_audit.py": "0fd957c32677b0b7a0564554889b617c375ca84fd5f11705fff42a564a2031f6",
+    "frontend/portal/src/CandidateProfile.tsx": "4fb752ede6911d31e08b33222de353b4866001b86235dc58e1430b1982efb328",
+    "kandil_hr/candidates/identity.py": "7f4e10035128c4c72b245020518b88cf57492929d63dcedb0cca33bab050b6fc",
+    "kandil_hr/candidates/intake.py": "2417ff515f30186fa6be54bcea745843c6807d9b1ae3fa0c7156bd3b0ffb7c22",
+    "kandil_hr/portal/candidate_fixture.py": "e31ce907e8ea030973343938a3290e4d61ffc2864f692a70fc3c5e80421b1670",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "kandil_hr/pilot/extensions.py": "b207229403929dace75e4ef46408247d32306ddd4d0b535fe45f4bb388032557",
+    "kandil_hr/recruitment/api.py": "df4a136f20a29ee4d9effe0cbd8c1780a5d74361e14008194d4499a689bbbaf4",
+    "frontend/portal/src/Candidates.tsx": "6ea7f17f6df6ff3b2f28f7155c0ba4b2b6d61b7d671f3c4d70cf82f65b156d43",
+    "frontend/portal/src/portal.css": "27cccc010854468b733b19c04a42ff6c40901217a07c4fbf678f6627eabe3d0c",
+    "kandil_hr/public/portal/portal.js": "7f8c0b4567555dc604a361a84e1aa786210af8cd183d263ff7b9de12734b9ce0",
+    "docs/portal/test_candidates.cjs": "62a795207710392b213c240f22a2c1fdf9b4d27b1c1d096e803b526a9d697c88"
+  },
+  "limits": [
+    "Synthetic membership and scoped search; matching and pool-to-vacancy workflow remain incomplete.",
+    "Independent security, sustained capacity and production rollout remain open."
+  ]
+}

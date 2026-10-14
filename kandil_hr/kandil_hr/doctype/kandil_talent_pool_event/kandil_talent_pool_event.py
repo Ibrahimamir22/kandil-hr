@@ -1,0 +1,1 @@
+from kandil_hr.candidates.talent_pool import KandilTalentPoolEvent
