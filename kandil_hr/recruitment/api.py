@@ -212,6 +212,10 @@ def _command(name, operation, command_id, expected_version, payload, handler, st
 	current_roles = assert_current_request_scope(doc, required_roles=roles)
 	from kandil_hr.recruitment.vacancy_access import check_command as check_vacancy_command
 	check_vacancy_command(doc, operation, payload, current_roles)
+	if operation in {"application_owner", "application_task"}:
+		from kandil_hr.candidates.work import authorize as authorize_application_work
+		opening = frappe.db.get_value("Job Applicant", payload["application"], "job_title")
+		authorize_application_work(doc, dict(payload, opening=opening))
 	if operation in {"candidate_intake", "candidate_identity_migrate", "candidate_profile_correct"}:
 		from kandil_hr.candidates.intake import authorize
 		if operation == "candidate_profile_correct":

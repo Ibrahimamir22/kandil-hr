@@ -167,7 +167,7 @@ class TestOwnership(TestRecruitmentCommands):
 			name,
 			app,
 			task="Call candidate",
-			due="",
+			due="2027-01-01",
 			owner=self.users["manager"],
 		)
 		frappe.db.set_value("User", self.users["manager"], "enabled", 0)

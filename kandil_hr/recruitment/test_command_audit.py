@@ -152,7 +152,7 @@ class TestCommandAudit(unittest.TestCase):
 			name,
 			app,
 			task="Call candidate",
-			due=None,
+			due="2027-01-01",
 			owner=f.users["manager"],
 		)
 		f.call(

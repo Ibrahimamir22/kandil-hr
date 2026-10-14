@@ -25,8 +25,8 @@ frappe.ui.form.on('Job Applicant', {
       ],values=>send('assign_application',values),__('Assign application owner')),__('Application actions'));
       frm.add_custom_button(__('Set next action'),()=>frappe.prompt([
         {fieldname:'task',fieldtype:'Small Text',label:__('Recruitment Next Action'),default:frm.doc.custom_kandil_next_action},
-        {fieldname:'due',fieldtype:'Date',label:__('Next Action Due'),default:frm.doc.custom_kandil_next_action_due},
-        {fieldname:'owner',fieldtype:'Select',options:owners,label:__('Next Action Owner'),default:frm.doc.custom_kandil_next_action_owner},
+        {fieldname:'due',fieldtype:'Date',mandatory_depends_on:'eval:doc.task',label:__('Next Action Due'),default:frm.doc.custom_kandil_next_action_due},
+        {fieldname:'owner',fieldtype:'Select',mandatory_depends_on:'eval:doc.task',options:owners,label:__('Next Action Owner'),default:frm.doc.custom_kandil_next_action_owner},
         {fieldname:'reason',fieldtype:'Small Text',label:__('Reason'),reqd:1}
       ],values=>send('set_next_action',{task:'',due:'',owner:'',...values}),__('Set next action')),__('Application actions'));
     }});

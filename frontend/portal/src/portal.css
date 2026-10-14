@@ -113,3 +113,5 @@
 .candidate-recovery .recovery-confirm{display:flex;align-items:flex-start;gap:10px;margin-block:12px;line-height:1.8}
 .candidate-recovery bdi{overflow-wrap:anywhere}
 .candidate-recovery .recovery-result{display:block}
+
+.candidate-work .card-head{flex-wrap:wrap;gap:1rem}.candidate-work-form .field{margin-block:1rem}.candidate-work select{max-width:100%}.candidate-work-history p,.candidate-work-history dd{overflow-wrap:anywhere}

@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
+          "progress": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -624,7 +624,15 @@
             "evidence/candidate-cleanup-retirement-a47fbec54950.json",
             "S5_PERSISTENT_REVIEW_CHECKPOINT.md",
             "../portal/evidence/persistent-review-1403a1066629/results.json",
-            "../portal/evidence/candidates-906740e7d36e/results.json"
+            "../portal/evidence/candidates-906740e7d36e/results.json",
+            "S5_CANDIDATE_WORK_CHECKPOINT.md",
+            "evidence/s2-regression-99dd8b0f48e4.json",
+            "evidence/s2-regression-ad56eff2bb12.json",
+            "evidence/s2-regression-d5d0d54f0e58.json",
+            "../portal/evidence/candidate-work-36ef7453b067/results.json",
+            "../portal/evidence/recovery-ui-d9f46c3ed6bf/results.json",
+            "evidence/candidate-work-review-update-2026-10-14.json",
+            "../portal/evidence/review-work-1791941562846/results.json"
           ]
         },
         {
@@ -658,8 +666,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
-      "checkpoint": "S5_RECOVERY_OPERATIONS_CHECKPOINT.md"
+      "progress": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
+      "checkpoint": "S5_CANDIDATE_WORK_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1003,8 +1011,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
-    "evidence": "S5_PERSISTENT_REVIEW_CHECKPOINT.md",
-    "next": "Continue candidate ownership, follow-up, rejection/activity and recruiter handoff, preserving the persistent human-review site. Full profiles, sourcing/imports, private files, consent and remaining S5–S12 requirements retain their scope."
+    "summary": "Candidate detail now supports individual recruiter handoffs, separately owned dated next actions, explicit clearing, reasoned before/after history and durable recovery in AR/EN. 52 distinct native checks passed, including a 20-check final affected rerun, plus 26 final candidate-work and 42 existing recovery browser checks. Full follow-up queue, activity/rejection, recruiter-wide MOVE_ALL, remaining S5 and S6-S12 acceptance remain open.",
+    "evidence": "S5_CANDIDATE_WORK_CHECKPOINT.md",
+    "next": "Build the cross-application follow-up queue, immutable activity entries/voiding and coded rejection flows, then recruiter-wide MOVE_ALL. Preserve remaining profile, sourcing, file, consent and S6-S12 scope."
   }
 }

@@ -1,0 +1,14 @@
+{
+  "status": "REVIEWED",
+  "images": [
+    "candidate-work-followup-en.png",
+    "candidate-work-history-ar.png"
+  ],
+  "observations": [
+    "English desktop ownership and follow-up cards, before/after history and controls are legible and inside the layout.",
+    "Arabic mobile uses a single RTL column with localized system placeholders; the tall detail page still requires substantial scrolling. User-authored fixture reasons and identifiers retain their original language."
+  ],
+  "limits": [
+    "Not full Arabic terminology, accessibility or HR acceptance."
+  ]
+}

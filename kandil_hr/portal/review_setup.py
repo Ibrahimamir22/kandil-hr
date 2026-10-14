@@ -154,7 +154,7 @@ def prepare():
                 uuid.uuid4().hex, str(doc.modified), profile=dict(city='القاهرة', experience_years=index)))
         saved = recovery.prepare('intake', dict(name=doc.name, opening_name=opening,
             expected_version=str(doc.modified), command_id=uuid.uuid4().hex,
-            details=dict(applicant_name='طلب محفوظ · مرشح وهمي', email_id='review-pending@example.invalid',
+            details=dict(applicant_name='طلب محفوظ · مرشح وهمي', email_id='review-pending@example.invalid', phone_number='',
                          source_channel='Referral', source_detail='Prepared example: review before executing'),
             profile=dict(city='القاهرة')))
     manifest = dict(site=SITE, company=COMPANY, department=department, position=position,
@@ -187,3 +187,46 @@ def inspect():
                 scheduler_paused=bool(frappe.conf.get('pause_scheduler')),
                 companies_synthetic=frappe.get_all('Company', pluck='name') == [COMPANY],
                 personal_enabled=bool(frappe.db.get_value('User', PERSONAL, 'enabled')))
+
+
+def repair_prepared_example():
+    """One-time correction of the original synthetic seed's missing empty phone.
+
+    Preserve completed/user-changed examples. Retire the exact old envelope via
+    its normal command; never rewrite an encrypted envelope or a business row.
+    """
+    guard()
+    path = Path(frappe.get_site_path('private', 'kandil-review-accounts.json'))
+    manifest = json.loads(path.read_text())
+    name = manifest['recovery']
+    from kandil_hr.candidates import recovery
+    doc = frappe.get_doc(recovery.DT, name)
+    if doc.actor != PERSONAL or doc.operation != 'intake':
+        raise RuntimeError('Unexpected review example; no automatic repair')
+    if doc.status != 'Pending':
+        return dict(changed=False, reason='Preserved non-pending example')
+    before = inspect()
+    with actor(PERSONAL):
+        original = recovery.inspect(name)['arguments']
+        details = original['details']
+        if 'phone_number' in details:
+            return dict(changed=False, reason='Contact schema already complete')
+        if (set(details) != {'applicant_name','email_id','source_channel','source_detail'}
+                or details['email_id'] != 'review-pending@example.invalid'
+                or original['name'] != manifest['requests']['approved']
+                or original['opening_name'] != manifest['opening']):
+            raise RuntimeError('Review example differs from the original seed; preserve and inspect')
+        recovery.cancel(name)
+        replacement = recovery.prepare('intake', dict(original, command_id=uuid.uuid4().hex,
+                                                      details=dict(details, phone_number='')))
+    after = inspect()
+    for kind in before['tables']:
+        if kind != recovery.DT and before['tables'][kind] != after['tables'][kind]:
+            raise RuntimeError('Repair changed business data; transaction must roll back')
+    manifest['recovery'] = replacement['name']
+    temporary = path.with_name('review-repair-' + uuid.uuid4().hex + '.json')
+    persist(temporary, manifest)
+    frappe.db.commit()
+    os.replace(temporary, path)
+    return dict(changed=True, original_cancelled=True, replacement_pending=True,
+                business_rows_unchanged=True, original_reviewed_version_preserved=True)

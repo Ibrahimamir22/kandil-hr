@@ -9,6 +9,7 @@ application-next-action contract.
 
 import hashlib
 import json
+import re
 import uuid
 from contextlib import contextmanager
 from functools import partial
@@ -284,7 +285,15 @@ def set_next_action(name, task, due, owner, reason, command_id, expected_version
 	reason = reason_text(reason)
 	if not isinstance(task, str) or len(task) > 1000:
 		frappe.throw(_("A next action must contain at most 1000 characters."))
-	due = str(getdate(due)) if due else None
+	if task.strip():
+		if not isinstance(due, str) or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", due):
+			frappe.throw(_("Choose a valid follow-up date."))
+		try:
+			due = str(getdate(due))
+		except (ValueError, TypeError):
+			frappe.throw(_("Choose a valid follow-up date."))
+	else:
+		due = None
 
 	def act(app, opening, request):
 		if task.strip():

@@ -57,7 +57,7 @@ def run():
 				name,
 				app,
 				task="Synthetic follow-up survives disable",
-				due="",
+				due="2027-01-01",
 				owner=fixture.users["manager"],
 			)
 			with acting_as(fixture.users["hr"]):
@@ -75,7 +75,7 @@ def run():
 				name,
 				second,
 				task="Second account follow-up",
-				due="",
+				due="2027-01-01",
 				owner=fixture.users["hr"],
 			)
 			frappe.db.commit()

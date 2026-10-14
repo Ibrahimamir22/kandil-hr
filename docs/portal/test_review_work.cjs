@@ -1,0 +1,34 @@
+/* Read-only candidate-work smoke check on the persistent synthetic review site.
+ * Credentials are read privately; no candidate writes, account reset or cleanup.
+ */
+const fs=require('node:fs'),path=require('node:path'),assert=require('node:assert/strict');
+const {execFileSync}=require('node:child_process');
+const {chromium}=require('/Users/ibrahimamir/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+const app=path.resolve(__dirname,'../..'),workspace=path.resolve(app,'../../..');
+const privatePath=path.join(workspace,'frappe-bench/sites/kandil-review.localhost/private/kandil-review-accounts.json');
+const data=JSON.parse(fs.readFileSync(privatePath)),origin='http://kandil-review.localhost:8112';
+const out=path.join(__dirname,'evidence','review-work-'+Date.now());fs.mkdirSync(out,{recursive:true});
+const checks=[],errors=[],failures=[],external=[];let browser;
+function check(name,condition){assert.ok(condition,name);checks.push({name,status:'PASS'});console.log('PASS',name)}
+function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','deployment/review.compose.yaml','exec','-T','web','bench','--site',data.site,'execute','kandil_hr.portal.review_setup.inspect'],{cwd:app,env:{...process.env,KANDIL_DEV_WORKSPACE:workspace},encoding:'utf8',stdio:['ignore','pipe','pipe']}).split('\n').filter(x=>x.startsWith('{')).at(-1))}
+(async()=>{try{
+ const before=snapshot();
+ browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true,args:['--no-sandbox']});
+ for(const lang of ['en','ar']){
+  const ctx=await browser.newContext({viewport:lang==='en'?{width:1440,height:1000}:{width:390,height:844}});const p=await ctx.newPage();
+  p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=500)failures.push(r.status())});p.on('request',r=>{if(!r.url().startsWith(origin+'/')&&!r.url().startsWith('data:'))external.push(new URL(r.url()).origin)});
+  await p.goto(origin+'/hr-portal');await p.locator('input[name=usr]').waitFor();
+  const language=p.getByRole('button',{name:lang==='en'?'English':'العربية',exact:true});if(await language.count())await language.click();
+  await p.locator('input[name=usr]').fill(data.users.personal.email);await p.locator('input[name=pwd]').fill(data.users.personal.password);await p.locator('.login-submit').click();await p.locator('main.content[aria-busy="false"]').waitFor();
+  const menu=p.getByRole('button',{name:/Open navigation|فتح القائمة/});if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
+  check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
+  check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
+  check(lang+' viewport and direction',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await p.locator('html').getAttribute('dir')===(lang==='ar'?'rtl':'ltr'));
+  await p.locator('.candidate-work').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'review-work-'+lang+'.png')});await ctx.close();
+ }
+ check('Review business records preserved',JSON.stringify(before)===JSON.stringify(snapshot()));
+ check('No browser errors, server 5xx or external requests',!errors.length&&!failures.length&&!external.length);
+}catch(e){checks.push({name:String(e.message).split('\n')[0],status:'FAIL'});process.exitCode=1;console.log('FAIL',String(e.message).split('\n')[0])}
+finally{await browser?.close();const result={status:process.exitCode?'FAIL':'PASS',checks,errors,server_failures:failures,external,limits:['Read-only personal-role smoke check; mutation behavior is tested on the separate parity site. No production or capacity certification.']};fs.writeFileSync(path.join(out,'results.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({status:result.status,checks:checks.length,evidence:out}))}
+})();

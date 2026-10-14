@@ -1,5 +1,7 @@
 # S5 — candidate identity, applications and sourcing
 
+The [candidate ownership and follow-up checkpoint](S5_CANDIDATE_WORK_CHECKPOINT.md) adds individual recruiter handoffs, separately owned dated actions, change history and lost-response recovery in AR/EN. **52 distinct native checks, a 20-check affected rerun, 26 final work-browser checks and 42 recovery regression checks passed.** Full S5 and release acceptance remain open. Test through **http://kandil-review.localhost:8112/hr-portal**; see the [walkthrough](../portal/PERSISTENT_REVIEW.md).
+
 The [persistent review checkpoint](S5_PERSISTENT_REVIEW_CHECKPOINT.md) enables candidate review at **http://kandil-review.localhost:8112/hr-portal** with stable synthetic examples, a dedicated database/Redis and the existing personal login. **22 review checks and 63 independent candidate regression checks passed**; test cleanup preserved the review records, settings and session. Background workers/scheduler remain stopped here. Full S5 and release gates remain open.
 
 Earlier checkpoints below retain their original scope and outstanding work at the time; the current status above supersedes their recovery next-step notes.
