@@ -1,0 +1,1 @@
+from kandil_hr.communications.templates import KandilMessageTemplateRevision

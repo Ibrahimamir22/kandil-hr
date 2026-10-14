@@ -1,0 +1,56 @@
+[
+  {
+    "code": "ACK",
+    "language": "ar",
+    "purpose": "CONTACT",
+    "title": "تأكيد استلام الطلب",
+    "subject": "استلمنا طلبك — {job}",
+    "body": "مرحبًا {name}،\nشكرًا لتقديمك على وظيفة {job} في {company}. سيقوم فريق التوظيف بمراجعة الطلب والتواصل معك بشأن الخطوات التالية.",
+    "active": false
+  },
+  {
+    "code": "ACK",
+    "language": "en",
+    "purpose": "CONTACT",
+    "title": "Application received",
+    "subject": "Your application — {job}",
+    "body": "Hello {name},\nThank you for applying for {job} at {company}. Our recruitment team will review your application and contact you about next steps.",
+    "active": false
+  },
+  {
+    "code": "NO_ANSWER",
+    "language": "ar",
+    "purpose": "CONTACT",
+    "title": "محاولة التواصل",
+    "subject": "بخصوص وظيفة {job}",
+    "body": "مرحبًا {name}،\nمعك {recruiter} من {company}. حاولنا التواصل معك بخصوص وظيفة {job}. برجاء إبلاغنا بوقت مناسب للاتصال.",
+    "active": false
+  },
+  {
+    "code": "NO_ANSWER",
+    "language": "en",
+    "purpose": "CONTACT",
+    "title": "Tried to reach you",
+    "subject": "About {job}",
+    "body": "Hello {name},\nThis is {recruiter} from {company}. We tried to reach you about {job}. Please let us know a suitable time to call.",
+    "active": false
+  },
+  {
+    "code": "REJECT",
+    "language": "ar",
+    "purpose": "REJECT",
+    "title": "اعتذار عن عدم الاستمرار",
+    "subject": "بخصوص طلبك — {job}",
+    "body": "مرحبًا {name}،\nنشكرك على اهتمامك بوظيفة {job} في {company}. لن نستكمل طلبك لهذه الوظيفة في الوقت الحالي. نتمنى لك التوفيق.\nفريق التوظيف",
+    "active": false
+  },
+  {
+    "code": "REJECT",
+    "language": "en",
+    "purpose": "REJECT",
+    "title": "Application outcome",
+    "subject": "Your application — {job}",
+    "body": "Hello {name},\nThank you for your interest in {job} at {company}. We will not be continuing your application for this role at this time. We wish you every success.\nRecruitment Team",
+    "active": false
+  }
+]

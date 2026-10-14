@@ -30,6 +30,10 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' message queue viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await p.screenshot({path:path.join(out,'review-message-queue-'+lang+'.png')});
   if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Message templates':'قوالب الرسائل',exact:true}).click();await p.locator('.message-templates[aria-busy="false"]').waitFor();
+  check(lang+' template library is read-only for the personal recruiter',await p.locator('.message-templates [role=alert]').count()===0&&await p.getByRole('button',{name:lang==='en'?'New template':'قالب جديد',exact:true}).count()===0);
+  check(lang+' template library viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidate-list .candidate-row').first().waitFor();await p.locator('.candidate-list .candidate-row').first().click();await p.locator('.candidate-work[aria-busy="false"] h2').waitFor();
   check(lang+' personal login and one connected work panel',await p.locator('.candidate-work').count()===1&&await p.locator('.local-test-note').isVisible());
   check(lang+' read-only work context loads without errors',await p.locator('.candidate-work [role=alert]').count()===0);
@@ -37,6 +41,8 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' connected activity panel loads without errors',await p.locator('.candidate-activities').count()===1&&await p.locator('.candidate-activities [role=alert]').count()===0);
   await p.locator('.candidate-closure[aria-busy="false"] h2').waitFor();
   check(lang+' connected closure panel loads without errors',await p.locator('.candidate-closure').count()===1&&await p.locator('.candidate-closure [role=alert]').count()===0);
+  await p.locator('.candidate-template-composer[aria-busy="false"]').waitFor();
+  check(lang+' candidate template choices load without writes or errors',await p.locator('.candidate-template-composer [role=alert]').count()===0);
   check(lang+' viewport and direction',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await p.locator('html').getAttribute('dir')===(lang==='ar'?'rtl':'ltr'));
   await p.locator('.candidate-work').scrollIntoViewIfNeeded();await p.screenshot({path:path.join(out,'review-work-'+lang+'.png')});await ctx.close();
  }

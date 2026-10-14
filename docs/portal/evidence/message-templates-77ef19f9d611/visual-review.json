@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "reviewed_at": "2026-10-14",
+  "method": "Direct visual inspection of final browser screenshots",
+  "files": {
+    "template-publish-en.png": "c44e423f987e0bc06cebf7fca8ec4f67592d367f03cf8945b4dfb9a2791292a5",
+    "template-preview-en.png": "683976b5f6424bfe2dfd4c520deb1ab1d19d8903734d92719d0e5f24a8d05b1d",
+    "template-publish-ar.png": "1595bc471f12743ecce21e76c8f5ded8354348ae36ed9c360cc6607879fe98e3",
+    "template-preview-ar.png": "747eb1f29599812d685458587444e28cc29783a85cae143971c12921d3930fa2"
+  },
+  "observations": [
+    "English editor shows code/language, purpose, body, publication state, reason and explicit review.",
+    "Arabic mobile editor and candidate preview fit the 390px viewport; wording retains right-to-left layout with mixed synthetic identifiers.",
+    "Candidate preview shows a readable template code and revision number; copy-only notice and separate body/subject controls are visible."
+  ],
+  "limits": [
+    "Synthetic examples and selected viewports only; HR design/wording acceptance remains open.",
+    "Clipboard uses an isolated browser stub; no OS clipboard permission or external delivery evidence is claimed."
+  ]
+}

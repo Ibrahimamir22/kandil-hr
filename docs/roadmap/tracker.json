@@ -599,7 +599,7 @@
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "Rejection-message queue and reviewed manual outcomes are connected in AR/EN: copy-only draft, channel/reported text or reasoned Not needed, immutable linked audit activity and exact recovery. 86 native, 123 workflow browser and 18 read-only review checks passed; see S5_MESSAGE_TASKS_CHECKPOINT.md. No external message is sent or provider-verified. Approved templates, reopening, downstream integration, remaining S5 and S6-S12/security/UAT/capacity gates remain open.",
+          "progress": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -663,7 +663,14 @@
             "../portal/evidence/candidate-closure-026de9d75d17/results.json",
             "../portal/evidence/recovery-ui-77023e97a333/results.json",
             "../portal/evidence/candidate-activity-actions-166da7c0e724/results.json",
-            "../portal/evidence/review-work-1791949800105/results.json"
+            "../portal/evidence/review-work-1791949800105/results.json",
+            "S5_TEMPLATE_CHECKPOINT.md",
+            "evidence/s2-regression-12db3feeff0d.json",
+            "evidence/s2-regression-bc62740d5423.json",
+            "../portal/evidence/message-templates-77ef19f9d611/results.json",
+            "../portal/evidence/message-templates-77ef19f9d611/visual-review.json",
+            "../portal/evidence/candidate-messages-8f5740558c7e/results.json",
+            "../portal/evidence/review-work-1791950864256/results.json"
           ]
         },
         {
@@ -1042,8 +1049,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Rejection-message queue and reviewed manual outcomes are connected in AR/EN: copy-only draft, channel/reported text or reasoned Not needed, immutable linked audit activity and exact recovery. 86 native, 123 workflow browser and 18 read-only review checks passed; see S5_MESSAGE_TASKS_CHECKPOINT.md. No external message is sent or provider-verified. Approved templates, reopening, downstream integration, remaining S5 and S6-S12/security/UAT/capacity gates remain open.",
-    "evidence": "S5_MESSAGE_TASKS_CHECKPOINT.md",
-    "next": "Connect approved candidate message templates, reviewed reopening/history cycles and downstream interview/offer/referral closure integration; preserve all remaining S5 and S6-S12 scope and acceptance gates."
+    "summary": "Company HR template publishing and immutable revisions, Arabic/English starter wording and current-scope candidate preview/copy are connected. A fresh version/value/permission check runs before copy; copying never sends or closes a rejection task. 47 native, 58 workflow browser and 24 read-only review checks passed; see S5_TEMPLATE_CHECKPOINT.md. Interview/offer/ad consumers, HR wording/authority acceptance, remaining S5 and all S6-S12 release gates remain open.",
+    "evidence": "S5_TEMPLATE_CHECKPOINT.md",
+    "next": "Implement reviewed reopening/history cycles and downstream interview/offer/referral closure integration; retain template consumers and full remaining S5-S12 scope and release gates."
   }
 }
