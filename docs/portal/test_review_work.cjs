@@ -34,6 +34,11 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   check(lang+' template library is read-only for the personal recruiter',await p.locator('.message-templates [role=alert]').count()===0&&await p.getByRole('button',{name:lang==='en'?'New template':'قالب جديد',exact:true}).count()===0);
   check(lang+' template library viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Recruitment sources':'مصادر التوظيف',exact:true}).click();await p.locator('.recruitment-sources[aria-busy="false"] .source-items').waitFor();
+  check(lang+' source catalogue is readable and personal account cannot edit',await p.locator('.recruitment-sources [role=alert]').count()===0&&await p.locator('.source-items [data-code]').count()===13&&await p.getByRole('button',{name:lang==='en'?'Add source':'إضافة مصدر',exact:true}).count()===0);
+  check(lang+' source catalogue viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await p.screenshot({path:path.join(out,'review-sources-'+lang+'.png')});
+  if(await menu.isVisible())await menu.click();
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Privacy notices':'إشعارات الخصوصية',exact:true}).click();await p.locator('.privacy-notices[aria-busy="false"] .current-privacy-notice').waitFor();
   check(lang+' personal privacy notice is read-only and no legal text is seeded',await p.locator('.privacy-notices [role=alert]').count()===0&&await p.locator('.privacy-notice-editor').count()===0&&await p.locator('.privacy-notice-history').count()===0&&await p.locator('.current-privacy-notice').getByText(lang==='en'?'No published notice is available. This cannot be treated as consent from any candidate.':'لا يوجد إشعار منشور متاح. لا يمكن اعتبار ذلك موافقة من أي مرشح.',{exact:true}).isVisible());
   await p.locator('.pool-policy[aria-busy="false"] h2').waitFor();
@@ -68,6 +73,12 @@ function snapshot(){return JSON.parse(execFileSync('docker',['compose','-f','dep
   await p.locator('.nav').getByRole('link',{name:lang==='en'?'Talent pool':'قاعدة المرشحين',exact:true}).click();await p.locator('.talent-pool[aria-busy="false"] h2').waitFor();
   check(lang+' connected pool has no invented memberships',await p.locator('.talent-pool [role=alert]').count()===0&&await p.locator('.talent-pool .candidate-row').count()===0&&await p.locator('.talent-pool .empty').isVisible());
   check(lang+' pool viewport fits',await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  if(await menu.isVisible())await menu.click();
+  await p.locator('.nav').getByRole('link',{name:lang==='en'?'Candidates':'المرشحون',exact:true}).click();await p.locator('.candidates[aria-busy="false"]').waitFor();
+  await p.getByRole('button',{name:lang==='en'?'New application':'إضافة طلب ترشح',exact:true}).click();await p.locator('.candidate-intake .candidate-row').first().click();
+  const source=p.getByLabel(lang==='en'?'Source channel':'مصدر الترشح',{exact:true});await source.locator('option[value="EMAIL"]').waitFor({state:'attached'});
+  check(lang+' personal intake uses controlled source selection',await source.evaluate(el=>el.tagName)==='SELECT'&&await source.locator('option[value="EMAIL"]').count()===1);
+  check(lang+' dedicated source workflows cannot be bypassed in review form',await source.locator('option[value="AGENCY"]').evaluate(el=>el.disabled)&&await source.locator('option[value="TALENT_POOL"]').evaluate(el=>el.disabled));
   await ctx.close();
  }
  check('Review business records preserved',JSON.stringify(before)===JSON.stringify(snapshot()));

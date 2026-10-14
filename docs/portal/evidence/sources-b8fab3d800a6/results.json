@@ -1,0 +1,40 @@
+{
+  "status": "FAIL",
+  "run_id": "b8fab3d800a6",
+  "checks": [
+    {
+      "name": "Reference catalogue shows thirteen sources",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "b8fab3d800a6",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/sources.py": "7795dc3557d440911a5e8486f92162b68e2cc621445fc51e7fee79c144db3807",
+    "kandil_hr/sourcing/defaults_v1.json": "b066244afd881cf1a89bf8e255094de01117f50aab6028b82252783507d3bd44",
+    "kandil_hr/sourcing/test_sources.py": "bd5f30359bc4e427c5734bf1b70c91144042b01b8a70d5c4ce06515329e0456b",
+    "kandil_hr/portal/source_fixture.py": "e32940e02e4d9ad4285d3bc0c5efd07357ff38c46097996d8676aea02711fc61",
+    "kandil_hr/candidates/intake.py": "d0d7b75ad0b97a12eeead3d80d5f90fb35a62832b7f6dc71ef4c28a814b27d1c",
+    "kandil_hr/candidates/recovery.py": "6c1495f4faab42349a9a1e318e3b61235e01d716aa75db207e65ad3230af8e81",
+    "kandil_hr/portal/candidates.py": "fe42fc02987e772d3a38f74ccd93e248e550c28ab713b5c0de4fbeade9b02f93",
+    "frontend/portal/src/RecruitmentSources.tsx": "9cde9bed37822ed457b636e650e0a641f0caecbcad2becb0f62d0d0d4540c6e0",
+    "frontend/portal/src/Candidates.tsx": "31c38ccd3e9552ebb8033074f802d71c752e6479d41d8a2c2c9a4041e40cf279",
+    "frontend/portal/src/main.tsx": "d9733fb7b5589135f50544688e5e8fd37798927350f4ed6ca7797da65f626bc3",
+    "kandil_hr/public/portal/portal.js": "a61ae71c0ecffc1b32b55e167ba2edc2a7bf4a15dde67f406c07413ebef520b0",
+    "docs/portal/test_sources.cjs": "6d07c8117a7e388378dc4e9818bb3e79d401a8ef56024d4c1e788c82a7a7c817"
+  },
+  "limits": [
+    "Controlled-source intake on opted-in sites. Legacy source values remain untouched.",
+    "Ads, source credits, referrals, agency/internal policy, production privacy/security and sustained capacity remain open."
+  ]
+}

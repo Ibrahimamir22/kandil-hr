@@ -1,0 +1,132 @@
+{
+  "status": "PASS",
+  "run_id": "8324e00b64c4",
+  "checks": [
+    {
+      "name": "Reference catalogue shows thirteen sources",
+      "status": "PASS"
+    },
+    {
+      "name": "source-editor-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Uncertain source save freezes values",
+      "status": "PASS"
+    },
+    {
+      "name": "Lost response retry stores one source revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter can read but cannot edit source catalogue",
+      "status": "PASS"
+    },
+    {
+      "name": "Recruiter and outsider cannot edit or enumerate outside scope",
+      "status": "PASS"
+    },
+    {
+      "name": "Dedicated source kinds cannot be selected in generic intake",
+      "status": "PASS"
+    },
+    {
+      "name": "source-intake-en fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Selected source creates one real application",
+      "status": "PASS"
+    },
+    {
+      "name": "Application carries immutable source definition and sub-source",
+      "status": "PASS"
+    },
+    {
+      "name": "HR can deactivate source",
+      "status": "PASS"
+    },
+    {
+      "name": "Renaming and deactivation preserve application attribution",
+      "status": "PASS"
+    },
+    {
+      "name": "Inactive source excluded from new intake",
+      "status": "PASS"
+    },
+    {
+      "name": "Stale source version cannot create application",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent source changes reject stale editor",
+      "status": "PASS"
+    },
+    {
+      "name": "Concurrent exact source retry returns same revision",
+      "status": "PASS"
+    },
+    {
+      "name": "Native revision is private",
+      "status": "PASS"
+    },
+    {
+      "name": "Existing source code and kind cannot be repurposed",
+      "status": "PASS"
+    },
+    {
+      "name": "source-editor-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "source-history-ar-mobile fits viewport",
+      "status": "PASS"
+    },
+    {
+      "name": "Source work preserves existing applications and capacity",
+      "status": "PASS"
+    },
+    {
+      "name": "Revoked HR cannot replay source edit",
+      "status": "PASS"
+    },
+    {
+      "name": "No browser errors server failures or external requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Tested source unchanged",
+      "status": "PASS"
+    }
+  ],
+  "cleanup": {
+    "run_id": "8324e00b64c4",
+    "cleaned": true,
+    "accounts_disabled": 6,
+    "all_fixture_ledgers_zero": true,
+    "history_retained": true,
+    "intake_lease_restored": true,
+    "source_lease_restored": true
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "source_hashes": {
+    "kandil_hr/sourcing/sources.py": "7795dc3557d440911a5e8486f92162b68e2cc621445fc51e7fee79c144db3807",
+    "kandil_hr/sourcing/defaults_v1.json": "b066244afd881cf1a89bf8e255094de01117f50aab6028b82252783507d3bd44",
+    "kandil_hr/sourcing/test_sources.py": "bd5f30359bc4e427c5734bf1b70c91144042b01b8a70d5c4ce06515329e0456b",
+    "kandil_hr/portal/source_fixture.py": "b0a6f47eee775b6f5b8b46fb8bd60d7620f4fd7e48a82931d5396291f26d30ec",
+    "kandil_hr/candidates/intake.py": "d0d7b75ad0b97a12eeead3d80d5f90fb35a62832b7f6dc71ef4c28a814b27d1c",
+    "kandil_hr/candidates/recovery.py": "6c1495f4faab42349a9a1e318e3b61235e01d716aa75db207e65ad3230af8e81",
+    "kandil_hr/portal/candidates.py": "fe42fc02987e772d3a38f74ccd93e248e550c28ab713b5c0de4fbeade9b02f93",
+    "frontend/portal/src/RecruitmentSources.tsx": "9a9008a5a758f92931eebcfd94a74599804abc784a0fc8a574bfc6733c669d5d",
+    "frontend/portal/src/Candidates.tsx": "3f7ec1c2ba968716289646dd6367c9bedb3297974e6654e9a77f4d3cb1a86236",
+    "frontend/portal/src/main.tsx": "d9733fb7b5589135f50544688e5e8fd37798927350f4ed6ca7797da65f626bc3",
+    "kandil_hr/public/portal/portal.js": "abafbf052739dd70b2b9af4e44dffa330d5c54f595cb9c573348b0cecbf83536",
+    "docs/portal/test_sources.cjs": "a11a31fb99ea4f9dd354578501063d19e3bbd11a34fced24b93b8128e1394c24"
+  },
+  "limits": [
+    "Controlled-source intake on opted-in sites. Legacy source values remain untouched.",
+    "Ads, source credits, referrals, agency/internal policy, production privacy/security and sustained capacity remain open."
+  ]
+}

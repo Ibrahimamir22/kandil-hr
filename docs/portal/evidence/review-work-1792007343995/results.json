@@ -1,0 +1,115 @@
+{
+  "status": "FAIL",
+  "checks": [
+    {
+      "name": "en connected follow-up queue loads with five bucket controls",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected message queue loads with four task filters",
+      "status": "PASS"
+    },
+    {
+      "name": "en message queue viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en template library is read-only for the personal recruiter",
+      "status": "PASS"
+    },
+    {
+      "name": "en template library viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en source catalogue is readable and personal account cannot edit",
+      "status": "PASS"
+    },
+    {
+      "name": "en source catalogue viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal privacy notice is read-only and no legal text is seeded",
+      "status": "PASS"
+    },
+    {
+      "name": "en pool policy has no seeded wording or retention and is read-only",
+      "status": "PASS"
+    },
+    {
+      "name": "en privacy notice viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal login and one connected work panel",
+      "status": "PASS"
+    },
+    {
+      "name": "en read-only work context loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected activity panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en consent panel shows no invented notice or candidate acceptance",
+      "status": "PASS"
+    },
+    {
+      "name": "en consent history is empty and no revocation is invented",
+      "status": "PASS"
+    },
+    {
+      "name": "en screening gate requires candidate consent without invented eligibility",
+      "status": "PASS"
+    },
+    {
+      "name": "en pool consent has no invented grant or policy",
+      "status": "PASS"
+    },
+    {
+      "name": "en membership is empty without invented consent",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected closure panel loads without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en decision history loads read-only without errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en candidate template choices load without writes or errors",
+      "status": "PASS"
+    },
+    {
+      "name": "en viewport and direction",
+      "status": "PASS"
+    },
+    {
+      "name": "en connected pool has no invented memberships",
+      "status": "PASS"
+    },
+    {
+      "name": "en pool viewport fits",
+      "status": "PASS"
+    },
+    {
+      "name": "en personal intake uses controlled source selection",
+      "status": "PASS"
+    },
+    {
+      "name": "en dedicated source workflows cannot be bypassed in review form",
+      "status": "FAIL"
+    }
+  ],
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "limits": [
+    "Read-only personal-role smoke check; mutation behavior is tested on the separate parity site. No production or capacity certification."
+  ]
+}

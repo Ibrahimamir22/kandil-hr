@@ -678,7 +678,15 @@
         {
           "id": "S5-03",
           "description": "Add sourcing channels, ads/apply links, referrals, agencies and subscription-credit records.",
-          "status": "planned"
+          "status": "in_progress",
+          "progress": "Controlled source catalogue and immutable source/sub-source snapshots implemented for opted-in manual and reviewed pool intake. Dedicated referrals/agencies/internal consumers, advertisements/apply links and subscription-credit workflows remain unfinished.",
+          "evidence": [
+            "S5_SOURCE_CATALOG_CHECKPOINT.md",
+            "evidence/s2-regression-990223b8e4ee.json",
+            "../portal/evidence/sources-8324e00b64c4/results.json",
+            "../portal/evidence/sources-8324e00b64c4/visual-review.json",
+            "../portal/evidence/review-work-1792007434810/results.json"
+          ]
         },
         {
           "id": "S5-04",
@@ -717,8 +725,8 @@
         "HR/privacy owner: retention, consent wording, candidate access and public intake scope."
       ],
       "implementation_brief": "S5_IMPLEMENTATION_BRIEF.md",
-      "progress": "Reviewed pool-to-vacancy intake and latest permitted application projection connected in AR/EN. 19 final native, 28 connected browser and 46 preserved-review checks passed. Concurrency, withdrawal, native permissions and source/person/headcount preservation verified. CAN-008/S5 remain partial.",
-      "checkpoint": "S5_POOL_INTAKE_CHECKPOINT.md"
+      "progress": "Controlled bilingual recruitment-source catalogue and immutable application attribution connected. 52 native, 24 connected browser and 54 preserved-review checks passed. Stale edits, exact retries, authority revocation and dedicated-source bypasses were tested. SRC-001/S5-03 and S5 remain partial.",
+      "checkpoint": "S5_SOURCE_CATALOG_CHECKPOINT.md"
     },
     {
       "id": "S6",
@@ -1062,8 +1070,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "Reviewed pool-to-vacancy intake and latest permitted application projection connected in AR/EN. 19 final native, 28 connected browser and 46 preserved-review checks passed. Concurrency, withdrawal, native permissions and source/person/headcount preservation verified. CAN-008/S5 remain partial.",
-    "evidence": "S5_POOL_INTAKE_CHECKPOINT.md",
-    "next": "Complete private candidate documents and profile presentation, matching, sourcing/imports, cancellation/transfer consumers and data-subject/retention workflows. Preserve all 98 requirements and S5–S12 scope including HR/privacy, independent security, 1,000+ capacity, UAT and production gates."
+    "summary": "Controlled bilingual recruitment-source catalogue and immutable application attribution connected. 52 native, 24 connected browser and 54 preserved-review checks passed. Stale edits, exact retries, authority revocation and dedicated-source bypasses were tested. SRC-001/S5-03 and S5 remain partial.",
+    "evidence": "S5_SOURCE_CATALOG_CHECKPOINT.md",
+    "next": "Complete remaining sourcing/referral/agency/advertisement/credit workflows, private documents, matching/imports, cancellation/transfer consumers and privacy/retention work. Preserve all 98 requirements and all S6–S12 gates: HR acceptance, independent security, 1,000+ capacity, UAT and production rollout."
   }
 }

@@ -97,6 +97,8 @@ def detail(name):
     from kandil_hr.foundation.security import request_scope
     from kandil_hr.foundation.teams import candidate_access
     can_correct = bool(candidate and identity.enabled() and request_scope(request, frappe.session.user, 'manage') and candidate_access(opening, request))
+    from kandil_hr.sourcing.sources import application_snapshot
+    result['source_snapshot']=application_snapshot(app)
     return dict(application=result,person=candidate,profile_edit=dict(allowed=can_correct,
                 request=request.name, opening=opening.name, expected_version=str(request.modified)))
 

@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "reviewed_on": "2026-10-14",
+  "method": "Manual visual inspection of the four final rendered captures",
+  "captures": [
+    {
+      "file": "source-editor-en.png",
+      "sha256": "a07123f4107d57062207b936150538ea2180b936cd54a48b40cf0cb372f2fd70"
+    },
+    {
+      "file": "source-intake-en.png",
+      "sha256": "1af90e02800ad29694896d13f8ab11455a6eba3d3eb303d453c1fbaf6a2d082d"
+    },
+    {
+      "file": "source-editor-ar-mobile.png",
+      "sha256": "d0020717beed04411b05448af7b8e8685079909fceff9b4d6afbf48afefc6110"
+    },
+    {
+      "file": "source-history-ar-mobile.png",
+      "sha256": "7a99d8d396ac513595e1ca5e10a12e7c0e166d94c7c794cfcab0281f6509a761"
+    }
+  ],
+  "observations": [
+    "English editor and intake form labels and controls are readable.",
+    "Arabic mobile editor and history follow RTL layout without clipped controls.",
+    "Code/kind immutability, explicit review and reason fields are visible."
+  ],
+  "limits": [
+    "Synthetic engineering review only; not HR acceptance or accessibility certification."
+  ]
+}

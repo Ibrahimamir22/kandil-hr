@@ -1,0 +1,132 @@
+[
+  {
+    "code": "CAREER_PAGE",
+    "label_ar": "لينك التقديم المباشر",
+    "label_en": "Direct apply link",
+    "kind": "DIRECT",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 10
+  },
+  {
+    "code": "COMPANY_SITE",
+    "label_ar": "موقع الشركة",
+    "label_en": "Company website",
+    "kind": "DIRECT",
+    "has_link": true,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 20
+  },
+  {
+    "code": "WUZZUF",
+    "label_ar": "Wuzzuf",
+    "label_en": "Wuzzuf",
+    "kind": "JOB_BOARD",
+    "has_link": true,
+    "uses_credits": true,
+    "active": true,
+    "sort_order": 30
+  },
+  {
+    "code": "LINKEDIN",
+    "label_ar": "LinkedIn",
+    "label_en": "LinkedIn",
+    "kind": "JOB_BOARD",
+    "has_link": true,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 40
+  },
+  {
+    "code": "FACEBOOK",
+    "label_ar": "Facebook",
+    "label_en": "Facebook",
+    "kind": "SOCIAL",
+    "has_link": true,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 50
+  },
+  {
+    "code": "WHATSAPP",
+    "label_ar": "واتساب",
+    "label_en": "WhatsApp",
+    "kind": "MESSAGING",
+    "has_link": true,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 60
+  },
+  {
+    "code": "INTERNAL",
+    "label_ar": "إعلان داخلي",
+    "label_en": "Internal posting",
+    "kind": "INTERNAL",
+    "has_link": true,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 70
+  },
+  {
+    "code": "EMAIL",
+    "label_ar": "إيميل",
+    "label_en": "Email",
+    "kind": "DIRECT",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 80
+  },
+  {
+    "code": "REFERRAL",
+    "label_ar": "ترشيح من موظف",
+    "label_en": "Employee referral",
+    "kind": "REFERRAL",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 90
+  },
+  {
+    "code": "WALK_IN",
+    "label_ar": "حضور شخصي",
+    "label_en": "Walk-in",
+    "kind": "DIRECT",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 100
+  },
+  {
+    "code": "AGENCY",
+    "label_ar": "مكتب توظيف",
+    "label_en": "Recruitment agency",
+    "kind": "AGENCY",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 110
+  },
+  {
+    "code": "TALENT_POOL",
+    "label_ar": "قاعدة المرشحين",
+    "label_en": "Talent pool",
+    "kind": "POOL",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 120
+  },
+  {
+    "code": "OTHER",
+    "label_ar": "أخرى",
+    "label_en": "Other",
+    "kind": "OTHER",
+    "has_link": false,
+    "uses_credits": false,
+    "active": true,
+    "sort_order": 130
+  }
+]

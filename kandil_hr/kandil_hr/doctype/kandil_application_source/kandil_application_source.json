@@ -1,0 +1,82 @@
+{
+  "doctype": "DocType",
+  "name": "Kandil Application Source",
+  "module": "Kandil HR",
+  "custom": 0,
+  "engine": "InnoDB",
+  "allow_rename": 0,
+  "fields": [
+    {
+      "fieldname": "company",
+      "label": "Company",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Company"
+    },
+    {
+      "fieldname": "application",
+      "label": "Application",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Job Applicant",
+      "unique": 1
+    },
+    {
+      "fieldname": "person",
+      "label": "Person",
+      "fieldtype": "Link",
+      "read_only": 1,
+      "reqd": 1,
+      "options": "Kandil Candidate Person"
+    },
+    {
+      "fieldname": "source_code",
+      "label": "Source Code",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "source_version",
+      "label": "Source Version",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "source_json",
+      "label": "Source Definition",
+      "fieldtype": "Long Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "sub_source",
+      "label": "Sub-source",
+      "fieldtype": "Small Text",
+      "read_only": 1,
+      "reqd": 1
+    },
+    {
+      "fieldname": "content_hash",
+      "label": "Content Hash",
+      "fieldtype": "Data",
+      "read_only": 1,
+      "reqd": 1
+    }
+  ],
+  "field_order": [
+    "company",
+    "application",
+    "person",
+    "source_code",
+    "source_version",
+    "source_json",
+    "sub_source",
+    "content_hash"
+  ],
+  "permissions": [],
+  "track_changes": 0
+}

@@ -51,13 +51,13 @@ def authorize(request, operation, payload):
 @frappe.whitelist(methods=['POST'])
 @transactional_retry
 def create_application(name, opening_name, details, command_id, expected_version,
-                       person=None, person_version=None, identity_reason='', profile=None):
+                       person=None, person_version=None, identity_reason='', profile=None, source_version=None):
     return _create_application(name, opening_name, details, command_id, expected_version,
-                               person, person_version, identity_reason, profile)
+                               person, person_version, identity_reason, profile, source_version)
 
 
 def _create_application(name, opening_name, details, command_id, expected_version,
-                        person=None, person_version=None, identity_reason='', profile=None):
+                        person=None, person_version=None, identity_reason='', profile=None, source_version=None):
     # Internal composition point: callers own their whole-transaction retry.
     identity.guard()
     if isinstance(details, str) and len(details) > 4000:
@@ -88,7 +88,12 @@ def _create_application(name, opening_name, details, command_id, expected_versio
                    person=person, person_version=str(person_version) if person else None,
                    identity_reason=reason)
 
+    if source_version is not None:
+        payload['source_version']=text(source_version,140)
+
     def act(request):
+        from kandil_hr.sourcing import sources
+        selection=sources.selected(request.company,data['source_channel'],source_version) if sources.enabled() or source_version is not None else None
         from kandil_hr.pilot.extensions import pilot_opening
         pilot_opening(opening_name, lock=True)
         candidate = frappe.get_doc(identity.DT, person, for_update=True) if person else identity.new_person(request.company, person_profile)
@@ -101,6 +106,7 @@ def _create_application(name, opening_name, details, command_id, expected_versio
                 custom_kandil_identity_origin='Reviewed intake',
                 custom_kandil_source_channel=data['source_channel'],
                 custom_kandil_source_detail=data['source_detail'])).insert()
+        if selection:sources.capture(app,request.company,selection)
         return dict(application=app.name, person=candidate.name, application_version=str(app.modified),
                     person_version=str(candidate.modified))
 

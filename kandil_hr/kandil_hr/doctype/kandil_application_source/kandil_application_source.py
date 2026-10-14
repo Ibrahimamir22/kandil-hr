@@ -1,0 +1,1 @@
+from kandil_hr.sourcing.sources import KandilApplicationSource
