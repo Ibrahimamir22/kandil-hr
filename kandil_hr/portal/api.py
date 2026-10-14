@@ -89,7 +89,7 @@ def bootstrap():
     can_manage = frappe.session.user == "Administrator" or any(not g.valid_until or str(g.valid_until) >= today() for g in grants)
     return dict(
         user=dict(id=frappe.session.user, full_name=get_fullname()),
-        synthetic_test=frappe.local.site == "kandil-parity.localhost",
+        synthetic_test=(frappe.local.site == "kandil-parity.localhost" or bool(frappe.conf.get("kandil_review_environment"))),
         csrf_token=get_csrf_token(),
         can_review_candidate_migration=can_review_migration(),
         can_read_candidates=bool(frappe.has_permission("Job Applicant", "read") and (frappe.session.user == "Administrator" or "Kandil Recruiter" in frappe.get_roles())),

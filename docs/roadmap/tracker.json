@@ -560,7 +560,7 @@
           "id": "S5-01",
           "description": "Implement person identity plus distinct applications; reviewed deduplication, former/internal candidates and history.",
           "status": "in_progress",
-          "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
+          "progress": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
           "evidence": [
             "S5_IMPLEMENTATION_BRIEF.md",
             "S5_IDENTITY_CHECKPOINT.md",
@@ -589,14 +589,17 @@
             "../portal/evidence/candidate-sessions-32c975f9f2d5/results.json",
             "../portal/evidence/recovery-ui-f87b8cf8bcf5/results.json",
             "evidence/candidate-cleanup-scheduler-a47fbec54950.json",
-            "evidence/candidate-cleanup-retirement-a47fbec54950.json"
+            "evidence/candidate-cleanup-retirement-a47fbec54950.json",
+            "S5_PERSISTENT_REVIEW_CHECKPOINT.md",
+            "../portal/evidence/persistent-review-1403a1066629/results.json",
+            "../portal/evidence/candidates-906740e7d36e/results.json"
           ]
         },
         {
           "id": "S5-02",
           "description": "Build candidate workspace, private CV/documents, follow-up/activity queue and rejection records.",
           "status": "in_progress",
-          "progress": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
+          "progress": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
           "evidence": [
             "S5_CANDIDATE_WORKSPACE_CHECKPOINT.md",
             "../portal/evidence/candidates-68a7c80bee7d/results.json",
@@ -618,7 +621,10 @@
             "../portal/evidence/candidate-sessions-32c975f9f2d5/results.json",
             "../portal/evidence/recovery-ui-f87b8cf8bcf5/results.json",
             "evidence/candidate-cleanup-scheduler-a47fbec54950.json",
-            "evidence/candidate-cleanup-retirement-a47fbec54950.json"
+            "evidence/candidate-cleanup-retirement-a47fbec54950.json",
+            "S5_PERSISTENT_REVIEW_CHECKPOINT.md",
+            "../portal/evidence/persistent-review-1403a1066629/results.json",
+            "../portal/evidence/candidates-906740e7d36e/results.json"
           ]
         },
         {
@@ -997,8 +1003,8 @@
   ],
   "latest_checkpoint": {
     "sprint": "S5",
-    "summary": "AR/EN intake, corrections, search and reviewed migration have durable recovery and expiry. Session-loss handling preserves original attempts and clears displayed private state; 19 session and 42 recovery UI checks passed. Ten isolated native scheduler/worker checks proved bounded cleanup, worker restart, unchanged business/audit rows and shared queue isolation. Controlled review-cohort activation, complete profiles, ownership/follow-up/activity, sourcing, private files and consent remain open.",
-    "evidence": "S5_RECOVERY_OPERATIONS_CHECKPOINT.md",
-    "next": "Activate a clearly labelled synthetic candidate review cohort, verify personal-role access and reversible operations, and ensure later tests preserve its configuration. Then complete candidate ownership/follow-up/rejection/activity, recruiter handoff and remaining S5 scope."
+    "summary": "Persistent synthetic review is active at kandil-review.localhost:8112 with independent database/Redis and scoped personal-role examples. 22 review checks and 63 independent parity regression checks passed; review business hashes/configuration and personal session survived the regression. Workers/scheduler remain stopped here. Full candidate profiles, ownership/follow-up/activity, sourcing, private files, consent and S6–S12 acceptance remain open.",
+    "evidence": "S5_PERSISTENT_REVIEW_CHECKPOINT.md",
+    "next": "Continue candidate ownership, follow-up, rejection/activity and recruiter handoff, preserving the persistent human-review site. Full profiles, sourcing/imports, private files, consent and remaining S5–S12 requirements retain their scope."
   }
 }

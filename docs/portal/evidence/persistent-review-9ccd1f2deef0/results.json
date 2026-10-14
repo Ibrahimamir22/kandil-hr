@@ -1,0 +1,85 @@
+{
+  "status": "FAIL",
+  "run_id": "9ccd1f2deef0",
+  "checks": [
+    {
+      "name": "Dedicated site is synthetic, enabled for review, and excludes automated tests",
+      "status": "PASS"
+    },
+    {
+      "name": "Parity prepare refuses the review site before mutation",
+      "status": "FAIL"
+    }
+  ],
+  "before": {
+    "site": "kandil-review.localhost",
+    "tables": {
+      "Company": {
+        "count": 1,
+        "sha256": "182199169e664906cab349d988a47f0eae40e6eb19109ff8f0770e7f7b8679a4"
+      },
+      "Kandil Hiring Request": {
+        "count": 3,
+        "sha256": "deaf84e9b01ed54f9e02e457045af98b929144c81de088be9dbafbb7c8a13e06"
+      },
+      "Kandil Capacity": {
+        "count": 1,
+        "sha256": "1f854b68e7cf1a6fb3f88c22dfcb4a4675a1d2f337510682b5f0dd4ac0cc30dc"
+      },
+      "Job Opening": {
+        "count": 1,
+        "sha256": "47e1c5afcfb822c41f6c68ff8c7e7f9416d116a81abe5c4b5506fa7a9da793b0"
+      },
+      "Kandil Candidate Person": {
+        "count": 3,
+        "sha256": "22660ecfb6d1a243763f85eb515e02154b34c0ba8814b87869e810b056487028"
+      },
+      "Job Applicant": {
+        "count": 4,
+        "sha256": "c67f8b6773582564ac485556841c053b5f4dd151da8995c6110695db649d286b"
+      },
+      "Kandil Candidate Recovery": {
+        "count": 1,
+        "sha256": "22c831f0495e1e8590ef517f0868e1d527a22904949200ce9edd6fb7ccbd6b3d"
+      },
+      "Kandil Access Grant": {
+        "count": 4,
+        "sha256": "8a13bc536c73407c6fae63ee4a8f710cb34cda3c8b1896443e7211cdc30f1222"
+      },
+      "Kandil Position": {
+        "count": 2,
+        "sha256": "0b30f77d76bd801ef1918994127bccf38df76915376225c24ac30d6cf42664e3"
+      },
+      "Kandil Position Assignment": {
+        "count": 1,
+        "sha256": "c4c5670c78b3483fff6c411b2969ee7782702da697cebd9e24f95763d5ef1f08"
+      },
+      "Kandil Command Audit": {
+        "count": 9,
+        "sha256": "c3a34ecdea96b3030461308b9e928d5fae7282eac96035e06b7211a971054df8"
+      }
+    },
+    "candidate_mode": true,
+    "tests_disabled": true,
+    "email_muted": true,
+    "scheduler_paused": true,
+    "companies_synthetic": true,
+    "personal_enabled": true
+  },
+  "source_hashes": {
+    "deployment/review.compose.yaml": "784ed7541a37897041fba2009af66aacfd630a75da45b6a3cc26a1e4f2074c89",
+    "deployment/review.py": "03e1197e4c147c8cc816a00825f4b7b932322dce075775095812622386edf9c7",
+    "deployment/prepare_review_site.py": "3fba690bee3c0575e0f913579f937c485186878e6d6a4a143b9344aad2ca6b9e",
+    "kandil_hr/portal/review_setup.py": "09cbcb96be23a4947e7e9db38a313490c1b132b4d5982888a32e71a25bc14dc5",
+    "kandil_hr/portal/api.py": "f0dd6c856367c1918fe1aa2e5f0c46be7d11eb3a12f073a53d548e47263bfb8b",
+    "docs/portal/test_persistent_review.cjs": "1d7991b57902e53331ebf14952393e5781182938a01ef40939814ea246f3835f"
+  },
+  "errors": [],
+  "server_failures": [],
+  "external": [],
+  "limits": [
+    "Persistent review examples intentionally retained; this harness reads them without business mutations.",
+    "Shared source files are not production security isolation. Review database/Redis are dedicated; background workers and scheduler remain stopped.",
+    "Full HR UAT, security, 1000+ capacity and production gates remain open."
+  ]
+}

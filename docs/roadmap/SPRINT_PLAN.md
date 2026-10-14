@@ -1,6 +1,6 @@
 # قنديل — HR delivery sprint plan
 
-The [recovery operations checkpoint](S5_RECOVERY_OPERATIONS_CHECKPOINT.md) preserves original requests across session loss, clears displayed private state on confirmed logout and returns to the actor-owned inbox after sign-in. **19 session checks, 42 recovery UI checks and 10 isolated scheduler/worker checks passed.** Native scheduled cleanup respected its 100-row bound and recovered after worker restart without changing business records. Ordinary candidate mode remains disabled until controlled review-cohort activation. Full S5 and release gates remain open.
+The [persistent review checkpoint](S5_PERSISTENT_REVIEW_CHECKPOINT.md) enables candidate review at **http://kandil-review.localhost:8112/hr-portal** with stable synthetic examples, a dedicated database/Redis and the existing personal login. **22 review checks and 63 independent candidate regression checks passed**; test cleanup preserved the review records, settings and session. Background workers/scheduler remain stopped here. Full S5 and release gates remain open.
 
 Earlier checkpoints below retain their original scope and outstanding work at the time; the current status above supersedes their recovery next-step notes.
 

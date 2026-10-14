@@ -1,0 +1,111 @@
+{
+  "status": "PASS",
+  "containers": {
+    "kandil-hr-review-web-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-review_default"
+      ],
+      "volumes": [],
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8112"
+          }
+        ]
+      }
+    },
+    "kandil-hr-review-mariadb-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-review_default"
+      ],
+      "volumes": [
+        "kandil-hr-review_review-database"
+      ],
+      "ports": {}
+    },
+    "kandil-hr-review-redis-cache-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-review_default"
+      ],
+      "volumes": [
+        "002795eaffae15eb75644334171766f076ce25816a51b1e2b4589b72718636f3"
+      ],
+      "ports": {}
+    },
+    "kandil-hr-review-redis-queue-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-review_default"
+      ],
+      "volumes": [
+        "kandil-hr-review_review-queue"
+      ],
+      "ports": {}
+    },
+    "kandil-hr-dev-parity-web-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-dev_default"
+      ],
+      "volumes": [],
+      "ports": {
+        "8000/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "8102"
+          }
+        ],
+        "9102/tcp": [
+          {
+            "HostIp": "127.0.0.1",
+            "HostPort": "9102"
+          }
+        ]
+      }
+    },
+    "kandil-hr-dev-mariadb-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-dev_default"
+      ],
+      "volumes": [
+        "kandil-hr-dev_database"
+      ],
+      "ports": {}
+    },
+    "kandil-hr-dev-redis-cache-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-dev_default"
+      ],
+      "volumes": [
+        "6e3dedeca78616a3c36a92d24e4d2ee77ce234d298ac0c46e413f95a9e7f73df"
+      ],
+      "ports": {}
+    },
+    "kandil-hr-dev-redis-queue-1": {
+      "running": true,
+      "networks": [
+        "kandil-hr-dev_default"
+      ],
+      "volumes": [
+        "kandil-hr-dev_queue"
+      ],
+      "ports": {}
+    }
+  },
+  "distinct_databases": true,
+  "distinct_networks": true,
+  "loopback_only": true,
+  "review_candidate_mode": true,
+  "review_tests_disabled": true,
+  "parity_candidate_mode_restored_off": true,
+  "limits": [
+    "App code and development bench filesystem are shared; this is not production filesystem isolation.",
+    "Workers/scheduler not started in review project."
+  ]
+}
