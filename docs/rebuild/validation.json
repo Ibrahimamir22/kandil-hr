@@ -1,10 +1,17 @@
 {
   "date": "2026-10-15",
+  "reference_commit": "c54c21b93be4063521d5fc1d69b8909d6ba976b1",
+  "review_type": "Static source/document review; reference runtime tests not executed",
   "requirement_count": 98,
   "unique_ids": 98,
   "verbatim_ids_and_requirements": true,
   "all_requirements_assigned": true,
-  "new_backend_acceptance_claimed": false,
-  "planning_groups": 15,
+  "change_entries": 109,
+  "all_changes_assigned_for_review": true,
+  "detailed_sprints": 26,
+  "work_items": 104,
+  "dependencies_acyclic": true,
+  "source_paths_exist": true,
+  "all_new_implementation_planned": true,
   "reference_sha256": "7a967a80ec64165dce35a1bd8e7594e669e50d9e92fe745df2cbc5eec61639ef"
 }

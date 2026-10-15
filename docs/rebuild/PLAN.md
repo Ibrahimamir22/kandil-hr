@@ -2,6 +2,8 @@
 
 Planning draft · 15 October 2026 · no custom-backend implementation claimed
 
+**Updated after fresh reference-source review:** use [SPRINTS.md](SPRINTS.md) for the detailed N00–N25 schedule (104 work items), [SOURCE_REVIEW.md](SOURCE_REVIEW.md) for examined evidence and limitations, and [DECISIONS.md](DECISIONS.md) for policy conflicts. The R0–R14 table below is the original grouping, retained for context. It is not the execution tracker.
+
 ## Purpose and current decision
 
 Design a custom Arabic/English HR website for Kandil, with a new backend and a new private repository, independent of Frappe. Preserve the existing Frappe implementation as reference and fallback. Odoo remains independent. This is an internal company system, not a SaaS/RaaS product initiative.
@@ -170,7 +172,7 @@ Release requires exact source revision, green relevant CI, requirement evidence,
 
 ## Immediate next work and tracker rules
 
-Next: complete R0's product brief, role/workflow inventory and decision register; then create R1's prototype and architecture package. Repository creation and backend coding start in R2 after the core contracts are reviewed. No paid service is necessary to write the design package.
+Next: complete N00's product brief, role/workflow inventory and decision register; then create N01/N02's prototype and architecture package. Repository creation and backend coding start in N03 after the core contracts are reviewed. No paid service is necessary to write the design package.
 
 Tracker states: planned → in progress → engineering verified → HR accepted → released; blocked records a specific dependency and owner. Completion requires evidence links and source revision. Never infer a percentage from code volume, agent activity or old Frappe test totals. All current rebuild implementation entries remain planned.
 

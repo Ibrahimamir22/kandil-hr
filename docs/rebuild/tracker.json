@@ -1,7 +1,7 @@
 {
   "project": "Kandil custom HR rebuild",
   "updated": "2026-10-15",
-  "status": "Planning draft; product review pending",
+  "status": "Detailed source-reviewed planning draft; business decisions pending",
   "plan": "PLAN.md",
   "reference": {
     "path": "docs/roadmap/reference-coverage.csv",
@@ -304,5 +304,1766 @@
       "evidence": [],
       "blockers": []
     }
-  ]
+  ],
+  "reference_repository": {
+    "url": "https://github.com/mohamedomara-hr/kandil-recruitment-portal",
+    "commit": "c54c21b93be4063521d5fc1d69b8909d6ba976b1",
+    "review": "Static source/document review; no reference app execution"
+  },
+  "detailed_sprints": [
+    {
+      "id": "N00",
+      "title": "Reference reconciliation and product decisions",
+      "dependencies": [],
+      "source_files": [
+        "docs/blueprint/blueprint-v2.3.md",
+        "docs/blueprint/requirements-status.md",
+        "docs/decisions/2026-10-09-review-decisions.md"
+      ],
+      "demo": "Walk through the full scope and every conflicting policy before implementation.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N00-T1",
+          "lane": "Product",
+          "task": "Review 98 requirements and 109 change entries; preserve identifiers and record adopted, superseded or pending decisions",
+          "acceptance": "Every source item has a sprint and disposition; no undocumented deletion.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N00-T2",
+          "lane": "Product",
+          "task": "Define recruitment/HR release boundary, users, entities, locations and authoritative source systems",
+          "acceptance": "HR confirms scope or each unresolved item has an owner and due gate.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N00-T3",
+          "lane": "Architecture",
+          "task": "Audit reusable React components, API coupling, licenses and Frappe-dependent business rules",
+          "acceptance": "Reuse/replace/reference-only register includes source paths and estimates of uncertainty.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N00-T4",
+          "lane": "QA",
+          "task": "Write happy-path, denial, exception and concurrency examples for each workflow family",
+          "acceptance": "Acceptance catalogue includes request, hiring, joining, lifecycle and public-link actors.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": [
+        "CHG-18",
+        "CHG-32",
+        "CHG-39",
+        "CHG-51",
+        "CHG-52",
+        "CHG-80"
+      ]
+    },
+    {
+      "id": "N01",
+      "title": "Arabic/English UX and workflow design",
+      "dependencies": [
+        "N00"
+      ],
+      "source_files": [
+        "src/Index.html",
+        "docs/design/new-look/Main.dc.html",
+        "docs/design/new-look/Candidates.dc.html",
+        "src/Apply.html",
+        "src/SelfPage.html"
+      ],
+      "demo": "Clickable manager, HR, recruiter and candidate journeys on desktop and phone.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N01-T1",
+          "lane": "Design",
+          "task": "Define navigation, brand tokens, typography, forms, tables, status labels and reusable components",
+          "acceptance": "AR RTL and EN LTR layouts include long names, responsive tables and keyboard focus.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N01-T2",
+          "lane": "Design",
+          "task": "Prototype inbox, approvals, organization, vacancy stage board and tabbed candidate file",
+          "acceptance": "HR can find and complete the next action without developer coaching.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N01-T3",
+          "lane": "Design",
+          "task": "Prototype interviews, guided offer, joining/docs, employee file and settings",
+          "acceptance": "Every source screen has a destination or explicit recorded scope decision.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N01-T4",
+          "lane": "QA",
+          "task": "Review loading, empty, validation, access denied, stale form, expired link and lost-reply states",
+          "acceptance": "Scenario walkthrough records reviewer feedback; design sign-off is separate from implementation.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "UX-001"
+      ],
+      "change_review_ids": [
+        "CHG-19",
+        "CHG-28",
+        "CHG-55",
+        "CHG-87",
+        "CHG-97",
+        "CHG-99",
+        "CHG-109"
+      ]
+    },
+    {
+      "id": "N02",
+      "title": "Data architecture, contracts and threat model",
+      "dependencies": [
+        "N00",
+        "N01"
+      ],
+      "source_files": [
+        "src/Config.gs",
+        "src/Perm.gs",
+        "src/Repo.gs",
+        "src/Api.gs"
+      ],
+      "demo": "Trace one hiring event across data, permissions, transaction, audit and notification.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N02-T1",
+          "lane": "Architecture",
+          "task": "Produce ERD, data dictionary and module ownership for person/application/employee/job/position/vacancy",
+          "acceptance": "Stable keys, relations, uniqueness, effective dates and field classifications are explicit.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N02-T2",
+          "lane": "Architecture",
+          "task": "Define state transition tables, version checks, command receipts and transactional outbox",
+          "acceptance": "Retry, stale version, deadlock and partial-provider-failure behavior are specified.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N02-T3",
+          "lane": "Architecture",
+          "task": "Publish API contracts including pagination, errors, scoped search and file access",
+          "acceptance": "Frontend and backend use the same reviewed request/response examples.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N02-T4",
+          "lane": "Security",
+          "task": "Decide session/SSO/MFA, public-token scope, retention, audit anchoring and environment boundaries",
+          "acceptance": "Threat model covers exports, files, reset flows and privileged actions; unresolved decisions have gates.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": [
+        "CHG-22",
+        "CHG-27",
+        "CHG-45",
+        "CHG-47",
+        "CHG-94"
+      ]
+    },
+    {
+      "id": "N03",
+      "title": "New repository and secure foundation",
+      "dependencies": [
+        "N02"
+      ],
+      "source_files": [
+        "src/Auth.gs",
+        "src/Security.gs",
+        "src/Audit.gs",
+        "src/PrivacyRules.gs"
+      ],
+      "demo": "Clean install, sign-in as two different scopes, and a visibly denied cross-scope request.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N03-T1",
+          "lane": "Platform",
+          "task": "Create private repo with frontend/backend/infrastructure/docs, locked dependencies, CI and synthetic fixtures",
+          "acceptance": "A clean checkout builds and migrates using documented commands; no runtime secrets in Git.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N03-T2",
+          "lane": "Backend",
+          "task": "Implement chosen identity provider/session, MFA and recovery, account disable and server-side scope",
+          "acceptance": "Logout/disable invalidate access; brute-force/CSRF/session-expiry and privilege tests pass.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N03-T3",
+          "lane": "Backend",
+          "task": "Implement audit events, protected files foundation, command receipts and outbox",
+          "acceptance": "Domain write and event commit together; retries reuse the result and recheck current authorization.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N03-T4",
+          "lane": "Frontend",
+          "task": "Build bilingual shell, login, role navigation and staging setup",
+          "acceptance": "AR/EN smoke and secure-cookie/configuration checks pass on isolated staging.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ACC-001",
+        "ACC-002",
+        "ACC-003",
+        "AUD-001",
+        "AUD-002"
+      ],
+      "change_review_ids": [
+        "CHG-14",
+        "CHG-54",
+        "CHG-82",
+        "CHG-104",
+        "CHG-108"
+      ]
+    },
+    {
+      "id": "N04",
+      "title": "First complete working slice",
+      "dependencies": [
+        "N03"
+      ],
+      "source_files": [
+        "src/Requests.gs",
+        "src/Workflow.gs",
+        "src/Vacancies.gs",
+        "src/Candidates.gs"
+      ],
+      "demo": "Manager submits; reviewer returns; manager revises; authorized approval creates vacancy; recruiter adds candidate.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N04-T1",
+          "lane": "Backend",
+          "task": "Seed minimal synthetic company, positions and authority; implement one real hiring route",
+          "acceptance": "Scoped user cannot select another unit; decision records the exact reviewed version.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N04-T2",
+          "lane": "Backend",
+          "task": "Create vacancy and person/application through transactional commands",
+          "acceptance": "Repeated approval creates one vacancy; double candidate submit creates one intended application.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N04-T3",
+          "lane": "Frontend",
+          "task": "Connect request, approval, vacancy and candidate screens to actual APIs",
+          "acceptance": "Refresh retains saved state; no mock success messages remain in the slice.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N04-T4",
+          "lane": "QA",
+          "task": "Exercise AR/EN ordinary users, revoked access, network retry and conflicting decisions",
+          "acceptance": "Evidence links the source revision, fixture, API results and browser workflow; full parity is not claimed.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": []
+    },
+    {
+      "id": "N05",
+      "title": "Organization, employees and controlled imports",
+      "dependencies": [
+        "N04"
+      ],
+      "source_files": [
+        "src/OrgAdmin.gs",
+        "src/OrgChart.gs",
+        "src/Employees.gs",
+        "src/Import.gs",
+        "src/Structural.gs"
+      ],
+      "demo": "Import a synthetic structure, compare history, request a position and approve an employee assignment.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N05-T1",
+          "lane": "Backend",
+          "task": "Implement separate legal entities, hierarchy, jobs, positions, branch placement and effective-dated assignments",
+          "acceptance": "Cycles/duplicate codes denied; historical structure can be reconstructed and compared.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N05-T2",
+          "lane": "Backend",
+          "task": "Implement structural requests and employee-position assignment/end/move approvals",
+          "acceptance": "HR + CEO approval is required under the user's chosen route; pending changes do not change occupancy.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N05-T3",
+          "lane": "Frontend",
+          "task": "Build searchable tree/chart, employee directory, position detail and approved-change history",
+          "acceptance": "Counts reconcile and unauthorized employees/compensation are absent from all views.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N05-T4",
+          "lane": "QA",
+          "task": "Build import preview, mapping, validation, duplicate review and batch reconciliation",
+          "acceptance": "Invalid rows are reported before commit; reruns cannot double occupancy; no salary values required for HC import.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ORG-001",
+        "ORG-002",
+        "ORG-006",
+        "ORG-007",
+        "ORG-008",
+        "ORG-009",
+        "HC-001",
+        "HC-002"
+      ],
+      "change_review_ids": [
+        "CHG-02",
+        "CHG-15",
+        "CHG-16",
+        "CHG-20",
+        "CHG-23",
+        "CHG-29",
+        "CHG-33",
+        "CHG-56"
+      ]
+    },
+    {
+      "id": "N06",
+      "title": "Job descriptions and competency library",
+      "dependencies": [
+        "N05"
+      ],
+      "source_files": [
+        "src/JobDescriptions.gs",
+        "src/JdReview.gs",
+        "src/Grades.gs",
+        "docs/policies/jd-writing-guide.md"
+      ],
+      "demo": "Draft a JD, collect manager comments, approve a version and print its worker card in Arabic.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N06-T1",
+          "lane": "Backend",
+          "task": "Model competency levels, question/test references, grades/job levels and versioned JDs",
+          "acceptance": "Superseded versions remain; grade-derived level follows reviewed rules without exposing grade to employees.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N06-T2",
+          "lane": "Backend",
+          "task": "Implement responsibility limits/reasons, KPI types and weights, certificates and manager review rounds",
+          "acceptance": "Invalid weights blocked; manager comments cannot silently edit or approve a JD.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N06-T3",
+          "lane": "Frontend",
+          "task": "Build JD editor, review inbox, comparisons, interview kit and approved-version document views",
+          "acceptance": "Manager/employee outputs hide restricted fields; AR/EN printing has no clipped text.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N06-T4",
+          "lane": "QA",
+          "task": "Test spreadsheet JD import, round deadlines, reviewed recipient lists and PDF/email generation",
+          "acceptance": "Approved snapshot is delivered; missing role and failed-delivery cases remain actionable.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ORG-003"
+      ],
+      "change_review_ids": [
+        "CHG-06",
+        "CHG-34",
+        "CHG-35",
+        "CHG-36",
+        "CHG-37",
+        "CHG-88",
+        "CHG-89",
+        "CHG-90",
+        "CHG-93",
+        "CHG-96"
+      ]
+    },
+    {
+      "id": "N07",
+      "title": "Complete hiring requests and approval authority",
+      "dependencies": [
+        "N05",
+        "N06"
+      ],
+      "source_files": [
+        "src/Requests.gs",
+        "src/Workflow.gs",
+        "src/Ceo.gs",
+        "src/Dual.gs",
+        "src/Daily.gs"
+      ],
+      "demo": "Multi-site request with an absent manager, HC exception, delegation, CEO and Board evidence.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N07-T1",
+          "lane": "Backend",
+          "task": "Complete HR-REC-F02 fields, location lines, replacements, skills and headcount reservation math",
+          "acceptance": "Request quantities do not double count pending/open/occupied commitments under concurrent submissions.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N07-T2",
+          "lane": "Backend",
+          "task": "Implement reviewed authority chains, vacant-role skips, dated delegation, HR actions and Board route",
+          "acceptance": "Self-approval conflicts follow signed policy; sensitive authority changes require independent approval.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N07-T3",
+          "lane": "Frontend",
+          "task": "Build My Requests, review inbox, decision snapshots, return/revision timeline and authority administration",
+          "acceptance": "Reviewers see exactly what they approve and current delegated scope.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N07-T4",
+          "lane": "QA",
+          "task": "Implement working-calendar reminders/escalations and resolve auto-rejection decision before enabling it",
+          "acceptance": "Timed tests cover holidays, expired delegation, concurrent approvals and requester notification history.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ORG-005",
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-007",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "BRD-001"
+      ],
+      "change_review_ids": [
+        "CHG-01",
+        "CHG-03",
+        "CHG-24",
+        "CHG-26",
+        "CHG-40",
+        "CHG-41",
+        "CHG-74",
+        "CHG-75",
+        "CHG-76"
+      ]
+    },
+    {
+      "id": "N08",
+      "title": "Amendments, vacancies and recruitment workload",
+      "dependencies": [
+        "N07"
+      ],
+      "source_files": [
+        "src/RequestChanges.gs",
+        "src/Vacancies.gs",
+        "src/Workflow.gs",
+        "src/Requests.gs"
+      ],
+      "demo": "Amend an approved request, assign a recruiter team, freeze a vacancy and recover an inactive recruiter's work.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N08-T1",
+          "lane": "Backend",
+          "task": "Implement approved-change policy, supplementary HC requests and quantity commitments",
+          "acceptance": "Changes never erase approval history or reduce below committed capacity; reapproval matrix is explicit.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N08-T2",
+          "lane": "Backend",
+          "task": "Implement one vacancy per location, partial fill, hold/freeze/close/reopen and application ownership",
+          "acceptance": "Cancel/void reconciles parent request status; inactive owners move to a visible queue safely.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N08-T3",
+          "lane": "Frontend",
+          "task": "Build list/board, priority explanation, pinning, team lookup, bulk assignment and filters",
+          "acceptance": "Pagination and totals use the same permissions; bulk errors identify affected rows.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N08-T4",
+          "lane": "QA",
+          "task": "Verify notifications, concurrent allocation and edit/reassignment races",
+          "acceptance": "No duplicate assignments or hidden cross-scope results; retries do not repeat side effects.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "PRI-001",
+        "VAC-001",
+        "VAC-002",
+        "VAC-003",
+        "VAC-004",
+        "VAC-005",
+        "VAC-006"
+      ],
+      "change_review_ids": [
+        "CHG-09",
+        "CHG-30",
+        "CHG-31",
+        "CHG-68"
+      ]
+    },
+    {
+      "id": "N09",
+      "title": "Candidate identity, pipeline and daily work",
+      "dependencies": [
+        "N08"
+      ],
+      "source_files": [
+        "src/Candidates.gs",
+        "src/Pool.gs",
+        "src/Screening.gs"
+      ],
+      "demo": "One person applies to two vacancies; recruiter records a call, schedules follow-up and closes one application.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N09-T1",
+          "lane": "Backend",
+          "task": "Separate person master, application, employee/rehire links and duplicate review",
+          "acceptance": "No automatic merging; masked duplicate hints do not disclose inaccessible contact details.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N09-T2",
+          "lane": "Backend",
+          "task": "Implement stage transitions, hold/reopen/closure, coded reasons, immutable activity and follow-ups",
+          "acceptance": "Invalid jumps denied; internal reasons never appear in candidate messages.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N09-T3",
+          "lane": "Frontend",
+          "task": "Build Candidate 360 tabs, stage board, search, activity timeline and next-action queue",
+          "acceptance": "Drag/drop calls the same validated transition; offer/acceptance/joining cannot bypass dedicated workflows.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N09-T4",
+          "lane": "QA",
+          "task": "Implement 50–100-row candidate import with batch review and existing-person handling",
+          "acceptance": "Duplicate retry and conflicting updates preserve one coherent result; blank salary differs from zero.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "CAN-001",
+        "CAN-005",
+        "CAN-006",
+        "CAN-007",
+        "CAN-009",
+        "SCR-002",
+        "ACT-001",
+        "ACT-002",
+        "COM-001",
+        "COM-002",
+        "MOV-002"
+      ],
+      "change_review_ids": [
+        "CHG-25",
+        "CHG-42",
+        "CHG-43"
+      ]
+    },
+    {
+      "id": "N10",
+      "title": "Public application, self-service and privacy",
+      "dependencies": [
+        "N09"
+      ],
+      "source_files": [
+        "src/Apply.html",
+        "src/Self.gs",
+        "src/Consent.gs",
+        "src/Privacy.gs",
+        "src/PrivacyRules.gs",
+        "src/Photos.gs"
+      ],
+      "demo": "Candidate applies, accepts a versioned notice, updates their file and revokes optional pool consent.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N10-T1",
+          "lane": "Backend",
+          "task": "Implement vacancy/ad intake, candidate-owned consent and separate purpose-specific grants",
+          "acceptance": "Public source attribution is server-validated; screening gate uses the approved consent policy.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N10-T2",
+          "lane": "Backend",
+          "task": "Implement expiring/revocable scoped self-service links, private CV/photo upload and pool membership",
+          "acceptance": "Token rotation invalidates old links; uploads are quarantined/scanned; photo visibility follows consent and role.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N10-T3",
+          "lane": "Frontend",
+          "task": "Build accessible AR/EN public form, consent page, candidate page and privacy admin",
+          "acceptance": "Candidate actors are recorded as themselves, not impersonated recruiter accounts; salary/ID fields follow signed policy.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N10-T4",
+          "lane": "QA",
+          "task": "Add data requests, identity verification, retention/hold, export and redaction workflows",
+          "acceptance": "Unauthorized file access blocked; withdrawal affects eligibility immediately; deletion does not destroy required lawful evidence.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "CAN-002",
+        "CAN-003",
+        "CAN-004",
+        "CAN-008"
+      ],
+      "change_review_ids": [
+        "CHG-07",
+        "CHG-53",
+        "CHG-72",
+        "CHG-81",
+        "CHG-83"
+      ]
+    },
+    {
+      "id": "N11",
+      "title": "Sources, ads, agencies and referrals",
+      "dependencies": [
+        "N09",
+        "N10"
+      ],
+      "source_files": [
+        "src/Sourcing.gs",
+        "src/Referrals.gs"
+      ],
+      "demo": "Generate an ad, track credits, attribute a referral and resolve a competing agency claim.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N11-T1",
+          "lane": "Backend",
+          "task": "Model source/sub-source, ads and immutable original/current attribution with outcome locks",
+          "acceptance": "Source changes preserve original evidence and cannot bypass closing locks.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N11-T2",
+          "lane": "Backend",
+          "task": "Implement agency terms/ownership and employee referrals/bonus review ledger",
+          "acceptance": "Simultaneous agencies cannot own the same eligible person; bonuses record decisions without executing payments.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N11-T3",
+          "lane": "Frontend",
+          "task": "Build source catalogue, ad templates/apply links, agency/referral register and subscription-credit controls",
+          "acceptance": "Terms and attribution changes show before/after confirmation; credit usage can be voided with history.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N11-T4",
+          "lane": "QA",
+          "task": "Verify same-agency terms preservation, referral reclassification, disputes, expiry and cost attribution",
+          "acceptance": "Replays cannot renew ownership or spend credits twice; unresolved dispute has assigned human owner.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ADV-001",
+        "ADV-002",
+        "SRC-001",
+        "SRC-002",
+        "SRC-003"
+      ],
+      "change_review_ids": [
+        "CHG-38"
+      ]
+    },
+    {
+      "id": "N12",
+      "title": "Interview scheduling and candidate responses",
+      "dependencies": [
+        "N10",
+        "N11"
+      ],
+      "source_files": [
+        "src/Interviews.gs",
+        "src/Self.gs",
+        "src/Assessments.gs"
+      ],
+      "demo": "Manager confirms, candidate receives invite, reschedules, checks in and interviewer starts.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N12-T1",
+          "lane": "Backend",
+          "task": "Implement interview plans, required/optional rounds, panels, locations and schedule versions",
+          "acceptance": "Candidate invitation blocked before manager confirmation; rescheduling invalidates outdated actions.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N12-T2",
+          "lane": "Backend",
+          "task": "Implement scoped candidate confirmation/decline, cancellation, no-shows and waiting timers",
+          "acceptance": "Repeated responses and reminder jobs do not create duplicate events or invitations.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N12-T3",
+          "lane": "Frontend",
+          "task": "Build calendar/list, interviewer workspace, recruiter scheduling and candidate response views",
+          "acceptance": "JD version and correct location/time are shown in both languages and mobile layouts.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N12-T4",
+          "lane": "QA",
+          "task": "Add reminders, reconfirmation and escalation with provider sandbox verification",
+          "acceptance": "Stale recipients, cancelled interviews and disabled users receive no invalid reminders.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "INT-001",
+        "INT-002",
+        "INT-003",
+        "INT-004",
+        "INT-010"
+      ],
+      "change_review_ids": [
+        "CHG-44"
+      ]
+    },
+    {
+      "id": "N13",
+      "title": "Evaluations, assessments and selection",
+      "dependencies": [
+        "N12"
+      ],
+      "source_files": [
+        "src/Interviews.gs",
+        "src/Assessments.gs",
+        "src/Offers.gs",
+        "src/PrivacyRules.gs"
+      ],
+      "demo": "Independent interview feedback plus a practical test lead to a reviewed selection decision.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N13-T1",
+          "lane": "Backend",
+          "task": "Implement structured evaluations, revisions, question bank and readiness calculation",
+          "acceptance": "Evaluators cannot see peers' protected answers before authorized release; every revision preserves history.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N13-T2",
+          "lane": "Backend",
+          "task": "Implement practical/written assessments, criteria, HSE prerequisite, evidence and retest",
+          "acceptance": "Unsafe/unconfirmed start denied; failed assessment produces human-review flag, not automatic rejection.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N13-T3",
+          "lane": "Frontend",
+          "task": "Build evaluation forms, assessment results, comparison/readiness and selected/reserve/hold decisions",
+          "acceptance": "Required missing evidence is visible; waiver requires authorized reason and relationship declaration.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N13-T4",
+          "lane": "QA",
+          "task": "Verify manager decline, panel replacement, late feedback, reference-check consent and selection reversal",
+          "acceptance": "Selection is separate from financial offer authority; old evaluation versions remain attributable.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ASM-001",
+        "INT-005",
+        "INT-006",
+        "INT-007",
+        "INT-008",
+        "INT-009"
+      ],
+      "change_review_ids": [
+        "CHG-05",
+        "CHG-08",
+        "CHG-46"
+      ]
+    },
+    {
+      "id": "N14",
+      "title": "Compensation proposals and offers",
+      "dependencies": [
+        "N13"
+      ],
+      "source_files": [
+        "src/Pay.gs",
+        "src/Offers.gs",
+        "src/Self.gs"
+      ],
+      "demo": "Calculate a reviewed package, route authority, revise after negotiation and obtain candidate acceptance.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N14-T1",
+          "lane": "Backend",
+          "task": "Version grade/range/component/allowance rules and offer package calculations",
+          "acceptance": "Gross/net estimates have approved sample calculations; no payroll or payment execution exists.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N14-T2",
+          "lane": "Backend",
+          "task": "Implement authority thresholds, independent net review, expiry, extension and five-figure salary trail",
+          "acceptance": "Recruiter authority and exceptional contracts follow approved matrix; self-review denied.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N14-T3",
+          "lane": "Frontend",
+          "task": "Build salary/benefits/review/send wizard, print preview and candidate response",
+          "acceptance": "Accepted terms identify exact version; working hours/rest and variable incentives display correctly.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N14-T4",
+          "lane": "QA",
+          "task": "Test restricted pay fields/exports, concurrent acceptance/expiry, rejected offers and delivery evidence",
+          "acceptance": "No duplicate accepted commitment; revised offers require appropriate reapproval; legal wording stays gated.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ORG-004",
+        "OFF-001",
+        "OFF-002",
+        "OFF-003",
+        "OFF-004",
+        "OFF-005",
+        "OFF-006",
+        "OFF-007"
+      ],
+      "change_review_ids": [
+        "CHG-04",
+        "CHG-10",
+        "CHG-48",
+        "CHG-49",
+        "CHG-84",
+        "CHG-107"
+      ]
+    },
+    {
+      "id": "N15",
+      "title": "Joining, documents and contracts",
+      "dependencies": [
+        "N14"
+      ],
+      "source_files": [
+        "src/Joining.gs",
+        "src/Employees.gs",
+        "docs/forms/print-book.pdf",
+        "tools/print_book.js"
+      ],
+      "demo": "Candidate uploads documents; HR verifies and records physical receipt; approved actual joining creates employee.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N15-T1",
+          "lane": "Backend",
+          "task": "Implement joining-date revisions, no-show, actual join and rollback/void controls",
+          "acceptance": "Actual join updates occupancy once; accepting an offer alone does not fill the position.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N15-T2",
+          "lane": "Backend",
+          "task": "Implement document requirement matrix, versions, 13 reference states, suspect/replacement, deferral and expiry",
+          "acceptance": "Digital upload is not physical receipt; mandatory exceptions cannot be waived without approved policy.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N15-T3",
+          "lane": "Frontend",
+          "task": "Build candidate documents page, HR verification/receipt, contract prerequisites and restricted salary-details print",
+          "acceptance": "Missing legal inputs prevent final contract issuance; approved templates render correct AR/EN PDFs.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N15-T4",
+          "lane": "QA",
+          "task": "Test late documents, replacement, token expiry, signed contract, no-insurance policy gate and notifications",
+          "acceptance": "Missing documents never stop wages; private files and historical signatures remain correctly scoped.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "HC-007",
+        "MOV-001",
+        "JOI-001",
+        "JOI-002",
+        "DOC-001",
+        "DOC-002",
+        "FIL-001",
+        "WAG-001"
+      ],
+      "change_review_ids": [
+        "CHG-11",
+        "CHG-13",
+        "CHG-50",
+        "CHG-67",
+        "CHG-100",
+        "CHG-101",
+        "CHG-102",
+        "CHG-103"
+      ]
+    },
+    {
+      "id": "N16",
+      "title": "Onboarding and new-hire experience",
+      "dependencies": [
+        "N15"
+      ],
+      "source_files": [
+        "src/Onboarding.gs",
+        "src/NewHire.gs",
+        "src/Employees.gs"
+      ],
+      "demo": "An arriving employee gets tasks for HR/IT/safety, custody/PPE, enrollment record and confidential survey.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N16-T1",
+          "lane": "Backend",
+          "task": "Implement factory/showroom/office programs, owner resolution, acknowledgement and date changes",
+          "acceptance": "Changed start dates move only eligible open tasks; no-show cancels appropriate work without losing history.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N16-T2",
+          "lane": "Backend",
+          "task": "Implement gifts, custody/PPE, social-insurance case and attendance-enrollment metadata",
+          "acceptance": "No biometric storage or BioTime connector; mobile-license occupancy/release is validated and auditable.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N16-T3",
+          "lane": "Frontend",
+          "task": "Build arrivals-tomorrow, owner task lists, employee file and new-hire survey",
+          "acceptance": "Survey answers stay HR-only; small-group aggregates are suppressed per approved threshold.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N16-T4",
+          "lane": "QA",
+          "task": "Verify missing owners, repeat scheduler runs, incomplete equipment return and enrollment stop alerts",
+          "acceptance": "Every overdue case has an owner; gifts/signatures/insurance changes require correct role.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ONB-001",
+        "ONB-002",
+        "ONB-003",
+        "INS-001"
+      ],
+      "change_review_ids": [
+        "CHG-57",
+        "CHG-58",
+        "CHG-85",
+        "CHG-86",
+        "CHG-91"
+      ]
+    },
+    {
+      "id": "N17",
+      "title": "Transfers, exits and headcount reconciliation",
+      "dependencies": [
+        "N05",
+        "N15",
+        "N16"
+      ],
+      "source_files": [
+        "src/Transfers.gs",
+        "src/Employees.gs",
+        "src/Onboarding.gs"
+      ],
+      "demo": "Request permanent or temporary transfer, approve through HR + CEO, execute on date and reconcile positions.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N17-T1",
+          "lane": "Backend",
+          "task": "Implement sender/receiver initiation, manager opinions, handover, temporary cover and replacement request",
+          "acceptance": "Apply user's HR + CEO approval override; simultaneous moves cannot overbook target capacity.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N17-T2",
+          "lane": "Backend",
+          "task": "Implement effective-date execution, temporary return, cancellation and end-of-service reversal policy",
+          "acceptance": "Repeated scheduler execution is idempotent; source/home assignment and history remain coherent.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N17-T3",
+          "lane": "Frontend",
+          "task": "Build transfer preview, approvals, handover, exit file and reconciliation report",
+          "acceptance": "Salary/grade implications are restricted; employee notification/signature follows reviewed policy.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N17-T4",
+          "lane": "QA",
+          "task": "Test future exit, rehire restriction/appeal, revoked account access and custody/enrollment follow-up",
+          "acceptance": "Ended users lose access at the approved point; historic person/application identity survives.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "MOV-003",
+        "MOV-004"
+      ],
+      "change_review_ids": [
+        "CHG-21",
+        "CHG-59"
+      ]
+    },
+    {
+      "id": "N18",
+      "title": "Probation and insurance follow-up",
+      "dependencies": [
+        "N16",
+        "N17"
+      ],
+      "source_files": [
+        "src/Probation.gs",
+        "src/NewHire.gs",
+        "src/Self.gs"
+      ],
+      "demo": "Employee acknowledges goals, submits self-review, manager evaluates and HR decides with history.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N18-T1",
+          "lane": "Backend",
+          "task": "Implement eligible evaluator selection, goals, dated checkpoints, evidence log and final decisions",
+          "acceptance": "Missing JL5+ evaluator routes to HR; period/rehire rules follow signed HR/legal decision.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N18-T2",
+          "lane": "Backend",
+          "task": "Implement stay interview/PIP, confidential access, insurance enrollment and appeals decision from legal review",
+          "acceptance": "No unreviewed legal deadline or automatic termination is enabled; exit closes cases appropriately.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N18-T3",
+          "lane": "Frontend",
+          "task": "Build manager/HR/employee views, checkpoint forms, decision evidence and medical-insurance queue",
+          "acceptance": "Employee visibility and appeal/result-notification rules are explicit and tested.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N18-T4",
+          "lane": "QA",
+          "task": "Test changed manager, overdue review, concurrent exit/confirmation and repeat insurance creation",
+          "acceptance": "Once-only events, confidentiality and historical evidence survive all paths.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "PRB-001",
+        "INS-002"
+      ],
+      "change_review_ids": [
+        "CHG-12",
+        "CHG-61",
+        "CHG-62",
+        "CHG-63",
+        "CHG-92"
+      ]
+    },
+    {
+      "id": "N19",
+      "title": "Operational reports and management KPIs",
+      "dependencies": [
+        "N08",
+        "N11",
+        "N12",
+        "N14",
+        "N15",
+        "N17",
+        "N18"
+      ],
+      "source_files": [
+        "src/Reports.gs",
+        "src/Kpi.gs",
+        "src/Insights.gs"
+      ],
+      "demo": "A manager drills from KPI to the exact permitted cases and exports the same reconciled population.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N19-T1",
+          "lane": "Backend",
+          "task": "Define metric catalogue, cohorts, costs, elapsed/business time, exclusions and targets",
+          "acceptance": "Every figure has a formula, denominator, source events and reproducible fixture expectation.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N19-T2",
+          "lane": "Backend",
+          "task": "Build request/vacancy/candidate/offer/joiner reports, source ROI, bottlenecks and calibration",
+          "acceptance": "Missing history is labelled; estimates are distinguished from observed costs and outcomes.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N19-T3",
+          "lane": "Frontend",
+          "task": "Build personal/team/process scorecards, target editing, filters, drill-down and forecast confidence",
+          "acceptance": "Targets/weights are versioned and restricted; small sensitive cohorts remain protected.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N19-T4",
+          "lane": "QA",
+          "task": "Validate exports, injection-safe CSV, authorization and query plans against representative volumes",
+          "acceptance": "Counts match details and exports; heavy jobs cannot block ordinary operations.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "RPT-001",
+        "RPT-002"
+      ],
+      "change_review_ids": [
+        "CHG-64",
+        "CHG-65",
+        "CHG-66",
+        "CHG-69",
+        "CHG-70"
+      ]
+    },
+    {
+      "id": "N20",
+      "title": "Optional controlled AI assistance",
+      "dependencies": [
+        "N10",
+        "N13",
+        "N19"
+      ],
+      "source_files": [
+        "src/CvAi.gs",
+        "src/Screening.gs"
+      ],
+      "demo": "Synthetic CV produces reviewable suggestions; recruiter selects fields and sees source evidence.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N20-T1",
+          "lane": "Backend",
+          "task": "Implement provider adapter, redaction, consent/purpose checks and isolated asynchronous jobs",
+          "acceptance": "No live personal-data transfer until approved; secrets never reach browser or logs.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N20-T2",
+          "lane": "Backend",
+          "task": "Enforce budget reservation, retry limits, file-size limits, model/prompt versions and kill switch",
+          "acceptance": "Concurrent calls cannot exceed approved cap; malformed output is rejected safely.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N20-T3",
+          "lane": "Frontend",
+          "task": "Show extracted fields, job-related evidence, uncertainty and explicit apply/reject choices",
+          "acceptance": "Suggestions never automatically change stage, reject candidate or rank by protected traits.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N20-T4",
+          "lane": "QA",
+          "task": "Test document prompt injection, protected fields, stale CV/JD, provider failure and hallucinated evidence",
+          "acceptance": "Traceable evaluation report required; if deferred, record exact AI-related scope rather than claim parity.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "SCR-001"
+      ],
+      "change_review_ids": [
+        "CHG-71",
+        "CHG-73"
+      ]
+    },
+    {
+      "id": "N21",
+      "title": "Administration, oversight and shared identity",
+      "dependencies": [
+        "N03",
+        "N07",
+        "N10",
+        "N17",
+        "N19"
+      ],
+      "source_files": [
+        "src/Admin.gs",
+        "src/Security.gs",
+        "src/Ceo.gs",
+        "src/Dual.gs",
+        "src/Presence.gs",
+        "src/Ops.gs",
+        "src/Readiness.gs"
+      ],
+      "demo": "Disable dormant account, review delegated access, inspect audit alert and exercise staging incident procedure.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N21-T1",
+          "lane": "Backend",
+          "task": "Implement access reviews, privileged two-person changes, new-device alerts and dormant-account reassignment",
+          "acceptance": "No user approves own reset/role change; recovery path remains independently controlled.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N21-T2",
+          "lane": "Backend",
+          "task": "Implement tamper-evidence verification, incident workflow, backup status and readiness checks",
+          "acceptance": "Protected anchor/key design is tested; redaction and archival do not silently break verification.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N21-T3",
+          "lane": "Frontend",
+          "task": "Build grouped settings, audit explorer, feedback, process map/guide and limited presence view",
+          "acceptance": "Presence contains only permitted screen-level data and expires; readiness checkboxes cannot prove deployment.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N21-T4",
+          "lane": "Integration",
+          "task": "Implement agreed shared sign-in with appraisal portal and sandbox delivery adapters",
+          "acceptance": "Provider contract and revocation tested; unavailable external dependency stays explicitly blocked.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [
+        "ACC-004"
+      ],
+      "change_review_ids": [
+        "CHG-17",
+        "CHG-60",
+        "CHG-77",
+        "CHG-78",
+        "CHG-79",
+        "CHG-95",
+        "CHG-98",
+        "CHG-105",
+        "CHG-106"
+      ]
+    },
+    {
+      "id": "N22",
+      "title": "Full regression and migration rehearsal",
+      "dependencies": [
+        "N05",
+        "N06",
+        "N07",
+        "N08",
+        "N09",
+        "N10",
+        "N11",
+        "N12",
+        "N13",
+        "N14",
+        "N15",
+        "N16",
+        "N17",
+        "N18",
+        "N19",
+        "N21"
+      ],
+      "source_files": [
+        "src/Import.gs",
+        "src/Repo.gs",
+        "tests/harness.js",
+        "docs/blueprint/blueprint-v2.3.md"
+      ],
+      "demo": "Rehearse import, run all release workflows and produce reconciled exceptions without touching production.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N22-T1",
+          "lane": "Data",
+          "task": "Inventory authoritative Sheets/approved exports, map IDs/fields, classify missing data and legal holds",
+          "acceptance": "Synthetic/approved sample migration has row counts, rejected records and named HR reconciliation.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N22-T2",
+          "lane": "Platform",
+          "task": "Rehearse migrations, expand/contract schema changes, rollback and pending-job handling",
+          "acceptance": "Clean install and upgrade both pass; old/new compatibility is explicit during release window.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N22-T3",
+          "lane": "QA",
+          "task": "Port acceptance scenarios to real PostgreSQL/API/browser tests across roles and languages",
+          "acceptance": "All 98 IDs and adopted change entries have evidence or named unresolved gate; mock-only passes excluded.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N22-T4",
+          "lane": "Product",
+          "task": "Run scripted HR walkthrough and resolve integration defects with severity/owner",
+          "acceptance": "No critical business-flow defects remain; migrated history is labelled honestly, not fabricated.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": []
+    },
+    {
+      "id": "N23",
+      "title": "Independent security, load and recovery gates",
+      "dependencies": [
+        "N22"
+      ],
+      "source_files": [
+        "src/Security.gs",
+        "src/Privacy.gs",
+        "src/Audit.gs",
+        "src/Ops.gs"
+      ],
+      "demo": "Show measured response times, access-denial evidence and a successful isolated restore.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N23-T1",
+          "lane": "Security",
+          "task": "Review authentication, object/field access, public links, uploads, dependencies, secrets and cloud configuration",
+          "acceptance": "Independent findings triaged; critical/high release risks fixed or formally dispositioned before pilot.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N23-T2",
+          "lane": "Performance",
+          "task": "Seed 1500 synthetic accounts; test realistic 50/100/250 active-user mixes, bursts, jobs and soak",
+          "acceptance": "Record infrastructure and p95/error/queue/lock metrics; agree actual peak and targets before judging pass.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N23-T3",
+          "lane": "Operations",
+          "task": "Restore database/files/keys to a clean environment and rehearse provider/database outage",
+          "acceptance": "Measured RPO/RTO meet signed targets; restored data and encrypted fields reconcile.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N23-T4",
+          "lane": "QA",
+          "task": "Repeat affected tests after fixes and verify production configuration separately from dev",
+          "acceptance": "No test/admin shortcut or synthetic destructive action is available in production.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": []
+    },
+    {
+      "id": "N24",
+      "title": "HR acceptance, training and controlled pilot",
+      "dependencies": [
+        "N23"
+      ],
+      "source_files": [
+        "src/Readiness.gs",
+        "docs/blueprint/blueprint-v2.3.md"
+      ],
+      "demo": "Representative HR, managers and employees complete their own tasks during a limited supported pilot.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N24-T1",
+          "lane": "Product",
+          "task": "Obtain role-based UAT on approved source revision and HR-owned sample scenarios",
+          "acceptance": "Named reviewers accept scope; open noncritical defects have explicit impact/workaround.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N24-T2",
+          "lane": "Operations",
+          "task": "Finalize account provisioning, training, support contacts, runbooks and service costs",
+          "acceptance": "Users can access without shared admin credentials; named people own incidents and backups.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N24-T3",
+          "lane": "Data",
+          "task": "Rehearse cutover freeze/change capture, reconciliation and rollback including new writes",
+          "acceptance": "Pilot cohort and go/no-go triggers agreed; old source remains recoverable with controlled access.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N24-T4",
+          "lane": "QA",
+          "task": "Observe pilot, reconcile daily business totals and verify monitoring/notification delivery",
+          "acceptance": "No unresolved critical issues; users complete tasks without developer intervention.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": []
+    },
+    {
+      "id": "N25",
+      "title": "Production rollout and stabilization",
+      "dependencies": [
+        "N24"
+      ],
+      "source_files": [
+        "src/Ops.gs",
+        "src/Readiness.gs"
+      ],
+      "demo": "Expand from the accepted pilot to the agreed user groups with operational evidence.",
+      "status": "planned",
+      "tasks": [
+        {
+          "id": "N25-T1",
+          "lane": "Release",
+          "task": "Deploy tagged reviewed build through controlled pipeline and approved migration",
+          "acceptance": "Release manifest includes code, configuration, migrations, evidence and rollback steps.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N25-T2",
+          "lane": "Operations",
+          "task": "Expand cohorts gradually and monitor latency, errors, jobs, security and support",
+          "acceptance": "Pause criteria are enforced; real usage informs sizing before all-user expansion.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; technical reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N25-T3",
+          "lane": "Data",
+          "task": "Reconcile transferred records and post-cutover transactions with HR",
+          "acceptance": "Exception ownership and recovery for lost/misassigned records are documented and resolved.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        },
+        {
+          "id": "N25-T4",
+          "lane": "Product",
+          "task": "Close stabilization, hand over repository/hosting/access and schedule maintenance",
+          "acceptance": "Kandil can operate and restore system; deferred features stay visible in backlog.",
+          "status": "planned",
+          "owner": "Ibrahim/implementation lead; HR reviewer",
+          "evidence": []
+        }
+      ],
+      "estimate": "Proposed 2-week timebox; capacity/effort unestimated until N02; split if needed",
+      "evidence": [],
+      "requirement_ids": [],
+      "change_review_ids": []
+    }
+  ],
+  "planning_notes": "N00-N25 are proposed sprint backlog; R0-R14 retained as historical group view. Estimates uncommitted. All implementation planned."
 }
