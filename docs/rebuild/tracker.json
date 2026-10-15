@@ -1,0 +1,308 @@
+{
+  "project": "Kandil custom HR rebuild",
+  "updated": "2026-10-15",
+  "status": "Planning draft; product review pending",
+  "plan": "PLAN.md",
+  "reference": {
+    "path": "docs/roadmap/reference-coverage.csv",
+    "sha256": "7a967a80ec64165dce35a1bd8e7594e669e50d9e92fe745df2cbc5eec61639ef",
+    "requirements": 98
+  },
+  "new_repository": {
+    "suggested_name": "kandil-hr-web",
+    "status": "Not created by this planning task"
+  },
+  "implementation_started": false,
+  "groups": [
+    {
+      "id": "R0",
+      "title": "Scope and discovery",
+      "status": "planned",
+      "dependencies": [],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R1",
+      "title": "UX and architecture",
+      "status": "planned",
+      "dependencies": [
+        "R0"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R2",
+      "title": "Engineering foundation",
+      "status": "planned",
+      "dependencies": [
+        "R1"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ACC-001",
+        "ACC-002",
+        "ACC-003",
+        "UX-001",
+        "AUD-001",
+        "AUD-002"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R3",
+      "title": "Complete proof flow",
+      "status": "planned",
+      "dependencies": [
+        "R2"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R4",
+      "title": "Full organization",
+      "status": "planned",
+      "dependencies": [
+        "R3"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ORG-001",
+        "ORG-002",
+        "ORG-003",
+        "ORG-007",
+        "ORG-008",
+        "ORG-009",
+        "HC-001",
+        "HC-002"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R5",
+      "title": "Full request authority",
+      "status": "planned",
+      "dependencies": [
+        "R4"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ORG-005",
+        "ORG-006",
+        "HC-003",
+        "HC-004",
+        "HC-005",
+        "HC-006",
+        "REQ-001",
+        "REQ-002",
+        "REQ-003",
+        "REQ-004",
+        "REQ-005",
+        "REQ-006",
+        "REQ-008",
+        "REQ-009",
+        "REQ-010",
+        "REQ-011",
+        "BRD-001"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R6",
+      "title": "Vacancy operations",
+      "status": "planned",
+      "dependencies": [
+        "R5"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "REQ-007",
+        "PRI-001",
+        "VAC-001",
+        "VAC-002",
+        "VAC-003",
+        "VAC-004",
+        "VAC-005",
+        "VAC-006"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R7",
+      "title": "Candidates and sourcing",
+      "status": "planned",
+      "dependencies": [
+        "R6"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ADV-001",
+        "ADV-002",
+        "SRC-001",
+        "SRC-002",
+        "SRC-003",
+        "CAN-001",
+        "CAN-002",
+        "CAN-003",
+        "CAN-004",
+        "CAN-005",
+        "CAN-006",
+        "CAN-007",
+        "CAN-008",
+        "CAN-009",
+        "SCR-002",
+        "ACT-001",
+        "ACT-002",
+        "COM-001",
+        "COM-002",
+        "MOV-002"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R8",
+      "title": "Interviews",
+      "status": "planned",
+      "dependencies": [
+        "R7"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ASM-001",
+        "INT-001",
+        "INT-002",
+        "INT-003",
+        "INT-004",
+        "INT-005",
+        "INT-006",
+        "INT-007",
+        "INT-008",
+        "INT-009",
+        "INT-010"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R9",
+      "title": "Offers",
+      "status": "planned",
+      "dependencies": [
+        "R8"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ORG-004",
+        "OFF-001",
+        "OFF-002",
+        "OFF-003",
+        "OFF-004",
+        "OFF-005",
+        "OFF-006",
+        "OFF-007"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R10",
+      "title": "Joining and files",
+      "status": "planned",
+      "dependencies": [
+        "R9"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "HC-007",
+        "MOV-001",
+        "JOI-001",
+        "JOI-002",
+        "DOC-001",
+        "DOC-002",
+        "FIL-001",
+        "ONB-001",
+        "ONB-002",
+        "ONB-003",
+        "INS-001",
+        "WAG-001"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R11",
+      "title": "Employee lifecycle",
+      "status": "planned",
+      "dependencies": [
+        "R10"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "MOV-003",
+        "MOV-004",
+        "PRB-001",
+        "INS-002"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R12",
+      "title": "Reports and shared identity",
+      "status": "planned",
+      "dependencies": [
+        "R7",
+        "R8",
+        "R9",
+        "R10",
+        "R11"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [
+        "ACC-004",
+        "SCR-001",
+        "RPT-001",
+        "RPT-002"
+      ],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R13",
+      "title": "Release readiness",
+      "status": "planned",
+      "dependencies": [
+        "R12"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [],
+      "evidence": [],
+      "blockers": []
+    },
+    {
+      "id": "R14",
+      "title": "Controlled rollout",
+      "status": "planned",
+      "dependencies": [
+        "R13"
+      ],
+      "owner": "Ibrahim / technical lead; business reviewers per PLAN.md",
+      "requirement_ids": [],
+      "evidence": [],
+      "blockers": []
+    }
+  ]
+}

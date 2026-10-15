@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-15",
+  "requirement_count": 98,
+  "unique_ids": 98,
+  "verbatim_ids_and_requirements": true,
+  "all_requirements_assigned": true,
+  "new_backend_acceptance_claimed": false,
+  "planning_groups": 15,
+  "reference_sha256": "7a967a80ec64165dce35a1bd8e7594e669e50d9e92fe745df2cbc5eec61639ef"
+}
